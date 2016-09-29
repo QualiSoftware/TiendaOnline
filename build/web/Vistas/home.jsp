@@ -7,7 +7,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <!--redirije a tomar por culo -->
+        <!--redirije a tomar por cule-->
         <s:action name="primero" executeResult="true"/>
         
     </body>
