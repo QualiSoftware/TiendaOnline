@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 16-sep-2016 19:41:34 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Modelos.Pedidos" table="pedidos" catalog="tiendaonline" optimistic-lock="version">
+        <id name="pedId" type="java.lang.Integer">
+            <column name="ped_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="usuarios" class="Modelos.Usuarios" fetch="select">
+            <column name="ped_usu_id" not-null="true" />
+        </many-to-one>
+        <property name="pedFormaPago" type="string">
+            <column name="ped_forma_pago" length="50" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

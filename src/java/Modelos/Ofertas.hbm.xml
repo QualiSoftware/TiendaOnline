@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 16-sep-2016 19:41:34 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Modelos.Ofertas" table="ofertas" catalog="tiendaonline" optimistic-lock="version">
+        <id name="ofertaId" type="java.lang.Integer">
+            <column name="oferta_id" />
+            <generator class="identity" />
+        </id>
+        <property name="ofertaDescuento" type="int">
+            <column name="oferta_descuento" not-null="true" />
+        </property>
+        <property name="ofertaFechaInicio" type="timestamp">
+            <column name="oferta_fecha_inicio" length="19" not-null="true" />
+        </property>
+        <property name="ofertaFechaFin" type="timestamp">
+            <column name="oferta_fecha_fin" length="19" not-null="true" />
+        </property>
+        <set name="productoses" table="productos" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="prod_oferta_id" not-null="true" />
+            </key>
+            <one-to-many class="Modelos.Productos" />
+        </set>
+    </class>
+</hibernate-mapping>

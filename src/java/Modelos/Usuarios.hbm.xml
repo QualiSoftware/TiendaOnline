@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 16-sep-2016 19:41:34 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Modelos.Usuarios" table="usuarios" catalog="tiendaonline" optimistic-lock="version">
+        <id name="usuId" type="java.lang.Integer">
+            <column name="usu_id" />
+            <generator class="identity" />
+        </id>
+        <property name="usuNombre" type="string">
+            <column name="usu_nombre" length="100" not-null="true" />
+        </property>
+        <property name="usuApellidos" type="string">
+            <column name="usu_apellidos" length="100" not-null="true" />
+        </property>
+        <property name="usuDni" type="string">
+            <column name="usu_dni" length="15" not-null="true" />
+        </property>
+        <property name="usuEdad" type="int">
+            <column name="usu_edad" not-null="true" />
+        </property>
+        <property name="usuGenero" type="string">
+            <column name="usu_genero" length="20" not-null="true" />
+        </property>
+        <property name="usuEmail" type="string">
+            <column name="usu_email" length="50" not-null="true" />
+        </property>
+        <property name="usuLogin" type="string">
+            <column name="usu_login" length="50" not-null="true" />
+        </property>
+        <property name="usuClave" type="string">
+            <column name="usu_clave" length="50" not-null="true" />
+        </property>
+        <set name="pedidoses" table="pedidos" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ped_usu_id" not-null="true" />
+            </key>
+            <one-to-many class="Modelos.Pedidos" />
+        </set>
+        <set name="direccioneses" table="direcciones" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="dir_usu_id" not-null="true" />
+            </key>
+            <one-to-many class="Modelos.Direcciones" />
+        </set>
+    </class>
+</hibernate-mapping>
