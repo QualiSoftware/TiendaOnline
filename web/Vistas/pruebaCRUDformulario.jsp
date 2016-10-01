@@ -14,7 +14,7 @@
     </head>
     <body>
         <h1> <s:label name="cabeceraocul"></s:label> </h1>
-        <s:form action="CrudActionClientela" theme="simple">
+        <s:form action="CrudActionColeccion" theme="simple">
             <s:textfield type="hidden" name="accionocul"/>
  <table>
 

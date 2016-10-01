@@ -18,7 +18,12 @@ public class Coleccion  implements java.io.Serializable {
     public Coleccion() {
     }
 
-	
+    public Coleccion(Integer coleccionId, String coleccionDescripcion) {
+        this.coleccionId = coleccionId;
+        this.coleccionDescripcion = coleccionDescripcion;
+    }
+
+    
     public Coleccion(String coleccionDescripcion) {
         this.coleccionDescripcion = coleccionDescripcion;
     }

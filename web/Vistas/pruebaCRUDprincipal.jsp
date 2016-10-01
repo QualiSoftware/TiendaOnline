@@ -17,10 +17,10 @@
         <table border="1">
             <tr>
                 <td colspan="8">
-                    <s:form action="ClientelaFiltro" theme="simple">
+                    <s:form action="ColeccionFiltro" theme="simple">
                         Filtro : <s:textfield name="filtro" /><s:submit value="filtrar"></s:submit>
                             &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
-                            <s:a action="ClientelaForm">
+                            <s:a action="ColeccionForm">
                                 <s:param name="accion" value="'a'"/>
                                 <i style="font-size: 20px" class="glyphicon glyphicon-plus"></i>
                             </s:a>
@@ -36,26 +36,26 @@
 
 
             </tr>
-            <s:iterator var="a" value="Lista_Clientela">
+            <s:iterator var="a" value="Lista_Coleccion">
                 <tr>
                     <td>
-                        <s:a action="ClientelaForm">
-                            <s:param name="clave" value="#a.clientelaId"/>
+                        <s:a action="ColeccionForm">
+                            <s:param name="clave" value="#a.coleccionId"/>
                             <s:param name="accion" value="'m'"/>
                             <i style="font-size: 20px" class="glyphicon glyphicon-edit"></i>
                         </s:a>
                         &nbsp;&nbsp;&nbsp;&nbsp;
-                        <s:a action="ClientelaForm">
+                        <s:a action="ColeccionForm">
                             <s:param name="accion" value="'e'"/>
-                            <s:param name="clave" value="#a.clientelaId"/>
+                            <s:param name="clave" value="#a.coleccionId"/>
                             <i style="font-size: 20px" class="glyphicon glyphicon-trash"></i>
                         </s:a>
                     </td>
                     <td>
-                        <s:property value="#a.clientelaId"/><br>
+                        <s:property value="#a.coleccionId"/><br>
                     </td>
                     <td>
-                        <s:property value="#a.clientelaDescripcion"/><br>
+                        <s:property value="#a.coleccionDescripcion"/><br>
                     </td>
                 </tr>
             </s:iterator>

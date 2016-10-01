@@ -23,7 +23,7 @@
         </action>-->
         
         <!--action de clientela-->
-        <action name="ClientelaFiltro" class="Acciones.HomeClientela" method="ClientelaFiltro" >
+       <!-- <action name="ClientelaFiltro" class="Acciones.HomeClientela" method="ClientelaFiltro" >
             <result>/Vistas/pruebaCRUDprincipal.jsp</result> 
         </action>
         <action name="ClientelaForm" class="Acciones.HomeClientela" method="ClientelaForm">
@@ -37,6 +37,22 @@
         </action>
         <action name="volver">
             <result type="redirect">ClientelaFiltro</result>
+        </action> -->
+        <!-- action de Coleccion-->
+        <action name="ColeccionFiltro" class="Acciones.HomeColeccion" method="ColeccionFiltro" >
+            <result>/Vistas/pruebaCRUDprincipal.jsp</result> 
         </action>
+        <action name="ColeccionForm" class="Acciones.HomeColeccion" method="ColeccionForm">
+            <result>/Vistas/pruebaCRUDformulario.jsp</result>
+            
+        </action>
+        <action name="CrudActionColeccion" class="Acciones.HomeColeccion" method="CrudActionColeccion">
+            <result name="input">/Vistas/pruebaCRUDformulario.jsp</result>
+            <result name="error">/Vistas/pruebaCRUDformulario.jsp</result>
+            <result type="chain">ColeccionFiltro</result> 
+        </action>
+        <action name="volver">
+            <result type="redirect">ColeccionFiltro</result>
+        </action>   
     </package>
 </struts>
