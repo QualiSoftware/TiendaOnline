@@ -18,6 +18,13 @@ public class Color  implements java.io.Serializable {
     public Color() {
     }
 
+    public Color(Integer colorId, String colorDescripcion) {
+        this.colorId = colorId;
+        this.colorDescripcion = colorDescripcion;
+    }
+    
+    
+
 	
     public Color(String colorDescripcion) {
         this.colorDescripcion = colorDescripcion;

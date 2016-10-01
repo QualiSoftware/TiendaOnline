@@ -39,20 +39,19 @@
             <result type="redirect">ClientelaFiltro</result>
         </action> -->
         <!-- action de Coleccion-->
-        <action name="ColeccionFiltro" class="Acciones.HomeColeccion" method="ColeccionFiltro" >
+        <action name="ColorFiltro" class="Acciones.HomeColor" method="ColorFiltro" >
             <result>/Vistas/pruebaCRUDprincipal.jsp</result> 
         </action>
-        <action name="ColeccionForm" class="Acciones.HomeColeccion" method="ColeccionForm">
-            <result>/Vistas/pruebaCRUDformulario.jsp</result>
-            
+        <action name="ColorForm" class="Acciones.HomeColor" method="ColorForm">
+            <result>/Vistas/pruebaCRUDformulario.jsp</result>   
         </action>
-        <action name="CrudActionColeccion" class="Acciones.HomeColeccion" method="CrudActionColeccion">
+        <action name="CrudActionColor" class="Acciones.HomeColor" method="CrudActionColor">
             <result name="input">/Vistas/pruebaCRUDformulario.jsp</result>
             <result name="error">/Vistas/pruebaCRUDformulario.jsp</result>
-            <result type="chain">ColeccionFiltro</result> 
+            <result type="chain">ColorFiltro</result> 
         </action>
         <action name="volver">
-            <result type="redirect">ColeccionFiltro</result>
+            <result type="redirect">ColorFiltro</result>
         </action>   
     </package>
 </struts>
