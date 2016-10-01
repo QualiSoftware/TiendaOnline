@@ -14,6 +14,6 @@
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>/Vistas/home.jsp</welcome-file>
+        <welcome-file>/Vistas/pruebaCRUDprincipal.jsp</welcome-file>
     </welcome-file-list>
 </web-app>

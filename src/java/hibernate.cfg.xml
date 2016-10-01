@@ -4,14 +4,23 @@
   <session-factory>
     <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
     <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/tiendaonline?zeroDateTimeBehavior=convertToNull</property>
+    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/tienda_ropa?zeroDateTimeBehavior=convertToNull</property>
     <property name="hibernate.connection.username">root</property>
     <property name="hibernate.connection.password">root</property>
-    <mapping resource="Modelos/Productos.hbm.xml"/>
-    <mapping resource="Modelos/Ofertas.hbm.xml"/>
-    <mapping resource="Modelos/Direcciones.hbm.xml"/>
-    <mapping resource="Modelos/Usuarios.hbm.xml"/>
-    <mapping resource="Modelos/Pedidos.hbm.xml"/>
-    <mapping resource="Modelos/Secciones.hbm.xml"/>
+    <property name="hibernate.cache.use_second_level_cache">false</property>
+    <property name="hibernate.cache.use_minimal_puts">true</property>
+    <property name="hibernate.transaction.flush_before_completion">true</property>
+    <mapping resource="Modelos/Fotos.hbm.xml"/>
+    <mapping resource="Modelos/Categoria.hbm.xml"/>
+    <mapping resource="Modelos/RopaCategoria.hbm.xml"/>
+    <mapping resource="Modelos/Marcas.hbm.xml"/>
+    <mapping resource="Modelos/Color.hbm.xml"/>
+    <mapping resource="Modelos/Look.hbm.xml"/>
+    <mapping resource="Modelos/Ropa.hbm.xml"/>
+    <mapping resource="Modelos/Material.hbm.xml"/>
+    <mapping resource="Modelos/Tallas.hbm.xml"/>
+    <mapping resource="Modelos/RopaMaterial.hbm.xml"/>
+    <mapping resource="Modelos/Coleccion.hbm.xml"/>
+    <mapping resource="Modelos/Clientela.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

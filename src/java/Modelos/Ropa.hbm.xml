@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 01-oct-2016 9:25:16 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Modelos.Ropa" table="ropa" catalog="tienda_ropa" optimistic-lock="version">
+        <id name="roId" type="java.lang.Integer">
+            <column name="ro_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="clientela" class="Modelos.Clientela" fetch="select">
+            <column name="ro_clientela_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="coleccion" class="Modelos.Coleccion" fetch="select">
+            <column name="ro_coleccion_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="color" class="Modelos.Color" fetch="select">
+            <column name="ro_color_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="look" class="Modelos.Look" fetch="select">
+            <column name="ro_look_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="marcas" class="Modelos.Marcas" fetch="select">
+            <column name="ro_marca_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="tallas" class="Modelos.Tallas" fetch="select">
+            <column name="ro_talla_id" not-null="true" />
+        </many-to-one>
+        <property name="roDescripcion" type="string">
+            <column name="ro_descripcion" length="100" not-null="true" />
+        </property>
+        <property name="roPrecio" type="double">
+            <column name="ro_precio" precision="8" not-null="true" />
+        </property>
+        <property name="roDescuento" type="double">
+            <column name="ro_descuento" precision="4" not-null="true" />
+        </property>
+        <property name="roCaracteristicas" type="string">
+            <column name="ro_caracteristicas" length="65535" not-null="true" />
+        </property>
+        <property name="roVisible" type="byte">
+            <column name="ro_visible" not-null="true" />
+        </property>
+        <property name="roUnidades" type="int">
+            <column name="ro_unidades" not-null="true" />
+        </property>
+        <property name="roFecha" type="date">
+            <column name="ro_fecha" length="10" not-null="true" />
+        </property>
+        <set name="ropaCategorias" table="ropa_categoria" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="roca_ro_id" not-null="true" />
+            </key>
+            <one-to-many class="Modelos.RopaCategoria" />
+        </set>
+        <set name="ropaMaterials" table="ropa_material" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="roma_ro_id" not-null="true" />
+            </key>
+            <one-to-many class="Modelos.RopaMaterial" />
+        </set>
+        <set name="fotoses" table="fotos" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="fotos_ro_id" not-null="true" />
+            </key>
+            <one-to-many class="Modelos.Fotos" />
+        </set>
+    </class>
+</hibernate-mapping>

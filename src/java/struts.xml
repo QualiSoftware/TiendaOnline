@@ -5,25 +5,20 @@
 <struts>
     <!-- Configuration for the default package. -->
     <package name="default" extends="struts-default">
-        <action name="Login" class="Acciones.UsuariosController" method="Login">
-            <result name="success" type="chain">
-                <param name="actionName">primero</param>
-                <param name="sesion.usuariologueado.usuNombre">${sesion.usuariologueado.usuNombre}</param>
-            </result>
-            <result name="input" type="chain">
-                <param name="actionName">primero</param>
-                <param name="mensajeError">mensajeError</param>
-            </result>
-            <result name="error" type="chain">
-                <param name="actionName">primero</param>
-                <param name="mensajeError">mensajeError</param>
-            </result>          
+        <action name="CategoriaFiltro" class="Acciones.HomeCategorias" method="CategoriaFiltro" >
+            <result>/Vistas/pruebaCRUDprincipal.jsp</result> 
         </action>
-        <action name="primero" class="Acciones.ProductosController" method="prod_rel">
-            <result name="success">/Vistas/index.jsp</result> 
+        <action name="CategoriasForm" class="Acciones.HomeCategorias" method="CategoriasForm">
+            <result>/Vistas/pruebaCRUDformulario.jsp</result>
+            
         </action>
-        <action name="cerrar_sesion" class="Acciones.UsuariosController" method="cerrar_sesion">
-            <result name="success" type="redirect">primero</result>
+        <action name="CrudAction" class="Acciones.HomeCategorias" method="CrudAction">
+            <result name="input">/Vistas/pruebaCRUDformulario.jsp</result>
+            <result name="error">/Vistas/pruebaCRUDformulario.jsp</result>
+            <result type="chain">CategoriaFiltro</result> 
+        </action>
+        <action name="volver">
+            <result type="redirect">CategoriaFiltro</result>
         </action>
     </package>
 </struts>
