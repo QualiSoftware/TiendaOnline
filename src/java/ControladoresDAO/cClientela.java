@@ -72,7 +72,7 @@ public class cClientela {
             //sesion.close();
         } 
     }
-    public static int  Modifica(Clientela c){
+    public static int  Modifica(Clientela c){      
         c.getClientelaId();
         Session sesion = NewHibernateUtil.getSession();
         sesion.beginTransaction();

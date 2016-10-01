@@ -112,10 +112,10 @@ public class HomeClientela extends ActionSupport {
         this.filtro = filtro;
     }
 
-    public List<Clientela> getLista_Categorias() {
+    public List<Clientela> getLista_Clientela() {
         return Lista_Clientela;
     }
-    public void setLista_Categorias(List<Clientela> Lista_Categorias) {
+    public void setLista_Clientela(List<Clientela> Lista_Categorias) {
         this.Lista_Clientela = Lista_Clientela;
     }
 
@@ -166,11 +166,10 @@ public class HomeClientela extends ActionSupport {
             ControladoresDAO.cClientela.Inserta(p);
         }
         if (accionocul.equals("m")) {
-            Clientela p = new Clientela(codigo2,nombre2);          
+            Clientela p = new Clientela(codigo2,nombre2);  
             ControladoresDAO.cClientela.Modifica(p);
         }
         if (accionocul.equals("e")) {
-            System.out.println("codigo de borrado "+codigo2);
             ControladoresDAO.cClientela.Elimina(codigo2);
         }
         
