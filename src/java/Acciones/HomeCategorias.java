@@ -135,11 +135,8 @@ public class HomeCategorias extends ActionSupport {
             accionocul = "a";
             cabeceraocul = "Alta";
             botonocul = "Alta";
-
         }else{
-            System.out.println("entraaa modificar eliminar");
-            Categoria p = ControladoresDAO.cCategorias.RecuperaPorId(clave);
-            
+            Categoria p = ControladoresDAO.cCategorias.RecuperaPorId(clave);           
             codigo2 = p.getCatId();
             nombre2 = p.getCatDescripcion();
 
@@ -159,19 +156,19 @@ public class HomeCategorias extends ActionSupport {
     public String CrudAction() throws Exception {
           
         if (accionocul.equals("a")) {
-              System.out.println("accion ocultaaaa"+codigo2);
-           Categoria p = new Categoria(codigo2, nombre2);
+            
+           Categoria p = new Categoria(codigo2,nombre2);
             ControladoresDAO.cCategorias.Inserta(p);
         }
         if (accionocul.equals("m")) {
-            Categoria p = new Categoria(codigo2, nombre2);
+            Categoria p = new Categoria(codigo2,nombre2);          
             ControladoresDAO.cCategorias.Modifica(p);
         }
         if (accionocul.equals("e")) {
-            System.out.println("accion ocultaaaa"+codigo2);
+            System.out.println("codigo de borrado "+codigo2);
             ControladoresDAO.cCategorias.Elimina(codigo2);
         }
-
+        
         return SUCCESS;
     }
 }

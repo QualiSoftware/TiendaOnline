@@ -38,7 +38,6 @@ public class cCategorias {
     public static int  Elimina(int id){
         Session sesion = ControladoresDAO.NewHibernateUtil.getSessionFactory().openSession();
         sesion.beginTransaction();
-
         try{
             //borrar
             Categoria esto = RecuperaPorId(id);
@@ -49,7 +48,6 @@ public class cCategorias {
                 return 1;
             }
                 return -1;
-
         }catch(Exception ex){
             System.out.println(ex.getMessage());
             sesion.getTransaction().rollback();

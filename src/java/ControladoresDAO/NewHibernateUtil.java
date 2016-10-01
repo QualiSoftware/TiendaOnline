@@ -5,6 +5,7 @@
  */
 package ControladoresDAO;
 
+import org.hibernate.Session;
 import org.hibernate.cfg.AnnotationConfiguration;
 import org.hibernate.SessionFactory;
 
@@ -17,7 +18,7 @@ import org.hibernate.SessionFactory;
 public class NewHibernateUtil {
 
     private static final SessionFactory sessionFactory;
-    
+    private static Session sesion;
     static {
         try {
             // Create the SessionFactory from standard (hibernate.cfg.xml) 
@@ -28,6 +29,13 @@ public class NewHibernateUtil {
             System.err.println("Initial SessionFactory creation failed." + ex);
             throw new ExceptionInInitializerError(ex);
         }
+    }
+    
+        public static Session getSession(){
+        if(sesion==null){
+            sesion=getSessionFactory().openSession();
+        }
+        return sesion;
     }
     
     public static SessionFactory getSessionFactory() {
