@@ -18,10 +18,14 @@ public class Clientela  implements java.io.Serializable {
     public Clientela() {
     }
 
-	
-    public Clientela(String clientelaDescripcion) {
+    public Clientela(Integer clientelaId, String clientelaDescripcion) {
+        this.clientelaId = clientelaId;
         this.clientelaDescripcion = clientelaDescripcion;
     }
+    
+    
+    
+    
     public Clientela(String clientelaDescripcion, Set<Ropa> ropas) {
        this.clientelaDescripcion = clientelaDescripcion;
        this.ropas = ropas;

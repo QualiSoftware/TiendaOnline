@@ -5,7 +5,8 @@
 <struts>
     <!-- Configuration for the default package. -->
     <package name="default" extends="struts-default">
-        <action name="CategoriaFiltro" class="Acciones.HomeCategorias" method="CategoriaFiltro" >
+        <!--action de categoria-->
+       <!-- <action name="CategoriaFiltro" class="Acciones.HomeCategorias" method="CategoriaFiltro" >
             <result>/Vistas/pruebaCRUDprincipal.jsp</result> 
         </action>
         <action name="CategoriasForm" class="Acciones.HomeCategorias" method="CategoriasForm">
@@ -19,6 +20,23 @@
         </action>
         <action name="volver">
             <result type="redirect">CategoriaFiltro</result>
+        </action>-->
+        
+        <!--action de clientela-->
+        <action name="ClientelaFiltro" class="Acciones.HomeClientela" method="ClientelaFiltro" >
+            <result>/Vistas/pruebaCRUDprincipal.jsp</result> 
+        </action>
+        <action name="ClientelaForm" class="Acciones.HomeClientela" method="ClientelaForm">
+            <result>/Vistas/pruebaCRUDformulario.jsp</result>
+            
+        </action>
+        <action name="CrudActionClientela" class="Acciones.HomeClientela" method="CrudActionClientela">
+            <result name="input">/Vistas/pruebaCRUDformulario.jsp</result>
+            <result name="error">/Vistas/pruebaCRUDformulario.jsp</result>
+            <result type="chain">ClientelaFiltro</result> 
+        </action>
+        <action name="volver">
+            <result type="redirect">ClientelaFiltro</result>
         </action>
     </package>
 </struts>
