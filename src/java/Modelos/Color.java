@@ -1,5 +1,5 @@
 package Modelos;
-// Generated 01-oct-2016 14:05:09 by Hibernate Tools 4.3.1
+// Generated 02-oct-2016 2:34:12 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -17,13 +17,6 @@ public class Color  implements java.io.Serializable {
 
     public Color() {
     }
-
-    public Color(Integer colorId, String colorDescripcion) {
-        this.colorId = colorId;
-        this.colorDescripcion = colorDescripcion;
-    }
-    
-    
 
 	
     public Color(String colorDescripcion) {

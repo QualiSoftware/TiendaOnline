@@ -157,11 +157,13 @@ public class HomeCategorias extends ActionSupport {
           
         if (accionocul.equals("a")) {
             
-           Categoria p = new Categoria(codigo2,nombre2);
+           Categoria p = new Categoria(nombre2);
+           p.setCatId(codigo2);
             ControladoresDAO.cCategorias.Inserta(p);
         }
         if (accionocul.equals("m")) {
-            Categoria p = new Categoria(codigo2,nombre2);          
+            Categoria p = new Categoria(nombre2);
+            p.setCatId(codigo2);
             ControladoresDAO.cCategorias.Modifica(p);
         }
         if (accionocul.equals("e")) {

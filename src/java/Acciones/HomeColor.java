@@ -164,11 +164,13 @@ public class HomeColor extends ActionSupport {
     
     public String CrudActionColor() throws Exception {         
         if (accionocul.equals("a")) {            
-           Color p = new Color(codigo2,nombre2);
+           Color p = new Color(nombre2);
+           p.setColorId(codigo2);
             ControladoresDAO.cColor.Inserta(p);
         }
         if (accionocul.equals("m")) {
-            Color p = new Color(codigo2, nombre2);  
+            Color p = new Color(nombre2); 
+            p.setColorId(codigo2);
             ControladoresDAO.cColor.Modifica(p);
         }
         if (accionocul.equals("e")) {

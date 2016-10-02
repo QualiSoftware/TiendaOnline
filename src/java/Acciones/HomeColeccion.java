@@ -160,11 +160,13 @@ public class HomeColeccion extends ActionSupport {
           
         if (accionocul.equals("a")) {
             
-           Coleccion p = new Coleccion(codigo2,nombre2);
+           Coleccion p = new Coleccion(nombre2);
+           p.setColeccionId(codigo2);
             ControladoresDAO.cColeccion.Inserta(p);
         }
         if (accionocul.equals("m")) {
-            Coleccion p = new Coleccion(codigo2, nombre2);  
+            Coleccion p = new Coleccion(nombre2); 
+            p.setColeccionId(codigo2);
             ControladoresDAO.cColeccion.Modifica(p);
         }
         if (accionocul.equals("e")) {

@@ -19,6 +19,7 @@ public class NewHibernateUtil {
 
     private static final SessionFactory sessionFactory;
     private static Session sesion;
+    
     static {
         try {
             // Create the SessionFactory from standard (hibernate.cfg.xml) 
@@ -31,14 +32,14 @@ public class NewHibernateUtil {
         }
     }
     
-        public static Session getSession(){
-        if(sesion==null){
-            sesion=getSessionFactory().openSession();
-        }
-        return sesion;
-    }
-    
     public static SessionFactory getSessionFactory() {
         return sessionFactory;
+    }
+    
+    public static Session getSession(){
+        if(sesion == null){
+            sesion = getSessionFactory().openSession();
+        }
+        return sesion;
     }
 }

@@ -5,25 +5,76 @@
 <struts>
     <!-- Configuration for the default package. -->
     <package name="default" extends="struts-default">
-        <action name="Login" class="Acciones.UsuariosController" method="Login">
-            <result name="success" type="chain">
-                <param name="actionName">primero</param>
-                <param name="sesion.usuariologueado.usuNombre">${sesion.usuariologueado.usuNombre}</param>
-            </result>
-            <result name="input" type="chain">
-                <param name="actionName">primero</param>
-                <param name="mensajeError">mensajeError</param>
-            </result>
-            <result name="error" type="chain">
-                <param name="actionName">primero</param>
-                <param name="mensajeError">mensajeError</param>
-            </result>          
+        <!--action de categoria-->
+       <!-- <action name="CategoriaFiltro" class="Acciones.HomeCategorias" method="CategoriaFiltro" >
+            <result>/Vistas/pruebaCRUDprincipal.jsp</result> 
         </action>
-        <action name="primero" class="Acciones.ProductosController" method="prod_rel">
-            <result name="success">/Vistas/index.jsp</result> 
+        <action name="CategoriasForm" class="Acciones.HomeCategorias" method="CategoriasForm">
+            <result>/Vistas/pruebaCRUDformulario.jsp</result>
+            
         </action>
-        <action name="cerrar_sesion" class="Acciones.UsuariosController" method="cerrar_sesion">
-            <result name="success" type="redirect">primero</result>
+        <action name="CrudAction" class="Acciones.HomeCategorias" method="CrudAction">
+            <result name="input">/Vistas/pruebaCRUDformulario.jsp</result>
+            <result name="error">/Vistas/pruebaCRUDformulario.jsp</result>
+            <result type="chain">CategoriaFiltro</result> 
         </action>
+        <action name="volver">
+            <result type="redirect">CategoriaFiltro</result>
+        </action>-->
+        
+        <!--action de clientela-->
+       <!-- <action name="ClientelaFiltro" class="Acciones.HomeClientela" method="ClientelaFiltro" >
+            <result>/Vistas/pruebaCRUDprincipal.jsp</result> 
+        </action>
+        <action name="ClientelaForm" class="Acciones.HomeClientela" method="ClientelaForm">
+            <result>/Vistas/pruebaCRUDformulario.jsp</result>
+            
+        </action>
+        <action name="CrudActionClientela" class="Acciones.HomeClientela" method="CrudActionClientela">
+            <result name="input">/Vistas/pruebaCRUDformulario.jsp</result>
+            <result name="error">/Vistas/pruebaCRUDformulario.jsp</result>
+            <result type="chain">ClientelaFiltro</result> 
+        </action>
+        <action name="volver">
+            <result type="redirect">ClientelaFiltro</result>
+        </action> -->
+        <!-- action de Coleccion-->
+        <action name="ColorFiltro" class="Acciones.HomeColor" method="ColorFiltro" >
+            <result>/Vistas/pruebaCRUDprincipal.jsp</result> 
+        </action>
+        <action name="ColorForm" class="Acciones.HomeColor" method="ColorForm">
+            <result>/Vistas/pruebaCRUDformulario.jsp</result>   
+        </action>
+        <action name="CrudActionColor" class="Acciones.HomeColor" method="CrudActionColor">
+            <result name="input">/Vistas/pruebaCRUDformulario.jsp</result>
+            <result name="error">/Vistas/pruebaCRUDformulario.jsp</result>
+            <result type="chain">ColorFiltro</result> 
+        </action>
+        <action name="volver">
+            <result type="redirect">ColorFiltro</result>
+        </action>   
+        
+        <!-- actions de Talla - Comienzo -->
+        <action name="muestroTallas" class="Acciones.HomeTallas" method="CargoTallas">
+            <result>/Vistas/pruebaCRUDtallas.jsp</result>
+            <result name="input">/Vistas/home.jsp</result>            
+        </action>
+        <action name="tallasCRUD" class="Acciones.HomeTallas" method="cambio">
+            <result>/Vistas/pruebaCRUDtallasCambios.jsp</result>
+            <result name="input">/Vistas/home.jsp</result>
+        </action>
+        <action name="alta_mod_elim_tallas" class="Acciones.HomeTallas" method="actuar">
+            <result type="redirect">muestroTallas</result>
+            <result name="input">/Vistas/pruebaCRUDtallasCambios.jsp</result>
+            <result name="error">/Vistas/pruebaCRUDtallasCambios.jsp</result>
+        </action>
+        <!-- actions de Talla - Fin -->
+
+	<!-- este action es para volver al archivo home.jsp. Es temporal 
+	para hacer pruebas y puede borrarse -->
+	<action name="volverAHome" class="Acciones.HomeTallas" method="CargoTallas">
+		<result>/Vistas/home.jsp</result>
+	</action>
+        
     </package>
 </struts>

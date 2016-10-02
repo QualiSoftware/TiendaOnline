@@ -17,7 +17,7 @@ import org.hibernate.Session;
 public class cCategorias {
     public static List<Categoria> RecuperaTodos(String filtro){
         Session sesion = NewHibernateUtil.getSession();
-        Query query =sesion.createQuery("FROM Categoria WHERE catDescripcion LIKE'%"+filtro+"%'"); 
+        Query query =sesion.createQuery("FROM Categoria WHERE cat_descripcion LIKE'%"+filtro+"%'"); 
         List<Categoria> la = query.list();
         //sesion.close();
         return la;

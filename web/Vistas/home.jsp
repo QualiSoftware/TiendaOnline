@@ -7,8 +7,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <!--redirije a tomar por cule-->
-        <s:action name="primero" executeResult="true"/>
+        <a href="muestroTallas">Muestro Tallas</a>
         
     </body>
 </html>

@@ -162,11 +162,13 @@ public class HomeClientela extends ActionSupport {
           
         if (accionocul.equals("a")) {
             
-           Clientela p = new Clientela(codigo2,nombre2);
+           Clientela p = new Clientela(nombre2);
+           p.setClientelaId(codigo2);
             ControladoresDAO.cClientela.Inserta(p);
         }
         if (accionocul.equals("m")) {
-            Clientela p = new Clientela(codigo2, nombre2);  
+            Clientela p = new Clientela(nombre2);
+            p.setClientelaId(codigo2);
             ControladoresDAO.cClientela.Modifica(p);
         }
         if (accionocul.equals("e")) {
