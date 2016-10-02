@@ -7,7 +7,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <a href="muestroTallas">Muestro Tallas</a>
+        <a href="TallasFiltro">Muestro Tallas</a>
         
     </body>
 </html>

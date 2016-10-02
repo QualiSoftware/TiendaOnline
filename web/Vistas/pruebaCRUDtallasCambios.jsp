@@ -43,7 +43,7 @@
     <center>
         <h1><s:property value="titulo" /> de talla</h1>
       
-        <s:form action="alta_mod_elim_tallas" theme="simple" id="frm">
+        <s:form action="CrudActionTallas" theme="simple" id="frm">
             <input type="hidden" name="accion" id="accion" value=<s:property value="accion" /> />
             <input type="hidden" name="titulo" value=<s:property value="titulo" /> />
             <input type="hidden" name="boton" value=<s:property value="boton" /> />
@@ -74,7 +74,7 @@
                 <tr>
                     <td></td>
                     <td>
-                        <s:a action="muestroTallas">
+                        <s:a action="TallasFiltro">
                             <i style="font-size: 20px;" class="glyphicon glyphicon-arrow-left">Volver</i>
                         </s:a>
                             &nbsp;&nbsp;&nbsp;&nbsp;

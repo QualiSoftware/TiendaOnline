@@ -15,7 +15,7 @@
     <body>
     <center>
         <h1>Tallas</h1>
-        <s:form  theme="simple">
+        <s:form  action="TallasFiltro" theme="simple">
             <table class="table">
                 <tr>
                     <td colspan="2">
@@ -29,7 +29,7 @@
                         </s:a>                        
                     </td>
                     <td>
-                        <s:a action="tallasCRUD">
+                        <s:a action="TallasForm">
                             <s:param name="clave" value="" />
                             <s:param name="accion" value="'a'" />
                             <i style="font-size: 20px;" class="glyphicon glyphicon-plus">Nuevo</i>
@@ -49,13 +49,13 @@
                 <s:property value="tallaDescripcion" />
                 </td>
                 <td>
-                    <s:a action="tallasCRUD">
+                    <s:a action="TallasForm">
                         <s:param name="clave" value="tallaId" />
                         <s:param name="accion" value="'m'" />
                         <i style="font-size: 20px;" class="glyphicon glyphicon-pencil"></i>
                     </s:a>
                         &nbsp;&nbsp;&nbsp;&nbsp;
-                    <s:a action="tallasCRUD">
+                    <s:a action="TallasForm">
                         <s:param name="clave" value="tallaId" />
                         <s:param name="accion" value="'e'" />
                         <i style="font-size: 20px;" class="glyphicon glyphicon-trash"></i>

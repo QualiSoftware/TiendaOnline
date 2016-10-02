@@ -1,7 +1,7 @@
 package Acciones;
 
 import Modelos.Tallas;
-import Modelos.Usuarios;
+//import Modelos.Usuarios;
 import static com.opensymphony.xwork2.Action.INPUT;
 import static com.opensymphony.xwork2.Action.SUCCESS;
 import com.opensymphony.xwork2.ActionContext;
@@ -98,7 +98,7 @@ public class HomeTallas extends ActionSupport {
     }
     
     @SkipValidation
-    public String CargoTallas() throws Exception {
+    public String TallasFiltro() throws Exception {
         if(sesion==null){
             sesion=ActionContext.getContext().getSession();
         }
@@ -117,7 +117,7 @@ public class HomeTallas extends ActionSupport {
     }
     
     @SkipValidation
-    public String cambio() throws Exception{
+    public String TallasForm() throws Exception{
         if(sesion==null){
             sesion=ActionContext.getContext().getSession();
         }
@@ -161,7 +161,7 @@ public class HomeTallas extends ActionSupport {
     
     
     //@SkipValidation
-    public String actuar(){
+    public String CrudActionTallas(){
         if(sesion==null){
             sesion=ActionContext.getContext().getSession();
         }
