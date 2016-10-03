@@ -1,8 +1,3 @@
-<%-- 
-    Document   : pruebaCRUDtallasCambios.jsp
-    Created on : 01-oct-2016
-    Author     : Damián Usheff Vellianitis
---%>
 <%@taglib prefix="s" uri="/struts-tags" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
@@ -41,40 +36,40 @@
     </head>
     <body>
     <center>
-        <h1><s:property value="titulo" /> de talla</h1>
+        <h1><s:property value="titulo" /> de material</h1>
       
-        <s:form action="CrudActionTallas" theme="simple" id="frm">
+        <s:form action="CrudActionMaterial" theme="simple" id="frm">
             <input type="hidden" name="accion" id="accion" value=<s:property value="accion" /> />
             <input type="hidden" name="titulo" value=<s:property value="titulo" /> />
             <input type="hidden" name="boton" value=<s:property value="boton" /> />
             <table class="table">
                 <tr>                       
                     <td>
-                        <s:label for="tallaId">ID</s:label>
+                        <s:label for="materialId">ID</s:label>
                     </td>
                     <td>
                         <%if(eliminacion || modificacion){%>
-                        <input type="text" name="tallaId" 
-                               value="<s:property value="tallaId" />" <%=bloqueado%> />
+                        <input type="text" name="materialId" 
+                               value="<s:property value="materialId" />" <%=bloqueado%> />
                         <%}else{out.println("Se asigna automáticamente");}%>
                     </td>
                     <td></td>
                 </tr><tr>
                     <td>
-                        <s:label for="tallaDescripcion">Descripción</s:label>
+                        <s:label for="materialDescripcion">Descripción</s:label>
                     </td>
                     <td>
-                        <input type="text" name="tallaDescripcion" value="<s:property value="tallaDescripcion" />"
+                        <input type="text" name="materialDescripcion" value="<s:property value="materialDescripcion" />"
                                <%if(eliminacion){out.print(bloqueado);}%> />
                     </td>
                     <td>
-                        <s:fielderror fieldName="tallaDescripcion" />
+                        <s:fielderror fieldName="materialDescripcion" />
                     </td>
                 </tr>
                 <tr>
                     <td></td>
                     <td>
-                        <s:a action="volver">
+                        <s:a action="volverMaterial">
                             <i style="font-size: 20px;" class="glyphicon glyphicon-arrow-left">Volver</i>
                         </s:a>
                             &nbsp;&nbsp;&nbsp;&nbsp;
