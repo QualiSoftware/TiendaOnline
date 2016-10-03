@@ -134,5 +134,22 @@
             <result type="redirect">TallasFiltro</result>
         </action>
         
+        
+        <!-- actions de Fotos -->
+        <action name="FotosFiltro" class="Acciones.HomeFotos" method="FotosFiltro">
+            <result>/Vistas/pruebaCRUDprincipal.jsp</result>           
+        </action>
+        <action name="FotosForm" class="Acciones.HomeFotos" method="FotosForm">
+            <result>/Vistas/pruebaCRUDformulario.jsp</result>   
+        </action>
+        <action name="CrudActionFotos" class="Acciones.HomeFotos" method="CrudActionFotos">
+            <result type="redirect">FotosFiltro</result>
+            <result name="input">/Vistas/pruebaCRUDformulario.jsp</result>
+            <result name="error">/Vistas/pruebaCRUDformulario.jsp</result>
+        </action>
+        <action name="volverFotos">
+            <result type="redirect">FotosFiltro</result>
+        </action>
+        
     </package>
 </struts>

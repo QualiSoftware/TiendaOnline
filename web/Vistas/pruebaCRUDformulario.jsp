@@ -14,9 +14,9 @@
     </head>
     <body>
         <h1> <s:label name="cabeceraocul"></s:label> </h1>
-        <s:form action="CrudActionMarcas" theme="simple">
+        <s:form action="CrudActionFotos" theme="simple">
             <s:textfield type="hidden" name="accionocul"/>
- <table>
+            <table>
 
                 <tr>
                     <td>
@@ -24,25 +24,34 @@
                         </td>
                         <td>
                         <s:textfield name="codigo2" readonly="true"></s:textfield>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
                         <s:label for="nombre">Nombre</s:label>  
                         </td>
                         <td>
                         <s:textfield name="nombre2"/>
                     </td>
                 </tr>
-            <tr>
-                <td colspan="2">
-                   <input type="submit" value="<s:property value="botonocul" />"/>
-                   <a href="volverMarcas">
-                       volver
-                   </a>
-                </td>
-            </tr>
-        </table>
-    </s:form>
+                <tr>
+                    <td>
+                        <s:label for="IdRopa">IdRopa</s:label>  
+                        </td>
+                        <td>
+                        <s:select list="lista" label="lista" name="SeletRopa"/>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input type="submit" value="<s:property value="botonocul" />"/>
+                        <a href="volverFotos">
+                            volver
+                        </a>
+                    </td>
+                </tr>
+            </table>
+        </s:form>
     </body>
 </html>

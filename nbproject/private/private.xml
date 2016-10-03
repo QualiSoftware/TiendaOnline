@@ -3,11 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Applications/MAMP/htdocs/TiendaOnline/TiendaOnline/web/Vistas/pruebaCRUDtallasCambios.jsp</file>
+            <file>file:/Applications/MAMP/htdocs/TiendaOnline/TiendaOnline/src/java/Acciones/HomeMarcas.java</file>
             <file>file:/Applications/MAMP/htdocs/TiendaOnline/TiendaOnline/src/java/struts.xml</file>
             <file>file:/Applications/MAMP/htdocs/TiendaOnline/TiendaOnline/web/Vistas/pruebaCRUDformulario.jsp</file>
+            <file>file:/Applications/MAMP/htdocs/TiendaOnline/TiendaOnline/src/java/ControladoresDAO/cLook.java</file>
+            <file>file:/Applications/MAMP/htdocs/TiendaOnline/TiendaOnline/src/java/hibernate.cfg.xml</file>
+            <file>file:/Applications/MAMP/htdocs/TiendaOnline/TiendaOnline/src/java/Acciones/HomeLook.java</file>
+            <file>file:/Applications/MAMP/htdocs/TiendaOnline/TiendaOnline/src/java/Modelos/Marcas.java</file>
             <file>file:/Applications/MAMP/htdocs/TiendaOnline/TiendaOnline/web/Vistas/pruebaCRUDprincipal.jsp</file>
-            <file>file:/Applications/MAMP/htdocs/TiendaOnline/TiendaOnline/web/Vistas/pruebaCRUDtallas.jsp</file>
+            <file>file:/Applications/MAMP/htdocs/TiendaOnline/TiendaOnline/web/Vistas/pruebaCRUDmaterial.jsp</file>
+            <file>file:/Applications/MAMP/htdocs/TiendaOnline/TiendaOnline/src/java/ControladoresDAO/cMarcas.java</file>
         </group>
     </open-files>
 </project-private>
