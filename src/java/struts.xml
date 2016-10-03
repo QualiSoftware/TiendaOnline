@@ -6,24 +6,24 @@
     <!-- Configuration for the default package. -->
     <package name="default" extends="struts-default">
         <!--action de categoria-->
-       <!-- <action name="CategoriaFiltro" class="Acciones.HomeCategorias" method="CategoriaFiltro" >
+       <action name="CategoriaFiltro" class="Acciones.HomeCategorias" method="CategoriaFiltro" >
             <result>/Vistas/pruebaCRUDprincipal.jsp</result> 
         </action>
         <action name="CategoriasForm" class="Acciones.HomeCategorias" method="CategoriasForm">
             <result>/Vistas/pruebaCRUDformulario.jsp</result>
             
         </action>
-        <action name="CrudAction" class="Acciones.HomeCategorias" method="CrudAction">
+        <action name="CrudActionCategorias" class="Acciones.HomeCategorias" method="CrudActionCategorias">
             <result name="input">/Vistas/pruebaCRUDformulario.jsp</result>
             <result name="error">/Vistas/pruebaCRUDformulario.jsp</result>
             <result type="chain">CategoriaFiltro</result> 
         </action>
         <action name="volver">
             <result type="redirect">CategoriaFiltro</result>
-        </action>-->
+        </action> 
         
         <!--action de clientela-->
-       <!-- <action name="ClientelaFiltro" class="Acciones.HomeClientela" method="ClientelaFiltro" >
+       <action name="ClientelaFiltro" class="Acciones.HomeClientela" method="ClientelaFiltro" >
             <result>/Vistas/pruebaCRUDprincipal.jsp</result> 
         </action>
         <action name="ClientelaForm" class="Acciones.HomeClientela" method="ClientelaForm">
@@ -37,8 +37,24 @@
         </action>
         <action name="volver">
             <result type="redirect">ClientelaFiltro</result>
-        </action> -->
-        <!-- action de Coleccion-->
+        </action> 
+        <!-- action Coleccion-->
+        <action name="ColeccionFiltro" class="Acciones.HomeColeccion" method="ColeccionFiltro" >
+            <result>/Vistas/pruebaCRUDprincipal.jsp</result> 
+        </action>
+        <action name="ColeccionForm" class="Acciones.HomeColeccion" method="ColeccionForm">
+            <result>/Vistas/pruebaCRUDformulario.jsp</result>
+            
+        </action>
+        <action name="CrudActionColeccion" class="Acciones.HomeColeccion" method="CrudActionColeccion">
+            <result name="input">/Vistas/pruebaCRUDformulario.jsp</result>
+            <result name="error">/Vistas/pruebaCRUDformulario.jsp</result>
+            <result type="chain">ColeccionFiltro</result> 
+        </action>
+        <action name="volver">
+            <result type="redirect">ColeccionFiltro</result>
+        </action> 
+        <!-- action de Color-->
         <action name="ColorFiltro" class="Acciones.HomeColor" method="ColorFiltro" >
             <result>/Vistas/pruebaCRUDprincipal.jsp</result> 
         </action>

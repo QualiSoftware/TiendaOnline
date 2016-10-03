@@ -15,8 +15,10 @@ import org.hibernate.Session;
  * @author LaPlaga
  */
 public class cColeccion {
+    static Session sesion;
+    
     public static List<Coleccion> RecuperaTodos(String filtro){
-        Session sesion = NewHibernateUtil.getSession();
+        sesion = (Session) NewHibernateUtil.getSessionFactory().openSession();
         Query query =sesion.createQuery("FROM Coleccion WHERE coleccionDescripcion LIKE'%"+filtro+"%'"); 
         List<Coleccion> la = query.list();
         //sesion.close();
@@ -25,7 +27,7 @@ public class cColeccion {
     
     public static Coleccion RecuperaPorId(int id){
         //System.out.println(id);
-        Session sesion = NewHibernateUtil.getSession();
+        sesion = (Session) NewHibernateUtil.getSessionFactory().openSession();
        // Query query =sesion.createQuery("From Agenda where agId =" + id);
       //sesion.get("Agenda.class", id);
         //Agenda a = query.;
@@ -35,12 +37,11 @@ public class cColeccion {
     }
     
     
-    public static int  Elimina(int id){
-        Session sesion = NewHibernateUtil.getSession();
+    public static int  Elimina(Coleccion esto){
+        sesion = (Session) NewHibernateUtil.getSessionFactory().openSession();
         sesion.beginTransaction();
         try{
             //borrar
-            Coleccion esto = RecuperaPorId(id);
             
             if(esto!=null){
                System.out.println(esto.getColeccionId());
@@ -58,7 +59,7 @@ public class cColeccion {
         } 
     }
     public static int  Inserta(Coleccion c){
-        Session sesion = NewHibernateUtil.getSession();
+        sesion = (Session) NewHibernateUtil.getSessionFactory().openSession();
         sesion.beginTransaction();
         try{
             sesion.save(c);
@@ -73,8 +74,7 @@ public class cColeccion {
         } 
     }
     public static int  Modifica(Coleccion c){      
-        c.getColeccionId();
-        Session sesion = NewHibernateUtil.getSession();
+        sesion = (Session) NewHibernateUtil.getSessionFactory().openSession();
         sesion.beginTransaction();
         try{
             sesion.update(c);

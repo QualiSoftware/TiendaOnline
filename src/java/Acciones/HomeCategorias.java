@@ -124,6 +124,7 @@ public class HomeCategorias extends ActionSupport {
             filtro="";
         }
         Lista_Categorias = ControladoresDAO.cCategorias.RecuperaTodos(filtro);
+        System.out.println("home lista "+ Lista_Categorias.size());
         return SUCCESS;
     }
     public String CategoriasForm() throws Exception {
@@ -153,7 +154,7 @@ public class HomeCategorias extends ActionSupport {
         }
         return SUCCESS;
     }
-    public String CrudAction() throws Exception {
+    public String CrudActionCategorias() throws Exception {
           
         if (accionocul.equals("a")) {
             
@@ -168,7 +169,9 @@ public class HomeCategorias extends ActionSupport {
         }
         if (accionocul.equals("e")) {
             System.out.println("codigo de borrado "+codigo2);
-            ControladoresDAO.cCategorias.Elimina(codigo2);
+            Categoria p = new Categoria(nombre2);
+            p.setCatId(codigo2);
+            ControladoresDAO.cCategorias.Elimina(p);
         }
         
         return SUCCESS;

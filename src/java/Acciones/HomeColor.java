@@ -174,7 +174,9 @@ public class HomeColor extends ActionSupport {
             ControladoresDAO.cColor.Modifica(p);
         }
         if (accionocul.equals("e")) {
-            ControladoresDAO.cColor.Elimina(codigo2);
+            Color p = new Color(nombre2); 
+            p.setColorId(codigo2);
+            ControladoresDAO.cColor.Elimina(p);
         }        
         return SUCCESS;
     }    

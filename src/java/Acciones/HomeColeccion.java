@@ -170,7 +170,9 @@ public class HomeColeccion extends ActionSupport {
             ControladoresDAO.cColeccion.Modifica(p);
         }
         if (accionocul.equals("e")) {
-            ControladoresDAO.cColeccion.Elimina(codigo2);
+            Coleccion p = new Coleccion(nombre2); 
+            p.setColeccionId(codigo2);
+            ControladoresDAO.cColeccion.Elimina(p);
         }
         
         return SUCCESS;

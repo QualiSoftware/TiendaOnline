@@ -29,8 +29,7 @@
             </tr>
  <tr>
 
-                    <th>Acciones</th>
-
+                <th>Acciones</th>
                 <th>Codigo</th>
                 <th>Nombre</th>
 
@@ -40,22 +39,22 @@
                 <tr>
                     <td>
                         <s:a action="ColorForm">
-                            <s:param name="clave" value="#a.colorId"/>
+                            <s:param name="clave" value="#a.ColorId"/>
                             <s:param name="accion" value="'m'"/>
                             <i style="font-size: 20px" class="glyphicon glyphicon-edit"></i>
                         </s:a>
                         &nbsp;&nbsp;&nbsp;&nbsp;
                         <s:a action="ColorForm">
                             <s:param name="accion" value="'e'"/>
-                            <s:param name="clave" value="#a.colorId"/>
+                            <s:param name="clave" value="#a.ColorId"/>
                             <i style="font-size: 20px" class="glyphicon glyphicon-trash"></i>
                         </s:a>
                     </td>
                     <td>
-                        <s:property value="#a.colorId"/><br>
+                        <s:property value="#a.ColorId"/><br>
                     </td>
                     <td>
-                        <s:property value="#a.colorDescripcion"/><br>
+                        <s:property value="#a.ColorDescripcion"/><br>
                     </td>
                 </tr>
             </s:iterator>

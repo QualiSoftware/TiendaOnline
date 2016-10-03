@@ -15,8 +15,10 @@ import org.hibernate.Session;
  * @author LaPlaga
  */
 public class cColor {
+    static Session sesion;
+    
     public static List<Color> RecuperaTodos(String filtro){
-        Session sesion = NewHibernateUtil.getSession();
+        sesion = (Session) NewHibernateUtil.getSessionFactory().openSession();
         Query query =sesion.createQuery("FROM Color WHERE colorDescripcion LIKE'%"+filtro+"%'"); 
         List<Color> la = query.list();
         //sesion.close();
@@ -25,7 +27,7 @@ public class cColor {
     
     public static Color RecuperaPorId(int id){
         //System.out.println(id);
-        Session sesion = NewHibernateUtil.getSession();
+        sesion = (Session) NewHibernateUtil.getSessionFactory().openSession();
        // Query query =sesion.createQuery("From Agenda where agId =" + id);
       //sesion.get("Agenda.class", id);
         //Agenda a = query.;
@@ -35,12 +37,10 @@ public class cColor {
     }
     
     
-    public static int  Elimina(int id){
-        Session sesion = NewHibernateUtil.getSession();
+    public static int  Elimina(Color esto){
+        sesion = (Session) NewHibernateUtil.getSessionFactory().openSession();
         sesion.beginTransaction();
         try{
-            //borrar
-            Color esto = RecuperaPorId(id);
             
             if(esto!=null){
                System.out.println(esto.getColorId());
@@ -58,7 +58,7 @@ public class cColor {
         } 
     }
     public static int  Inserta(Color c){
-        Session sesion = NewHibernateUtil.getSession();
+        sesion = (Session) NewHibernateUtil.getSessionFactory().openSession();
         sesion.beginTransaction();
         try{
             sesion.save(c);
@@ -73,8 +73,7 @@ public class cColor {
         } 
     }
     public static int  Modifica(Color c){      
-        c.getColorId();
-        Session sesion = NewHibernateUtil.getSession();
+        sesion = (Session) NewHibernateUtil.getSessionFactory().openSession();
         sesion.beginTransaction();
         try{
             sesion.update(c);

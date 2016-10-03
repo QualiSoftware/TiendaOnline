@@ -172,7 +172,9 @@ public class HomeClientela extends ActionSupport {
             ControladoresDAO.cClientela.Modifica(p);
         }
         if (accionocul.equals("e")) {
-            ControladoresDAO.cClientela.Elimina(codigo2);
+             Clientela p = new Clientela(nombre2);
+           p.setClientelaId(codigo2);
+            ControladoresDAO.cClientela.Elimina(p);
         }
         
         return SUCCESS;
