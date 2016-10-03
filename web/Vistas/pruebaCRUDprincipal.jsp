@@ -17,10 +17,10 @@
         <table border="1">
             <tr>
                 <td colspan="8">
-                    <s:form action="ColorFiltro" theme="simple">
+                    <s:form action="LookFiltro" theme="simple">
                         Filtro : <s:textfield name="filtro" /><s:submit value="filtrar"></s:submit>
                             &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
-                            <s:a action="ColorForm">
+                            <s:a action="LookForm">
                                 <s:param name="accion" value="'a'"/>
                                 <i style="font-size: 20px" class="glyphicon glyphicon-plus"></i>
                             </s:a>
@@ -35,26 +35,26 @@
 
 
             </tr>
-            <s:iterator var="a" value="Lista_Color">
+            <s:iterator var="a" value="Lista_Look">
                 <tr>
                     <td>
-                        <s:a action="ColorForm">
-                            <s:param name="clave" value="#a.ColorId"/>
+                        <s:a action="LookForm">
+                            <s:param name="clave" value="#a.LookId"/>
                             <s:param name="accion" value="'m'"/>
                             <i style="font-size: 20px" class="glyphicon glyphicon-edit"></i>
                         </s:a>
                         &nbsp;&nbsp;&nbsp;&nbsp;
-                        <s:a action="ColorForm">
+                        <s:a action="LookForm">
                             <s:param name="accion" value="'e'"/>
-                            <s:param name="clave" value="#a.ColorId"/>
+                            <s:param name="clave" value="#a.LookId"/>
                             <i style="font-size: 20px" class="glyphicon glyphicon-trash"></i>
                         </s:a>
                     </td>
                     <td>
-                        <s:property value="#a.ColorId"/><br>
+                        <s:property value="#a.LookId"/><br>
                     </td>
                     <td>
-                        <s:property value="#a.ColorDescripcion"/><br>
+                        <s:property value="#a.LookDescripcion"/><br>
                     </td>
                 </tr>
             </s:iterator>

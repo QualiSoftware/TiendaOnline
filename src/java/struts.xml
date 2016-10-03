@@ -70,6 +70,22 @@
             <result type="redirect">ColorFiltro</result>
         </action>   
         
+         <!-- action de Look-->
+        <action name="LookFiltro" class="Acciones.HomeLook" method="LookFiltro" >
+            <result>/Vistas/pruebaCRUDprincipal.jsp</result> 
+        </action>
+        <action name="LookForm" class="Acciones.HomeLook" method="LookForm">
+            <result>/Vistas/pruebaCRUDformulario.jsp</result>   
+        </action>
+        <action name="CrudActionLook" class="Acciones.HomeLook" method="CrudActionLook">
+            <result name="input">/Vistas/pruebaCRUDformulario.jsp</result>
+            <result name="error">/Vistas/pruebaCRUDformulario.jsp</result>
+            <result type="chain">LookFiltro</result> 
+        </action>
+        <action name="volver">
+            <result type="redirect">LookFiltro</result>
+        </action>   
+        
         <!-- actions de Talla - Comienzo -->
         <action name="TallasFiltro" class="Acciones.HomeTallas" method="TallasFiltro">
             <result>/Vistas/pruebaCRUDtallas.jsp</result>
