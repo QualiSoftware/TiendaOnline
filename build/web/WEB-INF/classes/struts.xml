@@ -18,7 +18,7 @@
             <result name="error">/Vistas/pruebaCRUDformulario.jsp</result>
             <result type="chain">CategoriaFiltro</result> 
         </action>
-        <action name="volver">
+        <action name="volverCategoria">
             <result type="redirect">CategoriaFiltro</result>
         </action> 
         
@@ -35,7 +35,7 @@
             <result name="error">/Vistas/pruebaCRUDformulario.jsp</result>
             <result type="chain">ClientelaFiltro</result> 
         </action>
-        <action name="volver">
+        <action name="volverClientela">
             <result type="redirect">ClientelaFiltro</result>
         </action> 
         <!-- action Coleccion-->
@@ -51,7 +51,7 @@
             <result name="error">/Vistas/pruebaCRUDformulario.jsp</result>
             <result type="chain">ColeccionFiltro</result> 
         </action>
-        <action name="volver">
+        <action name="volverColeccion">
             <result type="redirect">ColeccionFiltro</result>
         </action> 
         <!-- action de Color-->
@@ -66,7 +66,7 @@
             <result name="error">/Vistas/pruebaCRUDformulario.jsp</result>
             <result type="chain">ColorFiltro</result> 
         </action>
-        <action name="volver">
+        <action name="volverColor">
             <result type="redirect">ColorFiltro</result>
         </action>   
         
@@ -82,7 +82,7 @@
             <result name="error">/Vistas/pruebaCRUDformulario.jsp</result>
             <result type="chain">LookFiltro</result> 
         </action>
-        <action name="volver">
+        <action name="volverLook">
             <result type="redirect">LookFiltro</result>
         </action>   
         

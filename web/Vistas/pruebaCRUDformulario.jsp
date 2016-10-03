@@ -37,7 +37,7 @@
             <tr>
                 <td colspan="2">
                    <input type="submit" value="<s:property value="botonocul" />"/>
-                   <a href="volver">
+                   <a href="volverLook">
                        volver
                    </a>
                 </td>
