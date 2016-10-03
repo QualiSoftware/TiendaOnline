@@ -86,27 +86,21 @@
             <result type="redirect">LookFiltro</result>
         </action>   
         
-        <!-- actions de Talla - Comienzo -->
+        <!-- actions de Talla -->
         <action name="TallasFiltro" class="Acciones.HomeTallas" method="TallasFiltro">
-            <result>/Vistas/pruebaCRUDtallas.jsp</result>
-            <result name="input">/Vistas/home.jsp</result>            
+            <result>/Vistas/pruebaCRUDtallas.jsp</result>           
         </action>
         <action name="TallasForm" class="Acciones.HomeTallas" method="TallasForm">
             <result>/Vistas/pruebaCRUDtallasCambios.jsp</result>
-            <result name="input">/Vistas/home.jsp</result>
         </action>
         <action name="CrudActionTallas" class="Acciones.HomeTallas" method="CrudActionTallas">
             <result type="redirect">TallasFiltro</result>
             <result name="input">/Vistas/pruebaCRUDtallasCambios.jsp</result>
             <result name="error">/Vistas/pruebaCRUDtallasCambios.jsp</result>
         </action>
-        <!-- actions de Talla - Fin -->
-
-	<!-- este action es para volver al archivo home.jsp. Es temporal 
-	para hacer pruebas y puede borrarse -->
-	<action name="volverAHome" class="Acciones.HomeTallas" method="TallasFiltro">
-		<result>/Vistas/home.jsp</result>
-	</action>
+        <action name="volver">
+            <result type="redirect">TallasFiltro</result>
+        </action>
         
     </package>
 </struts>

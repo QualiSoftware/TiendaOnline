@@ -74,7 +74,7 @@
                 <tr>
                     <td></td>
                     <td>
-                        <s:a action="TallasFiltro">
+                        <s:a action="volver">
                             <i style="font-size: 20px;" class="glyphicon glyphicon-arrow-left">Volver</i>
                         </s:a>
                             &nbsp;&nbsp;&nbsp;&nbsp;

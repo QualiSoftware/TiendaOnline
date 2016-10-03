@@ -24,7 +24,7 @@
                     </td>
                     <td colspan="2"></td>
                     <td>
-                        <s:a action="volverAHome">
+                        <s:a action="volver">
                             <i style="font-size: 20px;">Volver</i>
                         </s:a>                        
                     </td>
