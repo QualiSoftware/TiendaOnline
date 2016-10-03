@@ -86,6 +86,22 @@
             <result type="redirect">LookFiltro</result>
         </action>   
         
+        <!-- action de Marcas-->
+        <action name="MarcasFiltro" class="Acciones.HomeMarcas" method="MarcasFiltro" >
+            <result>/Vistas/pruebaCRUDprincipal.jsp</result> 
+        </action>
+        <action name="MarcasForm" class="Acciones.HomeMarcas" method="MarcasForm">
+            <result>/Vistas/pruebaCRUDformulario.jsp</result>   
+        </action>
+        <action name="CrudActionMarcas" class="Acciones.HomeMarcas" method="CrudActionMarcas">
+            <result name="input">/Vistas/pruebaCRUDformulario.jsp</result>
+            <result name="error">/Vistas/pruebaCRUDformulario.jsp</result>
+            <result type="chain">MarcasFiltro</result> 
+        </action>
+        <action name="volverMarcas">
+            <result type="redirect">MarcasFiltro</result>
+        </action>   
+        
         <!-- actions de Talla -->
         <action name="TallasFiltro" class="Acciones.HomeTallas" method="TallasFiltro">
             <result>/Vistas/pruebaCRUDtallas.jsp</result>           

@@ -14,7 +14,7 @@
     </head>
     <body>
         <h1> <s:label name="cabeceraocul"></s:label> </h1>
-        <s:form action="CrudActionLook" theme="simple">
+        <s:form action="CrudActionMarcas" theme="simple">
             <s:textfield type="hidden" name="accionocul"/>
  <table>
 
@@ -37,7 +37,7 @@
             <tr>
                 <td colspan="2">
                    <input type="submit" value="<s:property value="botonocul" />"/>
-                   <a href="volverLook">
+                   <a href="volverMarcas">
                        volver
                    </a>
                 </td>

@@ -8,7 +8,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        
+
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
         <link rel="stylesheet" href="../Estilos/GeneralEstilos.css"/>
         <title>PruebaCRUD</title>
@@ -17,17 +17,17 @@
         <table border="1">
             <tr>
                 <td colspan="8">
-                    <s:form action="LookFiltro" theme="simple">
+                    <s:form action="MarcasFiltro" theme="simple">
                         Filtro : <s:textfield name="filtro" /><s:submit value="filtrar"></s:submit>
                             &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
-                            <s:a action="LookForm">
-                                <s:param name="accion" value="'a'"/>
-                                <i style="font-size: 20px" class="glyphicon glyphicon-plus"></i>
-                            </s:a>
+                        <s:a action="MarcasForm">
+                            <s:param name="accion" value="'a'"/>
+                            <i style="font-size: 20px" class="glyphicon glyphicon-plus"></i>
+                        </s:a>
                     </s:form>
                 </td>
             </tr>
- <tr>
+            <tr>
 
                 <th>Acciones</th>
                 <th>Codigo</th>
@@ -35,26 +35,26 @@
 
 
             </tr>
-            <s:iterator var="a" value="Lista_Look">
+            <s:iterator var="a" value="Lista_Marcas">
                 <tr>
                     <td>
-                        <s:a action="LookForm">
-                            <s:param name="clave" value="#a.LookId"/>
+                        <s:a action="MarcasForm">
+                            <s:param name="clave" value="#a.marcaId"/>
                             <s:param name="accion" value="'m'"/>
                             <i style="font-size: 20px" class="glyphicon glyphicon-edit"></i>
                         </s:a>
                         &nbsp;&nbsp;&nbsp;&nbsp;
-                        <s:a action="LookForm">
+                        <s:a action="MarcasForm">
                             <s:param name="accion" value="'e'"/>
-                            <s:param name="clave" value="#a.LookId"/>
+                            <s:param name="clave" value="#a.marcaId"/>
                             <i style="font-size: 20px" class="glyphicon glyphicon-trash"></i>
                         </s:a>
                     </td>
                     <td>
-                        <s:property value="#a.LookId"/><br>
+                        <s:property value="#a.marcaId"/><br>
                     </td>
                     <td>
-                        <s:property value="#a.LookDescripcion"/><br>
+                        <s:property value="#a.marcaNombre"/><br>
                     </td>
                 </tr>
             </s:iterator>
