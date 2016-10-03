@@ -40,7 +40,7 @@
                         </td>
                         <td>
                         <s:select list="lista" label="lista" name="SeletRopa"/>
-
+                        
                     </td>
                 </tr>
                 <tr>
