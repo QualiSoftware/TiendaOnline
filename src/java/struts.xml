@@ -151,5 +151,22 @@
             <result type="redirect">FotosFiltro</result>
         </action>
         
+        <!-- actions de Fotos -->
+        <action name="RopaFiltro" class="Acciones.HomeRopa" method="RopaFiltro">
+            <result>/Vistas/pruebaCRUDprincipal.jsp</result>           
+        </action>
+        <action name="RopaForm" class="Acciones.HomeRopa" method="FotosRopa">
+            <result>/Vistas/pruebaCRUDformulario.jsp</result>   
+        </action>
+        <action name="CrudActionRopa" class="Acciones.HomeRopa" method="CrudActionRopa">
+            <result type="redirect">RopaFiltro</result>
+            <result name="input">/Vistas/pruebaCRUDformulario.jsp</result>
+            <result name="error">/Vistas/pruebaCRUDformulario.jsp</result>
+        </action>
+        <action name="volverRopa">
+            <result type="redirect">FotosRopa</result>
+        </action>
+        
+        
     </package>
 </struts>
