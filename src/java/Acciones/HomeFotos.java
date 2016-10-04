@@ -192,7 +192,7 @@ public class HomeFotos extends ActionSupport {
             for (Fotos Lf : Lista_Fotos) {
                 lista.add(Integer.toString(Lf.getRopa().getRoId()));
             }
-            System.out.println(lista.size());
+           
             accionocul = "a";
             cabeceraocul = "Alta";
             botonocul = "Alta";
@@ -200,8 +200,13 @@ public class HomeFotos extends ActionSupport {
             Fotos p = ControladoresDAO.cFotos.RecuperaPorId(clave);
             codigo2 = p.getFotosId();
             nombre2 = p.getFotosRuta();
+            lista = new ArrayList<String>(); 
+             Lista_Fotos = ControladoresDAO.cFotos.RecuperaTodos(filtro);
             lista = new ArrayList<String>();
-            lista.add(Integer.toString(p.getRopa().getRoId()));
+            for (Fotos Lf : Lista_Fotos) {
+                lista.add(Integer.toString(Lf.getRopa().getRoId()));
+            }
+            idRopa = p.getRopa().getRoId();
 
             if (accion.equals("m")) {
                 accionocul = "m";

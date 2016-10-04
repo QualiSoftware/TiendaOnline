@@ -39,7 +39,7 @@
                         <s:label for="IdRopa">IdRopa</s:label>  
                         </td>
                         <td>
-                        <s:select list="lista" label="lista" name="SeletRopa"/>
+                        <s:select list="lista" value="selection[%{#stat.index}]" label="lista" name="SeletRopa"/>
                         
                     </td>
                 </tr>
