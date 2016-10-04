@@ -99,20 +99,25 @@
                         <s:property value="#a.roVisible"/><br>
                     </td>
                     <td>
-                        <s:property value="#a.roUnidades"/><br>
+                        <s:property value="roUnidades"/><br>
                     </td>
                     <td>
                         <s:property value="#a.roFecha"/><br>
                     </td>
-
                     <td>
-                        <s:property value="#a.ropaCategorias.size()"/><br>
+                        <s:iterator var="rc" value="ropaCategorias">
+                            <s:property value="categoria.catId"/>
+                        </s:iterator>
                     </td>
                     <td>
-                        <s:property value="#a.ropaMaterials"/><br>
+                        <s:iterator var="rm" value="ropaMaterials">
+                            <s:property value="material.materialId"/>
+                        </s:iterator>
                     </td>
                     <td>
-                        <s:property value="#a.fotoses"/><br>
+                        <s:iterator var="f" value="fotoses">
+                            <s:property value="fotosRuta"/>
+                        </s:iterator>
                     </td>
                 </tr>
             </s:iterator> 
