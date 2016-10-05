@@ -17,9 +17,9 @@ public class cTallas {
         List<Tallas> lt = query.list();
         return lt;
     }
-    public static Tallas Recupera_Id(String id){
+    public static Tallas RecuperaPorId(int id){
         sesion = (Session) NewHibernateUtil.getSessionFactory().openSession();
-        Tallas t = (Tallas) sesion.get(Tallas.class, Integer.parseInt(id));
+        Tallas t = (Tallas) sesion.get(Tallas.class, id);
         return t;
     }
     

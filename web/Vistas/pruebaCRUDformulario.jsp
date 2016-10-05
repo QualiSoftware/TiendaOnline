@@ -11,11 +11,22 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Formulario</title>
+        <script>
+            function Verificar(){
+                if(document.getElementById('accion').value === 'e'){
+                    if(confirm("Â¿Seguro que desea borrar?")){
+                        document.getElementById('frm').submit();
+                    }
+                }else{
+                    document.getElementById('frm').submit();
+                }
+            }
+        </script>
     </head>
     <body>
         <h1> <s:label name="cabeceraocul"></s:label> </h1>
         <s:form action="CrudActionRopa" theme="simple">
-            <s:textfield type="hidden" name="accionocul"/>
+            <input type="hidden" name="accionocul" id="accionocul" value=<s:property value="accion" /> />
             <table>
                 <tr>
                     <td>
@@ -29,11 +40,18 @@
                         <td>
                         <s:label for="clientela2">Clientela</s:label>  
                         </td>
-                        
                         <td>
-                        <s:select list="lista_clientela" listValue="clientelaDescripcion" 
-                                  listKey="clientelaId" value="ropaActual.clientela.clientelaId"/>
-
+                            <%
+                                if(request.getAttribute("accionocul") == "e"){
+                            %>
+                            <s:textfield name="t.clientela.clientelaDescripcion" readonly="true" ></s:textfield>
+                            <%
+                                }else{
+                            %>
+                                <s:select list="lista_clientela" listValue="clientelaDescripcion" listKey="clientelaId" value="t.clientela.clientelaId"/>
+                            <%
+                                }
+                            %>
                     </td>
                 </tr>
                 <tr>
@@ -41,39 +59,35 @@
                         <s:label for="coleccion2">Coleccion</s:label>  
                         </td>
                         <td>
-                        <s:select list="lista_colecciones" listValue="coleccionDescripcion" 
-                                  listKey="coleccionId" value="ropaActual.coleccion.coleccionId"/>
+                        <s:select list="lista_colecciones" listValue="coleccionDescripcion" listKey="coleccionId" value="t.coleccion.coleccionId"/>
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <s:label for="color2">Color</s:label>  
                         </td>
-                        
+
                         <td>
-                        <s:select list="lista_colores" listValue="colorDescripcion" 
-                                  listKey="colorId" value="ropaActual.color.colorId"/>
+                        <s:select list="lista_colores" listValue="colorDescripcion" listKey="colorId" value="t.color.colorId"/>
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <s:label for="look2">Look</s:label>  
                         </td>
-                        
+
                         <td>
-                        <s:select list="lista_look" listValue="lookDescripcion" 
-                                  listKey="lookId" value="ropaActual.look.lookId"/>
+                        <s:select list="lista_look" listValue="lookDescripcion" listKey="lookId" value="t.look.lookId"/>
 
                     </td>
                 </tr>
                 <tr>
-                   
+
                     <td>
                         <s:label for="marcas2">Marcas</s:label>  
                         </td>
                         <td>
-                        <s:select list="lista_marca" listValue="marcaNombre" 
-                                  listKey="marcaId" value="ropaActual.marcas.marcaId"/>
+                        <s:select list="lista_marca" listValue="marcaNombre" listKey="marcaId" value="t.marcas.marcaId"/>
 
                     </td>
                 </tr>
@@ -81,10 +95,9 @@
                     <td>
                         <s:label for="tallas2">Tallas</s:label>  
                         </td>
-                        
+
                         <td>
-                        <s:select list="lista_tallas" listValue="tallaDescripcion" 
-                                  listKey="tallaId" value="ropaActual.tallas.tallaId"/>
+                        <s:select list="lista_tallas" listValue="tallaDescripcion" listKey="tallaId" value="t.tallas.tallaId"/>
 
                     </td>
                 </tr>
@@ -168,7 +181,7 @@
                 </tr>
                 <tr>
                     <td colspan="2">
-                        <input type="submit" value="<s:property value="botonocul" />"/>
+                        <input type="button" onclick="Verificar();" value=<s:property value="botonocul" /> />
                         <a href="volverRopa">
                             volver
                         </a>

@@ -41,6 +41,7 @@ public class HomeRopa extends ActionSupport {
     private Map sesion;
     private String cabeceraocul;
     private String botonocul;
+    private Ropa t;
 
     //variables específicas a cada controlador
     private ArrayList<Ropa> lista_ropa;
@@ -52,11 +53,9 @@ public class HomeRopa extends ActionSupport {
     private List<Color> lista_colores;
     private List<Coleccion> lista_colecciones;
     private List<Subcategoria> lista_subcategoria;
-    
-    private Ropa ropaActual;
 
     private Integer roId2;
-    private Clientela clientela2;
+    private String clientela2;
     private Coleccion coleccion2;
     private Color color2;
     private Look look2;
@@ -72,21 +71,20 @@ public class HomeRopa extends ActionSupport {
     private Date roFecha2;
     private Set<Fotos> fotoses2 = new HashSet<Fotos>(0);
 
+    public Ropa getT() {
+        return t;
+    }
+
+    public void setT(Ropa t) {
+        this.t = t;
+    }
+
     public List<Subcategoria> getLista_subcategoria() {
         return lista_subcategoria;
     }
 
     public void setLista_subcategoria(List<Subcategoria> lista_subcategoria) {
         this.lista_subcategoria = lista_subcategoria;
-    }
-
-    
-    public Ropa getRopaActual() {
-        return ropaActual;
-    }
-
-    public void setRopaActual(Ropa ropaActual) {
-        this.ropaActual = ropaActual;
     }
 
     
@@ -234,11 +232,11 @@ public class HomeRopa extends ActionSupport {
         this.roId2 = roId2;
     }
 
-    public Clientela getClientela2() {
+    public String getClientela2() {
         return clientela2;
     }
 
-    public void setClientela2(Clientela clientela2) {
+    public void setClientela2(String clientela2) {
         this.clientela2 = clientela2;
     }
 
@@ -404,17 +402,17 @@ public class HomeRopa extends ActionSupport {
             cabeceraocul = "Alta";
             botonocul = "Alta";
         }else{
-            ropaActual = ControladoresDAO.cRopa.RecuperaPorId(clave);
+            t = ControladoresDAO.cRopa.RecuperaPorId(clave);
+            roId2 = t.getRoId();
+            roDescripcion2 = t.getRoDescripcion();
+            roPrecio2 = t.getRoPrecio();
+            roDescuento2 = t.getRoDescuento();
+            roCaracteristicas2 = t.getRoCaracteristicas();
+            roVisible2 = t.getRoVisible();
+            roUnidades2 = t.getRoUnidades();
+            roFecha2 = t.getRoFecha();
         }
         if (accion.equals("m")) {
-            roId2 = ropaActual.getRoId();
-            roDescripcion2 = ropaActual.getRoDescripcion();
-            roPrecio2 = ropaActual.getRoPrecio();
-            roDescuento2 = ropaActual.getRoDescuento();
-            roCaracteristicas2 = ropaActual.getRoCaracteristicas();
-            roVisible2 = ropaActual.getRoVisible();
-            roUnidades2 = ropaActual.getRoUnidades();
-            roFecha2 = ropaActual.getRoFecha();
             accionocul = "m";
             cabeceraocul = "Modificar";
             botonocul = "Modificar";
@@ -429,9 +427,6 @@ public class HomeRopa extends ActionSupport {
          return SUCCESS;
     }
 
-        
-    
-    
     //@SkipValidation
 //     public String CrudActionRopa() throws Exception {         
 //        if (accionocul.equals("a")) {            
@@ -451,5 +446,4 @@ public class HomeRopa extends ActionSupport {
 //        }        
 //        return SUCCESS;
 //    }    
-    
- }
+}
