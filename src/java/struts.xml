@@ -151,11 +151,11 @@
             <result type="redirect">FotosFiltro</result>
         </action>
         
-        <!-- actions de Fotos -->
+        <!-- actions de Ropa -->
         <action name="RopaFiltro" class="Acciones.HomeRopa" method="RopaFiltro">
             <result>/Vistas/pruebaCRUDprincipal.jsp</result>           
         </action>
-        <action name="RopaForm" class="Acciones.HomeRopa" method="FotosRopa">
+        <action name="RopaForm" class="Acciones.HomeRopa" method="RopaForm">
             <result>/Vistas/pruebaCRUDformulario.jsp</result>   
         </action>
         <action name="CrudActionRopa" class="Acciones.HomeRopa" method="CrudActionRopa">
@@ -164,7 +164,7 @@
             <result name="error">/Vistas/pruebaCRUDformulario.jsp</result>
         </action>
         <action name="volverRopa">
-            <result type="redirect">FotosRopa</result>
+            <result type="redirect">RopaFiltro</result>
         </action>
         
         
