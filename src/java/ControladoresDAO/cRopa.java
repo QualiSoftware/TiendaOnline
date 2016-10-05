@@ -26,10 +26,16 @@ public class cRopa {
         ArrayList<Ropa> lt = (ArrayList) query.list();
         return lt;
     }
-    public static Ropa RecuperaPorId(String id){
+    public static Ropa RecuperaPorId(int id){
+        System.out.println(id);
         sesion = (Session) NewHibernateUtil.getSessionFactory().openSession();
-        Ropa t = (Ropa) sesion.get(Ropa.class, Integer.parseInt(id));
-        return t;
+       // Query query =sesion.createQuery("From Agenda where agId =" + id);
+      //sesion.get("Agenda.class", id);
+        //Agenda a = query.;
+        Ropa p =(Ropa) sesion.get(Ropa.class, id);
+        //sesion.close();
+        System.out.println("devuelve bbdd "+p.getRoId());
+        return p;
     }
     
     public static int Inserta(Ropa t){

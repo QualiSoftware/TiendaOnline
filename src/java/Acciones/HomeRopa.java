@@ -36,7 +36,7 @@ public class HomeRopa extends ActionSupport {
 
     //variables fijas para todos los controladores
     private String filtro;
-    private String clave;
+    private int clave;
     private String accion;
     private String titulo;
     private String boton;
@@ -253,13 +253,15 @@ public class HomeRopa extends ActionSupport {
         this.filtro = filtro;
     }
 
-    public String getClave() {
+    public int getClave() {
         return clave;
     }
 
-    public void setClave(String clave) {
+    public void setClave(int clave) {
         this.clave = clave;
     }
+
+    
 
     public String getAccion() {
         return accion;
@@ -540,8 +542,26 @@ public class HomeRopa extends ActionSupport {
             accionocul = "m";
             cabeceraocul = "Modificar";
             botonocul = "Modificar";
-        } else {
-            
+        } 
+        if(accion.equals("e")) {
+
+            t = ControladoresDAO.cRopa.RecuperaPorId(clave);
+
+            roId2 = t.getRoId();
+            lista_marca = ControladoresDAO.cMarcas.RecuperaTodos("");
+            lista_clientela = ControladoresDAO.cClientela.RecuperaTodos("");
+            roDescripcion2 = "";
+            lista_look = ControladoresDAO.cLook.RecuperaTodos("");
+            lista_combo_look = new ArrayList<String>();
+            lista_tallas = ControladoresDAO.cTallas.RecuperaTodos("");
+            roPrecio2 = 0.0;
+            roDescuento2 = 0.0;
+            lista_colores = ControladoresDAO.cColor.RecuperaTodos("");
+            lista_colecciones = ControladoresDAO.cColeccion.RecuperaTodos("");
+            roCaracteristicas2 = "";
+            roVisible2 = 0;
+            roUnidades2 = 0;
+            roFecha2 = null;
             accionocul = "e";
             cabeceraocul = "Eliminar";
             botonocul = "Eliminar";
@@ -550,23 +570,23 @@ public class HomeRopa extends ActionSupport {
         return SUCCESS;
     }
 
-    //@SkipValidation
-//     public String CrudActionRopa() throws Exception {         
-//        if (accionocul.equals("a")) {            
-//           Marcas p = new Ropa(clientela2, coleccion2, color2, look2, marcas2, tallas2, roDescripcion2, roPrecio, roDescuento, roCaracteristicas2, roVisible2, roUnidades, roFecha2, ropaCategorias2, ropaMaterials2, fotoses2);
-//           p.setMarcaId(roId2);
-//            ControladoresDAO.cMarcas.Inserta(p);
-//        }
-//        if (accionocul.equals("m")) {
-//            Marcas p = new Marcas(roDescripcion2); 
-//             p.setMarcaId(roId2);
-//            ControladoresDAO.cMarcas.Modifica(p);
-//        }
-//        if (accionocul.equals("e")) {
-//            Marcas p = new Marcas(roDescripcion2); 
-//             p.setMarcaId(roId2);
-//            ControladoresDAO.cMarcas.Elimina(p);
-//        }        
-//        return SUCCESS;
-//    }    
+    @SkipValidation
+     public String CrudActionRopa() throws Exception {         
+        if (accionocul.equals("a")) {            
+           Ropa p = new Ropa(null, coleccion2, color2, look2, marcas2, tallas2, roDescripcion2, roPrecio2, roDescuento2, roCaracteristicas2, roVisible2, roUnidades2, roFecha2);
+           p.setRoId(roId2);
+            ControladoresDAO.cRopa.Inserta(p);
+        }
+        if (accionocul.equals("m")) {
+            Marcas p = new Marcas(roDescripcion2); 
+             p.setMarcaId(roId2);
+            ControladoresDAO.cMarcas.Modifica(p);
+        }
+        if (accionocul.equals("e")) {
+            Marcas p = new Marcas(roDescripcion2); 
+             p.setMarcaId(roId2);
+            ControladoresDAO.cMarcas.Elimina(p);
+        }        
+        return SUCCESS;
+    }    
 }
