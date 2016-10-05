@@ -1,13 +1,16 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 02-oct-2016 2:34:13 by Hibernate Tools 4.3.1 -->
+<!-- Generated 05-oct-2016 18:22:23 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="Modelos.Ropa" table="ropa" catalog="tienda_ropa" optimistic-lock="version">
         <id name="roId" type="java.lang.Integer">
             <column name="ro_id" />
             <generator class="identity" />
         </id>
+        <many-to-one name="categoria" class="Modelos.Categoria" fetch="select">
+            <column name="ro_cat_id" not-null="true" />
+        </many-to-one>
         <many-to-one name="clientela" class="Modelos.Clientela" fetch="select">
             <column name="ro_clientela_id" not-null="true" />
         </many-to-one>
@@ -22,6 +25,9 @@
         </many-to-one>
         <many-to-one name="marcas" class="Modelos.Marcas" fetch="select">
             <column name="ro_marca_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="subcategoria" class="Modelos.Subcategoria" fetch="select">
+            <column name="ro_sub_id" not-null="true" />
         </many-to-one>
         <many-to-one name="tallas" class="Modelos.Tallas" fetch="select">
             <column name="ro_talla_id" not-null="true" />
@@ -47,18 +53,6 @@
         <property name="roFecha" type="date">
             <column name="ro_fecha" length="10" not-null="true" />
         </property>
-        <set name="ropaCategorias" table="ropa_categoria" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="roca_ro_id" not-null="true" />
-            </key>
-            <one-to-many class="Modelos.RopaCategoria" />
-        </set>
-        <set name="ropaMaterials" table="ropa_material" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="roma_ro_id" not-null="true" />
-            </key>
-            <one-to-many class="Modelos.RopaMaterial" />
-        </set>
         <set name="fotoses" table="fotos" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="fotos_ro_id" not-null="true" />

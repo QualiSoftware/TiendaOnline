@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 02-oct-2016 2:34:13 by Hibernate Tools 4.3.1 -->
+<!-- Generated 05-oct-2016 18:22:23 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="Modelos.Categoria" table="categoria" catalog="tienda_ropa" optimistic-lock="version">
         <id name="catId" type="java.lang.Integer">
@@ -9,13 +9,19 @@
             <generator class="identity" />
         </id>
         <property name="catDescripcion" type="string">
-            <column name="cat_descripcion" length="30" not-null="true" />
+            <column name="cat_descripcion" length="100" not-null="true" />
         </property>
-        <set name="ropaCategorias" table="ropa_categoria" inverse="true" lazy="true" fetch="select">
+        <set name="ropas" table="ropa" inverse="true" lazy="true" fetch="select">
             <key>
-                <column name="roca_cat_id" not-null="true" />
+                <column name="ro_cat_id" not-null="true" />
             </key>
-            <one-to-many class="Modelos.RopaCategoria" />
+            <one-to-many class="Modelos.Ropa" />
+        </set>
+        <set name="subcategorias" table="subcategoria" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="sub_cat_id" not-null="true" />
+            </key>
+            <one-to-many class="Modelos.Subcategoria" />
         </set>
     </class>
 </hibernate-mapping>

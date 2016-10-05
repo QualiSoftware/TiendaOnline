@@ -17,7 +17,7 @@
     <body>
         <table border="1">
             <tr>
-                <td colspan="8">
+                <td colspan="16">
                     <s:form action="RopaFiltro" theme="simple">
                         Filtro : <s:textfield name="filtro" /><s:submit value="filtrar"></s:submit>
                             &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
@@ -45,7 +45,7 @@
                 <th>roVisible</th>
                 <th>roUnidades</th>
                 <th>roFecha</th>
-
+                <th>Fotos</th>
             </tr>
            <s:iterator var="a" value="lista_ropa">
                 <tr>
@@ -66,22 +66,22 @@
                         <s:property value="#a.roId"/><br>
                     </td>
                     <td>
-                        <s:property value="#a.clientela"/><br>
+                        <s:property value="#a.clientela.clientelaDescripcion"/><br>
                     </td>
                     <td>
-                        <s:property value="#a.coleccion"/><br>
+                        <s:property value="#a.coleccion.coleccionDescripcion"/><br>
                     </td>
                     <td>
-                        <s:property value="#a.color"/><br>
+                        <s:property value="#a.color.colorDescripcion"/><br>
                     </td>
                     <td>
-                        <s:property value="#a.look"/><br>
+                        <s:property value="#a.look.lookDescripcion"/><br>
                     </td>
                     <td>
-                        <s:property value="#a.marcas"/><br>
+                        <s:property value="#a.marcas.marcaNombre"/><br>
                     </td>
                     <td>
-                        <s:property value="#a.tallas"/><br>
+                        <s:property value="#a.tallas.tallaDescripcion"/><br>
                     </td>
                     <td>
                         <s:property value="#a.roDescripcion"/><br>
@@ -104,7 +104,7 @@
                     <td>
                         <s:property value="#a.roFecha"/><br>
                     </td>
-                    <td>
+                    <!--<td>
                         <s:iterator var="rc" value="ropaCategorias">
                             <s:property value="categoria.catId"/>
                         </s:iterator>
@@ -113,7 +113,7 @@
                         <s:iterator var="rm" value="ropaMaterials">
                             <s:property value="material.materialId"/>
                         </s:iterator>
-                    </td>
+                    </td>-->
                     <td>
                         <s:iterator var="f" value="fotoses">
                             <s:property value="fotosRuta"/>

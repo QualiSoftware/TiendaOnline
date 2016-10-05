@@ -12,10 +12,8 @@ import Modelos.Color;
 import Modelos.Fotos;
 import Modelos.Look;
 import Modelos.Marcas;
-import Modelos.Material;
 import Modelos.Ropa;
-import Modelos.RopaCategoria;
-import Modelos.RopaMaterial;
+import Modelos.Subcategoria;
 import Modelos.Tallas;
 import static com.opensymphony.xwork2.Action.SUCCESS;
 import com.opensymphony.xwork2.ActionContext;
@@ -51,9 +49,11 @@ public class HomeRopa extends ActionSupport {
     private List<Clientela> lista_clientela;
     private List<Look> lista_look;
     private List<Tallas> lista_tallas;
-    private List<Material> lista_materiales;
     private List<Color> lista_colores;
     private List<Coleccion> lista_colecciones;
+    private List<Subcategoria> lista_subcategoria;
+    
+    private Ropa ropaActual;
 
     private Integer roId2;
     private Clientela clientela2;
@@ -70,20 +70,26 @@ public class HomeRopa extends ActionSupport {
     private int roUnidades2;
     private String accionocul;
     private Date roFecha2;
-    private Set<RopaCategoria> ropaCategorias2 = new HashSet<RopaCategoria>(0);
-    private Set<RopaMaterial> ropaMaterials2 = new HashSet<RopaMaterial>(0);
     private Set<Fotos> fotoses2 = new HashSet<Fotos>(0);
 
-    //lista de combos
-    private List<String> lista_combo_categorias;
-    private List<String> lista_combo_marcas;
-    private List<String> lista_combo_clientela;
-    private List<String> lista_combo_look;
-    private List<String> lista_combo_tallas;
-    private List<String> lista_combo_material;
-    private List<String> lista_combo_color;
-    private List<String> lista_combo_coleccion;
+    public List<Subcategoria> getLista_subcategoria() {
+        return lista_subcategoria;
+    }
 
+    public void setLista_subcategoria(List<Subcategoria> lista_subcategoria) {
+        this.lista_subcategoria = lista_subcategoria;
+    }
+
+    
+    public Ropa getRopaActual() {
+        return ropaActual;
+    }
+
+    public void setRopaActual(Ropa ropaActual) {
+        this.ropaActual = ropaActual;
+    }
+
+    
     public String getCabeceraocul() {
         return cabeceraocul;
     }
@@ -140,14 +146,6 @@ public class HomeRopa extends ActionSupport {
         this.lista_tallas = lista_tallas;
     }
 
-    public List<Material> getLista_materiales() {
-        return lista_materiales;
-    }
-
-    public void setLista_materiales(List<Material> lista_materiales) {
-        this.lista_materiales = lista_materiales;
-    }
-
     public List<Color> getLista_colores() {
         return lista_colores;
     }
@@ -162,70 +160,6 @@ public class HomeRopa extends ActionSupport {
 
     public void setLista_colecciones(List<Coleccion> lista_colecciones) {
         this.lista_colecciones = lista_colecciones;
-    }
-
-    public List<String> getLista_combo_categorias() {
-        return lista_combo_categorias;
-    }
-
-    public void setLista_combo_categorias(List<String> lista_combo_categorias) {
-        this.lista_combo_categorias = lista_combo_categorias;
-    }
-
-    public List<String> getLista_combo_marcas() {
-        return lista_combo_marcas;
-    }
-
-    public void setLista_combo_marcas(List<String> lista_combo_marcas) {
-        this.lista_combo_marcas = lista_combo_marcas;
-    }
-
-    public List<String> getLista_combo_clientela() {
-        return lista_combo_clientela;
-    }
-
-    public void setLista_combo_clientela(List<String> lista_combo_clientela) {
-        this.lista_combo_clientela = lista_combo_clientela;
-    }
-
-    public List<String> getLista_combo_look() {
-        return lista_combo_look;
-    }
-
-    public void setLista_combo_look(List<String> lista_combo_look) {
-        this.lista_combo_look = lista_combo_look;
-    }
-
-    public List<String> getLista_combo_tallas() {
-        return lista_combo_tallas;
-    }
-
-    public void setLista_combo_tallas(List<String> lista_combo_tallas) {
-        this.lista_combo_tallas = lista_combo_tallas;
-    }
-
-    public List<String> getLista_combo_material() {
-        return lista_combo_material;
-    }
-
-    public void setLista_combo_material(List<String> lista_combo_material) {
-        this.lista_combo_material = lista_combo_material;
-    }
-
-    public List<String> getLista_combo_color() {
-        return lista_combo_color;
-    }
-
-    public void setLista_combo_color(List<String> lista_combo_color) {
-        this.lista_combo_color = lista_combo_color;
-    }
-
-    public List<String> getLista_combo_coleccion() {
-        return lista_combo_coleccion;
-    }
-
-    public void setLista_combo_coleccion(List<String> lista_combo_coleccion) {
-        this.lista_combo_coleccion = lista_combo_coleccion;
     }
 
     public String getAccionocul() {
@@ -404,22 +338,6 @@ public class HomeRopa extends ActionSupport {
         this.roFecha2 = roFecha2;
     }
 
-    public Set<RopaCategoria> getRopaCategorias2() {
-        return ropaCategorias2;
-    }
-
-    public void setRopaCategorias2(Set<RopaCategoria> ropaCategorias2) {
-        this.ropaCategorias2 = ropaCategorias2;
-    }
-
-    public Set<RopaMaterial> getRopaMaterials2() {
-        return ropaMaterials2;
-    }
-
-    public void setRopaMaterials2(Set<RopaMaterial> ropaMaterials2) {
-        this.ropaMaterials2 = ropaMaterials2;
-    }
-
     public Set<Fotos> getFotoses2() {
         return fotoses2;
     }
@@ -464,110 +382,50 @@ public class HomeRopa extends ActionSupport {
          return INPUT;
          }
          */
+        lista_marca = ControladoresDAO.cMarcas.RecuperaTodos("");
+        lista_clientela = ControladoresDAO.cClientela.RecuperaTodos("");
+        lista_look = ControladoresDAO.cLook.RecuperaTodos("");
+        lista_tallas = ControladoresDAO.cTallas.RecuperaTodos("");
+        lista_colores = ControladoresDAO.cColor.RecuperaTodos("");
+        lista_colecciones = ControladoresDAO.cColeccion.RecuperaTodos("");
+        lista_categoria = ControladoresDAO.cCategorias.RecuperaTodos("");
+        lista_subcategoria = ControladoresDAO.cSubcategorias.RecuperaTodos("");
         if (accion.equals("a")) {
             titulo = "Alta";
             roId2 = 0;
-            lista_marca = ControladoresDAO.cMarcas.RecuperaTodos("");
-            lista_combo_marcas = new ArrayList<String>();
-            for (Marcas Lm : lista_marca) {
-                lista_combo_marcas.add(Lm.getMarcaNombre());
-            }
-            lista_clientela = ControladoresDAO.cClientela.RecuperaTodos("");
-            lista_combo_clientela = new ArrayList<String>();
-            for (Clientela Lcl : lista_clientela) {
-                lista_combo_clientela.add(Lcl.getClientelaDescripcion());
-            }
             roDescripcion2 = "";
-            lista_look = ControladoresDAO.cLook.RecuperaTodos("");
-            lista_combo_look = new ArrayList<String>();
-            for (Look Loo : lista_look) {
-                lista_combo_look.add(Loo.getLookDescripcion());
-            }
-            lista_tallas = ControladoresDAO.cTallas.Recupera_Todos("");
-            lista_combo_tallas = new ArrayList<String>();
-            for (Tallas ta : lista_tallas) {
-                lista_combo_tallas.add(ta.getTallaDescripcion());
-            }
             roPrecio2 = 0.0;
             roDescuento2 = 0.0;
-            lista_colores = ControladoresDAO.cColor.RecuperaTodos("");
-            lista_combo_color = new ArrayList<String>();
-            for (Color co : lista_colores) {
-                lista_combo_color.add(co.getColorDescripcion());
-            }
-            lista_colecciones = ControladoresDAO.cColeccion.RecuperaTodos("");
-            lista_combo_coleccion = new ArrayList<String>();
-            for (Coleccion col : lista_colecciones) {
-                lista_combo_coleccion.add(col.getColeccionDescripcion());
-            }
             roCaracteristicas2 = "";
             roVisible2 = 0;
             roUnidades2 = 0;
             roFecha2 = null;
-            lista_categoria = ControladoresDAO.cCategorias.RecuperaTodos("");
-            lista_combo_categorias = new ArrayList<String>();
-            for (Categoria Lc : lista_categoria) {
-                lista_combo_categorias.add(Lc.getCatDescripcion());
-            }
-            lista_materiales = ControladoresDAO.cMaterial.Recupera_Todos("");
-            lista_combo_material = new ArrayList<String>();
-            for (Material mat : lista_materiales) {
-                lista_combo_material.add(mat.getMaterialDescripcion());
-            }
             accionocul = "a";
             cabeceraocul = "Alta";
             botonocul = "Alta";
-        } else {
-            lista_ropa = ControladoresDAO.cRopa.RecuperaTodos(filtro);
-            Ropa t = ControladoresDAO.cRopa.RecuperaPorId(clave);
-            roId2 = 0;
-            for (Ropa cli : lista_ropa) {
-                lista_combo_clientela.add(cli.getClientela().toString());
-            }
-            System.out.println("clientela "+lista_combo_clientela);
-            for (Ropa co : lista_ropa) {
-                lista_combo_coleccion.add(co.getColeccion().toString());
-            }
-            for (Ropa col : lista_ropa) {
-                lista_combo_color.add(col.getColor().toString());
-            }
-            for (Ropa loo : lista_ropa) {
-                lista_combo_look.add(loo.getLook().toString());
-            }
-            for (Ropa ma : lista_ropa) {
-                lista_combo_marcas.add(ma.getMarcas().toString());
-            }
-            for (Ropa ta : lista_ropa) {
-                lista_combo_tallas.add(ta.getTallas().toString());
-            }
-            roDescripcion2 = "";
-            roPrecio2 = 0.0;
-            roDescuento2 = 0.0;
-            roCaracteristicas2 = "";
-            roVisible2 = 0;
-            roUnidades2 = 0;
-            roFecha2 = null;
-            for (Ropa Lr : lista_ropa) {
-                for (RopaCategoria rc : ropaCategorias2) {
-                    lista_combo_categorias.add(Integer.toString(rc.getCategoria().getCatId()));
-                }
-            }
-            for (Ropa Lr : lista_ropa) {
-                for (RopaMaterial roma : ropaMaterials2) {
-                    lista_combo_material.add(Integer.toString(roma.getMaterial().getMaterialId()));
-                }
-            }
-                    if (accion.equals("m")) {
-                        accionocul = "m";
-                        cabeceraocul = "Modificar";
-                        botonocul = "Modificar";
-                    } else {
-                        accionocul = "e";
-                        cabeceraocul = "Eliminar";
-                        botonocul = "Eliminar";
-                    }
+        }else{
+            ropaActual = ControladoresDAO.cRopa.RecuperaPorId(clave);
+        }
+        if (accion.equals("m")) {
+            roId2 = ropaActual.getRoId();
+            roDescripcion2 = ropaActual.getRoDescripcion();
+            roPrecio2 = ropaActual.getRoPrecio();
+            roDescuento2 = ropaActual.getRoDescuento();
+            roCaracteristicas2 = ropaActual.getRoCaracteristicas();
+            roVisible2 = ropaActual.getRoVisible();
+            roUnidades2 = ropaActual.getRoUnidades();
+            roFecha2 = ropaActual.getRoFecha();
+            accionocul = "m";
+            cabeceraocul = "Modificar";
+            botonocul = "Modificar";
+        }
+        if (accion.equals("e")) {
+            accionocul = "e";
+            cabeceraocul = "Eliminar";
+            botonocul = "Eliminar";
+        }
 
-            }
+            
          return SUCCESS;
     }
 

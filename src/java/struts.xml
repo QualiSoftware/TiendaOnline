@@ -86,22 +86,6 @@
             <result type="redirect">LookFiltro</result>
         </action>    
         
-        <!-- actions de Material -->
-        <action name="MaterialFiltro" class="Acciones.HomeMaterial" method="MaterialFiltro">
-            <result>/Vistas/pruebaCRUDmaterial.jsp</result>           
-        </action>
-        <action name="MaterialForm" class="Acciones.HomeMaterial" method="MaterialForm">
-            <result>/Vistas/pruebaCRUDmaterialCambios.jsp</result>
-        </action>
-        <action name="CrudActionMaterial" class="Acciones.HomeMaterial" method="CrudActionMaterial">
-            <result type="redirect">MaterialFiltro</result>
-            <result name="input">/Vistas/pruebaCRUDmaterialCambios.jsp</result>
-            <result name="error">/Vistas/pruebaCRUDmaterialCambios.jsp</result>
-        </action>
-        <action name="volverMaterial">
-            <result type="redirect">MaterialFiltro</result>
-        </action>  
-        
         <!-- action de Marcas-->
         <action name="MarcasFiltro" class="Acciones.HomeMarcas" method="MarcasFiltro" >
             <result>/Vistas/pruebaCRUDprincipal.jsp</result> 

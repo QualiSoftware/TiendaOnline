@@ -2,6 +2,7 @@ package ControladoresDAO;
 
 import Modelos.Tallas;
 import java.util.ArrayList;
+import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
@@ -9,11 +10,11 @@ public class cTallas {
     
     static Session sesion;
     
-    public static ArrayList<Tallas> Recupera_Todos(String filtro){
+    public static List<Tallas> RecuperaTodos(String filtro){
         sesion = (Session) NewHibernateUtil.getSessionFactory().openSession();
         String sql = "From Tallas WHERE talla_descripcion like '%"+filtro+"%'";
         Query query = sesion.createQuery(sql);
-        ArrayList<Tallas> lt = (ArrayList) query.list();
+        List<Tallas> lt = query.list();
         return lt;
     }
     public static Tallas Recupera_Id(String id){

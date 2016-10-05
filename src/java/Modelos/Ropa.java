@@ -1,5 +1,5 @@
 package Modelos;
-// Generated 02-oct-2016 2:34:12 by Hibernate Tools 4.3.1
+// Generated 05-oct-2016 18:22:21 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -13,11 +13,13 @@ public class Ropa  implements java.io.Serializable {
 
 
      private Integer roId;
+     private Categoria categoria;
      private Clientela clientela;
      private Coleccion coleccion;
      private Color color;
      private Look look;
      private Marcas marcas;
+     private Subcategoria subcategoria;
      private Tallas tallas;
      private String roDescripcion;
      private double roPrecio;
@@ -26,20 +28,20 @@ public class Ropa  implements java.io.Serializable {
      private byte roVisible;
      private int roUnidades;
      private Date roFecha;
-     private Set<RopaCategoria> ropaCategorias = new HashSet<RopaCategoria>(0);
-     private Set<RopaMaterial> ropaMaterials = new HashSet<RopaMaterial>(0);
      private Set<Fotos> fotoses = new HashSet<Fotos>(0);
 
     public Ropa() {
     }
 
 	
-    public Ropa(Clientela clientela, Coleccion coleccion, Color color, Look look, Marcas marcas, Tallas tallas, String roDescripcion, double roPrecio, double roDescuento, String roCaracteristicas, byte roVisible, int roUnidades, Date roFecha) {
+    public Ropa(Categoria categoria, Clientela clientela, Coleccion coleccion, Color color, Look look, Marcas marcas, Subcategoria subcategoria, Tallas tallas, String roDescripcion, double roPrecio, double roDescuento, String roCaracteristicas, byte roVisible, int roUnidades, Date roFecha) {
+        this.categoria = categoria;
         this.clientela = clientela;
         this.coleccion = coleccion;
         this.color = color;
         this.look = look;
         this.marcas = marcas;
+        this.subcategoria = subcategoria;
         this.tallas = tallas;
         this.roDescripcion = roDescripcion;
         this.roPrecio = roPrecio;
@@ -49,12 +51,14 @@ public class Ropa  implements java.io.Serializable {
         this.roUnidades = roUnidades;
         this.roFecha = roFecha;
     }
-    public Ropa(Clientela clientela, Coleccion coleccion, Color color, Look look, Marcas marcas, Tallas tallas, String roDescripcion, double roPrecio, double roDescuento, String roCaracteristicas, byte roVisible, int roUnidades, Date roFecha, Set<RopaCategoria> ropaCategorias, Set<RopaMaterial> ropaMaterials, Set<Fotos> fotoses) {
+    public Ropa(Categoria categoria, Clientela clientela, Coleccion coleccion, Color color, Look look, Marcas marcas, Subcategoria subcategoria, Tallas tallas, String roDescripcion, double roPrecio, double roDescuento, String roCaracteristicas, byte roVisible, int roUnidades, Date roFecha, Set<Fotos> fotoses) {
+       this.categoria = categoria;
        this.clientela = clientela;
        this.coleccion = coleccion;
        this.color = color;
        this.look = look;
        this.marcas = marcas;
+       this.subcategoria = subcategoria;
        this.tallas = tallas;
        this.roDescripcion = roDescripcion;
        this.roPrecio = roPrecio;
@@ -63,8 +67,6 @@ public class Ropa  implements java.io.Serializable {
        this.roVisible = roVisible;
        this.roUnidades = roUnidades;
        this.roFecha = roFecha;
-       this.ropaCategorias = ropaCategorias;
-       this.ropaMaterials = ropaMaterials;
        this.fotoses = fotoses;
     }
    
@@ -74,6 +76,13 @@ public class Ropa  implements java.io.Serializable {
     
     public void setRoId(Integer roId) {
         this.roId = roId;
+    }
+    public Categoria getCategoria() {
+        return this.categoria;
+    }
+    
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
     }
     public Clientela getClientela() {
         return this.clientela;
@@ -109,6 +118,13 @@ public class Ropa  implements java.io.Serializable {
     
     public void setMarcas(Marcas marcas) {
         this.marcas = marcas;
+    }
+    public Subcategoria getSubcategoria() {
+        return this.subcategoria;
+    }
+    
+    public void setSubcategoria(Subcategoria subcategoria) {
+        this.subcategoria = subcategoria;
     }
     public Tallas getTallas() {
         return this.tallas;
@@ -165,20 +181,6 @@ public class Ropa  implements java.io.Serializable {
     
     public void setRoFecha(Date roFecha) {
         this.roFecha = roFecha;
-    }
-    public Set<RopaCategoria> getRopaCategorias() {
-        return this.ropaCategorias;
-    }
-    
-    public void setRopaCategorias(Set<RopaCategoria> ropaCategorias) {
-        this.ropaCategorias = ropaCategorias;
-    }
-    public Set<RopaMaterial> getRopaMaterials() {
-        return this.ropaMaterials;
-    }
-    
-    public void setRopaMaterials(Set<RopaMaterial> ropaMaterials) {
-        this.ropaMaterials = ropaMaterials;
     }
     public Set<Fotos> getFotoses() {
         return this.fotoses;

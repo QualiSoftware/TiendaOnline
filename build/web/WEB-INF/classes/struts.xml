@@ -86,22 +86,6 @@
             <result type="redirect">LookFiltro</result>
         </action>    
         
-        <!-- actions de Material -->
-        <action name="MaterialFiltro" class="Acciones.HomeMaterial" method="MaterialFiltro">
-            <result>/Vistas/pruebaCRUDmaterial.jsp</result>           
-        </action>
-        <action name="MaterialForm" class="Acciones.HomeMaterial" method="MaterialForm">
-            <result>/Vistas/pruebaCRUDmaterialCambios.jsp</result>
-        </action>
-        <action name="CrudActionMaterial" class="Acciones.HomeMaterial" method="CrudActionMaterial">
-            <result type="redirect">MaterialFiltro</result>
-            <result name="input">/Vistas/pruebaCRUDmaterialCambios.jsp</result>
-            <result name="error">/Vistas/pruebaCRUDmaterialCambios.jsp</result>
-        </action>
-        <action name="volverMaterial">
-            <result type="redirect">MaterialFiltro</result>
-        </action>  
-        
         <!-- action de Marcas-->
         <action name="MarcasFiltro" class="Acciones.HomeMarcas" method="MarcasFiltro" >
             <result>/Vistas/pruebaCRUDprincipal.jsp</result> 
@@ -151,11 +135,11 @@
             <result type="redirect">FotosFiltro</result>
         </action>
         
-        <!-- actions de Fotos -->
+        <!-- actions de Ropa -->
         <action name="RopaFiltro" class="Acciones.HomeRopa" method="RopaFiltro">
             <result>/Vistas/pruebaCRUDprincipal.jsp</result>           
         </action>
-        <action name="RopaForm" class="Acciones.HomeRopa" method="FotosRopa">
+        <action name="RopaForm" class="Acciones.HomeRopa" method="RopaForm">
             <result>/Vistas/pruebaCRUDformulario.jsp</result>   
         </action>
         <action name="CrudActionRopa" class="Acciones.HomeRopa" method="CrudActionRopa">
@@ -164,7 +148,7 @@
             <result name="error">/Vistas/pruebaCRUDformulario.jsp</result>
         </action>
         <action name="volverRopa">
-            <result type="redirect">FotosRopa</result>
+            <result type="redirect">RopaFiltro</result>
         </action>
         
         

@@ -31,7 +31,8 @@
                         </td>
                         
                         <td>
-                        <s:select list="lista_combo_clientela" label="lista_combo_clientela"/>
+                        <s:select list="lista_clientela" listValue="clientelaDescripcion" 
+                                  listKey="clientelaId" value="ropaActual.clientela.clientelaId"/>
 
                     </td>
                 </tr>
@@ -40,7 +41,8 @@
                         <s:label for="coleccion2">Coleccion</s:label>  
                         </td>
                         <td>
-                        <s:select list="lista_combo_coleccion" label="lista_combo_coleccion"/>
+                        <s:select list="lista_colecciones" listValue="coleccionDescripcion" 
+                                  listKey="coleccionId" value="ropaActual.coleccion.coleccionId"/>
                     </td>
                 </tr>
                 <tr>
@@ -49,7 +51,8 @@
                         </td>
                         
                         <td>
-                        <s:select list="lista_combo_color" label="lista_combo_color"/>
+                        <s:select list="lista_colores" listValue="colorDescripcion" 
+                                  listKey="colorId" value="ropaActual.color.colorId"/>
                     </td>
                 </tr>
                 <tr>
@@ -58,7 +61,8 @@
                         </td>
                         
                         <td>
-                        <s:select list="lista_combo_look" label="lista_combo_look"/>
+                        <s:select list="lista_look" listValue="lookDescripcion" 
+                                  listKey="lookId" value="ropaActual.look.lookId"/>
 
                     </td>
                 </tr>
@@ -68,7 +72,8 @@
                         <s:label for="marcas2">Marcas</s:label>  
                         </td>
                         <td>
-                        <s:select list="lista_combo_marcas" label="lista_combo_marcas"/>
+                        <s:select list="lista_marca" listValue="marcaNombre" 
+                                  listKey="marcaId" value="ropaActual.marcas.marcaId"/>
 
                     </td>
                 </tr>
@@ -78,7 +83,8 @@
                         </td>
                         
                         <td>
-                        <s:select list="lista_combo_tallas" label="lista_combo_tallas"/>
+                        <s:select list="lista_tallas" listValue="tallaDescripcion" 
+                                  listKey="tallaId" value="ropaActual.tallas.tallaId"/>
 
                     </td>
                 </tr>
@@ -140,19 +146,23 @@
                 </tr>
                 <tr>
                     <td>
-                        <s:label for="Categorias">Categorias</s:label>  
+                        <s:label for="categoria">Categoría</s:label>  
                         </td>
+                        
                         <td>
-                        <s:select list="lista_combo_categorias" label="lista_combo_categorias"/>
+                        <s:select list="lista_categoria" listValue="catDescripcion" 
+                                  listKey="catId" value="ropaActual.categoria.catId"/>
 
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <s:label for="Material">Material</s:label>  
+                        <s:label for="subcategoria">Subcategoría</s:label>  
                         </td>
+                        
                         <td>
-                        <s:select list="lista_combo_material" label="lista_combo_material"/>
+                        <s:select list="lista_subcategoria" listValue="subDescripcion" 
+                                  listKey="subId" value="ropaActual.subcategoria.subId"/>
 
                     </td>
                 </tr>

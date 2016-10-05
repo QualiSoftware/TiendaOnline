@@ -1,5 +1,5 @@
 package Modelos;
-// Generated 02-oct-2016 2:34:12 by Hibernate Tools 4.3.1
+// Generated 05-oct-2016 18:22:21 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -13,7 +13,8 @@ public class Categoria  implements java.io.Serializable {
 
      private Integer catId;
      private String catDescripcion;
-     private Set<RopaCategoria> ropaCategorias = new HashSet<RopaCategoria>(0);
+     private Set<Ropa> ropas = new HashSet<Ropa>(0);
+     private Set<Subcategoria> subcategorias = new HashSet<Subcategoria>(0);
 
     public Categoria() {
     }
@@ -22,9 +23,10 @@ public class Categoria  implements java.io.Serializable {
     public Categoria(String catDescripcion) {
         this.catDescripcion = catDescripcion;
     }
-    public Categoria(String catDescripcion, Set<RopaCategoria> ropaCategorias) {
+    public Categoria(String catDescripcion, Set<Ropa> ropas, Set<Subcategoria> subcategorias) {
        this.catDescripcion = catDescripcion;
-       this.ropaCategorias = ropaCategorias;
+       this.ropas = ropas;
+       this.subcategorias = subcategorias;
     }
    
     public Integer getCatId() {
@@ -41,12 +43,19 @@ public class Categoria  implements java.io.Serializable {
     public void setCatDescripcion(String catDescripcion) {
         this.catDescripcion = catDescripcion;
     }
-    public Set<RopaCategoria> getRopaCategorias() {
-        return this.ropaCategorias;
+    public Set<Ropa> getRopas() {
+        return this.ropas;
     }
     
-    public void setRopaCategorias(Set<RopaCategoria> ropaCategorias) {
-        this.ropaCategorias = ropaCategorias;
+    public void setRopas(Set<Ropa> ropas) {
+        this.ropas = ropas;
+    }
+    public Set<Subcategoria> getSubcategorias() {
+        return this.subcategorias;
+    }
+    
+    public void setSubcategorias(Set<Subcategoria> subcategorias) {
+        this.subcategorias = subcategorias;
     }
 
 

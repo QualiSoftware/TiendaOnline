@@ -7,6 +7,7 @@ import static com.opensymphony.xwork2.Action.SUCCESS;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import org.apache.struts2.interceptor.validation.SkipValidation;
 
@@ -21,7 +22,7 @@ public class HomeTallas extends ActionSupport {
     private Map sesion;
     
     //variables específicas a cada controlador
-    private ArrayList<Tallas> lista_tallas;
+    private List<Tallas> lista_tallas;
     private Integer tallaId;
     private String tallaDescripcion;
 
@@ -33,13 +34,15 @@ public class HomeTallas extends ActionSupport {
         this.filtro = filtro;
     }
 
-    public ArrayList<Tallas> getLista_tallas() {
+    public List<Tallas> getLista_tallas() {
         return lista_tallas;
     }
 
-    public void setLista_tallas(ArrayList<Tallas> lista_tallas) {
+    public void setLista_tallas(List<Tallas> lista_tallas) {
         this.lista_tallas = lista_tallas;
     }
+
+    
 
     public String getClave() {
         return clave;
@@ -112,7 +115,7 @@ public class HomeTallas extends ActionSupport {
         if(filtro == null){
             filtro = "";
         }
-        lista_tallas = ControladoresDAO.cTallas.Recupera_Todos(filtro);
+        lista_tallas = ControladoresDAO.cTallas.RecuperaTodos(filtro);
         return SUCCESS;
     }
     
