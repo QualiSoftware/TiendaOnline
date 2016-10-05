@@ -9,16 +9,16 @@ public class cTallas {
     
     static Session sesion;
     
-    public static ArrayList<Tallas> Recupera_Todos(String filtro){
+    public static ArrayList<Tallas> RecuperaTodos(String filtro){
         sesion = (Session) NewHibernateUtil.getSessionFactory().openSession();
         String sql = "From Tallas WHERE talla_descripcion like '%"+filtro+"%'";
         Query query = sesion.createQuery(sql);
         ArrayList<Tallas> lt = (ArrayList) query.list();
         return lt;
     }
-    public static Tallas Recupera_Id(String id){
+    public static Tallas RecuperaPorId(int id){
         sesion = (Session) NewHibernateUtil.getSessionFactory().openSession();
-        Tallas t = (Tallas) sesion.get(Tallas.class, Integer.parseInt(id));
+        Tallas t = (Tallas) sesion.get(Tallas.class, id);
         return t;
     }
     

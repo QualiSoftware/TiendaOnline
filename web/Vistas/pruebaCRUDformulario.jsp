@@ -29,10 +29,8 @@
                         <td>
                         <s:label for="clientela2">Clientela</s:label>  
                         </td>
-                        
                         <td>
-                        <s:select list="lista_combo_clientela" label="lista_combo_clientela"/>
-
+                        <s:select list="lista_clientela" listValue="clientelaDescripcion" listKey="clientelaId" value="t.clientela.clientelaId"/>
                     </td>
                 </tr>
                 <tr>
@@ -40,35 +38,35 @@
                         <s:label for="coleccion2">Coleccion</s:label>  
                         </td>
                         <td>
-                        <s:select list="lista_combo_coleccion" label="lista_combo_coleccion"/>
+                        <s:select list="lista_colecciones" listValue="coleccionDescripcion" listKey="coleccionId" value="t.coleccion.coleccionId"/>
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <s:label for="color2">Color</s:label>  
                         </td>
-                        
+
                         <td>
-                        <s:select list="lista_combo_color" label="lista_combo_color"/>
+                        <s:select list="lista_colores" listValue="colorDescripcion" listKey="colorId" value="t.color.colorId"/>
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <s:label for="look2">Look</s:label>  
                         </td>
-                        
+
                         <td>
-                        <s:select list="lista_combo_look" label="lista_combo_look"/>
+                        <s:select list="lista_look" listValue="lookDescripcion" listKey="lookId" value="t.look.lookId"/>
 
                     </td>
                 </tr>
                 <tr>
-                   
+
                     <td>
                         <s:label for="marcas2">Marcas</s:label>  
                         </td>
                         <td>
-                        <s:select list="lista_combo_marcas" label="lista_combo_marcas"/>
+                        <s:select list="lista_marca" listValue="marcaNombre" listKey="marcaId" value="t.marcas.marcaId"/>
 
                     </td>
                 </tr>
@@ -76,9 +74,9 @@
                     <td>
                         <s:label for="tallas2">Tallas</s:label>  
                         </td>
-                        
+
                         <td>
-                        <s:select list="lista_combo_tallas" label="lista_combo_tallas"/>
+                        <s:select list="lista_tallas" listValue="tallaDescripcion" listKey="tallaId" value="t.tallas.tallaId"/>
 
                     </td>
                 </tr>
