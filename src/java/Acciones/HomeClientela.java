@@ -132,8 +132,6 @@ public class HomeClientela extends ActionSupport {
         return SUCCESS;
     }
     public String ClientelaForm() throws Exception {
-        System.out.println(clave);
-        System.out.println(accion);
         if(accion.equals("a")){
             codigo2 = 0;
             nombre2 = "";

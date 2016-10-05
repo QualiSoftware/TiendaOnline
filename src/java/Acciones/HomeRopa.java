@@ -33,17 +33,17 @@ import org.apache.struts2.interceptor.validation.SkipValidation;
  * @author LaPlaga
  */
 public class HomeRopa extends ActionSupport {
-    
-     //variables fijas para todos los controladores
+
+    //variables fijas para todos los controladores
     private String filtro;
     private String clave;
-    private char accion;
+    private String accion;
     private String titulo;
     private String boton;
     private Map sesion;
     private String cabeceraocul;
     private String botonocul;
-    
+
     //variables específicas a cada controlador
     private ArrayList<Ropa> lista_ropa;
     private List<Categoria> lista_categoria;
@@ -54,36 +54,35 @@ public class HomeRopa extends ActionSupport {
     private List<Material> lista_materiales;
     private List<Color> lista_colores;
     private List<Coleccion> lista_colecciones;
-    
-    
+
     private Integer roId2;
-     private Clientela clientela2;
-     private Coleccion coleccion2;
-     private Color color2;
-     private Look look2;
-     private Marcas marcas2;
-     private Tallas tallas2;
-     private String roDescripcion2;
-     private double roPrecio2;
-     private double roDescuento2;
-     private String roCaracteristicas2;
-     private byte roVisible2;
-     private int roUnidades2;
-     private String accionocul;
-     private Date roFecha2;
-     private Set<RopaCategoria> ropaCategorias2 = new HashSet<RopaCategoria>(0);
-     private Set<RopaMaterial> ropaMaterials2 = new HashSet<RopaMaterial>(0);
-     private Set<Fotos> fotoses2 = new HashSet<Fotos>(0);
-     
-     //lista de combos
-     private List<String> lista_combo_categorias;
-     private List<String> lista_combo_marcas;
-     private List<String> lista_combo_clientela;
-     private List<String> lista_combo_look;
-     private List<String> lista_combo_tallas;
-     private List<String> lista_combo_material;
-     private List<String> lista_combo_color;
-     private List<String> lista_combo_coleccion;
+    private Clientela clientela2;
+    private Coleccion coleccion2;
+    private Color color2;
+    private Look look2;
+    private Marcas marcas2;
+    private Tallas tallas2;
+    private String roDescripcion2;
+    private double roPrecio2;
+    private double roDescuento2;
+    private String roCaracteristicas2;
+    private byte roVisible2;
+    private int roUnidades2;
+    private String accionocul;
+    private Date roFecha2;
+    private Set<RopaCategoria> ropaCategorias2 = new HashSet<RopaCategoria>(0);
+    private Set<RopaMaterial> ropaMaterials2 = new HashSet<RopaMaterial>(0);
+    private Set<Fotos> fotoses2 = new HashSet<Fotos>(0);
+
+    //lista de combos
+    private List<String> lista_combo_categorias;
+    private List<String> lista_combo_marcas;
+    private List<String> lista_combo_clientela;
+    private List<String> lista_combo_look;
+    private List<String> lista_combo_tallas;
+    private List<String> lista_combo_material;
+    private List<String> lista_combo_color;
+    private List<String> lista_combo_coleccion;
 
     public String getCabeceraocul() {
         return cabeceraocul;
@@ -100,9 +99,6 @@ public class HomeRopa extends ActionSupport {
     public void setBotonocul(String botonocul) {
         this.botonocul = botonocul;
     }
-     
-     
-     
 
     public List<Categoria> getLista_categoria() {
         return lista_categoria;
@@ -231,12 +227,7 @@ public class HomeRopa extends ActionSupport {
     public void setLista_combo_coleccion(List<String> lista_combo_coleccion) {
         this.lista_combo_coleccion = lista_combo_coleccion;
     }
-     
 
-     
-     
-     
-     
     public String getAccionocul() {
         return accionocul;
     }
@@ -244,6 +235,7 @@ public class HomeRopa extends ActionSupport {
     public void setAccionocul(String accionocul) {
         this.accionocul = accionocul;
     }
+
     public String getFiltro() {
         return filtro;
     }
@@ -260,11 +252,11 @@ public class HomeRopa extends ActionSupport {
         this.clave = clave;
     }
 
-    public char getAccion() {
+    public String getAccion() {
         return accion;
     }
 
-    public void setAccion(char accion) {
+    public void setAccion(String accion) {
         this.accion = accion;
     }
 
@@ -436,170 +428,150 @@ public class HomeRopa extends ActionSupport {
         this.fotoses2 = fotoses2;
     }
 
-     
-     
-    
-    
     @SkipValidation
     public String RopaFiltro() throws Exception {
-      
-        if(sesion==null){
-            sesion=ActionContext.getContext().getSession();
+
+        if (sesion == null) {
+            sesion = ActionContext.getContext().getSession();
         }
         /* para cuando tengamos sesión de usuario
-        try{
-            Usuarios u = (Usuarios) sesion.get("usuarioLogueado");
-        }catch(Exception e){
-            return INPUT;
-        }
-        */
-        if(filtro == null){
+         try{
+         Usuarios u = (Usuarios) sesion.get("usuarioLogueado");
+         }catch(Exception e){
+         return INPUT;
+         }
+         */
+        if (filtro == null) {
             filtro = "";
         }
-        lista_ropa = ControladoresDAO.cRopa.Recupera_Todos(filtro);
-       
+        lista_ropa = ControladoresDAO.cRopa.RecuperaTodos(filtro);
+
         return SUCCESS;
     }
-    
+
     @SkipValidation
-    public String RopaForm() throws Exception{
-        if(sesion==null){
-            sesion=ActionContext.getContext().getSession();
+    public String RopaForm() throws Exception {
+        if (sesion == null) {
+            sesion = ActionContext.getContext().getSession();
         }
         /* para cuando tengamos sesión de usuario
-        try{
-            Usuarios u = (Usuarios) sesion.get("usuarioLogueado");
-            if(u.getUsuAdministrador()!=1){
-                return INPUT;
+         try{
+         Usuarios u = (Usuarios) sesion.get("usuarioLogueado");
+         if(u.getUsuAdministrador()!=1){
+         return INPUT;
+         }
+         }catch(Exception e){
+         return INPUT;
+         }
+         */
+        if (accion.equals("a")) {
+            titulo = "Alta";
+            roId2 = 0;
+            lista_marca = ControladoresDAO.cMarcas.RecuperaTodos("");
+            lista_combo_marcas = new ArrayList<String>();
+            for (Marcas Lm : lista_marca) {
+                lista_combo_marcas.add(Lm.getMarcaNombre());
             }
-        }catch(Exception e){
-            return INPUT;
-        }
-        */
-        
-//             private List<String> lista_combo_categorias;
-//     private List<String> lista_combo_marcas;
-//     private List<String> lista_combo_clientela;
-//     private List<String> lista_combo_look;
-//     private List<String> lista_combo_tallas;
-//     private List<String> lista_combo_material;
-//     private List<String> lista_combo_color;
-//     private List<String> lista_combo_coleccion;
-        switch(accion){
-            case 'a': 
-                titulo = "Alta";
-                roId2 = 0;
-                lista_marca = ControladoresDAO.cMarcas.RecuperaTodos("");
-                lista_combo_marcas = new ArrayList<String>();
-                for (Marcas Lm : lista_marca) {
-                    lista_combo_marcas.add(Lm.getMarcaNombre());
-                }
-                lista_clientela = ControladoresDAO.cClientela.RecuperaTodos("");
-                lista_combo_clientela = new ArrayList<String>();
-                for (Clientela Lcl : lista_clientela) {
-                    lista_combo_clientela.add(Lcl.getClientelaDescripcion());
-                }
-                roDescripcion2 = "";
-                lista_look = ControladoresDAO.cLook.RecuperaTodos("");
-                lista_combo_look = new ArrayList<String>();
-                for (Look Loo : lista_look) {
-                    lista_combo_look.add(Loo.getLookDescripcion());
-                }
-                lista_tallas = ControladoresDAO.cTallas.Recupera_Todos("");
-                lista_combo_tallas = new ArrayList<String>();
-                for (Tallas ta : lista_tallas) {
-                    lista_combo_tallas.add(ta.getTallaDescripcion());
-                }
-                roPrecio2 = 0.0;
-                roDescuento2 = 0.0;
-                lista_colores = ControladoresDAO.cColor.RecuperaTodos("");
-                lista_combo_color = new ArrayList<String>();
-                for (Color co : lista_colores) {
-                    lista_combo_color.add(co.getColorDescripcion());
-                }
-                lista_colecciones = ControladoresDAO.cColeccion.RecuperaTodos("");
-                lista_combo_coleccion = new ArrayList<String>();
-                for (Coleccion col : lista_colecciones) {
-                    lista_combo_coleccion.add(col.getColeccionDescripcion());
-                }               
-                roCaracteristicas2 = "";
-                roVisible2 = 0;
-                roUnidades2 = 0;
-                roFecha2 = null;
-                lista_categoria = ControladoresDAO.cCategorias.RecuperaTodos("");
-                lista_combo_categorias = new ArrayList<String>();
-                for (Categoria Lc : lista_categoria) {
-                    lista_combo_categorias.add(Lc.getCatDescripcion());
-                }
-                lista_materiales = ControladoresDAO.cMaterial.Recupera_Todos("");
-                lista_combo_material = new ArrayList<String>();
-                for (Material mat : lista_materiales) {
-                    lista_combo_material.add(mat.getMaterialDescripcion());
-                }
-                            accionocul = "a";
-         cabeceraocul = "Alta";
-         botonocul = "Alta";
-                break;
-            case 'm': 
-                titulo = "Modificación";
-                Ropa t = ControladoresDAO.cRopa.Recupera_Id(clave);
-                roId2 = 0;
-                clientela2 = null;
-                coleccion2 = null;
-                color2 = null;
-                look2 = null;
-                marcas2 = null;
-                tallas2 = null;
-                roDescripcion2 = "";
-                roPrecio2 = 0.0;
-                roDescuento2 = 0.0;
-                roCaracteristicas2 = "";
-                roVisible2 = 0;
-                roUnidades2 = 0;
-                roFecha2 = null;
-                for (Ropa Lr : lista_ropa) {
-                for(RopaCategoria rc: ropaCategorias2 ){
+            lista_clientela = ControladoresDAO.cClientela.RecuperaTodos("");
+            lista_combo_clientela = new ArrayList<String>();
+            for (Clientela Lcl : lista_clientela) {
+                lista_combo_clientela.add(Lcl.getClientelaDescripcion());
+            }
+            roDescripcion2 = "";
+            lista_look = ControladoresDAO.cLook.RecuperaTodos("");
+            lista_combo_look = new ArrayList<String>();
+            for (Look Loo : lista_look) {
+                lista_combo_look.add(Loo.getLookDescripcion());
+            }
+            lista_tallas = ControladoresDAO.cTallas.Recupera_Todos("");
+            lista_combo_tallas = new ArrayList<String>();
+            for (Tallas ta : lista_tallas) {
+                lista_combo_tallas.add(ta.getTallaDescripcion());
+            }
+            roPrecio2 = 0.0;
+            roDescuento2 = 0.0;
+            lista_colores = ControladoresDAO.cColor.RecuperaTodos("");
+            lista_combo_color = new ArrayList<String>();
+            for (Color co : lista_colores) {
+                lista_combo_color.add(co.getColorDescripcion());
+            }
+            lista_colecciones = ControladoresDAO.cColeccion.RecuperaTodos("");
+            lista_combo_coleccion = new ArrayList<String>();
+            for (Coleccion col : lista_colecciones) {
+                lista_combo_coleccion.add(col.getColeccionDescripcion());
+            }
+            roCaracteristicas2 = "";
+            roVisible2 = 0;
+            roUnidades2 = 0;
+            roFecha2 = null;
+            lista_categoria = ControladoresDAO.cCategorias.RecuperaTodos("");
+            lista_combo_categorias = new ArrayList<String>();
+            for (Categoria Lc : lista_categoria) {
+                lista_combo_categorias.add(Lc.getCatDescripcion());
+            }
+            lista_materiales = ControladoresDAO.cMaterial.Recupera_Todos("");
+            lista_combo_material = new ArrayList<String>();
+            for (Material mat : lista_materiales) {
+                lista_combo_material.add(mat.getMaterialDescripcion());
+            }
+            accionocul = "a";
+            cabeceraocul = "Alta";
+            botonocul = "Alta";
+        } else {
+            lista_ropa = ControladoresDAO.cRopa.RecuperaTodos(filtro);
+            Ropa t = ControladoresDAO.cRopa.RecuperaPorId(clave);
+            roId2 = 0;
+            for (Ropa cli : lista_ropa) {
+                lista_combo_clientela.add(cli.getClientela().toString());
+            }
+            System.out.println("clientela "+lista_combo_clientela);
+            for (Ropa co : lista_ropa) {
+                lista_combo_coleccion.add(co.getColeccion().toString());
+            }
+            for (Ropa col : lista_ropa) {
+                lista_combo_color.add(col.getColor().toString());
+            }
+            for (Ropa loo : lista_ropa) {
+                lista_combo_look.add(loo.getLook().toString());
+            }
+            for (Ropa ma : lista_ropa) {
+                lista_combo_marcas.add(ma.getMarcas().toString());
+            }
+            for (Ropa ta : lista_ropa) {
+                lista_combo_tallas.add(ta.getTallas().toString());
+            }
+            roDescripcion2 = "";
+            roPrecio2 = 0.0;
+            roDescuento2 = 0.0;
+            roCaracteristicas2 = "";
+            roVisible2 = 0;
+            roUnidades2 = 0;
+            roFecha2 = null;
+            for (Ropa Lr : lista_ropa) {
+                for (RopaCategoria rc : ropaCategorias2) {
                     lista_combo_categorias.add(Integer.toString(rc.getCategoria().getCatId()));
                 }
-                
             }
-                                accionocul = "m";
-                cabeceraocul = "Modificar";
-                botonocul = "Modificar"; 
-                break;
-            case 'e': 
-                titulo = "Eliminación";
-                Ropa ta = ControladoresDAO.cRopa.Recupera_Id(clave);
-                roId2 = 0;
-                clientela2 = null;
-                coleccion2 = null;
-                color2 = null;
-                look2 = null;
-                marcas2 = null;
-                tallas2 = null;
-                roDescripcion2 = "";
-                roPrecio2 = 0.0;
-                roDescuento2 = 0.0;
-                roCaracteristicas2 = "";
-                roVisible2 = 0;
-                roUnidades2 = 0;
-                roFecha2 = null;
-                for (Ropa Lr : lista_ropa) {
-                for(RopaCategoria rc: ropaCategorias2 ){
-                    lista_combo_categorias.add(Integer.toString(rc.getCategoria().getCatId()));
+            for (Ropa Lr : lista_ropa) {
+                for (RopaMaterial roma : ropaMaterials2) {
+                    lista_combo_material.add(Integer.toString(roma.getMaterial().getMaterialId()));
                 }
-                
             }
-                accionocul = "e";
-                cabeceraocul = "Eliminar";
-                botonocul = "Eliminar";
-                break;
-            default : 
-                titulo = "Error en titulo";
-            
-        }
-        return SUCCESS;
+                    if (accion.equals("m")) {
+                        accionocul = "m";
+                        cabeceraocul = "Modificar";
+                        botonocul = "Modificar";
+                    } else {
+                        accionocul = "e";
+                        cabeceraocul = "Eliminar";
+                        botonocul = "Eliminar";
+                    }
+
+            }
+         return SUCCESS;
     }
+
+        
     
     
     //@SkipValidation
@@ -622,4 +594,4 @@ public class HomeRopa extends ActionSupport {
 //        return SUCCESS;
 //    }    
     
-}
+ }

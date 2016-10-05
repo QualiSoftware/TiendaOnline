@@ -18,7 +18,7 @@ public class cRopa {
     
     static Session sesion;
     
-    public static ArrayList<Ropa> Recupera_Todos(String filtro){
+    public static ArrayList<Ropa> RecuperaTodos(String filtro){
         sesion = (Session) NewHibernateUtil.getSessionFactory().openSession();
         String sql = "From Ropa WHERE roDescripcion like '%"+filtro+"%'";
           
@@ -26,7 +26,7 @@ public class cRopa {
         ArrayList<Ropa> lt = (ArrayList) query.list();
         return lt;
     }
-    public static Ropa Recupera_Id(String id){
+    public static Ropa RecuperaPorId(String id){
         sesion = (Session) NewHibernateUtil.getSessionFactory().openSession();
         Ropa t = (Ropa) sesion.get(Ropa.class, Integer.parseInt(id));
         return t;
