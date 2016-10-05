@@ -59,7 +59,7 @@
                         <s:label for="coleccion2">Coleccion</s:label>  
                         </td>
                         <td>
-                        <s:select list="lista_colecciones" listValue="coleccionDescripcion" listKey="coleccionId" value="t.coleccion.coleccionId"/>
+                        <s:select name="coleccion2" list="lista_colecciones" listValue="coleccionDescripcion" listKey="coleccionId" value="t.coleccion.coleccionId"/>
                     </td>
                 </tr>
                 <tr>
@@ -68,7 +68,7 @@
                         </td>
 
                         <td>
-                        <s:select list="lista_colores" listValue="colorDescripcion" listKey="colorId" value="t.color.colorId"/>
+                        <s:select name="color2" list="lista_colores" listValue="colorDescripcion" listKey="colorId" value="t.color.colorId"/>
                     </td>
                 </tr>
                 <tr>
@@ -77,7 +77,7 @@
                         </td>
 
                         <td>
-                        <s:select list="lista_look" listValue="lookDescripcion" listKey="lookId" value="t.look.lookId"/>
+                        <s:select name="look2" list="lista_look" listValue="lookDescripcion" listKey="lookId" value="t.look.lookId"/>
 
                     </td>
                 </tr>
@@ -87,7 +87,7 @@
                         <s:label for="marcas2">Marcas</s:label>  
                         </td>
                         <td>
-                        <s:select list="lista_marca" listValue="marcaNombre" listKey="marcaId" value="t.marcas.marcaId"/>
+                        <s:select name="marcas2" list="lista_marca" listValue="marcaNombre" listKey="marcaId" value="t.marcas.marcaId"/>
 
                     </td>
                 </tr>
@@ -97,7 +97,7 @@
                         </td>
 
                         <td>
-                        <s:select list="lista_tallas" listValue="tallaDescripcion" listKey="tallaId" value="t.tallas.tallaId"/>
+                        <s:select name="tallas2" list="lista_tallas" listValue="tallaDescripcion" listKey="tallaId" value="t.tallas.tallaId"/>
 
                     </td>
                 </tr>
@@ -164,7 +164,7 @@
                         
                         <td>
                         <s:select list="lista_categoria" listValue="catDescripcion" 
-                                  listKey="catId" value="ropaActual.categoria.catId"/>
+                                  listKey="catId" value="t.categoria.catId"/>
 
                     </td>
                 </tr>
@@ -175,7 +175,7 @@
                         
                         <td>
                         <s:select list="lista_subcategoria" listValue="subDescripcion" 
-                                  listKey="subId" value="ropaActual.subcategoria.subId"/>
+                                  listKey="subId" value="t.subcategoria.subId"/>
 
                     </td>
                 </tr>
