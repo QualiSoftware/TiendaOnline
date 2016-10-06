@@ -12,12 +12,12 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Formulario</title>
         <script>
-            function Verificar(){
-                if(document.getElementById('accion').value === 'e'){
-                    if(confirm("Â¿Seguro que desea borrar?")){
+            function Verificar() {
+                if (document.getElementById('accion').value === 'e') {
+                    if (confirm("Â¿Seguro que desea borrar?")) {
                         document.getElementById('frm').submit();
                     }
-                }else{
+                } else {
                     document.getElementById('frm').submit();
                 }
             }
@@ -25,6 +25,8 @@
     </head>
     <body>
         <h1> <s:label name="cabeceraocul"></s:label> </h1>
+
+
         <s:form action="CrudActionRopa" theme="simple">
             <input type="hidden" name="accionocul" id="accionocul" value=<s:property value="accion" /> />
             <table>
@@ -41,17 +43,17 @@
                         <s:label for="clientela2">Clientela</s:label>  
                         </td>
                         <td>
-                            <%
-                                if(request.getAttribute("accionocul") == "e"){
-                            %>
-                            <s:textfield name="t.clientela.clientelaDescripcion" readonly="true" ></s:textfield>
-                            <%
-                                }else{
-                            %>
-                                <s:select list="lista_clientela" listValue="clientelaDescripcion" listKey="clientelaId" value="t.clientela.clientelaId"/>
-                            <%
-                                }
-                            %>
+                        <%
+                            if (request.getAttribute("accionocul") == "e") {
+                        %>
+                        <s:textfield name="t.clientela.clientelaDescripcion" readonly="true" ></s:textfield>
+                        <%
+                        } else {
+                        %>
+                        <s:select list="lista_clientela" listValue="clientelaDescripcion" listKey="clientelaId" value="t.clientela.clientelaId"/>
+                        <%
+                            }
+                        %>
                     </td>
                 </tr>
                 <tr>
@@ -59,7 +61,18 @@
                         <s:label for="coleccion2">Coleccion</s:label>  
                         </td>
                         <td>
+                        <%
+                            if (request.getAttribute("accionocul") == "e") {
+                        %>
+                        <s:textfield name="t.coleccion.coleccionDescripcion" readonly="true" ></s:textfield>
+                        <%
+                        } else {
+                        %>
                         <s:select name="coleccion2" list="lista_colecciones" listValue="coleccionDescripcion" listKey="coleccionId" value="t.coleccion.coleccionId"/>
+                        <%
+                            }
+                        %>
+
                     </td>
                 </tr>
                 <tr>
@@ -68,7 +81,18 @@
                         </td>
 
                         <td>
+                        <%
+                            if (request.getAttribute("accionocul") == "e") {
+                        %>
+                        <s:textfield name="t.color.colorDescripcion" readonly="true" ></s:textfield>
+                        <%
+                        } else {
+                        %>
                         <s:select name="color2" list="lista_colores" listValue="colorDescripcion" listKey="colorId" value="t.color.colorId"/>
+                        <%
+                            }
+                        %>
+
                     </td>
                 </tr>
                 <tr>
@@ -77,7 +101,19 @@
                         </td>
 
                         <td>
+
+                        <%
+                            if (request.getAttribute("accionocul") == "e") {
+                        %>
+                        <s:textfield name="t.look.lookDescripcion" readonly="true" ></s:textfield>
+                        <%
+                        } else {
+                        %>
                         <s:select name="look2" list="lista_look" listValue="lookDescripcion" listKey="lookId" value="t.look.lookId"/>
+                        <%
+                            }
+                        %>
+
 
                     </td>
                 </tr>
@@ -87,7 +123,19 @@
                         <s:label for="marcas2">Marcas</s:label>  
                         </td>
                         <td>
+
+                        <%
+                            if (request.getAttribute("accionocul") == "e") {
+                        %>
+                        <s:textfield name="t.marcas.marcaNombre" readonly="true" ></s:textfield>
+                        <%
+                        } else {
+                        %>
                         <s:select name="marcas2" list="lista_marca" listValue="marcaNombre" listKey="marcaId" value="t.marcas.marcaId"/>
+                        <%
+                            }
+                        %>
+
 
                     </td>
                 </tr>
@@ -97,7 +145,19 @@
                         </td>
 
                         <td>
+
+                        <%
+                            if (request.getAttribute("accionocul") == "e") {
+                        %>
+                        <s:textfield name="t.tallas.tallaDescripcion" readonly="true" ></s:textfield>
+                        <%
+                        } else {
+                        %>
                         <s:select name="tallas2" list="lista_tallas" listValue="tallaDescripcion" listKey="tallaId" value="t.tallas.tallaId"/>
+                        <%
+                            }
+                        %>
+
 
                     </td>
                 </tr>
@@ -161,10 +221,22 @@
                     <td>
                         <s:label for="categoria">Categoría</s:label>  
                         </td>
-                        
+
                         <td>
+
+                        <%
+                            if (request.getAttribute("accionocul") == "e") {
+                        %>
+                        <s:textfield name="t.categoria.catDescripcion" readonly="true" ></s:textfield>
+                        <%
+                        } else {
+                        %>
                         <s:select list="lista_categoria" listValue="catDescripcion" 
                                   listKey="catId" value="t.categoria.catId"/>
+                        <%
+                            }
+                        %>
+
 
                     </td>
                 </tr>
@@ -172,10 +244,22 @@
                     <td>
                         <s:label for="subcategoria">Subcategoría</s:label>  
                         </td>
-                        
+
                         <td>
+
+                        <%
+                            if (request.getAttribute("accionocul") == "e") {
+                        %>
+                        <s:textfield name="t.subcategoria.subDescripcion" readonly="true" ></s:textfield>
+                        <%
+                        } else {
+                        %>
                         <s:select list="lista_subcategoria" listValue="subDescripcion" 
                                   listKey="subId" value="t.subcategoria.subId"/>
+                        <%
+                            }
+                        %>
+
 
                     </td>
                 </tr>
