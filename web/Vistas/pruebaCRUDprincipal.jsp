@@ -17,7 +17,7 @@
     <body>
         <table border="1">
             <tr>
-                <td colspan="16">
+                <td colspan="18">
                     <s:form action="RopaFiltro" theme="simple">
                         Filtro : <s:textfield name="filtro" /><s:submit value="filtrar"></s:submit>
                             &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
@@ -29,7 +29,7 @@
                 </td>
             </tr>
             <tr>
-                          
+
                 <th>Acciones</th>
                 <th>roId</th>
                 <th>clientela</th>
@@ -45,9 +45,11 @@
                 <th>roVisible</th>
                 <th>roUnidades</th>
                 <th>roFecha</th>
+                <th>Categoría</th>
+                <th>Subcategoría</th>
                 <th>Fotos</th>
             </tr>
-           <s:iterator var="a" value="lista_ropa">
+            <s:iterator var="a" value="lista_ropa">
                 <tr>
                     <td>
                         <s:a action="RopaForm">
@@ -104,16 +106,12 @@
                     <td>
                         <s:property value="#a.roFecha"/><br>
                     </td>
-                    <!--<td>
-                        <s:iterator var="rc" value="ropaCategorias">
-                            <s:property value="categoria.catId"/>
-                        </s:iterator>
+                    <td>
+                        <s:property value="#a.categoria.catDescripcion"/>
                     </td>
                     <td>
-                        <s:iterator var="rm" value="ropaMaterials">
-                            <s:property value="material.materialId"/>
-                        </s:iterator>
-                    </td>-->
+                        <s:property value="#a.subcategoria.subDescripcion"/>                        
+                    </td>
                     <td>
                         <s:iterator var="f" value="fotoses">
                             <s:property value="fotosRuta"/>

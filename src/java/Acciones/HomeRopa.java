@@ -56,11 +56,11 @@ public class HomeRopa extends ActionSupport {
 
     private Integer roId2;
     private String clientela2;
-    private Coleccion coleccion2;
-    private Color color2;
-    private Look look2;
-    private Marcas marcas2;
-    private Tallas tallas2;
+    private String coleccion2;
+    private String color2;
+    private String look2;
+    private String marcas2;
+    private String tallas2;
     private String roDescripcion2;
     private double roPrecio2;
     private double roDescuento2;
@@ -70,6 +70,56 @@ public class HomeRopa extends ActionSupport {
     private String accionocul;
     private Date roFecha2;
     private Set<Fotos> fotoses2 = new HashSet<Fotos>(0);
+    private String categoria2;
+    private String subcategoria2;
+
+    public String getCategoria2() {
+        return categoria2;
+    }
+
+    public void setCategoria2(String categoria2) {
+        this.categoria2 = categoria2;
+    }
+
+    public String getSubcategoria2() {
+        return subcategoria2;
+    }
+
+    public void setSubcategoria2(String subcategoria2) {
+        this.subcategoria2 = subcategoria2;
+    }
+
+    public String getColeccion2() {
+        return coleccion2;
+    }
+
+    public void setColeccion2(String coleccion2) {
+        this.coleccion2 = coleccion2;
+    }
+
+    public String getLook2() {
+        return look2;
+    }
+
+    public void setLook2(String look2) {
+        this.look2 = look2;
+    }
+
+    public String getMarcas2() {
+        return marcas2;
+    }
+
+    public void setMarcas2(String marcas2) {
+        this.marcas2 = marcas2;
+    }
+
+    public String getTallas2() {
+        return tallas2;
+    }
+
+    public void setTallas2(String tallas2) {
+        this.tallas2 = tallas2;
+    }
 
     public Ropa getT() {
         return t;
@@ -87,7 +137,6 @@ public class HomeRopa extends ActionSupport {
         this.lista_subcategoria = lista_subcategoria;
     }
 
-    
     public String getCabeceraocul() {
         return cabeceraocul;
     }
@@ -184,8 +233,6 @@ public class HomeRopa extends ActionSupport {
         this.clave = clave;
     }
 
-    
-
     public String getAccion() {
         return accion;
     }
@@ -242,44 +289,12 @@ public class HomeRopa extends ActionSupport {
         this.clientela2 = clientela2;
     }
 
-    public Coleccion getColeccion2() {
-        return coleccion2;
-    }
-
-    public void setColeccion2(Coleccion coleccion2) {
-        this.coleccion2 = coleccion2;
-    }
-
-    public Color getColor2() {
+    public String getColor2() {
         return color2;
     }
 
-    public void setColor2(Color color2) {
+    public void setColor2(String color2) {
         this.color2 = color2;
-    }
-
-    public Look getLook2() {
-        return look2;
-    }
-
-    public void setLook2(Look look2) {
-        this.look2 = look2;
-    }
-
-    public Marcas getMarcas2() {
-        return marcas2;
-    }
-
-    public void setMarcas2(Marcas marcas2) {
-        this.marcas2 = marcas2;
-    }
-
-    public Tallas getTallas2() {
-        return tallas2;
-    }
-
-    public void setTallas2(Tallas tallas2) {
-        this.tallas2 = tallas2;
     }
 
     public String getRoDescripcion2() {
@@ -403,7 +418,7 @@ public class HomeRopa extends ActionSupport {
             accionocul = "a";
             cabeceraocul = "Alta";
             botonocul = "Alta";
-        }else{
+        } else {
             t = ControladoresDAO.cRopa.RecuperaPorId(clave);
             roId2 = t.getRoId();
             roDescripcion2 = t.getRoDescripcion();
@@ -425,27 +440,44 @@ public class HomeRopa extends ActionSupport {
             botonocul = "Eliminar";
         }
 
-            
-         return SUCCESS;
+        return SUCCESS;
     }
 
-   /* @SkipValidation
-     public String CrudActionRopa() throws Exception {         
-        if (accionocul.equals("a")) {            
-           Ropa p = new Ropa(null, coleccion2, color2, look2, marcas2, tallas2, roDescripcion2, roPrecio2, roDescuento2, roCaracteristicas2, roVisible2, roUnidades2, roFecha2);
-           p.setRoId(roId2);
-            ControladoresDAO.cRopa.Inserta(p);
+    @SkipValidation
+    public String CrudActionRopa() throws Exception {
+        if (roId2 != 0) {
+            t = ControladoresDAO.cRopa.RecuperaPorId(roId2);
+        } else {
+            t = new Ropa();
+        }
+        if (!accionocul.equals("e")) {
+            t.setClientela(ControladoresDAO.cClientela.RecuperaPorId(Integer.parseInt(clientela2)));
+            t.setColeccion(ControladoresDAO.cColeccion.RecuperaPorId(Integer.parseInt(coleccion2)));
+            t.setColor(ControladoresDAO.cColor.RecuperaPorId(Integer.parseInt(color2)));
+            t.setLook(ControladoresDAO.cLook.RecuperaPorId(Integer.parseInt(look2)));
+            t.setMarcas(ControladoresDAO.cMarcas.RecuperaPorId(Integer.parseInt(marcas2)));
+            t.setTallas(ControladoresDAO.cTallas.RecuperaPorId(Integer.parseInt(tallas2)));
+            t.setRoDescripcion(roDescripcion2);
+            t.setRoPrecio(roPrecio2);
+            t.setRoDescuento(roDescuento2);
+            t.setRoCaracteristicas(roCaracteristicas2);
+            t.setRoVisible(roVisible2);
+            t.setRoUnidades(roUnidades2);
+            t.setRoFecha(roFecha2);
+            t.setCategoria(ControladoresDAO.cCategorias.RecuperaPorId(Integer.parseInt(categoria2)));
+            t.setSubcategoria(ControladoresDAO.cSubcategorias.RecuperaPorId(Integer.parseInt(subcategoria2)));
+        }
+        if (accionocul.equals("a")) {
+            int respuesta = ControladoresDAO.cRopa.Inserta(t);
         }
         if (accionocul.equals("m")) {
-            Marcas p = new Marcas(roDescripcion2); 
-             p.setMarcaId(roId2);
-            ControladoresDAO.cMarcas.Modifica(p);
+            int respuesta = ControladoresDAO.cRopa.Modifica(t);
         }
         if (accionocul.equals("e")) {
-            Marcas p = new Marcas(roDescripcion2); 
-             p.setMarcaId(roId2);
-            ControladoresDAO.cMarcas.Elimina(p);
-        }        
+            byte b = 0;
+            t.setRoVisible(b);
+            int respuesta = ControladoresDAO.cRopa.Modifica(t);
+        }
         return SUCCESS;
-    } */   
+    }
 }
