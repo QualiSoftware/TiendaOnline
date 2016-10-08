@@ -11,7 +11,20 @@ public class cRopa {
 
     public static ArrayList<Ropa> RecuperaTodos(String filtro) {
         sesion = (Session) NewHibernateUtil.getSession();
-        String sql = "From Ropa WHERE roDescripcion like '%" + filtro + "%'";
+        String sql = "From Ropa WHERE roDescripcion LIKE '%" + filtro + "%'";
+        sql += " OR marcas.marcaNombre LIKE '%" + filtro + "%'";
+        sql += " OR clientela.clientelaDescripcion LIKE '%" + filtro + "%'";
+        sql += " OR look.lookDescripcion LIKE '%" + filtro + "%'";
+        sql += " OR tallas.tallaDescripcion LIKE '%" + filtro + "%'";
+        sql += " OR roPrecio LIKE '%" + filtro + "%'";
+        sql += " OR roDescuento LIKE '%" + filtro + "%'";
+        sql += " OR color.colorDescripcion LIKE '%" + filtro + "%'";
+        sql += " OR coleccion.coleccionDescripcion LIKE '%" + filtro + "%'";
+        sql += " OR roCaracteristicas LIKE '%" + filtro + "%'";
+        sql += " OR roUnidades LIKE '%" + filtro + "%'";
+        sql += " OR roFecha LIKE '%" + filtro + "%'";
+        sql += " OR categoria.catDescripcion LIKE '%" + filtro + "%'";
+        sql += " OR subcategoria.subDescripcion LIKE '%" + filtro + "%'";
         Query query = sesion.createQuery(sql);
         ArrayList<Ropa> lt = (ArrayList) query.list();
         return lt;
