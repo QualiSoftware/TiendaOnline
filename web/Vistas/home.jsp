@@ -7,7 +7,10 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <a href="TallasFiltro">Muestro Tallas</a>
+        <a href="RopaFiltro">Muestro Ropa</a>
+        <s:iterator var="f" value="fotoses2">
+            <s:property value="fotosRuta"/>
+        </s:iterator>
         
     </body>
 </html>
