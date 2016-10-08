@@ -320,9 +320,32 @@
                         <%
                             }
                         %>
-
                     </td>
                 </tr>
+               <%
+                    if (request.getAttribute("accionocul") == "a") {
+                %>
+                        <tr>
+                            <td><s:label for="fotos">Foto 1</s:label></td>
+                            <td><s:textfield name="fotoAlta1" ></s:textfield></td>
+                        </tr>
+                        <tr>
+                            <td><s:label for="fotos">Foto 2</s:label></td>
+                            <td><s:textfield name="fotoAlta2" ></s:textfield></td>
+                        </tr>
+                        <tr>
+                            <td><s:label for="fotos">Foto 3</s:label></td>
+                            <td><s:textfield name="fotoAlta3" ></s:textfield></td>
+                        </tr>
+                <%}else{%>
+                    <s:iterator var="f" value="t.fotoses">
+                        <tr>
+                            <td><s:label for="fotos">Fotos</s:label></td>
+                            <td><s:textfield name="fotosRuta" readonly="true" ></s:textfield></td>
+                        </tr>
+                    </s:iterator>
+                <%}%>
+                
                 <tr>
                     <td colspan="2">
                         <input type="button" onclick="Verificar();" value=<s:property value="botonocul" /> />

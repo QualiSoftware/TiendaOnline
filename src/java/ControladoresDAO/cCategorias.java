@@ -19,29 +19,23 @@ public class cCategorias {
     static Session sesion;
     
     public static List<Categoria> RecuperaTodos(String filtro){
-        sesion = (Session) NewHibernateUtil.getSessionFactory().openSession();
+        sesion = (Session) NewHibernateUtil.getSession();
         Query query =sesion.createQuery("FROM Categoria WHERE catDescripcion LIKE'%"+filtro+"%'"); 
         List<Categoria> la = query.list();
         return la;
     }
     
     public static Categoria RecuperaPorId(int id){
-        //System.out.println(id);
-        sesion = (Session) NewHibernateUtil.getSessionFactory().openSession();
-       // Query query =sesion.createQuery("From Agenda where agId =" + id);
-      //sesion.get("Agenda.class", id);
-        //Agenda a = query.;
+        sesion = (Session) NewHibernateUtil.getSession();
         Categoria p =(Categoria) sesion.get(Categoria.class, id);
-        //sesion.close();
         return p;
     }    
     
     public static int  Elimina(Categoria e){
-        sesion = (Session) NewHibernateUtil.getSessionFactory().openSession();
+        sesion = (Session) NewHibernateUtil.getSession();
         sesion.beginTransaction();
         try{
             if(e!=null){
-               System.out.println(e.getCatId());
                 sesion.delete(e);
                 sesion.getTransaction().commit();
                 sesion.evict(e);
@@ -52,14 +46,10 @@ public class cCategorias {
             System.out.println(ex.getMessage());
             sesion.getTransaction().rollback();
             return -1;
-        }finally{
-           // sesion.close();
-        } 
+        }
     }
     public static int  Inserta(Categoria c){
-        sesion = (Session) NewHibernateUtil.getSessionFactory().openSession();
-        //sesion = (Session) NewHibernateUtil.getSession();
-        //sesion =  NewHibernateUtil.getSessionFactory().openSession();
+        sesion = (Session) NewHibernateUtil.getSession();
         sesion.beginTransaction();
         try{
             sesion.save(c);
@@ -69,12 +59,10 @@ public class cCategorias {
             System.out.println(ex.getMessage());
             sesion.getTransaction().rollback();
             return -1;
-        }finally{
-            //sesion.close();
         } 
     }
     public static int  Modifica(Categoria c){
-        sesion = (Session) NewHibernateUtil.getSessionFactory().openSession();
+        sesion = (Session) NewHibernateUtil.getSession();
         sesion.beginTransaction();
         try{
             sesion.update(c);
@@ -85,8 +73,6 @@ public class cCategorias {
             System.out.println(ex.getMessage());
             sesion.getTransaction().rollback();
             return -1;
-        }finally{
-           // sesion.close();
         } 
     }
 }

@@ -18,30 +18,23 @@ public class cLook {
         static Session sesion;
     
     public static List<Look> RecuperaTodos(String filtro){
-        sesion = (Session) NewHibernateUtil.getSessionFactory().openSession();
+        sesion = (Session) NewHibernateUtil.getSession();
         Query query =sesion.createQuery("FROM Look WHERE lookDescripcion LIKE'%"+filtro+"%'"); 
         List<Look> la = query.list();
-        //sesion.close();
         return la;
     }
     
     public static Look RecuperaPorId(int id){
-        //System.out.println(id);
-        sesion = (Session) NewHibernateUtil.getSessionFactory().openSession();
-       // Query query =sesion.createQuery("From Agenda where agId =" + id);
-      //sesion.get("Agenda.class", id);
-        //Agenda a = query.;
+        sesion = (Session) NewHibernateUtil.getSession();
         Look p =(Look) sesion.get(Look.class, id);
-        //sesion.close();
         return p;
     }
     
     
     public static int  Elimina(Look esto){
-        sesion = (Session) NewHibernateUtil.getSessionFactory().openSession();
+        sesion = (Session) NewHibernateUtil.getSession();
         sesion.beginTransaction();
         try{
-            
             if(esto!=null){
                 sesion.delete(esto);
                 sesion.getTransaction().commit();
@@ -49,15 +42,13 @@ public class cLook {
             }
                 return -1;
         }catch(Exception ex){
-           // System.out.println(ex.getMessage());
+            System.out.println(ex.getMessage());
             sesion.getTransaction().rollback();
             return -1;
-        }finally{
-           // sesion.close();
         } 
     }
     public static int  Inserta(Look c){
-        sesion = (Session) NewHibernateUtil.getSessionFactory().openSession();
+        sesion = (Session) NewHibernateUtil.getSession();
         sesion.beginTransaction();
         try{
             sesion.save(c);
@@ -67,12 +58,10 @@ public class cLook {
             System.out.println(ex.getMessage());
             sesion.getTransaction().rollback();
             return -1;
-        }finally{
-            //sesion.close();
-        } 
+        }
     }
     public static int  Modifica(Look c){      
-        sesion = (Session) NewHibernateUtil.getSessionFactory().openSession();
+        sesion = (Session) NewHibernateUtil.getSession();
         sesion.beginTransaction();
         try{
             sesion.update(c);
@@ -82,8 +71,6 @@ public class cLook {
             System.out.println(ex.getMessage());
             sesion.getTransaction().rollback();
             return -1;
-        }finally{
-           // sesion.close();
         } 
     }
 }

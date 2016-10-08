@@ -19,32 +19,23 @@ public class cClientela {
     static Session sesion;
     
     public static List<Clientela> RecuperaTodos(String filtro){
-        sesion = (Session) NewHibernateUtil.getSessionFactory().openSession();
+        sesion = (Session) NewHibernateUtil.getSession();
         Query query =sesion.createQuery("FROM Clientela WHERE clientelaDescripcion LIKE'%"+filtro+"%'"); 
         List<Clientela> la = query.list();
-        System.out.println(la.size());
-        //sesion.close();
         return la;
     }
     
     public static Clientela RecuperaPorId(int id){
-        //System.out.println(id);
-       sesion = (Session) NewHibernateUtil.getSessionFactory().openSession();
-       // Query query =sesion.createQuery("From Agenda where agId =" + id);
-      //sesion.get("Agenda.class", id);
-        //Agenda a = query.;
+       sesion = (Session) NewHibernateUtil.getSession();
         Clientela p =(Clientela) sesion.get(Clientela.class, id);
-        //sesion.close();
         return p;
     }
     
     
     public static int  Elimina(Clientela esto){
-        sesion = (Session) NewHibernateUtil.getSessionFactory().openSession();
+        sesion = (Session) NewHibernateUtil.getSession();
         sesion.beginTransaction();
         try{
-
-            
             if(esto!=null){
                System.out.println(esto.getClientelaId());
                 sesion.delete(esto);
@@ -54,15 +45,13 @@ public class cClientela {
             }
                 return -1;
         }catch(Exception ex){
-           // System.out.println(ex.getMessage());
+            System.out.println(ex.getMessage());
             sesion.getTransaction().rollback();
             return -1;
-        }finally{
-           // sesion.close();
         } 
     }
     public static int  Inserta(Clientela c){
-        sesion = (Session) NewHibernateUtil.getSessionFactory().openSession();
+        sesion = (Session) NewHibernateUtil.getSession();
         sesion.beginTransaction();
         try{
             sesion.save(c);
@@ -73,13 +62,11 @@ public class cClientela {
             System.out.println(ex.getMessage());
             sesion.getTransaction().rollback();
             return -1;
-        }finally{
-            //sesion.close();
         } 
     }
     public static int  Modifica(Clientela c){      
         
-        sesion = (Session) NewHibernateUtil.getSessionFactory().openSession();
+        sesion = (Session) NewHibernateUtil.getSession();
         sesion.beginTransaction();
         try{
             sesion.update(c);
@@ -90,8 +77,6 @@ public class cClientela {
             System.out.println(ex.getMessage());
             sesion.getTransaction().rollback();
             return -1;
-        }finally{
-           // sesion.close();
         } 
     }
 }

@@ -69,9 +69,36 @@ public class HomeRopa extends ActionSupport {
     private int roUnidades2;
     private String accionocul;
     private Date roFecha2;
-    private Set<Fotos> fotoses2 = new HashSet<Fotos>(0);
+    private Set<Fotos> fotoses2;
     private String categoria2;
     private String subcategoria2;
+    private String fotoAlta1;
+    private String fotoAlta2;
+    private String fotoAlta3;
+
+    public String getFotoAlta1() {
+        return fotoAlta1;
+    }
+
+    public void setFotoAlta1(String fotoAlta1) {
+        this.fotoAlta1 = fotoAlta1;
+    }
+
+    public String getFotoAlta2() {
+        return fotoAlta2;
+    }
+
+    public void setFotoAlta2(String fotoAlta2) {
+        this.fotoAlta2 = fotoAlta2;
+    }
+
+    public String getFotoAlta3() {
+        return fotoAlta3;
+    }
+
+    public void setFotoAlta3(String fotoAlta3) {
+        this.fotoAlta3 = fotoAlta3;
+    }
 
     public String getCategoria2() {
         return categoria2;
@@ -415,6 +442,10 @@ public class HomeRopa extends ActionSupport {
             roVisible2 = 0;
             roUnidades2 = 0;
             roFecha2 = null;
+            fotoses2 = null;
+            fotoAlta1 = "";
+            fotoAlta2 = "";
+            fotoAlta3 = "";
             accionocul = "a";
             cabeceraocul = "Alta";
             botonocul = "Alta";
@@ -445,6 +476,7 @@ public class HomeRopa extends ActionSupport {
 
     @SkipValidation
     public String CrudActionRopa() throws Exception {
+        int respuesta;
         if (roId2 != 0) {
             t = ControladoresDAO.cRopa.RecuperaPorId(roId2);
         } else {
@@ -468,15 +500,33 @@ public class HomeRopa extends ActionSupport {
             t.setSubcategoria(ControladoresDAO.cSubcategorias.RecuperaPorId(Integer.parseInt(subcategoria2)));
         }
         if (accionocul.equals("a")) {
-            int respuesta = ControladoresDAO.cRopa.Inserta(t);
+            respuesta = ControladoresDAO.cRopa.Inserta(t);
+            ArrayList<Ropa> ropaconid = ControladoresDAO.cRopa.RecuperaTodos("");
+            int idRopaAUsar=0;
+            for(Ropa aux:ropaconid){
+                idRopaAUsar = aux.getRoId();
+            }
+            t.setRoId(idRopaAUsar);
+            if(!fotoAlta1.equals("")){
+                Fotos f1 = new Fotos(t,fotoAlta1);
+                respuesta = ControladoresDAO.cFotos.Inserta(f1);
+            }
+            if(!fotoAlta2.equals("")){
+                Fotos f2 = new Fotos(t,fotoAlta2);
+                respuesta = ControladoresDAO.cFotos.Inserta(f2);
+            }
+            if(!fotoAlta3.equals("")){
+                Fotos f3 = new Fotos(t,fotoAlta3);
+                respuesta = ControladoresDAO.cFotos.Inserta(f3);
+            }
         }
         if (accionocul.equals("m")) {
-            int respuesta = ControladoresDAO.cRopa.Modifica(t);
+            respuesta = ControladoresDAO.cRopa.Modifica(t);
         }
         if (accionocul.equals("e")) {
             byte b = 0;
             t.setRoVisible(b);
-            int respuesta = ControladoresDAO.cRopa.Modifica(t);
+            respuesta = ControladoresDAO.cRopa.Modifica(t);
         }
         return SUCCESS;
     }

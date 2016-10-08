@@ -19,30 +19,23 @@ public class cMarcas {
      static Session sesion;
     
     public static List<Marcas> RecuperaTodos(String filtro){
-        sesion = (Session) NewHibernateUtil.getSessionFactory().openSession();
+        sesion = (Session) NewHibernateUtil.getSession();
         Query query =sesion.createQuery("FROM Marcas WHERE marcaNombre LIKE'%"+filtro+"%'"); 
         List<Marcas> la = query.list();
-        //sesion.close();
         return la;
     }
     
     public static Marcas RecuperaPorId(int id){
-        //System.out.println(id);
-        sesion = (Session) NewHibernateUtil.getSessionFactory().openSession();
-       // Query query =sesion.createQuery("From Agenda where agId =" + id);
-      //sesion.get("Agenda.class", id);
-        //Agenda a = query.;
+        sesion = (Session) NewHibernateUtil.getSession();
         Marcas p =(Marcas) sesion.get(Marcas.class, id);
-        //sesion.close();
         return p;
     }
     
     
     public static int  Elimina(Marcas esto){
-        sesion = (Session) NewHibernateUtil.getSessionFactory().openSession();
+        sesion = (Session) NewHibernateUtil.getSession();
         sesion.beginTransaction();
         try{
-            
             if(esto!=null){
                 sesion.delete(esto);
                 sesion.getTransaction().commit();
@@ -50,15 +43,13 @@ public class cMarcas {
             }
                 return -1;
         }catch(Exception ex){
-           // System.out.println(ex.getMessage());
+            System.out.println(ex.getMessage());
             sesion.getTransaction().rollback();
             return -1;
-        }finally{
-           // sesion.close();
         } 
     }
     public static int  Inserta(Marcas c){
-        sesion = (Session) NewHibernateUtil.getSessionFactory().openSession();
+        sesion = (Session) NewHibernateUtil.getSession();
         sesion.beginTransaction();
         try{
             sesion.save(c);
@@ -68,12 +59,10 @@ public class cMarcas {
             System.out.println(ex.getMessage());
             sesion.getTransaction().rollback();
             return -1;
-        }finally{
-            //sesion.close();
         } 
     }
     public static int  Modifica(Marcas c){      
-        sesion = (Session) NewHibernateUtil.getSessionFactory().openSession();
+        sesion = (Session) NewHibernateUtil.getSession();
         sesion.beginTransaction();
         try{
             sesion.update(c);
@@ -83,8 +72,6 @@ public class cMarcas {
             System.out.println(ex.getMessage());
             sesion.getTransaction().rollback();
             return -1;
-        }finally{
-           // sesion.close();
-        } 
+        }
     }
 }

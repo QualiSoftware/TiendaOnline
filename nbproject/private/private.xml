@@ -4,9 +4,11 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/Damian/Documents/NetBeansProjects/TiendaOnline/src/java/Acciones/HomeRopa.java</file>
+            <file>file:/C:/Users/Damian/Documents/NetBeansProjects/TiendaOnline/src/java/Modelos/Fotos.java</file>
             <file>file:/C:/Users/Damian/Documents/NetBeansProjects/TiendaOnline/src/java/ControladoresDAO/cRopa.java</file>
             <file>file:/C:/Users/Damian/Documents/NetBeansProjects/TiendaOnline/web/Vistas/pruebaCRUDformulario.jsp</file>
             <file>file:/C:/Users/Damian/Documents/NetBeansProjects/TiendaOnline/web/Vistas/pruebaCRUDprincipal.jsp</file>
+            <file>file:/C:/Users/Damian/Documents/NetBeansProjects/TiendaOnline/src/java/Modelos/Ropa.java</file>
         </group>
     </open-files>
 </project-private>

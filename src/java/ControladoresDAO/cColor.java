@@ -18,30 +18,23 @@ public class cColor {
     static Session sesion;
     
     public static List<Color> RecuperaTodos(String filtro){
-        sesion = (Session) NewHibernateUtil.getSessionFactory().openSession();
+        sesion = (Session) NewHibernateUtil.getSession();
         Query query =sesion.createQuery("FROM Color WHERE colorDescripcion LIKE'%"+filtro+"%'"); 
         List<Color> la = query.list();
-        //sesion.close();
         return la;
     }
     
     public static Color RecuperaPorId(int id){
-        //System.out.println(id);
-        sesion = (Session) NewHibernateUtil.getSessionFactory().openSession();
-       // Query query =sesion.createQuery("From Agenda where agId =" + id);
-      //sesion.get("Agenda.class", id);
-        //Agenda a = query.;
+        sesion = (Session) NewHibernateUtil.getSession();
         Color p =(Color) sesion.get(Color.class, id);
-        //sesion.close();
         return p;
     }
     
     
     public static int  Elimina(Color esto){
-        sesion = (Session) NewHibernateUtil.getSessionFactory().openSession();
+        sesion = (Session) NewHibernateUtil.getSession();
         sesion.beginTransaction();
         try{
-            
             if(esto!=null){
                System.out.println(esto.getColorId());
                 sesion.delete(esto);
@@ -50,15 +43,13 @@ public class cColor {
             }
                 return -1;
         }catch(Exception ex){
-           // System.out.println(ex.getMessage());
+            System.out.println(ex.getMessage());
             sesion.getTransaction().rollback();
             return -1;
-        }finally{
-           // sesion.close();
         } 
     }
     public static int  Inserta(Color c){
-        sesion = (Session) NewHibernateUtil.getSessionFactory().openSession();
+        sesion = (Session) NewHibernateUtil.getSession();
         sesion.beginTransaction();
         try{
             sesion.save(c);
@@ -68,12 +59,10 @@ public class cColor {
             System.out.println(ex.getMessage());
             sesion.getTransaction().rollback();
             return -1;
-        }finally{
-            //sesion.close();
         } 
     }
     public static int  Modifica(Color c){      
-        sesion = (Session) NewHibernateUtil.getSessionFactory().openSession();
+        sesion = (Session) NewHibernateUtil.getSession();
         sesion.beginTransaction();
         try{
             sesion.update(c);
@@ -83,8 +72,6 @@ public class cColor {
             System.out.println(ex.getMessage());
             sesion.getTransaction().rollback();
             return -1;
-        }finally{
-           // sesion.close();
         } 
     }
 }

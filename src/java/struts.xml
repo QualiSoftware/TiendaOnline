@@ -151,6 +151,6 @@
             <result type="redirect">RopaFiltro</result>
         </action>
         
-        
+                
     </package>
 </struts>

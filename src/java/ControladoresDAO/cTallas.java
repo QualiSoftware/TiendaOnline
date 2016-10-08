@@ -1,7 +1,6 @@
 package ControladoresDAO;
 
 import Modelos.Tallas;
-import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -11,20 +10,20 @@ public class cTallas {
     static Session sesion;
     
     public static List<Tallas> RecuperaTodos(String filtro){
-        sesion = (Session) NewHibernateUtil.getSessionFactory().openSession();
+        sesion = (Session) NewHibernateUtil.getSession();
         String sql = "From Tallas WHERE talla_descripcion like '%"+filtro+"%'";
         Query query = sesion.createQuery(sql);
         List<Tallas> lt = query.list();
         return lt;
     }
     public static Tallas RecuperaPorId(int id){
-        sesion = (Session) NewHibernateUtil.getSessionFactory().openSession();
+        sesion = (Session) NewHibernateUtil.getSession();
         Tallas t = (Tallas) sesion.get(Tallas.class, id);
         return t;
     }
     
     public static int Inserta(Tallas t){
-        sesion = (Session) NewHibernateUtil.getSessionFactory().openSession();
+        sesion = (Session) NewHibernateUtil.getSession();
         sesion.beginTransaction();
         try{
             sesion.save(t);
@@ -37,7 +36,7 @@ public class cTallas {
         }
     }
     public static int Modifica(Tallas t){
-        sesion = (Session) NewHibernateUtil.getSessionFactory().openSession();
+        sesion = (Session) NewHibernateUtil.getSession();
         sesion.beginTransaction();
         try{
             sesion.update(t);
@@ -51,7 +50,7 @@ public class cTallas {
     }
     
     public static int Elimina(Tallas t){
-        sesion = (Session) NewHibernateUtil.getSessionFactory().openSession();
+        sesion = (Session) NewHibernateUtil.getSession();
         sesion.beginTransaction();
         try{
             if(t != null){

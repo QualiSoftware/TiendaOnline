@@ -19,28 +19,21 @@ public class cFotos {
       static Session sesion;
     
     public static List<Fotos> RecuperaTodos(String filtro){
-        sesion = (Session) NewHibernateUtil.getSessionFactory().openSession();
-        Query query =sesion.createQuery("FROM Fotos WHERE fotosRuta LIKE'%"+filtro+"%'"); 
+        sesion = (Session) NewHibernateUtil.getSession();
+        Query query =sesion.createQuery("FROM Fotos WHERE fotosRuta LIKE '%"+filtro+"%'"); 
         List<Fotos> la = query.list();
-         System.out.println("lista de recupera todos "+la.size());
-        //sesion.close();
         return la;
     }
     
     public static Fotos RecuperaPorId(int id){
-        //System.out.println(id);
-        sesion = (Session) NewHibernateUtil.getSessionFactory().openSession();
-       // Query query =sesion.createQuery("From Agenda where agId =" + id);
-      //sesion.get("Agenda.class", id);
-        //Agenda a = query.;
+        sesion = (Session) NewHibernateUtil.getSession();
         Fotos p =(Fotos) sesion.get(Fotos.class, id);
-        //sesion.close();
         return p;
     }
     
     
     public static int  Elimina(Fotos esto){
-        sesion = (Session) NewHibernateUtil.getSessionFactory().openSession();
+        sesion = (Session) NewHibernateUtil.getSession();
         sesion.beginTransaction();
         try{
             
@@ -51,15 +44,13 @@ public class cFotos {
             }
                 return -1;
         }catch(Exception ex){
-           // System.out.println(ex.getMessage());
+            System.out.println(ex.getMessage());
             sesion.getTransaction().rollback();
             return -1;
-        }finally{
-           // sesion.close();
         } 
     }
     public static int  Inserta(Fotos c){
-        sesion = (Session) NewHibernateUtil.getSessionFactory().openSession();
+        sesion = (Session) NewHibernateUtil.getSession();
         sesion.beginTransaction();
         try{
             sesion.save(c);
@@ -69,12 +60,10 @@ public class cFotos {
             System.out.println(ex.getMessage());
             sesion.getTransaction().rollback();
             return -1;
-        }finally{
-            //sesion.close();
         } 
     }
     public static int  Modifica(Fotos c){      
-        sesion = (Session) NewHibernateUtil.getSessionFactory().openSession();
+        sesion = (Session) NewHibernateUtil.getSession();
         sesion.beginTransaction();
         try{
             sesion.update(c);
@@ -84,8 +73,6 @@ public class cFotos {
             System.out.println(ex.getMessage());
             sesion.getTransaction().rollback();
             return -1;
-        }finally{
-           // sesion.close();
-        } 
+        }
     }
 }
