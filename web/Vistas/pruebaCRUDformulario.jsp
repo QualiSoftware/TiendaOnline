@@ -327,15 +327,15 @@
                 %>
                         <tr>
                             <td><s:label for="fotos">Foto 1</s:label></td>
-                            <td><s:textfield name="fotoAlta1" ></s:textfield></td>
+                            <td><s:textfield type="file" name="fotoAlta1" ></s:textfield></td>
                         </tr>
                         <tr>
                             <td><s:label for="fotos">Foto 2</s:label></td>
-                            <td><s:textfield name="fotoAlta2" ></s:textfield></td>
+                            <td><s:textfield type="file"  name="fotoAlta2" ></s:textfield></td>
                         </tr>
                         <tr>
                             <td><s:label for="fotos">Foto 3</s:label></td>
-                            <td><s:textfield name="fotoAlta3" ></s:textfield></td>
+                            <td><s:textfield type="file"  name="fotoAlta3" ></s:textfield></td>
                         </tr>
                 <%}else{%>
                     <s:iterator var="f" value="t.fotoses">
@@ -345,10 +345,9 @@
                         </tr>
                     </s:iterator>
                 <%}%>
-                
                 <tr>
                     <td colspan="2">
-                        <input type="button" onclick="Verificar();" value=<s:property value="botonocul" /> />
+                        <input type="submit" value=<s:property value="botonocul" /> />
                         <a href="volverRopa">
                             volver
                         </a>
