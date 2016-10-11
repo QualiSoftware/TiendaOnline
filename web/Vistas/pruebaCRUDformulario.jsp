@@ -4,7 +4,9 @@
     Author     : LaPlaga
 --%>
 
-<%@taglib  prefix="s" uri="/struts-tags" %>
+<%@taglib prefix="s" uri="/struts-tags" %>
+<%@taglib prefix="sx" uri="/struts-dojo-tags"%> 
+
 <%@page pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -298,11 +300,11 @@
                         } else {
                         %>
                         <s:select name="categoria2" list="lista_categoria" listValue="catDescripcion" 
-                                  listKey="catId" value="t.categoria.catId"/>
+                                  listKey="catId" value="t.categoria.catId" onchange= '<sx:submit  targets="users" notifyTopics="/save"/>' />
                         <%
                             }
                         %>
-
+                        <sx:submit targets="" notifyTopics="frm" ></sx:submit> 
                     </td>
                 </tr>
                 <tr>
@@ -317,8 +319,8 @@
                         <%
                         } else {
                         %>
-                        <span id="salida2"><s:select name="subcategoria2" list="lista_subcategoria" listValue="subDescripcion" 
-                                  listKey="subId" value="t.subcategoria.subId"/></span>
+                        <s:select  name="subcategoria2" list="lista_subcategoria" listValue="subDescripcion" 
+                                  listKey="subId" value="t.subcategoria.subId"/>
                         <%
                             }
                         %>

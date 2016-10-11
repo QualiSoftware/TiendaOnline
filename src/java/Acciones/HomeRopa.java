@@ -75,11 +75,6 @@ public class HomeRopa extends ActionSupport {
     private String fotoAlta1;
     private String fotoAlta2;
     private String fotoAlta3;
-    
-    
-   
-    
-    
 
     public String getFotoAlta1() {
         return fotoAlta1;
