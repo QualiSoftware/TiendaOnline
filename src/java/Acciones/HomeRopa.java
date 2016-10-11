@@ -503,27 +503,26 @@ public class HomeRopa extends ActionSupport {
             respuesta = ControladoresDAO.cRopa.Inserta(t);
             ArrayList<Ropa> ropaconid = ControladoresDAO.cRopa.RecuperaTodos("");
             int idRopaAUsar=0;
+            int num = 0;
             for(Ropa aux:ropaconid){
-                idRopaAUsar = aux.getRoId();
+                num = aux.getRoId();     
             }
-            System.out.println(idRopaAUsar);
+            for(Ropa aux:ropaconid){
+                if(aux.getRoId()>num){
+                    idRopaAUsar = aux.getRoId();
+                }
+            }
             t.setRoId(idRopaAUsar);
-            if(!fotoAlta1.equals("")){
-                System.out.println(fotoAlta1);
+            if(fotoAlta1 != null){
                 Fotos f1 = new Fotos(t,fotoAlta1);
-                System.out.println(f1.getFotosRuta());
                 respuesta = ControladoresDAO.cFotos.Inserta(f1);
             }
-            if(!fotoAlta2.equals("")){
-                System.out.println(fotoAlta2);
+            if(fotoAlta2 != null){
                 Fotos f2 = new Fotos(t,fotoAlta2);
-                System.out.println(f2.getFotosRuta());
                 respuesta = ControladoresDAO.cFotos.Inserta(f2);
             }
-            if(!fotoAlta3.equals("")){
-                System.out.println(fotoAlta3);
+            if(fotoAlta3 != null){
                 Fotos f3 = new Fotos(t,fotoAlta3);
-                System.out.println(f3.getFotosRuta());
                 respuesta = ControladoresDAO.cFotos.Inserta(f3);
             }
         }
