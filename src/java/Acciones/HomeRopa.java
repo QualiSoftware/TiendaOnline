@@ -21,6 +21,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -75,6 +76,41 @@ public class HomeRopa extends ActionSupport {
     private String fotoAlta1;
     private String fotoAlta2;
     private String fotoAlta3;
+    
+    
+    
+    
+    private Map<String, String> stateMap = new LinkedHashMap<String, String>();
+private String dummyMsg;
+//Parameter from Jquery
+private String countryName;
+
+    public Map<String, String> getStateMap() {
+        return stateMap;
+    }
+
+    public void setStateMap(Map<String, String> stateMap) {
+        this.stateMap = stateMap;
+    }
+
+    public String getDummyMsg() {
+        return dummyMsg;
+    }
+
+    public void setDummyMsg(String dummyMsg) {
+        this.dummyMsg = dummyMsg;
+    }
+
+    public String getCountryName() {
+        return countryName;
+    }
+
+    public void setCountryName(String countryName) {
+        this.countryName = countryName;
+    }
+
+
+
 
     public String getFotoAlta1() {
         return fotoAlta1;
@@ -505,13 +541,18 @@ public class HomeRopa extends ActionSupport {
             int idRopaAUsar=0;
             int num = 0;
             for(Ropa aux:ropaconid){
-                num = aux.getRoId();     
+                num = aux.getRoId(); 
+                System.out.println("num"+num);
             }
+            
             for(Ropa aux:ropaconid){
+                System.out.println("aux.getRoId()"+aux.getRoId());
                 if(aux.getRoId()>num){
                     idRopaAUsar = aux.getRoId();
+                    num=idRopaAUsar;
                 }
             }
+            System.out.println("idropaausar"+idRopaAUsar);
             t.setRoId(idRopaAUsar);
             if(fotoAlta1 != null){
                 Fotos f1 = new Fotos(t,fotoAlta1);
@@ -537,4 +578,33 @@ public class HomeRopa extends ActionSupport {
         }
         return SUCCESS;
     }
+     public String execute(){
+         System.out.println("country selection"+countryName);
+//        if (countryName.equals("1")) {
+//                stateMap.put("1", "Kerala");
+//                stateMap.put("2", "Tamil Nadu");
+//                stateMap.put("3", "Jammu Kashmir");
+//                stateMap.put("4", "Assam");
+//        } else if (countryName.equals("2")) {
+//                stateMap.put("1", "Georgia");
+//                stateMap.put("2", "Utah");
+//                stateMap.put("3", "Texas");
+//                stateMap.put("4", "New Jersey");
+//        } else if (countryName.equals("0")) {
+//                stateMap.put("1", "Select State");
+//        }
+        lista_categoria = ControladoresDAO.cCategorias.RecuperaTodos("");
+        
+        for(Categoria cataux:lista_categoria){
+           for(Subcategoria auxsubcat:cataux.getSubcategorias()){
+               
+               stateMap.put(""+auxsubcat.getSubId(), auxsubcat.getSubDescripcion());
+               System.out.println(stateMap);
+            }
+        }   
+        dummyMsg = "Ajax action Triggered";
+
+        return SUCCESS;
+        }
+    
 }

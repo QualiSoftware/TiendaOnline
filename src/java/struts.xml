@@ -3,8 +3,10 @@
 "http://struts.apache.org/dtds/struts-2.0.dtd">
 
 <struts>
+    
+
     <!-- Configuration for the default package. -->
-    <package name="default" extends="struts-default">
+    <package name="default" extends="struts-default, json-default">
         <!--action de categoria-->
        <action name="CategoriaFiltro" class="Acciones.HomeCategorias" method="CategoriaFiltro" >
             <result>/Vistas/pruebaCRUDprincipal.jsp</result> 
@@ -141,7 +143,8 @@
         </action>
         <action name="RopaForm" class="Acciones.HomeRopa" method="RopaForm">
             <result>/Vistas/pruebaCRUDformulario.jsp</result>   
-        </action>
+        </action>   
+        
         <action name="CrudActionRopa" class="Acciones.HomeRopa" method="CrudActionRopa">
             <result type="redirect">RopaFiltro</result>
             <result name="input">/Vistas/pruebaCRUDformulario.jsp</result>
@@ -151,6 +154,26 @@
             <result type="redirect">RopaFiltro</result>
         </action>
         
+        <action name="ajaxAction" class="Acciones.HomeRopa">
+            <result type="json">
+                <param name="excludeNullProperties">true</param>
+                <param name="noCache">true</param>
+            </result>
+        </action>
+        
                 
     </package>
+    
+<!--   <package name="defaultes" extends="json-default" >
+        <action name="ajaxAction" class="Acciones.HomeRopa">
+            <result type="json">
+                <param name="excludeNullProperties">true</param>
+                <param name="noCache">true</param>
+            </result>
+        </action>
+    </package>-->
+
 </struts>
+
+
+

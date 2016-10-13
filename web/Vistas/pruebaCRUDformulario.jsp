@@ -5,7 +5,6 @@
 --%>
 
 <%@taglib prefix="s" uri="/struts-tags" %>
-<%@taglib prefix="sx" uri="/struts-dojo-tags"%> 
 
 <%@page pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -14,6 +13,27 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Formulario</title>
+        <script src="../Scripts/jquery_3.js" type="text/javascript"></script>
+        <script>
+            $(document).ready(function() {
+               $('#categoria').change(function(event) {
+                  var country = $("select#categoria").val();
+                  
+                  $.getJSON('ajaxAction', {
+                    countryName : country
+                  }, function(jsonResponse) {
+                    $('#ajaxResponse').text(jsonResponse.dummyMsg);
+                    var select = $('#subcategoria2');
+                    select.find('option').remove();
+                    $.each(jsonResponse.stateMap, function(key, value) {
+                      $('<option>').val(key).text(value).appendTo(select);
+                    });
+                  });
+                   
+                  });
+              
+            });
+        </script>
         <script>
             function Verificar() {
                 alert("pasaaa verificar");
@@ -25,7 +45,7 @@
                     document.getElementById('frm').submit();
                 }
             }
-        </script>
+        </script>        
     </head>
     <body>
         <h1> <s:label name="cabeceraocul"></s:label> </h1>
@@ -289,9 +309,10 @@
                 <tr>
                     <td>
                         <s:label for="categoria">Categoría</s:label>  
-                        </td>
+                    </td>
+                    
 
-                        <td>
+                    <td>
                         <%
                             if (request.getAttribute("accionocul") == "e") {
                         %>
@@ -299,12 +320,11 @@
                         <%
                         } else {
                         %>
-                        <s:select name="categoria2" list="lista_categoria" listValue="catDescripcion" 
-                                  listKey="catId" value="t.categoria.catId" onchange= '<sx:submit  targets="users" notifyTopics="/save"/>' />
+                            <s:select id="categoria" name="categoria2" list="lista_categoria" listValue="catDescripcion" 
+                                      listKey="catId" value="t.categoria.catId" onchange= "handleChange(this.value)" />
                         <%
                             }
-                        %>
-                        <sx:submit targets="" notifyTopics="frm" ></sx:submit> 
+                        %>      
                     </td>
                 </tr>
                 <tr>
@@ -319,8 +339,10 @@
                         <%
                         } else {
                         %>
-                        <s:select  name="subcategoria2" list="lista_subcategoria" listValue="subDescripcion" 
-                                  listKey="subId" value="t.subcategoria.subId"/>
+                        <!--listValue="subDescripcion" 
+                                  listKey="subId" value="t.subcategoria.subId"-->
+                        <s:select id="subcategoria2" name="subcategoria2" list="{'Seleccione Categoria'}" />
+                        <div id="ajaxResponse"></div>
                         <%
                             }
                         %>
