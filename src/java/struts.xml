@@ -154,7 +154,7 @@
             <result type="redirect">RopaFiltro</result>
         </action>
         
-        <action name="ajaxAction" class="Acciones.HomeRopa">
+        <action name="ajaxAction" class="Acciones.HomeRopa" method="ajaxAction">
             <result type="json">
                 <param name="excludeNullProperties">true</param>
                 <param name="noCache">true</param>

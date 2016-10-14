@@ -9,7 +9,9 @@
             <file>file:/Applications/MAMP/htdocs/TiendaOnline/web/Vistas/index_1.jsp</file>
             <file>file:/Applications/MAMP/htdocs/TiendaOnline/src/java/ControladoresDAO/NewHibernateUtil.java</file>
             <file>file:/Applications/MAMP/htdocs/TiendaOnline/src/java/ControladoresDAO/cRopa.java</file>
+            <file>file:/Applications/MAMP/htdocs/TiendaOnline/src/java/ControladoresDAO/cLook.java</file>
             <file>file:/Applications/MAMP/htdocs/TiendaOnline/src/java/struts.xml</file>
+            <file>file:/Applications/MAMP/htdocs/TiendaOnline/web/WEB-INF/web.xml</file>
             <file>file:/Applications/MAMP/htdocs/TiendaOnline/src/java/ControladoresDAO/cFotos.java</file>
         </group>
     </open-files>

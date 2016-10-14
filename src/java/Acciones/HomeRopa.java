@@ -80,7 +80,7 @@ public class HomeRopa extends ActionSupport {
     
     
     
-    private Map<String, String> stateMap = new LinkedHashMap<String, String>();
+private Map<String, String> stateMap = new LinkedHashMap<String, String>();
 private String dummyMsg;
 //Parameter from Jquery
 private String countryName;
@@ -578,13 +578,14 @@ private String countryName;
         }
         return SUCCESS;
     }
-     public String execute(){
-         System.out.println("country selection"+countryName);
+     public String ajaxAction() throws Exception{
+//         System.out.println("country selection"+countryName);
 //        if (countryName.equals("1")) {
 //                stateMap.put("1", "Kerala");
 //                stateMap.put("2", "Tamil Nadu");
 //                stateMap.put("3", "Jammu Kashmir");
 //                stateMap.put("4", "Assam");
+//                System.out.println(stateMap);
 //        } else if (countryName.equals("2")) {
 //                stateMap.put("1", "Georgia");
 //                stateMap.put("2", "Utah");
@@ -593,17 +594,16 @@ private String countryName;
 //        } else if (countryName.equals("0")) {
 //                stateMap.put("1", "Select State");
 //        }
-        lista_categoria = ControladoresDAO.cCategorias.RecuperaTodos("");
-        
-        for(Categoria cataux:lista_categoria){
-           for(Subcategoria auxsubcat:cataux.getSubcategorias()){
+        Categoria c = ControladoresDAO.cCategorias.RecuperaPorId(Integer.parseInt(countryName));
+                   for(Subcategoria auxsubcat:c.getSubcategorias()){
+                       stateMap.put(""+auxsubcat.getSubId(), auxsubcat.getSubDescripcion());
+                       System.out.println("id"+auxsubcat.getSubId()+"descri"+auxsubcat.getSubDescripcion());
+                       System.out.println(stateMap);
+                   }
                
-               stateMap.put(""+auxsubcat.getSubId(), auxsubcat.getSubDescripcion());
-               System.out.println(stateMap);
-            }
-        }   
-        dummyMsg = "Ajax action Triggered";
-
+               // System.out.println("pasaaaaaaaaaa"+lista_categoria.size());
+         
+            dummyMsg = "Ajax action Triggered";
         return SUCCESS;
         }
     
