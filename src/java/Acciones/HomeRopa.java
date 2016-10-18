@@ -15,6 +15,7 @@ import Modelos.Marcas;
 import Modelos.Ropa;
 import Modelos.Subcategoria;
 import Modelos.Tallas;
+import Modelos.Usuarios;
 import static com.opensymphony.xwork2.Action.SUCCESS;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;

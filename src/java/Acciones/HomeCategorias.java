@@ -6,6 +6,7 @@
 package Acciones;
 
 import Modelos.Categoria;
+import Modelos.Usuarios;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import java.util.List;
