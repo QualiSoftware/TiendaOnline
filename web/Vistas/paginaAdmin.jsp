@@ -33,6 +33,9 @@
             <s:a action="MarcasFiltro">
                 <span class="glyphicon glyphicon-plus"></span> Marcas
             </s:a>
+            <s:a action="SubcategoriasFiltro">
+                <span class="glyphicon glyphicon-plus"></span> Subcategorías
+            </s:a>
             <s:a action="TallasFiltro">
                 <span class="glyphicon glyphicon-plus"></span> Tallas
             </s:a>

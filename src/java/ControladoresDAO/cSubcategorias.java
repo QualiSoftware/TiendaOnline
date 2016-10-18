@@ -11,7 +11,10 @@ public class cSubcategorias {
     
     public static List<Subcategoria> RecuperaTodos(String filtro){
         sesion = (Session) NewHibernateUtil.getSession();
-        Query query =sesion.createQuery("FROM Subcategoria WHERE subDescripcion LIKE'%"+filtro+"%'"); 
+        String sql = "FROM Subcategoria WHERE subDescripcion LIKE'%"+filtro+"%'";
+        sql += " OR categoria.catDescripcion LIKE '%" + filtro + "%'";
+        sql += " ORDER BY subDescripcion";
+        Query query =sesion.createQuery(sql); 
         List<Subcategoria> la = query.list();
         return la;
     }

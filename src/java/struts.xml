@@ -3,17 +3,15 @@
 "http://struts.apache.org/dtds/struts-2.0.dtd">
 
 <struts>
-    
-
     <!-- Configuration for the default package. -->
     <package name="default" extends="struts-default, json-default">
+        
         <!--action de categoria-->
        <action name="CategoriaFiltro" class="Acciones.HomeCategorias" method="CategoriaFiltro" >
             <result>/Vistas/pruebaCRUDprincipal.jsp</result> 
         </action>
         <action name="CategoriasForm" class="Acciones.HomeCategorias" method="CategoriasForm">
             <result>/Vistas/pruebaCRUDformulario.jsp</result>
-            
         </action>
         <action name="CrudActionCategorias" class="Acciones.HomeCategorias" method="CrudActionCategorias">
             <result name="input">/Vistas/pruebaCRUDformulario.jsp</result>
@@ -30,7 +28,6 @@
         </action>
         <action name="ClientelaForm" class="Acciones.HomeClientela" method="ClientelaForm">
             <result>/Vistas/pruebaCRUDformulario.jsp</result>
-            
         </action>
         <action name="CrudActionClientela" class="Acciones.HomeClientela" method="CrudActionClientela">
             <result name="input">/Vistas/pruebaCRUDformulario.jsp</result>
@@ -39,14 +36,14 @@
         </action>
         <action name="volverClientela">
             <result type="redirect">ClientelaFiltro</result>
-        </action> 
+        </action>
+        
         <!-- action Coleccion-->
         <action name="ColeccionFiltro" class="Acciones.HomeColeccion" method="ColeccionFiltro" >
             <result>/Vistas/pruebaCRUDprincipal.jsp</result> 
         </action>
         <action name="ColeccionForm" class="Acciones.HomeColeccion" method="ColeccionForm">
             <result>/Vistas/pruebaCRUDformulario.jsp</result>
-            
         </action>
         <action name="CrudActionColeccion" class="Acciones.HomeColeccion" method="CrudActionColeccion">
             <result name="input">/Vistas/pruebaCRUDformulario.jsp</result>
@@ -55,7 +52,8 @@
         </action>
         <action name="volverColeccion">
             <result type="redirect">ColeccionFiltro</result>
-        </action> 
+        </action>
+        
         <!-- action de Color-->
         <action name="ColorFiltro" class="Acciones.HomeColor" method="ColorFiltro" >
             <result>/Vistas/pruebaCRUDprincipal.jsp</result> 
@@ -70,7 +68,23 @@
         </action>
         <action name="volverColor">
             <result type="redirect">ColorFiltro</result>
-        </action>   
+        </action>  
+        
+        <!-- actions de Fotos -->
+        <action name="FotosFiltro" class="Acciones.HomeFotos" method="FotosFiltro">
+            <result>/Vistas/pruebaCRUDprincipal.jsp</result>           
+        </action>
+        <action name="FotosForm" class="Acciones.HomeFotos" method="FotosForm">
+            <result>/Vistas/pruebaCRUDformulario.jsp</result>   
+        </action>
+        <action name="CrudActionFotos" class="Acciones.HomeFotos" method="CrudActionFotos">
+            <result type="redirect">FotosFiltro</result>
+            <result name="input">/Vistas/pruebaCRUDformulario.jsp</result>
+            <result name="error">/Vistas/pruebaCRUDformulario.jsp</result>
+        </action>
+        <action name="volverFotos">
+            <result type="redirect">FotosFiltro</result>
+        </action>
         
          <!-- action de Look-->
         <action name="LookFiltro" class="Acciones.HomeLook" method="LookFiltro" >
@@ -102,7 +116,39 @@
         </action>
         <action name="volverMarcas">
             <result type="redirect">MarcasFiltro</result>
-        </action>   
+        </action>
+        
+        <!-- actions de Ropa -->
+        <action name="RopaFiltro" class="Acciones.HomeRopa" method="RopaFiltro">
+            <result>/Vistas/pruebaCRUDprincipal.jsp</result>           
+        </action>
+        <action name="RopaForm" class="Acciones.HomeRopa" method="RopaForm">
+            <result>/Vistas/pruebaCRUDformulario.jsp</result>   
+        </action> 
+        <action name="CrudActionRopa" class="Acciones.HomeRopa" method="CrudActionRopa">
+            <result type="redirect">RopaFiltro</result>
+            <result name="input">/Vistas/pruebaCRUDformulario.jsp</result>
+            <result name="error">/Vistas/pruebaCRUDformulario.jsp</result>
+        </action>
+        <action name="volverRopa">
+            <result type="redirect">RopaFiltro</result>
+        </action>
+        
+        <!-- actions de Subcategoria -->
+        <action name="SubcategoriasFiltro" class="Acciones.HomeSubcategorias" method="SubcategoriasFiltro">
+            <result>/Vistas/CRUDsubcategorias.jsp</result>           
+        </action>
+        <action name="SubcategoriasForm" class="Acciones.HomeSubcategorias" method="SubcategoriasForm">
+            <result>/Vistas/formularioCRUDsubcategorias.jsp</result>
+        </action>
+        <action name="CrudActionSubcategorias" class="Acciones.HomeSubcategorias" method="CrudActionSubcategorias">
+            <result type="redirect">SubcategoriasFiltro</result>
+            <result name="input">/Vistas/formularioCRUDsubcategorias.jsp</result>
+            <result name="error">/Vistas/formularioCRUDsubcategorias.jsp</result>
+        </action>
+        <action name="volverSubcategorias">
+            <result type="redirect">SubcategoriasFiltro</result>
+        </action>
         
         <!-- actions de Talla -->
         <action name="TallasFiltro" class="Acciones.HomeTallas" method="TallasFiltro">
@@ -120,40 +166,6 @@
             <result type="redirect">TallasFiltro</result>
         </action>
         
-        
-        <!-- actions de Fotos -->
-        <action name="FotosFiltro" class="Acciones.HomeFotos" method="FotosFiltro">
-            <result>/Vistas/pruebaCRUDprincipal.jsp</result>           
-        </action>
-        <action name="FotosForm" class="Acciones.HomeFotos" method="FotosForm">
-            <result>/Vistas/pruebaCRUDformulario.jsp</result>   
-        </action>
-        <action name="CrudActionFotos" class="Acciones.HomeFotos" method="CrudActionFotos">
-            <result type="redirect">FotosFiltro</result>
-            <result name="input">/Vistas/pruebaCRUDformulario.jsp</result>
-            <result name="error">/Vistas/pruebaCRUDformulario.jsp</result>
-        </action>
-        <action name="volverFotos">
-            <result type="redirect">FotosFiltro</result>
-        </action>
-        
-        <!-- actions de Ropa -->
-        <action name="RopaFiltro" class="Acciones.HomeRopa" method="RopaFiltro">
-            <result>/Vistas/pruebaCRUDprincipal.jsp</result>           
-        </action>
-        <action name="RopaForm" class="Acciones.HomeRopa" method="RopaForm">
-            <result>/Vistas/pruebaCRUDformulario.jsp</result>   
-        </action>   
-        
-        <action name="CrudActionRopa" class="Acciones.HomeRopa" method="CrudActionRopa">
-            <result type="redirect">RopaFiltro</result>
-            <result name="input">/Vistas/pruebaCRUDformulario.jsp</result>
-            <result name="error">/Vistas/pruebaCRUDformulario.jsp</result>
-        </action>
-        <action name="volverRopa">
-            <result type="redirect">RopaFiltro</result>
-        </action>
-        
         <action name="ajaxAction" class="Acciones.HomeRopa" method="ajaxAction">
             <result type="json">
                 <param name="excludeNullProperties">true</param>
@@ -163,19 +175,7 @@
         <action name="irPaginaAdmin">
             <result>/Vistas/paginaAdmin.jsp</result>
         </action>
-        
-                
     </package>
-    
-<!--   <package name="defaultes" extends="json-default" >
-        <action name="ajaxAction" class="Acciones.HomeRopa">
-            <result type="json">
-                <param name="excludeNullProperties">true</param>
-                <param name="noCache">true</param>
-            </result>
-        </action>
-    </package>-->
-
 </struts>
 
 

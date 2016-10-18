@@ -65,6 +65,14 @@ public class cRopa {
             return -1;
         }
     }
+    
+    public static ArrayList<Ropa> RecuperaTodoPorSubcategoria(int sub) {
+        sesion = (Session) NewHibernateUtil.getSession();
+        String sql = "From Ropa WHERE ro_sub_id = " + sub;
+        Query query = sesion.createQuery(sql);
+        ArrayList<Ropa> lt = (ArrayList) query.list();
+        return lt;
+    }
 
     /*public static int Elimina(Ropa t){
         sesion = (Session) NewHibernateUtil.getSession();
