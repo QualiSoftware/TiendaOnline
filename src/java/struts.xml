@@ -106,15 +106,15 @@
         
         <!-- actions de Talla -->
         <action name="TallasFiltro" class="Acciones.HomeTallas" method="TallasFiltro">
-            <result>/Vistas/pruebaCRUDprincipal.jsp</result>           
+            <result>/Vistas/CRUDtallas.jsp</result>           
         </action>
         <action name="TallasForm" class="Acciones.HomeTallas" method="TallasForm">
-            <result>/Vistas/pruebaCRUDprincipal.jsp</result>
+            <result>/Vistas/formularioCRUDtallas.jsp</result>
         </action>
         <action name="CrudActionTallas" class="Acciones.HomeTallas" method="CrudActionTallas">
             <result type="redirect">TallasFiltro</result>
-            <result name="input">/Vistas/pruebaCRUDformulario.jsp</result>
-            <result name="error">/Vistas/pruebaCRUDformulario.jsp</result>
+            <result name="input">/Vistas/formularioCRUDtallas.jsp</result>
+            <result name="error">/Vistas/formularioCRUDtallas.jsp</result>
         </action>
         <action name="volverTallas">
             <result type="redirect">TallasFiltro</result>
@@ -159,6 +159,9 @@
                 <param name="excludeNullProperties">true</param>
                 <param name="noCache">true</param>
             </result>
+        </action>
+        <action name="irPaginaAdmin">
+            <result>/Vistas/paginaAdmin.jsp</result>
         </action>
         
                 

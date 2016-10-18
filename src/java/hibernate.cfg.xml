@@ -11,13 +11,14 @@
     <property name="hibernate.transaction.flush_before_completion">true</property>
     <mapping resource="Modelos/Coleccion.hbm.xml"/>
     <mapping resource="Modelos/Ropa.hbm.xml"/>
-    <mapping resource="Modelos/Fotos.hbm.xml"/>
-    <mapping resource="Modelos/Categoria.hbm.xml"/>
-    <mapping resource="Modelos/Tallas.hbm.xml"/>
-    <mapping resource="Modelos/Subcategoria.hbm.xml"/>
-    <mapping resource="Modelos/Color.hbm.xml"/>
-    <mapping resource="Modelos/Clientela.hbm.xml"/>
     <mapping resource="Modelos/Marcas.hbm.xml"/>
     <mapping resource="Modelos/Look.hbm.xml"/>
+    <mapping resource="Modelos/Subcategoria.hbm.xml"/>
+    <mapping resource="Modelos/Cesta.hbm.xml"/>
+    <mapping resource="Modelos/Tallas.hbm.xml"/>
+    <mapping resource="Modelos/Clientela.hbm.xml"/>
+    <mapping resource="Modelos/Fotos.hbm.xml"/>
+    <mapping resource="Modelos/Categoria.hbm.xml"/>
+    <mapping resource="Modelos/Color.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>
