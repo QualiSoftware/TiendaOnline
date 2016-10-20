@@ -7,6 +7,9 @@ package ControladoresDAO;
 
 import static ControladoresDAO.cRopa.sesion;
 import Modelos.Cesta;
+import java.util.ArrayList;
+import java.util.List;
+import org.hibernate.Query;
 import org.hibernate.Session;
 
 /**
@@ -14,6 +17,14 @@ import org.hibernate.Session;
  * @author javiermartinroncero
  */
 public class cCesta {
+    
+    
+     public static ArrayList<Cesta> RecuperaTodos(String filtro){
+        sesion = (Session) NewHibernateUtil.getSession();
+        Query query =sesion.createQuery("FROM Cesta WHERE cestaUnidades LIKE'%"+filtro+"%'"); 
+        ArrayList<Cesta> la = (ArrayList) query.list();
+        return la;
+    }
     //inserta ropa en cesta por usuario
     public static int InsertaRopaCestaUsuario(Cesta c) {
         sesion = (Session) NewHibernateUtil.getSession();
@@ -29,4 +40,9 @@ public class cCesta {
             return -1;
         }
     }
+        public static Cesta RecuperaPorId(int id){
+        sesion = (Session) NewHibernateUtil.getSession();
+        Cesta p =(Cesta) sesion.get(Cesta.class, id);
+        return p;
+    }  
 }

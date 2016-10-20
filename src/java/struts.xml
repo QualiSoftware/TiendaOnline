@@ -190,12 +190,15 @@
             <result>/Vistas/pruebaCRUDformularioUsuarios.jsp</result>   
         </action> 
        <action name="CrudActionCesta" class="Acciones.HomeCesta" method="CrudActionCesta">
-            <result type="redirect">pruebaCRUDCestaFacuracion</result>
+            <result>/Vistas/pruebaCRUDCestaFacuracion.jsp</result>
             <result name="input">/Vistas/pruebaCRUDformularioUsuarios.jsp</result>
             <result name="error">/Vistas/pruebaCRUDformularioUsuarios.jsp</result>
         </action>
         <action name="volverRopa">
             <result type="redirect">RopaFiltro</result>
+        </action>
+        <action name="CestaFiltro" class="Acciones.HomeCesta" method="CestaFiltro">
+            <result>/Vistas/pruebaCRUDCestaFacuracion.jsp</result>           
         </action>
         
     </package>

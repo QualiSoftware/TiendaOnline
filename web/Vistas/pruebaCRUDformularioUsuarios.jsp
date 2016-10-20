@@ -36,20 +36,15 @@
         </script>
         <script>
             function Verificar() {
-                alert("pasaaa verificar");
-                if (document.getElementById('accionocul').value === 'e') {
-                    if (confirm("¿Seguro que desea borrar?")) {
-                        document.getElementById('frm').submit();
-                    }
-                } else {
+
                     document.getElementById('frm').submit();
-                }
+                
             }
         </script>        
     </head>
     <body>
         <h1> <s:label name="cabeceraocul"></s:label> </h1>
-        <s:form id="frm" action="CrudActionRopa" theme="simple">
+        <s:form id="frm" action="Usuario/CrudActionCesta" theme="simple">
             <input type="hidden" name="accionocul" id="accionocul" value=<s:property value="accion" /> />
             <table>
                 <tr>
