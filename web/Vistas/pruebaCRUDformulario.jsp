@@ -66,7 +66,7 @@
                         </td>
                         <td>
                         <%
-                            if (request.getAttribute("accionocul") == "e") {
+                            if (request.getAttribute("accionocul") == "e" || request.getAttribute("accionocul") == "c") {
                         %>
                         <s:textfield name="t.clientela.clientelaDescripcion" readonly="true" ></s:textfield>
                         <%
@@ -85,7 +85,7 @@
                         </td>
                         <td>
                         <%
-                            if (request.getAttribute("accionocul") == "e") {
+                            if (request.getAttribute("accionocul") == "e" || request.getAttribute("accionocul") == "c") {
                         %>
                         <s:textfield name="t.coleccion.coleccionDescripcion" readonly="true" ></s:textfield>
                         <%
@@ -105,7 +105,7 @@
 
                         <td>
                         <%
-                            if (request.getAttribute("accionocul") == "e") {
+                            if (request.getAttribute("accionocul") == "e"|| request.getAttribute("accionocul") == "c") {
                         %>
                         <s:textfield name="t.color.colorDescripcion" readonly="true" ></s:textfield>
                         <%
@@ -125,7 +125,7 @@
 
                         <td>
                         <%
-                            if (request.getAttribute("accionocul") == "e") {
+                            if (request.getAttribute("accionocul") == "e"|| request.getAttribute("accionocul") == "c") {
                         %>
                         <s:textfield name="t.look.lookDescripcion" readonly="true" ></s:textfield>
                         <%
@@ -146,7 +146,7 @@
                         </td>
                         <td>
                         <%
-                            if (request.getAttribute("accionocul") == "e") {
+                            if (request.getAttribute("accionocul") == "e"|| request.getAttribute("accionocul") == "c") {
                         %>
                         <s:textfield name="t.marcas.marcaNombre" readonly="true" ></s:textfield>
                         <%
@@ -167,7 +167,7 @@
 
                         <td>
                         <%
-                            if (request.getAttribute("accionocul") == "e") {
+                            if (request.getAttribute("accionocul") == "e"|| request.getAttribute("accionocul") == "c") {
                         %>
                         <s:textfield name="t.tallas.tallaDescripcion" readonly="true" ></s:textfield>
                         <%
@@ -186,7 +186,7 @@
                         </td>
                         <td>
                         <%
-                            if (request.getAttribute("accionocul") == "e") {
+                            if (request.getAttribute("accionocul") == "e"|| request.getAttribute("accionocul") == "c") {
                         %>
                         <s:textfield name="roDescripcion2" readonly="true" ></s:textfield>
                         <%
@@ -204,7 +204,7 @@
                         </td>
                         <td>
                         <%
-                            if (request.getAttribute("accionocul") == "e") {
+                            if (request.getAttribute("accionocul") == "e"|| request.getAttribute("accionocul") == "c") {
                         %>
                         <s:textfield name="roPrecio2" readonly="true" ></s:textfield>
                         <%
@@ -222,7 +222,7 @@
                         </td>
                         <td>
                         <%
-                            if (request.getAttribute("accionocul") == "e") {
+                            if (request.getAttribute("accionocul") == "e"|| request.getAttribute("accionocul") == "c") {
                         %>
                         <s:textfield name="roDescuento2" readonly="true" ></s:textfield>
                         <%
@@ -240,7 +240,7 @@
                         </td>
                         <td>
                         <%
-                            if (request.getAttribute("accionocul") == "e") {
+                            if (request.getAttribute("accionocul") == "e"|| request.getAttribute("accionocul") == "c") {
                         %>
                         <s:textfield name="roCaracteristicas2" readonly="true" ></s:textfield>
                         <%
@@ -258,7 +258,7 @@
                         </td>
                         <td>
                         <%
-                            if (request.getAttribute("accionocul") == "e") {
+                            if (request.getAttribute("accionocul") == "e"|| request.getAttribute("accionocul") == "c") {
                         %>
                         <s:textfield name="roVisible2" readonly="true" ></s:textfield>
                         <%
@@ -276,7 +276,7 @@
                         </td>
                         <td>
                         <%
-                            if (request.getAttribute("accionocul") == "e") {
+                            if (request.getAttribute("accionocul") == "e"|| request.getAttribute("accionocul") == "c") {
                         %>
                         <s:textfield name="roUnidades2" readonly="true" ></s:textfield>
                         <%
@@ -294,7 +294,7 @@
                         </td>
                         <td>
                         <%
-                            if (request.getAttribute("accionocul") == "e") {
+                            if (request.getAttribute("accionocul") == "e"|| request.getAttribute("accionocul") == "c") {
                         %>
                         <s:textfield name="roFecha2" readonly="true" ></s:textfield>
                         <%
@@ -314,7 +314,7 @@
 
                     <td>
                         <%
-                            if (request.getAttribute("accionocul") == "e") {
+                            if (request.getAttribute("accionocul") == "e"|| request.getAttribute("accionocul") == "c") {
                         %>
                         <s:textfield name="t.categoria.catDescripcion" readonly="true" ></s:textfield>
                         <%
@@ -333,7 +333,7 @@
                         </td>
                         <td>
                         <%
-                            if (request.getAttribute("accionocul") == "e") {
+                            if (request.getAttribute("accionocul") == "e"|| request.getAttribute("accionocul") == "c") {
                         %>
                         <s:textfield name="t.subcategoria.subDescripcion" readonly="true" ></s:textfield>
                         <%

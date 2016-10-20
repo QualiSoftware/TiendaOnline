@@ -507,6 +507,11 @@ private String countryName;
             cabeceraocul = "Eliminar";
             botonocul = "Eliminar";
         }
+        if (accion.equals("c")) {
+            accionocul = "c";
+            cabeceraocul = "Comprar";
+            botonocul = "Comprar";
+        }
 
         return SUCCESS;
     }

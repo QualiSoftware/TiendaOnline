@@ -63,6 +63,12 @@
                             <s:param name="clave" value="#a.roId"/>
                             <i style="font-size: 20px" class="glyphicon glyphicon-trash"></i>
                         </s:a>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <s:a action="RopaForm">
+                            <s:param name="accion" value="'c'"/>
+                            <s:param name="clave" value="#a.roId"/>
+                            <i style="font-size: 20px" class="glyphicon glyphicon-euro"></i>
+                        </s:a>
                     </td>
                     <td>
                         <s:property value="#a.roId"/><br>
