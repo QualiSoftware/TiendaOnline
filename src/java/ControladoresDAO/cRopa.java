@@ -1,5 +1,6 @@
 package ControladoresDAO;
 
+import Modelos.Cesta;
 import Modelos.Ropa;
 import java.util.ArrayList;
 import org.hibernate.Query;
@@ -50,6 +51,7 @@ public class cRopa {
             return -1;
         }
     }
+    
 
     public static int Modifica(Ropa t) {
         sesion = (Session) NewHibernateUtil.getSession();
@@ -73,6 +75,8 @@ public class cRopa {
         ArrayList<Ropa> lt = (ArrayList) query.list();
         return lt;
     }
+    
+    
 
     /*public static int Elimina(Ropa t){
         sesion = (Session) NewHibernateUtil.getSession();

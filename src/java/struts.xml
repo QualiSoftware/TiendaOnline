@@ -176,6 +176,30 @@
             <result>/Vistas/paginaAdmin.jsp</result>
         </action>
     </package>
+    
+    
+    
+    
+    
+    <!--crepo nuevo package para usuarios-->
+    <package name="Usuario" extends="struts-default, json-default">
+        <action name="RopaFiltro" class="Acciones.HomeRopa" method="RopaFiltro">
+            <result>/Vistas/pruebaCRUDprincipalUsuarios.jsp</result>           
+        </action>
+        <action name="RopaForm" class="Acciones.HomeRopa" method="RopaForm">
+            <result>/Vistas/pruebaCRUDformularioUsuarios.jsp</result>   
+        </action> 
+       <action name="CrudActionCesta" class="Acciones.HomeCesta" method="CrudActionCesta">
+            <result type="redirect">pruebaCRUDCestaFacuracion</result>
+            <result name="input">/Vistas/pruebaCRUDformularioUsuarios.jsp</result>
+            <result name="error">/Vistas/pruebaCRUDformularioUsuarios.jsp</result>
+        </action>
+        <action name="volverRopa">
+            <result type="redirect">RopaFiltro</result>
+        </action>
+        
+    </package>
+    
 </struts>
 
 

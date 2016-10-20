@@ -6,6 +6,7 @@
 package Acciones;
 
 import Modelos.Categoria;
+import Modelos.Cesta;
 import Modelos.Clientela;
 import Modelos.Coleccion;
 import Modelos.Color;
@@ -44,6 +45,7 @@ public class HomeRopa extends ActionSupport {
     private String cabeceraocul;
     private String botonocul;
     private Ropa t;
+    
 
     //variables específicas a cada controlador
     private ArrayList<Ropa> lista_ropa;
