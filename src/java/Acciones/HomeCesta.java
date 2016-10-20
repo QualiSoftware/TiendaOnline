@@ -18,10 +18,6 @@ import java.util.Map;
  * @author javiermartinroncero
  */
 
-
-
-
-
 public class HomeCesta extends ActionSupport {
     
     private Integer roId2;
@@ -30,6 +26,17 @@ public class HomeCesta extends ActionSupport {
     private ArrayList<Cesta> lista_ropa_Cestas;
     private String filtro;
     private Map sesion;
+    private Double precio = 0.0;
+
+    public Double getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(Double precio) {
+        this.precio = precio;
+    }
+    
+    
 
     public ArrayList<Cesta> getLista_ropa_Cestas() {
         return lista_ropa_Cestas;
@@ -95,13 +102,13 @@ public class HomeCesta extends ActionSupport {
             lista_ropa_Cestas = ControladoresDAO.cCesta.RecuperaTodos("");
             
             for(Cesta aux : lista_ropa_Cestas){
-                System.out.println(aux.getCestaUnidades()); 
+                 precio +=  aux.getCestaUnidades()*(aux.getRopa().getRoPrecio()-aux.getRopa().getRoDescuento()); 
             }
         return SUCCESS;
     }
     
      public String CestaFiltro() throws Exception {
-
+        
         if (sesion == null) {
             sesion = ActionContext.getContext().getSession();
         }
@@ -115,8 +122,13 @@ public class HomeCesta extends ActionSupport {
         if (filtro == null) {
             filtro = "";
         }
+        
         lista_ropa_Cestas = ControladoresDAO.cCesta.RecuperaTodos(filtro);
-
+        for(Cesta aux:lista_ropa_Cestas){
+           precio +=  aux.getCestaUnidades()*(aux.getRopa().getRoPrecio()-aux.getRopa().getRoDescuento());
+            System.out.println(precio);
+        }
+         System.out.println(precio);
         return SUCCESS;
     }
     

@@ -17,9 +17,14 @@
     <body>
         <table border="1">
             <tr>
-                <td colspan="18">
+                <td colspan="13">
                     <s:form action="Usuario/RopaFiltro" theme="simple">
                         Filtro : <s:textfield name="filtro" /><s:submit value="filtrar"></s:submit>                    
+                    </s:form>
+                </td>
+                <td>
+                    <s:form action="Usuario/CestaFiltro" theme="simple">
+                        <s:textfield type="hidden" value="1" name="filtro" /><s:submit value="cesta"></s:submit>                    
                     </s:form>
                 </td>
             </tr>

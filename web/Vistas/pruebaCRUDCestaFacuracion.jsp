@@ -16,11 +16,17 @@
     <body>
          <table border="1">
             <tr>
-                <td colspan="18">
+                <td colspan="13">
                     <s:form action="Usuario/CestaFiltro" theme="simple">
-                        Filtro : <s:textfield name="filtro" /><s:submit value="filtrar"></s:submit>                    
+                        Filtro : <s:textfield name="filtro" value=" " /><s:submit value="filtrar"></s:submit>                    
                     </s:form>
                 </td>
+                <td>
+                    <a href="volverRopa">
+                            volver
+                        </a>
+                </td>
+                
             </tr>
             <tr>
 
@@ -59,13 +65,13 @@
                         <s:property value="#a.ropa.color.colorDescripcion"/><br>
                     </td>
                     <td>
-                        <s:property value="#a.ropa.lookDescripcion"/><br>
+                        <s:property value="#a.ropa.look.lookDescripcion"/><br>
                     </td>
                     <td>
-                        <s:property value="#a.ropa.marcaNombre"/><br>
+                        <s:property value="#a.ropa.marcas.marcaNombre"/><br>
                     </td>
                     <td>
-                        <s:property value="#a.ropa.tallaDescripcion"/><br>
+                        <s:property value="#a.ropa.tallas.tallaDescripcion"/><br>
                     </td>
                     <td>
                         <s:property value="#a.ropa.roDescripcion"/><br>
@@ -89,12 +95,15 @@
                         <s:property value="#a.ropa.roPrecio"/><br>
                     </td>
                 </tr>
-                <tr>              
+            </s:iterator> 
+               <tr>              
                     <td colspan="13">
                         total
                     </td>
+                    <td>
+                        <s:property value="precio"/><br>
+                    </td>
                 </tr>
-            </s:iterator> 
         </table> 
     </body>
 </html>

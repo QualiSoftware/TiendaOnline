@@ -21,7 +21,7 @@ public class cCesta {
     
      public static ArrayList<Cesta> RecuperaTodos(String filtro){
         sesion = (Session) NewHibernateUtil.getSession();
-        Query query =sesion.createQuery("FROM Cesta WHERE cestaUnidades LIKE'%"+filtro+"%'"); 
+        Query query =sesion.createQuery("FROM Cesta WHERE usuarios.usuId LIKE'%"+filtro+"%'"); 
         ArrayList<Cesta> la = (ArrayList) query.list();
         return la;
     }
