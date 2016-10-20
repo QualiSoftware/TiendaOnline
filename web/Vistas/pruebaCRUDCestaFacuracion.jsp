@@ -36,7 +36,7 @@
                 <th>roCaracteristicas</th>
                 <th>Categoría</th>
                 <th>Subcategoría</th>
-                <th>Fotos</th>
+                <th>Cantidad</th>
                 <th>roPrecio</th>
           
             </tr>
@@ -89,14 +89,9 @@
                         <s:property value="#a.ropa.roPrecio"/><br>
                     </td>
                 </tr>
-                <tr>
+                <tr>              
                     <td colspan="13">
-                        Total
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="13">
-                        
+                        total
                     </td>
                 </tr>
             </s:iterator> 
