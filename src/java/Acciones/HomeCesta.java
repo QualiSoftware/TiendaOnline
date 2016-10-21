@@ -32,6 +32,25 @@ public class HomeCesta extends ActionSupport {
     private String cabeceraocul;
     private String botonocul;
     private String accionocul;
+    private String clientela;
+
+    public Cesta getT() {
+        return t;
+    }
+
+    public void setT(Cesta t) {
+        this.t = t;
+    }
+
+    public String getClientela() {
+        return clientela;
+    }
+
+    public void setClientela(String clientela) {
+        this.clientela = clientela;
+    }
+    
+    
 
     public int getClave() {
         return clave;
@@ -178,9 +197,10 @@ public class HomeCesta extends ActionSupport {
          System.out.println(precio);
         return SUCCESS;
     }
-     public String EliminaCesta() throws Exception {
+     public String CargaEliminaCesta() throws Exception {
      
         t = ControladoresDAO.cCesta.RecuperaPorId(clave);
+            clientela = t.getRopa().getClientela().getClientelaDescripcion();
             cantidad = t.getCestaUnidades();
             accionocul = "e";
             cabeceraocul = "Eliminar";

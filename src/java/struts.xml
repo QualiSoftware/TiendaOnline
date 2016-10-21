@@ -200,7 +200,7 @@
         <action name="CestaFiltro" class="Acciones.HomeCesta" method="CestaFiltro">
             <result>/Vistas/pruebaCRUDCestaFacuracion.jsp</result>           
         </action>
-        <action name="EliminaCesta" class="Acciones.HomeCesta" method="EliminaCesta">
+        <action name="CargaEliminaCesta" class="Acciones.HomeCesta" method="CargaEliminaCesta">
             <result>/Vistas/pruebaCRUDformularioUsuarios.jsp</result>           
         </action>
         
