@@ -33,6 +33,17 @@ public class HomeCesta extends ActionSupport {
     private String botonocul;
     private String accionocul;
     private String clientela;
+    private Double precioEliminar = 0.0;
+
+    public Double getPrecioEliminar() {
+        return precioEliminar;
+    }
+
+    public void setPrecioEliminar(Double precioEliminar) {
+        this.precioEliminar = precioEliminar;
+    }
+    
+    
 
     public Cesta getT() {
         return t;
@@ -159,17 +170,26 @@ public class HomeCesta extends ActionSupport {
     public String CrudActionCesta() throws Exception {
         int respuesta;
             c = new Cesta();
-
+            c.setCestaId(clave);
             c.setCestaUnidades(cantidad);
             c.setRopa(ControladoresDAO.cRopa.RecuperaPorId(roId2));
             c.setUsuarios(ControladoresDAO.cUsuarios.RecuperaPorId(1));
-            respuesta = ControladoresDAO.cCesta.InsertaRopaCestaUsuario(c);
-            
-            lista_ropa_Cestas = ControladoresDAO.cCesta.RecuperaTodos("");
-            
-            for(Cesta aux : lista_ropa_Cestas){
-                 precio +=  aux.getCestaUnidades()*(aux.getRopa().getRoPrecio()-aux.getRopa().getRoDescuento()); 
+            System.out.println(accionocul);
+            if (accionocul.equals("e")) {
+                if(cantidad > 0){
+                    respuesta = ControladoresDAO.cCesta.Modifica(c);
+                }else{
+                    respuesta = ControladoresDAO.cCesta.Elimina(c);
+                }
+                
+            }else{
+                respuesta = ControladoresDAO.cCesta.InsertaRopaCestaUsuario(c);  
             }
+            lista_ropa_Cestas = ControladoresDAO.cCesta.RecuperaTodos("");
+
+                for(Cesta aux : lista_ropa_Cestas){
+                     precio +=  aux.getCestaUnidades()*(aux.getRopa().getRoPrecio()-aux.getRopa().getRoDescuento()); 
+                }
         return SUCCESS;
     }
     
@@ -192,15 +212,18 @@ public class HomeCesta extends ActionSupport {
         lista_ropa_Cestas = ControladoresDAO.cCesta.RecuperaTodos(filtro);
         for(Cesta aux:lista_ropa_Cestas){
            precio +=  aux.getCestaUnidades()*(aux.getRopa().getRoPrecio()-aux.getRopa().getRoDescuento());
-            System.out.println(precio);
+            
         }
-         System.out.println(precio);
+      
         return SUCCESS;
     }
      public String CargaEliminaCesta() throws Exception {
      
         t = ControladoresDAO.cCesta.RecuperaPorId(clave);
             clientela = t.getRopa().getClientela().getClientelaDescripcion();
+            clave = t.getCestaId();
+            roId2 = t.getRopa().getRoId();
+            precioEliminar = t.getCestaUnidades()* (t.getRopa().getRoPrecio()- t.getRopa().getRoDescuento());
             cantidad = t.getCestaUnidades();
             accionocul = "e";
             cabeceraocul = "Eliminar";

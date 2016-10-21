@@ -45,4 +45,39 @@ public class cCesta {
         Cesta p =(Cesta) sesion.get(Cesta.class, id);
         return p;
     }  
+        
+        public static int  Elimina(Cesta esto){
+        sesion = (Session) NewHibernateUtil.getSession();
+        sesion.beginTransaction();
+        try{
+            if(esto!=null){
+               System.out.println(esto.getCestaUnidades());
+                sesion.delete(esto);
+                sesion.getTransaction().commit();
+                sesion.evict(esto);
+                return 1;
+            }
+                return -1;
+        }catch(Exception ex){
+            System.out.println(ex.getMessage());
+            sesion.getTransaction().rollback();
+            return -1;
+        } 
+    }
+        
+         public static int  Modifica(Cesta c){      
+        
+        sesion = (Session) NewHibernateUtil.getSession();
+        sesion.beginTransaction();
+        try{
+            sesion.update(c);
+            sesion.getTransaction().commit();
+            sesion.evict(c);
+            return 1;
+        }catch(Exception ex){
+            System.out.println(ex.getMessage());
+            sesion.getTransaction().rollback();
+            return -1;
+        } 
+    }
 }
