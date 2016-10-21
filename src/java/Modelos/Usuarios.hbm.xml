@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 18-oct-2016 17:17:53 by Hibernate Tools 4.3.1 -->
+<!-- Generated 23-oct-2016 14:38:04 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="Modelos.Usuarios" table="usuarios" catalog="tienda_ropa" optimistic-lock="version">
         <id name="usuId" type="java.lang.Integer">
@@ -16,6 +16,12 @@
         </property>
         <property name="usuApellidos" type="string">
             <column name="usu_apellidos" length="30" not-null="true" />
+        </property>
+        <property name="usuEmail" type="string">
+            <column name="usu_email" length="100" not-null="true" />
+        </property>
+        <property name="usuPassword" type="string">
+            <column name="usu_password" not-null="true" />
         </property>
         <property name="usuDireccion" type="string">
             <column name="usu_direccion" length="100" not-null="true" />
@@ -34,6 +40,9 @@
         </property>
         <property name="usuLocalidad" type="string">
             <column name="usu_localidad" length="30" not-null="true" />
+        </property>
+        <property name="usuAdministrador" type="byte">
+            <column name="usu_administrador" not-null="true" />
         </property>
         <set name="cestas" table="cesta" inverse="true" lazy="true" fetch="select">
             <key>

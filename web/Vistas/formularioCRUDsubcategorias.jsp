@@ -81,13 +81,12 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>
+                    <td colspan="2">                        
+                        <input type="button" onclick="Verificar();" value=<s:property value="botonocul" /> />                     
+                        &nbsp;&nbsp;&nbsp;&nbsp;
                         <s:a action="volverSubcategorias">
-                            <i style="font-size: 20px;" class="glyphicon glyphicon-circle-arrow-left"></i>
-                        </s:a>                   
-                    </td>
-                    <td>
-                        <input type="button" onclick="Verificar();" value=<s:property value="botonocul" /> />
+                            <i style="font-size: 20px;">Volver</i>
+                        </s:a>     
                     </td>
                 </tr>
             </table>

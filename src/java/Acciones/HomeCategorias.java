@@ -30,8 +30,8 @@ public class HomeCategorias extends ActionSupport {
     private String cabeceraocul;
     private String botonocul;
     //variables de carga del formulario
-    private int codigo2;
-    private  String nombre2;
+    private int catId;
+    private  String catDescripcion;
     
     
     
@@ -77,21 +77,21 @@ public class HomeCategorias extends ActionSupport {
         this.botonocul = botonocul;
     }
 
-    public int getCodigo2() {
-        return codigo2;
+    public int getCatId() {
+        return catId;
     }
 
-    public void setCodigo2(int codigo2) {
-        this.codigo2 = codigo2;
+    public void setCatId(int catId) {
+        this.catId = catId;
     }
 
-    public String getNombre2() {
-        return nombre2;
+    public String getCatDescripcion() {
+        return catDescripcion;
     }
 
     
-    public void setNombre2(String nombre2) {
-        this.nombre2 = nombre2;
+    public void setCatDescripcion(String catDescripcion) {
+        this.catDescripcion = catDescripcion;
     }    
 
     public Map getSesion() {
@@ -125,56 +125,49 @@ public class HomeCategorias extends ActionSupport {
             filtro="";
         }
         Lista_Categorias = ControladoresDAO.cCategorias.RecuperaTodos(filtro);
-        System.out.println("home lista "+ Lista_Categorias.size());
         return SUCCESS;
     }
+    
     public String CategoriasForm() throws Exception {
-        System.out.println(clave);
-        System.out.println(accion);
         if(accion.equals("a")){
-            codigo2 = 0;
-            nombre2 = "";
+            catId = 0;
+            catDescripcion = "";
             accionocul = "a";
             cabeceraocul = "Alta";
             botonocul = "Alta";
         }else{
             Categoria p = ControladoresDAO.cCategorias.RecuperaPorId(clave);           
-            codigo2 = p.getCatId();
-            nombre2 = p.getCatDescripcion();
-
+            catId = p.getCatId();
+            catDescripcion = p.getCatDescripcion();
             if(accion.equals("m")){
                 accionocul = "m";
-                cabeceraocul = "Modificar";
+                cabeceraocul = "Modificación";
                 botonocul = "Modificar";  
             }else{
                 accionocul = "e";
-                cabeceraocul = "Eliminar";
+                cabeceraocul = "Eliminación";
                 botonocul = "Eliminar";
             }
-            
         }
         return SUCCESS;
     }
+
     public String CrudActionCategorias() throws Exception {
-          
         if (accionocul.equals("a")) {
-            
-           Categoria p = new Categoria(nombre2);
-           p.setCatId(codigo2);
+           Categoria p = new Categoria(catDescripcion);
+           p.setCatId(catId);
             ControladoresDAO.cCategorias.Inserta(p);
         }
         if (accionocul.equals("m")) {
-            Categoria p = new Categoria(nombre2);
-            p.setCatId(codigo2);
+            Categoria p = new Categoria(catDescripcion);
+            p.setCatId(catId);
             ControladoresDAO.cCategorias.Modifica(p);
         }
         if (accionocul.equals("e")) {
-            System.out.println("codigo de borrado "+codigo2);
-            Categoria p = new Categoria(nombre2);
-            p.setCatId(codigo2);
+            Categoria p = new Categoria(catDescripcion);
+            p.setCatId(catId);
             ControladoresDAO.cCategorias.Elimina(p);
         }
-        
         return SUCCESS;
     }
 }

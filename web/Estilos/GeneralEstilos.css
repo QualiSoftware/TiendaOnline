@@ -118,4 +118,13 @@ td, th {
         background-color: lightblue;
     }
 }
-
+.cambioFondo{
+    padding: 5px 13px;
+    position:relative;
+}
+.cambioFondo:hover{
+    color:#fff;
+    background:#db001b;
+    -webkit-transition:.6s;
+    transition:.6s;
+}

@@ -36,28 +36,35 @@
         </script>
         <script>
             function Verificar() {
-                alert("pasaaa verificar");
-                if (document.getElementById('accionocul').value === 'e') {
-                    if (confirm("¿Seguro que desea borrar?")) {
-                        document.getElementById('frm').submit();
-                    }
-                } else {
+
                     document.getElementById('frm').submit();
-                }
+                
             }
         </script>        
     </head>
     <body>
         <h1> <s:label name="cabeceraocul"></s:label> </h1>
-        <s:form id="frm" action="CrudActionRopa" theme="simple">
-            <input type="hidden" name="accionocul" id="accionocul" value=<s:property value="accion" /> />
+        <s:form id="frm" action="Usuario/CrudActionCesta" theme="simple">
+            <input type="hidden" name="accionocul" id="accionocul" value=<s:property value="accionocul" /> />
+            <input type="hidden" name="clave" id="accionocul" value=<s:property value="clave" /> />
             <table>
                 <tr>
                     <td>
                         <s:label for="roId2">Codigo</s:label>  
                         </td>
                         <td>
+                            <%
+                            if (request.getAttribute("accionocul") == "e") {
+                        %>
+                        <s:textfield name="roId2" readonly="true" ></s:textfield>
+                        <%
+                        } else {
+                        %>
                         <s:textfield name="roId2" readonly="true"></s:textfield>
+                        <%
+                            }
+                        %>
+                        
                         </td>
                     </tr>
                     <tr>
@@ -65,8 +72,18 @@
                         <s:label for="clientela2">Clientela</s:label>  
                         </td>
                         <td>
-
+                        <%
+                            if (request.getAttribute("accionocul") == "e") {
+                        %>
+                        <s:textfield name="t.ropa.clientela.clientelaDescripcion" readonly="true" ></s:textfield>
+                        <%
+                        } else {
+                        %>
                         <s:textfield name="t.clientela.clientelaDescripcion" readonly="true" ></s:textfield>
+                        <%
+                            }
+                        %>
+                        
 
                         </td>
                     </tr>
@@ -75,8 +92,18 @@
                         <s:label for="coleccion2">Coleccion</s:label>  
                         </td>
                         <td>
-
+                        <%
+                            if (request.getAttribute("accionocul") == "e") {
+                        %>
+                        <s:textfield name="t.ropa.coleccion.coleccionDescripcion" readonly="true" ></s:textfield>
+                        <%
+                        } else {
+                        %>
                         <s:textfield name="t.coleccion.coleccionDescripcion" readonly="true" ></s:textfield>
+                        <%
+                            }
+                        %>
+                        
 
                         </td>
                     </tr>
@@ -86,8 +113,19 @@
                         </td>
 
                         <td>
-
+                            <%
+                            if (request.getAttribute("accionocul") == "e") {
+                        %>
+                        <s:textfield name="t.ropa.color.colorDescripcion" readonly="true" ></s:textfield>
+                        <%
+                        } else {
+                        %>
                         <s:textfield name="t.color.colorDescripcion" readonly="true" ></s:textfield>
+                        <%
+                            }
+                        %>
+
+                        
 
                         </td>
                     </tr>
@@ -97,8 +135,18 @@
                         </td>
 
                         <td>
-
+                             <%
+                            if (request.getAttribute("accionocul") == "e") {
+                        %>
+                        <s:textfield name="t.ropa.look.lookDescripcion" readonly="true" ></s:textfield>
+                        <%
+                        } else {
+                        %>
                         <s:textfield name="t.look.lookDescripcion" readonly="true" ></s:textfield>
+                        <%
+                            }
+                        %>
+                        
 
 
                         </td>
@@ -109,8 +157,18 @@
                         <s:label for="marcas2">Marcas</s:label>  
                         </td>
                         <td>
-
+                                <%
+                            if (request.getAttribute("accionocul") == "e") {
+                        %>
+                        <s:textfield name="t.ropa.marcas.marcaNombre" readonly="true" ></s:textfield>
+                        <%
+                        } else {
+                        %>
                         <s:textfield name="t.marcas.marcaNombre" readonly="true" ></s:textfield>
+                        <%
+                            }
+                        %>
+                        
 
 
                         </td>
@@ -121,8 +179,19 @@
                         </td>
 
                         <td>
-
+                             <%
+                            if (request.getAttribute("accionocul") == "e") {
+                        %>
+                        <s:textfield name="t.ropa.tallas.tallaDescripcion" readonly="true" ></s:textfield>
+                        <%
+                        } else {
+                        %>
                         <s:textfield name="t.tallas.tallaDescripcion" readonly="true" ></s:textfield>
+                        <%
+                            }
+                        %>
+
+                        
 
                         </td>
                     </tr>
@@ -131,28 +200,36 @@
                         <s:label for="roDescripcion2">Descripcion</s:label>  
                         </td>
                         <td>
-
+                            <%
+                            if (request.getAttribute("accionocul") == "e") {
+                        %>
+                        <s:textfield name="t.ropa.roDescripcion" readonly="true" ></s:textfield>
+                        <%
+                        } else {
+                        %>
                         <s:textfield name="roDescripcion2" readonly="true" ></s:textfield>
-
+                        <%
+                            }
+                        %>
                         </td>
                     </tr>
-                    <tr>
-                        <td>
-                        <s:label for="roPrecio2">Precio</s:label>  
-                        </td>
-                        <td>
-
-                        <s:textfield name="roPrecio2" readonly="true" ></s:textfield>
-
-                        </td>
-                    </tr>
-                    <tr>
+                    
                         <td>
                         <s:label for="roDescuento2">Descuento</s:label>  
                         </td>
                         <td>
-
+                            <%
+                            if (request.getAttribute("accionocul") == "e") {
+                        %>
+                        <s:textfield name="t.ropa.roDescuento" readonly="true" ></s:textfield>
+                        <%
+                        } else {
+                        %>
                         <s:textfield name="roDescuento2" readonly="true" ></s:textfield>
+                        <%
+                            }
+                        %>
+                        
 
                         </td>
                     </tr>
@@ -161,8 +238,18 @@
                         <s:label for="roCaracteristicas2">Caracteristicas</s:label>  
                         </td>
                         <td>
-
-                        <s:textfield name="roCaracteristicas2" readonly="true" ></s:textfield>
+                            <%
+                            if (request.getAttribute("accionocul") == "e") {
+                        %>
+                        <s:textfield name="t.ropa.roCaracteristicas" readonly="true" ></s:textfield>
+                        <%
+                        } else {
+                        %>
+                        <s:textfield name="t.roCaracteristicas" readonly="true" ></s:textfield>
+                        <%
+                            }
+                        %>
+                        
 
                         </td>
                     </tr>
@@ -173,8 +260,18 @@
 
 
                         <td>
-
+                            <%
+                            if (request.getAttribute("accionocul") == "e") {
+                        %>
+                        <s:textfield name="t.ropa.categoria.catDescripcion" readonly="true" ></s:textfield>
+                        <%
+                        } else {
+                        %>
                         <s:textfield name="t.categoria.catDescripcion" readonly="true" ></s:textfield>
+                        <%
+                            }
+                        %>
+                        
 
                         </td>
                     </tr>
@@ -183,28 +280,79 @@
                         <s:label for="subcategoria">Subategoría</s:label>  
                         </td>
                         <td>
-
-
+                            <%
+                            if (request.getAttribute("accionocul") == "e") {
+                        %>
+                        <s:textfield name="t.ropa.subcategoria.subDescripcion" readonly="true" ></s:textfield>
+                        <%
+                        } else {
+                        %>
                         <s:textfield name="t.subcategoria.subDescripcion" readonly="true" ></s:textfield>
+                        <%
+                            }
+                        %>
+
+                        
 
 
                         </td>
                     </tr>
-                
-                <s:iterator var="f" value="t.fotoses">
+                    <%
+                            if (request.getAttribute("accionocul") == "e") {
+                        %>
+                         <s:iterator var="f" value="t.ropa.fotoses">
                     <tr>
                         <td><s:label for="fotos">Fotos</s:label></td>
                         <td><s:textfield name="fotosRuta" readonly="true" ></s:textfield></td>
                         </tr>
                 </s:iterator>
+                        
+                        <%
+                        } else {
+                        %>
+                         <s:iterator var="f" value="t.fotoses">
+                    <tr>
+                        <td><s:label for="fotos">Fotos</s:label></td>
+                        <td><s:textfield name="fotosRuta" readonly="true" ></s:textfield></td>
+                        </tr>
+                </s:iterator>
+                        <%
+                            }
+                        %>
+                
+               
+                    <tr>
+                        <td>
+                            
+                        <s:label for="roPrecio2">Precio</s:label>  
+                        </td>
+                        
+                        <td>
+                        
+                            <%
+                            if (request.getAttribute("accionocul") == "e") {
+                        %>
+                        <s:textfield name="precioEliminar" readonly="true" ></s:textfield>
+                        <%
+                        } else {
+                        %>
+                        <s:textfield name="roPrecio2" readonly="true" ></s:textfield>
+                        <%
+                            }
+                        %>
+                        
+
+                        </td>
+                    </tr>
+                    <tr>
                 <tr>
                     <td>
                         <s:label for="Cantidad">Cantidad</s:label>  
                         </td>
                         <td>
 
-
-                        <s:textfield type="number" maximumIntegerDigits="5" name="cantidad" minimumIntegerDigits="1"></s:textfield>
+                        
+                        <s:textfield type="number"   name="cantidad" minimumIntegerDigits="1"></s:textfield>
 
 
                         </td>

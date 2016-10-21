@@ -8,14 +8,14 @@
         
         <!--action de categoria-->
        <action name="CategoriaFiltro" class="Acciones.HomeCategorias" method="CategoriaFiltro" >
-            <result>/Vistas/pruebaCRUDprincipal.jsp</result> 
+            <result>/Vistas/CRUDcategoria.jsp</result> 
         </action>
         <action name="CategoriasForm" class="Acciones.HomeCategorias" method="CategoriasForm">
-            <result>/Vistas/pruebaCRUDformulario.jsp</result>
+            <result>/Vistas/formularioCRUDcategoria.jsp</result>
         </action>
         <action name="CrudActionCategorias" class="Acciones.HomeCategorias" method="CrudActionCategorias">
-            <result name="input">/Vistas/pruebaCRUDformulario.jsp</result>
-            <result name="error">/Vistas/pruebaCRUDformulario.jsp</result>
+            <result name="input">/Vistas/formularioCRUDcategoria.jsp</result>
+            <result name="error">/Vistas/formularioCRUDcategoria.jsp</result>
             <result type="chain">CategoriaFiltro</result> 
         </action>
         <action name="volverCategoria">
@@ -24,14 +24,14 @@
         
         <!--action de clientela-->
        <action name="ClientelaFiltro" class="Acciones.HomeClientela" method="ClientelaFiltro" >
-            <result>/Vistas/pruebaCRUDprincipal.jsp</result> 
+            <result>/Vistas/CRUDclientela.jsp</result> 
         </action>
         <action name="ClientelaForm" class="Acciones.HomeClientela" method="ClientelaForm">
-            <result>/Vistas/pruebaCRUDformulario.jsp</result>
+            <result>/Vistas/formularioCRUDclientela.jsp</result>
         </action>
         <action name="CrudActionClientela" class="Acciones.HomeClientela" method="CrudActionClientela">
-            <result name="input">/Vistas/pruebaCRUDformulario.jsp</result>
-            <result name="error">/Vistas/pruebaCRUDformulario.jsp</result>
+            <result name="input">/Vistas/formularioCRUDclientela.jsp</result>
+            <result name="error">/Vistas/formularioCRUDclientela.jsp</result>
             <result type="chain">ClientelaFiltro</result> 
         </action>
         <action name="volverClientela">
@@ -134,6 +134,22 @@
             <result type="redirect">RopaFiltro</result>
         </action>
         
+        <!-- actions de RopaAdmin -->
+        <action name="RopaAdminFiltro" class="Acciones.HomeRopa" method="RopaFiltro">
+            <result>/Vistas/CRUDropa.jsp</result>           
+        </action>
+        <action name="RopaAdminForm" class="Acciones.HomeRopa" method="RopaForm">
+            <result>/Vistas/formularioCRUDropa.jsp</result>   
+        </action> 
+        <action name="CrudActionRopaAdmin" class="Acciones.HomeRopa" method="CrudActionRopa">
+            <result type="redirect">RopaAdminFiltro</result>
+            <result name="input">/Vistas/formularioCRUDropa.jsp</result>
+            <result name="error">/Vistas/formularioCRUDropa.jsp</result>
+        </action>
+        <action name="volverRopaAdmin">
+            <result type="redirect">RopaAdminFiltro</result>
+        </action>
+        
         <!-- actions de Subcategoria -->
         <action name="SubcategoriasFiltro" class="Acciones.HomeSubcategorias" method="SubcategoriasFiltro">
             <result>/Vistas/CRUDsubcategorias.jsp</result>           
@@ -172,9 +188,22 @@
                 <param name="noCache">true</param>
             </result>
         </action>
-        <action name="irPaginaAdmin">
+        <action name="irPaginaAdmin" class="Acciones.UsuariosValidaciones" method="AbroSesion">
             <result>/Vistas/paginaAdmin.jsp</result>
         </action>
+        
+        <!--Esto es para probar la página de Admin con un login. Se puede borrar-->
+        <action name="LoginPrueba" class="Acciones.UsuariosValidaciones" method="LoginPrueba">
+            <result name="input">/Vistas/pruebaLoginParaBorrar.jsp</result>
+            <result name="error">/Vistas/pruebaLoginParaBorrar.jsp</result>
+            <result>/Vistas/paginaAdmin.jsp</result>
+        </action>
+        <action name="CerrarSesion" class="Acciones.UsuariosValidaciones" method="CerrarSesion">
+            <result>/Vistas/pruebaLoginParaBorrar.jsp</result>
+        </action>
+        <!--Hasta acá es la prueba del login que se puede borrar-->
+        
+        
     </package>
     
     
@@ -190,13 +219,20 @@
             <result>/Vistas/pruebaCRUDformularioUsuarios.jsp</result>   
         </action> 
        <action name="CrudActionCesta" class="Acciones.HomeCesta" method="CrudActionCesta">
-            <result type="redirect">pruebaCRUDCestaFacuracion</result>
+            <result>/Vistas/pruebaCRUDCestaFacuracion.jsp</result>
             <result name="input">/Vistas/pruebaCRUDformularioUsuarios.jsp</result>
             <result name="error">/Vistas/pruebaCRUDformularioUsuarios.jsp</result>
         </action>
         <action name="volverRopa">
             <result type="redirect">RopaFiltro</result>
         </action>
+        <action name="CestaFiltro" class="Acciones.HomeCesta" method="CestaFiltro">
+            <result>/Vistas/pruebaCRUDCestaFacuracion.jsp</result>           
+        </action>
+        <action name="CargaEliminaCesta" class="Acciones.HomeCesta" method="CargaEliminaCesta">
+            <result>/Vistas/pruebaCRUDformularioUsuarios.jsp</result>           
+        </action>
+        
         
     </package>
     

@@ -5,12 +5,12 @@
  */
 package ControladoresDAO;
 
-import static ControladoresDAO.cColor.sesion;
-import Modelos.Color;
 import Modelos.Usuarios;
 import java.util.List;
+import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 
 /**
  *
@@ -18,9 +18,11 @@ import org.hibernate.Session;
  */
 public class cUsuarios {
     
+    static Session sesion;
+    
      public static List<Usuarios> RecuperaTodos(String filtro){
         sesion = (Session) NewHibernateUtil.getSession();
-        Query query =sesion.createQuery("FROM Usuarios WHERE colorDescripcion LIKE'%"+filtro+"%'"); 
+        Query query =sesion.createQuery("FROM Usuarios WHERE usuNombre LIKE'%"+filtro+"%'"); 
         List<Usuarios> la = query.list();
         return la;
     }
@@ -37,7 +39,6 @@ public class cUsuarios {
         sesion.beginTransaction();
         try{
             if(esto!=null){
-               System.out.println(esto.getUsuId());
                 sesion.delete(esto);
                 sesion.getTransaction().commit();
                 return 1;
@@ -74,6 +75,21 @@ public class cUsuarios {
             sesion.getTransaction().rollback();
             return -1;
         } 
+    }
+    
+    public static List<Usuarios> Login(String u, String p){
+        sesion = (Session) NewHibernateUtil.getSession();
+        
+        //Puedo usar esto
+        //Query query = sesion.createQuery("From Usuarios WHERE usu_nombre  '%"+u+"%' AND usu_password = '"+p+"'"); //esto equivale a SELECT * FROM agenda
+        //List<Usuarios> lista = (List) query.list();
+        
+        //O esto
+        Criteria criterio = sesion.createCriteria(Usuarios.class);
+        criterio.add(Restrictions.eq("usuEmail", u));
+        criterio.add(Restrictions.eq("usuPassword",p));
+        List<Usuarios> lista = criterio.list();
+        return lista;
     }
     
 }

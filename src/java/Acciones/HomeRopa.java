@@ -587,29 +587,12 @@ private String countryName;
         return SUCCESS;
     }
      public String ajaxAction() throws Exception{
-//         System.out.println("country selection"+countryName);
-//        if (countryName.equals("1")) {
-//                stateMap.put("1", "Kerala");
-//                stateMap.put("2", "Tamil Nadu");
-//                stateMap.put("3", "Jammu Kashmir");
-//                stateMap.put("4", "Assam");
-//                System.out.println(stateMap);
-//        } else if (countryName.equals("2")) {
-//                stateMap.put("1", "Georgia");
-//                stateMap.put("2", "Utah");
-//                stateMap.put("3", "Texas");
-//                stateMap.put("4", "New Jersey");
-//        } else if (countryName.equals("0")) {
-//                stateMap.put("1", "Select State");
-//        }
         Categoria c = ControladoresDAO.cCategorias.RecuperaPorId(Integer.parseInt(countryName));
                    for(Subcategoria auxsubcat:c.getSubcategorias()){
                        stateMap.put(""+auxsubcat.getSubId(), auxsubcat.getSubDescripcion());
                        System.out.println("id"+auxsubcat.getSubId()+"descri"+auxsubcat.getSubDescripcion());
                        System.out.println(stateMap);
                    }
-               
-               // System.out.println("pasaaaaaaaaaa"+lista_categoria.size());
          
             dummyMsg = "Ajax action Triggered";
         return SUCCESS;

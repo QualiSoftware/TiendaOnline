@@ -33,8 +33,8 @@ public class HomeClientela extends ActionSupport {
     private String cabeceraocul;
     private String botonocul;
     //variables de carga del formulario
-    private int codigo2;
-    private  String nombre2;
+    private int clientelaId;
+    private  String clientelaDescripcion;
     
     
     
@@ -80,21 +80,21 @@ public class HomeClientela extends ActionSupport {
         this.botonocul = botonocul;
     }
 
-    public int getCodigo2() {
-        return codigo2;
+    public int getClientelaId() {
+        return clientelaId;
     }
 
-    public void setCodigo2(int codigo2) {
-        this.codigo2 = codigo2;
+    public void setClientelaId(int clientelaId) {
+        this.clientelaId = clientelaId;
     }
 
-    public String getNombre2() {
-        return nombre2;
+    public String getClientelaDescripcion() {
+        return clientelaDescripcion;
     }
 
     
-    public void setNombre2(String nombre2) {
-        this.nombre2 = nombre2;
+    public void setClientelaDescripcion(String clientelaDescripcion) {
+        this.clientelaDescripcion = clientelaDescripcion;
     }    
 
     public Map getSesion() {
@@ -134,23 +134,23 @@ public class HomeClientela extends ActionSupport {
     }
     public String ClientelaForm() throws Exception {
         if(accion.equals("a")){
-            codigo2 = 0;
-            nombre2 = "";
+            clientelaId = 0;
+            clientelaDescripcion = "";
             accionocul = "a";
             cabeceraocul = "Alta";
             botonocul = "Alta";
         }else{
             Clientela p = ControladoresDAO.cClientela.RecuperaPorId(clave);           
-            codigo2 = p.getClientelaId();
-            nombre2 = p.getClientelaDescripcion();
+            clientelaId = p.getClientelaId();
+            clientelaDescripcion = p.getClientelaDescripcion();
 
             if(accion.equals("m")){
                 accionocul = "m";
-                cabeceraocul = "Modificar";
+                cabeceraocul = "Modificación";
                 botonocul = "Modificar";  
             }else{
                 accionocul = "e";
-                cabeceraocul = "Eliminar";
+                cabeceraocul = "Eliminación";
                 botonocul = "Eliminar";
             }
             
@@ -161,18 +161,18 @@ public class HomeClientela extends ActionSupport {
           
         if (accionocul.equals("a")) {
             
-           Clientela p = new Clientela(nombre2);
-           p.setClientelaId(codigo2);
+           Clientela p = new Clientela(clientelaDescripcion);
+           p.setClientelaId(clientelaId);
             ControladoresDAO.cClientela.Inserta(p);
         }
         if (accionocul.equals("m")) {
-            Clientela p = new Clientela(nombre2);
-            p.setClientelaId(codigo2);
+            Clientela p = new Clientela(clientelaDescripcion);
+            p.setClientelaId(clientelaId);
             ControladoresDAO.cClientela.Modifica(p);
         }
         if (accionocul.equals("e")) {
-             Clientela p = new Clientela(nombre2);
-           p.setClientelaId(codigo2);
+             Clientela p = new Clientela(clientelaDescripcion);
+           p.setClientelaId(clientelaId);
             ControladoresDAO.cClientela.Elimina(p);
         }
         
