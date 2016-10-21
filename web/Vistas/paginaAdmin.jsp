@@ -1,7 +1,7 @@
 <%-- 
     Document   : paginaAdmin
     Created on : 17-oct-2016, 17:37:49
-    Author     : Damian
+    Author     : QualiSoftware
 --%>
 <%@taglib prefix="s" uri="/struts-tags" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

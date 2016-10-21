@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Acciones;
 
 import Modelos.Marcas;
@@ -33,11 +28,8 @@ public class HomeMarcas extends ActionSupport {
     private String cabeceraocul;
     private String botonocul;
     //variables de carga del formulario
-    private int codigo2;
-    private  String nombre2;
-    
-    
-    
+    private int marcaId;
+    private  String marcaNombre;
     
     //getters and setters
     public int getClave() {    
@@ -80,23 +72,22 @@ public class HomeMarcas extends ActionSupport {
         this.botonocul = botonocul;
     }
 
-    public int getCodigo2() {
-        return codigo2;
+    public int getMarcaId() {
+        return marcaId;
     }
 
-    public void setCodigo2(int codigo2) {
-        this.codigo2 = codigo2;
+    public void setMarcaId(int marcaId) {
+        this.marcaId = marcaId;
     }
 
-    public String getNombre2() {
-        return nombre2;
+    public String getMarcaNombre() {
+        return marcaNombre;
     }
 
+    public void setMarcaNombre(String marcaNombre) {
+        this.marcaNombre = marcaNombre;
+    }
     
-    public void setNombre2(String nombre2) {
-        this.nombre2 = nombre2;
-    }    
-
     public Map getSesion() {
         return sesion;
     }
@@ -121,35 +112,28 @@ public class HomeMarcas extends ActionSupport {
         this.Lista_Marcas = Lista_Marcas;
     }
 
-
-
-
-
- 
-
     public String MarcasFiltro() throws Exception {
-         
         if (sesion==null) {
             sesion=ActionContext.getContext().getSession();
         }
         if(filtro == null){
             filtro="";
         }
-       
         Lista_Marcas = ControladoresDAO.cMarcas.RecuperaTodos(filtro);
         return SUCCESS;
     }
+    
     public String MarcasForm() throws Exception {
         if(accion.equals("a")){
-            codigo2 = 0;
-            nombre2 = "";
+            marcaId = 0;
+            marcaNombre = "";
             accionocul = "a";
             cabeceraocul = "Alta";
             botonocul = "Alta";
         }else{
             Marcas p = ControladoresDAO.cMarcas.RecuperaPorId(clave);           
-            codigo2 = p.getMarcaId();
-            nombre2 = p.getMarcaNombre();
+            marcaId = p.getMarcaId();
+            marcaNombre = p.getMarcaNombre();
 
             if(accion.equals("m")){
                 accionocul = "m";
@@ -160,28 +144,26 @@ public class HomeMarcas extends ActionSupport {
                 cabeceraocul = "Eliminar";
                 botonocul = "Eliminar";
             }
-            
         }
         return SUCCESS;
     }
     
     public String CrudActionMarcas() throws Exception {         
         if (accionocul.equals("a")) {            
-           Marcas p = new Marcas(nombre2);
-           p.setMarcaId(codigo2);
+           Marcas p = new Marcas(marcaNombre);
+           p.setMarcaId(marcaId);
             ControladoresDAO.cMarcas.Inserta(p);
         }
         if (accionocul.equals("m")) {
-            Marcas p = new Marcas(nombre2); 
-             p.setMarcaId(codigo2);
+            Marcas p = new Marcas(marcaNombre); 
+             p.setMarcaId(marcaId);
             ControladoresDAO.cMarcas.Modifica(p);
         }
         if (accionocul.equals("e")) {
-            Marcas p = new Marcas(nombre2); 
-             p.setMarcaId(codigo2);
+            Marcas p = new Marcas(marcaNombre); 
+             p.setMarcaId(marcaId);
             ControladoresDAO.cMarcas.Elimina(p);
         }        
         return SUCCESS;
-    }    
-    
+    }  
 }

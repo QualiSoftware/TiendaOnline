@@ -32,8 +32,8 @@ public class HomeLook extends ActionSupport {
     private String cabeceraocul;
     private String botonocul;
     //variables de carga del formulario
-    private int codigo2;
-    private  String nombre2;
+    private int lookId;
+    private  String lookDescripcion;
     
     
     
@@ -77,24 +77,23 @@ public class HomeLook extends ActionSupport {
 
     public void setBotonocul(String botonocul) {
         this.botonocul = botonocul;
+    } 
+
+    public int getLookId() {
+        return lookId;
     }
 
-    public int getCodigo2() {
-        return codigo2;
+    public void setLookId(int lookId) {
+        this.lookId = lookId;
     }
 
-    public void setCodigo2(int codigo2) {
-        this.codigo2 = codigo2;
+    public String getLookDescripcion() {
+        return lookDescripcion;
     }
 
-    public String getNombre2() {
-        return nombre2;
+    public void setLookDescripcion(String lookDescripcion) {
+        this.lookDescripcion = lookDescripcion;
     }
-
-    
-    public void setNombre2(String nombre2) {
-        this.nombre2 = nombre2;
-    }    
 
     public Map getSesion() {
         return sesion;
@@ -125,60 +124,56 @@ public class HomeLook extends ActionSupport {
  
 
     public String LookFiltro() throws Exception {
-         
         if (sesion==null) {
             sesion=ActionContext.getContext().getSession();
         }
         if(filtro == null){
             filtro="";
         }
-       
         Lista_Look = ControladoresDAO.cLook.RecuperaTodos(filtro);
         return SUCCESS;
     }
+    
     public String LookForm() throws Exception {
         if(accion.equals("a")){
-            codigo2 = 0;
-            nombre2 = "";
+            lookId = 0;
+            lookDescripcion = "";
             accionocul = "a";
             cabeceraocul = "Alta";
             botonocul = "Alta";
         }else{
             Look p = ControladoresDAO.cLook.RecuperaPorId(clave);           
-            codigo2 = p.getLookId();
-            nombre2 = p.getLookDescripcion();
-
+            lookId = p.getLookId();
+            lookDescripcion = p.getLookDescripcion();
             if(accion.equals("m")){
                 accionocul = "m";
-                cabeceraocul = "Modificar";
+                cabeceraocul = "Modificación";
                 botonocul = "Modificar";  
             }else{
                 accionocul = "e";
-                cabeceraocul = "Eliminar";
+                cabeceraocul = "Eliminación";
                 botonocul = "Eliminar";
             }
-            
         }
         return SUCCESS;
     }
     
     public String CrudActionLook() throws Exception {         
         if (accionocul.equals("a")) {            
-           Look p = new Look(nombre2);
-           p.setLookId(codigo2);
+           Look p = new Look(lookDescripcion);
+           p.setLookId(lookId);
             ControladoresDAO.cLook.Inserta(p);
         }
         if (accionocul.equals("m")) {
-            Look p = new Look(nombre2); 
-            p.setLookId(codigo2);
+            Look p = new Look(lookDescripcion); 
+            p.setLookId(lookId);
             ControladoresDAO.cLook.Modifica(p);
         }
         if (accionocul.equals("e")) {
-            Look p = new Look(nombre2); 
-            p.setLookId(codigo2);
+            Look p = new Look(lookDescripcion); 
+            p.setLookId(lookId);
             ControladoresDAO.cLook.Elimina(p);
         }        
         return SUCCESS;
-    }    
-    
+    }  
 }

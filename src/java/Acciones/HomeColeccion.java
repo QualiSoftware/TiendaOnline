@@ -33,8 +33,8 @@ public class HomeColeccion extends ActionSupport {
     private String cabeceraocul;
     private String botonocul;
     //variables de carga del formulario
-    private int codigo2;
-    private  String nombre2;
+    private int coleccionId;
+    private  String coleccionDescripcion;
     
     
     
@@ -80,21 +80,21 @@ public class HomeColeccion extends ActionSupport {
         this.botonocul = botonocul;
     }
 
-    public int getCodigo2() {
-        return codigo2;
+    public int getColeccionId() {
+        return coleccionId;
     }
 
-    public void setCodigo2(int codigo2) {
-        this.codigo2 = codigo2;
+    public void setColeccionId(int coleccionId) {
+        this.coleccionId = coleccionId;
     }
 
-    public String getNombre2() {
-        return nombre2;
+    public String getColeccionDescripcion() {
+        return coleccionDescripcion;
     }
 
     
-    public void setNombre2(String nombre2) {
-        this.nombre2 = nombre2;
+    public void setColeccionDescripcion(String coleccionDescripcion) {
+        this.coleccionDescripcion = coleccionDescripcion;
     }    
 
     public Map getSesion() {
@@ -121,62 +121,57 @@ public class HomeColeccion extends ActionSupport {
     }
 
     public String ColeccionFiltro() throws Exception {
-         
         if (sesion==null) {
             sesion=ActionContext.getContext().getSession();
         }
         if(filtro == null){
             filtro="";
         }
-       
         Lista_Coleccion = ControladoresDAO.cColeccion.RecuperaTodos(filtro);
         return SUCCESS;
     }
+    
     public String ColeccionForm() throws Exception {
         if(accion.equals("a")){
-            codigo2 = 0;
-            nombre2 = "";
+            coleccionId = 0;
+            coleccionDescripcion = "";
             accionocul = "a";
             cabeceraocul = "Alta";
             botonocul = "Alta";
         }else{
             Coleccion p = ControladoresDAO.cColeccion.RecuperaPorId(clave);           
-            codigo2 = p.getColeccionId();
-            nombre2 = p.getColeccionDescripcion();
+            coleccionId = p.getColeccionId();
+            coleccionDescripcion = p.getColeccionDescripcion();
 
             if(accion.equals("m")){
                 accionocul = "m";
-                cabeceraocul = "Modificar";
+                cabeceraocul = "Modificación";
                 botonocul = "Modificar";  
             }else{
                 accionocul = "e";
-                cabeceraocul = "Eliminar";
+                cabeceraocul = "Eliminación";
                 botonocul = "Eliminar";
             }
-            
         }
         return SUCCESS;
     }
+
     public String CrudActionColeccion() throws Exception {
-          
         if (accionocul.equals("a")) {
-            
-           Coleccion p = new Coleccion(nombre2);
-           p.setColeccionId(codigo2);
+           Coleccion p = new Coleccion(coleccionDescripcion);
+           p.setColeccionId(coleccionId);
             ControladoresDAO.cColeccion.Inserta(p);
         }
         if (accionocul.equals("m")) {
-            Coleccion p = new Coleccion(nombre2); 
-            p.setColeccionId(codigo2);
+            Coleccion p = new Coleccion(coleccionDescripcion); 
+            p.setColeccionId(coleccionId);
             ControladoresDAO.cColeccion.Modifica(p);
         }
         if (accionocul.equals("e")) {
-            Coleccion p = new Coleccion(nombre2); 
-            p.setColeccionId(codigo2);
+            Coleccion p = new Coleccion(coleccionDescripcion); 
+            p.setColeccionId(coleccionId);
             ControladoresDAO.cColeccion.Elimina(p);
         }
-        
         return SUCCESS;
     }
-    
 }

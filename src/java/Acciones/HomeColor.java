@@ -33,8 +33,8 @@ public class HomeColor extends ActionSupport {
     private String cabeceraocul;
     private String botonocul;
     //variables de carga del formulario
-    private int codigo2;
-    private  String nombre2;
+    private int colorId;
+    private  String colorDescripcion;
     
     
     
@@ -80,22 +80,21 @@ public class HomeColor extends ActionSupport {
         this.botonocul = botonocul;
     }
 
-    public int getCodigo2() {
-        return codigo2;
+    public int getColorId() {
+        return colorId;
     }
 
-    public void setCodigo2(int codigo2) {
-        this.codigo2 = codigo2;
+    public void setColorId(int colorId) {
+        this.colorId = colorId;
     }
 
-    public String getNombre2() {
-        return nombre2;
+    public String getColorDescripcion() {
+        return colorDescripcion;
     }
 
-    
-    public void setNombre2(String nombre2) {
-        this.nombre2 = nombre2;
-    }    
+    public void setColorDescripcion(String colorDescripcion) {
+        this.colorDescripcion = colorDescripcion;
+    }
 
     public Map getSesion() {
         return sesion;
@@ -121,62 +120,56 @@ public class HomeColor extends ActionSupport {
         this.Lista_Color = Lista_Color;
     }
 
-
-
- 
-
     public String ColorFiltro() throws Exception {
-         
         if (sesion==null) {
             sesion=ActionContext.getContext().getSession();
         }
         if(filtro == null){
             filtro="";
         }
-       
         Lista_Color = ControladoresDAO.cColor.RecuperaTodos(filtro);
         return SUCCESS;
     }
+    
     public String ColorForm() throws Exception {
         if(accion.equals("a")){
-            codigo2 = 0;
-            nombre2 = "";
+            colorId = 0;
+            colorDescripcion = "";
             accionocul = "a";
             cabeceraocul = "Alta";
             botonocul = "Alta";
         }else{
             Color p = ControladoresDAO.cColor.RecuperaPorId(clave);           
-            codigo2 = p.getColorId();
-            nombre2 = p.getColorDescripcion();
+            colorId = p.getColorId();
+            colorDescripcion = p.getColorDescripcion();
 
             if(accion.equals("m")){
                 accionocul = "m";
-                cabeceraocul = "Modificar";
+                cabeceraocul = "Modificación";
                 botonocul = "Modificar";  
             }else{
                 accionocul = "e";
-                cabeceraocul = "Eliminar";
-                botonocul = "Eliminar";
+                cabeceraocul = "Eliminación";
+                botonocul = "Eliminación";
             }
-            
         }
         return SUCCESS;
     }
     
     public String CrudActionColor() throws Exception {         
         if (accionocul.equals("a")) {            
-           Color p = new Color(nombre2);
-           p.setColorId(codigo2);
+           Color p = new Color(colorDescripcion);
+           p.setColorId(colorId);
             ControladoresDAO.cColor.Inserta(p);
         }
         if (accionocul.equals("m")) {
-            Color p = new Color(nombre2); 
-            p.setColorId(codigo2);
+            Color p = new Color(colorDescripcion); 
+            p.setColorId(colorId);
             ControladoresDAO.cColor.Modifica(p);
         }
         if (accionocul.equals("e")) {
-            Color p = new Color(nombre2); 
-            p.setColorId(codigo2);
+            Color p = new Color(colorDescripcion); 
+            p.setColorId(colorId);
             ControladoresDAO.cColor.Elimina(p);
         }        
         return SUCCESS;

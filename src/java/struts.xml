@@ -40,14 +40,14 @@
         
         <!-- action Coleccion-->
         <action name="ColeccionFiltro" class="Acciones.HomeColeccion" method="ColeccionFiltro" >
-            <result>/Vistas/pruebaCRUDprincipal.jsp</result> 
+            <result>/Vistas/CRUDcolecciones.jsp</result> 
         </action>
         <action name="ColeccionForm" class="Acciones.HomeColeccion" method="ColeccionForm">
-            <result>/Vistas/pruebaCRUDformulario.jsp</result>
+            <result>/Vistas/formularioCRUDcolecciones.jsp</result>
         </action>
         <action name="CrudActionColeccion" class="Acciones.HomeColeccion" method="CrudActionColeccion">
-            <result name="input">/Vistas/pruebaCRUDformulario.jsp</result>
-            <result name="error">/Vistas/pruebaCRUDformulario.jsp</result>
+            <result name="input">/Vistas/formularioCRUDcolecciones.jsp</result>
+            <result name="error">/Vistas/formularioCRUDcolecciones.jsp</result>
             <result type="chain">ColeccionFiltro</result> 
         </action>
         <action name="volverColeccion">
@@ -56,14 +56,14 @@
         
         <!-- action de Color-->
         <action name="ColorFiltro" class="Acciones.HomeColor" method="ColorFiltro" >
-            <result>/Vistas/pruebaCRUDprincipal.jsp</result> 
+            <result>/Vistas/CRUDcolores.jsp</result> 
         </action>
         <action name="ColorForm" class="Acciones.HomeColor" method="ColorForm">
-            <result>/Vistas/pruebaCRUDformulario.jsp</result>   
+            <result>/Vistas/formularioCRUDcolores.jsp</result>   
         </action>
         <action name="CrudActionColor" class="Acciones.HomeColor" method="CrudActionColor">
-            <result name="input">/Vistas/pruebaCRUDformulario.jsp</result>
-            <result name="error">/Vistas/pruebaCRUDformulario.jsp</result>
+            <result name="input">/Vistas/formularioCRUDcolores.jsp</result>
+            <result name="error">/Vistas/formularioCRUDcolores.jsp</result>
             <result type="chain">ColorFiltro</result> 
         </action>
         <action name="volverColor">
@@ -88,14 +88,14 @@
         
          <!-- action de Look-->
         <action name="LookFiltro" class="Acciones.HomeLook" method="LookFiltro" >
-            <result>/Vistas/pruebaCRUDprincipal.jsp</result> 
+            <result>/Vistas/CRUDlook.jsp</result> 
         </action>
         <action name="LookForm" class="Acciones.HomeLook" method="LookForm">
-            <result>/Vistas/pruebaCRUDformulario.jsp</result>   
+            <result>/Vistas/formularioCRUDlook.jsp</result>   
         </action>
         <action name="CrudActionLook" class="Acciones.HomeLook" method="CrudActionLook">
-            <result name="input">/Vistas/pruebaCRUDformulario.jsp</result>
-            <result name="error">/Vistas/pruebaCRUDformulario.jsp</result>
+            <result name="input">/Vistas/formularioCRUDlook.jsp</result>
+            <result name="error">/Vistas/formularioCRUDlook.jsp</result>
             <result type="chain">LookFiltro</result> 
         </action>
         <action name="volverLook">
@@ -104,14 +104,14 @@
         
         <!-- action de Marcas-->
         <action name="MarcasFiltro" class="Acciones.HomeMarcas" method="MarcasFiltro" >
-            <result>/Vistas/pruebaCRUDprincipal.jsp</result> 
+            <result>/Vistas/CRUDmarcas.jsp</result> 
         </action>
         <action name="MarcasForm" class="Acciones.HomeMarcas" method="MarcasForm">
-            <result>/Vistas/pruebaCRUDformulario.jsp</result>   
+            <result>/Vistas/formularioCRUDmarcas.jsp</result>   
         </action>
         <action name="CrudActionMarcas" class="Acciones.HomeMarcas" method="CrudActionMarcas">
-            <result name="input">/Vistas/pruebaCRUDformulario.jsp</result>
-            <result name="error">/Vistas/pruebaCRUDformulario.jsp</result>
+            <result name="input">/Vistas/formularioCRUDmarcas.jsp</result>
+            <result name="error">/Vistas/formularioCRUDmarcas.jsp</result>
             <result type="chain">MarcasFiltro</result> 
         </action>
         <action name="volverMarcas">
