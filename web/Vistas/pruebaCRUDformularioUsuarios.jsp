@@ -157,7 +157,7 @@
                         </td>
                         <td>
 
-                        <s:textfield name="roCaracteristicas2" readonly="true" ></s:textfield>
+                        <s:textfield name="t.roCaracteristicas" readonly="true" ></s:textfield>
 
                         </td>
                     </tr>

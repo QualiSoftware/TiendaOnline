@@ -27,7 +27,54 @@ public class HomeCesta extends ActionSupport {
     private String filtro;
     private Map sesion;
     private Double precio = 0.0;
+    private int clave;
+    private Cesta t;
+    private String cabeceraocul;
+    private String botonocul;
+    private String accionocul;
 
+    public int getClave() {
+        return clave;
+    }
+
+    public void setClave(int clave) {
+        this.clave = clave;
+    }
+
+    public Cesta getR() {
+        return t;
+    }
+
+    public void setR(Cesta t) {
+        this.t = t;
+    }
+
+    public String getCabeceraocul() {
+        return cabeceraocul;
+    }
+
+    public void setCabeceraocul(String cabeceraocul) {
+        this.cabeceraocul = cabeceraocul;
+    }
+
+    public String getBotonocul() {
+        return botonocul;
+    }
+
+    public void setBotonocul(String botonocul) {
+        this.botonocul = botonocul;
+    }
+
+    public String getAccionocul() {
+        return accionocul;
+    }
+
+    public void setAccionocul(String accionocul) {
+        this.accionocul = accionocul;
+    }
+    
+
+    
     public Double getPrecio() {
         return precio;
     }
@@ -131,7 +178,15 @@ public class HomeCesta extends ActionSupport {
          System.out.println(precio);
         return SUCCESS;
     }
-    
-    
+     public String EliminaCesta() throws Exception {
+     
+        t = ControladoresDAO.cCesta.RecuperaPorId(clave);
+            cantidad = t.getCestaUnidades();
+            accionocul = "e";
+            cabeceraocul = "Eliminar";
+            botonocul = "Eliminar";
+        
+        return SUCCESS;
+     }
     
 }

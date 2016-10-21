@@ -49,9 +49,8 @@
             <s:iterator var="a" value="lista_ropa_Cestas">
                 <tr>
                     <td>
-                        <s:a action="Usuario/RopaForm">
-                            <s:param name="accion" value="'e'"/>
-                            <s:param name="clave" value="#a.roId"/>
+                        <s:a action="Usuario/EliminaCesta">
+                            <s:param name="clave" value="#a.cestaId"/>
                             <i style="font-size: 20px" class="glyphicon glyphicon-trash"></i>
                         </s:a>
                     </td>
