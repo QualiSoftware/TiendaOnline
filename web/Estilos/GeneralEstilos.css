@@ -4,7 +4,7 @@ body {
 #ICreate{
     height: 75px;
     float: left;
-    
+
 }
 #idFiltrar{
     position: relative;
@@ -26,7 +26,7 @@ body {
     top: 10px;
     left: 2px;
     text-shadow: 2px 2px #888889;
-    
+
 }
 
 #contenido {
@@ -34,29 +34,29 @@ body {
     margin: 0px auto;
 }
 .txtcontenido{
-    
+
     width: 380px;
     height: 400px;
 }
 
 #masinformacion{
     position: absolute;
-		/*nos posicionamos en el centro del navegador*/
-		top:50%;
-		left:50%;
-		/*determinamos una anchura*/
-		width:400px;
-		/*indicamos que el margen izquierdo, es la mitad de la anchura*/
-		margin-left:-200px;
-		/*determinamos una altura*/
-		height:200px;
-		/*indicamos que el margen superior, es la mitad de la altura*/
-		margin-top:-100px;
-		border:1px solid #808080;
-		padding:5px;
-    
-    
-  
+    /*nos posicionamos en el centro del navegador*/
+    top:50%;
+    left:50%;
+    /*determinamos una anchura*/
+    width:400px;
+    /*indicamos que el margen izquierdo, es la mitad de la anchura*/
+    margin-left:-200px;
+    /*determinamos una altura*/
+    height:200px;
+    /*indicamos que el margen superior, es la mitad de la altura*/
+    margin-top:-100px;
+    border:1px solid #808080;
+    padding:5px;
+
+
+
     background-color: antiquewhite;
     overflow: scroll;
 
@@ -65,8 +65,8 @@ body {
 table {
     border: 1px solid;
     margin: auto;
-  
-    margin-top: 100px;
+
+    margin-top: 50px;
     padding: 10px;
 }
 
@@ -112,7 +112,7 @@ td, th {
     cursor: pointer;
 }
 @media only screen and (max-width: 500px) {
-  
+
     #txtfiltrar {width: 8.33%;}
     body {
         background-color: lightblue;
