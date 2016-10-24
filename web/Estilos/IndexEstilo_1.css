@@ -1,0 +1,45 @@
+
+
+#header {
+    text-align: center;
+    margin: 0 auto;
+    padding-top: 10px;
+    padding-bottom: 20px;
+    margin-top: 10px;
+    
+}
+#introduccion{
+    background-color: #cc0033;
+    color: white;
+    height: 5px;
+    font-size: 30px;
+}
+#marca{    
+    padding-top: 25px;    
+    font-family: fantasy;
+    font-size: 50px;
+}
+#logo{
+    width: 80px;
+    padding-left: 15px;
+}
+.linea{
+    clear:both;
+    background-color: #cc0033;
+    height: 2px;    
+}
+#titulo_Pagina{
+    margin-top: 20px;
+    padding-bottom: 5px;
+    font-size: 30px;
+    color: white;
+    background-color: #555;
+    font-weight: bold;
+}
+#descripcion_Pagina{
+    padding-top: 20px;
+    padding-bottom: 20px;
+    text-align: center;
+    font-size: 20px;
+    
+}
