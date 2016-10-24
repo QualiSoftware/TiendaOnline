@@ -17,24 +17,24 @@
         <script>
             $(document).ready(function() {
                $('#categoria').change(function(event) {
-                  var country = $("select#categoria").val();
-                  
-                  $.getJSON('ajaxAction', {
-                    countryName : country
-                  }, function(jsonResponse) {
-                    $('#ajaxResponse').text(jsonResponse.dummyMsg);
-                    var select = $('#subcategoria2');
-                    select.find('option').remove();
-                    $.each(jsonResponse.stateMap, function(key, value) {
-                      $('<option>').val(key).text(value).appendTo(select);
-                    });
-                  });
-                   
-                  });
-              
+                  usarAJAX();
+                });
             });
         </script>
         <script>
+            function usarAJAX (){
+                var country = $("select#categoria").val();
+                $.getJSON('ajaxAction', {
+                    countryName : country
+                    }, function(jsonResponse) {
+                    var select = $('#subcategoria2');
+                    select.find('option').remove();
+                    $.each(jsonResponse.stateMap, function(key, value) {
+                    $('<option>').val(key).text(value).appendTo(select);
+                    });
+              });
+            };
+                
             function Verificar() {
                 if (document.getElementById('accionocul').value === 'e') {
                     if (confirm("¿Seguro que desea borrar?")) {
@@ -313,7 +313,7 @@
 
                     <td>
                         <%
-                            if (request.getAttribute("accionocul") == "e"|| request.getAttribute("accionocul") == "c") {
+                            if (request.getAttribute("accionocul") == "e") {
                         %>
                         <s:textfield name="t.categoria.catDescripcion" readonly="true" ></s:textfield>
                         <%
@@ -332,16 +332,21 @@
                         </td>
                         <td>
                         <%
-                            if (request.getAttribute("accionocul") == "e"|| request.getAttribute("accionocul") == "c") {
+                        if (request.getAttribute("accionocul") == "e") {
                         %>
-                        <s:textfield name="t.subcategoria.subDescripcion" readonly="true" ></s:textfield>
+                            <s:textfield name="t.subcategoria.subDescripcion" readonly="true" ></s:textfield>
+                        <%
+                        }else  if (request.getAttribute("accionocul") == "a") {
+                        %>
+                            <s:select id="subcategoria2" name="subcategoria2" list="{'Seleccione Categoria'}" />
+                            <script>usarAJAX();</script>
                         <%
                         } else {
                         %>
                         <!--listValue="subDescripcion" 
-                                  listKey="subId" value="t.subcategoria.subId"-->
-                        <s:select id="subcategoria2" name="subcategoria2" list="{'Seleccione Categoria'}" />
-                        <div id="ajaxResponse"></div>
+                                  listKey="subId" value="t.subcategoria.subId"  list="{'Seleccione Categoria'}"-->
+                            <s:select id="subcategoria2" name="subcategoria2" list="lista_subcategoria"
+                             listValue="subDescripcion" listKey="subId" value="t.subcategoria.subId"/>
                         <%
                             }
                         %>
