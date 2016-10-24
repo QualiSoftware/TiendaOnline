@@ -20,9 +20,7 @@
                   usarAJAX();
                 });
             });
-        </script>
-        <script>
-            function usarAJAX (){
+            function usarAJAX (valor){
                 var country = $("select#categoria").val();
                 $.getJSON('ajaxAction', {
                     countryName : country
@@ -31,10 +29,10 @@
                     select.find('option').remove();
                     $.each(jsonResponse.stateMap, function(key, value) {
                     $('<option>').val(key).text(value).appendTo(select);
+                    $("#subcategoria2 option[value="+ valor +"]").attr("selected",true);
                     });
               });
             };
-                
             function Verificar() {
                 if (document.getElementById('accionocul').value === 'e') {
                     if (confirm("¿Seguro que desea borrar?")) {
@@ -336,17 +334,11 @@
                         %>
                             <s:textfield name="t.subcategoria.subDescripcion" readonly="true" ></s:textfield>
                         <%
-                        }else  if (request.getAttribute("accionocul") == "a") {
-                        %>
-                            <s:select id="subcategoria2" name="subcategoria2" list="{'Seleccione Categoria'}" />
-                            <script>usarAJAX();</script>
-                        <%
+                       
                         } else {
                         %>
-                        <!--listValue="subDescripcion" 
-                                  listKey="subId" value="t.subcategoria.subId"  list="{'Seleccione Categoria'}"-->
-                            <s:select id="subcategoria2" name="subcategoria2" list="lista_subcategoria"
-                             listValue="subDescripcion" listKey="subId" value="t.subcategoria.subId"/>
+                            <s:select id="subcategoria2" name="subcategoria2" list="{'Seleccione Categoria'}" />
+                            <script>usarAJAX(<s:property value="t.subcategoria.subId"></s:property>);</script>
                         <%
                             }
                         %>

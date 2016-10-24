@@ -26,6 +26,7 @@ public class cRopa {
         sql += " OR roFecha LIKE '%" + filtro + "%'";
         sql += " OR categoria.catDescripcion LIKE '%" + filtro + "%'";
         sql += " OR subcategoria.subDescripcion LIKE '%" + filtro + "%'";
+        sql += " ORDER BY categoria.catDescripcion";
         Query query = sesion.createQuery(sql);
         ArrayList<Ropa> lt = (ArrayList) query.list();
         return lt;

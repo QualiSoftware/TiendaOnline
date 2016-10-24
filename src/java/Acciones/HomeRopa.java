@@ -550,17 +550,17 @@ private String countryName;
             int num = 0;
             for(Ropa aux:ropaconid){
                 num = aux.getRoId(); 
-                System.out.println("num"+num);
+                //System.out.println("num"+num);
             }
             
             for(Ropa aux:ropaconid){
-                System.out.println("aux.getRoId()"+aux.getRoId());
+                //System.out.println("aux.getRoId()"+aux.getRoId());
                 if(aux.getRoId()>num){
                     idRopaAUsar = aux.getRoId();
                     num=idRopaAUsar;
                 }
             }
-            System.out.println("idropaausar"+idRopaAUsar);
+            //System.out.println("idropaausar"+idRopaAUsar);
             t.setRoId(idRopaAUsar);
             if(fotoAlta1 != null){
                 Fotos f1 = new Fotos(t,fotoAlta1);
