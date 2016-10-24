@@ -21,6 +21,8 @@
     <mapping resource="Modelos/Paises.hbm.xml"/>
     <mapping resource="Modelos/Look.hbm.xml"/>
     <mapping resource="Modelos/Subcategoria.hbm.xml"/>
+    <mapping resource="Modelos/FacturaDetalle.hbm.xml"/>
+    <mapping resource="Modelos/Facturas.hbm.xml"/>
     <mapping resource="Modelos/Tallas.hbm.xml"/>
     <mapping resource="Modelos/Clientela.hbm.xml"/>
   </session-factory>

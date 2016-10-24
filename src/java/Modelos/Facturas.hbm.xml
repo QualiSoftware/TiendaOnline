@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 24-oct-2016 21:24:43 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Modelos.Facturas" table="facturas" catalog="tienda_ropa" optimistic-lock="version">
+        <id name="facId" type="java.lang.Integer">
+            <column name="fac_id" />
+            <generator class="identity" />
+        </id>
+        <property name="facCodigo" type="string">
+            <column name="fac_codigo" length="30" not-null="true" />
+        </property>
+        <property name="facRazonsocial" type="string">
+            <column name="fac_razonsocial" length="100" not-null="true" />
+        </property>
+        <property name="facDireccion" type="string">
+            <column name="fac_direccion" length="100" not-null="true" />
+        </property>
+        <property name="facPoblacion" type="string">
+            <column name="fac_poblacion" length="30" not-null="true" />
+        </property>
+        <property name="facProvincia" type="string">
+            <column name="fac_provincia" length="30" not-null="true" />
+        </property>
+        <property name="facCp" type="string">
+            <column name="fac_cp" length="30" not-null="true" />
+        </property>
+        <property name="facPais" type="string">
+            <column name="fac_pais" length="30" not-null="true" />
+        </property>
+        <property name="facDni" type="string">
+            <column name="fac_dni" length="30" not-null="true" />
+        </property>
+        <property name="facDescuento" type="int">
+            <column name="fac_descuento" not-null="true" />
+        </property>
+        <property name="facFecha" type="timestamp">
+            <column name="fac_fecha" length="19" not-null="true" />
+        </property>
+        <property name="facIva" type="int">
+            <column name="fac_iva" not-null="true" />
+        </property>
+        <property name="facObservaciones" type="int">
+            <column name="fac_observaciones" not-null="true" />
+        </property>
+        <set name="facturaDetalles" table="factura_detalle" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="facd_fac_id" not-null="true" />
+            </key>
+            <one-to-many class="Modelos.FacturaDetalle" />
+        </set>
+    </class>
+</hibernate-mapping>

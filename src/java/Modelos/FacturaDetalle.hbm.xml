@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 24-oct-2016 21:24:43 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Modelos.FacturaDetalle" table="factura_detalle" catalog="tienda_ropa" optimistic-lock="version">
+        <id name="facdId" type="java.lang.Integer">
+            <column name="facd_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="facturas" class="Modelos.Facturas" fetch="select">
+            <column name="facd_fac_id" not-null="true" />
+        </many-to-one>
+        <property name="facdDescuento" type="double">
+            <column name="facd_descuento" precision="4" not-null="true" />
+        </property>
+        <property name="facdPrecio" type="double">
+            <column name="facd_precio" precision="8" not-null="true" />
+        </property>
+        <property name="facdTalla" type="int">
+            <column name="facd_talla" not-null="true" />
+        </property>
+        <property name="facdCantidad" type="int">
+            <column name="facd_cantidad" not-null="true" />
+        </property>
+        <property name="facdMarca" type="string">
+            <column name="facd_marca" length="30" not-null="true" />
+        </property>
+        <property name="facdClientela" type="string">
+            <column name="facd_clientela" length="30" not-null="true" />
+        </property>
+        <property name="facdCategoria" type="string">
+            <column name="facd_categoria" length="100" not-null="true" />
+        </property>
+        <property name="facdSubcategoria" type="string">
+            <column name="facd_subcategoria" length="100" not-null="true" />
+        </property>
+        <property name="facdColor" type="string">
+            <column name="facd_color" length="30" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>
