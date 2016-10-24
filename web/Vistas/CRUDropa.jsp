@@ -1,6 +1,7 @@
 <%-- 
-    Document   : Prueba
-    Author     : Laplaga
+    Document   : CRUDropa.jsp
+    Created on : 17-oct-2016
+    Author     : QualiSoftware
 --%>
 <%@page import="Modelos.Ropa"%>
 <%@taglib  prefix="s" uri="/struts-tags" %>

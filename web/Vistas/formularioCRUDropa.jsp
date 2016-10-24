@@ -1,7 +1,7 @@
 <%-- 
-    Document   : pruebaCRUDformulario
-    Created on : 01-oct-2016, 9:36:47
-    Author     : LaPlaga
+    Document   : formularioCRUDropa
+    Created on : 17-oct-2016
+    Author     : QualiSoftware
 --%>
 
 <%@taglib prefix="s" uri="/struts-tags" %>
