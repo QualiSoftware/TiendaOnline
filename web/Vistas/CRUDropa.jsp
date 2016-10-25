@@ -35,22 +35,86 @@
             <tr>
 
                 <th>Acciones</th>
-                <th>Id</th>
-                <th>Clientela</th>
-                <th>Colección</th>
-                <th>Color</th>
-                <th>Look</th>
-                <th>Marca</th>
-                <th>Talla</th>
-                <th>Descripción</th>
-                <th>Precio</th>
-                <th>Descuento</th>
-                <th>Características</th>
-                <th>Visible</th>
-                <th>Unidades</th>
-                <th>Fecha</th>
-                <th>Categoría</th>
-                <th>Subcategoría</th>
+                <th>
+                    <s:a action="RopaAdminFiltro">
+                        <s:param name="orden" value="'roId'"/>Id
+                    </s:a>
+                </th>
+                <th>
+                    <s:a action="RopaAdminFiltro">
+                        <s:param name="orden" value="'clientela.clientelaDescripcion'"/>Clientela
+                    </s:a>
+                </th>
+                <th>
+                    <s:a action="RopaAdminFiltro">
+                        <s:param name="orden" value="'coleccion.coleccionDescripcion'"/>Colección
+                    </s:a>
+                </th>
+                <th>
+                    <s:a action="RopaAdminFiltro">
+                        <s:param name="orden" value="'color.colorDescripcion'"/>Color
+                    </s:a>
+                </th>
+                <th>
+                    <s:a action="RopaAdminFiltro">
+                        <s:param name="orden" value="'look.lookDescripcion'"/>Look
+                    </s:a>
+                </th>
+                <th>
+                    <s:a action="RopaAdminFiltro">
+                        <s:param name="orden" value="'marcas.marcaNombre'"/>Marca
+                    </s:a>
+                </th>
+                <th>
+                    <s:a action="RopaAdminFiltro">
+                        <s:param name="orden" value="'tallas.tallaDescripcion'"/>Talla
+                    </s:a>
+                </th>
+                <th>
+                    <s:a action="RopaAdminFiltro">
+                        <s:param name="orden" value="'roDescripcion'"/>Descripción
+                    </s:a>
+                </th>
+                <th>
+                    <s:a action="RopaAdminFiltro">
+                        <s:param name="orden" value="'roPrecio'"/>Precio
+                    </s:a>
+                </th>
+                <th>
+                    <s:a action="RopaAdminFiltro">
+                        <s:param name="orden" value="'roDescuento'"/>Descuento
+                    </s:a>
+                </th>
+                <th>
+                    <s:a action="RopaAdminFiltro">
+                        <s:param name="orden" value="'roCaracteristicas'"/>Características
+                    </s:a>
+                </th>
+                <th>
+                    <s:a action="RopaAdminFiltro">
+                        <s:param name="orden" value="'roVisible'"/>Visible
+                    </s:a>
+                </th>
+                <th>
+                    <s:a action="RopaAdminFiltro">
+                        <s:param name="orden" value="'roUnidades'"/>Unidades
+                    </s:a>
+                </th>
+                <th>
+                    <s:a action="RopaAdminFiltro">
+                        <s:param name="orden" value="'roFecha'"/>Fecha
+                    </s:a>
+                </th>
+                <th>
+                    <s:a action="RopaAdminFiltro">
+                        <s:param name="orden" value="'categoria.catDescripcion'"/>Categoría
+                    </s:a>
+                </th>
+                <th>
+                    <s:a action="RopaAdminFiltro">
+                        <s:param name="orden" value="'subcategoria.subDescripcion'"/>Subcategoría
+                    </s:a>
+                </th>
                 <th>Fotos</th>
             </tr>
             <%String fondo = "fondoOscuro";%>

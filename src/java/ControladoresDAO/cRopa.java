@@ -10,8 +10,11 @@ public class cRopa {
 
     static Session sesion;
 
-    public static ArrayList<Ropa> RecuperaTodos(String filtro) {
+    public static ArrayList<Ropa> RecuperaTodos(String filtro, String orden) {
         sesion = (Session) NewHibernateUtil.getSession();
+        if(orden.equals("")){
+            orden = "categoria.catDescripcion";
+        }
         String sql = "From Ropa WHERE roDescripcion LIKE '%" + filtro + "%'";
         sql += " OR marcas.marcaNombre LIKE '%" + filtro + "%'";
         sql += " OR clientela.clientelaDescripcion LIKE '%" + filtro + "%'";
@@ -26,7 +29,7 @@ public class cRopa {
         sql += " OR roFecha LIKE '%" + filtro + "%'";
         sql += " OR categoria.catDescripcion LIKE '%" + filtro + "%'";
         sql += " OR subcategoria.subDescripcion LIKE '%" + filtro + "%'";
-        sql += " ORDER BY categoria.catDescripcion";
+        sql += " ORDER BY "+orden;
         Query query = sesion.createQuery(sql);
         ArrayList<Ropa> lt = (ArrayList) query.list();
         return lt;

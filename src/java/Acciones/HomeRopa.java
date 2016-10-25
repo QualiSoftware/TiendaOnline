@@ -27,6 +27,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.validation.SkipValidation;
 
 /**
@@ -45,6 +46,7 @@ public class HomeRopa extends ActionSupport {
     private String cabeceraocul;
     private String botonocul;
     private Ropa t;
+    private String orden;
     
 
     //variables específicas a cada controlador
@@ -82,7 +84,7 @@ public class HomeRopa extends ActionSupport {
     
     
     
-    
+      
 private Map<String, String> stateMap = new LinkedHashMap<String, String>();
 private String dummyMsg;
 //Parameter from Jquery
@@ -291,6 +293,14 @@ private String countryName;
         this.filtro = filtro;
     }
 
+    public String getOrden() {
+        return orden;
+    }
+
+    public void setOrden(String orden) {
+        this.orden = orden;
+    }
+
     public int getClave() {
         return clave;
     }
@@ -443,7 +453,10 @@ private String countryName;
         if (filtro == null) {
             filtro = "";
         }
-        lista_ropa = ControladoresDAO.cRopa.RecuperaTodos(filtro);
+        if(orden == null){
+            orden = "";
+        }
+        lista_ropa = ControladoresDAO.cRopa.RecuperaTodos(filtro,orden);
 
         return SUCCESS;
     }
@@ -545,7 +558,7 @@ private String countryName;
         }
         if (accionocul.equals("a")) {
             respuesta = ControladoresDAO.cRopa.Inserta(t);
-            ArrayList<Ropa> ropaconid = ControladoresDAO.cRopa.RecuperaTodos("");
+            ArrayList<Ropa> ropaconid = ControladoresDAO.cRopa.RecuperaTodos("","");
             int idRopaAUsar=0;
             int num = 0;
             for(Ropa aux:ropaconid){
@@ -562,6 +575,10 @@ private String countryName;
             }
             //System.out.println("idropaausar"+idRopaAUsar);
             t.setRoId(idRopaAUsar);
+            String rutaParaGuardarFoto = ServletActionContext.getRequest().getSession().getServletContext().getRealPath("/");
+            rutaParaGuardarFoto += "Imagenes\\"+t.getCategoria().getCatDescripcion()+"\\"+t.getSubcategoria().getSubDescripcion()+"\\";
+            System.out.println("La ruta donde deben guardarse los archivos de esta ropa es:");
+            System.out.println(rutaParaGuardarFoto);
             if(!fotoAlta1.equals("")){
                 Fotos f1 = new Fotos(t,fotoAlta1);
                 respuesta = ControladoresDAO.cFotos.Inserta(f1);
@@ -586,16 +603,16 @@ private String countryName;
         }
         return SUCCESS;
     }
-     public String ajaxAction() throws Exception{
-        Categoria c = ControladoresDAO.cCategorias.RecuperaPorId(Integer.parseInt(countryName));
-                   for(Subcategoria auxsubcat:c.getSubcategorias()){
-                       stateMap.put(""+auxsubcat.getSubId(), auxsubcat.getSubDescripcion());
-                       //System.out.println("id"+auxsubcat.getSubId()+"descri"+auxsubcat.getSubDescripcion());
-                       //System.out.println(stateMap);
-                   }
-         
-            dummyMsg = "Ajax action Triggered";
-        return SUCCESS;
-        }
+    public String ajaxAction() throws Exception{
+       Categoria c = ControladoresDAO.cCategorias.RecuperaPorId(Integer.parseInt(countryName));
+                  for(Subcategoria auxsubcat:c.getSubcategorias()){
+                      stateMap.put(""+auxsubcat.getSubId(), auxsubcat.getSubDescripcion());
+                      //System.out.println("id"+auxsubcat.getSubId()+"descri"+auxsubcat.getSubDescripcion());
+                      //System.out.println(stateMap);
+                  }
+
+           dummyMsg = "Ajax action Triggered";
+       return SUCCESS;
+    }
     
 }
