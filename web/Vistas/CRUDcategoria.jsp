@@ -12,7 +12,7 @@
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
         <link rel="stylesheet" href="../Estilos/GeneralEstilos.css"/>
-        <link href="../Estilos/IndexEstilo_1.css" rel="stylesheet" type="text/css"/>
+        
         <title>Categoría</title>
     </head>
     <body>
@@ -24,7 +24,7 @@
             <div id="titulo_Pagina">Categorías</div>
         </div>
         <div  class="linea"></div>
-        <div id="descripcion_Pagina">Aquí iría una pequeña descripción de lo que podrías hacer en esta página</div>
+        <div id="descripcion_Pagina">Aquí puede <span class="bold">añadir, modificar y eliminar </span>las categorías.</div>
         <div  class="linea"></div>
         <s:form action="CategoriaFiltro" theme="simple">
             <table border="1">
