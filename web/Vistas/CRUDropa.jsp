@@ -53,9 +53,10 @@
                 <th>Subcategoría</th>
                 <th>Fotos</th>
             </tr>
+            <%String fondo = "fondoOscuro";%>
             <s:iterator var="a" value="lista_ropa">
                 <tr>
-                    <td>
+                    <td class="<%out.println(fondo);%>">
                         <s:a action="RopaAdminForm">
                             <s:param name="clave" value="#a.roId"/>
                             <s:param name="accion" value="'m'"/>
@@ -68,60 +69,67 @@
                             <i style="font-size: 20px" class="glyphicon glyphicon-trash"></i>
                         </s:a>
                     </td>
-                    <td>
-                        <s:property value="#a.roId"/><br>
+                    <td class="<%out.println(fondo);%>">
+                        <s:property value="#a.roId"/>
                     </td>
-                    <td>
-                        <s:property value="#a.clientela.clientelaDescripcion"/><br>
+                    <td class="<%out.println(fondo);%>">
+                        <s:property value="#a.clientela.clientelaDescripcion"/>
                     </td>
-                    <td>
-                        <s:property value="#a.coleccion.coleccionDescripcion"/><br>
+                    <td class="<%out.println(fondo);%>">
+                        <s:property value="#a.coleccion.coleccionDescripcion"/>
                     </td>
-                    <td>
-                        <s:property value="#a.color.colorDescripcion"/><br>
+                    <td class="<%out.println(fondo);%>">
+                        <s:property value="#a.color.colorDescripcion"/>
                     </td>
-                    <td>
-                        <s:property value="#a.look.lookDescripcion"/><br>
+                    <td class="<%out.println(fondo);%>">
+                        <s:property value="#a.look.lookDescripcion"/>
                     </td>
-                    <td>
-                        <s:property value="#a.marcas.marcaNombre"/><br>
+                    <td class="<%out.println(fondo);%>">
+                        <s:property value="#a.marcas.marcaNombre"/>
                     </td>
-                    <td>
-                        <s:property value="#a.tallas.tallaDescripcion"/><br>
+                    <td class="<%out.println(fondo);%>">
+                        <s:property value="#a.tallas.tallaDescripcion"/>
                     </td>
-                    <td>
-                        <s:property value="#a.roDescripcion"/><br>
+                    <td class="<%out.println(fondo);%>">
+                        <s:property value="#a.roDescripcion"/>
                     </td>
-                    <td>
-                        <s:property value="#a.roPrecio"/><br>
+                    <td class="<%out.println(fondo);%>">
+                        <s:property value="#a.roPrecio"/>
                     </td>
-                    <td>
-                        <s:property value="#a.roDescuento"/><br>
+                    <td class="<%out.println(fondo);%>">
+                        <s:property value="#a.roDescuento"/>
                     </td>
-                    <td>
-                        <s:property value="#a.roCaracteristicas"/><br>
+                    <td class="<%out.println(fondo);%>">
+                        <s:property value="#a.roCaracteristicas"/>
                     </td>
-                    <td>
-                        <s:property value="#a.roVisible"/><br>
+                    <td class="<%out.println(fondo);%>">
+                        <s:property value="#a.roVisible"/>
                     </td>
-                    <td>
-                        <s:property value="roUnidades"/><br>
+                    <td class="<%out.println(fondo);%>">
+                        <s:property value="roUnidades"/>
                     </td>
-                    <td>
-                        <s:property value="#a.roFecha"/><br>
+                    <td class="<%out.println(fondo);%>">
+                        <s:property value="#a.roFecha"/>
                     </td>
-                    <td>
+                    <td class="<%out.println(fondo);%>">
                         <s:property value="#a.categoria.catDescripcion"/>
                     </td>
-                    <td>
+                    <td class="<%out.println(fondo);%>">
                         <s:property value="#a.subcategoria.subDescripcion"/>                        
                     </td>
-                    <td>
+                    <td class="<%out.println(fondo);%>">
                         <s:iterator var="f" value="fotoses">
                             <s:property value="fotosRuta"/>
                         </s:iterator>
                     </td>
                 </tr>
+                <%
+                    if(fondo.equals("fondoOscuro")){
+                        fondo="fondoClaro";
+                    }else{
+                        fondo="fondoOscuro";
+                    }
+                %>
             </s:iterator> 
         </table> 
     </body>

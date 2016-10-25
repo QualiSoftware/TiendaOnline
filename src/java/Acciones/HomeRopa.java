@@ -501,12 +501,12 @@ private String countryName;
         }
         if (accion.equals("m")) {
             accionocul = "m";
-            cabeceraocul = "Modificar";
+            cabeceraocul = "Modificación";
             botonocul = "Modificar";
         }
         if (accion.equals("e")) {
             accionocul = "e";
-            cabeceraocul = "Eliminar";
+            cabeceraocul = "Eliminación";
             botonocul = "Eliminar";
         }
         if (accion.equals("c")) {
@@ -562,15 +562,15 @@ private String countryName;
             }
             //System.out.println("idropaausar"+idRopaAUsar);
             t.setRoId(idRopaAUsar);
-            if(fotoAlta1 != null){
+            if(!fotoAlta1.equals("")){
                 Fotos f1 = new Fotos(t,fotoAlta1);
                 respuesta = ControladoresDAO.cFotos.Inserta(f1);
             }
-            if(fotoAlta2 != null){
+            if(!fotoAlta2.equals("")){
                 Fotos f2 = new Fotos(t,fotoAlta2);
                 respuesta = ControladoresDAO.cFotos.Inserta(f2);
             }
-            if(fotoAlta3 != null){
+            if(!fotoAlta3.equals("")){
                 Fotos f3 = new Fotos(t,fotoAlta3);
                 respuesta = ControladoresDAO.cFotos.Inserta(f3);
             }

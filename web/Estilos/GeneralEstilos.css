@@ -128,3 +128,9 @@ td, th {
     -webkit-transition:.6s;
     transition:.6s;
 }
+.fondoOscuro{
+    background-color: #fac896;
+}
+.fondoClaro{
+    background-color: white;
+}
