@@ -36,18 +36,66 @@
             </tr>
             <tr>
                 <th>Acciones</th>
-                <th>Código</th>
-                <th>Razón Social</th>
-                <th>Dirección</th>
-                <th>Población</th>
-                <th>Provincia</th>
-                <th>Código Postal</th>
-                <th>País</th>
-                <th>NIF / CIF</th>
-                <th>Descuento</th>
-                <th>Fecha</th>
-                <th>IVA</th>
-                <th>Observaciones</th>
+                <th>
+                    <s:a action="FacturasFiltro">
+                        <s:param name="orden" value="'facCodigo'"/>Código
+                    </s:a>
+                </th>
+                <th>
+                    <s:a action="FacturasFiltro">
+                        <s:param name="orden" value="'facRazonsocial'"/>Razón Social
+                    </s:a>
+                </th>
+                <th>
+                    <s:a action="FacturasFiltro">
+                        <s:param name="orden" value="'facDireccion'"/>Dirección
+                    </s:a>
+                </th>
+                <th>
+                    <s:a action="FacturasFiltro">
+                        <s:param name="orden" value="'facPoblacion'"/>Población
+                    </s:a>
+                </th>
+                <th>
+                    <s:a action="FacturasFiltro">
+                        <s:param name="orden" value="'facProvincia'"/>Provincia
+                    </s:a>
+                </th>
+                <th>
+                    <s:a action="FacturasFiltro">
+                        <s:param name="orden" value="'facCp'"/>Código Postal
+                    </s:a>
+                </th>
+                <th>
+                    <s:a action="FacturasFiltro">
+                        <s:param name="orden" value="'facPais'"/>País
+                    </s:a>
+                </th>
+                <th>
+                    <s:a action="FacturasFiltro">
+                        <s:param name="orden" value="'facDni'"/>NIF / CIF
+                    </s:a>
+                </th>
+                <th>
+                    <s:a action="FacturasFiltro">
+                        <s:param name="orden" value="'facDescuento'"/>Descuento
+                    </s:a>
+                </th>
+                <th>
+                    <s:a action="FacturasFiltro">
+                        <s:param name="orden" value="'facFecha'"/>Fecha
+                    </s:a>
+                </th>
+                <th>
+                    <s:a action="FacturasFiltro">
+                        <s:param name="orden" value="'facIva'"/>IVA
+                    </s:a>
+                </th>
+                <th>
+                    <s:a action="FacturasFiltro">
+                        <s:param name="orden" value="'facObservaciones'"/>Observaciones
+                    </s:a>
+                </th>
             </tr>
             <s:iterator var="a" value="lista_facturas">
                 <tr>
