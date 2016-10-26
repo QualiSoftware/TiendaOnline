@@ -1,5 +1,5 @@
 package Modelos;
-// Generated 24-oct-2016 21:24:41 by Hibernate Tools 4.3.1
+// Generated 26-oct-2016 12:35:57 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -24,14 +24,14 @@ public class Facturas  implements java.io.Serializable {
      private int facDescuento;
      private Date facFecha;
      private int facIva;
-     private int facObservaciones;
+     private String facObservaciones;
      private Set<FacturaDetalle> facturaDetalles = new HashSet<FacturaDetalle>(0);
 
     public Facturas() {
     }
 
 	
-    public Facturas(String facCodigo, String facRazonsocial, String facDireccion, String facPoblacion, String facProvincia, String facCp, String facPais, String facDni, int facDescuento, Date facFecha, int facIva, int facObservaciones) {
+    public Facturas(String facCodigo, String facRazonsocial, String facDireccion, String facPoblacion, String facProvincia, String facCp, String facPais, String facDni, int facDescuento, Date facFecha, int facIva, String facObservaciones) {
         this.facCodigo = facCodigo;
         this.facRazonsocial = facRazonsocial;
         this.facDireccion = facDireccion;
@@ -45,7 +45,7 @@ public class Facturas  implements java.io.Serializable {
         this.facIva = facIva;
         this.facObservaciones = facObservaciones;
     }
-    public Facturas(String facCodigo, String facRazonsocial, String facDireccion, String facPoblacion, String facProvincia, String facCp, String facPais, String facDni, int facDescuento, Date facFecha, int facIva, int facObservaciones, Set<FacturaDetalle> facturaDetalles) {
+    public Facturas(String facCodigo, String facRazonsocial, String facDireccion, String facPoblacion, String facProvincia, String facCp, String facPais, String facDni, int facDescuento, Date facFecha, int facIva, String facObservaciones, Set<FacturaDetalle> facturaDetalles) {
        this.facCodigo = facCodigo;
        this.facRazonsocial = facRazonsocial;
        this.facDireccion = facDireccion;
@@ -145,11 +145,11 @@ public class Facturas  implements java.io.Serializable {
     public void setFacIva(int facIva) {
         this.facIva = facIva;
     }
-    public int getFacObservaciones() {
+    public String getFacObservaciones() {
         return this.facObservaciones;
     }
     
-    public void setFacObservaciones(int facObservaciones) {
+    public void setFacObservaciones(String facObservaciones) {
         this.facObservaciones = facObservaciones;
     }
     public Set<FacturaDetalle> getFacturaDetalles() {

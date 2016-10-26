@@ -55,7 +55,7 @@
                 <span class="cambioFondo">Ropa</span> 
             </s:a>
             <s:a action="FacturasFiltro">
-                <span class="glyphicon glyphicon-plus"></span> Facturación
+                <span class="cambioFondo">Facturación</span>
             </s:a>
         </s:form>
     </body>

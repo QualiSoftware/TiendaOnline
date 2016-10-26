@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 24-oct-2016 21:24:43 by Hibernate Tools 4.3.1 -->
+<!-- Generated 26-oct-2016 12:35:58 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="Modelos.Facturas" table="facturas" catalog="tienda_ropa" optimistic-lock="version">
         <id name="facId" type="java.lang.Integer">
@@ -41,8 +41,8 @@
         <property name="facIva" type="int">
             <column name="fac_iva" not-null="true" />
         </property>
-        <property name="facObservaciones" type="int">
-            <column name="fac_observaciones" not-null="true" />
+        <property name="facObservaciones" type="string">
+            <column name="fac_observaciones" length="65535" not-null="true" />
         </property>
         <set name="facturaDetalles" table="factura_detalle" inverse="true" lazy="true" fetch="select">
             <key>

@@ -70,6 +70,22 @@
             <result type="redirect">ColorFiltro</result>
         </action>  
         
+        <!-- action de Facturas-->
+        <action name="FacturasFiltro" class="Acciones.HomeFacturas" method="FacturasFiltro" >
+            <result>/Vistas/CRUDfacturas.jsp</result> 
+        </action>
+        <action name="FacturasForm" class="Acciones.HomeFacturas" method="FacturasForm">
+            <result>/Vistas/formularioCRUDfacturas.jsp</result>   
+        </action>
+        <action name="CrudActionFacturas" class="Acciones.HomeFacturas" method="CrudActionFacturas">
+            <result name="input">/Vistas/formularioCRUDfacturas.jsp</result>
+            <result name="error">/Vistas/formularioCRUDfacturas.jsp</result>
+            <result type="chain">FacturasFiltro</result> 
+        </action>
+        <action name="volverFacturas">
+            <result type="redirect">FacturasFiltro</result>
+        </action> 
+        
         <!-- actions de Fotos -->
         <action name="FotosFiltro" class="Acciones.HomeFotos" method="FotosFiltro">
             <result>/Vistas/pruebaCRUDprincipal.jsp</result>           

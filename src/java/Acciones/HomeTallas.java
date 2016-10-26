@@ -183,11 +183,11 @@ public class HomeTallas extends ActionSupport {
 
             if(accion.equals("m")){
                 accionocul = "m";
-                cabeceraocul = "Modificar";
+                cabeceraocul = "Modificación";
                 botonocul = "Modificar";  
             }else{
                 accionocul = "e";
-                cabeceraocul = "Eliminar";
+                cabeceraocul = "Eliminación";
                 botonocul = "Eliminar";
             }
             
