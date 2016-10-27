@@ -14,16 +14,24 @@
         <title>Subcategorías</title>
     </head>
     <body>
+        <div id="header">
+            <div id="introduccion">
+            </div>
+            <div id="marca">Tienda Ropa <img src="../Imagenes/house_hangers.svg" alt="house_hangers" id="logo"/>
+            </div>
+            <div id="titulo_Pagina">Subcategorías</div>
+            <s:include value="menuAdministrador.jsp" />
+        </div>
+        <div  class="linea"></div>
+        <div id="descripcion_Pagina">Aquí puede <span class="bold">añadir, modificar y eliminar </span>las Subcategorías.</div>
+        <div  class="linea"></div>
         <s:form action="SubcategoriasFiltro" theme="simple">
         <table border="1">
             <tr>
                 <td>
                     Filtro : <s:textfield name="filtro" /><s:submit value="filtrar"></s:submit>
                 </td>
-                <td colspan="2">
-                    <s:a action="irPaginaAdmin">
-                        <i style="font-size: 20px;">Volver</i>
-                    </s:a>                            
+                <td colspan="2">                            
                     &nbsp;&nbsp;&nbsp;&nbsp;
                     <s:a action="SubcategoriasForm">
                         <s:param name="accion" value="'a'"/>
@@ -36,8 +44,9 @@
                 <th>Subcategoría</th>
                 <th>Pertenece a categoría</th>
             </tr>
+            <%String fondo = "fondoOscuro";%>
             <s:iterator var="a" value="lista_subcategorias">
-                <tr>
+                <tr class="<%out.println(fondo);%>">
                     <td>
                         <s:a action="SubcategoriasForm">
                             <s:param name="clave" value="#a.subId"/>
@@ -58,6 +67,13 @@
                         <s:property value="#a.categoria.catDescripcion"/>
                     </td>
                 </tr>
+                <%
+                    if(fondo.equals("fondoOscuro")){
+                        fondo="fondoClaro";
+                    }else{
+                        fondo="fondoOscuro";
+                    }
+                %>
             </s:iterator> 
         </table>
         </s:form>

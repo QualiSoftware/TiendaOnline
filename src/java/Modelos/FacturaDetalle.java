@@ -1,5 +1,5 @@
 package Modelos;
-// Generated 26-oct-2016 12:35:57 by Hibernate Tools 4.3.1
+// Generated 27-oct-2016 17:23:17 by Hibernate Tools 4.3.1
 
 
 
@@ -13,7 +13,7 @@ public class FacturaDetalle  implements java.io.Serializable {
      private Facturas facturas;
      private double facdDescuento;
      private double facdPrecio;
-     private int facdTalla;
+     private String facdTalla;
      private int facdCantidad;
      private String facdMarca;
      private String facdClientela;
@@ -24,7 +24,7 @@ public class FacturaDetalle  implements java.io.Serializable {
     public FacturaDetalle() {
     }
 
-    public FacturaDetalle(Facturas facturas, double facdDescuento, double facdPrecio, int facdTalla, int facdCantidad, String facdMarca, String facdClientela, String facdCategoria, String facdSubcategoria, String facdColor) {
+    public FacturaDetalle(Facturas facturas, double facdDescuento, double facdPrecio, String facdTalla, int facdCantidad, String facdMarca, String facdClientela, String facdCategoria, String facdSubcategoria, String facdColor) {
        this.facturas = facturas;
        this.facdDescuento = facdDescuento;
        this.facdPrecio = facdPrecio;
@@ -65,11 +65,11 @@ public class FacturaDetalle  implements java.io.Serializable {
     public void setFacdPrecio(double facdPrecio) {
         this.facdPrecio = facdPrecio;
     }
-    public int getFacdTalla() {
+    public String getFacdTalla() {
         return this.facdTalla;
     }
     
-    public void setFacdTalla(int facdTalla) {
+    public void setFacdTalla(String facdTalla) {
         this.facdTalla = facdTalla;
     }
     public int getFacdCantidad() {

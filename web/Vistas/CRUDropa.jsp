@@ -15,15 +15,23 @@
         <title>Ropa</title>
     </head>
     <body>
+        <div id="header">
+            <div id="introduccion">
+            </div>
+            <div id="marca">Tienda Ropa <img src="../Imagenes/house_hangers.svg" alt="house_hangers" id="logo"/>
+            </div>
+            <div id="titulo_Pagina">Ropas</div>
+            <s:include value="menuAdministrador.jsp" />
+        </div>
+        <div  class="linea"></div>
+        <div id="descripcion_Pagina">Aquí puede <span class="bold">añadir, modificar y eliminar </span>las ropas.</div>
+        <div  class="linea"></div>
         <table border="1">
             <tr>
                 <td colspan="18">
                     <s:form action="RopaAdminFiltro" theme="simple">
                         Filtro : <s:textfield name="filtro" /><s:submit value="filtrar"></s:submit>
-                    &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
-                    <s:a action="irPaginaAdmin">
-                        <i style="font-size: 20px;">Volver</i>
-                    </s:a>                            
+                    &nbsp;&nbsp;&nbsp;&nbsp;                            
                     &nbsp;&nbsp;&nbsp;&nbsp;
                         <s:a action="RopaAdminForm">
                             <s:param name="accion" value="'a'"/>
@@ -119,8 +127,8 @@
             </tr>
             <%String fondo = "fondoOscuro";%>
             <s:iterator var="a" value="lista_ropa">
-                <tr>
-                    <td class="<%out.println(fondo);%>">
+                <tr class="<%out.println(fondo);%>">
+                    <td>
                         <s:a action="RopaAdminForm">
                             <s:param name="clave" value="#a.roId"/>
                             <s:param name="accion" value="'m'"/>
@@ -133,55 +141,55 @@
                             <i style="font-size: 20px" class="glyphicon glyphicon-trash"></i>
                         </s:a>
                     </td>
-                    <td class="<%out.println(fondo);%>">
+                    <td>
                         <s:property value="#a.roId"/>
                     </td>
-                    <td class="<%out.println(fondo);%>">
+                    <td>
                         <s:property value="#a.clientela.clientelaDescripcion"/>
                     </td>
-                    <td class="<%out.println(fondo);%>">
+                    <td>
                         <s:property value="#a.coleccion.coleccionDescripcion"/>
                     </td>
-                    <td class="<%out.println(fondo);%>">
+                    <td>
                         <s:property value="#a.color.colorDescripcion"/>
                     </td>
-                    <td class="<%out.println(fondo);%>">
+                    <td>
                         <s:property value="#a.look.lookDescripcion"/>
                     </td>
-                    <td class="<%out.println(fondo);%>">
+                    <td>
                         <s:property value="#a.marcas.marcaNombre"/>
                     </td>
-                    <td class="<%out.println(fondo);%>">
+                    <td>
                         <s:property value="#a.tallas.tallaDescripcion"/>
                     </td>
-                    <td class="<%out.println(fondo);%>">
+                    <td>
                         <s:property value="#a.roDescripcion"/>
                     </td>
-                    <td class="<%out.println(fondo);%>">
+                    <td>
                         <s:property value="#a.roPrecio"/>
                     </td>
-                    <td class="<%out.println(fondo);%>">
+                    <td>
                         <s:property value="#a.roDescuento"/>
                     </td>
-                    <td class="<%out.println(fondo);%>">
+                    <td>
                         <s:property value="#a.roCaracteristicas"/>
                     </td>
-                    <td class="<%out.println(fondo);%>">
+                    <td>
                         <s:property value="#a.roVisible"/>
                     </td>
-                    <td class="<%out.println(fondo);%>">
+                    <td>
                         <s:property value="roUnidades"/>
                     </td>
-                    <td class="<%out.println(fondo);%>">
+                    <td>
                         <s:property value="#a.roFecha"/>
                     </td>
-                    <td class="<%out.println(fondo);%>">
+                    <td>
                         <s:property value="#a.categoria.catDescripcion"/>
                     </td>
-                    <td class="<%out.println(fondo);%>">
+                    <td>
                         <s:property value="#a.subcategoria.subDescripcion"/>                        
                     </td>
-                    <td class="<%out.println(fondo);%>">
+                    <td>
                         <s:iterator var="f" value="fotoses">
                             <s:property value="fotosRuta"/>
                         </s:iterator>

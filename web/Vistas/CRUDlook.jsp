@@ -12,19 +12,27 @@
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
         <link rel="stylesheet" href="../Estilos/GeneralEstilos.css"/>
-        <title>Look</title>
+        <title>Looks</title>
     </head>
     <body>
+        <div id="header">
+            <div id="introduccion">
+            </div>
+            <div id="marca">Tienda Ropa <img src="../Imagenes/house_hangers.svg" alt="house_hangers" id="logo"/>
+            </div>
+            <div id="titulo_Pagina">Looks</div>
+            <s:include value="menuAdministrador.jsp" />
+        </div>
+        <div  class="linea"></div>
+        <div id="descripcion_Pagina">Aquí puede <span class="bold">añadir, modificar y eliminar </span>los looks.</div>
+        <div  class="linea"></div>
         <s:form action="LookFiltro" theme="simple">
         <table border="1">
             <tr>
                 <td>
                     Filtro : <s:textfield name="filtro" /><s:submit value="filtrar"></s:submit>
                 </td>
-                <td>
-                    <s:a action="irPaginaAdmin">
-                        <i style="font-size: 20px;">Volver</i>
-                    </s:a>                            
+                <td>                            
                     &nbsp;&nbsp;&nbsp;&nbsp;
                     <s:a action="LookForm">
                         <s:param name="accion" value="'a'"/>
@@ -36,8 +44,9 @@
                 <th>Acciones</th>
                 <th>Look</th>
             </tr>
+            <%String fondo = "fondoOscuro";%>
             <s:iterator var="a" value="Lista_Look">
-                <tr>
+                <tr class="<%out.println(fondo);%>">
                     <td>
                         <s:a action="LookForm">
                             <s:param name="clave" value="#a.lookId"/>
@@ -55,6 +64,13 @@
                         <s:property value="#a.lookDescripcion"/><br>
                     </td>
                 </tr>
+                <%
+                    if(fondo.equals("fondoOscuro")){
+                        fondo="fondoClaro";
+                    }else{
+                        fondo="fondoOscuro";
+                    }
+                %>
             </s:iterator> 
         </table>
         </s:form>

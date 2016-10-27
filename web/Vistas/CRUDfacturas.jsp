@@ -15,16 +15,23 @@
         <title>Facturas</title>
     </head>
     <body>
+        <div id="header">
+            <div id="introduccion">
+            </div>
+            <div id="marca">Tienda Ropa <img src="../Imagenes/house_hangers.svg" alt="house_hangers" id="logo"/>
+            </div>
+            <div id="titulo_Pagina">Facturas</div>
+            <s:include value="menuAdministrador.jsp" />
+        </div>
+        <div  class="linea"></div>
+        <!--<div id="descripcion_Pagina">Aquí puede <span class="bold">ver </span>las facturas.</div>
+        <div  class="linea"></div>-->
         <s:form action="FacturasFiltro" theme="simple">
         <table border="1">
             <tr>
-                <td colspan="5">
-                    Filtro : <s:textfield name="filtro" /><s:submit value="filtrar"></s:submit>
-                </td>
-                <td colspan="8">
-                    <s:a action="irPaginaAdmin">
-                        <i style="font-size: 20px;">Volver</i>
-                    </s:a>                            
+                <td colspan="13">
+                    Filtro : <s:textfield name="filtro" /><s:submit value="filtrar"></s:submit>          
+                    &nbsp;&nbsp;&nbsp;&nbsp;                            
                     &nbsp;&nbsp;&nbsp;&nbsp;
                     <!--
                     <s:a action="FacturasForm">
@@ -97,15 +104,21 @@
                     </s:a>
                 </th>
             </tr>
+            <%String fondo = "fondoOscuro";%>
             <s:iterator var="a" value="lista_facturas">
-                <tr>
+                <tr class="<%out.println(fondo);%>">
                     <td>
+                        <s:a action="FacturaDetalleFiltro">
+                            <s:param name="clave" value="#a.facId"/>
+                            <s:param name="facCodigo" value="#a.facCodigo"/>
+                            <i style="font-size: 20px" class="glyphicon glyphicon-list-alt"></i>
+                        </s:a>
+                        <!-- lo dejo por las dudas que sea necesario modificar y/o eliminar facturas
                         <s:a action="FacturasForm">
                             <s:param name="clave" value="#a.facId"/>
                             <s:param name="accion" value="'m'"/>
                             <i style="font-size: 20px" class="glyphicon glyphicon-edit"></i>
                         </s:a>
-                        <!--
                         &nbsp;&nbsp;&nbsp;&nbsp;
                         <s:a action="FacturasForm">
                             <s:param name="accion" value="'e'"/>
@@ -151,6 +164,13 @@
                         <s:property value="#a.facObservaciones"/><br>
                     </td>
                 </tr>
+                <%
+                    if(fondo.equals("fondoOscuro")){
+                        fondo="fondoClaro";
+                    }else{
+                        fondo="fondoOscuro";
+                    }
+                %>
             </s:iterator> 
         </table>
         </s:form>

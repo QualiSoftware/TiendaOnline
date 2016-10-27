@@ -75,6 +75,12 @@
                 usuario
             </s:else>
         </h3></center>
+        <!--En esta página escribo el menú con struts y en las otras lo llamo con include desde el archivo
+        menuAdministrador.jsp pero al llamarlo la página menuAdministrador.jsp tiene que estar escrita en
+        HTML ya que si la escribo en Struts (copiando el código que tengo acá abajo) no funciona-->
+        
+    </body>
+       
     
-</body>
+
 </html>
