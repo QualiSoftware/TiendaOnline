@@ -1,4 +1,5 @@
-<form id="frm" name="frm" action="#" method="post">
+<nav>
+        <form id="frm" name="frm" action="#" method="post">
             <a href="/TiendaOnline/Vistas/CategoriaFiltro.action" class="cambioFondo">Categorías</a>
             <a href="/TiendaOnline/Vistas/ClientelaFiltro.action" class="cambioFondo">Clientelas</a>
             <a href="/TiendaOnline/Vistas/ColeccionFiltro.action" class="cambioFondo">Colecciones</a>
@@ -9,5 +10,5 @@
             <a href="/TiendaOnline/Vistas/TallasFiltro.action" class="cambioFondo">Tallas</a>
             <a href="/TiendaOnline/Vistas/RopaAdminFiltro.action" class="cambioFondo">Ropas</a>
             <a href="/TiendaOnline/Vistas/FacturasFiltro.action" class="cambioFondo">Facturas</a>
-            <a href="/TiendaOnline/Vistas/CerrarSesion.action">Cerrar sesión</a>
         </form>
+    </nav>
