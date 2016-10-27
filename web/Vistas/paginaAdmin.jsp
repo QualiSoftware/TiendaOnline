@@ -14,49 +14,67 @@
         <title>Página Administrador</title>
     </head>
     <body>
-        <center><h1>Bienvenido <s:property value="sesion.usuarioLogueado.usuNombre" /></h1>
+        <div id="header">
+            <div id="introduccion">
+            </div>
+            <div id="login">
+                <s:a action="CerrarSesion" cssStyle="padding: 5px 13px;"><span class="glyphicon glyphicon-lock" aria-hidden="true"></span> Cerrar sesión</s:a>
+                </div>
+                <div id="marca">Tienda Ropa <img src="../Imagenes/house_hangers.svg" alt="house_hangers" id="logo"/>
+                </div>
+
+                <div id="titulo_Pagina">Panel de Administración</div>
+
+                <div  class="linea"></div>
+                <div id="descripcion_Pagina">Navegue hasta la sección deseada para administrar su web.</div>
+
+                <div  class="linea"></div><br>
+                <nav>
+                <s:form id="frm" action="#" theme="simple">
+                    <s:a action="CategoriaFiltro" cssClass="cambioFondo">
+                        Categoria
+                    </s:a>
+
+                    <s:a action="ClientelaFiltro" cssClass="cambioFondo">
+                        Clientela
+                    </s:a>
+                    <s:a action="ColeccionFiltro" cssClass="cambioFondo">
+                        Colecciones 
+                    </s:a>
+                    <s:a action="ColorFiltro" cssClass="cambioFondo">
+                        Colores 
+                    </s:a>
+                    <s:a action="LookFiltro" cssClass="cambioFondo">
+                        Looks 
+                    </s:a>
+                    <s:a action="MarcasFiltro" cssClass="cambioFondo">
+                        Marcas 
+                    </s:a>
+                    <s:a action="SubcategoriasFiltro" cssClass="cambioFondo">
+                        Subcategorías 
+                    </s:a>
+                    <s:a action="TallasFiltro" cssClass="cambioFondo">
+                        Tallas 
+                    </s:a>
+                    <s:a action="RopaAdminFiltro" cssClass="cambioFondo">
+                        Ropa 
+                    </s:a>
+                    <s:a action="FacturasFiltro" cssClass="cambioFondo">
+                        Facturación
+                    </s:a>
+                </s:form>
+            </nav>
+        </div>
+    <center><h2>Bienvenido <s:property value="sesion.usuarioLogueado.usuNombre" /></h2>
         <!--Este h2 que pongo abajo es para tener un ejemplo de como evaluar si es administrador o no en un jsp-->
-        <h2>Tiene permisos de 
+        <h3>Tiene permisos de 
             <s:if test="sesion.usuarioLogueado.usuAdministrador == 1">
                 administrador
             </s:if>
             <s:else>
                 usuario
             </s:else>
-        </h2></center>
-        <s:form id="frm" action="#" theme="simple">
-            <s:a action="CerrarSesion" cssStyle="padding: 5px 13px;">Cerrar sesión</s:a>
-                <br/><br/>
-            <s:a action="CategoriaFiltro">
-                <span class="cambioFondo">categoria</span>
-            </s:a>
-            <s:a action="ClientelaFiltro">
-                <span class="cambioFondo">Clientela</span>
-            </s:a>
-            <s:a action="ColeccionFiltro">
-                <span class="cambioFondo">Colecciones</span> 
-            </s:a>
-            <s:a action="ColorFiltro">
-                <span class="cambioFondo">Colores</span> 
-            </s:a>
-            <s:a action="LookFiltro">
-                <span class="cambioFondo">Looks</span> 
-            </s:a>
-            <s:a action="MarcasFiltro">
-                <span class="cambioFondo">Marcas</span> 
-            </s:a>
-            <s:a action="SubcategoriasFiltro">
-                <span class="cambioFondo">Subcategorías</span> 
-            </s:a>
-            <s:a action="TallasFiltro">
-                <span class="cambioFondo">Tallas</span> 
-            </s:a>
-            <s:a action="RopaAdminFiltro">
-                <span class="cambioFondo">Ropa</span> 
-            </s:a>
-            <s:a action="FacturasFiltro">
-                <span class="cambioFondo">Facturación</span>
-            </s:a>
-        </s:form>
-    </body>
+        </h3></center>
+    
+</body>
 </html>
