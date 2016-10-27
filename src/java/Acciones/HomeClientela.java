@@ -121,7 +121,6 @@ public class HomeClientela extends ActionSupport {
     }
 
     public String ClientelaFiltro() throws Exception {
-         System.out.println("este es el filtro clientela  "+filtro);
         if (sesion==null) {
             sesion=ActionContext.getContext().getSession();
         }

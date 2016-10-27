@@ -24,14 +24,15 @@
                 usuario
             </s:else>
         </h2></center>
+        <!--En esta página escribo el menú con struts y en las otras lo llamo con include desde el archivo
+        menuAdministrador.jsp pero al llamarlo la página menuAdministrador.jsp tiene que estar escrita en
+        HTML ya que si la escribo en Struts (copiando el código que tengo acá abajo) no funciona-->
         <s:form id="frm" action="#" theme="simple">
-            <s:a action="CerrarSesion" cssStyle="padding: 5px 13px;">Cerrar sesión</s:a>
-                <br/><br/>
             <s:a action="CategoriaFiltro">
-                <span class="cambioFondo">categoria</span>
+                <span class="cambioFondo">Categorías</span>
             </s:a>
             <s:a action="ClientelaFiltro">
-                <span class="cambioFondo">Clientela</span>
+                <span class="cambioFondo">Clientelas</span>
             </s:a>
             <s:a action="ColeccionFiltro">
                 <span class="cambioFondo">Colecciones</span> 
@@ -52,11 +53,12 @@
                 <span class="cambioFondo">Tallas</span> 
             </s:a>
             <s:a action="RopaAdminFiltro">
-                <span class="cambioFondo">Ropa</span> 
+                <span class="cambioFondo">Ropas</span> 
             </s:a>
             <s:a action="FacturasFiltro">
-                <span class="cambioFondo">Facturación</span>
+                <span class="cambioFondo">Facturas</span>
             </s:a>
+            <s:a action="CerrarSesion">Cerrar sesión</s:a>
         </s:form>
     </body>
 </html>

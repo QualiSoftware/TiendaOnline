@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 26-oct-2016 12:35:58 by Hibernate Tools 4.3.1 -->
+<!-- Generated 27-oct-2016 17:23:19 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="Modelos.FacturaDetalle" table="factura_detalle" catalog="tienda_ropa" optimistic-lock="version">
         <id name="facdId" type="java.lang.Integer">
@@ -17,8 +17,8 @@
         <property name="facdPrecio" type="double">
             <column name="facd_precio" precision="8" not-null="true" />
         </property>
-        <property name="facdTalla" type="int">
-            <column name="facd_talla" not-null="true" />
+        <property name="facdTalla" type="string">
+            <column name="facd_talla" length="10" not-null="true" />
         </property>
         <property name="facdCantidad" type="int">
             <column name="facd_cantidad" not-null="true" />
