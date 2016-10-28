@@ -45,7 +45,9 @@
                 <th>Subcategoría</th>
                 <th>Fotos</th>
             </tr>
+
             <s:iterator var="a" value="lista_ropa">
+
                 <tr>
                     <td>
                         <s:a action="Usuario/RopaForm">

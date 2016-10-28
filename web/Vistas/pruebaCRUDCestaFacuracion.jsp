@@ -16,7 +16,7 @@
     <body>
          <table border="1">
             <tr>
-                <td colspan="13">
+                <td colspan="14">
                     <s:form action="Usuario/CestaFiltro" theme="simple">
                         Filtro : <s:textfield name="filtro" value=" " /><s:submit value="filtrar"></s:submit>                    
                     </s:form>
@@ -44,7 +44,7 @@
                 <th>Subcategoría</th>
                 <th>Cantidad</th>
                 <th>roPrecio</th>
-          
+                <th>Precio con Descuento</th>
             </tr>
             <s:iterator var="a" value="lista_ropa_Cestas">
                 <tr>
@@ -93,10 +93,15 @@
                     <td>
                         <s:property value="#a.ropa.roPrecio"/><br>
                     </td>
-                </tr>
+                    <td>
+                        <s:iterator value="lista_precio_descuento" status="stringStatus">
+                            <s:textfield name="lista_precio_descuento" value="%{[0].toString()}"/>
+                        </s:iterator>     
+                    </td>
+                </tr> 
             </s:iterator> 
                <tr>              
-                    <td colspan="13">
+                    <td colspan="14">
                         total
                     </td>
                     <td>

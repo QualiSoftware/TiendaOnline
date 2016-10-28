@@ -24,6 +24,7 @@ public class HomeCesta extends ActionSupport {
     private Integer cantidad;
     private Cesta c;
     private ArrayList<Cesta> lista_ropa_Cestas;
+    private ArrayList<String> lista_precio_descuento;
     private String filtro;
     private Map sesion;
     private Double precio = 0.0;
@@ -34,6 +35,16 @@ public class HomeCesta extends ActionSupport {
     private String accionocul;
     private String clientela;
     private Double precioEliminar = 0.0;
+
+    public ArrayList<String> getLista_precio_descuento() {
+        return lista_precio_descuento;
+    }
+
+    public void setLista_precio_descuento(ArrayList<String> lista_precio_descuento) {
+        this.lista_precio_descuento = lista_precio_descuento;
+    }
+    
+    
 
     public Double getPrecioEliminar() {
         return precioEliminar;
@@ -210,9 +221,13 @@ public class HomeCesta extends ActionSupport {
         }
         
         lista_ropa_Cestas = ControladoresDAO.cCesta.RecuperaTodos(filtro);
+        lista_precio_descuento = new ArrayList<String>();
         for(Cesta aux:lista_ropa_Cestas){
            precio +=  aux.getCestaUnidades()*(aux.getRopa().getRoPrecio()-aux.getRopa().getRoDescuento());
-            
+           lista_precio_descuento.add(""+aux.getCestaUnidades()*(aux.getRopa().getRoPrecio()-aux.getRopa().getRoDescuento()));
+        }
+        for(int i = 0; i<lista_precio_descuento.size();i++){
+            System.out.println(lista_precio_descuento.get(i));
         }
       
         return SUCCESS;
