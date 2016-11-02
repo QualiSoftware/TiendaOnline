@@ -9,12 +9,16 @@ public class cFacturas {
     
     static Session sesion;
     
-    public static List<Facturas> RecuperaTodos(String filtro, String orden){
+    public static List<Facturas> RecuperaTodos(String filtro, String orden, String fi, String ff){
         sesion = (Session) NewHibernateUtil.getSession();
         if(orden.equals("")){
             orden = "facCodigo";
         }
-        String sql = "From Facturas WHERE facRazonsocial like '%"+filtro+"%'";
+        String sql = "From Facturas WHERE ";
+        if(!fi.equals("") && !ff.equals("")){
+            sql += "facFecha >= '" + fi + "' AND facFecha <= '" + ff + "' AND (";
+        }
+        sql += "facRazonsocial like '%"+filtro+"%'";
         sql += " OR facCodigo like '%"+filtro+"%'";
         sql += " OR facDireccion like '%"+filtro+"%'";
         sql += " OR facPoblacion like '%"+filtro+"%'";
@@ -23,9 +27,11 @@ public class cFacturas {
         sql += " OR facPais like '%"+filtro+"%'";
         sql += " OR facDni like '%"+filtro+"%'";
         sql += " OR facDescuento like '%"+filtro+"%'";
-        sql += " OR facFecha like '%"+filtro+"%'";
         sql += " OR facIva like '%"+filtro+"%'";
         sql += " OR facObservaciones like '%"+filtro+"%'";
+        if(!fi.equals("") && !ff.equals("")){
+            sql += ")";
+        }
         sql += " ORDER BY "+orden;
         Query query = sesion.createQuery(sql);
         List<Facturas> lt = query.list();

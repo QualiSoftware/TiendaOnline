@@ -47,6 +47,8 @@ public class HomeRopa extends ActionSupport {
     private String botonocul;
     private Ropa t;
     private String orden;
+    private String fechaI;
+    private String fechaF;
     
 
     //variables específicas a cada controlador
@@ -457,6 +459,22 @@ private String countryName;
         this.fotoses2 = fotoses2;
     }
 
+    public String getFechaI() {
+        return fechaI;
+    }
+
+    public void setFechaI(String fechaI) {
+        this.fechaI = fechaI;
+    }
+
+    public String getFechaF() {
+        return fechaF;
+    }
+
+    public void setFechaF(String fechaF) {
+        this.fechaF = fechaF;
+    }
+
     @SkipValidation
     public String RopaFiltro() throws Exception {
 
@@ -476,14 +494,16 @@ private String countryName;
         if(orden == null){
             orden = "";
         }
+        if((fechaI == null) || (fechaF == null)){
+            fechaI = "";
+            fechaF = "";
+        }
         
-
         lista_ropa_Cestas = ControladoresDAO.cCesta.RecuperaTodos("1");
         System.out.println("lista de ropas por usuario "+lista_ropa_Cestas.size());
         totalcestaUsuario = lista_ropa_Cestas.size();
         System.out.println("lista de ropas por usuario "+totalcestaUsuario);
-        
-        lista_ropa = ControladoresDAO.cRopa.RecuperaTodos(filtro,orden);
+        lista_ropa = ControladoresDAO.cRopa.RecuperaTodos(filtro,orden,fechaI,fechaF);
         return SUCCESS;
     }
 
@@ -584,7 +604,7 @@ private String countryName;
         }
         if (accionocul.equals("a")) {
             respuesta = ControladoresDAO.cRopa.Inserta(t);
-            ArrayList<Ropa> ropaconid = ControladoresDAO.cRopa.RecuperaTodos("","");
+            ArrayList<Ropa> ropaconid = ControladoresDAO.cRopa.RecuperaTodos("","","","");
             int idRopaAUsar=0;
             int num = 0;
             for(Ropa aux:ropaconid){

@@ -25,6 +25,8 @@ public class HomeFacturas extends ActionSupport {
     private String cabeceraocul;
     private String botonocul;
     private String orden;
+    private String fechaI;
+    private String fechaF;
     
     //variables específicas a cada controlador
     private List<Facturas> lista_facturas;
@@ -72,6 +74,22 @@ public class HomeFacturas extends ActionSupport {
 
     public void setOrden(String orden) {
         this.orden = orden;
+    }
+
+    public String getFechaI() {
+        return fechaI;
+    }
+
+    public void setFechaI(String fechaI) {
+        this.fechaI = fechaI;
+    }
+
+    public String getFechaF() {
+        return fechaF;
+    }
+
+    public void setFechaF(String fechaF) {
+        this.fechaF = fechaF;
     }
     
     public String getFiltro() {
@@ -253,7 +271,11 @@ public class HomeFacturas extends ActionSupport {
         if(orden == null){
             orden = "";
         }
-        lista_facturas = ControladoresDAO.cFacturas.RecuperaTodos(filtro,orden);
+        if((fechaI == null) || (fechaF == null)){
+            fechaI = "";
+            fechaF = "";
+        }
+        lista_facturas = ControladoresDAO.cFacturas.RecuperaTodos(filtro,orden,fechaI,fechaF);
         return SUCCESS;
     }
 

@@ -23,7 +23,11 @@
                 </div>
             <div id="marca">Tienda Ropa <img src="../Imagenes/house_hangers.svg" alt="house_hangers" id="logo"/>
             </div>
-            <div id="titulo_Pagina">Detalle de factura <s:property value="facCodigo" /></div>
+            <div id="titulo_Pagina">
+                Detalle de factura <s:property value="facCodigo" /><br/>
+                Cliente <s:property value="facturas.facRazonsocial" />&nbsp;&nbsp;&nbsp;&nbsp;
+                Fecha <s:date name="facturas.facFecha" format="dd/MM/yyyy"/>
+            </div>
             <s:include value="menuAdministrador.jsp" />
         </div>
         <div  class="linea"></div>

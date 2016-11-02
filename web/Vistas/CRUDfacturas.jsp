@@ -6,10 +6,11 @@
 <%@taglib  prefix="s" uri="/struts-tags" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml">
     <head>
-        <meta charset="UTF-8">
-
+        <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
+        <link rel="stylesheet" type="text/css" href="../Calendar/1-simple-calendar/tcal.css" />
+        <script type="text/javascript" src="../Calendar/1-simple-calendar/tcal.js"></script>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
         <link rel="stylesheet" href="../Estilos/GeneralEstilos.css"/>
         <title>Facturas</title>
@@ -29,19 +30,20 @@
         <div  class="linea"></div>
         <!--<div id="descripcion_Pagina">Aquí puede <span class="bold">ver </span>las facturas.</div>
         <div  class="linea"></div>-->
-        <s:form action="FacturasFiltro" theme="simple">
         <table border="1">
             <tr>
                 <td colspan="13">
-                    Filtro : <s:textfield name="filtro" /><s:submit value="filtrar"></s:submit>          
-                    &nbsp;&nbsp;&nbsp;&nbsp;                            
-                    &nbsp;&nbsp;&nbsp;&nbsp;
-                    <!--
-                    <s:a action="FacturasForm">
-                        <s:param name="accion" value="'a'"/>
-                        <i style="font-size: 20px" class="glyphicon glyphicon-plus"></i>
-                    </s:a>
-                    -->
+                    <s:form action="FacturasFiltro" theme="simple">
+                        <s:label value=" Fecha desde " />
+                        <s:textfield name="fechaI" cssClass="tcal" />
+                        &nbsp;&nbsp;
+                        <s:label value="hasta " />
+                        <s:textfield name="fechaF" cssClass="tcal" />
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        Filtro por los demás campos: <s:textfield name="filtro" />
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <s:submit value="filtrar"></s:submit>
+                    </s:form>
                 </td>
             </tr>
             <tr>
@@ -158,7 +160,7 @@
                         <s:property value="#a.facDescuento"/><br>
                     </td>
                     <td>
-                        <s:property value="#a.facFecha"/><br>
+                        <s:date name="#a.facFecha" format="dd/MM/yyyy hh:mm" /><br>
                     </td>
                     <td>
                         <s:property value="#a.facIva"/><br>
@@ -176,6 +178,5 @@
                 %>
             </s:iterator> 
         </table>
-        </s:form>
     </body>
 </html>

@@ -10,12 +10,16 @@ public class cRopa {
 
     static Session sesion;
 
-    public static ArrayList<Ropa> RecuperaTodos(String filtro, String orden) {
+    public static ArrayList<Ropa> RecuperaTodos(String filtro, String orden, String fi, String ff) {
         sesion = (Session) NewHibernateUtil.getSession();
         if(orden.equals("")){
             orden = "categoria.catDescripcion";
         }
-        String sql = "From Ropa WHERE roDescripcion LIKE '%" + filtro + "%'";
+        String sql = "From Ropa WHERE ";
+        if(!fi.equals("") && !ff.equals("")){
+            sql += "roFecha >= '" + fi + "' AND roFecha <= '" + ff + "' AND (";
+        }
+        sql += "roDescripcion LIKE '%" + filtro + "%'";
         sql += " OR marcas.marcaNombre LIKE '%" + filtro + "%'";
         sql += " OR clientela.clientelaDescripcion LIKE '%" + filtro + "%'";
         sql += " OR look.lookDescripcion LIKE '%" + filtro + "%'";
@@ -26,9 +30,11 @@ public class cRopa {
         sql += " OR coleccion.coleccionDescripcion LIKE '%" + filtro + "%'";
         sql += " OR roCaracteristicas LIKE '%" + filtro + "%'";
         sql += " OR roUnidades LIKE '%" + filtro + "%'";
-        sql += " OR roFecha LIKE '%" + filtro + "%'";
         sql += " OR categoria.catDescripcion LIKE '%" + filtro + "%'";
         sql += " OR subcategoria.subDescripcion LIKE '%" + filtro + "%'";
+        if(!fi.equals("") && !ff.equals("")){
+            sql += ")";
+        }
         sql += " ORDER BY "+orden;
         Query query = sesion.createQuery(sql);
         ArrayList<Ropa> lt = (ArrayList) query.list();

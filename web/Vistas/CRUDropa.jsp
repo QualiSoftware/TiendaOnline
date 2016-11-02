@@ -7,9 +7,11 @@
 <%@taglib  prefix="s" uri="/struts-tags" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml">
     <head>
-        <meta charset="UTF-8">
+        <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
+        <link rel="stylesheet" type="text/css" href="../Calendar/1-simple-calendar/tcal.css" />
+        <script type="text/javascript" src="../Calendar/1-simple-calendar/tcal.js"></script>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
         <link rel="stylesheet" href="../Estilos/GeneralEstilos.css"/>
         <title>Ropa</title>
@@ -33,9 +35,17 @@
             <tr>
                 <td colspan="18">
                     <s:form action="RopaAdminFiltro" theme="simple">
-                        Filtro : <s:textfield name="filtro" /><s:submit value="filtrar"></s:submit>
-                    &nbsp;&nbsp;&nbsp;&nbsp;                            
-                    &nbsp;&nbsp;&nbsp;&nbsp;
+                        <s:label value=" Fecha desde " />
+                        <s:textfield name="fechaI" cssClass="tcal" />
+                        &nbsp;&nbsp;
+                        <s:label value="hasta " />
+                        <s:textfield name="fechaF" cssClass="tcal" />
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        Filtro por los demás campos: <s:textfield name="filtro" />
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <s:submit value="filtrar"></s:submit>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <s:a action="RopaAdminForm">
                             <s:param name="accion" value="'a'"/>
                             <i style="font-size: 20px" class="glyphicon glyphicon-plus"></i>
