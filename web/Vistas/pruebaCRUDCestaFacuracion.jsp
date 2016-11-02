@@ -16,11 +16,6 @@
     <body>
          <table border="1">
             <tr>
-                <td colspan="14">
-                    <s:form action="Usuario/CestaFiltro" theme="simple">
-                        Filtro : <s:textfield name="filtro" value=" " /><s:submit value="filtrar"></s:submit>                    
-                    </s:form>
-                </td>
                 <td>
                     <a href="volverRopa">
                             volver
@@ -94,9 +89,9 @@
                         <s:property value="#a.ropa.roPrecio"/><br>
                     </td>
                     <td>
-                        <s:iterator value="lista_precio_descuento" status="stringStatus">
+                       
                             <s:textfield name="lista_precio_descuento" value="%{[0].toString()}"/>
-                        </s:iterator>     
+                            
                     </td>
                 </tr> 
             </s:iterator> 

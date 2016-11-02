@@ -13,8 +13,10 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
         <link rel="stylesheet" href="../Estilos/GeneralEstilos.css"/>
         <title>PruebaCRUD</title>
+        
     </head>
     <body>
+        
         <table border="1">
             <tr>
                 <td colspan="13">
@@ -24,7 +26,7 @@
                 </td>
                 <td>
                     <s:form action="Usuario/CestaFiltro" theme="simple">
-                        <s:textfield type="hidden" value="1" name="filtro" /><s:submit value="cesta"></s:submit>                    
+                        <s:textfield type="hidden" value="1" name="filtro" /> <s:property value="totalcestaUsuario"/> <s:submit value="cesta"></s:submit>                    
                     </s:form>
                 </td>
             </tr>
@@ -54,6 +56,18 @@
                             <s:param name="accion" value="'c'"/>
                             <s:param name="clave" value="#a.roId"/>
                             <i style="font-size: 20px" class="glyphicon glyphicon-euro"></i>
+                        </s:a>
+                        <s:a action="Usuario/CrudActionCesta">
+                            <s:param name="accion" value="'c'"/>                          
+                            <s:param name="clave" value="#a.roId"/>
+                            <i style="font-size: 20px" class="glyphicon glyphicon-plus-sign"></i>
+                        </s:a>
+                        <s:a action="Usuario/CrudActionUsuariosCesta">
+                            <s:param name="accion" value="'c'"/>
+                            <s:param name="accionocul" value="'c'"/>
+                            <s:param name="cantidad" value="1"/>
+                            <s:param name="clave" value="#a.roId"/>
+                            <i style="font-size: 20px" class="glyphicon glyphicon-shopping-cart"></i>
                         </s:a>
                     </td>
                     <td>

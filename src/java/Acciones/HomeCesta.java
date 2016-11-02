@@ -36,6 +36,11 @@ public class HomeCesta extends ActionSupport {
     private String clientela;
     private Double precioEliminar = 0.0;
 
+
+
+    
+    
+
     public ArrayList<String> getLista_precio_descuento() {
         return lista_precio_descuento;
     }
@@ -183,7 +188,7 @@ public class HomeCesta extends ActionSupport {
             c = new Cesta();
             c.setCestaId(clave);
             c.setCestaUnidades(cantidad);
-            c.setRopa(ControladoresDAO.cRopa.RecuperaPorId(roId2));
+            c.setRopa(ControladoresDAO.cRopa.RecuperaPorId(clave));
             c.setUsuarios(ControladoresDAO.cUsuarios.RecuperaPorId(1));
             System.out.println(accionocul);
             if (accionocul.equals("e")) {
@@ -203,6 +208,33 @@ public class HomeCesta extends ActionSupport {
                 }
         return SUCCESS;
     }
+    public String CrudActionUsuariosCesta() throws Exception {
+        int respuesta;
+            c = new Cesta();
+            c.setCestaId(clave);
+            c.setCestaUnidades(cantidad);
+            c.setRopa(ControladoresDAO.cRopa.RecuperaPorId(clave));
+            c.setUsuarios(ControladoresDAO.cUsuarios.RecuperaPorId(1));
+            System.out.println(accionocul);
+            if (accionocul.equals("e")) {
+                if(cantidad > 0){
+                    respuesta = ControladoresDAO.cCesta.Modifica(c);
+                }else{
+                    respuesta = ControladoresDAO.cCesta.Elimina(c);
+                }
+                
+            }else{
+                respuesta = ControladoresDAO.cCesta.InsertaRopaCestaUsuario(c);  
+            }
+            lista_ropa_Cestas = ControladoresDAO.cCesta.RecuperaTodos("");
+
+                for(Cesta aux : lista_ropa_Cestas){
+                     precio +=  aux.getCestaUnidades()*(aux.getRopa().getRoPrecio()-aux.getRopa().getRoDescuento()); 
+                }
+               
+        return SUCCESS;
+    }
+    
     
      public String CestaFiltro() throws Exception {
         
@@ -229,6 +261,8 @@ public class HomeCesta extends ActionSupport {
         for(int i = 0; i<lista_precio_descuento.size();i++){
             System.out.println(lista_precio_descuento.get(i));
         }
+         System.out.println("lista cesta al completo "+lista_ropa_Cestas.size());
+         
       
         return SUCCESS;
     }

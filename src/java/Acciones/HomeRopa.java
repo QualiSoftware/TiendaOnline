@@ -81,6 +81,26 @@ public class HomeRopa extends ActionSupport {
     private String fotoAlta1;
     private String fotoAlta2;
     private String fotoAlta3;
+    private ArrayList<Cesta> lista_ropa_Cestas;
+    private int totalcestaUsuario = 0;
+
+    public int getTotalcestaUsuario() {
+        return totalcestaUsuario;
+    }
+
+    public void setTotalcestaUsuario(int totalcestaUsuario) {
+        this.totalcestaUsuario = totalcestaUsuario;
+    }
+
+    public ArrayList<Cesta> getLista_ropa_Cestas() {
+        return lista_ropa_Cestas;
+    }
+
+    public void setLista_ropa_Cestas(ArrayList<Cesta> lista_ropa_Cestas) {
+        this.lista_ropa_Cestas = lista_ropa_Cestas;
+    }
+    
+    
     
     
     
@@ -458,6 +478,10 @@ private String countryName;
         }
         lista_ropa = ControladoresDAO.cRopa.RecuperaTodos(filtro,orden);
 
+        lista_ropa_Cestas = ControladoresDAO.cCesta.RecuperaTodos("1");
+        System.out.println("lista de ropas por usuario "+lista_ropa_Cestas.size());
+        totalcestaUsuario = lista_ropa_Cestas.size();
+System.out.println("lista de ropas por usuario "+totalcestaUsuario);
         return SUCCESS;
     }
 

@@ -253,6 +253,12 @@
             <result name="input">/Vistas/pruebaCRUDformularioUsuarios.jsp</result>
             <result name="error">/Vistas/pruebaCRUDformularioUsuarios.jsp</result>
         </action>
+        <!-- añade directamente a cesta desde la pagina principal -->
+        <action name="CrudActionUsuariosCesta" class="Acciones.HomeCesta" method="CrudActionUsuariosCesta">
+            <result>/Vistas/pruebaCRUDprincipalUsuarios.jsp</result>
+            <result name="input">/Vistas/pruebaCRUDformularioUsuarios.jsp</result>
+            <result name="error">/Vistas/pruebaCRUDformularioUsuarios.jsp</result>
+        </action>
         <action name="volverRopa">
             <result type="redirect">RopaFiltro</result>
         </action>
