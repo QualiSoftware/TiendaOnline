@@ -476,12 +476,14 @@ private String countryName;
         if(orden == null){
             orden = "";
         }
-        lista_ropa = ControladoresDAO.cRopa.RecuperaTodos(filtro,orden);
+        
 
         lista_ropa_Cestas = ControladoresDAO.cCesta.RecuperaTodos("1");
         System.out.println("lista de ropas por usuario "+lista_ropa_Cestas.size());
         totalcestaUsuario = lista_ropa_Cestas.size();
-System.out.println("lista de ropas por usuario "+totalcestaUsuario);
+        System.out.println("lista de ropas por usuario "+totalcestaUsuario);
+        
+        lista_ropa = ControladoresDAO.cRopa.RecuperaTodos(filtro,orden);
         return SUCCESS;
     }
 
@@ -548,8 +550,8 @@ System.out.println("lista de ropas por usuario "+totalcestaUsuario);
         }
         if (accion.equals("c")) {
             accionocul = "c";
-            cabeceraocul = "Comprar";
-            botonocul = "Comprar";
+            cabeceraocul = "Añadir Cesta";
+            botonocul = "Añadir Cesta";
         }
 
         return SUCCESS;

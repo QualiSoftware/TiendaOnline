@@ -11,6 +11,11 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
         <link rel="stylesheet" href="../Estilos/GeneralEstilos.css"/>
+        <script>   
+            function Verificar() {
+                document.getElementById('frm').submit();
+            }
+        </script>
         <title>JSP Page</title>
     </head>
     <body>
@@ -89,9 +94,9 @@
                         <s:property value="#a.ropa.roPrecio"/><br>
                     </td>
                     <td>
-                       
-                            <s:textfield name="lista_precio_descuento" value="%{[0].toString()}"/>
-                            
+                        <s:iterator value="lista_precio_descuento">
+                            <s:property value="%{[0].toString()}"/>
+                        </s:iterator>
                     </td>
                 </tr> 
             </s:iterator> 
@@ -101,6 +106,15 @@
                     </td>
                     <td>
                         <s:property value="precio"/><br>
+                    </td>
+                </tr>
+                <tr>     
+                    <td colspan="14">   
+                    </td>
+                    <td >
+                        <s:a action="Usuario/FormalizaFactura">
+                            <i style="font-size: 20px" class="glyphicon glyphicon-euro"></i>
+                        </s:a>
                     </td>
                 </tr>
         </table> 

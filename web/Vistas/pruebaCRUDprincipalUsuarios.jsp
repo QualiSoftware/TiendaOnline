@@ -57,11 +57,9 @@
                             <s:param name="clave" value="#a.roId"/>
                             <i style="font-size: 20px" class="glyphicon glyphicon-euro"></i>
                         </s:a>
-                        <s:a action="Usuario/CrudActionCesta">
-                            <s:param name="accion" value="'c'"/>                          
-                            <s:param name="clave" value="#a.roId"/>
+
                             <i style="font-size: 20px" class="glyphicon glyphicon-plus-sign"></i>
-                        </s:a>
+
                         <s:a action="Usuario/CrudActionUsuariosCesta">
                             <s:param name="accion" value="'c'"/>
                             <s:param name="accionocul" value="'c'"/>
