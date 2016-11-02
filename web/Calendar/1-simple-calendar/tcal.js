@@ -14,7 +14,7 @@ var A_TCALCONF = {
 	'nextyear'   : 'Año siguiente',
 	'prevmonth'  : 'Mes anterior',
 	'nextmonth'  : 'Mes siguiente',
-	'format'     : 'Y-m-d' // 'd-m-Y', Y-m-d', 'l, F jS Y'
+	'format'     : 'd-m-Y' // 'd-m-Y', Y-m-d', 'l, F jS Y'
 };
 
 var A_TCALTOKENS = [

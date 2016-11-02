@@ -17,6 +17,17 @@ public class cRopa {
         }
         String sql = "From Ropa WHERE ";
         if(!fi.equals("") && !ff.equals("")){
+            String year;
+            String month;
+            String day;
+            year = fi.substring(6, 10);
+            month = fi.substring(3, 5);
+            day = fi.substring(0, 2);
+            fi = year+"-"+month+"-"+day;
+            year = ff.substring(6, 10);
+            month = ff.substring(3, 5);
+            day = ff.substring(0, 2);
+            ff = year+"-"+month+"-"+day;
             sql += "roFecha >= '" + fi + "' AND roFecha <= '" + ff + "' AND (";
         }
         sql += "roDescripcion LIKE '%" + filtro + "%'";
