@@ -253,6 +253,7 @@ public class HomeFacturaDetalle extends ActionSupport {
         if(filtro == null){
             filtro = "";
         }*/
+        facturas = ControladoresDAO.cFacturas.RecuperaPorId(Integer.parseInt(facCodigo));
         total = 0.0;
         lista_facturaDetalle = ControladoresDAO.cFacturaDetalle.RecuperaTodos(""+clave);
         for(FacturaDetalle fd:lista_facturaDetalle){
