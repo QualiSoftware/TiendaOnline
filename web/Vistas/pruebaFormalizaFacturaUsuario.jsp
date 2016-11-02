@@ -8,7 +8,9 @@
 <!DOCTYPE html>
 <html>
     <head>
+        
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
         <title>JSP Page</title>
     </head>
     <body>
@@ -87,7 +89,13 @@
                                 <s:property value="precio"/><br>
                             </td>
                         </tr>
-
+                        <tr>
+                            <td>
+                                <s:a action="Usuario/Pagar">
+                                    <i style="font-size: 20px" class="glyphicon glyphicon-euro"></i>
+                                </s:a>
+                            </td>
+                        </tr>                       
                     </table>
                 </td>
 

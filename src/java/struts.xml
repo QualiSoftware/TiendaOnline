@@ -259,8 +259,13 @@
             <result name="input">/Vistas/pruebaCRUDformularioUsuarios.jsp</result>
             <result name="error">/Vistas/pruebaCRUDformularioUsuarios.jsp</result>
         </action>
+        <!-- factura y formalizacion de pago -->
         <action name="FormalizaFactura" class="Acciones.HomeCesta" method="FormalizaFactura">
             <result>/Vistas/pruebaFormalizaFacturaUsuario.jsp</result>   
+        </action> 
+        <!-- pagar y envia correo -->
+        <action name="Pagar" class="Acciones.HomeCesta" method="Pagar">
+            <result>/Vistas/pruebaPagarCorreo.jsp</result>   
         </action> 
         
         <action name="volverRopa">

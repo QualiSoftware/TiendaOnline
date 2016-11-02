@@ -320,5 +320,11 @@ public class HomeCesta extends ActionSupport {
      }
      
      
+    public String Pagar() throws Exception {
+
+         
+        return SUCCESS;
+    }
+     
     
 }
