@@ -13,10 +13,11 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
         <link rel="stylesheet" href="../Estilos/GeneralEstilos.css"/>
         <title>PruebaCRUD</title>
-        
+
     </head>
     <body>
-        
+
+
         <table border="1">
             <tr>
                 <td colspan="13">
@@ -25,10 +26,67 @@
                     </s:form>
                 </td>
                 <td>
-                    <s:form action="Usuario/CestaFiltro" theme="simple">
-                        <s:textfield type="hidden" value="1" name="filtro" /> <s:property value="totalcestaUsuario"/> <s:submit value="cesta"></s:submit>                    
+                    <h1>Login</h1>
+                    <s:form action="LoginPrueba" theme="simple">
+                        <table>
+                            <tr>
+                                <td>
+                                    Email
+                                </td>
+                                <td>
+                                    <s:textfield name="usuario" />
+                                </td>
+                                <td>
+                                    <s:fielderror fieldName="usuario" theme="simple"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Contraseña
+                                </td>
+                                <td>
+                                    <s:password name="password" />
+                                </td>
+                                <td>
+                                    <s:fielderror fieldName="password" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td colspan="2">
+                                    <s:submit  value="login"/>                    
+                                </td>
+                            </tr>
+                              <s:if test="sesion.usuarioLogueado.usuId!=''">
+                                <tr>
+                               
+                                <td>
+                                    Bienvenido : <s:property value="sesion.usuarioLogueado.usuNombre"/>
+                                </td>
+                               
+                                    <td>
+                                        <s:a action="CerrarSesion" >Cerrar</s:a>
+                                    </td>
+                                
+                                </tr>
+                            </s:if>
+                        </table>
                     </s:form>
+                    <s:if test="sesion.usuarioLogueado.usuId!=1">
+                    <s:property value="mensajeError" />
+                        <s:form action="Usuario/CestaFiltro" theme="simple">
+                            <s:textfield type="hidden" value="1" name="filtro" /> <s:property value="totalcestaUsuario"/> <s:submit value="cesta"></s:submit>                    
+                        </s:form>
+                    </s:if>
                 </td>
+                <s:if test="sesion.usuarioLogueado.usuId==1">
+                    <td>
+                        <s:form action="Usuario/CestaFiltro" theme="simple">
+                             <s:submit value="Admin"></s:submit>                    
+                        </s:form>
+                    </td>
+                </s:if>
+                
             </tr>
             <tr>
 
@@ -58,7 +116,7 @@
                             <i style="font-size: 20px" class="glyphicon glyphicon-euro"></i>
                         </s:a>
 
-                            <i style="font-size: 20px" class="glyphicon glyphicon-plus-sign"></i>
+                        <i style="font-size: 20px" class="glyphicon glyphicon-plus-sign"></i>
 
                         <s:a action="Usuario/CrudActionUsuariosCesta">
                             <s:param name="accion" value="'c'"/>

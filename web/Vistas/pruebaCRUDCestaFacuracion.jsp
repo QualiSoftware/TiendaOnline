@@ -94,9 +94,7 @@
                         <s:property value="#a.ropa.roPrecio"/><br>
                     </td>
                     <td>
-                        <s:iterator value="lista_precio_descuento">
-                            <s:property value="%{[0].toString()}"/>
-                        </s:iterator>
+                        <s:property value="#a.cestaUnidades * (#a.ropa.roPrecio-#a.ropa.roDescuento)"/> 
                     </td>
                 </tr> 
             </s:iterator> 

@@ -226,10 +226,10 @@
         <action name="LoginPrueba" class="Acciones.UsuariosValidaciones" method="LoginPrueba">
             <result name="input">/Vistas/pruebaLoginParaBorrar.jsp</result>
             <result name="error">/Vistas/pruebaLoginParaBorrar.jsp</result>
-            <result type="redirect">RopaAdminFiltro</result>
+            <result type="redirect">Usuario/RopaFiltro</result>
         </action>
         <action name="CerrarSesion" class="Acciones.UsuariosValidaciones" method="CerrarSesion">
-            <result>/Vistas/pruebaLoginParaBorrar.jsp</result>
+            <result type="redirect">Usuario/RopaFiltro</result>
         </action>
         <!--Hasta acá es la prueba del login que se puede borrar-->
         

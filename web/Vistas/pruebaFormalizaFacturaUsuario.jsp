@@ -17,14 +17,14 @@
         <table>
             <tr>
                 <td>
-                    <s:property value="u.usuNombre"/><br>
-                    <s:property value="u.usuApellidos"/><br>
-                    <s:property value="u.usuEmail"/><br>
-                    <s:property value="u.usuDireccion"/><br>
-                    <s:property value="u.usuLocalidad"/><br>
-                    <s:property value="u.Provincias.proNombre"/><br>
-                    <s:property value="u.usuCp"/><br>
-                    <s:property value="u.usuTelefono"/><br>
+                    <s:property value="us.usuNombre"/><br>
+                    <s:property value="us.usuApellidos"/><br>
+                    <s:property value="us.usuEmail"/><br>
+                    <s:property value="us.usuDireccion"/><br>
+                    <s:property value="us.usuLocalidad"/><br>
+                    <s:property value="us.provincias.proNombre"/><br>
+                    <s:property value="us.usuCp"/><br>
+                    <s:property value="us.usuTelefono"/><br>
                 </td>
                 <td>
                     <table border="1">
@@ -74,11 +74,11 @@
                                     <s:property value="#a.ropa.roPrecio"/><br>
                                 </td>
                                 
-                                <s:iterator  value="lista_precio_descuento">
+                               
                                 <td>                                   
-                                    <s:property  value="%{[0].toString()}"/> 
+                                    <s:property  value="#a.cestaUnidades * (#a.ropa.roPrecio-#a.ropa.roDescuento)"/> 
                                 </td>
-                                 </s:iterator>
+                               
                             </tr>
                         </s:iterator>
                         <tr>              

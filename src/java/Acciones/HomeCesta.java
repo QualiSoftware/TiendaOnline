@@ -5,6 +5,7 @@
  */
 package Acciones;
 
+import ControladoresDAO.cMail;
 import ControladoresDAO.cUsuarios;
 import Modelos.Cesta;
 import Modelos.Usuarios;
@@ -14,32 +15,56 @@ import com.opensymphony.xwork2.ActionSupport;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
+import javax.activation.DataHandler;
+import javax.activation.DataSource;
+import javax.activation.FileDataSource;
+import javax.mail.Multipart;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
+import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
+import org.hibernate.Session;
+
+
 
 /**
  *
  * @author javiermartinroncero
  */
-
 public class HomeCesta extends ActionSupport {
-    
+
     private Integer roId2;
     private Integer cantidad;
     private Cesta c;
     private Cesta ce;
     private ArrayList<Cesta> lista_ropa_Cestas;
-    private ArrayList<String> lista_precio_descuento;
     private String filtro;
     private Map sesion;
     private Double precio = 0.0;
     private int clave;
     private Cesta t;
-    private Usuarios u;
+    private Usuarios us;
     private String cabeceraocul;
     private String botonocul;
     private String accionocul;
     private String clientela;
     private Double precioEliminar = 0.0;
+    private boolean aceptarpago;
+    private Usuarios u;
+    
 
+    public boolean isAceptarpago() {
+        return aceptarpago;
+    }
+
+    public void setAceptarpago(boolean aceptarpago) {
+        this.aceptarpago = aceptarpago;
+    }
+   
+
+    
     public Cesta getCe() {
         return ce;
     }
@@ -48,30 +73,15 @@ public class HomeCesta extends ActionSupport {
         this.ce = ce;
     }
 
-    public Usuarios getU() {
-        return u;
+    public Usuarios getUs() {
+        return us;
     }
 
-    public void setU(Usuarios u) {
-        this.u = u;
-    }
-    
-    
-
-
-
-    
-    
-
-    public ArrayList<String> getLista_precio_descuento() {
-        return lista_precio_descuento;
+    public void setUs(Usuarios us) {
+        this.us = us;
     }
 
-    public void setLista_precio_descuento(ArrayList<String> lista_precio_descuento) {
-        this.lista_precio_descuento = lista_precio_descuento;
-    }
-    
-    
+
 
     public Double getPrecioEliminar() {
         return precioEliminar;
@@ -80,8 +90,6 @@ public class HomeCesta extends ActionSupport {
     public void setPrecioEliminar(Double precioEliminar) {
         this.precioEliminar = precioEliminar;
     }
-    
-    
 
     public Cesta getT() {
         return t;
@@ -98,8 +106,6 @@ public class HomeCesta extends ActionSupport {
     public void setClientela(String clientela) {
         this.clientela = clientela;
     }
-    
-    
 
     public int getClave() {
         return clave;
@@ -140,9 +146,7 @@ public class HomeCesta extends ActionSupport {
     public void setAccionocul(String accionocul) {
         this.accionocul = accionocul;
     }
-    
 
-    
     public Double getPrecio() {
         return precio;
     }
@@ -150,8 +154,6 @@ public class HomeCesta extends ActionSupport {
     public void setPrecio(Double precio) {
         this.precio = precio;
     }
-    
-    
 
     public ArrayList<Cesta> getLista_ropa_Cestas() {
         return lista_ropa_Cestas;
@@ -176,8 +178,6 @@ public class HomeCesta extends ActionSupport {
     public void setSesion(Map sesion) {
         this.sesion = sesion;
     }
-    
-    
 
     public Integer getRoId2() {
         return roId2;
@@ -202,129 +202,158 @@ public class HomeCesta extends ActionSupport {
     public void setC(Cesta c) {
         this.c = c;
     }
-    
-    
-    
+
     public String CrudActionCesta() throws Exception {
+        if (sesion == null) {
+            sesion = ActionContext.getContext().getSession();
+        }
+        // para cuando tengamos sesión de usuario
+         try{
+         u = (Usuarios) sesion.get("usuarioLogueado");
+         }catch(Exception e){
+         return INPUT;
+         }
         int respuesta;
-            ce = new Cesta();
-            c = new Cesta();
-            c.setCestaId(clave);
-            c.setCestaUnidades(cantidad);
-            c.setRopa(ControladoresDAO.cRopa.RecuperaPorId(roId2));
-            c.setUsuarios(ControladoresDAO.cUsuarios.RecuperaPorId(1));
-            ce = ControladoresDAO.cCesta.RecuperaPorId(clave);
-            System.out.println(accionocul);
-            if (accionocul.equals("e")) {
-                System.out.println("unidades tiene "+ce.getCestaUnidades());
-                System.out.println("unidades tiene que tener "+cantidad);
-                if(cantidad == ce.getCestaUnidades()){
-                    respuesta = ControladoresDAO.cCesta.Elimina(c);
-                }else{  
-                    respuesta = ControladoresDAO.cCesta.Modifica(c);
-                }
+        ce = new Cesta();
+        c = new Cesta();
+        c.setCestaId(clave);
+        c.setCestaUnidades(cantidad);
+        c.setRopa(ControladoresDAO.cRopa.RecuperaPorId(roId2));
+        c.setUsuarios(ControladoresDAO.cUsuarios.RecuperaPorId(u.getUsuId()));
+        ce = ControladoresDAO.cCesta.RecuperaPorId(clave);
+        System.out.println(accionocul);
+        if (accionocul.equals("e")) {
+            System.out.println("unidades tiene " + ce.getCestaUnidades());
+            System.out.println("unidades tiene que tener " + cantidad);
+            if (cantidad == ce.getCestaUnidades()) {
+                respuesta = ControladoresDAO.cCesta.Elimina(c);
+            } else {
+                
+                respuesta = ControladoresDAO.cCesta.Modifica(c);
+            }
 //                if(cantidad > 0){
 //                    respuesta = ControladoresDAO.cCesta.Modifica(c);
 //                }else{
 //                    respuesta = ControladoresDAO.cCesta.Elimina(c);
 //                }
-                
-            }else{
-                respuesta = ControladoresDAO.cCesta.InsertaRopaCestaUsuario(c);  
-            }
-            lista_ropa_Cestas = ControladoresDAO.cCesta.RecuperaTodos("");
 
-                for(Cesta aux : lista_ropa_Cestas){
-                     precio +=  aux.getCestaUnidades()*(aux.getRopa().getRoPrecio()-aux.getRopa().getRoDescuento()); 
-                }
-        return SUCCESS;
-    }
-    public String CrudActionUsuariosCesta() throws Exception {
-        int respuesta;
-            c = new Cesta();
-            c.setCestaId(clave);
-            c.setCestaUnidades(cantidad);
-            c.setRopa(ControladoresDAO.cRopa.RecuperaPorId(clave));
-            c.setUsuarios(ControladoresDAO.cUsuarios.RecuperaPorId(1));
-            System.out.println(accionocul);
-            if (accionocul.equals("e")) {
-                if(cantidad > 0){
-                    respuesta = ControladoresDAO.cCesta.Modifica(c);
-                }else{
-                    respuesta = ControladoresDAO.cCesta.Elimina(c);
-                }
-                
-            }else{
-                respuesta = ControladoresDAO.cCesta.InsertaRopaCestaUsuario(c);  
-            }
-            lista_ropa_Cestas = ControladoresDAO.cCesta.RecuperaTodos("");
-
-                for(Cesta aux : lista_ropa_Cestas){
-                     precio +=  aux.getCestaUnidades()*(aux.getRopa().getRoPrecio()-aux.getRopa().getRoDescuento()); 
-                }
-               
-        return SUCCESS;
-    }
-    
-    
-     public String CestaFiltro() throws Exception {
+        } else {
+            respuesta = ControladoresDAO.cCesta.InsertaRopaCestaUsuario(c);
+        }
         
+        
+        lista_ropa_Cestas = ControladoresDAO.cCesta.RecuperaTodos(""+u.getUsuId());
+
+        for (Cesta aux : lista_ropa_Cestas) {
+            precio += aux.getCestaUnidades() * (aux.getRopa().getRoPrecio() - aux.getRopa().getRoDescuento());
+        }
+        return SUCCESS;
+    }
+
+    public String CrudActionUsuariosCesta() throws Exception {
         if (sesion == null) {
             sesion = ActionContext.getContext().getSession();
         }
-        /* para cuando tengamos sesión de usuario
+        // para cuando tengamos sesión de usuario
          try{
-         Usuarios u = (Usuarios) sesion.get("usuarioLogueado");
+         u = (Usuarios) sesion.get("usuarioLogueado");
          }catch(Exception e){
          return INPUT;
          }
-         */
+        int respuesta;
+        c = new Cesta();
+        c.setCestaId(clave);
+        c.setCestaUnidades(cantidad);
+        c.setRopa(ControladoresDAO.cRopa.RecuperaPorId(clave));
+        c.setUsuarios(ControladoresDAO.cUsuarios.RecuperaPorId(u.getUsuId()));
+        System.out.println(accionocul);
+        if (accionocul.equals("e")) {
+            if (cantidad > 0) {
+                respuesta = ControladoresDAO.cCesta.Modifica(c);
+            } else {
+                respuesta = ControladoresDAO.cCesta.Elimina(c);
+            }
+
+        } else {
+            respuesta = ControladoresDAO.cCesta.InsertaRopaCestaUsuario(c);
+        }
+        lista_ropa_Cestas = ControladoresDAO.cCesta.RecuperaTodos("");
+
+        for (Cesta aux : lista_ropa_Cestas) {
+            precio += aux.getCestaUnidades() * (aux.getRopa().getRoPrecio() - aux.getRopa().getRoDescuento());
+        }
+
+        return SUCCESS;
+    }
+
+    public String CestaFiltro() throws Exception {
+
+        if (sesion == null) {
+            sesion = ActionContext.getContext().getSession();
+        }
+        // para cuando tengamos sesión de usuario
+         try{
+         u = (Usuarios) sesion.get("usuarioLogueado");
+         }catch(Exception e){
+         return INPUT;
+         }
+       
         if (filtro == null) {
             filtro = "";
         }
+        System.out.println("usuario cesta "+u.getUsuId());
+        lista_ropa_Cestas = ControladoresDAO.cCesta.RecuperaTodos(""+u.getUsuId());
         
-        lista_ropa_Cestas = ControladoresDAO.cCesta.RecuperaTodos(filtro);
-        lista_precio_descuento = new ArrayList<String>();
-        for(Cesta aux:lista_ropa_Cestas){
-           precio +=  aux.getCestaUnidades()*(aux.getRopa().getRoPrecio()-aux.getRopa().getRoDescuento());
-           lista_precio_descuento.add(""+aux.getCestaUnidades()*(aux.getRopa().getRoPrecio()-aux.getRopa().getRoDescuento()));
+        for (Cesta aux : lista_ropa_Cestas) {
+            precio += aux.getCestaUnidades() * (aux.getRopa().getRoPrecio() - aux.getRopa().getRoDescuento());
+            
         }
-      
-        return SUCCESS;
-    }
-     public String CargaEliminaCesta() throws Exception {
-     
-        t = ControladoresDAO.cCesta.RecuperaPorId(clave);
-            clientela = t.getRopa().getClientela().getClientelaDescripcion();
-            clave = t.getCestaId();
-            roId2 = t.getRopa().getRoId();
-            precioEliminar = t.getCestaUnidades()* (t.getRopa().getRoPrecio()- t.getRopa().getRoDescuento());
-            cantidad = t.getCestaUnidades();
-            accionocul = "e";
-            cabeceraocul = "Eliminar";
-            botonocul = "Eliminar";
-        
-        return SUCCESS;
-     }
-     public String FormalizaFactura() throws Exception {
-         u = new Usuarios();
-         u = cUsuarios.RecuperaPorId(1);
-         lista_ropa_Cestas = ControladoresDAO.cCesta.RecuperaTodos("1");
-         lista_precio_descuento = new ArrayList<String>();
-        for(Cesta aux:lista_ropa_Cestas){
-           precio +=  aux.getCestaUnidades()*(aux.getRopa().getRoPrecio()-aux.getRopa().getRoDescuento());
-           lista_precio_descuento.add(""+aux.getCestaUnidades()*(aux.getRopa().getRoPrecio()-aux.getRopa().getRoDescuento()));
-        }
-         
-        return SUCCESS;
-     }
-     
-     
-    public String Pagar() throws Exception {
 
-         
         return SUCCESS;
     }
+
+    public String CargaEliminaCesta() throws Exception {
+
+        t = ControladoresDAO.cCesta.RecuperaPorId(clave);
+        clientela = t.getRopa().getClientela().getClientelaDescripcion();
+        clave = t.getCestaId();
+        roId2 = t.getRopa().getRoId();
+        precioEliminar = t.getCestaUnidades() * (t.getRopa().getRoPrecio() - t.getRopa().getRoDescuento());
+        cantidad = t.getCestaUnidades();
+        accionocul = "e";
+        cabeceraocul = "Eliminar";
+        botonocul = "Eliminar";
+
+        return SUCCESS;
+    }
+
+    public String FormalizaFactura() throws Exception {
+        
+        us = new Usuarios();
+        us = cUsuarios.RecuperaPorId(1);
+        //no quitar porque si no se inicializa no sale en jsp
+        System.out.println(us.getProvincias().getProNombre());
+        
+        lista_ropa_Cestas = ControladoresDAO.cCesta.RecuperaTodos("1");
      
+        for (Cesta aux : lista_ropa_Cestas) {
+            precio += aux.getCestaUnidades() * (aux.getRopa().getRoPrecio() - aux.getRopa().getRoDescuento());
+           
+        }
+
+        return SUCCESS;
+    }
+     public String Pagar() throws Exception {
+        cMail cmail = new cMail();
+        
+        aceptarpago = cmail.Pagar2();
+
+        return SUCCESS;
+    }
+    
+    
+
     
 }
+
+

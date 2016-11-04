@@ -7,10 +7,16 @@ package ControladoresDAO;
 
 import static ControladoresDAO.cRopa.sesion;
 import Modelos.Cesta;
+import static com.opensymphony.xwork2.Action.SUCCESS;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
+import javax.activation.DataHandler;
+import javax.activation.DataSource;
+import javax.activation.FileDataSource;
 import org.hibernate.Query;
 import org.hibernate.Session;
+
 
 /**
  *
@@ -20,6 +26,9 @@ public class cCesta {
     
     
      public static ArrayList<Cesta> RecuperaTodos(String filtro){
+        if(filtro.equals("")){
+            filtro = "0";
+        }
         sesion = (Session) NewHibernateUtil.getSession();
         Query query =sesion.createQuery("FROM Cesta WHERE usuarios.usuId LIKE'%"+filtro+"%'"); 
         ArrayList<Cesta> la = (ArrayList) query.list();
@@ -65,7 +74,7 @@ public class cCesta {
         } 
     }
         
-         public static int  Modifica(Cesta c){      
+    public static int  Modifica(Cesta c){      
         
         sesion = (Session) NewHibernateUtil.getSession();
         sesion.beginTransaction();
@@ -80,4 +89,6 @@ public class cCesta {
             return -1;
         } 
     }
+    
+   
 }

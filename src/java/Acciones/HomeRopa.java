@@ -49,6 +49,7 @@ public class HomeRopa extends ActionSupport {
     private String orden;
     private String fechaI;
     private String fechaF;
+    private Usuarios u;
     
 
     //variables específicas a cada controlador
@@ -477,17 +478,28 @@ private String countryName;
 
     @SkipValidation
     public String RopaFiltro() throws Exception {
-
+        
         if (sesion == null) {
             sesion = ActionContext.getContext().getSession();
         }
-        /* para cuando tengamos sesión de usuario
-         try{
-         Usuarios u = (Usuarios) sesion.get("usuarioLogueado");
-         }catch(Exception e){
-         return INPUT;
-         }
-         */
+        String usi = "";
+        // para cuando tengamos sesión de usuario
+        System.out.println("sdfsdgsdfkgjkfgfdipjgsidpfi "+sesion.get("usuarioLogueado"));
+        if(sesion.get("usuarioLogueado") != null){
+            if(!sesion.get("usuarioLogueado").equals("")){
+            System.out.println("sesiisisiisisis"+sesion.get("usuarioLogueado"));
+            try{
+                u = (Usuarios) sesion.get("usuarioLogueado");
+                usi =""+ u.getUsuId();
+                
+            }catch(Exception e){
+                System.out.println(e.getMessage());
+            }
+        }
+        }
+        
+      
+        
         if (filtro == null) {
             filtro = "";
         }
@@ -498,11 +510,9 @@ private String countryName;
             fechaI = "";
             fechaF = "";
         }
-        
-        lista_ropa_Cestas = ControladoresDAO.cCesta.RecuperaTodos("1");
-        System.out.println("lista de ropas por usuario "+lista_ropa_Cestas.size());
+        System.out.println("ususususuuususu "+usi);
+        lista_ropa_Cestas = ControladoresDAO.cCesta.RecuperaTodos(usi);
         totalcestaUsuario = lista_ropa_Cestas.size();
-        System.out.println("lista de ropas por usuario "+totalcestaUsuario);
         lista_ropa = ControladoresDAO.cRopa.RecuperaTodos(filtro,orden,fechaI,fechaF);
         return SUCCESS;
     }
