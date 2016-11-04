@@ -87,6 +87,17 @@ public class HomeRopa extends ActionSupport {
     private ArrayList<Cesta> lista_ropa_Cestas;
     private int totalcestaUsuario = 0;
     private String usi;
+    private Integer cantidad;
+
+    public Integer getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(Integer cantidad) {
+        this.cantidad = cantidad;
+    }
+    
+    
 
     public Usuarios getU() {
         return u;
@@ -598,6 +609,7 @@ private String countryName;
             botonocul = "Eliminar";
         }
         if (accion.equals("c")) {
+            cantidad = 1;
             accionocul = "c";
             cabeceraocul = "Añadir Cesta";
             botonocul = "Añadir Cesta";

@@ -351,10 +351,12 @@
                         </td>
                         <td>
 
-                        
-                        <s:textfield type="number"   name="cantidad" minimumIntegerDigits="1"></s:textfield>
-
-
+                        <s:if test="cantidad!=''">
+                            <s:textfield type="number"  min="1" max="10" name="cantidad"></s:textfield>
+                        </s:if>
+                            <s:else>
+                                <s:textfield type="number" value="1"  min="1" max="10" name="cantidad"></s:textfield>
+                            </s:else>
                         </td>
                     </tr>
                     <tr>
