@@ -530,7 +530,10 @@ private String countryName;
         }
         System.out.println("ususususuuususu "+usi);
         lista_ropa_Cestas = ControladoresDAO.cCesta.RecuperaTodos(usi);
-        totalcestaUsuario = lista_ropa_Cestas.size();
+        for(Cesta caux:lista_ropa_Cestas){
+            totalcestaUsuario += caux.getCestaUnidades();
+        }
+        //totalcestaUsuario = lista_ropa_Cestas.size();
         lista_ropa = ControladoresDAO.cRopa.RecuperaTodos(filtro,orden,fechaI,fechaF);
         return SUCCESS;
     }
