@@ -3,12 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Applications/MAMP/htdocs/TiendaOnline/web/Vistas/Home.jsp</file>
-            <file>file:/Applications/MAMP/htdocs/TiendaOnline/src/java/Acciones/HomeRopa.java</file>
-            <file>file:/Applications/MAMP/htdocs/TiendaOnline/src/java/Acciones/HomeCesta.java</file>
-            <file>file:/Applications/MAMP/htdocs/TiendaOnline/src/java/struts.xml</file>
-            <file>file:/Applications/MAMP/htdocs/TiendaOnline/web/Vistas/pruebaCRUDprincipalUsuarios.jsp</file>
-            <file>file:/Applications/MAMP/htdocs/TiendaOnline/src/java/ControladoresDAO/cCesta.java</file>
+            <file>file:/C:/Users/Damian/Documents/NetBeansProjects/TiendaOnline/TiendaOnline/src/java/struts.xml</file>
+            <file>file:/C:/Users/Damian/Documents/NetBeansProjects/TiendaOnline/TiendaOnline/web/Vistas/FacturaPDF.jsp</file>
+            <file>file:/C:/Users/Damian/Documents/NetBeansProjects/TiendaOnline/TiendaOnline/web/Vistas/CRUDfacturas.jsp</file>
+            <file>file:/C:/Users/Damian/Documents/NetBeansProjects/TiendaOnline/TiendaOnline/web/Vistas/pruebaLoginParaBorrar.jsp</file>
         </group>
     </open-files>
 </project-private>

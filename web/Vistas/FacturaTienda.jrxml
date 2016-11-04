@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="java" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1d00e3b9-5562-41fe-9540-197555248f3a">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     facturas.`fac_id` AS facturas_fac_id,
+     facturas.`fac_codigo` AS facturas_fac_codigo,
+     facturas.`fac_razonsocial` AS facturas_fac_razonsocial,
+     facturas.`fac_direccion` AS facturas_fac_direccion,
+     facturas.`fac_poblacion` AS facturas_fac_poblacion,
+     facturas.`fac_provincia` AS facturas_fac_provincia,
+     facturas.`fac_cp` AS facturas_fac_cp,
+     facturas.`fac_pais` AS facturas_fac_pais,
+     facturas.`fac_dni` AS facturas_fac_dni,
+     facturas.`fac_descuento` AS facturas_fac_descuento,
+     facturas.`fac_fecha` AS facturas_fac_fecha,
+     facturas.`fac_iva` AS facturas_fac_iva,
+     facturas.`fac_observaciones` AS facturas_fac_observaciones,
+     factura_detalle.`facd_id` AS factura_detalle_facd_id,
+     factura_detalle.`facd_fac_id` AS factura_detalle_facd_fac_id,
+     factura_detalle.`facd_descuento` AS factura_detalle_facd_descuento,
+     factura_detalle.`facd_precio` AS factura_detalle_facd_precio,
+     factura_detalle.`facd_talla` AS factura_detalle_facd_talla,
+     factura_detalle.`facd_cantidad` AS factura_detalle_facd_cantidad,
+     factura_detalle.`facd_marca` AS factura_detalle_facd_marca,
+     factura_detalle.`facd_clientela` AS factura_detalle_facd_clientela,
+     factura_detalle.`facd_categoria` AS factura_detalle_facd_categoria,
+     factura_detalle.`facd_subcategoria` AS factura_detalle_facd_subcategoria,
+     factura_detalle.`facd_color` AS factura_detalle_facd_color
+FROM
+     `facturas` facturas INNER JOIN `factura_detalle` factura_detalle ON facturas.`fac_id` = factura_detalle.`facd_fac_id`]]>
+	</queryString>
+	<field name="facturas_fac_id" class="java.lang.Integer"/>
+	<field name="facturas_fac_codigo" class="java.lang.String"/>
+	<field name="facturas_fac_razonsocial" class="java.lang.String"/>
+	<field name="facturas_fac_direccion" class="java.lang.String"/>
+	<field name="facturas_fac_poblacion" class="java.lang.String"/>
+	<field name="facturas_fac_provincia" class="java.lang.String"/>
+	<field name="facturas_fac_cp" class="java.lang.String"/>
+	<field name="facturas_fac_pais" class="java.lang.String"/>
+	<field name="facturas_fac_dni" class="java.lang.String"/>
+	<field name="facturas_fac_descuento" class="java.lang.Integer"/>
+	<field name="facturas_fac_fecha" class="java.sql.Timestamp"/>
+	<field name="facturas_fac_iva" class="java.lang.Integer"/>
+	<field name="facturas_fac_observaciones" class="java.lang.String"/>
+	<field name="factura_detalle_facd_id" class="java.lang.Integer"/>
+	<field name="factura_detalle_facd_fac_id" class="java.lang.Integer"/>
+	<field name="factura_detalle_facd_descuento" class="java.lang.Double"/>
+	<field name="factura_detalle_facd_precio" class="java.lang.Double"/>
+	<field name="factura_detalle_facd_talla" class="java.lang.String"/>
+	<field name="factura_detalle_facd_cantidad" class="java.lang.Integer"/>
+	<field name="factura_detalle_facd_marca" class="java.lang.String"/>
+	<field name="factura_detalle_facd_clientela" class="java.lang.String"/>
+	<field name="factura_detalle_facd_categoria" class="java.lang.String"/>
+	<field name="factura_detalle_facd_subcategoria" class="java.lang.String"/>
+	<field name="factura_detalle_facd_color" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="223" y="41" width="100" height="20" uuid="ee431b04-4ba1-47ca-80eb-bf225b306c90"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Factura]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="2" width="100" height="20" uuid="77876520-d87b-4fd5-97ca-63fd086526e8"/>
+				<text><![CDATA[facturas_fac_codigo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="123" y="2" width="100" height="20" uuid="4e47a64f-7565-4b45-a33f-8a76290c1890"/>
+				<text><![CDATA[facturas_fac_razonsocial]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="304" y="2" width="100" height="20" uuid="b2a37765-f686-490c-ba51-fbe8f29aa0d2"/>
+				<text><![CDATA[factura_detalle_facd_marca]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="442" y="0" width="100" height="20" uuid="88e97f14-e29a-4125-ad57-1e898e25c78b"/>
+				<text><![CDATA[factura_detalle_facd_precio]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="100" height="20" uuid="efb534cd-d5cc-4723-96d2-0a21c0389d0e"/>
+				<textFieldExpression><![CDATA[$F{facturas_fac_codigo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="123" y="0" width="100" height="20" uuid="e17c1ebb-a2f5-4ec7-9ce3-1088087cae61"/>
+				<textFieldExpression><![CDATA[$F{facturas_fac_razonsocial}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="442" y="0" width="100" height="20" uuid="6ed01ede-e1c7-495f-889d-8b61e864559a"/>
+				<textFieldExpression><![CDATA[$F{factura_detalle_facd_precio}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="304" y="0" width="100" height="20" uuid="0f5559da-75ad-4946-90f1-51193e57c401"/>
+				<textFieldExpression><![CDATA[$F{factura_detalle_facd_marca}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

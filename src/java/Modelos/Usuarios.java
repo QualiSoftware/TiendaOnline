@@ -1,5 +1,5 @@
 package Modelos;
-// Generated 27-oct-2016 17:23:17 by Hibernate Tools 4.3.1
+// Generated 04-nov-2016 18:45:51 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -20,19 +20,19 @@ public class Usuarios  implements java.io.Serializable {
      private String usuPassword;
      private String usuDni;
      private String usuDireccion;
-     private int usuCp;
+     private String usuCp;
      private Date usuFechaNac;
      private boolean usuSexo;
      private String usuTelefono;
      private String usuLocalidad;
-     private byte usuAdministrador;
+     private int usuAdministrador;
      private Set<Cesta> cestas = new HashSet<Cesta>(0);
 
     public Usuarios() {
     }
 
 	
-    public Usuarios(Provincias provincias, String usuNombre, String usuApellidos, String usuEmail, String usuPassword, String usuDni, String usuDireccion, int usuCp, Date usuFechaNac, boolean usuSexo, String usuTelefono, String usuLocalidad, byte usuAdministrador) {
+    public Usuarios(Provincias provincias, String usuNombre, String usuApellidos, String usuEmail, String usuPassword, String usuDni, String usuDireccion, String usuCp, Date usuFechaNac, boolean usuSexo, String usuTelefono, String usuLocalidad, int usuAdministrador) {
         this.provincias = provincias;
         this.usuNombre = usuNombre;
         this.usuApellidos = usuApellidos;
@@ -47,7 +47,7 @@ public class Usuarios  implements java.io.Serializable {
         this.usuLocalidad = usuLocalidad;
         this.usuAdministrador = usuAdministrador;
     }
-    public Usuarios(Provincias provincias, String usuNombre, String usuApellidos, String usuEmail, String usuPassword, String usuDni, String usuDireccion, int usuCp, Date usuFechaNac, boolean usuSexo, String usuTelefono, String usuLocalidad, byte usuAdministrador, Set<Cesta> cestas) {
+    public Usuarios(Provincias provincias, String usuNombre, String usuApellidos, String usuEmail, String usuPassword, String usuDni, String usuDireccion, String usuCp, Date usuFechaNac, boolean usuSexo, String usuTelefono, String usuLocalidad, int usuAdministrador, Set<Cesta> cestas) {
        this.provincias = provincias;
        this.usuNombre = usuNombre;
        this.usuApellidos = usuApellidos;
@@ -120,11 +120,11 @@ public class Usuarios  implements java.io.Serializable {
     public void setUsuDireccion(String usuDireccion) {
         this.usuDireccion = usuDireccion;
     }
-    public int getUsuCp() {
+    public String getUsuCp() {
         return this.usuCp;
     }
     
-    public void setUsuCp(int usuCp) {
+    public void setUsuCp(String usuCp) {
         this.usuCp = usuCp;
     }
     public Date getUsuFechaNac() {
@@ -155,11 +155,11 @@ public class Usuarios  implements java.io.Serializable {
     public void setUsuLocalidad(String usuLocalidad) {
         this.usuLocalidad = usuLocalidad;
     }
-    public byte getUsuAdministrador() {
+    public int getUsuAdministrador() {
         return this.usuAdministrador;
     }
     
-    public void setUsuAdministrador(byte usuAdministrador) {
+    public void setUsuAdministrador(int usuAdministrador) {
         this.usuAdministrador = usuAdministrador;
     }
     public Set<Cesta> getCestas() {

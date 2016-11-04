@@ -233,7 +233,9 @@
         </action>
         <!--Hasta acá es la prueba del login que se puede borrar-->
         
-        
+        <action name="FacturaPDF">
+            <result>/Vistas/FacturaPDF.jsp</result>
+        </action>
     </package>
     
     

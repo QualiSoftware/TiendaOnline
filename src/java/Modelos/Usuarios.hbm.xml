@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 27-oct-2016 17:23:19 by Hibernate Tools 4.3.1 -->
+<!-- Generated 04-nov-2016 18:45:52 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="Modelos.Usuarios" table="usuarios" catalog="tienda_ropa" optimistic-lock="version">
         <id name="usuId" type="java.lang.Integer">
@@ -24,13 +24,13 @@
             <column name="usu_password" not-null="true" />
         </property>
         <property name="usuDni" type="string">
-            <column name="usu_dni" length="30" not-null="true" />
+            <column name="usu_dni" length="15" not-null="true" />
         </property>
         <property name="usuDireccion" type="string">
             <column name="usu_direccion" length="100" not-null="true" />
         </property>
-        <property name="usuCp" type="int">
-            <column name="usu_cp" not-null="true" />
+        <property name="usuCp" type="string">
+            <column name="usu_cp" length="10" not-null="true" />
         </property>
         <property name="usuFechaNac" type="date">
             <column name="usu_fecha_nac" length="10" not-null="true" />
@@ -39,12 +39,12 @@
             <column name="usu_sexo" not-null="true" />
         </property>
         <property name="usuTelefono" type="string">
-            <column name="usu_telefono" length="9" not-null="true" />
+            <column name="usu_telefono" length="30" not-null="true" />
         </property>
         <property name="usuLocalidad" type="string">
             <column name="usu_localidad" length="30" not-null="true" />
         </property>
-        <property name="usuAdministrador" type="byte">
+        <property name="usuAdministrador" type="int">
             <column name="usu_administrador" not-null="true" />
         </property>
         <set name="cestas" table="cesta" inverse="true" lazy="true" fetch="select">
