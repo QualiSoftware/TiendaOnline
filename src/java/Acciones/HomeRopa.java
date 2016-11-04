@@ -86,6 +86,25 @@ public class HomeRopa extends ActionSupport {
     private String fotoAlta3;
     private ArrayList<Cesta> lista_ropa_Cestas;
     private int totalcestaUsuario = 0;
+    private String usi;
+
+    public Usuarios getU() {
+        return u;
+    }
+
+    public void setU(Usuarios u) {
+        this.u = u;
+    }
+
+    public String getUsi() {
+        return usi;
+    }
+
+    public void setUsi(String usi) {
+        this.usi = usi;
+    }
+    
+    
 
     public int getTotalcestaUsuario() {
         return totalcestaUsuario;
@@ -482,12 +501,11 @@ private String countryName;
         if (sesion == null) {
             sesion = ActionContext.getContext().getSession();
         }
-        String usi = "";
+        usi = "";
         // para cuando tengamos sesión de usuario
         System.out.println("sdfsdgsdfkgjkfgfdipjgsidpfi "+sesion.get("usuarioLogueado"));
         if(sesion.get("usuarioLogueado") != null){
             if(!sesion.get("usuarioLogueado").equals("")){
-            System.out.println("sesiisisiisisis"+sesion.get("usuarioLogueado"));
             try{
                 u = (Usuarios) sesion.get("usuarioLogueado");
                 usi =""+ u.getUsuId();
