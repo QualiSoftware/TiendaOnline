@@ -41,6 +41,14 @@
                             <th>Precio</th>
                             <th>Total</th>
                         </tr>
+                         <tr>
+                <td>
+                    <a href="CestaFiltro">
+                            volver
+                        </a>
+                </td>
+                
+            </tr>
                         <s:iterator var="a" value="lista_ropa_Cestas">
                             <tr>
                                 <td>

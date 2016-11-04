@@ -228,7 +228,7 @@ public class HomeCesta extends ActionSupport {
             if (cantidad == ce.getCestaUnidades()) {
                 respuesta = ControladoresDAO.cCesta.Elimina(c);
             } else {
-                
+                c.setCestaUnidades(ce.getCestaUnidades() - cantidad);
                 respuesta = ControladoresDAO.cCesta.Modifica(c);
             }
 //                if(cantidad > 0){
@@ -328,13 +328,21 @@ public class HomeCesta extends ActionSupport {
     }
 
     public String FormalizaFactura() throws Exception {
-        
+        if (sesion == null) {
+            sesion = ActionContext.getContext().getSession();
+        }
+        // para cuando tengamos sesión de usuario
+         try{
+         u = (Usuarios) sesion.get("usuarioLogueado");
+         }catch(Exception e){
+         return INPUT;
+         }
         us = new Usuarios();
-        us = cUsuarios.RecuperaPorId(1);
+        us = cUsuarios.RecuperaPorId(u.getUsuId());
         //no quitar porque si no se inicializa no sale en jsp
         System.out.println(us.getProvincias().getProNombre());
         
-        lista_ropa_Cestas = ControladoresDAO.cCesta.RecuperaTodos("1");
+        lista_ropa_Cestas = ControladoresDAO.cCesta.RecuperaTodos(""+u.getUsuId());
      
         for (Cesta aux : lista_ropa_Cestas) {
             precio += aux.getCestaUnidades() * (aux.getRopa().getRoPrecio() - aux.getRopa().getRoDescuento());
