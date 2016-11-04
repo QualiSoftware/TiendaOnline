@@ -2,22 +2,23 @@
 <!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd">
 <hibernate-reverse-engineering>
   <schema-selection match-catalog="tienda_ropa"/>
-  <table-filter match-name="clientela"/>
-  <table-filter match-name="campania_ropa"/>
-  <table-filter match-name="provincias"/>
-  <table-filter match-name="subcategoria"/>
-  <table-filter match-name="cesta"/>
   <table-filter match-name="coleccion"/>
+  <table-filter match-name="marcas"/>
+  <table-filter match-name="clientela"/>
   <table-filter match-name="fotos"/>
-  <table-filter match-name="facturas"/>
-  <table-filter match-name="paises"/>
-  <table-filter match-name="color"/>
+  <table-filter match-name="provincias"/>
+  <table-filter match-name="cesta"/>
   <table-filter match-name="factura_detalle"/>
+  <table-filter match-name="campania"/>
+  <table-filter match-name="subcategoria"/>
   <table-filter match-name="tallas"/>
   <table-filter match-name="look"/>
+  <table-filter match-name="paises"/>
+  <table-filter match-name="facturas"/>
+  <table-filter match-name="campania_ropa"/>
+  <table-filter match-name="color"/>
   <table-filter match-name="categoria"/>
-  <table-filter match-name="marcas"/>
   <table-filter match-name="ropa"/>
   <table-filter match-name="usuarios"/>
-  <table-filter match-name="campania"/>
+  <table-filter match-name="favoritos"/>
 </hibernate-reverse-engineering>

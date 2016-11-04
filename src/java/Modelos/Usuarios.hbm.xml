@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 04-nov-2016 18:45:52 by Hibernate Tools 4.3.1 -->
+<!-- Generated 04-nov-2016 22:00:06 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="Modelos.Usuarios" table="usuarios" catalog="tienda_ropa" optimistic-lock="version">
         <id name="usuId" type="java.lang.Integer">
@@ -52,6 +52,12 @@
                 <column name="cesta_usu_id" not-null="true" />
             </key>
             <one-to-many class="Modelos.Cesta" />
+        </set>
+        <set name="favoritoses" table="favoritos" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="fav_usu_id" not-null="true" />
+            </key>
+            <one-to-many class="Modelos.Favoritos" />
         </set>
     </class>
 </hibernate-mapping>

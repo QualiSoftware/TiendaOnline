@@ -17,6 +17,7 @@
     <mapping resource="Modelos/Fotos.hbm.xml"/>
     <mapping resource="Modelos/Categoria.hbm.xml"/>
     <mapping resource="Modelos/Color.hbm.xml"/>
+    <mapping resource="Modelos/Favoritos.hbm.xml"/>
     <mapping resource="Modelos/Ropa.hbm.xml"/>
     <mapping resource="Modelos/Provincias.hbm.xml"/>
     <mapping resource="Modelos/Marcas.hbm.xml"/>

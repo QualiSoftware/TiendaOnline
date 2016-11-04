@@ -1,5 +1,5 @@
 package Modelos;
-// Generated 04-nov-2016 18:45:51 by Hibernate Tools 4.3.1
+// Generated 04-nov-2016 22:00:06 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -29,6 +29,7 @@ public class Ropa  implements java.io.Serializable {
      private int roUnidades;
      private Date roFecha;
      private Set<Cesta> cestas = new HashSet<Cesta>(0);
+     private Set<Favoritos> favoritoses = new HashSet<Favoritos>(0);
      private Set<CampaniaRopa> campaniaRopas = new HashSet<CampaniaRopa>(0);
      private Set<Fotos> fotoses = new HashSet<Fotos>(0);
 
@@ -53,7 +54,7 @@ public class Ropa  implements java.io.Serializable {
         this.roUnidades = roUnidades;
         this.roFecha = roFecha;
     }
-    public Ropa(Categoria categoria, Clientela clientela, Coleccion coleccion, Color color, Look look, Marcas marcas, Subcategoria subcategoria, Tallas tallas, String roDescripcion, double roPrecio, double roDescuento, String roCaracteristicas, byte roVisible, int roUnidades, Date roFecha, Set<Cesta> cestas, Set<CampaniaRopa> campaniaRopas, Set<Fotos> fotoses) {
+    public Ropa(Categoria categoria, Clientela clientela, Coleccion coleccion, Color color, Look look, Marcas marcas, Subcategoria subcategoria, Tallas tallas, String roDescripcion, double roPrecio, double roDescuento, String roCaracteristicas, byte roVisible, int roUnidades, Date roFecha, Set<Cesta> cestas, Set<Favoritos> favoritoses, Set<CampaniaRopa> campaniaRopas, Set<Fotos> fotoses) {
        this.categoria = categoria;
        this.clientela = clientela;
        this.coleccion = coleccion;
@@ -70,6 +71,7 @@ public class Ropa  implements java.io.Serializable {
        this.roUnidades = roUnidades;
        this.roFecha = roFecha;
        this.cestas = cestas;
+       this.favoritoses = favoritoses;
        this.campaniaRopas = campaniaRopas;
        this.fotoses = fotoses;
     }
@@ -192,6 +194,13 @@ public class Ropa  implements java.io.Serializable {
     
     public void setCestas(Set<Cesta> cestas) {
         this.cestas = cestas;
+    }
+    public Set<Favoritos> getFavoritoses() {
+        return this.favoritoses;
+    }
+    
+    public void setFavoritoses(Set<Favoritos> favoritoses) {
+        this.favoritoses = favoritoses;
     }
     public Set<CampaniaRopa> getCampaniaRopas() {
         return this.campaniaRopas;

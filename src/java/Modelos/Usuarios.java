@@ -1,5 +1,5 @@
 package Modelos;
-// Generated 04-nov-2016 18:45:51 by Hibernate Tools 4.3.1
+// Generated 04-nov-2016 22:00:06 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -27,6 +27,7 @@ public class Usuarios  implements java.io.Serializable {
      private String usuLocalidad;
      private int usuAdministrador;
      private Set<Cesta> cestas = new HashSet<Cesta>(0);
+     private Set<Favoritos> favoritoses = new HashSet<Favoritos>(0);
 
     public Usuarios() {
     }
@@ -47,7 +48,7 @@ public class Usuarios  implements java.io.Serializable {
         this.usuLocalidad = usuLocalidad;
         this.usuAdministrador = usuAdministrador;
     }
-    public Usuarios(Provincias provincias, String usuNombre, String usuApellidos, String usuEmail, String usuPassword, String usuDni, String usuDireccion, String usuCp, Date usuFechaNac, boolean usuSexo, String usuTelefono, String usuLocalidad, int usuAdministrador, Set<Cesta> cestas) {
+    public Usuarios(Provincias provincias, String usuNombre, String usuApellidos, String usuEmail, String usuPassword, String usuDni, String usuDireccion, String usuCp, Date usuFechaNac, boolean usuSexo, String usuTelefono, String usuLocalidad, int usuAdministrador, Set<Cesta> cestas, Set<Favoritos> favoritoses) {
        this.provincias = provincias;
        this.usuNombre = usuNombre;
        this.usuApellidos = usuApellidos;
@@ -62,6 +63,7 @@ public class Usuarios  implements java.io.Serializable {
        this.usuLocalidad = usuLocalidad;
        this.usuAdministrador = usuAdministrador;
        this.cestas = cestas;
+       this.favoritoses = favoritoses;
     }
    
     public Integer getUsuId() {
@@ -168,6 +170,13 @@ public class Usuarios  implements java.io.Serializable {
     
     public void setCestas(Set<Cesta> cestas) {
         this.cestas = cestas;
+    }
+    public Set<Favoritos> getFavoritoses() {
+        return this.favoritoses;
+    }
+    
+    public void setFavoritoses(Set<Favoritos> favoritoses) {
+        this.favoritoses = favoritoses;
     }
 
 
