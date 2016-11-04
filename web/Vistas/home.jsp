@@ -1,6 +1,6 @@
 <%-- 
-    Document   : Home
-    Created on : 03-nov-2016, 16:18:39
+    Document   : home
+    Created on : 04-nov-2016, 9:57:13
     Author     : javiermartinroncero
 --%>
 <%@taglib  prefix="s" uri="/struts-tags" %>
@@ -12,9 +12,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <div>
-            <s:action name="RopaFiltro" executeResult="true" />
-        </div>
-        
+        <s:action name="RopaFiltro" executeResult="true"></s:action>
     </body>
 </html>
