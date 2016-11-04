@@ -503,7 +503,6 @@ private String countryName;
         }
         usi = "";
         // para cuando tengamos sesión de usuario
-        System.out.println("sdfsdgsdfkgjkfgfdipjgsidpfi "+sesion.get("usuarioLogueado"));
         if(sesion.get("usuarioLogueado") != null){
             if(!sesion.get("usuarioLogueado").equals("")){
             try{
@@ -528,7 +527,6 @@ private String countryName;
             fechaI = "";
             fechaF = "";
         }
-        System.out.println("ususususuuususu "+usi);
         lista_ropa_Cestas = ControladoresDAO.cCesta.RecuperaTodos(usi);
         for(Cesta caux:lista_ropa_Cestas){
             totalcestaUsuario += caux.getCestaUnidades();
