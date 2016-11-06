@@ -94,7 +94,6 @@
                 </td>
             </tr>
             <tr>
-
                 <th>Acciones</th>
                 <th>
                     <s:a action="RopaAdminFiltro">
