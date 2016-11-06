@@ -10,7 +10,7 @@ public class cRopa {
 
     static Session sesion;
 
-    public static ArrayList<Ropa> RecuperaTodos(String filtro, String orden, String fi, String ff) {
+    public static ArrayList<Ropa> RecuperaTodos(String filtro, String orden, String fi, String ff, String eliminadas) {
         sesion = (Session) NewHibernateUtil.getSession();
         if(orden.equals("")){
             orden = "categoria.catDescripcion";
@@ -29,6 +29,9 @@ public class cRopa {
             day = ff.substring(0, 2);
             ff = year+"-"+month+"-"+day;
             sql += "roFecha >= '" + fi + "' AND roFecha <= '" + ff + "' AND (";
+        }
+        if(!eliminadas.equals("2")){
+            sql += "roVisible = '" + eliminadas + "') AND (";
         }
         sql += "roDescripcion LIKE '%" + filtro + "%'";
         sql += " OR marcas.marcaNombre LIKE '%" + filtro + "%'";

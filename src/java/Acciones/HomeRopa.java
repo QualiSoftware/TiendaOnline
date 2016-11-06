@@ -88,6 +88,7 @@ public class HomeRopa extends ActionSupport {
     private int totalcestaUsuario = 0;
     private String usi;
     private Integer cantidad;
+    private String eliminadas;
 
     public Integer getCantidad() {
         return cantidad;
@@ -96,9 +97,15 @@ public class HomeRopa extends ActionSupport {
     public void setCantidad(Integer cantidad) {
         this.cantidad = cantidad;
     }
-    
-    
 
+    public String getEliminadas() {
+        return eliminadas;
+    }
+
+    public void setEliminadas(String eliminadas) {
+        this.eliminadas = eliminadas;
+    }
+    
     public Usuarios getU() {
         return u;
     }
@@ -538,12 +545,15 @@ private String countryName;
             fechaI = "";
             fechaF = "";
         }
+        if(eliminadas == null){
+            eliminadas = "2";
+        }
         lista_ropa_Cestas = ControladoresDAO.cCesta.RecuperaTodos(usi);
         for(Cesta caux:lista_ropa_Cestas){
             totalcestaUsuario += caux.getCestaUnidades();
         }
         //totalcestaUsuario = lista_ropa_Cestas.size();
-        lista_ropa = ControladoresDAO.cRopa.RecuperaTodos(filtro,orden,fechaI,fechaF);
+        lista_ropa = ControladoresDAO.cRopa.RecuperaTodos(filtro,orden,fechaI,fechaF,eliminadas);
         return SUCCESS;
     }
 
@@ -645,7 +655,7 @@ private String countryName;
         }
         if (accionocul.equals("a")) {
             respuesta = ControladoresDAO.cRopa.Inserta(t);
-            ArrayList<Ropa> ropaconid = ControladoresDAO.cRopa.RecuperaTodos("","","","");
+            ArrayList<Ropa> ropaconid = ControladoresDAO.cRopa.RecuperaTodos("","","","","2");
             int idRopaAUsar=0;
             int num = 0;
             for(Ropa aux:ropaconid){
