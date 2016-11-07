@@ -28,12 +28,12 @@ public class cRopa {
             month = ff.substring(3, 5);
             day = ff.substring(0, 2);
             ff = year+"-"+month+"-"+day;
-            sql += "roFecha >= '" + fi + "' AND roFecha <= '" + ff + "' AND (";
+            sql += "roFecha >= '" + fi + "' AND roFecha <= '" + ff + "' AND";
         }
         if(!eliminadas.equals("2")){
-            sql += "roVisible = '" + eliminadas + "') AND (";
+            sql += " (roVisible = '" + eliminadas + "') AND";
         }
-        sql += "roDescripcion LIKE '%" + filtro + "%'";
+        sql += " (roDescripcion LIKE '%" + filtro + "%'";
         sql += " OR marcas.marcaNombre LIKE '%" + filtro + "%'";
         sql += " OR clientela.clientelaDescripcion LIKE '%" + filtro + "%'";
         sql += " OR look.lookDescripcion LIKE '%" + filtro + "%'";
@@ -45,11 +45,12 @@ public class cRopa {
         sql += " OR roCaracteristicas LIKE '%" + filtro + "%'";
         sql += " OR roUnidades LIKE '%" + filtro + "%'";
         sql += " OR categoria.catDescripcion LIKE '%" + filtro + "%'";
-        sql += " OR subcategoria.subDescripcion LIKE '%" + filtro + "%'";
-        if(!fi.equals("") && !ff.equals("")){
+        sql += " OR subcategoria.subDescripcion LIKE '%" + filtro + "%')";
+        /*if(!fi.equals("") && !ff.equals("")){
             sql += ")";
-        }
+        }*/
         sql += " ORDER BY "+orden;
+        System.out.println("sql: "+sql);
         Query query = sesion.createQuery(sql);
         ArrayList<Ropa> lt = (ArrayList) query.list();
         return lt;
