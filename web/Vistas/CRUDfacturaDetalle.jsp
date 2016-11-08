@@ -19,7 +19,7 @@
             <div id="introduccion">
             </div>
             <div id="login">
-                <s:a action="CerrarSesion" cssStyle="padding: 5px 13px;"><span class="glyphicon glyphicon-lock" aria-hidden="true"></span> Cerrar sesión</s:a>
+                <s:a action="Usuario/RopaFiltro" cssStyle="padding: 5px 13px;"><span class="glyphicon glyphicon-lock" aria-hidden="true"></span> Volver a Tienda</s:a>
                 </div>
             <div id="marca">Tienda Ropa <img src="../Imagenes/house_hangers.svg" alt="house_hangers" id="logo"/>
             </div>
@@ -99,6 +99,7 @@
                     <td><s:property value="getText('{0,number,##0.00}',{total})"/><br></td>
                 </tr>
         </table>
+        <center><a href="/TiendaOnline/Vistas/FacturasFiltro.action" class="cambioFondo">Volver a Facturas</a></center>
         </s:form>
     </body>
 </html>

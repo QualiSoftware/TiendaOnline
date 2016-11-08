@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 04-nov-2016 22:00:06 by Hibernate Tools 4.3.1 -->
+<!-- Generated 08-nov-2016 23:03:26 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="Modelos.Usuarios" table="usuarios" catalog="tienda_ropa" optimistic-lock="version">
         <id name="usuId" type="java.lang.Integer">
@@ -43,6 +43,12 @@
         </property>
         <property name="usuLocalidad" type="string">
             <column name="usu_localidad" length="30" not-null="true" />
+        </property>
+        <property name="usuDescuento" type="double">
+            <column name="usu_descuento" precision="4" not-null="true" />
+        </property>
+        <property name="usuFechaLimiteDesc" type="date">
+            <column name="usu_fecha_limite_desc" length="10" not-null="true" />
         </property>
         <property name="usuAdministrador" type="int">
             <column name="usu_administrador" not-null="true" />

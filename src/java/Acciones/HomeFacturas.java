@@ -31,6 +31,7 @@ public class HomeFacturas extends ActionSupport {
     //variables específicas a cada controlador
     private List<Facturas> lista_facturas;
     private Integer facId;
+    private Integer facUsuId;
      private String facCodigo;
      private String facRazonsocial;
      private String facDireccion;
@@ -154,6 +155,14 @@ public class HomeFacturas extends ActionSupport {
 
     public void setFacId(Integer facId) {
         this.facId = facId;
+    }
+
+    public Integer getFacUsuId() {
+        return facUsuId;
+    }
+
+    public void setFacUsuId(Integer facUsuId) {
+        this.facUsuId = facUsuId;
     }
 
     public String getFacCodigo() {
@@ -303,6 +312,7 @@ public class HomeFacturas extends ActionSupport {
         }else{
             Facturas p = ControladoresDAO.cFacturas.RecuperaPorId(clave);           
             facId = p.getFacId();
+            facUsuId = p.getFacUsuId();
             facCodigo = p.getFacCodigo();
             facRazonsocial = p.getFacRazonsocial();
             facDireccion = p.getFacDireccion();
@@ -335,16 +345,16 @@ public class HomeFacturas extends ActionSupport {
 
         public String CrudActionFacturas() throws Exception {         
         if (accionocul.equals("a")) {            
-            Facturas t = new Facturas(facCodigo, facRazonsocial, facDireccion, facPoblacion, facProvincia, facCp, facPais, facDni, facDescuento, facFecha, facIva, facObservaciones);
+            Facturas t = new Facturas(facUsuId, facCodigo, facRazonsocial, facDireccion, facPoblacion, facProvincia, facCp, facPais, facDni, facDescuento, facFecha, facIva, facObservaciones);
             ControladoresDAO.cFacturas.Inserta(t);
         }
         if (accionocul.equals("m")) {
-            Facturas t = new Facturas(facCodigo, facRazonsocial, facDireccion, facPoblacion, facProvincia, facCp, facPais, facDni, facDescuento, facFecha, facIva, facObservaciones); 
+            Facturas t = new Facturas(facUsuId, facCodigo, facRazonsocial, facDireccion, facPoblacion, facProvincia, facCp, facPais, facDni, facDescuento, facFecha, facIva, facObservaciones); 
             t.setFacId(facId);
             ControladoresDAO.cFacturas.Modifica(t);
         }
         if (accionocul.equals("e")) {
-            Facturas t = new Facturas(facCodigo, facRazonsocial, facDireccion, facPoblacion, facProvincia, facCp, facPais, facDni, facDescuento, facFecha, facIva, facObservaciones); 
+            Facturas t = new Facturas(facUsuId, facCodigo, facRazonsocial, facDireccion, facPoblacion, facProvincia, facCp, facPais, facDni, facDescuento, facFecha, facIva, facObservaciones); 
             t.setFacId(facId);
             ControladoresDAO.cFacturas.Elimina(t);
         }        

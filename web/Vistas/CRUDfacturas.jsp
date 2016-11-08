@@ -11,6 +11,12 @@
         <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
         <link rel="stylesheet" type="text/css" href="../Calendar/1-simple-calendar/tcal.css" />
         <script type="text/javascript" src="../Calendar/1-simple-calendar/tcal.js"></script>
+        <script>            
+            function BorrarFechas() {
+                document.getElementById('fechaI').value = "";
+                document.getElementById('fechaF').value = "";
+            }
+        </script>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
         <link rel="stylesheet" href="../Estilos/GeneralEstilos.css"/>
         <title>Facturas</title>
@@ -20,7 +26,7 @@
             <div id="introduccion">
             </div>
             <div id="login">
-                <s:a action="CerrarSesion" cssStyle="padding: 5px 13px;"><span class="glyphicon glyphicon-lock" aria-hidden="true"></span> Cerrar sesión</s:a>
+                <s:a action="Usuario/RopaFiltro" cssStyle="padding: 5px 13px;"><span class="glyphicon glyphicon-lock" aria-hidden="true"></span> Volver a Tienda</s:a>
                 </div>
             <div id="marca">Tienda Ropa <img src="../Imagenes/house_hangers.svg" alt="house_hangers" id="logo"/>
             </div>
@@ -35,10 +41,19 @@
                 <td colspan="13">
                     <s:form action="FacturasFiltro" theme="simple">
                         <s:label value=" Fecha desde " />
-                        <s:textfield name="fechaI" cssClass="tcal" />
+                        <s:textfield name="fechaI" id="fechaI" cssClass="tcal" readonly="true"/>
                         &nbsp;&nbsp;
                         <s:label value="hasta " />
-                        <s:textfield name="fechaF" cssClass="tcal" />
+                        <s:textfield name="fechaF" id="fechaF" cssClass="tcal" readonly="true"/>
+                        <%
+                            if((request.getParameter("fechaI") != null) && (request.getParameter("fechaF")) != null){
+                                if(!(request.getParameter("fechaI").equals("")) && !(request.getParameter("fechaF").equals(""))){
+                                    %>
+                                    <input type="button" value="Borrar fechas" onclick="BorrarFechas();">
+                                    <%
+                                }
+                            }
+                        %>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         Filtro por los demás campos: <s:textfield name="filtro" />
                         &nbsp;&nbsp;&nbsp;&nbsp;

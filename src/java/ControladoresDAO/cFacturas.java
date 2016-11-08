@@ -27,9 +27,9 @@ public class cFacturas {
             month = ff.substring(3, 5);
             day = ff.substring(0, 2);
             ff = year+"-"+month+"-"+day;
-            sql += "facFecha >= '" + fi + "' AND facFecha <= '" + ff + "' AND (";
+            sql += "facFecha >= '" + fi + "' AND facFecha <= '" + ff + "' AND ";
         }
-        sql += "facRazonsocial like '%"+filtro+"%'";
+        sql += "(facRazonsocial like '%"+filtro+"%'";
         sql += " OR facCodigo like '%"+filtro+"%'";
         sql += " OR facDireccion like '%"+filtro+"%'";
         sql += " OR facPoblacion like '%"+filtro+"%'";
@@ -39,10 +39,7 @@ public class cFacturas {
         sql += " OR facDni like '%"+filtro+"%'";
         sql += " OR facDescuento like '%"+filtro+"%'";
         sql += " OR facIva like '%"+filtro+"%'";
-        sql += " OR facObservaciones like '%"+filtro+"%'";
-        if(!fi.equals("") && !ff.equals("")){
-            sql += ")";
-        }
+        sql += " OR facObservaciones like '%"+filtro+"%')";
         sql += " ORDER BY "+orden;
         Query query = sesion.createQuery(sql);
         List<Facturas> lt = query.list();
@@ -52,6 +49,16 @@ public class cFacturas {
         sesion = (Session) NewHibernateUtil.getSession();
         Facturas t = (Facturas) sesion.get(Facturas.class, id);
         return t;
+    }
+    
+    public static List<Facturas> RecuperaPorUsuario(int usu_id){
+        sesion = (Session) NewHibernateUtil.getSession();
+        String sql = "From Facturas WHERE ";
+        sql += "facUsuId = "+usu_id;
+        sql += " ORDER BY facFecha";
+        Query query = sesion.createQuery(sql);
+        List<Facturas> lu = query.list();
+        return lu;
     }
     
     public static int Inserta(Facturas t){

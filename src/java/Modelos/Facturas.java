@@ -1,5 +1,5 @@
 package Modelos;
-// Generated 04-nov-2016 22:00:06 by Hibernate Tools 4.3.1
+// Generated 08-nov-2016 23:03:23 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -13,6 +13,7 @@ public class Facturas  implements java.io.Serializable {
 
 
      private Integer facId;
+     private int facUsuId;
      private String facCodigo;
      private String facRazonsocial;
      private String facDireccion;
@@ -31,7 +32,8 @@ public class Facturas  implements java.io.Serializable {
     }
 
 	
-    public Facturas(String facCodigo, String facRazonsocial, String facDireccion, String facPoblacion, String facProvincia, String facCp, String facPais, String facDni, int facDescuento, Date facFecha, int facIva, String facObservaciones) {
+    public Facturas(int facUsuId, String facCodigo, String facRazonsocial, String facDireccion, String facPoblacion, String facProvincia, String facCp, String facPais, String facDni, int facDescuento, Date facFecha, int facIva, String facObservaciones) {
+        this.facUsuId = facUsuId;
         this.facCodigo = facCodigo;
         this.facRazonsocial = facRazonsocial;
         this.facDireccion = facDireccion;
@@ -45,7 +47,8 @@ public class Facturas  implements java.io.Serializable {
         this.facIva = facIva;
         this.facObservaciones = facObservaciones;
     }
-    public Facturas(String facCodigo, String facRazonsocial, String facDireccion, String facPoblacion, String facProvincia, String facCp, String facPais, String facDni, int facDescuento, Date facFecha, int facIva, String facObservaciones, Set<FacturaDetalle> facturaDetalles) {
+    public Facturas(int facUsuId, String facCodigo, String facRazonsocial, String facDireccion, String facPoblacion, String facProvincia, String facCp, String facPais, String facDni, int facDescuento, Date facFecha, int facIva, String facObservaciones, Set<FacturaDetalle> facturaDetalles) {
+       this.facUsuId = facUsuId;
        this.facCodigo = facCodigo;
        this.facRazonsocial = facRazonsocial;
        this.facDireccion = facDireccion;
@@ -67,6 +70,13 @@ public class Facturas  implements java.io.Serializable {
     
     public void setFacId(Integer facId) {
         this.facId = facId;
+    }
+    public int getFacUsuId() {
+        return this.facUsuId;
+    }
+    
+    public void setFacUsuId(int facUsuId) {
+        this.facUsuId = facUsuId;
     }
     public String getFacCodigo() {
         return this.facCodigo;

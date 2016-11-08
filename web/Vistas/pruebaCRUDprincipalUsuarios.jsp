@@ -28,7 +28,7 @@
                 <td>
                     <s:if test="usi==''">
                         <h1>Login</h1>
-                        <s:form action="LoginPrueba" theme="simple">
+                        <s:form action="Login" theme="simple">
                             <table>
                                 <tr>
                                     <td>

@@ -10,8 +10,8 @@
     <property name="hibernate.cache.use_minimal_puts">true</property>
     <property name="hibernate.transaction.flush_before_completion">true</property>
     <mapping resource="Modelos/Coleccion.hbm.xml"/>
-    <mapping resource="Modelos/CampaniaRopa.hbm.xml"/>
     <mapping resource="Modelos/Usuarios.hbm.xml"/>
+    <mapping resource="Modelos/CampaniaRopa.hbm.xml"/>
     <mapping resource="Modelos/Campania.hbm.xml"/>
     <mapping resource="Modelos/Cesta.hbm.xml"/>
     <mapping resource="Modelos/Fotos.hbm.xml"/>

@@ -31,7 +31,7 @@
             <div id="introduccion">
             </div>
             <div id="login">
-                <s:a action="CerrarSesion" cssStyle="padding: 5px 13px;"><span class="glyphicon glyphicon-lock" aria-hidden="true"></span> Cerrar sesión</s:a>
+                <s:a action="Usuario/RopaFiltro" cssStyle="padding: 5px 13px;"><span class="glyphicon glyphicon-lock" aria-hidden="true"></span> Volver a Tienda</s:a>
                 </div>
             <div id="marca">Tienda Ropa <img src="../Imagenes/house_hangers.svg" alt="house_hangers" id="logo"/>
             </div>
@@ -226,7 +226,12 @@
                     <td>
                         <s:property value="#a.roCaracteristicas"/>
                     </td>
-                    <td>
+                    <s:if test="%{#a.roVisible==1}">
+                    <td class="puntoVerde">
+                    </s:if>
+                    <s:else>
+                    <td class="puntoRojo">
+                    </s:else>
                         <s:property value="#a.roVisible"/>
                     </td>
                     <td>

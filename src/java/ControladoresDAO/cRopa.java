@@ -46,11 +46,8 @@ public class cRopa {
         sql += " OR roUnidades LIKE '%" + filtro + "%'";
         sql += " OR categoria.catDescripcion LIKE '%" + filtro + "%'";
         sql += " OR subcategoria.subDescripcion LIKE '%" + filtro + "%')";
-        /*if(!fi.equals("") && !ff.equals("")){
-            sql += ")";
-        }*/
         sql += " ORDER BY "+orden;
-        System.out.println("sql: "+sql);
+        //System.out.println("sql: "+sql);
         Query query = sesion.createQuery(sql);
         ArrayList<Ropa> lt = (ArrayList) query.list();
         return lt;

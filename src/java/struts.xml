@@ -222,16 +222,14 @@
             </result>
         </action>
         
-        <!--Esto es para probar la página de Admin con un login. Se puede borrar-->
-        <action name="LoginPrueba" class="Acciones.UsuariosValidaciones" method="LoginPrueba">
-            <result name="input">/Vistas/pruebaLoginParaBorrar.jsp</result>
-            <result name="error">/Vistas/pruebaLoginParaBorrar.jsp</result>
+        <action name="Login" class="Acciones.HomeUsuariosValidaciones" method="Login">
+            <result name="input">/Vistas/pruebaCRUDprincipalUsuarios.jsp</result>
+            <result name="error">/Vistas/pruebaCRUDprincipalUsuarios.jsp</result>
             <result type="redirect">Usuario/RopaFiltro</result>
         </action>
-        <action name="CerrarSesion" class="Acciones.UsuariosValidaciones" method="CerrarSesion">
+        <action name="CerrarSesion" class="Acciones.HomeUsuariosValidaciones" method="CerrarSesion">
             <result type="redirect">Usuario/RopaFiltro</result>
         </action>
-        <!--Hasta acá es la prueba del login que se puede borrar-->
         
         <action name="FacturaPDF">
             <result>/Vistas/FacturaPDF.jsp</result>

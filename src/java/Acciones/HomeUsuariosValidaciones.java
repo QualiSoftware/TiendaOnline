@@ -18,7 +18,7 @@ import org.apache.struts2.interceptor.validation.SkipValidation;
  *
  * @author Formación
  */
-public class UsuariosValidaciones extends ActionSupport{
+public class HomeUsuariosValidaciones extends ActionSupport{
 
     private String filtro;
     private ArrayList<Usuarios> lista_usuarios;
@@ -77,7 +77,7 @@ public class UsuariosValidaciones extends ActionSupport{
         this.lista_usuarios = lista_usuarios;
     }
     
-    public String LoginPrueba() throws Exception {
+    public String Login() throws Exception {
         List<Usuarios> l = ControladoresDAO.cUsuarios.Login(usuario,password);
         if(l.size()==0){
             mensajeError="Acceso no permitido";

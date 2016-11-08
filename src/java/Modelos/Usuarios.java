@@ -1,5 +1,5 @@
 package Modelos;
-// Generated 04-nov-2016 22:00:06 by Hibernate Tools 4.3.1
+// Generated 08-nov-2016 23:03:23 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -25,6 +25,8 @@ public class Usuarios  implements java.io.Serializable {
      private boolean usuSexo;
      private String usuTelefono;
      private String usuLocalidad;
+     private double usuDescuento;
+     private Date usuFechaLimiteDesc;
      private int usuAdministrador;
      private Set<Cesta> cestas = new HashSet<Cesta>(0);
      private Set<Favoritos> favoritoses = new HashSet<Favoritos>(0);
@@ -33,7 +35,7 @@ public class Usuarios  implements java.io.Serializable {
     }
 
 	
-    public Usuarios(Provincias provincias, String usuNombre, String usuApellidos, String usuEmail, String usuPassword, String usuDni, String usuDireccion, String usuCp, Date usuFechaNac, boolean usuSexo, String usuTelefono, String usuLocalidad, int usuAdministrador) {
+    public Usuarios(Provincias provincias, String usuNombre, String usuApellidos, String usuEmail, String usuPassword, String usuDni, String usuDireccion, String usuCp, Date usuFechaNac, boolean usuSexo, String usuTelefono, String usuLocalidad, double usuDescuento, Date usuFechaLimiteDesc, int usuAdministrador) {
         this.provincias = provincias;
         this.usuNombre = usuNombre;
         this.usuApellidos = usuApellidos;
@@ -46,9 +48,11 @@ public class Usuarios  implements java.io.Serializable {
         this.usuSexo = usuSexo;
         this.usuTelefono = usuTelefono;
         this.usuLocalidad = usuLocalidad;
+        this.usuDescuento = usuDescuento;
+        this.usuFechaLimiteDesc = usuFechaLimiteDesc;
         this.usuAdministrador = usuAdministrador;
     }
-    public Usuarios(Provincias provincias, String usuNombre, String usuApellidos, String usuEmail, String usuPassword, String usuDni, String usuDireccion, String usuCp, Date usuFechaNac, boolean usuSexo, String usuTelefono, String usuLocalidad, int usuAdministrador, Set<Cesta> cestas, Set<Favoritos> favoritoses) {
+    public Usuarios(Provincias provincias, String usuNombre, String usuApellidos, String usuEmail, String usuPassword, String usuDni, String usuDireccion, String usuCp, Date usuFechaNac, boolean usuSexo, String usuTelefono, String usuLocalidad, double usuDescuento, Date usuFechaLimiteDesc, int usuAdministrador, Set<Cesta> cestas, Set<Favoritos> favoritoses) {
        this.provincias = provincias;
        this.usuNombre = usuNombre;
        this.usuApellidos = usuApellidos;
@@ -61,6 +65,8 @@ public class Usuarios  implements java.io.Serializable {
        this.usuSexo = usuSexo;
        this.usuTelefono = usuTelefono;
        this.usuLocalidad = usuLocalidad;
+       this.usuDescuento = usuDescuento;
+       this.usuFechaLimiteDesc = usuFechaLimiteDesc;
        this.usuAdministrador = usuAdministrador;
        this.cestas = cestas;
        this.favoritoses = favoritoses;
@@ -156,6 +162,20 @@ public class Usuarios  implements java.io.Serializable {
     
     public void setUsuLocalidad(String usuLocalidad) {
         this.usuLocalidad = usuLocalidad;
+    }
+    public double getUsuDescuento() {
+        return this.usuDescuento;
+    }
+    
+    public void setUsuDescuento(double usuDescuento) {
+        this.usuDescuento = usuDescuento;
+    }
+    public Date getUsuFechaLimiteDesc() {
+        return this.usuFechaLimiteDesc;
+    }
+    
+    public void setUsuFechaLimiteDesc(Date usuFechaLimiteDesc) {
+        this.usuFechaLimiteDesc = usuFechaLimiteDesc;
     }
     public int getUsuAdministrador() {
         return this.usuAdministrador;
