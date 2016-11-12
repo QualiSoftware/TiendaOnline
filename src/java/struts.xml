@@ -4,6 +4,8 @@
 
 <struts>
     <!-- Configuration for the default package. -->
+    <constant name="struts.multipart.maxSize" value="35000000" />
+    <constant name="struts.multipart.saveDir" value="C:\Windows\Temp" />
     <package name="default" extends="struts-default, json-default">
         
         <!--action de categoria-->
@@ -176,7 +178,7 @@
         </action> 
         <action name="CrudActionRopaAdmin" class="Acciones.HomeRopa" method="CrudActionRopa">
             <result type="redirect">RopaAdminFiltro</result>
-            <result name="input">/Vistas/formularioCRUDropa.jsp</result>
+            <result name="input">/Vistas/formularioCRUDropaFotos.jsp</result>
             <result name="error">/Vistas/formularioCRUDropa.jsp</result>
         </action>
         <action name="volverRopaAdmin">
@@ -233,6 +235,12 @@
         
         <action name="FacturaPDF">
             <result>/Vistas/FacturaPDF.jsp</result>
+        </action>
+        
+        <!-- Copiar fotos en servidor -->
+        <action name="CargaArchivo" class="Acciones.HomeRopa" method="CargaArchivo">
+            <result type="redirect">RopaAdminFiltro</result>
+            <result name="input">/Vistas/formularioCRUDropaFotos.jsp</result>
         </action>
     </package>
     

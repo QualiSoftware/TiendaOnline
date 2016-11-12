@@ -33,6 +33,10 @@
                     });
               });
             };
+            function AltaSinFotos(){
+                document.getElementById('confotos').value = 'false';
+                Verificar();
+            }
             function Verificar() {
                 if (document.getElementById('accionocul').value === 'e') {
                     if (confirm("¿Seguro que desea borrar?")) {
@@ -48,6 +52,7 @@
         <h1> <s:label name="cabeceraocul"></s:label> </h1>
         <s:form id="frm" action="CrudActionRopaAdmin" theme="simple">
             <input type="hidden" name="accionocul" id="accionocul" value=<s:property value="accion" /> />
+            <input type="hidden" name="confotos" id="confotos" value="true" />
             <table>
                 <tr>
                     <td>
@@ -344,6 +349,7 @@
                         %>
                     </td>
                 </tr>
+                <!--
                 <%
                     if (request.getAttribute("accionocul") == "a") {
                 %>
@@ -367,11 +373,19 @@
                         </tr>
                 </s:iterator>
                 <%}%>
+                -->
                 <tr>
                     <td colspan="2">
+                        <%
+                            if (request.getAttribute("accionocul") == "a") {
+                        %>
+                        <input type="button" onclick="Verificar();" value="Agregar fotos" />
+                        <input type="button" onclick="AltaSinFotos();" value="No agregar fotos" />
+                        <%} else {%>
                         <input type="button" onclick="Verificar();" value=<s:property value="botonocul" /> />
+                        <%}%>
                         <a href="volverRopaAdmin">
-                            volver
+                            Cancelar
                         </a>
                     </td>
                 </tr>

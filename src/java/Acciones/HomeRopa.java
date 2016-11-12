@@ -20,13 +20,21 @@ import Modelos.Usuarios;
 import static com.opensymphony.xwork2.Action.SUCCESS;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.apache.commons.io.FileUtils;
 import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.validation.SkipValidation;
 
@@ -89,6 +97,10 @@ public class HomeRopa extends ActionSupport {
     private String usi;
     private Integer cantidad;
     private String eliminadas;
+    private boolean confotos;
+    private List<File> archivo = new LinkedList<File>();
+    private List<String> archivoContentType = new LinkedList<String>();
+    private List<String> archivoFileName = new LinkedList<String>();
 
     public Integer getCantidad() {
         return cantidad;
@@ -105,7 +117,39 @@ public class HomeRopa extends ActionSupport {
     public void setEliminadas(String eliminadas) {
         this.eliminadas = eliminadas;
     }
-    
+
+    public boolean isConfotos() {
+        return confotos;
+    }
+
+    public void setConfotos(boolean confotos) {
+        this.confotos = confotos;
+    }
+
+    public List<File> getArchivo() {
+        return archivo;
+    }
+
+    public void setArchivo(List<File> archivo) {
+        this.archivo = archivo;
+    }
+
+    public List<String> getArchivoContentType() {
+        return archivoContentType;
+    }
+
+    public void setArchivoContentType(List<String> archivoContentType) {
+        this.archivoContentType = archivoContentType;
+    }
+
+    public List<String> getArchivoFileName() {
+        return archivoFileName;
+    }
+
+    public void setArchivoFileName(List<String> archivoFileName) {
+        this.archivoFileName = archivoFileName;
+    }
+
     public Usuarios getU() {
         return u;
     }
@@ -655,21 +699,21 @@ private String countryName;
         }
         if (accionocul.equals("a")) {
             respuesta = ControladoresDAO.cRopa.Inserta(t);
+            //////////////////////////////////////////////////////////////////////////////////////////////////
+            /*
             ArrayList<Ropa> ropaconid = ControladoresDAO.cRopa.RecuperaTodos("","","","","2");
-            int idRopaAUsar=0;
+            idRopaAUsar=0;
             int num = 0;
             for(Ropa aux:ropaconid){
                 num = aux.getRoId(); 
-                //System.out.println("num"+num);
-            }
-            
+            }            
             for(Ropa aux:ropaconid){
-                //System.out.println("aux.getRoId()"+aux.getRoId());
                 if(aux.getRoId()>num){
                     idRopaAUsar = aux.getRoId();
                     num=idRopaAUsar;
                 }
             }
+            ropaconid.clear();
             //System.out.println("idropaausar"+idRopaAUsar);
             t.setRoId(idRopaAUsar);
             String rutaParaGuardarFoto = ServletActionContext.getRequest().getSession().getServletContext().getRealPath("/");
@@ -688,9 +732,13 @@ private String countryName;
                 Fotos f3 = new Fotos(t,fotoAlta3);
                 respuesta = ControladoresDAO.cFotos.Inserta(f3);
             }
+            */
+            //////////////////////////////////////////////////////////////////
+            if(confotos){
+                return INPUT;
+            }
         }
-        if (accionocul.equals("m")) {
-            
+        if (accionocul.equals("m")) {            
             respuesta = ControladoresDAO.cRopa.Modifica(t);
         }
         if (accionocul.equals("e")) {
@@ -700,6 +748,7 @@ private String countryName;
         }
         return SUCCESS;
     }
+    
     public String ajaxAction() throws Exception{
        Categoria c = ControladoresDAO.cCategorias.RecuperaPorId(Integer.parseInt(countryName));
                   for(Subcategoria auxsubcat:c.getSubcategorias()){
@@ -712,4 +761,28 @@ private String countryName;
        return SUCCESS;
     }
     
+    public String CargaArchivo() {
+      try{
+        String rutaParaGuardarFoto = ServletActionContext.getRequest().getSession().getServletContext().getRealPath("/");
+        String eliminar = "build\\";
+        rutaParaGuardarFoto = rutaParaGuardarFoto.replace(eliminar, "");
+        rutaParaGuardarFoto += "Imagenes\\";
+        //System.out.println("Ruta: "+rutaParaGuardarFoto);
+        if(archivo.get(0) != null){
+            File destFile  = new File(rutaParaGuardarFoto, archivoFileName.get(0));
+            FileUtils.copyFile(archivo.get(0), destFile);
+        }
+        if(archivo.get(1) != null){
+            File destFile  = new File(rutaParaGuardarFoto, archivoFileName.get(1));
+            FileUtils.copyFile(archivo.get(1), destFile);
+        }
+        if(archivo.get(2) != null){
+            File destFile  = new File(rutaParaGuardarFoto, archivoFileName.get(2));
+            FileUtils.copyFile(archivo.get(2), destFile);
+        }
+      }catch(Exception e){
+          System.out.println("Error al copiar archivos: " + e.getMessage());
+      }
+      return SUCCESS;
+  }
 }
