@@ -762,23 +762,32 @@ private String countryName;
     }
     
     public String CargaArchivo() {
+      Fotos f;
+      int respuesta;
       try{
+        t = ControladoresDAO.cRopa.RecuperaPorId(roId2);
         String rutaParaGuardarFoto = ServletActionContext.getRequest().getSession().getServletContext().getRealPath("/");
         String eliminar = "build\\";
         rutaParaGuardarFoto = rutaParaGuardarFoto.replace(eliminar, "");
-        rutaParaGuardarFoto += "Imagenes\\";
+        rutaParaGuardarFoto += "Imagenes\\"+t.getCategoria().getCatDescripcion()+"\\"+t.getSubcategoria().getSubDescripcion()+"\\";
         //System.out.println("Ruta: "+rutaParaGuardarFoto);
         if(archivo.get(0) != null){
             File destFile  = new File(rutaParaGuardarFoto, archivoFileName.get(0));
             FileUtils.copyFile(archivo.get(0), destFile);
+            f = new Fotos(t,archivoFileName.get(0));
+            respuesta = ControladoresDAO.cFotos.Inserta(f);
         }
         if(archivo.get(1) != null){
             File destFile  = new File(rutaParaGuardarFoto, archivoFileName.get(1));
             FileUtils.copyFile(archivo.get(1), destFile);
+            f = new Fotos(t,archivoFileName.get(1));
+            respuesta = ControladoresDAO.cFotos.Inserta(f);
         }
         if(archivo.get(2) != null){
             File destFile  = new File(rutaParaGuardarFoto, archivoFileName.get(2));
             FileUtils.copyFile(archivo.get(2), destFile);
+            f = new Fotos(t,archivoFileName.get(2));
+            respuesta = ControladoresDAO.cFotos.Inserta(f);
         }
       }catch(Exception e){
           System.out.println("Error al copiar archivos: " + e.getMessage());

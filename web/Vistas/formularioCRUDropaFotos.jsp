@@ -20,10 +20,11 @@
             &nbsp;color&nbsp;<s:property value="t.color.colorDescripcion" />
         </label>
         <s:form action="CargaArchivo" method="post" enctype="multipart/form-data">
-          <s:file name="archivo" label="Carga archivo 1"/>
-          <s:file name="archivo" label="Carga archivo 2"/>
-          <s:file name="archivo" label="Carga archivo 3"/>
-          <s:submit value="Subir fotos" align="center"/>
+            <input type="hidden" name="roId2" value=<s:property value="t.roId" /> />
+            <s:file name="archivo" label="Carga archivo 1"/>
+            <s:file name="archivo" label="Carga archivo 2"/>
+            <s:file name="archivo" label="Carga archivo 3"/>
+            <s:submit value="Subir fotos" align="center"/>
         </s:form>
         <a href="volverRopaAdmin">
             No agregar fotos
