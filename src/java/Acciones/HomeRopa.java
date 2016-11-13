@@ -770,7 +770,7 @@ private String countryName;
         String eliminar = "build\\";
         rutaParaGuardarFoto = rutaParaGuardarFoto.replace(eliminar, "");
         rutaParaGuardarFoto += "Imagenes\\"+t.getCategoria().getCatDescripcion()+"\\"+t.getSubcategoria().getSubDescripcion()+"\\";
-        //System.out.println("Ruta: "+rutaParaGuardarFoto);
+        System.out.println("Ruta: "+rutaParaGuardarFoto);
         if(archivo.get(0) != null){
             File destFile  = new File(rutaParaGuardarFoto, archivoFileName.get(0));
             FileUtils.copyFile(archivo.get(0), destFile);
