@@ -7,8 +7,15 @@
 <%@taglib  prefix="s" uri="/struts-tags" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%!
-    String select1 = "";
-    String select0 = "";
+    String select1;
+    String select0;
+    String orden = "";
+    String filtro;
+    String fechaI;
+    String fechaF;
+    String eliminadas;
+    boolean[] ascendente = new boolean[14];
+    String[] completollamada = new String[14];
 %>                         
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -44,7 +51,7 @@
         <table border="1">
             <tr>
                 <td colspan="18">
-                    <s:form action="RopaAdminFiltro" theme="simple" id="frm">
+                    <s:form action="RopaAdminFiltro" theme="simple" id="frm" cssStyle="display:inline;">
                         <s:label value=" Fecha desde " />
                         <s:textfield name="fechaI" id="fechaI" cssClass="tcal" readonly="true"/>
                         &nbsp;&nbsp;
@@ -52,7 +59,8 @@
                         <s:textfield name="fechaF" id="fechaF" cssClass="tcal" readonly="true"/>
                         <%
                             if((request.getParameter("fechaI") != null) && (request.getParameter("fechaF")) != null){
-                                if(!(request.getParameter("fechaI").equals("")) && !(request.getParameter("fechaF").equals(""))){
+                                if(!(request.getParameter("fechaI").equals("")) && !(request.getParameter("fechaF").equals(""))
+                                        && !(request.getParameter("fechaI").equals("null")) && !(request.getParameter("fechaF").equals("null"))){
                                     %>
                                     <input type="button" value="Borrar fechas" onclick="BorrarFechas();">
                                     <%
@@ -86,94 +94,362 @@
                         <s:submit value="filtrar"></s:submit>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <s:a action="RopaAdminForm">
-                            <s:param name="accion" value="'a'"/>
-                            <i style="font-size: 20px" class="glyphicon glyphicon-plus"></i>
-                        </s:a>
+                         <%
+                            if(request.getParameter("orden") != null){
+                                orden = request.getParameter("orden");
+                            }
+                            if(request.getParameter("filtro") != null){
+                                filtro = request.getParameter("filtro");
+                            }
+                            if(request.getParameter("fechaI") != null){
+                                fechaI = request.getParameter("fechaI");
+                            }
+                            if(request.getParameter("fechaF") != null){
+                                fechaF = request.getParameter("fechaF");
+                            }
+                            if(request.getParameter("eliminadas") != null){
+                                eliminadas = request.getParameter("eliminadas");
+                            }
+                        %>
+                        <input type="hidden" name="orden" value="<%=orden%>" />
                     </s:form>
+                    <s:a action="RopaAdminForm">
+                        <s:param name="accion" value="'a'"/>
+                        <s:param name="filtro" value="%{filtro}" />
+                        <s:param name="fechaI" value="%{fechaI}" />
+                        <s:param name="fechaF" value="%{fechaF}" />
+                        <s:param name="eliminadas" value="%{eliminadas}" />
+                        <s:param name="orden" value="%{orden}" />
+                        <i style="font-size: 20px" class="glyphicon glyphicon-plus"></i>
+                        </button>
+                    </s:a>
                 </td>
             </tr>
             <tr>
                 <th>Acciones</th>
                 <th>
-                    <s:a action="RopaAdminFiltro">
-                        <s:param name="orden" value="'roId'"/>Id
-                    </s:a>
+                    <s:form action="RopaAdminFiltro" method="post" theme="simple">
+                        <input type="hidden" name="filtro" value="<%=filtro%>" />
+                        <input type="hidden" name="fechaI" value="<%=fechaI%>" />
+                        <input type="hidden" name="fechaF" value="<%=fechaF%>" />
+                        <input type="hidden" name="eliminadas" value="<%=eliminadas%>" />
+                        <%
+                            if(orden.equals("roId ASC") || orden.equals("roId DESC")){
+                                ascendente[0] = !ascendente[0];
+                            }else{
+                                ascendente[0] = true;
+                            }
+                            if(ascendente[0]){
+                                completollamada[0] = " ASC";
+                            }else{
+                                
+                                completollamada[0] = " DESC";
+                            }
+                        %>
+                        <input type="hidden" name="orden" value="roId<%=completollamada[0]%>" />
+                        <s:submit value="Id" />
+                    </s:form>
                 </th>
                 <th>
-                    <s:a action="RopaAdminFiltro">
-                        <s:param name="orden" value="'clientela.clientelaDescripcion'"/>Clientela
-                    </s:a>
+                    <s:form action="RopaAdminFiltro" method="post" theme="simple">
+                        <input type="hidden" name="filtro" value="<%=filtro%>" />
+                        <input type="hidden" name="fechaI" value="<%=fechaI%>" />
+                        <input type="hidden" name="fechaF" value="<%=fechaF%>" />
+                        <input type="hidden" name="eliminadas" value="<%=eliminadas%>" />
+                        <%
+                            if(orden.equals("clientela.clientelaDescripcion ASC") || orden.equals("clientela.clientelaDescripcion DESC")){
+                                ascendente[1] = !ascendente[1];
+                            }else{
+                                ascendente[1] = true;
+                            }
+                            if(ascendente[1]){
+                                completollamada[1] = " ASC";
+                            }else{
+                                
+                                completollamada[1] = " DESC";
+                            }
+                        %>
+                        <input type="hidden" name="orden" value="clientela.clientelaDescripcion<%=completollamada[1]%>" />
+                        <s:submit value="Clientela" />
+                    </s:form>
                 </th>
                 <th>
-                    <s:a action="RopaAdminFiltro">
-                        <s:param name="orden" value="'coleccion.coleccionDescripcion'"/>Colección
-                    </s:a>
+                    <s:form action="RopaAdminFiltro" method="post" theme="simple">
+                        <input type="hidden" name="filtro" value="<%=filtro%>" />
+                        <input type="hidden" name="fechaI" value="<%=fechaI%>" />
+                        <input type="hidden" name="fechaF" value="<%=fechaF%>" />
+                        <input type="hidden" name="eliminadas" value="<%=eliminadas%>" />
+                        <%
+                            if(orden.equals("coleccion.coleccionDescripcion ASC") || orden.equals("coleccion.coleccionDescripcion DESC")){
+                                ascendente[2] = !ascendente[2];
+                            }else{
+                                ascendente[2] = true;
+                            }
+                            if(ascendente[2]){
+                                completollamada[2] = " ASC";
+                            }else{
+                                
+                                completollamada[2] = " DESC";
+                            }
+                        %>
+                        <input type="hidden" name="orden" value="coleccion.coleccionDescripcion<%=completollamada[2]%>" />
+                        <s:submit value="Colección" />
+                    </s:form>
                 </th>
                 <th>
-                    <s:a action="RopaAdminFiltro">
-                        <s:param name="orden" value="'color.colorDescripcion'"/>Color
-                    </s:a>
+                    <s:form action="RopaAdminFiltro" method="post" theme="simple">
+                        <input type="hidden" name="filtro" value="<%=filtro%>" />
+                        <input type="hidden" name="fechaI" value="<%=fechaI%>" />
+                        <input type="hidden" name="fechaF" value="<%=fechaF%>" />
+                        <input type="hidden" name="eliminadas" value="<%=eliminadas%>" />
+                        <%
+                            if(orden.equals("color.colorDescripcion ASC") || orden.equals("color.colorDescripcion DESC")){
+                                ascendente[3] = !ascendente[3];
+                            }else{
+                                ascendente[3] = true;
+                            }
+                            if(ascendente[3]){
+                                completollamada[3] = " ASC";
+                            }else{
+                                
+                                completollamada[3] = " DESC";
+                            }
+                        %>
+                        <input type="hidden" name="orden" value="color.colorDescripcion<%=completollamada[3]%>" />
+                        <s:submit value="Color" />
+                    </s:form>
                 </th>
                 <th>
-                    <s:a action="RopaAdminFiltro">
-                        <s:param name="orden" value="'look.lookDescripcion'"/>Look
-                    </s:a>
+                    <s:form action="RopaAdminFiltro" method="post" theme="simple">
+                        <input type="hidden" name="filtro" value="<%=filtro%>" />
+                        <input type="hidden" name="fechaI" value="<%=fechaI%>" />
+                        <input type="hidden" name="fechaF" value="<%=fechaF%>" />
+                        <input type="hidden" name="eliminadas" value="<%=eliminadas%>" />
+                        <%
+                            if(orden.equals("look.lookDescripcion ASC") || orden.equals("look.lookDescripcion DESC")){
+                                ascendente[4] = !ascendente[4];
+                            }else{
+                                ascendente[4] = true;
+                            }
+                            if(ascendente[4]){
+                                completollamada[4] = " ASC";
+                            }else{
+                                
+                                completollamada[4] = " DESC";
+                            }
+                        %>
+                        <input type="hidden" name="orden" value="look.lookDescripcion<%=completollamada[4]%>" />
+                        <s:submit value="Look" />
+                    </s:form>
                 </th>
                 <th>
-                    <s:a action="RopaAdminFiltro">
-                        <s:param name="orden" value="'marcas.marcaNombre'"/>Marca
-                    </s:a>
+                    <s:form action="RopaAdminFiltro" method="post" theme="simple">
+                        <input type="hidden" name="filtro" value="<%=filtro%>" />
+                        <input type="hidden" name="fechaI" value="<%=fechaI%>" />
+                        <input type="hidden" name="fechaF" value="<%=fechaF%>" />
+                        <input type="hidden" name="eliminadas" value="<%=eliminadas%>" />
+                        <%
+                            if(orden.equals("marcas.marcaNombre ASC") || orden.equals("marcas.marcaNombre DESC")){
+                                ascendente[5] = !ascendente[5];
+                            }else{
+                                ascendente[5] = true;
+                            }
+                            if(ascendente[5]){
+                                completollamada[5] = " ASC";
+                            }else{
+                                
+                                completollamada[5] = " DESC";
+                            }
+                        %>
+                        <input type="hidden" name="orden" value="marcas.marcaNombre<%=completollamada[5]%>" />
+                        <s:submit value="Marca" />
+                    </s:form>
                 </th>
                 <th>
-                    <s:a action="RopaAdminFiltro">
-                        <s:param name="orden" value="'tallas.tallaDescripcion'"/>Talla
-                    </s:a>
+                    <s:form action="RopaAdminFiltro" method="post" theme="simple">
+                        <input type="hidden" name="filtro" value="<%=filtro%>" />
+                        <input type="hidden" name="fechaI" value="<%=fechaI%>" />
+                        <input type="hidden" name="fechaF" value="<%=fechaF%>" />
+                        <input type="hidden" name="eliminadas" value="<%=eliminadas%>" />
+                        <%
+                            if(orden.equals("tallas.tallaDescripcion ASC") || orden.equals("tallas.tallaDescripcion DESC")){
+                                ascendente[6] = !ascendente[6];
+                            }else{
+                                ascendente[6] = true;
+                            }
+                            if(ascendente[6]){
+                                completollamada[6] = " ASC";
+                            }else{
+                                
+                                completollamada[6] = " DESC";
+                            }
+                        %>
+                        <input type="hidden" name="orden" value="tallas.tallaDescripcion<%=completollamada[6]%>" />
+                        <s:submit value="Talla" />
+                    </s:form>
                 </th>
                 <th>
-                    <s:a action="RopaAdminFiltro">
-                        <s:param name="orden" value="'roDescripcion'"/>Descripción
-                    </s:a>
+                    <s:form action="RopaAdminFiltro" method="post" theme="simple">
+                        <input type="hidden" name="filtro" value="<%=filtro%>" />
+                        <input type="hidden" name="fechaI" value="<%=fechaI%>" />
+                        <input type="hidden" name="fechaF" value="<%=fechaF%>" />
+                        <input type="hidden" name="eliminadas" value="<%=eliminadas%>" />
+                        <%
+                            if(orden.equals("roDescripcion ASC") || orden.equals("roDescripcion DESC")){
+                                ascendente[7] = !ascendente[7];
+                            }else{
+                                ascendente[7] = true;
+                            }
+                            if(ascendente[7]){
+                                completollamada[7] = " ASC";
+                            }else{
+                                
+                                completollamada[7] = " DESC";
+                            }
+                        %>
+                        <input type="hidden" name="orden" value="roDescripcion<%=completollamada[7]%>" />
+                        <s:submit value="Descripción" />
+                    </s:form>
                 </th>
                 <th>
-                    <s:a action="RopaAdminFiltro">
-                        <s:param name="orden" value="'roPrecio'"/>Precio
-                    </s:a>
+                    <s:form action="RopaAdminFiltro" method="post" theme="simple">
+                        <input type="hidden" name="filtro" value="<%=filtro%>" />
+                        <input type="hidden" name="fechaI" value="<%=fechaI%>" />
+                        <input type="hidden" name="fechaF" value="<%=fechaF%>" />
+                        <input type="hidden" name="eliminadas" value="<%=eliminadas%>" />
+                        <%
+                            if(orden.equals("roPrecio ASC") || orden.equals("roPrecio DESC")){
+                                ascendente[8] = !ascendente[8];
+                            }else{
+                                ascendente[8] = true;
+                            }
+                            if(ascendente[8]){
+                                completollamada[8] = " ASC";
+                            }else{
+                                
+                                completollamada[8] = " DESC";
+                            }
+                        %>
+                        <input type="hidden" name="orden" value="roPrecio<%=completollamada[8]%>" />
+                        <s:submit value="Precio" />
+                    </s:form>
                 </th>
                 <th>
-                    <s:a action="RopaAdminFiltro">
-                        <s:param name="orden" value="'roDescuento'"/>Descuento
-                    </s:a>
+                    <s:form action="RopaAdminFiltro" method="post" theme="simple">
+                        <input type="hidden" name="filtro" value="<%=filtro%>" />
+                        <input type="hidden" name="fechaI" value="<%=fechaI%>" />
+                        <input type="hidden" name="fechaF" value="<%=fechaF%>" />
+                        <input type="hidden" name="eliminadas" value="<%=eliminadas%>" />
+                        <%
+                            if(orden.equals("roDescuento ASC") || orden.equals("roDescuento DESC")){
+                                ascendente[9] = !ascendente[9];
+                            }else{
+                                ascendente[9] = true;
+                            }
+                            if(ascendente[9]){
+                                completollamada[9] = " ASC";
+                            }else{
+                                
+                                completollamada[9] = " DESC";
+                            }
+                        %>
+                        <input type="hidden" name="orden" value="roDescuento<%=completollamada[9]%>" />
+                        <s:submit value="Descuento" />
+                    </s:form>
                 </th>
                 <th>
-                    <s:a action="RopaAdminFiltro">
-                        <s:param name="orden" value="'roCaracteristicas'"/>Características
-                    </s:a>
+                    <s:form action="RopaAdminFiltro" method="post" theme="simple">
+                        <input type="hidden" name="filtro" value="<%=filtro%>" />
+                        <input type="hidden" name="fechaI" value="<%=fechaI%>" />
+                        <input type="hidden" name="fechaF" value="<%=fechaF%>" />
+                        <input type="hidden" name="eliminadas" value="<%=eliminadas%>" />
+                        <%
+                            if(orden.equals("roCaracteristicas ASC") || orden.equals("roCaracteristicas DESC")){
+                                ascendente[10] = !ascendente[10];
+                            }else{
+                                ascendente[10] = true;
+                            }
+                            if(ascendente[10]){
+                                completollamada[10] = " ASC";
+                            }else{
+                                
+                                completollamada[10] = " DESC";
+                            }
+                        %>
+                        <input type="hidden" name="orden" value="roCaracteristicas<%=completollamada[10]%>" />
+                        <s:submit value="Características" />
+                    </s:form>
+                </th>
+                <th>Visible</th>
+                <th>
+                    <s:form action="RopaAdminFiltro" method="post" theme="simple">
+                        <input type="hidden" name="filtro" value="<%=filtro%>" />
+                        <input type="hidden" name="fechaI" value="<%=fechaI%>" />
+                        <input type="hidden" name="fechaF" value="<%=fechaF%>" />
+                        <input type="hidden" name="eliminadas" value="<%=eliminadas%>" />
+                        <%
+                            if(orden.equals("roUnidades ASC") || orden.equals("roUnidades DESC")){
+                                ascendente[11] = !ascendente[11];
+                            }else{
+                                ascendente[11] = true;
+                            }
+                            if(ascendente[11]){
+                                completollamada[11] = " ASC";
+                            }else{
+                                
+                                completollamada[11] = " DESC";
+                            }
+                        %>
+                        <input type="hidden" name="orden" value="roUnidades<%=completollamada[11]%>" />
+                        <s:submit value="Unidades" />
+                    </s:form>
+                </th>
+                <th>Fecha</th>
+                <th>
+                    <s:form action="RopaAdminFiltro" method="post" theme="simple">
+                        <input type="hidden" name="filtro" value="<%=filtro%>" />
+                        <input type="hidden" name="fechaI" value="<%=fechaI%>" />
+                        <input type="hidden" name="fechaF" value="<%=fechaF%>" />
+                        <input type="hidden" name="eliminadas" value="<%=eliminadas%>" />
+                        <%
+                            if(orden.equals("categoria.catDescripcion ASC") || orden.equals("categoria.catDescripcion DESC")){
+                                ascendente[12] = !ascendente[12];
+                            }else{
+                                ascendente[12] = true;
+                            }
+                            if(ascendente[12]){
+                                completollamada[12] = " ASC";
+                            }else{
+                                
+                                completollamada[12] = " DESC";
+                            }
+                        %>
+                        <input type="hidden" name="orden" value="categoria.catDescripcion<%=completollamada[12]%>" />
+                        <s:submit value="Categoría" />
+                    </s:form>
                 </th>
                 <th>
-                    <s:a action="RopaAdminFiltro">
-                        <s:param name="orden" value="'roVisible'"/>Visible
-                    </s:a>
-                </th>
-                <th>
-                    <s:a action="RopaAdminFiltro">
-                        <s:param name="orden" value="'roUnidades'"/>Unidades
-                    </s:a>
-                </th>
-                <th>
-                    <s:a action="RopaAdminFiltro">
-                        <s:param name="orden" value="'roFecha'"/>Fecha
-                    </s:a>
-                </th>
-                <th>
-                    <s:a action="RopaAdminFiltro">
-                        <s:param name="orden" value="'categoria.catDescripcion'"/>Categoría
-                    </s:a>
-                </th>
-                <th>
-                    <s:a action="RopaAdminFiltro">
-                        <s:param name="orden" value="'subcategoria.subDescripcion'"/>Subcategoría
-                    </s:a>
+                    <s:form action="RopaAdminFiltro" method="post" theme="simple">
+                        <input type="hidden" name="filtro" value="<%=filtro%>" />
+                        <input type="hidden" name="fechaI" value="<%=fechaI%>" />
+                        <input type="hidden" name="fechaF" value="<%=fechaF%>" />
+                        <input type="hidden" name="eliminadas" value="<%=eliminadas%>" />
+                        <%
+                            if(orden.equals("subcategoria.subDescripcion ASC") || orden.equals("subcategoria.subDescripcion DESC")){
+                                ascendente[13] = !ascendente[13];
+                            }else{
+                                ascendente[13] = true;
+                            }
+                            if(ascendente[13]){
+                                completollamada[13] = " ASC";
+                            }else{
+                                
+                                completollamada[13] = " DESC";
+                            }
+                        %>
+                        <input type="hidden" name="orden" value="subcategoria.subDescripcion<%=completollamada[13]%>" />
+                        <s:submit value="Subcategoría" />
+                    </s:form>
                 </th>
                 <th>Fotos</th>
             </tr>
@@ -184,12 +460,21 @@
                         <s:a action="RopaAdminForm">
                             <s:param name="clave" value="#a.roId"/>
                             <s:param name="accion" value="'m'"/>
+                            <s:param name="filtro" value="%{filtro}" />
+                            <s:param name="fechaI" value="%{fechaI}" />
+                            <s:param name="fechaF" value="%{fechaF}" />
+                            <s:param name="eliminadas" value="%{eliminadas}" />
+                            <s:param name="orden" value="%{orden}" />
                             <i style="font-size: 20px" class="glyphicon glyphicon-edit"></i>
                         </s:a>
-                        &nbsp;&nbsp;&nbsp;&nbsp;
                         <s:a action="RopaAdminForm">
                             <s:param name="accion" value="'e'"/>
                             <s:param name="clave" value="#a.roId"/>
+                            <s:param name="filtro" value="%{filtro}" />
+                            <s:param name="fechaI" value="%{fechaI}" />
+                            <s:param name="fechaF" value="%{fechaF}" />
+                            <s:param name="eliminadas" value="%{eliminadas}" />
+                            <s:param name="orden" value="%{orden}" />
                             <i style="font-size: 20px" class="glyphicon glyphicon-trash"></i>
                         </s:a>
                     </td>

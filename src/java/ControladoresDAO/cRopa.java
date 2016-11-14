@@ -12,9 +12,6 @@ public class cRopa {
 
     public static ArrayList<Ropa> RecuperaTodos(String filtro, String orden, String fi, String ff, String eliminadas) {
         sesion = (Session) NewHibernateUtil.getSession();
-        if(orden.equals("")){
-            orden = "categoria.catDescripcion";
-        }
         String sql = "From Ropa WHERE ";
         if(!fi.equals("") && !ff.equals("")){
             String year;

@@ -384,12 +384,17 @@
                         <%} else {%>
                         <input type="button" onclick="Verificar();" value=<s:property value="botonocul" /> />
                         <%}%>
-                        <a href="volverRopaAdmin">
-                            Cancelar
-                        </a>
                     </td>
                 </tr>
             </table>
+        </s:form>
+        <s:form action="RopaAdminFiltro" method="post" theme="simple">
+            <input type="hidden" name="filtro" value="<%=request.getParameter("filtro")%>" />
+            <input type="hidden" name="fechaI" value="<%=request.getParameter("fechaI")%>" />
+            <input type="hidden" name="fechaF" value="<%=request.getParameter("fechaF")%>" />
+            <input type="hidden" name="eliminadas" value="<%=request.getParameter("eliminadas")%>" />
+            <input type="hidden" name="orden" value="<%=request.getParameter("orden")%>" />
+            <s:submit value="Cancelar" />
         </s:form>
     </body>
 </html>

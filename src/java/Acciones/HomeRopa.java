@@ -579,17 +579,17 @@ private String countryName;
         
       
         
-        if (filtro == null) {
+        if (filtro == null || filtro.equals("null")) {
             filtro = "";
         }
-        if(orden == null){
-            orden = "";
+        if(orden == null || orden.equals("null") || orden.equals("")){
+            orden = "categoria.catDescripcion";
         }
-        if((fechaI == null) || (fechaF == null)){
+        if((fechaI == null) || (fechaF == null) || fechaI.equals("null") || fechaF.equals("null")){
             fechaI = "";
             fechaF = "";
         }
-        if(eliminadas == null){
+        if(eliminadas == null || eliminadas.equals("null")){
             eliminadas = "2";
         }
         lista_ropa_Cestas = ControladoresDAO.cCesta.RecuperaTodos(usi);
@@ -790,7 +790,7 @@ private String countryName;
             respuesta = ControladoresDAO.cFotos.Inserta(f);
         }
       }catch(Exception e){
-          System.out.println("Error al copiar archivos: " + e.getMessage());
+            System.out.println("Error al copiar archivos: " + e.getMessage());
       }
       return SUCCESS;
   }
