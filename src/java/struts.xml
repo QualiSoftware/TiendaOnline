@@ -106,11 +106,8 @@
         </action>-->
         
         <!-- actions de Fotos -->
-        <action name="FotosFiltro" class="Acciones.HomeFotos" method="FotosFiltro">
-            <result>/Vistas/pruebaCRUDprincipal.jsp</result>           
-        </action>
         <action name="FotosForm" class="Acciones.HomeFotos" method="FotosForm">
-            <result>/Vistas/pruebaCRUDformulario.jsp</result>   
+            <result>/Vistas/formularioCRUDropaFotos.jsp</result>   
         </action>
         <action name="CrudActionFotos" class="Acciones.HomeFotos" method="CrudActionFotos">
             <result type="redirect">FotosFiltro</result>
@@ -238,7 +235,7 @@
         </action>
         
         <!-- Copiar fotos en servidor -->
-        <action name="CargaArchivo" class="Acciones.HomeRopa" method="CargaArchivo">
+        <action name="CargaArchivo" class="Acciones.HomeFotos" method="CargaArchivo">
             <result type="redirect">RopaAdminFiltro</result>
             <result name="input">/Vistas/formularioCRUDropaFotos.jsp</result>
         </action>

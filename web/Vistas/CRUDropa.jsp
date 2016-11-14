@@ -50,7 +50,7 @@
         <div  class="linea"></div>
         <table border="1">
             <tr>
-                <td colspan="18">
+                <td colspan="19">
                     <s:form action="RopaAdminFiltro" theme="simple" id="frm" cssStyle="display:inline;">
                         <s:label value=" Fecha desde " />
                         <s:textfield name="fechaI" id="fechaI" cssClass="tcal" readonly="true"/>
@@ -452,6 +452,7 @@
                     </s:form>
                 </th>
                 <th>Fotos</th>
+                <th>Acciones con fotos</th>
             </tr>
             <%String fondo = "fondoOscuro";%>
             <s:iterator var="a" value="lista_ropa">
@@ -535,6 +536,28 @@
                         <s:iterator var="f" value="fotoses">
                             <s:property value="fotosRuta"/>
                         </s:iterator>
+                    </td>
+                    <td>
+                        <s:a action="FotosForm">
+                            <s:param name="roId2" value="#a.roId"/>
+                            <s:param name="accionocul" value="'m'"/>
+                            <s:param name="filtro" value="%{filtro}" />
+                            <s:param name="fechaI" value="%{fechaI}" />
+                            <s:param name="fechaF" value="%{fechaF}" />
+                            <s:param name="eliminadas" value="%{eliminadas}" />
+                            <s:param name="orden" value="%{orden}" />
+                            <i style="font-size: 20px" class="glyphicon glyphicon-edit"></i>
+                        </s:a>
+                        <s:a action="FotosForm">
+                            <s:param name="accionocul" value="'e'"/>
+                            <s:param name="roId2" value="#a.roId"/>
+                            <s:param name="filtro" value="%{filtro}" />
+                            <s:param name="fechaI" value="%{fechaI}" />
+                            <s:param name="fechaF" value="%{fechaF}" />
+                            <s:param name="eliminadas" value="%{eliminadas}" />
+                            <s:param name="orden" value="%{orden}" />
+                            <i style="font-size: 20px" class="glyphicon glyphicon-trash"></i>
+                        </s:a>
                     </td>
                 </tr>
                 <%
