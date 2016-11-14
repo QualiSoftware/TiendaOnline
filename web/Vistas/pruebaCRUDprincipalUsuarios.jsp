@@ -58,6 +58,9 @@
                                         <s:submit  value="login"/>                    
                                     </td>
                                 </tr>
+                                <tr>
+                                    <s:submit  value="Crear Usuario"/>
+                                </tr>
                             </table>
                         </s:form>
                     </s:if>
