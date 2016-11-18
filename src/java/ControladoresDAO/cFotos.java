@@ -6,9 +6,11 @@
 package ControladoresDAO;
 
 import Modelos.Fotos;
+import Modelos.Ropa;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 
 /**
  *
@@ -29,6 +31,19 @@ public class cFotos {
         sesion = (Session) NewHibernateUtil.getSession();
         Fotos p =(Fotos) sesion.get(Fotos.class, id);
         return p;
+    }
+    
+    public static Fotos RecuperaFotoABorrar(int roId, String archivo){
+        sesion = (Session) NewHibernateUtil.getSession();
+        String sql = "FROM Fotos WHERE fotos_ro_id = "+roId+" AND fotos_ruta = '"+ archivo + "'";
+        //System.out.println("sql: "+sql);
+        Query query =sesion.createQuery(sql); 
+        List<Fotos> lf = query.list();
+        Fotos f = null;
+        if(lf.size() > 0){
+            f = lf.get(0);
+        }
+        return f;
     }
     
     

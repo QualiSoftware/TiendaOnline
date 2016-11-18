@@ -7,10 +7,6 @@ import static com.opensymphony.xwork2.Action.SUCCESS;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import java.io.File;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
 import org.apache.commons.io.FileUtils;
 import org.apache.struts2.ServletActionContext;
 
@@ -19,15 +15,27 @@ public class HomeFotos extends ActionSupport {
     
     private Ropa t;
     private Integer roId2;
-    private List<File> archivo = new LinkedList<File>();
-    private List<String> archivoContentType = new LinkedList<String>();
-    private List<String> archivoFileName = new LinkedList<String>();
+    private File archivo1 = null;
+    private String archivo1FileName;
+    private File archivo2 = null;
+    private String archivo2FileName;
+    private File archivo3 = null;
+    private String archivo3FileName;
     private String accionocul;
     private String filtro;
     private String fechaI;
     private String fechaF;
     private String eliminadas;
     private String orden;
+    private String ruta;
+    private String elimino1 = "";
+    private String elimino2 = "";    
+    private String elimino3 = "";
+    private String[] aux = new String[2];
+    private String borra1 = "";
+    private String borra2 = "";
+    private String borra3 = "";
+    
     
     public Ropa getT() {
         return t;
@@ -44,29 +52,53 @@ public class HomeFotos extends ActionSupport {
     public void setRoId2(Integer roId2) {
         this.roId2 = roId2;
     }
-
-    public List<File> getArchivo() {
-        return archivo;
+    
+    public File getArchivo1() {
+        return archivo1;
     }
 
-    public void setArchivo(List<File> archivo) {
-        this.archivo = archivo;
+    public void setArchivo1(File archivo1) {
+        this.archivo1 = archivo1;
     }
 
-    public List<String> getArchivoContentType() {
-        return archivoContentType;
+    public String getArchivo1FileName() {
+        return archivo1FileName;
     }
 
-    public void setArchivoContentType(List<String> archivoContentType) {
-        this.archivoContentType = archivoContentType;
+    public void setArchivo1FileName(String archivo1FileName) {
+        this.archivo1FileName = archivo1FileName;
     }
 
-    public List<String> getArchivoFileName() {
-        return archivoFileName;
+    public File getArchivo2() {
+        return archivo2;
     }
 
-    public void setArchivoFileName(List<String> archivoFileName) {
-        this.archivoFileName = archivoFileName;
+    public void setArchivo2(File archivo2) {
+        this.archivo2 = archivo2;
+    }
+
+    public String getArchivo2FileName() {
+        return archivo2FileName;
+    }
+
+    public void setArchivo2FileName(String archivo2FileName) {
+        this.archivo2FileName = archivo2FileName;
+    }
+
+    public File getArchivo3() {
+        return archivo3;
+    }
+
+    public void setArchivo3(File archivo3) {
+        this.archivo3 = archivo3;
+    }
+
+    public String getArchivo3FileName() {
+        return archivo3FileName;
+    }
+
+    public void setArchivo3FileName(String archivo3FileName) {
+        this.archivo3FileName = archivo3FileName;
     }
 
     public String getAccionocul() {
@@ -117,34 +149,116 @@ public class HomeFotos extends ActionSupport {
         this.orden = orden;
     }
 
-    
+    public String getRuta() {
+        return ruta;
+    }
+
+    public void setRuta(String ruta) {
+        this.ruta = ruta;
+    }
+
+    public String getElimino1() {
+        return elimino1;
+    }
+
+    public void setElimino1(String elimino1) {
+        this.elimino1 = elimino1;
+    }
+
+    public String getElimino2() {
+        return elimino2;
+    }
+
+    public void setElimino2(String elimino2) {
+        this.elimino2 = elimino2;
+    }
+
+    public String getElimino3() {
+        return elimino3;
+    }
+
+    public void setElimino3(String elimino3) {
+        this.elimino3 = elimino3;
+    }
+
+    public String getBorra1() {
+        return borra1;
+    }
+
+    public void setBorra1(String borra1) {
+        this.borra1 = borra1;
+    }
+
+    public String getBorra2() {
+        return borra2;
+    }
+
+    public void setBorra2(String borra2) {
+        this.borra2 = borra2;
+    }
+
+    public String getBorra3() {
+        return borra3;
+    }
+
+    public void setBorra3(String borra3) {
+        this.borra3 = borra3;
+    }
+  
     public String CargaArchivo() {
       Fotos f;
       int respuesta;
       try{
         t = ControladoresDAO.cRopa.RecuperaPorId(roId2);
-        String rutaParaGuardarFoto = ServletActionContext.getRequest().getSession().getServletContext().getRealPath("/");
-        String eliminar = "build\\";
-        rutaParaGuardarFoto = rutaParaGuardarFoto.replace(eliminar, "");
-        rutaParaGuardarFoto += "Imagenes\\"+t.getCategoria().getCatDescripcion()+"\\"+t.getSubcategoria().getSubDescripcion()+"\\";
-        //System.out.println("Ruta: "+rutaParaGuardarFoto);
-        if(archivo.get(0) != null){
-            File destFile  = new File(rutaParaGuardarFoto, archivoFileName.get(0));
-            FileUtils.copyFile(archivo.get(0), destFile);
-            f = new Fotos(t,archivoFileName.get(0));
+        Ruta();
+        //System.out.println("Ruta: "+ruta);
+        if(archivo1 != null){
+            File destFile  = new File(ruta, archivo1FileName);
+            FileUtils.copyFile(archivo1, destFile);
+            f = new Fotos(t,archivo1FileName);
             respuesta = ControladoresDAO.cFotos.Inserta(f);
+            if(accionocul.equals("m") && borra1.equals("")){
+                if(!elimino2.equals("")){
+                    aux[0] = elimino2;
+                    elimino2 = "";
+                }
+                if(!elimino3.equals("")){
+                    aux[1] = elimino3;
+                    elimino3 = "";
+                }
+                EliminaArchivo();
+            }
         }
-        if(archivo.get(1) != null){
-            File destFile  = new File(rutaParaGuardarFoto, archivoFileName.get(1));
-            FileUtils.copyFile(archivo.get(1), destFile);
-            f = new Fotos(t,archivoFileName.get(1));
+        if(archivo2 != null){
+            File destFile  = new File(ruta, archivo2FileName);
+            FileUtils.copyFile(archivo2, destFile);
+            f = new Fotos(t,archivo2FileName);
             respuesta = ControladoresDAO.cFotos.Inserta(f);
+            if(accionocul.equals("m") && borra2.equals("")){
+                if(elimino2.equals("")){
+                    elimino2 = aux[0];
+                }
+                elimino1 = "";
+                if(!elimino3.equals("")){
+                    aux[1] = elimino3;
+                    elimino3 = "";
+                }
+                EliminaArchivo();
+            }
         }
-        if(archivo.get(2) != null){
-            File destFile  = new File(rutaParaGuardarFoto, archivoFileName.get(2));
-            FileUtils.copyFile(archivo.get(2), destFile);
-            f = new Fotos(t,archivoFileName.get(2));
+        if(archivo3 != null){
+            File destFile  = new File(ruta, archivo3FileName);
+            FileUtils.copyFile(archivo3, destFile);
+            f = new Fotos(t,archivo3FileName);
             respuesta = ControladoresDAO.cFotos.Inserta(f);
+            if(accionocul.equals("m") && borra3.equals("")){
+                elimino2="";
+                elimino1 = "";
+                if(elimino3.equals("")){
+                    elimino3 = aux[1];
+                }
+                EliminaArchivo();
+            }
         }
       }catch(Exception e){
             System.out.println("Error al copiar archivos: " + e.getMessage());
@@ -153,6 +267,53 @@ public class HomeFotos extends ActionSupport {
   } 
     
    public String FotosForm() throws Exception{
+        t = ControladoresDAO.cRopa.RecuperaPorId(roId2);
+        //Ruta();
        return SUCCESS;
+   }
+   
+   public String EliminaArchivo() throws Exception{
+        t = ControladoresDAO.cRopa.RecuperaPorId(roId2);
+        int resultado;
+        Ruta();
+        if(!elimino1.equals("")){
+            File fichero = new File(ruta + elimino1);
+            if (fichero.delete()){
+                System.out.println("Archivo " + ruta + elimino1 + " borrado.");
+            }else{
+                System.out.println("El archivo" + ruta + elimino1 + " no puede ser borrado");
+            }
+            resultado = ControladoresDAO.cFotos.Elimina(ControladoresDAO.cFotos.RecuperaFotoABorrar(roId2, elimino1));
+        }
+        if(!elimino2.equals("")){
+            File fichero = new File(ruta + elimino2);
+            if (fichero.delete()){
+                System.out.println("Archivo " + ruta + elimino2 + " borrado.");
+            }else{
+                System.out.println("El archivo" + ruta + elimino2 + " no puede ser borrado");
+            }
+            resultado = ControladoresDAO.cFotos.Elimina(ControladoresDAO.cFotos.RecuperaFotoABorrar(roId2, elimino2));
+        }
+        if(!elimino3.equals("")){
+            File fichero = new File(ruta + elimino3);
+            if (fichero.delete()){
+                System.out.println("Archivo " + ruta + elimino3 + " borrado.");
+            }else{
+                System.out.println("El archivo" + ruta + elimino3 + " no puede ser borrado");
+            }
+            resultado = ControladoresDAO.cFotos.Elimina(ControladoresDAO.cFotos.RecuperaFotoABorrar(roId2, elimino3));
+        }
+       //System.out.println("elimino1: "+ruta+elimino1);
+       //System.out.println("elimino2: "+ruta+elimino2);
+       //System.out.println("elimino3: "+ruta+elimino3);
+       
+       return SUCCESS;
+   }
+   
+   private void Ruta(){
+        ruta = ServletActionContext.getRequest().getSession().getServletContext().getRealPath("/");
+        String eliminar = "build\\";
+        ruta = ruta.replace(eliminar, "");
+        ruta += "Imagenes\\"+t.getCategoria().getCatDescripcion()+"\\"+t.getSubcategoria().getSubDescripcion()+"\\";       
    }
 }

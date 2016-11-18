@@ -315,8 +315,12 @@
                     
 
                     <td>
+                        <% boolean hayfotos = false; %>                        
+                        <s:iterator var="f" value="t.fotoses">
+                            <% hayfotos = true; %>
+                        </s:iterator>
                         <%
-                            if (request.getAttribute("accionocul") == "e") {
+                            if (request.getAttribute("accionocul") == "e" || hayfotos) {
                         %>
                         <s:textfield name="t.categoria.catDescripcion" readonly="true" ></s:textfield>
                         <%
@@ -335,7 +339,7 @@
                         </td>
                         <td>
                         <%
-                        if (request.getAttribute("accionocul") == "e") {
+                        if (request.getAttribute("accionocul") == "e" || hayfotos) {
                         %>
                             <s:textfield name="t.subcategoria.subDescripcion" readonly="true" ></s:textfield>
                         <%
@@ -349,31 +353,9 @@
                         %>
                     </td>
                 </tr>
-                <!--
-                <%
-                    if (request.getAttribute("accionocul") == "a") {
-                %>
-                <tr>
-                    <td><s:label for="fotos">Foto 1</s:label></td>
-                    <td><s:textfield type="file" name="fotoAlta1" ></s:textfield></td>
-                    </tr>
-                    <tr>
-                        <td><s:label for="fotos">Foto 2</s:label></td>
-                    <td><s:textfield type="file"  name="fotoAlta2" ></s:textfield></td>
-                    </tr>
-                    <tr>
-                        <td><s:label for="fotos">Foto 3</s:label></td>
-                    <td><s:textfield type="file"  name="fotoAlta3" ></s:textfield></td>
-                    </tr>
-                <%} else {%>
-                <s:iterator var="f" value="t.fotoses">
-                    <tr>
-                        <td><s:label for="fotos">Fotos</s:label></td>
-                        <td><s:textfield name="fotosRuta" readonly="true" ></s:textfield></td>
-                        </tr>
-                </s:iterator>
+                <% if(hayfotos){ %>
+                <tr><td colspan="2">No se pueden modificar categoría y subcategoría ya que tiene fotos asociadas</td></tr>
                 <%}%>
-                -->
                 <tr>
                     <td colspan="2">
                         <%

@@ -5,13 +5,28 @@
 --%>
 <%@taglib prefix="s" uri="/struts-tags" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<% 
+    int cantMaxFotos = 3;
+    int nf = 0;
+%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Subir Fotos</title>
+        <script>
+            function Verificar() {
+                if (document.getElementById('accionocul').value === 'e') {
+                    if (confirm("¿Seguro que desea borrar?")) {
+                        document.getElementById('frm').action = "EliminaArchivo";
+                        document.getElementById('frm').submit();
+                    }
+                }
+            }
+        </script>
     </head>
     <body>
+        <input type="hidden" id="accionocul" value=<s:property value="accionocul" /> />
         <label>Fotos de <s:property value="t.categoria.catDescripcion" />
             &nbsp;<s:property value="t.subcategoria.subDescripcion" /> 
             &nbsp;de&nbsp;<s:property value="t.clientela.clientelaDescripcion" />
@@ -19,19 +34,35 @@
             &nbsp;marca&nbsp;<s:property value="t.marcas.marcaNombre" />
             &nbsp;color&nbsp;<s:property value="t.color.colorDescripcion" />
         </label>
-        <br>&nbsp;accionocul&nbsp;<s:property value="accionocul" />
-        <s:if test="%{#accionocul == a}">
-            <s:form action="CargaArchivo" method="post" enctype="multipart/form-data">
+            <s:form action="CargaArchivo" id="frm" method="post" enctype="multipart/form-data" theme="simple">
                 <input type="hidden" name="roId2" value=<s:property value="t.roId" /> />
-                <s:file name="archivo" label="Carga archivo 1"/>
-                <s:file name="archivo" label="Carga archivo 2"/>
-                <s:file name="archivo" label="Carga archivo 3"/>
-                <s:submit value="Subir fotos" align="center"/>
+                <input type="hidden" name="accionocul" value=<s:property value="accionocul" /> />
+                <s:iterator var="f" value="t.fotoses">
+                    <% nf++; %>
+                    <img src="<s:url value='../Imagenes/%{t.categoria.catDescripcion}/%{t.subcategoria.subDescripcion}/%{#f.fotosRuta}'/>" width="65" alt="<s:property value='%{#f.fotosRuta}' />" />
+                    <s:if test='%{accionocul == "e"}'>
+                        <input type="checkbox" name="elimino<%=nf%>" value="<s:property value='%{#f.fotosRuta}' />">
+<!--Falta hacer modificar-->                        
+                    </s:if>
+                    <s:else>
+                        <input type="hidden" name="elimino<%=nf%>" value="<s:property value='%{#f.fotosRuta}' />" />
+                        <input type="file" name="archivo<%=nf%>"/>
+                    </s:else>
+                    <br>
+                </s:iterator>
+                <s:if test='%{accionocul == "e"}'>
+                    <input type="button" onclick="Verificar();" value="Eliminar fotos seleccionadas" />
+                </s:if>
+                <s:else>
+                    <%for(int i=nf;i<cantMaxFotos;i++){%>
+                        Agregar Foto nueva <%=i+1%>: 
+                        <input type="file" name="archivo<%=i+1%>"/>
+                        <input type="hidden" name="borra<%=i+1%>" value="no borra" />
+                        <br>
+                    <%}%>
+                <s:submit value="Subir cambios" align="center"/>
+                </s:else>
             </s:form>
-        </s:if>
-        <s:else>
-            No entró... (no funciona este IF, nunca entro en el else) 
-        </s:else>
         <s:a action="RopaAdminFiltro">
             <s:param name="filtro" value="%{filtro}" />
             <s:param name="fechaI" value="%{fechaI}" />

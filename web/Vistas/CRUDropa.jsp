@@ -121,7 +121,6 @@
                         <s:param name="eliminadas" value="%{eliminadas}" />
                         <s:param name="orden" value="%{orden}" />
                         <i style="font-size: 20px" class="glyphicon glyphicon-plus"></i>
-                        </button>
                     </s:a>
                 </td>
             </tr>
@@ -534,7 +533,7 @@
                     </td>
                     <td>
                         <s:iterator var="f" value="fotoses">
-                            <s:property value="fotosRuta"/>
+                            <s:property value="fotosRuta"/><br>
                         </s:iterator>
                     </td>
                     <td>

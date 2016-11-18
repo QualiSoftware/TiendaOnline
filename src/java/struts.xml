@@ -109,13 +109,14 @@
         <action name="FotosForm" class="Acciones.HomeFotos" method="FotosForm">
             <result>/Vistas/formularioCRUDropaFotos.jsp</result>   
         </action>
-        <action name="CrudActionFotos" class="Acciones.HomeFotos" method="CrudActionFotos">
-            <result type="redirect">FotosFiltro</result>
-            <result name="input">/Vistas/pruebaCRUDformulario.jsp</result>
-            <result name="error">/Vistas/pruebaCRUDformulario.jsp</result>
+        <action name="CargaArchivo" class="Acciones.HomeFotos" method="CargaArchivo">
+            <result type="redirect">RopaAdminFiltro</result>
+            <result name="input">/Vistas/formularioCRUDropaFotos.jsp</result>
         </action>
-        <action name="volverFotos">
-            <result type="redirect">FotosFiltro</result>
+        
+        <action name="EliminaArchivo" class="Acciones.HomeFotos" method="EliminaArchivo">
+            <result type="redirect">RopaAdminFiltro</result>
+            <result name="input">/Vistas/formularioCRUDropaFotos.jsp</result>
         </action>
         
          <!-- action de Look-->
@@ -232,12 +233,6 @@
         
         <action name="FacturaPDF">
             <result>/Vistas/FacturaPDF.jsp</result>
-        </action>
-        
-        <!-- Copiar fotos en servidor -->
-        <action name="CargaArchivo" class="Acciones.HomeFotos" method="CargaArchivo">
-            <result type="redirect">RopaAdminFiltro</result>
-            <result name="input">/Vistas/formularioCRUDropaFotos.jsp</result>
         </action>
     </package>
     
