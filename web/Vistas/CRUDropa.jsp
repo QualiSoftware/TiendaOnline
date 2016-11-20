@@ -50,7 +50,7 @@
         <div  class="linea"></div>
         <table border="1">
             <tr>
-                <td colspan="19">
+                <td colspan="19" style="padding-right: 40%;">
                     <s:form action="RopaAdminFiltro" theme="simple" id="frm" cssStyle="display:inline;">
                         <s:label value=" Fecha desde " />
                         <s:textfield name="fechaI" id="fechaI" cssClass="tcal" readonly="true"/>
