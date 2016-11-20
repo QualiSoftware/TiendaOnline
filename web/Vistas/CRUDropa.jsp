@@ -513,9 +513,12 @@
                     </td>
                     <s:if test="%{#a.roVisible==1}">
                     <td class="puntoVerde">
+                        <img src="../Imagenes/Administracion/True.svg"/>
+
                     </s:if>
                     <s:else>
                     <td class="puntoRojo">
+                        <img src="../Imagenes/Administracion/False.svg"/>
                     </s:else>
                         <s:property value="#a.roVisible"/>
                     </td>

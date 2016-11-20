@@ -10,6 +10,8 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="../Estilos/GeneralEstilos.css"/>
         <title><s:property value="cabeceraocul" /> de Clientela</title>
         <script>
             function Verificar() {
@@ -24,7 +26,22 @@
         </script>
     </head>
     <body>
-        <h1><s:property value="cabeceraocul" /> de Clientela</h1>
+        <div id="header">
+            <div id="introduccion">
+            </div>
+            <div id="login">
+                <s:a action="Usuario/RopaFiltro" cssStyle="padding: 5px 13px;"><span class="glyphicon glyphicon-lock" aria-hidden="true"></span> Volver a Tienda</s:a>
+                </div>
+            <div id="marca">Tienda Ropa <img src="../Imagenes/house_hangers.svg" alt="house_hangers" id="logo"/>
+            </div>
+            <div id="titulo_Pagina">Categorías</div>
+                <s:include value="menuAdministrador.jsp" />
+        </div>
+        <div  class="linea"></div>
+        <div id="descripcion_Pagina"><h3 class="bold"><s:property value="cabeceraocul" /> de Clientela</h3></div>
+        <div  class="linea"></div>   
+        
+        
         <s:form id="frm" action="CrudActionClientela" theme="simple">
             <input type="hidden" name="accionocul" id="accionocul" value=<s:property value="accion" /> />
             <table>

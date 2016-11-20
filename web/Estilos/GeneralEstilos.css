@@ -63,7 +63,7 @@ nav{
     padding-bottom: 4px;
     font-size: 20px;
     background-color: #cccccc;
-    width: 1250px;
+    width: 1200px;
     padding-left: 0px;
     margin: 0 auto;
     text-align: center;
@@ -211,4 +211,18 @@ td, th {
 }
 .fondoClaro{
     background-color: white;
+}
+.puntoRojo img{
+    width: 30px;
+}
+.puntoVerde img{
+    width: 30px;
+}
+
+.formulario_Fotos{
+    margin-left: 25%;
+    margin-top: 50px;       
+}
+#sel_Archivos{
+    margin-left: 150px;
 }
