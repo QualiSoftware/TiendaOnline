@@ -8,6 +8,22 @@
     <constant name="struts.multipart.saveDir" value="C:\Windows\Temp" />
     <package name="default" extends="struts-default, json-default">
         
+        <!-- action de Campañas-->
+        <action name="CampaniasFiltro" class="Acciones.HomeCampanias" method="CampaniasFiltro" >
+            <result>/Vistas/CRUDcampanias.jsp</result> 
+        </action>
+        <action name="CampaniasForm" class="Acciones.HomeCampanias" method="CampaniasForm">
+            <result>/Vistas/formularioCRUDcampanias.jsp</result>   
+        </action>
+        <action name="CrudActionCampanias" class="Acciones.HomeCampanias" method="CrudActionCampanias">
+            <result name="input">/Vistas/formularioCRUDcampanias.jsp</result>
+            <result name="error">/Vistas/formularioCRUDcampanias.jsp</result>
+            <result type="redirect">CampaniasFiltro</result> 
+        </action>
+        <action name="volverCampanias">
+            <result type="redirect">CampaniasFiltro</result>
+        </action>
+        
         <!--action de categoria-->
        <action name="CategoriaFiltro" class="Acciones.HomeCategorias" method="CategoriaFiltro" >
             <result>/Vistas/CRUDcategoria.jsp</result> 

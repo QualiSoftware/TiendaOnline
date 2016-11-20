@@ -34,8 +34,6 @@
             <s:include value="menuAdministrador.jsp" />
         </div>
         <div  class="linea"></div>
-        <!--<div id="descripcion_Pagina">Aquí puede <span class="bold">ver </span>las facturas.</div>
-        <div  class="linea"></div>-->
         <table border="1">
             <tr>
                 <td colspan="13">

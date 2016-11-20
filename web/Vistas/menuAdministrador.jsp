@@ -10,5 +10,6 @@
             <a href="/TiendaOnline/Vistas/TallasFiltro.action" class="cambioFondo">Tallas</a>
             <a href="/TiendaOnline/Vistas/RopaAdminFiltro.action" class="cambioFondo">Ropas</a>
             <a href="/TiendaOnline/Vistas/FacturasFiltro.action" class="cambioFondo">Facturas</a>
+            <a href="/TiendaOnline/Vistas/CampaniasFiltro.action" class="cambioFondo">Campañas</a>
         </form>
     </nav>

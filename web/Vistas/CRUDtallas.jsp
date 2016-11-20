@@ -32,10 +32,8 @@
         <s:form action="TallasFiltro" theme="simple">
         <table border="1">
             <tr>
-                <td>
-                    Filtro : <s:textfield name="filtro" /><s:submit value="filtrar"></s:submit>
-                </td>
-                <td>                            
+                <td colspan="2">
+                    Filtro : <s:textfield name="filtro" /><s:submit value="filtrar"></s:submit>                    
                     &nbsp;&nbsp;&nbsp;&nbsp;
                     <s:a action="TallasForm">
                         <s:param name="accion" value="'a'"/>

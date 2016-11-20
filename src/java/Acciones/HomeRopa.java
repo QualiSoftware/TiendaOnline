@@ -699,41 +699,6 @@ private String countryName;
         }
         if (accionocul.equals("a")) {
             respuesta = ControladoresDAO.cRopa.Inserta(t);
-            //////////////////////////////////////////////////////////////////////////////////////////////////
-            /*
-            ArrayList<Ropa> ropaconid = ControladoresDAO.cRopa.RecuperaTodos("","","","","2");
-            idRopaAUsar=0;
-            int num = 0;
-            for(Ropa aux:ropaconid){
-                num = aux.getRoId(); 
-            }            
-            for(Ropa aux:ropaconid){
-                if(aux.getRoId()>num){
-                    idRopaAUsar = aux.getRoId();
-                    num=idRopaAUsar;
-                }
-            }
-            ropaconid.clear();
-            //System.out.println("idropaausar"+idRopaAUsar);
-            t.setRoId(idRopaAUsar);
-            String rutaParaGuardarFoto = ServletActionContext.getRequest().getSession().getServletContext().getRealPath("/");
-            rutaParaGuardarFoto += "Imagenes\\"+t.getCategoria().getCatDescripcion()+"\\"+t.getSubcategoria().getSubDescripcion()+"\\";
-            System.out.println("La ruta donde deben guardarse los archivos de esta ropa es:");
-            System.out.println(rutaParaGuardarFoto);
-            if(!fotoAlta1.equals("")){
-                Fotos f1 = new Fotos(t,fotoAlta1);
-                respuesta = ControladoresDAO.cFotos.Inserta(f1);
-            }
-            if(!fotoAlta2.equals("")){
-                Fotos f2 = new Fotos(t,fotoAlta2);
-                respuesta = ControladoresDAO.cFotos.Inserta(f2);
-            }
-            if(!fotoAlta3.equals("")){
-                Fotos f3 = new Fotos(t,fotoAlta3);
-                respuesta = ControladoresDAO.cFotos.Inserta(f3);
-            }
-            */
-            //////////////////////////////////////////////////////////////////
             if(confotos){
                 return INPUT;
             }

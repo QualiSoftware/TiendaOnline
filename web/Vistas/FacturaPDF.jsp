@@ -1,7 +1,7 @@
 <%-- 
-    Document   : 0PDF
-    Created on : 03-nov-2016, 11:13:50
-    Author     : Damian
+    Document   : FacturaPDF.jsp
+    Created on : 03-nov-2016
+    Author     : QualiSoftware
 --%>
 
 <%@page import="java.sql.Connection"%>
