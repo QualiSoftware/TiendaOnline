@@ -42,7 +42,6 @@
                     <img src="<s:url value='../Imagenes/%{t.categoria.catDescripcion}/%{t.subcategoria.subDescripcion}/%{#f.fotosRuta}'/>" width="65" alt="<s:property value='%{#f.fotosRuta}' />" />
                     <s:if test='%{accionocul == "e"}'>
                         <input type="checkbox" name="elimino<%=nf%>" value="<s:property value='%{#f.fotosRuta}' />">
-<!--Falta hacer modificar-->                        
                     </s:if>
                     <s:else>
                         <input type="hidden" name="elimino<%=nf%>" value="<s:property value='%{#f.fotosRuta}' />" />

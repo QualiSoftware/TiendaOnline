@@ -11,7 +11,9 @@
 <html>
     <head>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
+        <link rel="stylesheet" type="text/css" href="../Calendar/1-simple-calendar/tcal.css" />
+        <script type="text/javascript" src="../Calendar/1-simple-calendar/tcal.js"></script>
         <title>Formulario</title>
         <script src="../Scripts/jquery_3.js" type="text/javascript"></script>
         <script>
@@ -50,7 +52,7 @@
     </head>
     <body>
         <h1> <s:label name="cabeceraocul"></s:label> </h1>
-        <s:form id="frm" action="CrudActionRopaAdmin" theme="simple">
+        <s:form id="frm" action="CrudActionRopaAdmin" theme="simple" method="post" enctype="multipart/form-data">
             <input type="hidden" name="accionocul" id="accionocul" value=<s:property value="accion" /> />
             <input type="hidden" name="confotos" id="confotos" value="true" />
             <table>
@@ -302,7 +304,8 @@
                         <%
                         } else {
                         %>
-                        <s:textfield name="roFecha2"/>
+                        <s:textfield name="roFecha2" id="roFecha2" cssClass="tcal" readonly="true"/>
+                        <!--<s:textfield name="roFecha2"/>-->
                         <%
                             }
                         %>
@@ -322,7 +325,8 @@
                         <%
                             if (request.getAttribute("accionocul") == "e" || hayfotos) {
                         %>
-                        <s:textfield name="t.categoria.catDescripcion" readonly="true" ></s:textfield>
+                            <input type="hidden" name="hayFotos" value="true" />
+                            <s:textfield name="t.categoria.catDescripcion" readonly="true" ></s:textfield>
                         <%
                         } else {
                         %>

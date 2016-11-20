@@ -23,6 +23,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
@@ -85,7 +86,7 @@ public class HomeRopa extends ActionSupport {
     private byte roVisible2;
     private int roUnidades2;
     private String accionocul;
-    private Date roFecha2;
+    private String roFecha2;
     private Set<Fotos> fotoses2;
     private String categoria2;
     private String subcategoria2;
@@ -101,6 +102,7 @@ public class HomeRopa extends ActionSupport {
     private List<File> archivo = new LinkedList<File>();
     private List<String> archivoContentType = new LinkedList<String>();
     private List<String> archivoFileName = new LinkedList<String>();
+    private boolean hayFotos;
 
     public Integer getCantidad() {
         return cantidad;
@@ -150,6 +152,14 @@ public class HomeRopa extends ActionSupport {
         this.archivoFileName = archivoFileName;
     }
 
+    public boolean isHayFotos() {
+        return hayFotos;
+    }
+
+    public void setHayFotos(boolean hayFotos) {
+        this.hayFotos = hayFotos;
+    }
+
     public Usuarios getU() {
         return u;
     }
@@ -183,16 +193,11 @@ public class HomeRopa extends ActionSupport {
     public void setLista_ropa_Cestas(ArrayList<Cesta> lista_ropa_Cestas) {
         this.lista_ropa_Cestas = lista_ropa_Cestas;
     }
-    
-    
-    
-    
-    
       
-private Map<String, String> stateMap = new LinkedHashMap<String, String>();
-private String dummyMsg;
-//Parameter from Jquery
-private String countryName;
+    private Map<String, String> stateMap = new LinkedHashMap<String, String>();
+    private String dummyMsg;
+    //Parameter from Jquery
+    private String countryName;
 
     public Map<String, String> getStateMap() {
         return stateMap;
@@ -217,9 +222,6 @@ private String countryName;
     public void setCountryName(String countryName) {
         this.countryName = countryName;
     }
-
-
-
 
     public String getFotoAlta1() {
         return fotoAlta1;
@@ -525,11 +527,11 @@ private String countryName;
         this.roUnidades2 = roUnidades2;
     }
 
-    public Date getRoFecha2() {
+    public String getRoFecha2() {
         return roFecha2;
     }
 
-    public void setRoFecha2(Date roFecha2) {
+    public void setRoFecha2(String roFecha2) {
         this.roFecha2 = roFecha2;
     }
 
@@ -567,17 +569,15 @@ private String countryName;
         // para cuando tengamos sesión de usuario
         if(sesion.get("usuarioLogueado") != null){
             if(!sesion.get("usuarioLogueado").equals("")){
-            try{
-                u = (Usuarios) sesion.get("usuarioLogueado");
-                usi =""+ u.getUsuId();
-                
-            }catch(Exception e){
-                System.out.println(e.getMessage());
+                try{
+                    u = (Usuarios) sesion.get("usuarioLogueado");
+                    usi =""+ u.getUsuId();
+
+                }catch(Exception e){
+                    System.out.println(e.getMessage());
+                }
             }
         }
-        }
-        
-      
         
         if (filtro == null || filtro.equals("null")) {
             filtro = "";
@@ -643,6 +643,25 @@ private String countryName;
             botonocul = "Alta";
         } else {
             t = ControladoresDAO.cRopa.RecuperaPorId(clave);
+            int year;
+            int month;
+            String monthString;
+            int day;
+            String dayString;
+            year = t.getRoFecha().getYear() + 1900;
+            month = t.getRoFecha().getMonth()+1;
+            day = t.getRoFecha().getDate();
+            if(month < 10){
+                monthString = "0"+month;
+            }else{
+                monthString = ""+month;
+            }
+            if(day < 10){
+                dayString = "0"+day;
+            }else{
+                dayString = ""+day;
+            }
+            roFecha2 = dayString+"-"+monthString+"-"+year;
             roId2 = t.getRoId();
             roDescripcion2 = t.getRoDescripcion();
             roPrecio2 = t.getRoPrecio();
@@ -650,7 +669,6 @@ private String countryName;
             roCaracteristicas2 = t.getRoCaracteristicas();
             roVisible2 = t.getRoVisible();
             roUnidades2 = t.getRoUnidades();
-            roFecha2 = t.getRoFecha();
         }
         if (accion.equals("m")) {
             accionocul = "m";
@@ -675,6 +693,15 @@ private String countryName;
     @SkipValidation
     public String CrudActionRopa() throws Exception {
         int respuesta;
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String year;
+        String month;
+        String day;
+        year = roFecha2.substring(6, 10);
+        month = roFecha2.substring(3, 5);
+        day = roFecha2.substring(0, 2);
+        roFecha2 = year+"-"+month+"-"+day;
+            Date fecha = sdf.parse(roFecha2);
         if (roId2 != 0) {
             t = ControladoresDAO.cRopa.RecuperaPorId(roId2);
         } else {
@@ -693,9 +720,11 @@ private String countryName;
             t.setRoCaracteristicas(roCaracteristicas2);
             t.setRoVisible(roVisible2);
             t.setRoUnidades(roUnidades2);
-            t.setRoFecha(roFecha2);
-            t.setCategoria(ControladoresDAO.cCategorias.RecuperaPorId(Integer.parseInt(categoria2)));
-            t.setSubcategoria(ControladoresDAO.cSubcategorias.RecuperaPorId(Integer.parseInt(subcategoria2)));
+            t.setRoFecha(fecha);
+            if(!hayFotos){
+                t.setCategoria(ControladoresDAO.cCategorias.RecuperaPorId(Integer.parseInt(categoria2)));
+                t.setSubcategoria(ControladoresDAO.cSubcategorias.RecuperaPorId(Integer.parseInt(subcategoria2)));
+            }
         }
         if (accionocul.equals("a")) {
             respuesta = ControladoresDAO.cRopa.Inserta(t);

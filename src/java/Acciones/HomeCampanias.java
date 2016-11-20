@@ -6,6 +6,7 @@ import static com.opensymphony.xwork2.Action.SUCCESS;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import java.io.File;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -32,8 +33,8 @@ public class HomeCampanias extends ActionSupport {
     private int camId;
     private String camMarca;
     private String camNombre;
-    private Date camInicio;
-    private Date camFin;
+    private String camInicio;
+    private String camFin;
     private String camFoto;
     private String ruta;
     private File archivo = null;
@@ -135,19 +136,19 @@ public class HomeCampanias extends ActionSupport {
         this.camNombre = camNombre;
     }
 
-    public Date getCamInicio() {
+    public String getCamInicio() {
         return camInicio;
     }
 
-    public void setCamInicio(Date camInicio) {
+    public void setCamInicio(String camInicio) {
         this.camInicio = camInicio;
     }
 
-    public Date getCamFin() {
+    public String getCamFin() {
         return camFin;
     }
 
-    public void setCamFin(Date camFin) {
+    public void setCamFin(String camFin) {
         this.camFin = camFin;
     }
 
@@ -213,12 +214,43 @@ public class HomeCampanias extends ActionSupport {
             cabeceraocul = "Alta";
             botonocul = "Alta";
         }else{
-            Campania c = ControladoresDAO.cCampanias.RecuperaPorId(clave);           
+            Campania c = ControladoresDAO.cCampanias.RecuperaPorId(clave);
+            int year;
+            int month;
+            String monthString;
+            int day;
+            String dayString;
+            year = c.getCamInicio().getYear() + 1900;
+            month = c.getCamInicio().getMonth()+1;
+            day = c.getCamInicio().getDate();
+            if(month < 10){
+                monthString = "0"+month;
+            }else{
+                monthString = ""+month;
+            }
+            if(day < 10){
+                dayString = "0"+day;
+            }else{
+                dayString = ""+day;
+            }
+            camInicio = dayString+"-"+monthString+"-"+year;
+            year = c.getCamFin().getYear() + 1900;
+            month = c.getCamFin().getMonth()+1;
+            day = c.getCamFin().getDate();
+            if(month < 10){
+                monthString = "0"+month;
+            }else{
+                monthString = ""+month;
+            }
+            if(day < 10){
+                dayString = "0"+day;
+            }else{
+                dayString = ""+day;
+            }
+            camFin = dayString+"-"+monthString+"-"+year;            
             camId = c.getCamId();
             camMarca = c.getCamMarca();
             camNombre = c.getCamNombre();
-            camInicio = c.getCamInicio();
-            camFin = c.getCamFin();
             camFoto = c.getCamFoto();
 
             if(accion.equals("m")){
@@ -234,8 +266,21 @@ public class HomeCampanias extends ActionSupport {
     
     public String CrudActionCampanias() throws Exception {
         Ruta();
-                    System.out.println("ruta: "+ruta);
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String year;
+        String month;
+        String day;
+        year = camInicio.substring(6, 10);
+        month = camInicio.substring(3, 5);
+        day = camInicio.substring(0, 2);
+        camInicio = year+"-"+month+"-"+day;
+        year = camFin.substring(6, 10);
+        month = camFin.substring(3, 5);
+        day = camFin.substring(0, 2);
+        camFin = year+"-"+month+"-"+day;
         try{
+            Date i = sdf.parse(camInicio);
+            Date f = sdf.parse(camFin);
             if (accion.equals("a")) {
                 if(archivo != null){
                     File destFile  = new File(ruta, archivoFileName);
@@ -243,13 +288,10 @@ public class HomeCampanias extends ActionSupport {
                 }else{
                     archivoFileName = "";
                 }
-                Campania c = new Campania(camMarca, camNombre, camInicio, camFin, archivoFileName);
+                Campania c = new Campania(camMarca, camNombre, i, f, archivoFileName);
                 ControladoresDAO.cCampanias.Inserta(c);
             }
             if (accion.equals("m")) {
-                System.out.println("archivo: "+archivo);
-                System.out.println("archivoFileName: "+archivoFileName);
-                System.out.println("camFoto: "+camFoto);
                 if(archivo != null){
                     EliminaArchivo();
                     File destFile  = new File(ruta, archivoFileName);
@@ -257,7 +299,7 @@ public class HomeCampanias extends ActionSupport {
                 }else{
                     archivoFileName = camFoto;
                 }
-                Campania c = new Campania(camMarca, camNombre, camInicio, camFin, archivoFileName);
+                Campania c = new Campania(camMarca, camNombre, i, f, archivoFileName);
                 c.setCamId(camId);
                 ControladoresDAO.cCampanias.Modifica(c);
             }

@@ -533,7 +533,7 @@
                     </td>
                     <td>
                         <s:iterator var="f" value="fotoses">
-                            <s:property value="fotosRuta"/><br>
+                            <img src="<s:url value='../Imagenes/%{#a.categoria.catDescripcion}/%{#a.subcategoria.subDescripcion}/%{#f.fotosRuta}'/>" width="40" alt="<s:property value="fotosRuta" />" />
                         </s:iterator>
                     </td>
                     <td>

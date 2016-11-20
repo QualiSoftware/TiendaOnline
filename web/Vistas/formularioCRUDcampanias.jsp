@@ -9,7 +9,9 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
+        <link rel="stylesheet" type="text/css" href="../Calendar/1-simple-calendar/tcal.css" />
+        <script type="text/javascript" src="../Calendar/1-simple-calendar/tcal.js"></script>
         <title><s:property value="cabeceraocul" /> de Campaña</title>
         <script>
             function Verificar() {
@@ -71,7 +73,7 @@
                             <s:textfield name="camInicio" readonly="true" ></s:textfield>
                         </s:if>
                         <s:else>
-                            <s:textfield name="camInicio" ></s:textfield>
+                            <s:textfield name="camInicio" id="camInicio" cssClass="tcal" readonly="true"/>
                         </s:else>
                     </td>
                 </tr>
@@ -84,7 +86,7 @@
                             <s:textfield name="camFin" readonly="true" ></s:textfield>
                         </s:if>
                         <s:else>
-                            <s:textfield name="camFin" ></s:textfield>
+                            <s:textfield name="camFin" id="camFin" cssClass="tcal" readonly="true"/>
                         </s:else>
                     </td>
                 </tr>
