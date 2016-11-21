@@ -8,9 +8,7 @@ body {
     margin: 0 auto;
     padding-top: 10px;
     padding-bottom: 20px;
-    margin-top: 10px;
-    
-    
+    margin-top: 10px;        
 }
 #login{
     margin-top: 20px;
@@ -211,4 +209,18 @@ td, th {
 }
 .fondoClaro{
     background-color: white;
+}
+.puntoRojo img{
+    width: 30px;
+}
+.puntoVerde img{
+    width: 30px;
+}
+
+.formulario_Fotos{
+    margin-left: 25%;
+    margin-top: 50px;       
+}
+#sel_Archivos{
+    margin-left: 150px;
 }
