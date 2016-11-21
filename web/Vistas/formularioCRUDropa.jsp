@@ -12,6 +12,8 @@
     <head>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
         <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="../Estilos/GeneralEstilos.css"/>
         <link rel="stylesheet" type="text/css" href="../Calendar/1-simple-calendar/tcal.css" />
         <script type="text/javascript" src="../Calendar/1-simple-calendar/tcal.js"></script>
         <title>Formulario</title>
@@ -51,7 +53,20 @@
         </script>        
     </head>
     <body>
-        <h1> <s:label name="cabeceraocul"></s:label> </h1>
+        <div id="header">
+            <div id="introduccion">
+            </div>
+            <div id="login">
+                <s:a action="Usuario/RopaFiltro" cssStyle="padding: 5px 13px;"><span class="glyphicon glyphicon-lock" aria-hidden="true"></span> Volver a Tienda</s:a>
+                </div>
+            <div id="marca">Tienda Ropa <img src="../Imagenes/house_hangers.svg" alt="house_hangers" id="logo"/>
+            </div>
+            <div id="titulo_Pagina">Ropa</div>
+                <s:include value="menuAdministrador.jsp" />
+        </div>
+        <div  class="linea"></div>
+        <div id="descripcion_Pagina"><h3 class="bold"><s:label name="cabeceraocul" theme="simple" /> de Ropa</h3></div>
+        <div  class="linea"></div>
         <s:form id="frm" action="CrudActionRopaAdmin" theme="simple" method="post" enctype="multipart/form-data">
             <input type="hidden" name="accionocul" id="accionocul" value=<s:property value="accion" /> />
             <input type="hidden" name="confotos" id="confotos" value="true" />
@@ -374,6 +389,7 @@
                 </tr>
             </table>
         </s:form>
+    <center>
         <s:form action="RopaAdminFiltro" method="post" theme="simple">
             <input type="hidden" name="filtro" value="<%=request.getParameter("filtro")%>" />
             <input type="hidden" name="fechaI" value="<%=request.getParameter("fechaI")%>" />
@@ -382,5 +398,6 @@
             <input type="hidden" name="orden" value="<%=request.getParameter("orden")%>" />
             <s:submit value="Cancelar" />
         </s:form>
+    </center>
     </body>
 </html>

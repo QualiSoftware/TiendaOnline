@@ -36,11 +36,11 @@
                 </div>
                 <div id="marca">Tienda Ropa <img src="../Imagenes/house_hangers.svg" alt="house_hangers" id="logo"/>
                 </div>
-                <div id="titulo_Pagina">Categorías</div>
+                <div id="titulo_Pagina">Fotos</div>
             <s:include value="menuAdministrador.jsp" />
         </div>
         <div  class="linea"></div>
-        <div id="descripcion_Pagina"><h3 class="bold"><s:property value="cabeceraocul" /> de Fotos</h3></div>
+        <div id="descripcion_Pagina"><h3 class="bold">Fotos</h3></div>
         <div  class="linea"></div>
         <input type="hidden" id="accionocul" value=<s:property value="accionocul" /> />
         <div class="formulario_Fotos" >
@@ -60,7 +60,6 @@
                         <img src="<s:url value='../Imagenes/%{t.categoria.catDescripcion}/%{t.subcategoria.subDescripcion}/%{#f.fotosRuta}'/>" width="65" alt="<s:property value='%{#f.fotosRuta}' />" />
                         <s:if test='%{accionocul == "e"}'>
                             <input type="checkbox" name="elimino<%=nf%>" value="<s:property value='%{#f.fotosRuta}' />">
-                            <!--Falta hacer modificar-->                        
                         </s:if>
                         <s:else>
                             <input type="hidden" name="elimino<%=nf%>" value="<s:property value='%{#f.fotosRuta}' />" />
@@ -69,7 +68,6 @@
                         <br>
                     </s:iterator>
                     <s:if test='%{accionocul == "e"}'>
-                        <input type="checkbox" name="elimino<%=nf%>" value="<s:property value='%{#f.fotosRuta}' />">
                     </s:if>
                     <s:else>
                         <%for (int i = nf; i < cantMaxFotos; i++) {%>
@@ -77,11 +75,10 @@
                         Agregar Foto nueva <%=i + 1%>: 
                         <input type="file" name="archivo<%=i + 1%>"/>
                         <input type="hidden" name="borra<%=i + 1%>" value="no borra" />
-
                         <%}%>
                         <hr style="width: 350px; margin-right: 4000px;">
-                        <s:submit value="Subir cambios" align="center"/>
                     </s:else>
+                    <s:submit value="Subir cambios" align="center"/>
                 </s:form>
                 <s:a action="RopaAdminFiltro">
                     <s:param name="filtro" value="%{filtro}" />

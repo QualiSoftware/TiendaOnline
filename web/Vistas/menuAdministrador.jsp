@@ -1,5 +1,5 @@
 <nav>
-        <form id="frm" name="frm" action="#" method="post">
+        <form name="frm2" action="#" method="post">
             <a href="/TiendaOnline/Vistas/CategoriaFiltro.action" class="cambioFondo">Categorías</a>
             <a href="/TiendaOnline/Vistas/ClientelaFiltro.action" class="cambioFondo">Clientelas</a>
             <a href="/TiendaOnline/Vistas/ColeccionFiltro.action" class="cambioFondo">Colecciones</a>
