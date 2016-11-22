@@ -87,7 +87,7 @@
                     <s:param name="eliminadas" value="%{eliminadas}" />
                     <s:param name="orden" value="%{orden}" />
                     <p></p><br>
-                    <i style="font-size: 20px" class="glyphicon glyphicon-share-alt"> No hacer cambios en fotos</i>
+                        <i style="font-size: 20px" class="glyphicon glyphicon-share-alt"> No hacer cambios en fotos</i>
                 </s:a>
             </div>
         </div>

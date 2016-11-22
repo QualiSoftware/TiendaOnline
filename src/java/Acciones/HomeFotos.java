@@ -211,7 +211,7 @@ public class HomeFotos extends ActionSupport {
       try{
         t = ControladoresDAO.cRopa.RecuperaPorId(roId2);
         Ruta();
-        //System.out.println("Ruta: "+ruta);
+        System.out.println("Ruta: "+ruta);
         if(archivo1 != null){
             File destFile  = new File(ruta, archivo1FileName);
             FileUtils.copyFile(archivo1, destFile);
@@ -312,8 +312,8 @@ public class HomeFotos extends ActionSupport {
    
    private void Ruta(){
         ruta = ServletActionContext.getRequest().getSession().getServletContext().getRealPath("/");
-        String eliminar = "build\\";
+        String eliminar = "build"+System.getProperty("file.separator");
         ruta = ruta.replace(eliminar, "");
-        ruta += "Imagenes\\"+t.getCategoria().getCatDescripcion()+"\\"+t.getSubcategoria().getSubDescripcion()+"\\";       
+        ruta += "Imagenes"+System.getProperty("file.separator")+t.getCategoria().getCatDescripcion()+System.getProperty("file.separator")+t.getSubcategoria().getSubDescripcion()+System.getProperty("file.separator");       
    }
 }
