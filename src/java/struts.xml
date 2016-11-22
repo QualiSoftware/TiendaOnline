@@ -297,6 +297,9 @@
         <action name="CargaEliminaCesta" class="Acciones.HomeCesta" method="CargaEliminaCesta">
             <result>/Vistas/pruebaCRUDformularioUsuarios.jsp</result>           
         </action>
+        <action name="UsuAlta" class="Acciones.HomeUsuarios" method="UsuAlta">
+            <result>/Vistas/CRUDusuariosAltaModEliminar.jsp</result>           
+        </action>
         
         
     </package>

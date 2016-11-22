@@ -59,7 +59,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <s:submit  value="Crear Usuario"/>
+                                    <s:a action="UsuAlta" >Crear Usuario</s:a>
                                 </tr>
                             </table>
                         </s:form>
