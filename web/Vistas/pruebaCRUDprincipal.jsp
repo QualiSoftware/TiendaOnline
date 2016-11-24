@@ -18,10 +18,10 @@
         <table border="1">
             <tr>
                 <td colspan="18">
-                    <s:form action="RopaFiltro" theme="simple">
+                    <s:form action="RopaFiltroU" theme="simple">
                         Filtro : <s:textfield name="filtro" /><s:submit value="filtrar"></s:submit>
                             &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
-                        <s:a action="RopaForm">
+                        <s:a action="RopaFormU">
                             <s:param name="accion" value="'a'"/>
                             <i style="font-size: 20px" class="glyphicon glyphicon-plus"></i>
                         </s:a>
@@ -52,19 +52,19 @@
             <s:iterator var="a" value="lista_ropa">
                 <tr>
                     <td>
-                        <s:a action="RopaForm">
+                        <s:a action="RopaFormU">
                             <s:param name="clave" value="#a.roId"/>
                             <s:param name="accion" value="'m'"/>
                             <i style="font-size: 20px" class="glyphicon glyphicon-edit"></i>
                         </s:a>
                         &nbsp;&nbsp;&nbsp;&nbsp;
-                        <s:a action="RopaForm">
+                        <s:a action="RopaFormU">
                             <s:param name="accion" value="'e'"/>
                             <s:param name="clave" value="#a.roId"/>
                             <i style="font-size: 20px" class="glyphicon glyphicon-trash"></i>
                         </s:a>
                         &nbsp;&nbsp;&nbsp;&nbsp;
-                        <s:a action="RopaForm">
+                        <s:a action="RopaFormU">
                             <s:param name="accion" value="'c'"/>
                             <s:param name="clave" value="#a.roId"/>
                             <i style="font-size: 20px" class="glyphicon glyphicon-euro"></i>

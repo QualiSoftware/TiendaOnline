@@ -24,7 +24,7 @@
             <result type="redirect">CampaniasFiltro</result>
         </action>
         
-        <!--action de categoria-->
+        <!--action de Categoria-->
        <action name="CategoriaFiltro" class="Acciones.HomeCategorias" method="CategoriaFiltro" >
             <result>/Vistas/CRUDcategoria.jsp</result> 
         </action>
@@ -40,7 +40,29 @@
             <result type="redirect">CategoriaFiltro</result>
         </action> 
         
-        <!--action de clientela-->
+         <!--action de Cesta--> 
+       <action name="CrudActionCesta" class="Acciones.HomeCesta" method="CrudActionCesta">
+            <result>/Vistas/pruebaCRUDCestaFacuracion.jsp</result>
+            <result name="input">/Vistas/pruebaCRUDformularioUsuarios.jsp</result>
+            <result name="error">/Vistas/pruebaCRUDformularioUsuarios.jsp</result>
+        </action>
+        <action name="volverCesta">
+            <result type="redirect">CestaFiltro</result>
+        </action>        
+        <action name="CestaFiltro" class="Acciones.HomeCesta" method="CestaFiltro">
+            <result>/Vistas/pruebaCRUDCestaFacuracion.jsp</result>           
+        </action>        
+        <action name="CargaEliminaCesta" class="Acciones.HomeCesta" method="CargaEliminaCesta">
+            <result>/Vistas/pruebaCRUDformularioUsuarios.jsp</result>           
+        </action>        
+        <!-- añade directamente a cesta desde la pagina principal -->
+        <action name="CrudActionUsuariosCesta" class="Acciones.HomeCesta" method="CrudActionUsuariosCesta">
+            <result type="redirect">RopaFiltroU</result>
+            <result name="input">/Vistas/pruebaCRUDformularioUsuarios.jsp</result>
+            <result name="error">/Vistas/pruebaCRUDformularioUsuarios.jsp</result>
+        </action>
+        
+        <!--action de Clientela-->
        <action name="ClientelaFiltro" class="Acciones.HomeClientela" method="ClientelaFiltro" >
             <result>/Vistas/CRUDclientela.jsp</result> 
         </action>
@@ -102,6 +124,9 @@
         </action>
         <action name="volverFacturas">
             <result type="redirect">FacturasFiltro</result>
+        </action>
+        <action name="FacturaPDF">
+            <result>/Vistas/FacturaPDF.jsp</result>
         </action>
         
         <!-- action de FacturaDetalle-->
@@ -199,6 +224,17 @@
             <result type="redirect">RopaAdminFiltro</result>
         </action>
         
+        <!-- actions de Ropa Usuario-->
+        <action name="RopaFiltroU" class="Acciones.HomeRopa" method="RopaFiltro">
+            <result>/Vistas/pruebaCRUDprincipalUsuarios.jsp</result>           
+        </action>        
+        <action name="RopaFormU" class="Acciones.HomeRopa" method="RopaForm">
+            <result>/Vistas/pruebaCRUDformularioUsuarios.jsp</result>   
+        </action>
+        <action name="volverRopaU">
+            <result type="redirect">RopaFiltroU</result>
+        </action>
+        
         <!-- actions de Subcategoria -->
         <action name="SubcategoriasFiltro" class="Acciones.HomeSubcategorias" method="SubcategoriasFiltro">
             <result>/Vistas/CRUDsubcategorias.jsp</result>           
@@ -231,6 +267,11 @@
             <result type="redirect">TallasFiltro</result>
         </action>
         
+        <!-- actions de Usuarios -->
+        <action name="UsuAlta" class="Acciones.HomeUsuarios" method="UsuAlta">
+            <result>/Vistas/CRUDusuariosAltaModEliminar.jsp</result>           
+        </action>
+        
         <action name="ajaxAction" class="Acciones.HomeRopa" method="ajaxAction">
             <result type="json">
                 <param name="excludeNullProperties">true</param>
@@ -241,40 +282,13 @@
         <action name="Login" class="Acciones.HomeUsuariosValidaciones" method="Login">
             <result name="input">/Vistas/pruebaCRUDprincipalUsuarios.jsp</result>
             <result name="error">/Vistas/pruebaCRUDprincipalUsuarios.jsp</result>
-            <result type="redirect">Usuario/RopaFiltro</result>
+            <result type="redirect">RopaFiltroU</result>
         </action>
         <action name="CerrarSesion" class="Acciones.HomeUsuariosValidaciones" method="CerrarSesion">
-            <result type="redirect">Usuario/RopaFiltro</result>
+            <result type="redirect">RopaFiltroU</result>
         </action>
         
-        <action name="FacturaPDF">
-            <result>/Vistas/FacturaPDF.jsp</result>
-        </action>
-    </package>
-    
-    
-    
-    
-    
-    <!--crepo nuevo package para usuarios-->
-    <package name="Usuario" extends="struts-default, json-default">
-        <action name="RopaFiltro" class="Acciones.HomeRopa" method="RopaFiltro">
-            <result>/Vistas/pruebaCRUDprincipalUsuarios.jsp</result>           
-        </action>
-        <action name="RopaForm" class="Acciones.HomeRopa" method="RopaForm">
-            <result>/Vistas/pruebaCRUDformularioUsuarios.jsp</result>   
-        </action> 
-       <action name="CrudActionCesta" class="Acciones.HomeCesta" method="CrudActionCesta">
-            <result>/Vistas/pruebaCRUDCestaFacuracion.jsp</result>
-            <result name="input">/Vistas/pruebaCRUDformularioUsuarios.jsp</result>
-            <result name="error">/Vistas/pruebaCRUDformularioUsuarios.jsp</result>
-        </action>
-        <!-- añade directamente a cesta desde la pagina principal -->
-        <action name="CrudActionUsuariosCesta" class="Acciones.HomeCesta" method="CrudActionUsuariosCesta">
-            <result type="redirect">RopaFiltro</result>
-            <result name="input">/Vistas/pruebaCRUDformularioUsuarios.jsp</result>
-            <result name="error">/Vistas/pruebaCRUDformularioUsuarios.jsp</result>
-        </action>
+        <!-- actions de Pago -->
         <!-- factura y formalizacion de pago -->
         <action name="FormalizaFactura" class="Acciones.HomeCesta" method="FormalizaFactura">
             <result>/Vistas/pruebaFormalizaFacturaUsuario.jsp</result>   
@@ -282,28 +296,9 @@
         <!-- pagar y envia correo -->
         <action name="Pagar" class="Acciones.HomeCesta" method="Pagar">
             <result>/Vistas/pruebaPagarCorreo.jsp</result>   
-        </action> 
-        
-        <action name="volverRopa">
-            <result type="redirect">RopaFiltro</result>
         </action>
-        <action name="volverCesta">
-            <result type="redirect">CestaFiltro</result>
-        </action>
-        
-        <action name="CestaFiltro" class="Acciones.HomeCesta" method="CestaFiltro">
-            <result>/Vistas/pruebaCRUDCestaFacuracion.jsp</result>           
-        </action>
-        <action name="CargaEliminaCesta" class="Acciones.HomeCesta" method="CargaEliminaCesta">
-            <result>/Vistas/pruebaCRUDformularioUsuarios.jsp</result>           
-        </action>
-        <action name="UsuAlta" class="Acciones.HomeUsuarios" method="UsuAlta">
-            <result>/Vistas/CRUDusuariosAltaModEliminar.jsp</result>           
-        </action>
-        
         
     </package>
-    
 </struts>
 
 

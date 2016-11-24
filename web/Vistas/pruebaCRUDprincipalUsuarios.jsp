@@ -21,7 +21,7 @@
         <table border="1">
             <tr>
                 <td colspan="13">
-                    <s:form action="Usuario/RopaFiltro" theme="simple">
+                    <s:form action="RopaFiltroU" theme="simple">
                         Filtro : <s:textfield name="filtro" /><s:submit value="filtrar"></s:submit>                    
                     </s:form>
                 </td>
@@ -59,7 +59,9 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <s:a action="UsuAlta" >Crear Usuario</s:a>
+                                    <td>
+                                        <s:a action="UsuAlta" >Crear Usuario</s:a>
+                                    </td>
                                 </tr>
                             </table>
                         </s:form>
@@ -75,7 +77,7 @@
 
                     <s:if test="sesion.usuarioLogueado.usuId!=1">
                         <s:property value="mensajeError" />
-                        <s:form action="Usuario/CestaFiltro" theme="simple">
+                        <s:form action="CestaFiltro" theme="simple">
                             <s:textfield type="hidden" value="1" name="filtro" /> <s:property value="totalcestaUsuario"/> <s:submit value="cesta"></s:submit>                    
                         </s:form>
                     </s:if>
@@ -111,7 +113,7 @@
 
                 <tr>
                     <td>
-                        <s:a action="Usuario/RopaForm">
+                        <s:a action="RopaFormU">
                             <s:param name="accion" value="'c'"/>
                             <s:param name="clave" value="#a.roId"/>
                             <i style="font-size: 20px" class="glyphicon glyphicon-euro"></i>
@@ -119,7 +121,7 @@
 
                         <i style="font-size: 20px" class="glyphicon glyphicon-plus-sign"></i>
 
-                        <s:a action="Usuario/CrudActionUsuariosCesta">
+                        <s:a action="CrudActionUsuariosCesta">
                             <s:param name="accion" value="'c'"/>
                             <s:param name="accionocul" value="'c'"/>
                             <s:param name="cantidad" value="1"/>

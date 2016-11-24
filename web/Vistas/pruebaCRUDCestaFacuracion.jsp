@@ -22,7 +22,7 @@
          <table border="1">
             <tr>
                 <td>
-                    <a href="volverRopa">
+                    <a href="volverRopaU">
                             volver
                         </a>
                 </td>
@@ -49,7 +49,7 @@
             <s:iterator var="a" value="lista_ropa_Cestas">
                 <tr>
                     <td>
-                        <s:a action="Usuario/CargaEliminaCesta">
+                        <s:a action="CargaEliminaCesta">
                             <s:param name="clave" value="#a.cestaId"/>
                             <i style="font-size: 20px" class="glyphicon glyphicon-trash"></i>
                         </s:a>
@@ -110,7 +110,7 @@
                     <td colspan="14">   
                     </td>
                     <td >
-                        <s:a action="Usuario/FormalizaFactura">
+                        <s:a action="FormalizaFactura">
                             <i style="font-size: 20px" class="glyphicon glyphicon-euro"></i>
                         </s:a>
                     </td>

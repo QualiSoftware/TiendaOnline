@@ -15,16 +15,11 @@
         <title>Tallas</title>
     </head>
     <body>
-        <div id="header">
-            <div id="introduccion">
-            </div>
-            <div id="login">
-                <s:a action="Usuario/RopaFiltro" cssStyle="padding: 5px 13px;"><span class="glyphicon glyphicon-lock" aria-hidden="true"></span> Volver a Tienda</s:a>
-                </div>
+        <s:include value="cabeceraHeader.jsp" />
             <div id="marca">Tienda Ropa <img src="../Imagenes/house_hangers.svg" alt="house_hangers" id="logo"/>
             </div>
             <div id="titulo_Pagina">Tallas</div>
-            <s:include value="menuAdministrador.jsp" />
+            <s:include value="cabeceraMenuAdministrador.jsp" />
         </div>
         <div  class="linea"></div>
         <div id="descripcion_Pagina">Aquí puede <span class="bold">añadir, modificar y eliminar </span>las tallas.</div>

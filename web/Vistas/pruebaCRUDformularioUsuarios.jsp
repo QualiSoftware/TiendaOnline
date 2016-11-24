@@ -44,7 +44,7 @@
     </head>
     <body>
         <h1> <s:label name="cabeceraocul"></s:label> </h1>
-        <s:form id="frm" action="Usuario/CrudActionCesta" theme="simple">
+        <s:form id="frm" action="CrudActionCesta" theme="simple">
             <input type="hidden" name="accionocul" id="accionocul" value=<s:property value="accionocul" /> />
             <input type="hidden" name="clave" id="accionocul" value=<s:property value="clave" /> />
             <table>
@@ -362,7 +362,7 @@
                     <tr>
                         <td colspan="2">
                             <input type="button" onclick="Verificar();" value=<s:property value="botonocul" /> />
-                        <a href="Usuario/volverRopa">
+                        <a href="volverRopaU">
                             volver
                         </a>
                     </td>

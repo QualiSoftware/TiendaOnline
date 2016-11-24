@@ -15,12 +15,7 @@
         <title>Detalle de factura <s:property value="facCodigo" /></title>
     </head>
     <body>
-        <div id="header">
-            <div id="introduccion">
-            </div>
-            <div id="login">
-                <s:a action="Usuario/RopaFiltro" cssStyle="padding: 5px 13px;"><span class="glyphicon glyphicon-lock" aria-hidden="true"></span> Volver a Tienda</s:a>
-                </div>
+        <s:include value="cabeceraHeader.jsp" />
             <div id="marca">Tienda Ropa <img src="../Imagenes/house_hangers.svg" alt="house_hangers" id="logo"/>
             </div>
             <div id="titulo_Pagina">
@@ -28,7 +23,7 @@
                 Cliente <s:property value="facturas.facRazonsocial" />&nbsp;&nbsp;&nbsp;&nbsp;
                 Fecha <s:date name="facturas.facFecha" format="dd/MM/yyyy"/>
             </div>
-            <s:include value="menuAdministrador.jsp" />
+            <s:include value="cabeceraMenuAdministrador.jsp" />
         </div>
         <div  class="linea"></div>
         <!--
