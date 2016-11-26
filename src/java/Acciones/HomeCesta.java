@@ -187,6 +187,14 @@ public class HomeCesta extends ActionSupport {
         this.roId2 = roId2;
     }
 
+    public Usuarios getU() {
+        return u;
+    }
+
+    public void setU(Usuarios u) {
+        this.u = u;
+    }
+
     public Integer getCantidad() {
         return cantidad;
     }
@@ -352,9 +360,15 @@ public class HomeCesta extends ActionSupport {
         return SUCCESS;
     }
      public String Pagar() throws Exception {
-        cMail cmail = new cMail();
-        
+        /*
+        cMail cmail = new cMail();        
         aceptarpago = cmail.Pagar2();
+        */
+        
+        //Estas dos líneas de abajo están funcionando. Puede que las líneas de arriba más la clase cMail.java
+        //haya que borrarlas
+        us = ControladoresDAO.cUsuarios.RecuperaPorId(clave);
+        aceptarpago = ControladoresDAO.cEmail.enviarCorreo(us.getUsuEmail());
 
         return SUCCESS;
     }

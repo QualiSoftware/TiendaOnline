@@ -101,6 +101,7 @@
                         <tr>
                             <td>
                                 <s:a action="Pagar">
+                                    <s:param name="clave" value="us.usuId"/>
                                     <i style="font-size: 20px" class="glyphicon glyphicon-euro"></i>
                                 </s:a>
                             </td>
