@@ -92,7 +92,7 @@ public class HomeFacturas extends ActionSupport {
     public void setFechaF(String fechaF) {
         this.fechaF = fechaF;
     }
-    
+
     public String getFiltro() {
         return filtro;
     }
@@ -359,5 +359,10 @@ public class HomeFacturas extends ActionSupport {
             ControladoresDAO.cFacturas.Elimina(t);
         }        
         return SUCCESS;
-    }  
+    }
+        
+    @SkipValidation
+    public String FacturaPDF() throws Exception {
+        return SUCCESS;        
+    }
 }

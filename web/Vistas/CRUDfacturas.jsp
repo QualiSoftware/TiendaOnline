@@ -129,7 +129,6 @@
                         &nbsp;&nbsp;
                         <s:a action="FacturaPDF" target="_blank">
                             <s:param name="clave" value="#a.facId"/>
-                            <s:param name="facCodigo" value="#a.facCodigo"/>
                             <i style="font-size: 20px" class="glyphicon glyphicon-print"></i>
                         </s:a>
                             

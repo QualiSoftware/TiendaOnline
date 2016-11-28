@@ -211,7 +211,7 @@ public class HomeFotos extends ActionSupport {
       try{
         t = ControladoresDAO.cRopa.RecuperaPorId(roId2);
         Ruta();
-        System.out.println("Ruta: "+ruta);
+        //System.out.println("Ruta: "+ruta);
         if(archivo1 != null){
             File destFile  = new File(ruta, archivo1FileName);
             FileUtils.copyFile(archivo1, destFile);

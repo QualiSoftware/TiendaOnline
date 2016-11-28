@@ -125,7 +125,7 @@
         <action name="volverFacturas">
             <result type="redirect">FacturasFiltro</result>
         </action>
-        <action name="FacturaPDF">
+        <action name="FacturaPDF" class="Acciones.HomeFacturas" method="FacturaPDF">
             <result>/Vistas/FacturaPDF.jsp</result>
         </action>
         
