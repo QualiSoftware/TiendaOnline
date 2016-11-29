@@ -26,16 +26,7 @@
         </script>
     </head>
     <body>
-        <s:include value="cabeceraHeader.jsp" />
-            <div id="marca">Tienda Ropa <img src="../Imagenes/house_hangers.svg" alt="house_hangers" id="logo"/>
-            </div>
-            <div id="titulo_Pagina">Usuarios</div>
-                <s:include value="cabeceraMenuAdministrador.jsp" /> 
-        <div  class="linea"></div>
-        <div id="descripcion_Pagina"><h3 class="bold"><s:property value="cabeceraocul" /> de Usuario</h3></div>
-        <div  class="linea"></div>   
-        
-        
+
         <s:form id="frm" action="CrudActionUsuarios" theme="simple">
             <input type="hidden" name="accionocul" id="accionocul" value=<s:property value="accion" /> />
             <table>
@@ -204,6 +195,60 @@
                         } else {
                         %>
                         <s:textfield name="usuLocalidad2" ></s:textfield>
+                        <%
+                            }
+                        %>
+                    </td>
+                </tr>
+                  <tr>
+                        <td>
+                        <s:label for="usuFechaNac2">Fecha</s:label>  
+                        </td>
+                        <td>
+                        <%
+                            if (request.getAttribute("accionocul") == "e") {
+                        %>
+                        <s:textfield name="usuFechaNac2" readonly="true" ></s:textfield>
+                        <%
+                        } else {
+                        %>
+                        <s:textfield name="usuFechaNac2" ></s:textfield>
+                        <%
+                            }
+                        %>
+                    </td>
+                </tr>
+                <tr>
+                        <td>
+                        <s:label for="usupais">Pais</s:label>  
+                        </td>
+                        <td>
+                        <%
+                            if (request.getAttribute("accionocul") == "e") {
+                        %>
+                        <s:textfield name="usupais" readonly="true" ></s:textfield>
+                        <%
+                        } else {
+                        %>
+                        <s:textfield name="usupais" ></s:textfield>
+                        <%
+                            }
+                        %>
+                    </td>
+                </tr>
+                <tr>
+                        <td>
+                        <s:label for="provincias2">Pais</s:label>  
+                        </td>
+                        <td>
+                        <%
+                            if (request.getAttribute("accionocul") == "e") {
+                        %>
+                        <s:textfield name="provincias2" readonly="true" ></s:textfield>
+                        <%
+                        } else {
+                        %>
+                        <s:textfield name="provincias2" ></s:textfield>
                         <%
                             }
                         %>
