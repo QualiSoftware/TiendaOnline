@@ -5,7 +5,7 @@
  */
 package ControladoresDAO;
 
-import Modelos.Paises;
+import Modelos.Provincias;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -14,12 +14,13 @@ import org.hibernate.Session;
  *
  * @author javiermartinroncero
  */
-public class cPaises {
-    static Session sesion;
-        public static List<Paises> RecuperaTodos(String filtro){
+public class cProvincias {
+    
+        static Session sesion;
+        public static List<Provincias> RecuperaTodos(String filtro){
         sesion = (Session) NewHibernateUtil.getSession();
-        Query query =sesion.createQuery("FROM Paises WHERE paisId LIKE'%"+filtro+"%'"); 
-        List<Paises> la = query.list();
+        Query query =sesion.createQuery("FROM Provincias WHERE proId LIKE'%"+filtro+"%'"); 
+        List<Provincias> la = query.list();
         return la;
     }
     

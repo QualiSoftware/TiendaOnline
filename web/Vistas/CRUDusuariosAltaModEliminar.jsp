@@ -14,6 +14,26 @@
         <link rel="stylesheet" href="../Estilos/GeneralEstilos.css"/>
         <title><s:property value="cabeceraocul" /> de Clientela</title>
         <script>
+            
+            $(document).ready(function() {
+               $('#pais').change(function(event) {
+                  usarAJAX();
+                });
+            });
+            function usarAJAX (valor){
+                var country = $("select#pais").val();
+                $.getJSON('ajaxAction', {
+                    countryName : country
+                    }, function(jsonResponse) {
+                    var select = $('#provincias2');
+                    select.find('option').remove();
+                    $.each(jsonResponse.stateMap, function(key, value) {
+                    $('<option>').val(key).text(value).appendTo(select);
+                    $("#provincias2 option[value="+ valor +"]").attr("selected",true);
+                    });
+              });
+            };
+            
             function Verificar() {
                 if (document.getElementById('accionocul').value === 'e') {
                     if (confirm("¿Seguro que desea borrar?")) {
@@ -230,7 +250,9 @@
                         <%
                         } else {
                         %>
-                        <s:textfield name="usupais" ></s:textfield>
+                        <s:select id="pais" name="usupais" list="listaPaises" listValue="paisNombre" 
+                                      listKey="paisId" value="usupais" onchange= "handleChange(this.value)" />
+                        
                         <%
                             }
                         %>
@@ -238,7 +260,7 @@
                 </tr>
                 <tr>
                         <td>
-                        <s:label for="provincias2">Pais</s:label>  
+                        <s:label for="provincias2">Provincia</s:label>  
                         </td>
                         <td>
                         <%
@@ -248,7 +270,9 @@
                         <%
                         } else {
                         %>
-                        <s:textfield name="provincias2" ></s:textfield>
+                         <s:select id="provincias2" name="provincias2" list="{'Seleccione Provincia'}" />
+                            <script>usarAJAX(<s:property value="provincias2"></s:property>);</script>
+                
                         <%
                             }
                         %>

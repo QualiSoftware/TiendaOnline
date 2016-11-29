@@ -5,11 +5,13 @@
  */
 package Acciones;
 
+import Modelos.Paises;
 import Modelos.Provincias;
 import Modelos.Usuarios;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.util.logging.Logger;
 import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -43,6 +45,29 @@ public class HomeUsuarios extends ActionSupport {
     private Usuarios u;
     private int clave;
     private String usupais = "";
+    
+    private List<Paises> listaPaises;
+    private List<Provincias> listaProvincias;
+
+    public List<Provincias> getListaProvincias() {
+        return listaProvincias;
+    }
+
+    public void setListaProvincias(List<Provincias> listaProvincias) {
+        this.listaProvincias = listaProvincias;
+    }
+    
+    
+
+    public List<Paises> getListaPaises() {
+        return listaPaises;
+    }
+
+    public void setListaPaises(List<Paises> listaPaises) {
+        this.listaPaises = listaPaises;
+    }
+    
+    
 
     public static Logger getLOG() {
         return LOG;
@@ -306,8 +331,10 @@ public class HomeUsuarios extends ActionSupport {
             usuSexo2 = false;
             usuTelefono2 = u.getUsuTelefono();
             usuLocalidad2 = u.getUsuLocalidad();
-            usupais = u.getProvincias().getPaises().getPaisNombre();
-            provincias2 = u.getProvincias().getProNombre();
+            usupais = ""+u.getProvincias().getPaises().getPaisId();
+            provincias2 = ""+u.getProvincias().getProId();
+            listaPaises = ControladoresDAO.cPaises.RecuperaTodos("");
+            listaProvincias = ControladoresDAO.cProvincias.RecuperaTodos(""+u.getProvincias().getPaises().getPaisId());
             
         }
          
