@@ -27,23 +27,24 @@ public class HomeFacturas extends ActionSupport {
     private String orden;
     private String fechaI;
     private String fechaF;
+    private String crearPDF;
     
     //variables específicas a cada controlador
     private List<Facturas> lista_facturas;
-    private Integer facId;
-    private Integer facUsuId;
-     private String facCodigo;
-     private String facRazonsocial;
-     private String facDireccion;
-     private String facPoblacion;
-     private String facProvincia;
-     private String facCp;
-     private String facPais;
-     private String facDni;
-     private int facDescuento;
-     private Date facFecha;
-     private int facIva;
-     private String facObservaciones;
+    private int facId;
+    private int facUsuId;
+    private String facCodigo;
+    private String facRazonsocial;
+    private String facDireccion;
+    private String facPoblacion;
+    private String facProvincia;
+    private String facCp;
+    private String facPais;
+    private String facDni;
+    private int facDescuento;
+    private Date facFecha;
+    private int facIva;
+    private String facObservaciones;
 
     public String getAccionocul() {
         return accionocul;
@@ -91,6 +92,14 @@ public class HomeFacturas extends ActionSupport {
 
     public void setFechaF(String fechaF) {
         this.fechaF = fechaF;
+    }
+
+    public String getCrearPDF() {
+        return crearPDF;
+    }
+
+    public void setCrearPDF(String crearPDF) {
+        this.crearPDF = crearPDF;
     }
 
     public String getFiltro() {
