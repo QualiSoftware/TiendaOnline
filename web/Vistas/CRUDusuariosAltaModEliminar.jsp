@@ -21,10 +21,11 @@
                 });
             });
             function usarAJAX (valor){
+                alert("pasa");
                 var country = $("select#pais").val();
-                $.getJSON('ajaxAction', {
+                $.getJSON('ajaxPaises', {
                     countryName : country
-                    }, function(jsonResponse) {
+                    }, function(jsonResponse) { 
                     var select = $('#provincias2');
                     select.find('option').remove();
                     $.each(jsonResponse.stateMap, function(key, value) {

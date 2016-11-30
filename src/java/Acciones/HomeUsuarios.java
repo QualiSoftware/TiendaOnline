@@ -11,7 +11,9 @@ import Modelos.Usuarios;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.util.logging.Logger;
 import java.util.Date;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -48,6 +50,39 @@ public class HomeUsuarios extends ActionSupport {
     
     private List<Paises> listaPaises;
     private List<Provincias> listaProvincias;
+    private String countryName;
+    
+    private Map<String, String> stateMap = new LinkedHashMap<String, String>();
+    private String dummyMsg = "";
+
+    public Map<String, String> getStateMap() {
+        return stateMap;
+    }
+
+    public void setStateMap(Map<String, String> stateMap) {
+        this.stateMap = stateMap;
+    }
+
+    public String getDummyMsg() {
+        return dummyMsg;
+    }
+
+    public void setDummyMsg(String dummyMsg) {
+        this.dummyMsg = dummyMsg;
+    }
+    
+    
+    
+
+    public String getCountryName() {
+        return countryName;
+    }
+
+    public void setCountryName(String countryName) {
+        this.countryName = countryName;
+    }
+    
+    
 
     public List<Provincias> getListaProvincias() {
         return listaProvincias;
@@ -349,6 +384,17 @@ public class HomeUsuarios extends ActionSupport {
             botonocul = "Eliminar";
         }
         return SUCCESS;
+    }
+     public String ajaxPaises() throws Exception{
+       Paises p = ControladoresDAO.cPaises.RecuperaPorId(Integer.parseInt(countryName));
+                  for(Provincias auxsubcat:p.getProvinciases()){
+                      stateMap.put(""+auxsubcat.getProId(), auxsubcat.getProNombre());
+                      //System.out.println("id"+auxsubcat.getSubId()+"descri"+auxsubcat.getSubDescripcion());
+                      //System.out.println(stateMap);
+                  }
+
+           dummyMsg = "Ajax action Triggered";
+       return SUCCESS;
     }
     
 }

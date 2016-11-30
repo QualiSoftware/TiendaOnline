@@ -22,5 +22,11 @@ public class cPaises {
         List<Paises> la = query.list();
         return la;
     }
+        
+        public static Paises RecuperaPorId(int id){
+        sesion = (Session) NewHibernateUtil.getSession();
+        Paises p =(Paises) sesion.get(Paises.class, id);
+        return p;
+    }
     
 }
