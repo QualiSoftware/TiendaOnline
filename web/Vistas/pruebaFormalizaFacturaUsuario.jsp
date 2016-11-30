@@ -101,6 +101,9 @@
                         <tr>
                             <td>
                                 <s:a action="Pagar">
+                                    acá tengo que pasar el usuId para luego, con ese dato, recuperar todas las líneas
+                                    que haya en cesta. Pasar los datos de todo ello a facturas y factura_detalle y luego
+                                    borrar los datos de la cesta
                                     <s:param name="clave" value="us.usuId"/>
                                     <i style="font-size: 20px" class="glyphicon glyphicon-euro"></i>
                                 </s:a>

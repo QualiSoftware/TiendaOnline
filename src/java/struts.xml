@@ -298,6 +298,10 @@
             <result>/Vistas/pruebaPagarCorreo.jsp</result>   
         </action>
         
+        <action name="GenerarFactura">
+            <result>/Vistas/FacturaPDF.jsp</result>   
+        </action>
+        
     </package>
 </struts>
 

@@ -5,9 +5,11 @@
  */
 package Acciones;
 
+import ControladoresDAO.cCesta;
 import ControladoresDAO.cMail;
 import ControladoresDAO.cUsuarios;
 import Modelos.Cesta;
+import Modelos.Facturas;
 import Modelos.Usuarios;
 import static com.opensymphony.xwork2.Action.SUCCESS;
 import com.opensymphony.xwork2.ActionContext;
@@ -365,12 +367,33 @@ public class HomeCesta extends ActionSupport {
         aceptarpago = cmail.Pagar2();
         */
         
-        //Estas dos líneas de abajo están funcionando. Puede que las líneas de arriba más la clase cMail.java
-        //haya que borrarlas
-        us = ControladoresDAO.cUsuarios.RecuperaPorId(clave);
-        aceptarpago = ControladoresDAO.cEmail.enviarCorreo(us.getUsuEmail());
-
-        return SUCCESS;
+        
+        if (sesion == null) {
+            sesion = ActionContext.getContext().getSession();
+        }
+        // para cuando tengamos sesión de usuario
+         try{
+         u = (Usuarios) sesion.get("usuarioLogueado");
+         }catch(Exception e){
+         return INPUT;
+         }
+        us = new Usuarios();
+        us = cUsuarios.RecuperaPorId(u.getUsuId());
+        boolean respuestaPago = true;
+        if(respuestaPago){
+            //us = ControladoresDAO.cUsuarios.RecuperaPorId(clave);
+            //aceptarpago = ControladoresDAO.cEmail.enviarCorreo(us.getUsuEmail());
+            /*
+            int respuesta;
+            lista_ropa_Cestas = cCesta.RecuperaTodos(""+us.getUsuId());
+            Facturas f = new Facturas(0, ver, us.getUsuNombre()+" "+us.getUsuApellidos(), us.getUsuDireccion(), us.getUsuLocalidad(), us.getProvincias().getProNombre(), us.getUsuCp(), us.getProvincias().getPaises().getPaisNombre(), us.getUsuDni(), us.getUsuDescuento(), fecha actual, 21, las observaciones);
+            respuesta = ControladoresDAO.cFacturas.Inserta(f);
+            */
+            return SUCCESS;
+        }else{
+            return INPUT;
+        }
+        
     }
     
     

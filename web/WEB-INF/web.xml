@@ -11,6 +11,14 @@
         <filter-name>struts2</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
+    <servlet>
+        <servlet-name>cPDFServlet</servlet-name>
+        <servlet-class>ControladoresDAO.cPDFServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>cPDFServlet</servlet-name>
+        <url-pattern>/cPDFServlet</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30

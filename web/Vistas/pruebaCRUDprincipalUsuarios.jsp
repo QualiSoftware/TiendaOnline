@@ -60,7 +60,11 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <s:a action="UsuAlta" >Crear Usuario</s:a>
+                                        <s:a action="UsuAlta" >
+                                            <s:param name="accion" value="'a'"/>
+                                            <s:param name="accionocul" value="'a'"/>
+                                            Crear Usuario
+                                        </s:a>
                                     </td>
                                 </tr>
                             </table>
@@ -71,7 +75,18 @@
                         Bienvenido : <s:property value="sesion.usuarioLogueado.usuNombre"/>
 
                         <s:a action="CerrarSesion" >Cerrar</s:a>
-
+                        <s:a action="UsuAlta" >
+                            <s:param name="clave" value="sesion.usuarioLogueado.usuId"/>
+                            <s:param name="accion" value="'m'"/>
+                            <s:param name="accionocul" value="'m'"/>
+                            Modificar Usuario
+                        </s:a>
+                        <s:a action="UsuAlta" >
+                            <s:param name="clave" value="sesion.usuarioLogueado.usuId"/>
+                            <s:param name="accion" value="'e'"/>
+                            <s:param name="accionocul" value="'e'"/>
+                            Eliminar usuario
+                        </s:a>
                     </s:if>
 
 

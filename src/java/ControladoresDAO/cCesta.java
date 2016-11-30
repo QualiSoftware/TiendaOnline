@@ -30,7 +30,7 @@ public class cCesta {
             filtro = "0";
         }
         sesion = (Session) NewHibernateUtil.getSession();
-        Query query =sesion.createQuery("FROM Cesta WHERE usuarios.usuId LIKE'%"+filtro+"%'"); 
+        Query query =sesion.createQuery("FROM Cesta WHERE usuarios.usuId = "+filtro); 
         ArrayList<Cesta> la = (ArrayList) query.list();
         return la;
     }
