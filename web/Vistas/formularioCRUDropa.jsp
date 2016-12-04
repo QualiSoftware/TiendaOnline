@@ -58,7 +58,7 @@
             </div>
             <div id="titulo_Pagina">Ropa</div>
                 <s:include value="cabeceraMenuAdministrador.jsp" />
-        </div>
+        
         <div  class="linea"></div>
         <div id="descripcion_Pagina"><h3 class="bold"><s:label name="cabeceraocul" theme="simple" /> de Ropa</h3></div>
         <div  class="linea"></div>

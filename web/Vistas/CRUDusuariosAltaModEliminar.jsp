@@ -14,6 +14,27 @@
         <link rel="stylesheet" href="../Estilos/GeneralEstilos.css"/>
         <title><s:property value="cabeceraocul" /> de Clientela</title>
         <script>
+            
+            $(document).ready(function() {
+               $('#pais').change(function(event) {
+                  usarAJAX();
+                });
+            });
+            function usarAJAX (valor){
+                alert("pasa");
+                var country = $("select#pais").val();
+                $.getJSON('ajaxPaises', {
+                    countryName : country
+                    }, function(jsonResponse) { 
+                    var select = $('#provincias2');
+                    select.find('option').remove();
+                    $.each(jsonResponse.stateMap, function(key, value) {
+                    $('<option>').val(key).text(value).appendTo(select);
+                    $("#provincias2 option[value="+ valor +"]").attr("selected",true);
+                    });
+              });
+            };
+            
             function Verificar() {
                 if (document.getElementById('accionocul').value === 'e') {
                     if (confirm("¿Seguro que desea borrar?")) {
@@ -26,16 +47,7 @@
         </script>
     </head>
     <body>
-        <s:include value="cabeceraHeader.jsp" />
-            <div id="marca">Tienda Ropa <img src="../Imagenes/house_hangers.svg" alt="house_hangers" id="logo"/>
-            </div>
-            <div id="titulo_Pagina">Usuarios</div>
-                <s:include value="cabeceraMenuAdministrador.jsp" /> 
-        <div  class="linea"></div>
-        <div id="descripcion_Pagina"><h3 class="bold"><s:property value="cabeceraocul" /> de Usuario</h3></div>
-        <div  class="linea"></div>   
-        
-        
+
         <s:form id="frm" action="CrudActionUsuarios" theme="simple">
             <input type="hidden" name="accionocul" id="accionocul" value=<s:property value="accion" /> />
             <table>
@@ -204,6 +216,64 @@
                         } else {
                         %>
                         <s:textfield name="usuLocalidad2" ></s:textfield>
+                        <%
+                            }
+                        %>
+                    </td>
+                </tr>
+                  <tr>
+                        <td>
+                        <s:label for="usuFechaNac2">Fecha</s:label>  
+                        </td>
+                        <td>
+                        <%
+                            if (request.getAttribute("accionocul") == "e") {
+                        %>
+                        <s:textfield name="usuFechaNac2" readonly="true" ></s:textfield>
+                        <%
+                        } else {
+                        %>
+                        <s:textfield name="usuFechaNac2" ></s:textfield>
+                        <%
+                            }
+                        %>
+                    </td>
+                </tr>
+                <tr>
+                        <td>
+                        <s:label for="usupais">Pais</s:label>  
+                        </td>
+                        <td>
+                        <%
+                            if (request.getAttribute("accionocul") == "e") {
+                        %>
+                        <s:textfield name="usupais" readonly="true" ></s:textfield>
+                        <%
+                        } else {
+                        %>
+                        <s:select id="pais" name="usupais" list="listaPaises" listValue="paisNombre" 
+                                      listKey="paisId" value="usupais" onchange= "handleChange(this.value)" />
+                        
+                        <%
+                            }
+                        %>
+                    </td>
+                </tr>
+                <tr>
+                        <td>
+                        <s:label for="provincias2">Provincia</s:label>  
+                        </td>
+                        <td>
+                        <%
+                            if (request.getAttribute("accionocul") == "e") {
+                        %>
+                        <s:textfield name="provincias2" readonly="true" ></s:textfield>
+                        <%
+                        } else {
+                        %>
+                         <s:select id="provincias2" name="provincias2" list="{'Seleccione Provincia'}" />
+                            <script>usarAJAX(<s:property value="provincias2"></s:property>);</script>
+                
                         <%
                             }
                         %>

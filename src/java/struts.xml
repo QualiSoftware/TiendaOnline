@@ -272,6 +272,13 @@
             <result>/Vistas/CRUDusuariosAltaModEliminar.jsp</result>           
         </action>
         
+        <action name="ajaxPaises" class="Acciones.HomeUsuarios" method="ajaxPaises">
+            <result type="json">
+                <param name="excludeNullProperties">true</param>
+                <param name="noCache">true</param>
+            </result>
+        </action>
+        
         <action name="ajaxAction" class="Acciones.HomeRopa" method="ajaxAction">
             <result type="json">
                 <param name="excludeNullProperties">true</param>

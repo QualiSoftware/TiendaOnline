@@ -5,11 +5,15 @@
  */
 package Acciones;
 
+import Modelos.Paises;
 import Modelos.Provincias;
 import Modelos.Usuarios;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.util.logging.Logger;
 import java.util.Date;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -18,7 +22,7 @@ import java.util.Date;
 public class HomeUsuarios extends ActionSupport {
     
      private Integer usuId2 = 0;
-     private Provincias provincias2;
+     private String provincias2;
      private String usuNombre2 = "";
      private String usuApellidos2 = "";
      private String usuEmail2 = "";
@@ -42,6 +46,63 @@ public class HomeUsuarios extends ActionSupport {
     private String botonocul = "";
     private Usuarios u;
     private int clave;
+    private String usupais = "";
+    
+    private List<Paises> listaPaises;
+    private List<Provincias> listaProvincias;
+    private String countryName;
+    
+    private Map<String, String> stateMap = new LinkedHashMap<String, String>();
+    private String dummyMsg = "";
+
+    public Map<String, String> getStateMap() {
+        return stateMap;
+    }
+
+    public void setStateMap(Map<String, String> stateMap) {
+        this.stateMap = stateMap;
+    }
+
+    public String getDummyMsg() {
+        return dummyMsg;
+    }
+
+    public void setDummyMsg(String dummyMsg) {
+        this.dummyMsg = dummyMsg;
+    }
+    
+    
+    
+
+    public String getCountryName() {
+        return countryName;
+    }
+
+    public void setCountryName(String countryName) {
+        this.countryName = countryName;
+    }
+    
+    
+
+    public List<Provincias> getListaProvincias() {
+        return listaProvincias;
+    }
+
+    public void setListaProvincias(List<Provincias> listaProvincias) {
+        this.listaProvincias = listaProvincias;
+    }
+    
+    
+
+    public List<Paises> getListaPaises() {
+        return listaPaises;
+    }
+
+    public void setListaPaises(List<Paises> listaPaises) {
+        this.listaPaises = listaPaises;
+    }
+    
+    
 
     public static Logger getLOG() {
         return LOG;
@@ -98,13 +159,15 @@ public class HomeUsuarios extends ActionSupport {
         this.usuId2 = usuId2;
     }
 
-    public Provincias getProvincias2() {
+    public String getProvincias2() {
         return provincias2;
     }
 
-    public void setProvincias2(Provincias provincias2) {
+    public void setProvincias2(String provincias2) {
         this.provincias2 = provincias2;
     }
+
+
 
     public String getUsuNombre2() {
         return usuNombre2;
@@ -233,6 +296,16 @@ public class HomeUsuarios extends ActionSupport {
     public void setAccionocul(String accionocul) {
         this.accionocul = accionocul;
     }
+
+    public String getUsupais() {
+        return usupais;
+    }
+
+    public void setUsupais(String usupais) {
+        this.usupais = usupais;
+    }
+    
+    
     
     
             
@@ -281,9 +354,8 @@ public class HomeUsuarios extends ActionSupport {
 //            }else{
 //                dayString = ""+day;
 //            }
-            //usuFechaNac2 = dayString+"-"+monthString+"-"+year;
+            usuFechaNac2 = u.getUsuFechaNac(); //dayString+"-"+monthString+"-"+year;
             usuId2 = u.getUsuId();
-            //Provincias provincias22;
             usuNombre2 = u.getUsuNombre();
             usuApellidos2 = u.getUsuApellidos();
             usuEmail2 = u.getUsuEmail();
@@ -294,6 +366,11 @@ public class HomeUsuarios extends ActionSupport {
             usuSexo2 = false;
             usuTelefono2 = u.getUsuTelefono();
             usuLocalidad2 = u.getUsuLocalidad();
+            usupais = ""+u.getProvincias().getPaises().getPaisId();
+            provincias2 = ""+u.getProvincias().getProId();
+            listaPaises = ControladoresDAO.cPaises.RecuperaTodos("");
+            listaProvincias = ControladoresDAO.cProvincias.RecuperaTodos(""+u.getProvincias().getPaises().getPaisId());
+            
         }
          
          if (accion.equals("m")) {
@@ -307,6 +384,17 @@ public class HomeUsuarios extends ActionSupport {
             botonocul = "Eliminar";
         }
         return SUCCESS;
+    }
+     public String ajaxPaises() throws Exception{
+       Paises p = ControladoresDAO.cPaises.RecuperaPorId(Integer.parseInt(countryName));
+                  for(Provincias auxsubcat:p.getProvinciases()){
+                      stateMap.put(""+auxsubcat.getProId(), auxsubcat.getProNombre());
+                      //System.out.println("id"+auxsubcat.getSubId()+"descri"+auxsubcat.getSubDescripcion());
+                      //System.out.println(stateMap);
+                  }
+
+           dummyMsg = "Ajax action Triggered";
+       return SUCCESS;
     }
     
 }
