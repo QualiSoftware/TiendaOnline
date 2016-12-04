@@ -5,16 +5,35 @@
  */
 package Acciones;
 
+import ControladoresDAO.cCategorias;
 import ControladoresDAO.cCesta;
+import ControladoresDAO.cClientela;
+import ControladoresDAO.cColor;
 import ControladoresDAO.cMail;
+import ControladoresDAO.cMarcas;
+import ControladoresDAO.cRopa;
+import ControladoresDAO.cSubcategorias;
+import ControladoresDAO.cTallas;
 import ControladoresDAO.cUsuarios;
+import Modelos.Categoria;
 import Modelos.Cesta;
+import Modelos.Clientela;
+import Modelos.Color;
+import Modelos.FacturaDetalle;
 import Modelos.Facturas;
+import Modelos.Marcas;
+import Modelos.Subcategoria;
+import Modelos.Tallas;
 import Modelos.Usuarios;
+import Modelos.cestaSH;
+import Modelos.ropaSH;
 import static com.opensymphony.xwork2.Action.SUCCESS;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
@@ -42,6 +61,7 @@ public class HomeCesta extends ActionSupport {
     private Cesta c;
     private Cesta ce;
     private ArrayList<Cesta> lista_ropa_Cestas;
+    private ArrayList<cestaSH> lista_cestaSH;
     private String filtro;
     private Map sesion;
     private Double precio = 0.0;
@@ -55,6 +75,10 @@ public class HomeCesta extends ActionSupport {
     private Double precioEliminar = 0.0;
     private boolean aceptarpago;
     private Usuarios u;
+    private String obs;
+    private String prov;
+    private String pais;
+    private int facUsuId;
     
 
     public boolean isAceptarpago() {
@@ -165,6 +189,14 @@ public class HomeCesta extends ActionSupport {
         this.lista_ropa_Cestas = lista_ropa_Cestas;
     }
 
+    public ArrayList<cestaSH> getLista_cestaSH() {
+        return lista_cestaSH;
+    }
+
+    public void setLista_cestaSH(ArrayList<cestaSH> lista_cestaSH) {
+        this.lista_cestaSH = lista_cestaSH;
+    }
+
     public String getFiltro() {
         return filtro;
     }
@@ -195,6 +227,38 @@ public class HomeCesta extends ActionSupport {
 
     public void setU(Usuarios u) {
         this.u = u;
+    }
+
+    public String getObs() {
+        return obs;
+    }
+
+    public void setObs(String obs) {
+        this.obs = obs;
+    }
+
+    public String getProv() {
+        return prov;
+    }
+
+    public void setProv(String prov) {
+        this.prov = prov;
+    }
+
+    public String getPais() {
+        return pais;
+    }
+
+    public void setPais(String pais) {
+        this.pais = pais;
+    }
+
+    public int getFacUsuId() {
+        return facUsuId;
+    }
+
+    public void setFacUsuId(int facUsuId) {
+        this.facUsuId = facUsuId;
     }
 
     public Integer getCantidad() {
@@ -349,56 +413,74 @@ public class HomeCesta extends ActionSupport {
          }
         us = new Usuarios();
         us = cUsuarios.RecuperaPorId(u.getUsuId());
-        //no quitar porque si no se inicializa no sale en jsp
+        //no quitar las siguiente dos líneas porque sino no se inicializa el jsp
         System.out.println(us.getProvincias().getProNombre());
-        
+        System.out.println("País: "+us.getProvincias().getPaises().getPaisNombre());
         lista_ropa_Cestas = ControladoresDAO.cCesta.RecuperaTodos(""+u.getUsuId());
-     
         for (Cesta aux : lista_ropa_Cestas) {
             precio += aux.getCestaUnidades() * (aux.getRopa().getRoPrecio() - aux.getRopa().getRoDescuento());
-           
         }
-
         return SUCCESS;
     }
+    
      public String Pagar() throws Exception {
-        /*
-        cMail cmail = new cMail();        
-        aceptarpago = cmail.Pagar2();
-        */
-        
-        
-        if (sesion == null) {
+       if (sesion == null) {
             sesion = ActionContext.getContext().getSession();
         }
-        // para cuando tengamos sesión de usuario
-         try{
-         u = (Usuarios) sesion.get("usuarioLogueado");
-         }catch(Exception e){
-         return INPUT;
-         }
-        us = new Usuarios();
-        us = cUsuarios.RecuperaPorId(u.getUsuId());
+        // para cuando tengamos sesión de usuario               
+        try{
+           u = (Usuarios) sesion.get("usuarioLogueado");
+        }catch(Exception e){
+           return INPUT;
+        }
         boolean respuestaPago = true;
+        //En este punto, el boolean respuestaPago se crearía como false y a continuación se redirigiría a la página
+        //donde se genera el cobro. Y la respuesta de esa página es la que le dará el nuevo valor a respuestaPago
         if(respuestaPago){
-            //us = ControladoresDAO.cUsuarios.RecuperaPorId(clave);
-            //aceptarpago = ControladoresDAO.cEmail.enviarCorreo(us.getUsuEmail());
-            /*
-            int respuesta;
-            lista_ropa_Cestas = cCesta.RecuperaTodos(""+us.getUsuId());
-            Facturas f = new Facturas(0, ver, us.getUsuNombre()+" "+us.getUsuApellidos(), us.getUsuDireccion(), us.getUsuLocalidad(), us.getProvincias().getProNombre(), us.getUsuCp(), us.getProvincias().getPaises().getPaisNombre(), us.getUsuDni(), us.getUsuDescuento(), fecha actual, 21, las observaciones);
-            respuesta = ControladoresDAO.cFacturas.Inserta(f);
-            */
+            String numFac = ControladoresDAO.cFacturas.SiguienteFactura();
+            Date dateFechaHoy = new Date();            
+            Facturas f = new Facturas(u.getUsuId(), numFac, u.getUsuNombre()+" "+u.getUsuApellidos(), u.getUsuDireccion(), 
+                    u.getUsuLocalidad(), prov, u.getUsuCp(), 
+                    pais, u.getUsuDni(), (int)u.getUsuDescuento(), 
+                    dateFechaHoy, 21, obs);
+            clave = ControladoresDAO.cFacturas.Inserta(f);
+            lista_cestaSH = cCesta.RecuperaTodosSinHibernate(""+u.getUsuId());
+            int nada;            
+            for (cestaSH ce : lista_cestaSH) {
+                ropaSH rsh = cRopa.RecuperaPorIdSH(ce.getCesta_ro_id());
+                Tallas talla = cTallas.RecuperaPorId(rsh.getRo_talla_id());
+                Marcas marca = cMarcas.RecuperaPorId(rsh.getRo_marca_id());
+                Clientela clientela = cClientela.RecuperaPorId(rsh.getRo_clientela_id());
+                Categoria categoria = cCategorias.RecuperaPorId(rsh.getRo_cat_id());
+                Subcategoria subcategoria = cSubcategorias.RecuperaPorId(rsh.getRo_sub_id());
+                Color color = cColor.RecuperaPorId(rsh.getRo_color_id());
+                FacturaDetalle fd = new FacturaDetalle(f, rsh.getRo_descuento(), rsh.getRo_precio(), 
+                        talla.getTallaDescripcion(), ce.getCesta_unidades(), 
+                        marca.getMarcaNombre(), clientela.getClientelaDescripcion(), 
+                        categoria.getCatDescripcion(), subcategoria.getSubDescripcion(), 
+                        color.getColorDescripcion());
+                nada = ControladoresDAO.cFacturaDetalle.Inserta(fd);
+                if(nada == 1){
+                    Cesta cesta = cCesta.RecuperaPorId(ce.getCesta_id());
+                    nada = ControladoresDAO.cCesta.Elimina(cesta);
+                    cesta = null;
+                }
+                rsh = null;
+                talla = null;
+                marca = null;
+                clientela = null;
+                categoria = null;
+                subcategoria = null;
+                color = null;
+                fd = null;
+            }
+            numFac = null;
+            dateFechaHoy = null;
+            f = null;
+            lista_cestaSH = null;
             return SUCCESS;
         }else{
             return INPUT;
-        }
-        
+        }        
     }
-    
-    
-
-    
 }
-
-

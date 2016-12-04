@@ -6,10 +6,9 @@
             <file>file:/C:/Users/Damian/Documents/NetBeansProjects/TiendaOnline/TiendaOnline/web/Vistas/pruebaFormalizaFacturaUsuario.jsp</file>
             <file>file:/C:/Users/Damian/Documents/NetBeansProjects/TiendaOnline/TiendaOnline/web/Vistas/home.jsp</file>
             <file>file:/C:/Users/Damian/Documents/NetBeansProjects/TiendaOnline/TiendaOnline/src/java/struts.xml</file>
-            <file>file:/C:/Users/Damian/Documents/NetBeansProjects/TiendaOnline/TiendaOnline/web/Vistas/FacturaPDF.jsp</file>
-            <file>file:/C:/Users/Damian/Documents/NetBeansProjects/TiendaOnline/TiendaOnline/web/Vistas/CRUDfacturas.jsp</file>
             <file>file:/C:/Users/Damian/Documents/NetBeansProjects/TiendaOnline/TiendaOnline/web/Vistas/pruebaPagarCorreo.jsp</file>
-            <file>file:/C:/Users/Damian/Documents/NetBeansProjects/TiendaOnline/TiendaOnline/src/java/ControladoresDAO/cCesta.java</file>
+            <file>file:/C:/Users/Damian/Documents/NetBeansProjects/TiendaOnline/TiendaOnline/web/Vistas/pruebaPagarConfirmacion.jsp</file>
+            <file>file:/C:/Users/Damian/Documents/NetBeansProjects/TiendaOnline/TiendaOnline/src/java/ControladoresDAO/NewHibernateUtil.java</file>
             <file>file:/C:/Users/Damian/Documents/NetBeansProjects/TiendaOnline/TiendaOnline/src/java/Acciones/HomeCesta.java</file>
         </group>
     </open-files>

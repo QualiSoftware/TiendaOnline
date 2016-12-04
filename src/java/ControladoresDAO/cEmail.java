@@ -13,7 +13,7 @@ public class cEmail{
     static String ruta;
     
     //public static boolean enviarCorreo(String[] para){
-    public static boolean enviarCorreo(String para){
+    public static boolean enviarCorreo(String para, String archivo){
         boolean enviado = false;
             try{
             
@@ -73,13 +73,13 @@ public class cEmail{
                 //attachment
                 messageBodyPart = new MimeBodyPart();
                 Ruta();
-                String filename = ruta + "Cosas a hacer.pdf";
-                System.out.println("Va a crear el DataSource de la ruta "+filename);
+                String filename = ruta + archivo;
+                //System.out.println("Va a crear el DataSource de la ruta "+filename);
                 DataSource source = new FileDataSource(filename);
                 messageBodyPart.setDataHandler(new DataHandler(source));
-                messageBodyPart.setFileName(filename);
+                messageBodyPart.setFileName(archivo);
                 multipart.addBodyPart(messageBodyPart);
-                System.out.println("El multipart está listo");
+                //System.out.println("El multipart está listo");
                 
                 message.setContent(multipart);
                 

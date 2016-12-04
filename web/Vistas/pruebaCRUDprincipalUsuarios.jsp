@@ -188,5 +188,10 @@
                 </tr>
             </s:iterator> 
         </table> 
+<!--
+        <s:iterator var="a" value="lista_campanias">
+                        <img src="../Imagenes/Campanias/<s:property value="#a.camFoto"/>" height="70" alt="<s:property value="#a.camFoto"/>"/><br/>
+                   </s:iterator>
+-->
     </body>
 </html>

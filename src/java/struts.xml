@@ -295,7 +295,8 @@
         </action> 
         <!-- pagar y envia correo -->
         <action name="Pagar" class="Acciones.HomeCesta" method="Pagar">
-            <result>/Vistas/pruebaPagarCorreo.jsp</result>   
+            <result>/Vistas/pruebaPagarCorreo.jsp</result>
+            <result name="input">/Vistas/pruebaCRUDprincipalUsuarios.jsp</result>
         </action>
         
         <action name="GenerarFactura">

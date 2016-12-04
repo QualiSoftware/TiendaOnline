@@ -5,6 +5,7 @@
  */
 package Acciones;
 
+import Modelos.Campania;
 import Modelos.Categoria;
 import Modelos.Cesta;
 import Modelos.Clientela;
@@ -71,6 +72,7 @@ public class HomeRopa extends ActionSupport {
     private List<Color> lista_colores;
     private List<Coleccion> lista_colecciones;
     private List<Subcategoria> lista_subcategoria;
+    private  List<Campania> lista_campanias;
 
     private Integer roId2;
     private String clientela2;
@@ -309,6 +311,14 @@ public class HomeRopa extends ActionSupport {
 
     public void setLista_subcategoria(List<Subcategoria> lista_subcategoria) {
         this.lista_subcategoria = lista_subcategoria;
+    }
+
+    public List<Campania> getLista_campanias() {
+        return lista_campanias;
+    }
+
+    public void setLista_campanias(List<Campania> lista_campanias) {
+        this.lista_campanias = lista_campanias;
     }
 
     public String getCabeceraocul() {
@@ -597,7 +607,8 @@ public class HomeRopa extends ActionSupport {
             totalcestaUsuario += caux.getCestaUnidades();
         }
         //totalcestaUsuario = lista_ropa_Cestas.size();
-        lista_ropa = ControladoresDAO.cRopa.RecuperaTodos(filtro,orden,fechaI,fechaF,eliminadas);
+        lista_ropa = ControladoresDAO.cRopa.RecuperaTodos(filtro,orden,fechaI,fechaF,eliminadas);        
+        //lista_campanias = ControladoresDAO.cCampanias.RecuperaTodos("","","camInicio DESC");
         return SUCCESS;
     }
 

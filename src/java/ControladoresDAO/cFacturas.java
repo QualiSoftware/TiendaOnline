@@ -68,7 +68,8 @@ public class cFacturas {
             sesion.save(t);
             sesion.getTransaction().commit();
             sesion.evict(t);
-            return 1;
+            int id = SaberUltimoId();
+            return id;
         }catch(Exception e){
             sesion.getTransaction().rollback();
             return -1;
@@ -103,5 +104,23 @@ public class cFacturas {
             sesion.getTransaction().rollback();
             return -1;
         }
+    }
+    
+    public static String SiguienteFactura(){
+        sesion = (Session) NewHibernateUtil.getSession();
+        String sql = "select max(facCodigo) From Facturas";
+        Query query = sesion.createQuery(sql);
+        List<String> uf = query.list();
+        int i = Integer.parseInt(uf.get(0));
+        i++;
+        return ""+i;
+    }
+    
+    public static int SaberUltimoId(){
+        sesion = (Session) NewHibernateUtil.getSession();
+        String sql = "select max(facId) From Facturas";
+        Query query = sesion.createQuery(sql);
+        List<Integer> uf = query.list();
+        return uf.get(0);
     }
 }

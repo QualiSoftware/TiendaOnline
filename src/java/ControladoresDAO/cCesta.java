@@ -7,9 +7,17 @@ package ControladoresDAO;
 
 import static ControladoresDAO.cRopa.sesion;
 import Modelos.Cesta;
+import Modelos.Ropa;
+import Modelos.Usuarios;
+import Modelos.cestaSH;
 import static com.opensymphony.xwork2.Action.SUCCESS;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
@@ -60,7 +68,7 @@ public class cCesta {
         sesion.beginTransaction();
         try{
             if(esto!=null){
-               System.out.println(esto.getCestaUnidades());
+               //System.out.println(esto.getCestaUnidades());
                 sesion.delete(esto);
                 sesion.getTransaction().commit();
                 sesion.evict(esto);
@@ -90,5 +98,32 @@ public class cCesta {
         } 
     }
     
+	public static ArrayList<cestaSH> RecuperaTodosSinHibernate(String filtro) {
+		ArrayList<cestaSH> lista = new ArrayList<cestaSH>();
+		String sql = "SELECT * FROM cesta WHERE cesta_usu_id = " + filtro;
+		//System.out.println(sql);
+		try {
+			Connection cnx = new Conexion().getConexion();
+			if (cnx == null) {
+				return null;
+			}
+			Statement comando = cnx.createStatement();
+			ResultSet rs = comando.executeQuery(sql);
+			while (rs.next() == true) {
+				int cesta_id = rs.getInt("cesta_id");
+				int cesta_ro_id = rs.getInt("cesta_ro_id");
+				int cesta_usu_id = rs.getInt("cesta_usu_id");
+				int cesta_unidades = rs.getInt("cesta_unidades");
+				cestaSH ficha = new cestaSH(cesta_id, cesta_ro_id, cesta_usu_id, cesta_unidades);
+				lista.add(ficha);
+			}
+			cnx.close();
+			return lista;
+		} catch (SQLException e) {
+			System.out.println(e.getStackTrace());
+			return null;
+		}
+
+	}
    
 }
