@@ -327,6 +327,9 @@ public class HomeUsuarios extends ActionSupport {
             usuSexo2 = false;
             usuTelefono2 = "";
             usuLocalidad2 = "";
+            provincias2 = "1";
+            listaPaises = ControladoresDAO.cPaises.RecuperaTodos("");
+            listaProvincias = ControladoresDAO.cProvincias.RecuperaTodos("");
            // usuDescuento2;
            // usuFechaLimiteDesc = ;
            accionocul = "a";
