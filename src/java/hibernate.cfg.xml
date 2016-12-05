@@ -9,6 +9,7 @@
     <property name="hibernate.cache.use_second_level_cache">false</property>
     <property name="hibernate.cache.use_minimal_puts">true</property>
     <property name="hibernate.transaction.flush_before_completion">true</property>
+    <property name="hibernate.connection.password">root</property>
     <mapping resource="Modelos/Coleccion.hbm.xml"/>
     <mapping resource="Modelos/Usuarios.hbm.xml"/>
     <mapping resource="Modelos/CampaniaRopa.hbm.xml"/>

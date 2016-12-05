@@ -25,8 +25,6 @@ import Modelos.Marcas;
 import Modelos.Subcategoria;
 import Modelos.Tallas;
 import Modelos.Usuarios;
-import Modelos.cestaSH;
-import Modelos.ropaSH;
 import static com.opensymphony.xwork2.Action.SUCCESS;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
@@ -61,7 +59,6 @@ public class HomeCesta extends ActionSupport {
     private Cesta c;
     private Cesta ce;
     private ArrayList<Cesta> lista_ropa_Cestas;
-    private ArrayList<cestaSH> lista_cestaSH;
     private String filtro;
     private Map sesion;
     private Double precio = 0.0;
@@ -187,14 +184,6 @@ public class HomeCesta extends ActionSupport {
 
     public void setLista_ropa_Cestas(ArrayList<Cesta> lista_ropa_Cestas) {
         this.lista_ropa_Cestas = lista_ropa_Cestas;
-    }
-
-    public ArrayList<cestaSH> getLista_cestaSH() {
-        return lista_cestaSH;
-    }
-
-    public void setLista_cestaSH(ArrayList<cestaSH> lista_cestaSH) {
-        this.lista_cestaSH = lista_cestaSH;
     }
 
     public String getFiltro() {
@@ -340,7 +329,7 @@ public class HomeCesta extends ActionSupport {
         c.setCestaUnidades(cantidad);
         c.setRopa(ControladoresDAO.cRopa.RecuperaPorId(clave));
         c.setUsuarios(ControladoresDAO.cUsuarios.RecuperaPorId(u.getUsuId()));
-        System.out.println(accionocul);
+        //System.out.println(accionocul);
         if (accionocul.equals("e")) {
             if (cantidad > 0) {
                 respuesta = ControladoresDAO.cCesta.Modifica(c);
@@ -375,7 +364,7 @@ public class HomeCesta extends ActionSupport {
         if (filtro == null) {
             filtro = "";
         }
-        System.out.println("usuario cesta "+u.getUsuId());
+        //System.out.println("usuario cesta "+u.getUsuId());
         lista_ropa_Cestas = ControladoresDAO.cCesta.RecuperaTodos(""+u.getUsuId());
         
         for (Cesta aux : lista_ropa_Cestas) {
@@ -413,9 +402,6 @@ public class HomeCesta extends ActionSupport {
          }
         us = new Usuarios();
         us = cUsuarios.RecuperaPorId(u.getUsuId());
-        //no quitar las siguiente dos líneas porque sino no se inicializa el jsp
-        System.out.println(us.getProvincias().getProNombre());
-        System.out.println("País: "+us.getProvincias().getPaises().getPaisNombre());
         lista_ropa_Cestas = ControladoresDAO.cCesta.RecuperaTodos(""+u.getUsuId());
         for (Cesta aux : lista_ropa_Cestas) {
             precio += aux.getCestaUnidades() * (aux.getRopa().getRoPrecio() - aux.getRopa().getRoDescuento());
@@ -444,40 +430,27 @@ public class HomeCesta extends ActionSupport {
                     pais, u.getUsuDni(), (int)u.getUsuDescuento(), 
                     dateFechaHoy, 21, obs);
             clave = ControladoresDAO.cFacturas.Inserta(f);
-            lista_cestaSH = cCesta.RecuperaTodosSinHibernate(""+u.getUsuId());
-            int nada;            
-            for (cestaSH ce : lista_cestaSH) {
-                ropaSH rsh = cRopa.RecuperaPorIdSH(ce.getCesta_ro_id());
-                Tallas talla = cTallas.RecuperaPorId(rsh.getRo_talla_id());
-                Marcas marca = cMarcas.RecuperaPorId(rsh.getRo_marca_id());
-                Clientela clientela = cClientela.RecuperaPorId(rsh.getRo_clientela_id());
-                Categoria categoria = cCategorias.RecuperaPorId(rsh.getRo_cat_id());
-                Subcategoria subcategoria = cSubcategorias.RecuperaPorId(rsh.getRo_sub_id());
-                Color color = cColor.RecuperaPorId(rsh.getRo_color_id());
-                FacturaDetalle fd = new FacturaDetalle(f, rsh.getRo_descuento(), rsh.getRo_precio(), 
-                        talla.getTallaDescripcion(), ce.getCesta_unidades(), 
-                        marca.getMarcaNombre(), clientela.getClientelaDescripcion(), 
-                        categoria.getCatDescripcion(), subcategoria.getSubDescripcion(), 
-                        color.getColorDescripcion());
+            lista_ropa_Cestas = cCesta.RecuperaTodos(""+u.getUsuId());
+            int nada;
+            for (Cesta c : lista_ropa_Cestas) {
+                FacturaDetalle fd = new FacturaDetalle(f, c.getRopa().getRoDescuento(), 
+                        c.getRopa().getRoPrecio(), c.getRopa().getTallas().getTallaDescripcion(), 
+                        c.getCestaUnidades(), c.getRopa().getMarcas().getMarcaNombre(), 
+                        c.getRopa().getClientela().getClientelaDescripcion(), 
+                        c.getRopa().getCategoria().getCatDescripcion(), c.getRopa().getSubcategoria().getSubDescripcion(), 
+                        c.getRopa().getColor().getColorDescripcion());
                 nada = ControladoresDAO.cFacturaDetalle.Inserta(fd);
                 if(nada == 1){
-                    Cesta cesta = cCesta.RecuperaPorId(ce.getCesta_id());
+                    Cesta cesta = cCesta.RecuperaPorId(c.getCestaId());
                     nada = ControladoresDAO.cCesta.Elimina(cesta);
                     cesta = null;
                 }
-                rsh = null;
-                talla = null;
-                marca = null;
-                clientela = null;
-                categoria = null;
-                subcategoria = null;
-                color = null;
                 fd = null;
             }
             numFac = null;
             dateFechaHoy = null;
             f = null;
-            lista_cestaSH = null;
+            lista_ropa_Cestas = null;
             return SUCCESS;
         }else{
             return INPUT;

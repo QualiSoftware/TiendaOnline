@@ -608,7 +608,7 @@ public class HomeRopa extends ActionSupport {
         }
         //totalcestaUsuario = lista_ropa_Cestas.size();
         lista_ropa = ControladoresDAO.cRopa.RecuperaTodos(filtro,orden,fechaI,fechaF,eliminadas);        
-        //lista_campanias = ControladoresDAO.cCampanias.RecuperaTodos("","","camInicio DESC");
+        lista_campanias = ControladoresDAO.cCampanias.RecuperaTodos("","","camInicio DESC");
         return SUCCESS;
     }
 

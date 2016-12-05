@@ -3,6 +3,7 @@
     Created on : 04-dic-2016
     Author     : QualiSoftware
 --%>
+<%@page import="Modelos.Usuarios"%>
 <%@taglib prefix="s" uri="/struts-tags" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -12,6 +13,7 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <s:property value="u.usuNombre"/>
         <center>
             <h1>La factura fue enviada por email</h1>
             <s:a action="RopaFiltroU">
