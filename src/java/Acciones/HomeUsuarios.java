@@ -55,7 +55,7 @@ public class HomeUsuarios extends ActionSupport {
     private Map<String, String> stateMap = new LinkedHashMap<String, String>();
     private String dummyMsg = "";
     private int respuesta;
-
+    
     public int getRespuesta() {
         return respuesta;
     }
@@ -431,7 +431,8 @@ public class HomeUsuarios extends ActionSupport {
            respuesta =  ControladoresDAO.cUsuarios.Inserta(p);
         }
         if (accionocul.equals("m")) {  
-            System.out.println("provincias "+ControladoresDAO.cProvincias.RecuperaPorId(Integer.parseInt(provincias2)));
+           Provincias pro = ControladoresDAO.cProvincias.RecuperaPorId(Integer.parseInt(provincias2));
+           System.out.println("provincias "+pro.getProId());
            p.setProvincias(ControladoresDAO.cProvincias.RecuperaPorId(Integer.parseInt(provincias2)));
            p.setUsuNombre(usuNombre2);
            p.setUsuApellidos(usuApellidos2);
@@ -453,11 +454,30 @@ public class HomeUsuarios extends ActionSupport {
            p.setUsuAdministrador(ad);
            respuesta = ControladoresDAO.cUsuarios.Modifica(p);
         }
-//        if (accionocul.equals("e")) {
-//            Usuarios p = new Usuarios(marcaNombre); 
-//             p.setMarcaId(marcaId);
-//            ControladoresDAO.cMarcas.Elimina(p);
-//        }   
+        if (accionocul.equals("e")) {
+            Provincias pro = ControladoresDAO.cProvincias.RecuperaPorId(Integer.parseInt(provincias2));
+           System.out.println("provincias "+pro.getProId());
+           p.setProvincias(ControladoresDAO.cProvincias.RecuperaPorId(Integer.parseInt(provincias2)));
+           p.setUsuNombre(usuNombre2);
+           p.setUsuApellidos(usuApellidos2);
+           p.setUsuEmail(usuEmail2);
+           p.setUsuPassword(usuPassword2);
+           p.setUsuDni(usuDni2);
+           p.setUsuCp(usuCp2);
+           p.setUsuDireccion(usuDireccion2);
+           p.setUsuSexo(usuSexo2);
+           p.setUsuTelefono(usuTelefono2);
+           p.setUsuLocalidad(usuLocalidad2);
+           p.setUsuFechaNac(usuFechaNac2);
+           Usuarios ud = ControladoresDAO.cUsuarios.RecuperaPorId(usuId2);
+           double des =  ud.getUsuDescuento();
+           p.setUsuDescuento(des);
+           Date fe = ud.getUsuFechaLimiteDesc();
+           p.setUsuFechaLimiteDesc(fe);
+           int ad = ud.getUsuAdministrador();
+           p.setUsuAdministrador(ad);
+            ControladoresDAO.cUsuarios.Elimina(p);
+        }   
        return SUCCESS;
     }
      

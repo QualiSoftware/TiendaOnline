@@ -297,7 +297,7 @@
         </action>
         <!-- actions para crud de usuarios-->
         <action name="CrudActionUsuarios" class="Acciones.HomeUsuarios" method="CrudActionUsuarios">
-            <result type="redirect">Login</result>
+            <result type="redirect">RopaFiltroU</result>
             <result name="input">/Vistas/CRUDusuariosAltaModEliminar.jsp</result>
             <result name="error">/Vistas/CRUDusuariosAltaModEliminar.jsp</result>
         </action>

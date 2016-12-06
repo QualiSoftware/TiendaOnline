@@ -24,7 +24,6 @@
                 });
             });
             function usarAJAX (valor){
-                alert("pasa");
                 var country = $("select#pais").val();
                 $.getJSON('ajaxPaises', {
                     countryName : country
