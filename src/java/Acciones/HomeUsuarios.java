@@ -431,21 +431,6 @@ public class HomeUsuarios extends ActionSupport {
            respuesta =  ControladoresDAO.cUsuarios.Inserta(p);
         }
         if (accionocul.equals("m")) {  
-           p.setProvincias(ControladoresDAO.cProvincias.RecuperaPorId(Integer.parseInt(provincias2)));
-           p.setUsuNombre(usuNombre2);
-           p.setUsuApellidos(usuApellidos2);
-           p.setUsuEmail(usuEmail2);
-           p.setUsuPassword(usuPassword2);
-           p.setUsuDni(usuDni2);
-           p.setUsuCp(usuCp2);
-           p.setUsuDireccion(usuDireccion2);
-           p.setUsuSexo(usuSexo2);
-           p.setUsuTelefono(usuTelefono2);
-           p.setUsuLocalidad(usuLocalidad2);
-           p.setUsuFechaNac(usuFechaNac2);
-           p.setUsuDescuento(0);
-           p.setUsuFechaLimiteDesc(usuFechaNac2);
-           p.setUsuAdministrador(2);
             System.out.println("provincias "+ControladoresDAO.cProvincias.RecuperaPorId(Integer.parseInt(provincias2)));
            p.setProvincias(ControladoresDAO.cProvincias.RecuperaPorId(Integer.parseInt(provincias2)));
            p.setUsuNombre(usuNombre2);
