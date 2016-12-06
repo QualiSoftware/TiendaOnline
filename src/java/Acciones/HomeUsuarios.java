@@ -412,8 +412,7 @@ public class HomeUsuarios extends ActionSupport {
     }
       public String CrudActionUsuarios() throws Exception{
           Usuarios p = new Usuarios();
-        if (accionocul.equals("a")) {            
-           
+        if (accionocul.equals("a")) {                      
            p.setProvincias(ControladoresDAO.cProvincias.RecuperaPorId(Integer.parseInt(provincias2)));
            p.setUsuNombre(usuNombre2);
            p.setUsuApellidos(usuApellidos2);
@@ -431,8 +430,7 @@ public class HomeUsuarios extends ActionSupport {
            p.setUsuAdministrador(2);
            respuesta =  ControladoresDAO.cUsuarios.Inserta(p);
         }
-        if (accionocul.equals("m")) {
-           
+        if (accionocul.equals("m")) {  
            p.setProvincias(ControladoresDAO.cProvincias.RecuperaPorId(Integer.parseInt(provincias2)));
            p.setUsuNombre(usuNombre2);
            p.setUsuApellidos(usuApellidos2);
@@ -445,12 +443,30 @@ public class HomeUsuarios extends ActionSupport {
            p.setUsuTelefono(usuTelefono2);
            p.setUsuLocalidad(usuLocalidad2);
            p.setUsuFechaNac(usuFechaNac2);
-           Usuarios ud = ControladoresDAO.cUsuarios.RecuperaPorId(clave);
+           p.setUsuDescuento(0);
+           p.setUsuFechaLimiteDesc(usuFechaNac2);
+           p.setUsuAdministrador(2);
+            System.out.println("provincias "+ControladoresDAO.cProvincias.RecuperaPorId(Integer.parseInt(provincias2)));
+           p.setProvincias(ControladoresDAO.cProvincias.RecuperaPorId(Integer.parseInt(provincias2)));
+           p.setUsuNombre(usuNombre2);
+           p.setUsuApellidos(usuApellidos2);
+           p.setUsuEmail(usuEmail2);
+           p.setUsuPassword(usuPassword2);
+           p.setUsuDni(usuDni2);
+           p.setUsuCp(usuCp2);
+           p.setUsuDireccion(usuDireccion2);
+           p.setUsuSexo(usuSexo2);
+           p.setUsuTelefono(usuTelefono2);
+           p.setUsuLocalidad(usuLocalidad2);
+           p.setUsuFechaNac(usuFechaNac2);
+           Usuarios ud = ControladoresDAO.cUsuarios.RecuperaPorId(usuId2);
            double des =  ud.getUsuDescuento();
            p.setUsuDescuento(des);
-           p.setUsuFechaLimiteDesc(ud.getUsuFechaLimiteDesc());
-           p.setUsuAdministrador(ud.getUsuAdministrador());
-            ControladoresDAO.cUsuarios.Modifica(p);
+           Date fe = ud.getUsuFechaLimiteDesc();
+           p.setUsuFechaLimiteDesc(fe);
+           int ad = ud.getUsuAdministrador();
+           p.setUsuAdministrador(ad);
+           respuesta = ControladoresDAO.cUsuarios.Modifica(p);
         }
 //        if (accionocul.equals("e")) {
 //            Usuarios p = new Usuarios(marcaNombre); 
