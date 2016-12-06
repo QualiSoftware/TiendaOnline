@@ -399,5 +399,39 @@ public class HomeUsuarios extends ActionSupport {
            dummyMsg = "Ajax action Triggered";
        return SUCCESS;
     }
+      public String CrudActionUsuarios() throws Exception{
+        if (accionocul.equals("a")) {            
+           Usuarios p = new Usuarios();
+            System.out.println("provincias "+provincias2);
+           p.setProvincias(ControladoresDAO.cProvincias.RecuperaPorId(Integer.parseInt(provincias2)));
+           p.setUsuNombre(usuNombre2);
+           p.setUsuApellidos(usuApellidos2);
+           p.setUsuEmail(usuEmail2);
+           p.setUsuPassword(usuPassword2);
+           p.setUsuDni(usuDni2);
+           p.setUsuCp(usuCp2);
+           p.setUsuDireccion(usuDireccion2);
+           p.setUsuSexo(usuSexo2);
+           p.setUsuTelefono(usuTelefono2);
+           p.setUsuLocalidad(usuLocalidad2);
+           p.setUsuFechaNac(usuFechaNac2);
+           p.setUsuDescuento(0);
+           p.setUsuFechaLimiteDesc(usuFechaNac2);
+           p.setUsuAdministrador(2);
+           ControladoresDAO.cUsuarios.Inserta(p);
+        }
+//        if (accionocul.equals("m")) {
+//            Usuarios p = new Usuarios(marcaNombre); 
+//             p.setMarcaId(marcaId);
+//            ControladoresDAO.cMarcas.Modifica(p);
+//        }
+//        if (accionocul.equals("e")) {
+//            Usuarios p = new Usuarios(marcaNombre); 
+//             p.setMarcaId(marcaId);
+//            ControladoresDAO.cMarcas.Elimina(p);
+//        }   
+       return SUCCESS;
+    }
+     
     
 }

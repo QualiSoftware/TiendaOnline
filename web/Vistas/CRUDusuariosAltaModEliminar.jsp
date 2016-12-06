@@ -9,10 +9,13 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
         <link rel="stylesheet" href="../Estilos/GeneralEstilos.css"/>
+        <script type="text/javascript" src="../Calendar/1-simple-calendar/tcal.js"></script>
         <title><s:property value="cabeceraocul" /> de Clientela</title>
+        <script src="../Scripts/jquery_3.js" type="text/javascript"></script>
         <script>
             
             $(document).ready(function() {
