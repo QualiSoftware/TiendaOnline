@@ -411,8 +411,9 @@ public class HomeUsuarios extends ActionSupport {
        return SUCCESS;
     }
       public String CrudActionUsuarios() throws Exception{
+          Usuarios p = new Usuarios();
         if (accionocul.equals("a")) {            
-           Usuarios p = new Usuarios();
+           
            p.setProvincias(ControladoresDAO.cProvincias.RecuperaPorId(Integer.parseInt(provincias2)));
            p.setUsuNombre(usuNombre2);
            p.setUsuApellidos(usuApellidos2);
@@ -430,11 +431,26 @@ public class HomeUsuarios extends ActionSupport {
            p.setUsuAdministrador(2);
            respuesta =  ControladoresDAO.cUsuarios.Inserta(p);
         }
-//        if (accionocul.equals("m")) {
-//            Usuarios p = new Usuarios(marcaNombre); 
-//             p.setMarcaId(marcaId);
-//            ControladoresDAO.cMarcas.Modifica(p);
-//        }
+        if (accionocul.equals("m")) {
+           
+           p.setProvincias(ControladoresDAO.cProvincias.RecuperaPorId(Integer.parseInt(provincias2)));
+           p.setUsuNombre(usuNombre2);
+           p.setUsuApellidos(usuApellidos2);
+           p.setUsuEmail(usuEmail2);
+           p.setUsuPassword(usuPassword2);
+           p.setUsuDni(usuDni2);
+           p.setUsuCp(usuCp2);
+           p.setUsuDireccion(usuDireccion2);
+           p.setUsuSexo(usuSexo2);
+           p.setUsuTelefono(usuTelefono2);
+           p.setUsuLocalidad(usuLocalidad2);
+           p.setUsuFechaNac(usuFechaNac2);
+           Usuarios ud = ControladoresDAO.cUsuarios.RecuperaPorId(clave);
+           p.setUsuDescuento(ud.getUsuDescuento());
+           p.setUsuFechaLimiteDesc(ud.getUsuFechaLimiteDesc());
+           p.setUsuAdministrador(ud.getUsuAdministrador());
+            ControladoresDAO.cUsuarios.Modifica(p);
+        }
 //        if (accionocul.equals("e")) {
 //            Usuarios p = new Usuarios(marcaNombre); 
 //             p.setMarcaId(marcaId);
