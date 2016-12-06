@@ -54,6 +54,17 @@ public class HomeUsuarios extends ActionSupport {
     
     private Map<String, String> stateMap = new LinkedHashMap<String, String>();
     private String dummyMsg = "";
+    private int respuesta;
+
+    public int getRespuesta() {
+        return respuesta;
+    }
+
+    public void setRespuesta(int respuesta) {
+        this.respuesta = respuesta;
+    }
+    
+    
 
     public Map<String, String> getStateMap() {
         return stateMap;
@@ -402,7 +413,6 @@ public class HomeUsuarios extends ActionSupport {
       public String CrudActionUsuarios() throws Exception{
         if (accionocul.equals("a")) {            
            Usuarios p = new Usuarios();
-            System.out.println("provincias "+provincias2);
            p.setProvincias(ControladoresDAO.cProvincias.RecuperaPorId(Integer.parseInt(provincias2)));
            p.setUsuNombre(usuNombre2);
            p.setUsuApellidos(usuApellidos2);
@@ -418,7 +428,7 @@ public class HomeUsuarios extends ActionSupport {
            p.setUsuDescuento(0);
            p.setUsuFechaLimiteDesc(usuFechaNac2);
            p.setUsuAdministrador(2);
-           ControladoresDAO.cUsuarios.Inserta(p);
+           respuesta =  ControladoresDAO.cUsuarios.Inserta(p);
         }
 //        if (accionocul.equals("m")) {
 //            Usuarios p = new Usuarios(marcaNombre); 

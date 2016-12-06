@@ -26,6 +26,35 @@ public class HomeUsuariosValidaciones extends ActionSupport{
     private String password;
     private String mensajeError;
     private Map sesion;
+    private int respuesta;
+    private String usuEmail2 = "";
+    private String usuPassword2 = "";
+
+    public int getRespuesta() {
+        return respuesta;
+    }
+
+    public void setRespuesta(int respuesta) {
+        this.respuesta = respuesta;
+    }
+
+    public String getUsuEmail2() {
+        return usuEmail2;
+    }
+
+    public void setUsuEmail2(String usuEmail2) {
+        this.usuEmail2 = usuEmail2;
+    }
+
+    public String getUsuPassword2() {
+        return usuPassword2;
+    }
+
+    public void setUsuPassword2(String usuPassword2) {
+        this.usuPassword2 = usuPassword2;
+    }
+    
+    
 
     public Map getSesion() {
         return sesion;
@@ -78,17 +107,32 @@ public class HomeUsuariosValidaciones extends ActionSupport{
     }
     
     public String Login() throws Exception {
-        List<Usuarios> l = ControladoresDAO.cUsuarios.Login(usuario,password);
-        if(l.size()==0){
-            mensajeError="Acceso no permitido";
-            return ERROR;
-        }else{
-            if(sesion==null){
-                sesion=ActionContext.getContext().getSession();
+        System.out.println("respuesta "+respuesta);
+        if(respuesta == 1){
+            List<Usuarios> l = ControladoresDAO.cUsuarios.Login(usuEmail2,usuPassword2);
+            if(l.size()==0){
+                mensajeError="Acceso no permitido";
+                return ERROR;
+            }else{
+                if(sesion==null){
+                    sesion=ActionContext.getContext().getSession();
+                }
+                sesion.put("usuarioLogueado", (Usuarios) l.get(0));
+                return SUCCESS;
             }
-            sesion.put("usuarioLogueado", (Usuarios) l.get(0));
-            return SUCCESS;
-        }
+        }else{
+            List<Usuarios> l = ControladoresDAO.cUsuarios.Login(usuario,password);
+            if(l.size()==0){
+                mensajeError="Acceso no permitido";
+                return ERROR;
+            }else{
+                if(sesion==null){
+                    sesion=ActionContext.getContext().getSession();
+                }
+                sesion.put("usuarioLogueado", (Usuarios) l.get(0));
+                return SUCCESS;
+            }
+        }     
     }
     
     @SkipValidation
