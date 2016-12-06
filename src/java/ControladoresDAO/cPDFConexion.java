@@ -8,7 +8,7 @@ public class cPDFConexion {
         Connection con = null;
             try{
                 Class.forName("com.mysql.jdbc.Driver");
-                con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/tienda_ropa","root","");
+                con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/tienda_ropa","root","root");
                 //System.out.println("Conexión en línea");
             }catch(Exception e){
                 System.out.println("Error: " + e.getMessage());

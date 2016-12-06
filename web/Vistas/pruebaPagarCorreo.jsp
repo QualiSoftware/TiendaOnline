@@ -56,6 +56,7 @@
         
         int id = Integer.parseInt(""+request.getAttribute("facUsuId"));
         usuario = ControladoresDAO.cUsuarios.RecuperaPorId(id);
+        //response.sendRedirect("RopaFiltroU.action");
         response.sendRedirect("pruebaPagarConfirmacion.jsp");
         emailEnviado = ControladoresDAO.cEmail.enviarCorreo(usuario.getUsuEmail(),nombreArchivo);
     }catch(Exception e){
