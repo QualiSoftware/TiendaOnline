@@ -25,7 +25,7 @@ public class cUsuarios {
     }    
     
     public static int  Elimina(Usuarios esto){
-        sesion = (Session) NewHibernateUtil.getSession();
+        sesion = (Session) NewHibernateUtil.getSessionModif();
         sesion.beginTransaction();
         try{
             if(esto!=null){
@@ -56,7 +56,7 @@ public class cUsuarios {
     }
     
     public static int  Modifica(Usuarios c){      
-        sesion = (Session) NewHibernateUtil.getSession();
+        sesion = (Session) NewHibernateUtil.getSessionModif();
         sesion.beginTransaction();
         try{
             sesion.update(c);

@@ -446,7 +446,8 @@ public class HomeUsuarios extends ActionSupport {
            p.setUsuLocalidad(usuLocalidad2);
            p.setUsuFechaNac(usuFechaNac2);
            Usuarios ud = ControladoresDAO.cUsuarios.RecuperaPorId(clave);
-           p.setUsuDescuento(ud.getUsuDescuento());
+           double des =  ud.getUsuDescuento();
+           p.setUsuDescuento(des);
            p.setUsuFechaLimiteDesc(ud.getUsuFechaLimiteDesc());
            p.setUsuAdministrador(ud.getUsuAdministrador());
             ControladoresDAO.cUsuarios.Modifica(p);
