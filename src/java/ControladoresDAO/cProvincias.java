@@ -23,5 +23,10 @@ public class cProvincias {
         List<Provincias> la = query.list();
         return la;
     }
+        public static Provincias RecuperaPorId(int id){
+        sesion = (Session) NewHibernateUtil.getSession();
+        Provincias p =(Provincias) sesion.get(Provincias.class, id);
+        return p;
+    }
     
 }

@@ -39,4 +39,13 @@ public class NewHibernateUtil {
         }
         return sesion;
     }
+    public static Session getSessionModif(){
+        if(sesion == null){
+            sesion = getSessionFactory().openSession();
+        }else{
+            sesion.clear();
+            sesion = getSessionFactory().openSession();
+        }
+        return sesion;
+    }
 }
