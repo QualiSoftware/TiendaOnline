@@ -3,17 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/MAMP/htdocs/TiendaOnline/src/java/Modelos/Usuarios.java</file>
-            <file>file:/C:/MAMP/htdocs/TiendaOnline/src/java/Acciones/HomeUsuarios.java</file>
-            <file>file:/C:/MAMP/htdocs/TiendaOnline/src/java/Acciones/HomeRopa.java</file>
-            <file>file:/C:/MAMP/htdocs/TiendaOnline/src/java/ControladoresDAO/cPaises.java</file>
-            <file>file:/C:/MAMP/htdocs/TiendaOnline/src/java/struts.xml</file>
-            <file>file:/C:/MAMP/htdocs/TiendaOnline/src/java/ControladoresDAO/cUsuarios.java</file>
-            <file>file:/C:/MAMP/htdocs/TiendaOnline/src/java/Acciones/HomeUsuariosValidaciones.java</file>
-            <file>file:/C:/MAMP/htdocs/TiendaOnline/web/Vistas/formularioCRUDropa.jsp</file>
-            <file>file:/C:/MAMP/htdocs/TiendaOnline/web/Vistas/CRUDusuariosAltaModEliminar.jsp</file>
-            <file>file:/C:/MAMP/htdocs/TiendaOnline/web/Vistas/pruebaCRUDprincipalUsuarios.jsp</file>
-            <file>file:/C:/MAMP/htdocs/TiendaOnline/src/java/ControladoresDAO/cProvincias.java</file>
+            <file>file:/C:/Users/Damian/Documents/NetBeansProjects/TiendaOnline/TiendaOnline/web/Vistas/home.jsp</file>
+            <file>file:/C:/Users/Damian/Documents/NetBeansProjects/TiendaOnline/TiendaOnline/src/java/ControladoresDAO/cCampanias.java</file>
         </group>
     </open-files>
 </project-private>
