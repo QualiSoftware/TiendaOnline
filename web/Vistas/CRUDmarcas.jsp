@@ -39,6 +39,7 @@
             <tr>
                 <th>Acciones</th>
                 <th>Marca</th>
+                <th>Foto</th>
             </tr>
             <%String fondo = "fondoOscuro";%>
             <s:iterator var="a" value="Lista_Marcas">
@@ -58,6 +59,9 @@
                     </td>
                     <td>
                         <s:property value="#a.marcaNombre"/><br>
+                    </td>
+                    <td>
+                        <img src="../Imagenes/Marcas/<s:property value="#a.marcaFoto"/>" height="70" alt="<s:property value="#a.marcaFoto"/>"/>
                     </td>
                 </tr>
                 <%

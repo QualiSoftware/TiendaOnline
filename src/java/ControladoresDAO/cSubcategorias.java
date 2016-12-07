@@ -26,7 +26,7 @@ public class cSubcategorias {
     }    
     
     public static int  Elimina(Subcategoria e){
-        sesion = (Session) NewHibernateUtil.getSession();
+        sesion = (Session) NewHibernateUtil.getSessionModif();
         sesion.beginTransaction();
         try{
             if(e!=null){
@@ -56,7 +56,7 @@ public class cSubcategorias {
         } 
     }
     public static int  Modifica(Subcategoria c){
-        sesion = (Session) NewHibernateUtil.getSession();
+        sesion = (Session) NewHibernateUtil.getSessionModif();
         sesion.beginTransaction();
         try{
             sesion.update(c);

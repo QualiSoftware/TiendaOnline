@@ -1,5 +1,5 @@
 <%-- 
-    Document   : formularioCRUDcamanias
+    Document   : formularioCRUDcampanias
     Created on : 20-nov-2016
     Author     : QualiSoftware
 --%>
@@ -51,14 +51,19 @@
                 </tr>
                 <tr>
                     <td>
-                        <s:label for="camMarca">Marca</s:label>  
+                        <s:label for="camMarca">Marca</s:label> 
                     </td>
                     <td>
                         <s:if test='%{accion == "e"}'>
-                            <s:textfield name="camMarca" readonly="true" ></s:textfield>
+                            <s:textfield name="c.marcas.marcaNombre" readonly="true" ></s:textfield>
+                            <input type="hidden" name="marcaId" value=<s:property value="c.marcas.marcaId" /> />
                         </s:if>
                         <s:else>
-                            <s:textfield name="camMarca" ></s:textfield>
+                            <s:select name="marcaId" list="lista_marcas" listValue="marcaNombre" 
+                            listKey="marcaId" value="c.marcas.marcaId" />
+                            <s:if test='%{accion == "m"}'>
+                                <input type="hidden" name="clave" value=<s:property value="c.marcas.marcaId" /> />
+                            </s:if>
                         </s:else>
                     </td>
                 </tr>

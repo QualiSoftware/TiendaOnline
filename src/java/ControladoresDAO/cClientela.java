@@ -33,7 +33,7 @@ public class cClientela {
     
     
     public static int  Elimina(Clientela esto){
-        sesion = (Session) NewHibernateUtil.getSession();
+        sesion = (Session) NewHibernateUtil.getSessionModif();
         sesion.beginTransaction();
         try{
             if(esto!=null){
@@ -66,7 +66,7 @@ public class cClientela {
     }
     public static int  Modifica(Clientela c){      
         
-        sesion = (Session) NewHibernateUtil.getSession();
+        sesion = (Session) NewHibernateUtil.getSessionModif();
         sesion.beginTransaction();
         try{
             sesion.update(c);

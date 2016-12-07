@@ -32,7 +32,7 @@ public class cColor {
     
     
     public static int  Elimina(Color esto){
-        sesion = (Session) NewHibernateUtil.getSession();
+        sesion = (Session) NewHibernateUtil.getSessionModif();
         sesion.beginTransaction();
         try{
             if(esto!=null){
@@ -62,7 +62,7 @@ public class cColor {
         } 
     }
     public static int  Modifica(Color c){      
-        sesion = (Session) NewHibernateUtil.getSession();
+        sesion = (Session) NewHibernateUtil.getSessionModif();
         sesion.beginTransaction();
         try{
             sesion.update(c);

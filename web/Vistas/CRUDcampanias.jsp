@@ -181,7 +181,7 @@
                         </s:a>
                     </td>
                     <td>
-                        <s:property value="#a.camMarca"/>
+                        <s:property value="#a.marcas.marcaNombre"/>
                     </td>
                     <td>
                         <s:property value="#a.camNombre"/>

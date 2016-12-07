@@ -10,7 +10,7 @@ public class cFacturas {
     static Session sesion;
     
     public static List<Facturas> RecuperaTodos(String filtro, String orden, String fi, String ff){
-        sesion = (Session) NewHibernateUtil.getSession();
+        sesion = (Session) NewHibernateUtil.getSessionModif();
         if(orden.equals("")){
             orden = "facCodigo";
         }
@@ -76,7 +76,7 @@ public class cFacturas {
         }
     }
     public static int Modifica(Facturas t){
-        sesion = (Session) NewHibernateUtil.getSession();
+        sesion = (Session) NewHibernateUtil.getSessionModif();
         sesion.beginTransaction();
         try{
             sesion.update(t);
@@ -90,7 +90,7 @@ public class cFacturas {
     }
     
     public static int Elimina(Facturas t){
-        sesion = (Session) NewHibernateUtil.getSession();
+        sesion = (Session) NewHibernateUtil.getSessionModif();
         sesion.beginTransaction();
         try{
             if(t != null){

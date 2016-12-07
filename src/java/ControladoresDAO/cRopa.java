@@ -74,7 +74,7 @@ public class cRopa {
     }    
 
     public static int Modifica(Ropa t) {
-        sesion = (Session) NewHibernateUtil.getSession();
+        sesion = (Session) NewHibernateUtil.getSessionModif();
         sesion.beginTransaction();
         try {
             sesion.update(t);

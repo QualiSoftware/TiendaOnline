@@ -1,5 +1,5 @@
 package Modelos;
-// Generated 08-nov-2016 23:03:23 by Hibernate Tools 4.3.1
+// Generated 06-dic-2016 14:39:33 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -13,18 +13,23 @@ public class Marcas  implements java.io.Serializable {
 
      private Integer marcaId;
      private String marcaNombre;
+     private String marcaFoto;
      private Set<Ropa> ropas = new HashSet<Ropa>(0);
+     private Set<Campania> campanias = new HashSet<Campania>(0);
 
     public Marcas() {
     }
 
 	
-    public Marcas(String marcaNombre) {
+    public Marcas(String marcaNombre, String marcaFoto) {
         this.marcaNombre = marcaNombre;
+        this.marcaFoto = marcaFoto;
     }
-    public Marcas(String marcaNombre, Set<Ropa> ropas) {
+    public Marcas(String marcaNombre, String marcaFoto, Set<Ropa> ropas, Set<Campania> campanias) {
        this.marcaNombre = marcaNombre;
+       this.marcaFoto = marcaFoto;
        this.ropas = ropas;
+       this.campanias = campanias;
     }
    
     public Integer getMarcaId() {
@@ -41,12 +46,26 @@ public class Marcas  implements java.io.Serializable {
     public void setMarcaNombre(String marcaNombre) {
         this.marcaNombre = marcaNombre;
     }
+    public String getMarcaFoto() {
+        return this.marcaFoto;
+    }
+    
+    public void setMarcaFoto(String marcaFoto) {
+        this.marcaFoto = marcaFoto;
+    }
     public Set<Ropa> getRopas() {
         return this.ropas;
     }
     
     public void setRopas(Set<Ropa> ropas) {
         this.ropas = ropas;
+    }
+    public Set<Campania> getCampanias() {
+        return this.campanias;
+    }
+    
+    public void setCampanias(Set<Campania> campanias) {
+        this.campanias = campanias;
     }
 
 

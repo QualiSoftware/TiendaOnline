@@ -48,7 +48,7 @@ public class cFotos {
     
     
     public static int  Elimina(Fotos esto){
-        sesion = (Session) NewHibernateUtil.getSession();
+        sesion = (Session) NewHibernateUtil.getSessionModif();
         sesion.beginTransaction();
         try{
             
@@ -78,7 +78,7 @@ public class cFotos {
         } 
     }
     public static int  Modifica(Fotos c){      
-        sesion = (Session) NewHibernateUtil.getSession();
+        sesion = (Session) NewHibernateUtil.getSessionModif();
         sesion.beginTransaction();
         try{
             sesion.update(c);

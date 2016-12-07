@@ -26,8 +26,7 @@ public class cCampanias {
             fecha = year+"-"+month+"-"+day;
             sql += "camFin >= '" + fecha + "' AND camInicio <= '" + fecha + "' AND ";
         }
-        sql += "(camMarca like '%"+filtro+"%'";
-        sql += " OR camNombre like '%"+filtro+"%')";
+        sql += "(camNombre like '%"+filtro+"%')";
         sql += " ORDER BY "+orden;
         Query query =sesion.createQuery(sql); 
         List<Campania> lc = query.list();
@@ -42,7 +41,7 @@ public class cCampanias {
     
     
     public static int  Elimina(Campania c){
-        sesion = (Session) NewHibernateUtil.getSession();
+        sesion = (Session) NewHibernateUtil.getSessionModif();
         sesion.beginTransaction();
         try{
             if(c!=null){
@@ -71,7 +70,7 @@ public class cCampanias {
         } 
     }
     public static int  Modifica(Campania c){      
-        sesion = (Session) NewHibernateUtil.getSession();
+        sesion = (Session) NewHibernateUtil.getSessionModif();
         sesion.beginTransaction();
         try{
             sesion.update(c);

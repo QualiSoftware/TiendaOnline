@@ -9,7 +9,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
         <link rel="stylesheet" href="../Estilos/GeneralEstilos.css"/>
         <title><s:property value="cabeceraocul" /> de Marcas</title>
@@ -36,7 +36,7 @@
         <div id="descripcion_Pagina"><h3 class="bold"><s:property value="cabeceraocul" /> de Marcas</h3></div>
         <div  class="linea"></div>
         
-        <s:form id="frm" action="CrudActionMarcas" theme="simple">
+        <s:form id="frm" action="CrudActionMarcas" theme="simple" method="post" enctype="multipart/form-data">
             <input type="hidden" name="accionocul" id="accionocul" value=<s:property value="accion" /> />
             <table>
                 <tr>
@@ -63,6 +63,25 @@
                         <%
                             }
                         %>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <s:label for="marcaFoto">Foto</s:label>  
+                    </td>
+                    <td>
+                        <s:if test='%{accion == "e"}'>
+                            <input type="hidden" name="marcaFoto" value="<s:property value="marcaFoto" />" />
+                            <img src="../Imagenes/Marcas/<s:property value="marcaFoto"/>" height="70" alt="<s:property value="marcaFoto"/>"/>
+                        </s:if>
+                        <s:elseif test='%{accion == "a"}'>
+                            <input type="file" name="archivoMarca"/>
+                        </s:elseif>
+                        <s:else>
+                            <input type="hidden" name="marcaFoto" value="<s:property value="marcaFoto" />" />
+                            <img src="../Imagenes/Marcas/<s:property value="marcaFoto"/>" height="70" alt="<s:property value="marcaFoto"/>"/>
+                            <input type="file" name="archivoMarca"/>
+                        </s:else>
                     </td>
                 </tr>
                 <tr>

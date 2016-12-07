@@ -32,7 +32,7 @@ public class cCategorias {
     }    
     
     public static int  Elimina(Categoria e){
-        sesion = (Session) NewHibernateUtil.getSession();
+        sesion = (Session) NewHibernateUtil.getSessionModif();
         sesion.beginTransaction();
         try{
             if(e!=null){
@@ -62,7 +62,7 @@ public class cCategorias {
         } 
     }
     public static int  Modifica(Categoria c){
-        sesion = (Session) NewHibernateUtil.getSession();
+        sesion = (Session) NewHibernateUtil.getSessionModif();
         sesion.beginTransaction();
         try{
             sesion.update(c);

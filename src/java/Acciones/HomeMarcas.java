@@ -5,13 +5,16 @@ import Modelos.Usuarios;
 import static com.opensymphony.xwork2.Action.SUCCESS;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
+import java.io.File;
 import java.util.List;
 import java.util.Map;
+import org.apache.commons.io.FileUtils;
+import org.apache.struts2.ServletActionContext;
 
-/**
- *
- * @author LaPlaga
- */
+/*  Document   : HomeMarcas.java
+*   Created on : 20-nov-2016
+*   Author     : QualiSoftware
+*/
 public class HomeMarcas extends ActionSupport {
     
     
@@ -20,7 +23,7 @@ public class HomeMarcas extends ActionSupport {
         //Filtro
     private String filtro;
         //Creamos la lista
-    private  List<Marcas> Lista_Marcas;
+    private List<Marcas> Lista_Marcas;
     //fijos para la carga del formulario
     private int clave;
     private String accion;
@@ -29,7 +32,11 @@ public class HomeMarcas extends ActionSupport {
     private String botonocul;
     //variables de carga del formulario
     private int marcaId;
-    private  String marcaNombre;
+    private String marcaNombre;
+    private String marcaFoto;
+    private String ruta;
+    private File archivoMarca;
+    private String archivoMarcaFileName;
     
     //getters and setters
     public int getClave() {    
@@ -87,6 +94,38 @@ public class HomeMarcas extends ActionSupport {
     public void setMarcaNombre(String marcaNombre) {
         this.marcaNombre = marcaNombre;
     }
+
+    public String getMarcaFoto() {
+        return marcaFoto;
+    }
+
+    public void setMarcaFoto(String marcaFoto) {
+        this.marcaFoto = marcaFoto;
+    }
+
+    public String getRuta() {
+        return ruta;
+    }
+
+    public void setRuta(String ruta) {
+        this.ruta = ruta;
+    }
+
+    public File getArchivoMarca() {
+        return archivoMarca;
+    }
+
+    public void setArchivoMarca(File archivoMarca) {
+        this.archivoMarca = archivoMarca;
+    }
+
+    public String getArchivoMarcaFileName() {
+        return archivoMarcaFileName;
+    }
+
+    public void setArchivoMarcaFileName(String archivoMarcaFileName) {
+        this.archivoMarcaFileName = archivoMarcaFileName;
+    }
     
     public Map getSesion() {
         return sesion;
@@ -124,6 +163,19 @@ public class HomeMarcas extends ActionSupport {
     }
     
     public String MarcasForm() throws Exception {
+        if (sesion == null) {
+            sesion = ActionContext.getContext().getSession();
+        }
+        /* para cuando tengamos sesión de usuario
+        try{
+            Usuarios u = (Usuarios) sesion.get("usuarioLogueado");
+            if(u.getUsuAdministrador()!=1){
+                return INPUT;
+            }
+        }catch(Exception e){
+            return INPUT;
+        }
+         */
         if(accion.equals("a")){
             marcaId = 0;
             marcaNombre = "";
@@ -134,6 +186,7 @@ public class HomeMarcas extends ActionSupport {
             Marcas p = ControladoresDAO.cMarcas.RecuperaPorId(clave);           
             marcaId = p.getMarcaId();
             marcaNombre = p.getMarcaNombre();
+            marcaFoto = p.getMarcaFoto();
 
             if(accion.equals("m")){
                 accionocul = "m";
@@ -148,22 +201,57 @@ public class HomeMarcas extends ActionSupport {
         return SUCCESS;
     }
     
-    public String CrudActionMarcas() throws Exception {         
-        if (accionocul.equals("a")) {            
-           Marcas p = new Marcas(marcaNombre);
-           p.setMarcaId(marcaId);
-            ControladoresDAO.cMarcas.Inserta(p);
+    public String CrudActionMarcas() throws Exception {
+        Ruta();
+        try{
+            Marcas p;
+            if (accionocul.equals("a")) {
+                if(archivoMarca != null){
+                    File destFile  = new File(ruta, archivoMarcaFileName);
+                    FileUtils.copyFile(archivoMarca, destFile);
+                }else{
+                    archivoMarcaFileName = "";
+                }            
+                p = new Marcas(marcaNombre,archivoMarcaFileName);
+                ControladoresDAO.cMarcas.Inserta(p);
+            }
+            if (accionocul.equals("m")) {
+                if(archivoMarca != null){
+                    EliminaArchivo();
+                    File destFile  = new File(ruta, archivoMarcaFileName);
+                    FileUtils.copyFile(archivoMarca, destFile);
+                }else{
+                    archivoMarcaFileName = marcaFoto;
+                }
+                p = new Marcas(marcaNombre,archivoMarcaFileName); 
+                p.setMarcaId(marcaId);
+                ControladoresDAO.cMarcas.Modifica(p);
+            }
+            if (accionocul.equals("e")) {
+                EliminaArchivo();
+                p = ControladoresDAO.cMarcas.RecuperaPorId(marcaId);
+                ControladoresDAO.cMarcas.Elimina(p);
+            }        
+            return SUCCESS;
+        }catch(Exception e){
+            System.out.println("No se pudo grabar el archivo. Error: "+e.getMessage());
+            return INPUT;            
         }
-        if (accionocul.equals("m")) {
-            Marcas p = new Marcas(marcaNombre); 
-             p.setMarcaId(marcaId);
-            ControladoresDAO.cMarcas.Modifica(p);
+    }    
+   
+   private void Ruta(){
+        ruta = ServletActionContext.getRequest().getSession().getServletContext().getRealPath("/");
+        String eliminar = "build"+System.getProperty("file.separator");
+        ruta = ruta.replace(eliminar, "");
+        ruta += "Imagenes"+System.getProperty("file.separator")+"Marcas"+System.getProperty("file.separator");       
+   }
+   
+   public void EliminaArchivo() throws Exception{
+        File fichero = new File(ruta+marcaFoto);
+        if (fichero.delete()){
+            System.out.println("Archivo " + ruta + marcaFoto + " borrado.");
+        }else{
+            System.out.println("El archivo" + ruta + marcaFoto + " no puede ser borrado");
         }
-        if (accionocul.equals("e")) {
-            Marcas p = new Marcas(marcaNombre); 
-             p.setMarcaId(marcaId);
-            ControladoresDAO.cMarcas.Elimina(p);
-        }        
-        return SUCCESS;
-    }  
+   }
 }

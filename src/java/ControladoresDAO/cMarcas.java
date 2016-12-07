@@ -20,7 +20,7 @@ public class cMarcas {
     
     public static List<Marcas> RecuperaTodos(String filtro){
         sesion = (Session) NewHibernateUtil.getSession();
-        Query query =sesion.createQuery("FROM Marcas WHERE marcaNombre LIKE'%"+filtro+"%'"); 
+        Query query =sesion.createQuery("FROM Marcas WHERE marcaNombre LIKE '%"+filtro+"%' ORDER BY marcaNombre"); 
         List<Marcas> la = query.list();
         return la;
     }
@@ -33,7 +33,7 @@ public class cMarcas {
     
     
     public static int  Elimina(Marcas esto){
-        sesion = (Session) NewHibernateUtil.getSession();
+        sesion = (Session) NewHibernateUtil.getSessionModif();
         sesion.beginTransaction();
         try{
             if(esto!=null){
@@ -62,7 +62,7 @@ public class cMarcas {
         } 
     }
     public static int  Modifica(Marcas c){      
-        sesion = (Session) NewHibernateUtil.getSession();
+        sesion = (Session) NewHibernateUtil.getSessionModif();
         sesion.beginTransaction();
         try{
             sesion.update(c);

@@ -32,7 +32,7 @@ public class cLook {
     
     
     public static int  Elimina(Look esto){
-        sesion = (Session) NewHibernateUtil.getSession();
+        sesion = (Session) NewHibernateUtil.getSessionModif();
         sesion.beginTransaction();
         try{
             if(esto!=null){
@@ -61,7 +61,7 @@ public class cLook {
         }
     }
     public static int  Modifica(Look c){      
-        sesion = (Session) NewHibernateUtil.getSession();
+        sesion = (Session) NewHibernateUtil.getSessionModif();
         sesion.beginTransaction();
         try{
             sesion.update(c);

@@ -32,7 +32,7 @@ public class cColeccion {
     
     
     public static int  Elimina(Coleccion esto){
-        sesion = (Session) NewHibernateUtil.getSession();
+        sesion = (Session) NewHibernateUtil.getSessionModif();
         sesion.beginTransaction();
         try{
             if(esto!=null){
@@ -62,7 +62,7 @@ public class cColeccion {
         } 
     }
     public static int  Modifica(Coleccion c){      
-        sesion = (Session) NewHibernateUtil.getSession();
+        sesion = (Session) NewHibernateUtil.getSessionModif();
         sesion.beginTransaction();
         try{
             sesion.update(c);

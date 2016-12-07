@@ -48,7 +48,7 @@ public class cCesta {
     }  
         
     public static int  Elimina(Cesta esto){
-        sesion = (Session) NewHibernateUtil.getSession();
+        sesion = (Session) NewHibernateUtil.getSessionModif();
         sesion.beginTransaction();
         try{
             if(esto!=null){
@@ -67,7 +67,7 @@ public class cCesta {
     }
         
     public static int  Modifica(Cesta c){        
-        sesion = (Session) NewHibernateUtil.getSession();
+        sesion = (Session) NewHibernateUtil.getSessionModif();
         sesion.beginTransaction();
         try{
             sesion.update(c);

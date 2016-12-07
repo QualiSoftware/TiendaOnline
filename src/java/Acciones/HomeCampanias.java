@@ -1,6 +1,7 @@
 package Acciones;
 
 import Modelos.Campania;
+import Modelos.Marcas;
 import Modelos.Usuarios;
 import static com.opensymphony.xwork2.Action.SUCCESS;
 import com.opensymphony.xwork2.ActionContext;
@@ -24,6 +25,7 @@ public class HomeCampanias extends ActionSupport {
     private String fechaCampania;
     private String orden;
     private  List<Campania> lista_campanias;
+    private List<Marcas> lista_marcas;
     //fijos para la carga del formulario
     private int clave;
     private String accion;
@@ -39,6 +41,8 @@ public class HomeCampanias extends ActionSupport {
     private String ruta;
     private File archivo = null;
     private String archivoFileName;
+    private Campania c;
+    private String marcaId;
 
     public Map getSesion() {
         return sesion;
@@ -78,6 +82,14 @@ public class HomeCampanias extends ActionSupport {
 
     public void setLista_campanias(List<Campania> lista_campanias) {
         this.lista_campanias = lista_campanias;
+    }
+
+    public List<Marcas> getLista_marcas() {
+        return lista_marcas;
+    }
+
+    public void setLista_marcas(List<Marcas> lista_marcas) {
+        this.lista_marcas = lista_marcas;
     }
 
     public int getClave() {
@@ -183,9 +195,23 @@ public class HomeCampanias extends ActionSupport {
     public void setArchivoFileName(String archivoFileName) {
         this.archivoFileName = archivoFileName;
     }
-    
-    
 
+    public Campania getC() {
+        return c;
+    }
+
+    public void setC(Campania c) {
+        this.c = c;
+    }
+
+    public String getMarcaId() {
+        return marcaId;
+    }
+
+    public void setMarcaId(String marcaId) {
+        this.marcaId = marcaId;
+    }
+    
     public String CampaniasFiltro() throws Exception {
         if (sesion==null) {
             sesion=ActionContext.getContext().getSession();
@@ -204,9 +230,22 @@ public class HomeCampanias extends ActionSupport {
     }
     
     public String CampaniasForm() throws Exception {
+        if (sesion == null) {
+            sesion = ActionContext.getContext().getSession();
+        }
+        /* para cuando tengamos sesión de usuario
+        try{
+            Usuarios u = (Usuarios) sesion.get("usuarioLogueado");
+            if(u.getUsuAdministrador()!=1){
+                return INPUT;
+            }
+        }catch(Exception e){
+            return INPUT;
+        }
+         */
+        lista_marcas = ControladoresDAO.cMarcas.RecuperaTodos("");
         if(accion.equals("a")){
             camId = 0;
-            camMarca = "";
             camNombre = "";
             camInicio = null;
             camFin = null;
@@ -214,7 +253,7 @@ public class HomeCampanias extends ActionSupport {
             cabeceraocul = "Alta";
             botonocul = "Alta";
         }else{
-            Campania c = ControladoresDAO.cCampanias.RecuperaPorId(clave);
+            c = ControladoresDAO.cCampanias.RecuperaPorId(clave);
             int year;
             int month;
             String monthString;
@@ -249,7 +288,6 @@ public class HomeCampanias extends ActionSupport {
             }
             camFin = dayString+"-"+monthString+"-"+year;            
             camId = c.getCamId();
-            camMarca = c.getCamMarca();
             camNombre = c.getCamNombre();
             camFoto = c.getCamFoto();
 
@@ -281,6 +319,7 @@ public class HomeCampanias extends ActionSupport {
         try{
             Date i = sdf.parse(camInicio);
             Date f = sdf.parse(camFin);
+            Marcas m = ControladoresDAO.cMarcas.RecuperaPorId(Integer.parseInt(marcaId));
             if (accion.equals("a")) {
                 if(archivo != null){
                     File destFile  = new File(ruta, archivoFileName);
@@ -288,7 +327,7 @@ public class HomeCampanias extends ActionSupport {
                 }else{
                     archivoFileName = "";
                 }
-                Campania c = new Campania(camMarca, camNombre, i, f, archivoFileName);
+                c = new Campania(m, camNombre, i, f, archivoFileName);
                 ControladoresDAO.cCampanias.Inserta(c);
             }
             if (accion.equals("m")) {
@@ -299,13 +338,13 @@ public class HomeCampanias extends ActionSupport {
                 }else{
                     archivoFileName = camFoto;
                 }
-                Campania c = new Campania(camMarca, camNombre, i, f, archivoFileName);
+                c = new Campania(m, camNombre, i, f, archivoFileName);
                 c.setCamId(camId);
                 ControladoresDAO.cCampanias.Modifica(c);
             }
             if (accion.equals("e")) {
                 EliminaArchivo();
-                Campania c = ControladoresDAO.cCampanias.RecuperaPorId(camId);
+                c = ControladoresDAO.cCampanias.RecuperaPorId(camId);
                 ControladoresDAO.cCampanias.Elimina(c);
             }        
             return SUCCESS;
@@ -317,9 +356,9 @@ public class HomeCampanias extends ActionSupport {
     
    private void Ruta(){
         ruta = ServletActionContext.getRequest().getSession().getServletContext().getRealPath("/");
-        String eliminar = "build\\";
+        String eliminar = "build"+System.getProperty("file.separator");
         ruta = ruta.replace(eliminar, "");
-        ruta += "Imagenes\\Campanias\\";       
+        ruta += "Imagenes"+System.getProperty("file.separator")+"Campanias"+System.getProperty("file.separator");       
    }
    
    public void EliminaArchivo() throws Exception{

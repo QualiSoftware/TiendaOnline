@@ -36,7 +36,7 @@ public class cTallas {
         }
     }
     public static int Modifica(Tallas t){
-        sesion = (Session) NewHibernateUtil.getSession();
+        sesion = (Session) NewHibernateUtil.getSessionModif();
         sesion.beginTransaction();
         try{
             sesion.update(t);
@@ -50,7 +50,7 @@ public class cTallas {
     }
     
     public static int Elimina(Tallas t){
-        sesion = (Session) NewHibernateUtil.getSession();
+        sesion = (Session) NewHibernateUtil.getSessionModif();
         sesion.beginTransaction();
         try{
             if(t != null){

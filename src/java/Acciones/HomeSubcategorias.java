@@ -216,11 +216,8 @@ public class HomeSubcategorias extends ActionSupport {
 
     public String CrudActionSubcategorias() throws Exception {
         boolean modificoCategoria = false;
-        int categoriaReemplazada = 0;
-        p = ControladoresDAO.cSubcategorias.RecuperaPorId(clave);
         if (clave != Integer.parseInt(catId2)) {
             modificoCategoria = true;
-            categoriaReemplazada = clave;
         }
         Categoria c = ControladoresDAO.cCategorias.RecuperaPorId(Integer.parseInt(catId2));
         if (accionocul.equals("a")) {

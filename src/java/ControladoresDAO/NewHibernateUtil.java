@@ -23,13 +23,20 @@ public class NewHibernateUtil {
         return sessionFactory;
     }
     
+    public static Session getSessionModif(){
+        if(sesion == null){
+            sesion = getSessionFactory().openSession();
+        }else{
+            sesion.clear();
+            sesion = getSessionFactory().openSession();
+        }
+        return sesion;
+    }
+    
     public static Session getSession(){
         if(sesion == null){
             sesion = getSessionFactory().openSession();
-        }/*else{
-            sesion.clear();
-            sesion = getSessionFactory().openSession();
-        }*/
+        }
         return sesion;
     }
 }

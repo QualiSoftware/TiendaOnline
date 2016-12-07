@@ -1,5 +1,5 @@
 package Modelos;
-// Generated 08-nov-2016 23:03:23 by Hibernate Tools 4.3.1
+// Generated 06-dic-2016 14:39:33 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -13,7 +13,7 @@ public class Campania  implements java.io.Serializable {
 
 
      private Integer camId;
-     private String camMarca;
+     private Marcas marcas;
      private String camNombre;
      private Date camInicio;
      private Date camFin;
@@ -24,15 +24,15 @@ public class Campania  implements java.io.Serializable {
     }
 
 	
-    public Campania(String camMarca, String camNombre, Date camInicio, Date camFin, String camFoto) {
-        this.camMarca = camMarca;
+    public Campania(Marcas marcas, String camNombre, Date camInicio, Date camFin, String camFoto) {
+        this.marcas = marcas;
         this.camNombre = camNombre;
         this.camInicio = camInicio;
         this.camFin = camFin;
         this.camFoto = camFoto;
     }
-    public Campania(String camMarca, String camNombre, Date camInicio, Date camFin, String camFoto, Set<CampaniaRopa> campaniaRopas) {
-       this.camMarca = camMarca;
+    public Campania(Marcas marcas, String camNombre, Date camInicio, Date camFin, String camFoto, Set<CampaniaRopa> campaniaRopas) {
+       this.marcas = marcas;
        this.camNombre = camNombre;
        this.camInicio = camInicio;
        this.camFin = camFin;
@@ -47,12 +47,12 @@ public class Campania  implements java.io.Serializable {
     public void setCamId(Integer camId) {
         this.camId = camId;
     }
-    public String getCamMarca() {
-        return this.camMarca;
+    public Marcas getMarcas() {
+        return this.marcas;
     }
     
-    public void setCamMarca(String camMarca) {
-        this.camMarca = camMarca;
+    public void setMarcas(Marcas marcas) {
+        this.marcas = marcas;
     }
     public String getCamNombre() {
         return this.camNombre;
