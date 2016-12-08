@@ -26,7 +26,6 @@ public class NewHibernateUtil {
     public static Session getSessionModif(){
         if(sesion == null){
             sesion = getSessionFactory().openSession();
-            System.out.println("nueva sesión");
         }else{
             sesion.clear();
             sesion = getSessionFactory().openSession();

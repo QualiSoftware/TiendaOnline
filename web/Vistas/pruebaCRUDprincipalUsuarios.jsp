@@ -111,7 +111,7 @@
                 </s:if>
 
             </tr>
-<!--            <tr>
+            <tr>
 
                 <th>Acciones</th>
                 <th>clientela</th>
@@ -191,7 +191,7 @@
                         </s:iterator>
                     </td>
                 </tr>
-            </s:iterator> -->      
+            </s:iterator>      
             <tr>
                 <s:iterator var="a" value="lista_campanias">
                 <td>                    

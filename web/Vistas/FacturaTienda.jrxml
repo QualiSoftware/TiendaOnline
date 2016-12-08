@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Facturas Tienda Online" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1d00e3b9-5562-41fe-9540-197555248f3a">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="144"/>
+	<property name="ireport.y" value="0"/>
 	<parameter name="clave" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT
@@ -82,7 +82,7 @@ AND facturas.`fac_id` = $P{clave}]]>
 				<text><![CDATA[Factura]]></text>
 			</staticText>
 			<textField pattern="#000000">
-				<reportElement x="490" y="83" width="50" height="20" uuid="efb534cd-d5cc-4723-96d2-0a21c0389d0e"/>
+				<reportElement x="481" y="83" width="59" height="20" uuid="efb534cd-d5cc-4723-96d2-0a21c0389d0e"/>
 				<textElement textAlignment="Right"/>
 				<textFieldExpression><![CDATA[$F{facturas_fac_codigo}]]></textFieldExpression>
 			</textField>
@@ -94,17 +94,17 @@ AND facturas.`fac_id` = $P{clave}]]>
 				<text><![CDATA[Av de QualiSoftware, 10]]></text>
 			</staticText>
 			<textField pattern="dd/MM/yyyy">
-				<reportElement x="490" y="63" width="50" height="20" uuid="ea44b819-b1b3-44da-8060-f5ec2eaad9d7"/>
+				<reportElement x="481" y="63" width="59" height="20" uuid="ea44b819-b1b3-44da-8060-f5ec2eaad9d7"/>
 				<textElement textAlignment="Right"/>
 				<textFieldExpression><![CDATA[$F{facturas_fac_fecha}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="444" y="63" width="46" height="20" uuid="5f74d78e-24ae-410a-80a3-9b5a7b03bccc"/>
+				<reportElement x="435" y="63" width="46" height="20" uuid="5f74d78e-24ae-410a-80a3-9b5a7b03bccc"/>
 				<textElement textAlignment="Right"/>
 				<text><![CDATA[Fecha]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="410" y="83" width="80" height="20" uuid="d3a417ae-c4dc-422e-8342-5ef2ecf94618"/>
+				<reportElement x="401" y="83" width="80" height="20" uuid="d3a417ae-c4dc-422e-8342-5ef2ecf94618"/>
 				<textElement textAlignment="Right"/>
 				<text><![CDATA[Número factura]]></text>
 			</staticText>

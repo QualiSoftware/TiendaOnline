@@ -107,7 +107,7 @@ public class HomeUsuariosValidaciones extends ActionSupport{
     }
     
     public String Login() throws Exception {
-        System.out.println("respuesta "+respuesta);
+        //System.out.println("respuesta "+respuesta);
         if(respuesta == 1){
             List<Usuarios> l = ControladoresDAO.cUsuarios.Login(usuEmail2,usuPassword2);
             if(l.size()==0){
