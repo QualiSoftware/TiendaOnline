@@ -2,6 +2,7 @@
     Document   : Prueba
     Author     : Laplaga
 --%>
+<%@page import="java.util.Date"%>
 <%@page import="Modelos.Ropa"%>
 <%@taglib  prefix="s" uri="/struts-tags" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -14,6 +15,21 @@
         <title>PruebaCRUD</title>
     </head>
     <body>
+         <%
+                    Cookie miCookie = null;
+                    Date fecha = new Date();
+                    String texto = "Este es el texto que vamos a guardar en el cookie" + fecha;
+                    //Se le asigna el nombre de la cookie y su valor
+                    miCookie = new Cookie("nombre", texto);
+                    //Tiempo de Vida
+                    miCookie.setMaxAge(60);
+                    //Indicar quien podra usar el cockies  si solo va "/" es toda la apliacacion
+                    miCookie.setPath("/");
+                    //Para crear el fichero cookie real
+                    response.addCookie(miCookie);
+        %>
+         <p>Cookie Creada</p>
+        <a href="LlamarCookies.jsp">Llamar Cookies</a>
         <table border="1">
             <tr>
                 <td colspan="13">
