@@ -179,7 +179,7 @@
             <tr>
                 <s:iterator var="a" value="lista_campanias">
                 <td>                    
-                    <img src="../Imagenes/Campanias/<s:property value="#a.camFoto"/>" height="70" alt="<s:property value="#a.camFoto"/>"/>     
+                    <img src="../Imagenes/Campanias/<s:property value="#a.camFoto"/>" height="200" alt="<s:property value="#a.camFoto"/>"/>     
                 </td>
                 </s:iterator>
             </tr>
