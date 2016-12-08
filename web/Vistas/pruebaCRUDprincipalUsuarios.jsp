@@ -95,7 +95,7 @@
                 </s:if>
 
             </tr>
-            <tr>
+<!--            <tr>
 
                 <th>Acciones</th>
                 <th>clientela</th>
@@ -175,12 +175,22 @@
                         </s:iterator>
                     </td>
                 </tr>
-            </s:iterator> 
-        </table>
-        <!--
-        <s:iterator var="a" value="lista_campanias">
-                        <img src="../Imagenes/Campanias/<s:property value="#a.camFoto"/>" height="70" alt="<s:property value="#a.camFoto"/>"/><br/>
-                   </s:iterator>
-        -->
+            </s:iterator> -->      
+            <tr>
+                <s:iterator var="a" value="lista_campanias">
+                <td>                    
+                    <img src="../Imagenes/Campanias/<s:property value="#a.camFoto"/>" height="70" alt="<s:property value="#a.camFoto"/>"/>     
+                </td>
+                </s:iterator>
+            </tr>
+            <tr>
+                <s:iterator var="a" value="lista_marcas">
+                <td>
+                    <img src="../Imagenes/Marcas/<s:property value="#a.marcaFoto"/>" height="70" alt="<s:property value="#a.marcaFoto"/>"/>
+                </td>
+                </s:iterator>
+            </tr>
+               
+        </table>   
     </body>
 </html>

@@ -73,6 +73,7 @@ public class HomeRopa extends ActionSupport {
     private List<Coleccion> lista_colecciones;
     private List<Subcategoria> lista_subcategoria;
     private  List<Campania> lista_campanias;
+    private List<Marcas>lista_marcas;
 
     private Integer roId2;
     private String clientela2;
@@ -104,7 +105,18 @@ public class HomeRopa extends ActionSupport {
     private List<File> archivo = new LinkedList<File>();
     private List<String> archivoContentType = new LinkedList<String>();
     private List<String> archivoFileName = new LinkedList<String>();
+
+    public List<Marcas> getLista_marcas() {
+        return lista_marcas;
+    }
+
+    public void setLista_marcas(List<Marcas> lista_marcas) {
+        this.lista_marcas = lista_marcas;
+    }
     private boolean hayFotos;
+    
+    
+    
 
     public Integer getCantidad() {
         return cantidad;
@@ -610,6 +622,7 @@ public class HomeRopa extends ActionSupport {
         }
         lista_ropa = ControladoresDAO.cRopa.RecuperaTodos(filtro,orden,fechaI,fechaF,eliminadas);        
         lista_campanias = ControladoresDAO.cCampanias.RecuperaTodos("","","camInicio DESC");
+        lista_marcas =  ControladoresDAO.cMarcas.RecuperaTodos("");
         return SUCCESS;
     }
 
