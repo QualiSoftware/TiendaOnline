@@ -9,15 +9,11 @@
 <html>
     <head>
         <meta charset="UTF-8">
-
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
         <link rel="stylesheet" href="../Estilos/GeneralEstilos.css"/>
         <title>PruebaCRUD</title>
-
     </head>
     <body>
-
-
         <table border="1">
             <tr>
                 <td colspan="13">
@@ -62,7 +58,6 @@
                                     <td>
                                         <s:a action="UsuAlta" >
                                             <s:param name="accion" value="'a'"/>
-                                            <s:param name="accionocul" value="'a'"/>
                                             Crear Usuario
                                         </s:a>
                                     </td>
@@ -71,33 +66,27 @@
                         </s:form>
                     </s:if>
                     <s:if test="sesion.usuarioLogueado.usuId!=''">
-
                         Bienvenido : <s:property value="sesion.usuarioLogueado.usuNombre"/>
-
                         <s:a action="CerrarSesion" >Cerrar</s:a>
                         <s:a action="UsuAlta" >
                             <s:param name="clave" value="sesion.usuarioLogueado.usuId"/>
                             <s:param name="accion" value="'m'"/>
-                            <s:param name="accionocul" value="'m'"/>
                             Modificar Usuario
                         </s:a>
                         <s:a action="UsuAlta" >
                             <s:param name="clave" value="sesion.usuarioLogueado.usuId"/>
                             <s:param name="accion" value="'e'"/>
-                            <s:param name="accionocul" value="'e'"/>
                             Eliminar usuario
                         </s:a>
                     </s:if>
-
-
-                    <s:if test="sesion.usuarioLogueado.usuId!=1">
+                    <s:if test="sesion.usuarioLogueado.usuAdministrador!=1">
                         <s:property value="mensajeError" />
                         <s:form action="CestaFiltro" theme="simple">
                             <s:textfield type="hidden" value="1" name="filtro" /> <s:property value="totalcestaUsuario"/> <s:submit value="cesta"></s:submit>                    
                         </s:form>
                     </s:if>
                 </td>
-                <s:if test="sesion.usuarioLogueado.usuId==1">
+                <s:if test="sesion.usuarioLogueado.usuAdministrador==1">
                     <td>
                         <s:form action="RopaAdminFiltro" theme="simple">
                             <s:submit value="Admin"></s:submit>                    

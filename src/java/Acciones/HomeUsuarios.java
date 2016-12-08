@@ -10,6 +10,7 @@ import Modelos.Provincias;
 import Modelos.Usuarios;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.util.logging.Logger;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -30,7 +31,7 @@ public class HomeUsuarios extends ActionSupport {
      private String usuDni2 = "";
      private String usuDireccion2 = "";
      private String usuCp2 = "";
-     private Date usuFechaNac2;
+     private String usuFechaNac2;
      private boolean usuSexo2;
      private String usuTelefono2 = "";
      private String usuLocalidad2 = "";
@@ -236,11 +237,11 @@ public class HomeUsuarios extends ActionSupport {
         this.usuCp2 = usuCp2;
     }
 
-    public Date getUsuFechaNac2() {
+    public String getUsuFechaNac2() {
         return usuFechaNac2;
     }
 
-    public void setUsuFechaNac2(Date usuFechaNac2) {
+    public void setUsuFechaNac2(String usuFechaNac2) {
         this.usuFechaNac2 = usuFechaNac2;
     }
 
@@ -322,8 +323,12 @@ public class HomeUsuarios extends ActionSupport {
             
     
      public String UsuAlta() throws Exception {
-     
-         if(accion.equals("a")){
+        int year;
+        int month;
+        String monthString;
+        int day;
+        String dayString;
+        if(accion.equals("a")){
             usuId2 = 0;
             //Provincias provincias22;
             usuNombre2 = "";
@@ -334,7 +339,20 @@ public class HomeUsuarios extends ActionSupport {
             usuDireccion2 = "";
             usuCp2 = "";
             Date fecha = new Date();
-            usuFechaNac2 = fecha;
+            year = fecha.getYear() + 1900;
+            month = fecha.getMonth()+1;
+            day = fecha.getDate();
+            if(month < 10){
+                monthString = "0"+month;
+            }else{
+                monthString = ""+month;
+            }
+            if(day < 10){
+                dayString = "0"+day;
+            }else{
+                dayString = ""+day;
+            }
+            usuFechaNac2 = dayString+"-"+monthString+"-"+year;
             usuSexo2 = false;
             usuTelefono2 = "";
             usuLocalidad2 = "";
@@ -350,25 +368,20 @@ public class HomeUsuarios extends ActionSupport {
          }else {
              //System.out.println("clave "+clave);
             u = ControladoresDAO.cUsuarios.RecuperaPorId(clave);
-//            int year;
-//            int month;
-//            String monthString;
-//            int day;
-//            String dayString;
-//            year = u.getRoFecha().getYear() + 1900;
-//            month = t.getRoFecha().getMonth()+1;
-//            day = u.getUsuFechaNac().getDate();
-//            if(month < 10){
-//                monthString = "0"+month;
-//            }else{
-//                monthString = ""+month;
-//            }
-//            if(day < 10){
-//                dayString = "0"+day;
-//            }else{
-//                dayString = ""+day;
-//            }
-            usuFechaNac2 = u.getUsuFechaNac(); //dayString+"-"+monthString+"-"+year;
+            year = u.getUsuFechaNac().getYear() + 1900;
+            month = u.getUsuFechaNac().getMonth()+1;
+            day = u.getUsuFechaNac().getDate();
+            if(month < 10){
+                monthString = "0"+month;
+            }else{
+                monthString = ""+month;
+            }
+            if(day < 10){
+                dayString = "0"+day;
+            }else{
+                dayString = ""+day;
+            }
+            usuFechaNac2 = dayString+"-"+monthString+"-"+year;
             usuId2 = u.getUsuId();
             usuNombre2 = u.getUsuNombre();
             usuApellidos2 = u.getUsuApellidos();
@@ -412,6 +425,15 @@ public class HomeUsuarios extends ActionSupport {
     }
       public String CrudActionUsuarios() throws Exception{
         Usuarios p = new Usuarios();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String year;
+        String month;
+        String day;
+        year = usuFechaNac2.substring(6, 10);
+        month = usuFechaNac2.substring(3, 5);
+        day = usuFechaNac2.substring(0, 2);
+        usuFechaNac2 = year+"-"+month+"-"+day;
+        Date date = sdf.parse(usuFechaNac2);
         if (accionocul.equals("a")) {                      
            p.setProvincias(ControladoresDAO.cProvincias.RecuperaPorId(Integer.parseInt(provincias2)));
            p.setUsuNombre(usuNombre2);
@@ -424,9 +446,9 @@ public class HomeUsuarios extends ActionSupport {
            p.setUsuSexo(usuSexo2);
            p.setUsuTelefono(usuTelefono2);
            p.setUsuLocalidad(usuLocalidad2);
-           p.setUsuFechaNac(usuFechaNac2);
+           p.setUsuFechaNac(date);
            p.setUsuDescuento(0);
-           p.setUsuFechaLimiteDesc(usuFechaNac2);
+           p.setUsuFechaLimiteDesc(date);
            p.setUsuAdministrador(0);
            respuesta =  ControladoresDAO.cUsuarios.Inserta(p);
         }
@@ -437,14 +459,19 @@ public class HomeUsuarios extends ActionSupport {
            p.setUsuNombre(usuNombre2);
            p.setUsuApellidos(usuApellidos2);
            p.setUsuEmail(usuEmail2);
-           p.setUsuPassword(usuPassword2);
            p.setUsuDni(usuDni2);
            p.setUsuCp(usuCp2);
            p.setUsuDireccion(usuDireccion2);
            p.setUsuTelefono(usuTelefono2);
            p.setUsuLocalidad(usuLocalidad2);
-           p.setUsuFechaNac(usuFechaNac2);
+            //System.out.println("usuFechaNac2: "+usuFechaNac2);
+           p.setUsuFechaNac(date);
            Usuarios ud = ControladoresDAO.cUsuarios.RecuperaPorId(usuId2);
+           if(usuPassword2.equals("")){
+               p.setUsuPassword(ud.getUsuPassword());
+           }else{
+                p.setUsuPassword(usuPassword2);               
+           }
            p.setUsuDescuento(ud.getUsuDescuento());
            p.setUsuFechaLimiteDesc(ud.getUsuFechaLimiteDesc());
            p.setUsuAdministrador(ud.getUsuAdministrador());

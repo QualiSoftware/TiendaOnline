@@ -115,14 +115,6 @@
         <action name="FacturasFiltro" class="Acciones.HomeFacturas" method="FacturasFiltro" >
             <result>/Vistas/CRUDfacturas.jsp</result> 
         </action>
-        <action name="FacturasForm" class="Acciones.HomeFacturas" method="FacturasForm">
-            <result>/Vistas/formularioCRUDfacturas.jsp</result>   
-        </action>
-        <action name="CrudActionFacturas" class="Acciones.HomeFacturas" method="CrudActionFacturas">
-            <result name="input">/Vistas/formularioCRUDfacturas.jsp</result>
-            <result name="error">/Vistas/formularioCRUDfacturas.jsp</result>
-            <result type="chain">FacturasFiltro</result> 
-        </action>
         <action name="volverFacturas">
             <result type="redirect">FacturasFiltro</result>
         </action>
@@ -270,7 +262,7 @@
         
         <!-- actions de Usuarios -->
         <action name="UsuAlta" class="Acciones.HomeUsuarios" method="UsuAlta">
-            <result>/Vistas/CRUDusuariosAltaModEliminar.jsp</result>           
+            <result>/Vistas/formularioCRUDusuarios.jsp</result>           
         </action>
         
         <action name="ajaxPaises" class="Acciones.HomeUsuarios" method="ajaxPaises">
@@ -299,7 +291,7 @@
         <action name="CrudActionUsuarios" class="Acciones.HomeUsuarios" method="CrudActionUsuarios">
             <result type="redirect">RopaFiltroU</result>
             <result name="input" type="redirect">CerrarSesion</result>
-            <result name="error">/Vistas/CRUDusuariosAltaModEliminar.jsp</result>
+            <result name="error">/Vistas/formularioCRUDusuarios.jsp</result>
         </action>
         
         <!-- actions de Pago -->

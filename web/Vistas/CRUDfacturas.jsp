@@ -132,21 +132,6 @@
                             <s:param name="facUsuId" value="#a.facUsuId"/>
                             <i style="font-size: 20px" class="glyphicon glyphicon-print"></i>
                         </s:a>
-                            
-                        <!-- lo dejo por las dudas que sea necesario modificar y/o eliminar facturas
-                            <s:a action="FacturasForm">
-                                <s:param name="clave" value="#a.facId"/>
-                                <s:param name="accion" value="'m'"/>
-                                <i style="font-size: 20px" class="glyphicon glyphicon-edit"></i>
-                            </s:a>
-                            &nbsp;&nbsp;&nbsp;&nbsp;
-                            <s:a action="FacturasForm">
-                                <s:param name="accion" value="'e'"/>
-                                <s:param name="clave" value="#a.facId"/>
-                                <i style="font-size: 20px" class="glyphicon glyphicon-trash"></i>
-                            </s:a>
-                        -->
-                        
                     </td>
                     <td>
                         <s:property value="#a.facCodigo"/><br>

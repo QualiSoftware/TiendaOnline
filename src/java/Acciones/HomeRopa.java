@@ -177,8 +177,6 @@ public class HomeRopa extends ActionSupport {
     public void setUsi(String usi) {
         this.usi = usi;
     }
-    
-    
 
     public int getTotalcestaUsuario() {
         return totalcestaUsuario;
@@ -580,9 +578,13 @@ public class HomeRopa extends ActionSupport {
         if(sesion.get("usuarioLogueado") != null){
             if(!sesion.get("usuarioLogueado").equals("")){
                 try{
+                    int aux;
                     u = (Usuarios) sesion.get("usuarioLogueado");
-                    usi =""+ u.getUsuId();
-
+                    aux = u.getUsuId();
+                    u = ControladoresDAO.cUsuarios.RecuperaPorId(aux);
+                    sesion.clear();
+                    sesion.put("usuarioLogueado", (Usuarios) u);
+                    usi = ""+u.getUsuId();
                 }catch(Exception e){
                     System.out.println(e.getMessage());
                 }
@@ -606,7 +608,6 @@ public class HomeRopa extends ActionSupport {
         for(Cesta caux:lista_ropa_Cestas){
             totalcestaUsuario += caux.getCestaUnidades();
         }
-        //totalcestaUsuario = lista_ropa_Cestas.size();
         lista_ropa = ControladoresDAO.cRopa.RecuperaTodos(filtro,orden,fechaI,fechaF,eliminadas);        
         lista_campanias = ControladoresDAO.cCampanias.RecuperaTodos("","","camInicio DESC");
         return SUCCESS;
@@ -712,7 +713,7 @@ public class HomeRopa extends ActionSupport {
         month = roFecha2.substring(3, 5);
         day = roFecha2.substring(0, 2);
         roFecha2 = year+"-"+month+"-"+day;
-            Date fecha = sdf.parse(roFecha2);
+        Date fecha = sdf.parse(roFecha2);
         if (roId2 != 0) {
             t = ControladoresDAO.cRopa.RecuperaPorId(roId2);
         } else {

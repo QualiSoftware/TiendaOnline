@@ -19,7 +19,7 @@ public class cUsuarios {
     }
     
     public static Usuarios RecuperaPorId(int id){
-        sesion = (Session) NewHibernateUtil.getSession();
+        sesion = (Session) NewHibernateUtil.getSessionModif();
         Usuarios p =(Usuarios) sesion.get(Usuarios.class, id);
         return p;
     }    
