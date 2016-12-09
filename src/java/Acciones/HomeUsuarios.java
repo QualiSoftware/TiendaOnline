@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Acciones;
 
 import Modelos.Paises;
@@ -16,43 +11,36 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- *
- * @author javiermartinroncero
- */
 public class HomeUsuarios extends ActionSupport {
     
-     private Integer usuId2 = 0;
-     private String provincias2;
-     private String usuNombre2 = "";
-     private String usuApellidos2 = "";
-     private String usuEmail2 = "";
-     private String usuPassword2 = "";
-     private String usuDni2 = "";
-     private String usuDireccion2 = "";
-     private String usuCp2 = "";
-     private String usuFechaNac2;
-     private boolean usuSexo2;
-     private String usuTelefono2 = "";
-     private String usuLocalidad2 = "";
-     private double usuDescuento2;
-     private Date usuFechaLimiteDesc;
-     private int usuAdministrador;
-     //private Set<Cesta> cestas = new HashSet<Cesta>(0);
-     //private Set<Favoritos> favoritoses = new HashSet<Favoritos>(0);
-    
+    private Integer usuId2 = 0;
+    private String provincias2;
+    private String usuNombre2 = "";
+    private String usuApellidos2 = "";
+    private String usuEmail2 = "";
+    private String usuPassword2 = "";
+    private String usuDni2 = "";
+    private String usuDireccion2 = "";
+    private String usuCp2 = "";
+    private String usuFechaNac2;
+    private boolean usuSexo2;
+    private String usuTelefono2 = "";
+    private String usuLocalidad2 = "";
+    private double usuDescuento2;
+    private Date usuFechaLimiteDesc;
+    private int usuAdministrador;
+    //private Set<Cesta> cestas = new HashSet<Cesta>(0);
+    //private Set<Favoritos> favoritoses = new HashSet<Favoritos>(0);    
     private String accion = "";
     private String accionocul = "";
     private String cabeceraocul = "";
     private String botonocul = "";
     private Usuarios u;
     private int clave;
-    private String usupais = "";
-    
+    private String usupais = "";    
     private List<Paises> listaPaises;
     private List<Provincias> listaProvincias;
-    private String countryName;
-    
+    private String countryName;    
     private Map<String, String> stateMap = new LinkedHashMap<String, String>();
     private String dummyMsg = "";
     private int respuesta;
@@ -64,8 +52,6 @@ public class HomeUsuarios extends ActionSupport {
     public void setRespuesta(int respuesta) {
         this.respuesta = respuesta;
     }
-    
-    
 
     public Map<String, String> getStateMap() {
         return stateMap;
@@ -83,9 +69,6 @@ public class HomeUsuarios extends ActionSupport {
         this.dummyMsg = dummyMsg;
     }
     
-    
-    
-
     public String getCountryName() {
         return countryName;
     }
@@ -93,8 +76,6 @@ public class HomeUsuarios extends ActionSupport {
     public void setCountryName(String countryName) {
         this.countryName = countryName;
     }
-    
-    
 
     public List<Provincias> getListaProvincias() {
         return listaProvincias;
@@ -103,8 +84,6 @@ public class HomeUsuarios extends ActionSupport {
     public void setListaProvincias(List<Provincias> listaProvincias) {
         this.listaProvincias = listaProvincias;
     }
-    
-    
 
     public List<Paises> getListaPaises() {
         return listaPaises;
@@ -113,8 +92,6 @@ public class HomeUsuarios extends ActionSupport {
     public void setListaPaises(List<Paises> listaPaises) {
         this.listaPaises = listaPaises;
     }
-    
-    
 
     public static Logger getLOG() {
         return LOG;
@@ -123,8 +100,6 @@ public class HomeUsuarios extends ActionSupport {
     public static void setLOG(Logger LOG) {
         ActionSupport.LOG = LOG;
     }
-    
-    
 
     public Usuarios getU() {
         return u;
@@ -141,8 +116,6 @@ public class HomeUsuarios extends ActionSupport {
     public void setClave(int clave) {
         this.clave = clave;
     }
-    
-    
 
     public String getCabeceraocul() {
         return cabeceraocul;
@@ -158,11 +131,8 @@ public class HomeUsuarios extends ActionSupport {
 
     public void setBotonocul(String botonocul) {
         this.botonocul = botonocul;
-    }
+    }    
     
-    
-    
-
     public Integer getUsuId2() {
         return usuId2;
     }
@@ -178,8 +148,6 @@ public class HomeUsuarios extends ActionSupport {
     public void setProvincias2(String provincias2) {
         this.provincias2 = provincias2;
     }
-
-
 
     public String getUsuNombre2() {
         return usuNombre2;
@@ -317,12 +285,7 @@ public class HomeUsuarios extends ActionSupport {
         this.usupais = usupais;
     }
     
-    
-    
-    
-            
-    
-     public String UsuAlta() throws Exception {
+    public String UsuAlta() throws Exception {
         int year;
         int month;
         String monthString;
@@ -330,7 +293,6 @@ public class HomeUsuarios extends ActionSupport {
         String dayString;
         if(accion.equals("a")){
             usuId2 = 0;
-            //Provincias provincias22;
             usuNombre2 = "";
             usuApellidos2 = "";
             usuEmail2 = "";
@@ -353,20 +315,16 @@ public class HomeUsuarios extends ActionSupport {
                 dayString = ""+day;
             }
             usuFechaNac2 = dayString+"-"+monthString+"-"+year;
-            usuSexo2 = false;
+            usuSexo2 = true;
             usuTelefono2 = "";
             usuLocalidad2 = "";
             provincias2 = "1";
             listaPaises = ControladoresDAO.cPaises.RecuperaTodos("");
             listaProvincias = ControladoresDAO.cProvincias.RecuperaTodos("");
-           // usuDescuento2;
-           // usuFechaLimiteDesc = ;
-           accionocul = "a";
-           cabeceraocul = "Alta";
-           botonocul = "Alta";
-          
+            accionocul = "a";
+            cabeceraocul = "Alta";
+            botonocul = "Alta";          
          }else {
-             //System.out.println("clave "+clave);
             u = ControladoresDAO.cUsuarios.RecuperaPorId(clave);
             year = u.getUsuFechaNac().getYear() + 1900;
             month = u.getUsuFechaNac().getMonth()+1;
@@ -390,17 +348,15 @@ public class HomeUsuarios extends ActionSupport {
             usuDni2 = u.getUsuDni();
             usuDireccion2 = u.getUsuDireccion();
             usuCp2 = u.getUsuCp();
-            usuSexo2 = false;
+            usuSexo2 = u.isUsuSexo();
             usuTelefono2 = u.getUsuTelefono();
             usuLocalidad2 = u.getUsuLocalidad();
             usupais = ""+u.getProvincias().getPaises().getPaisId();
             provincias2 = ""+u.getProvincias().getProId();
             listaPaises = ControladoresDAO.cPaises.RecuperaTodos("");
-            listaProvincias = ControladoresDAO.cProvincias.RecuperaTodos(""+u.getProvincias().getPaises().getPaisId());
-            
-        }
-         
-         if (accion.equals("m")) {
+            listaProvincias = ControladoresDAO.cProvincias.RecuperaTodos(""+u.getProvincias().getPaises().getPaisId());            
+        }         
+        if (accion.equals("m")) {
             accionocul = "m";
             cabeceraocul = "Modificación";
             botonocul = "Modificar";
@@ -412,18 +368,17 @@ public class HomeUsuarios extends ActionSupport {
         }
         return SUCCESS;
     }
+     
      public String ajaxPaises() throws Exception{
-       Paises p = ControladoresDAO.cPaises.RecuperaPorId(Integer.parseInt(countryName));
+        Paises p = ControladoresDAO.cPaises.RecuperaPorId(Integer.parseInt(countryName));
                   for(Provincias auxsubcat:p.getProvinciases()){
                       stateMap.put(""+auxsubcat.getProId(), auxsubcat.getProNombre());
-                      //System.out.println("id"+auxsubcat.getSubId()+"descri"+auxsubcat.getSubDescripcion());
-                      //System.out.println(stateMap);
                   }
-
-           dummyMsg = "Ajax action Triggered";
-       return SUCCESS;
+        dummyMsg = "Ajax action Triggered";
+        return SUCCESS;
     }
-      public String CrudActionUsuarios() throws Exception{
+     
+    public String CrudActionUsuarios() throws Exception{
         Usuarios p = new Usuarios();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         String year;
@@ -434,7 +389,10 @@ public class HomeUsuarios extends ActionSupport {
         day = usuFechaNac2.substring(0, 2);
         usuFechaNac2 = year+"-"+month+"-"+day;
         Date date = sdf.parse(usuFechaNac2);
-        if (accionocul.equals("a")) {                      
+        if (accionocul.equals("a")) {
+           //En este punto podría enviar el email al usuario con un enlace. Lo que puedo hacer es acá rellenar
+           //el email con algún código raro y que el enlace lo que haga es entrar en el usuario y
+           //cambiarle el email por el verdadero email del usuario
            p.setProvincias(ControladoresDAO.cProvincias.RecuperaPorId(Integer.parseInt(provincias2)));
            p.setUsuNombre(usuNombre2);
            p.setUsuApellidos(usuApellidos2);
@@ -452,9 +410,7 @@ public class HomeUsuarios extends ActionSupport {
            p.setUsuAdministrador(0);
            respuesta =  ControladoresDAO.cUsuarios.Inserta(p);
         }
-        if (accionocul.equals("m")) {  
-           //Provincias pro = ControladoresDAO.cProvincias.RecuperaPorId(Integer.parseInt(provincias2));
-           //System.out.println("provincias "+pro.getProId());
+        if (accionocul.equals("m")) {
            p.setProvincias(ControladoresDAO.cProvincias.RecuperaPorId(Integer.parseInt(provincias2)));
            p.setUsuNombre(usuNombre2);
            p.setUsuApellidos(usuApellidos2);
@@ -464,7 +420,7 @@ public class HomeUsuarios extends ActionSupport {
            p.setUsuDireccion(usuDireccion2);
            p.setUsuTelefono(usuTelefono2);
            p.setUsuLocalidad(usuLocalidad2);
-            //System.out.println("usuFechaNac2: "+usuFechaNac2);
+           p.setUsuSexo(usuSexo2);
            p.setUsuFechaNac(date);
            Usuarios ud = ControladoresDAO.cUsuarios.RecuperaPorId(usuId2);
            if(usuPassword2.equals("")){
@@ -475,7 +431,6 @@ public class HomeUsuarios extends ActionSupport {
            p.setUsuDescuento(ud.getUsuDescuento());
            p.setUsuFechaLimiteDesc(ud.getUsuFechaLimiteDesc());
            p.setUsuAdministrador(ud.getUsuAdministrador());
-           p.setUsuSexo(ud.isUsuSexo());
            p.setUsuId(usuId2);
            respuesta = ControladoresDAO.cUsuarios.Modifica(p);
         }
@@ -486,6 +441,4 @@ public class HomeUsuarios extends ActionSupport {
         }   
        return SUCCESS;
     }
-     
-    
 }

@@ -118,7 +118,26 @@
                             <s:textfield name="usuDni2" ></s:textfield>
                         </s:else>
                     </td>
-                </tr>
+                </tr>                    
+                <s:if test='%{accion == "e"}'>
+                </s:if>
+                <s:else>
+                    <tr>
+                        <td>
+                            <s:label for="usuSexo2">Sexo</s:label>
+                        </td>
+                        <td>
+                            <% String selected = ""; %>
+                            <s:if test="%{!usuSexo2}">
+                                <% selected = " selected='selected'"; %>
+                            </s:if>
+                            <select name="usuSexo2">
+                                <option value="true">Mujer</option>
+                                <option value="false"<%=selected %>>Hombre</option>
+                            </select>
+                        </td>
+                    </tr>                  
+                </s:else>
                 <tr>
                     <td>
                         <s:label for="usuDireccion2">Dirección</s:label>  
