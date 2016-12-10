@@ -77,4 +77,12 @@ public class cUsuarios {
         List<Usuarios> lista = criterio.list();
         return lista;
     }    
+    
+    public static int SaberUltimoId(){
+        sesion = (Session) NewHibernateUtil.getSession();
+        String sql = "select max(usuId) From Usuarios";
+        Query query = sesion.createQuery(sql);
+        List<Integer> uf = query.list();
+        return uf.get(0);
+    }
 }

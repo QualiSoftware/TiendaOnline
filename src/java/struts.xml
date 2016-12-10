@@ -293,6 +293,10 @@
             <result name="input" type="redirect">CerrarSesion</result>
             <result name="error">/Vistas/formularioCRUDusuarios.jsp</result>
         </action>
+        <action name="activa" class="Acciones.HomeUsuarios" method="activa">
+            <result>/Vistas/activacion.jsp</result>
+            <result name="input">/Vistas/activacionError.jsp</result>
+        </action>
         
         <!-- actions de Pago -->
         <!-- factura y formalizacion de pago -->

@@ -15,20 +15,20 @@
         <title>PruebaCRUD</title>
     </head>
     <body>
-         <%
-                    Cookie miCookie = null;
-                    Date fecha = new Date();
-                    String texto = "Este es el texto que vamos a guardar en el cookie" + fecha;
-                    //Se le asigna el nombre de la cookie y su valor
-                    miCookie = new Cookie("nombre", texto);
-                    //Tiempo de Vida
-                    miCookie.setMaxAge(60);
-                    //Indicar quien podra usar el cockies  si solo va "/" es toda la apliacacion
-                    miCookie.setPath("/");
-                    //Para crear el fichero cookie real
-                    response.addCookie(miCookie);
+        <%
+            Cookie miCookie = null;
+            Date fecha = new Date();
+            String texto = "Este es el texto que vamos a guardar en el cookie" + fecha;
+            //Se le asigna el nombre de la cookie y su valor
+            miCookie = new Cookie("nombre", texto);
+            //Tiempo de Vida
+            miCookie.setMaxAge(60);
+            //Indicar quien podra usar el cockies  si solo va "/" es toda la apliacacion
+            miCookie.setPath("/");
+            //Para crear el fichero cookie real
+            response.addCookie(miCookie);
         %>
-         <p>Cookie Creada</p>
+        <p>Cookie Creada</p>
         <a href="LlamarCookies.jsp">Llamar Cookies</a>
         <table border="1">
             <tr>
@@ -109,10 +109,8 @@
                         </s:form>
                     </td>
                 </s:if>
-
             </tr>
             <tr>
-
                 <th>Acciones</th>
                 <th>clientela</th>
                 <th>coleccion</th>
@@ -128,9 +126,7 @@
                 <th>Subcategoría</th>
                 <th>Fotos</th>
             </tr>
-
             <s:iterator var="a" value="lista_ropa">
-
                 <tr>
                     <td>
                         <s:a action="RopaFormU">
@@ -138,9 +134,7 @@
                             <s:param name="clave" value="#a.roId"/>
                             <i style="font-size: 20px" class="glyphicon glyphicon-euro"></i>
                         </s:a>
-
                         <i style="font-size: 20px" class="glyphicon glyphicon-plus-sign"></i>
-
                         <s:a action="CrudActionUsuariosCesta">
                             <s:param name="accion" value="'c'"/>
                             <s:param name="accionocul" value="'c'"/>
@@ -205,8 +199,7 @@
                     <img src="../Imagenes/Marcas/<s:property value="#a.marcaFoto"/>" height="70" alt="<s:property value="#a.marcaFoto"/>"/>
                 </td>
                 </s:iterator>
-            </tr>
-               
-        </table>   
+            </tr>               
+        </table>
     </body>
 </html>

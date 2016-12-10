@@ -14,7 +14,7 @@
 %>                         
 <!DOCTYPE html>
 <html>
-    <head>
+    <head xmlns="http://www.w3.org/1999/xhtml">
         <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
         <link rel="stylesheet" type="text/css" href="../Calendar/1-simple-calendar/tcal.css" />
         <script type="text/javascript" src="../Calendar/1-simple-calendar/tcal.js"></script>

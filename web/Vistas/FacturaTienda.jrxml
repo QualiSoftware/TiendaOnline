@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Facturas Tienda Online" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1d00e3b9-5562-41fe-9540-197555248f3a">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="96"/>
 	<parameter name="clave" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT
@@ -134,28 +134,28 @@ AND facturas.`fac_id` = $P{clave}]]>
 				<reportElement x="12" y="19" width="528" height="105" forecolor="#FF0000" backcolor="#FFCC66" uuid="2efc51c9-7a00-48bc-9d0e-503903dd7bb6"/>
 			</rectangle>
 			<textField>
-				<reportElement x="24" y="31" width="173" height="20" uuid="e17c1ebb-a2f5-4ec7-9ce3-1088087cae61"/>
+				<reportElement x="24" y="31" width="502" height="20" uuid="e17c1ebb-a2f5-4ec7-9ce3-1088087cae61"/>
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{facturas_fac_razonsocial}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="24" y="51" width="173" height="20" uuid="1a4d09d9-3380-4223-a248-e5082e2f3ceb"/>
+				<reportElement x="24" y="51" width="502" height="20" uuid="1a4d09d9-3380-4223-a248-e5082e2f3ceb"/>
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{facturas_fac_direccion}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="24" y="71" width="73" height="20" uuid="aa299671-fec7-4c5a-8a57-50e1c9836d26"/>
+				<reportElement x="24" y="71" width="502" height="20" uuid="aa299671-fec7-4c5a-8a57-50e1c9836d26"/>
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{facturas_fac_poblacion}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="false">
-				<reportElement x="76" y="91" width="121" height="20" uuid="b9b65463-37e5-49ad-834d-58a6920550c9"/>
+				<reportElement x="76" y="91" width="450" height="20" uuid="b9b65463-37e5-49ad-834d-58a6920550c9"/>
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>
@@ -189,12 +189,12 @@ AND facturas.`fac_id` = $P{clave}]]>
 				<text><![CDATA[Marca]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="240" y="0" width="70" height="26" uuid="88e97f14-e29a-4125-ad57-1e898e25c78b"/>
+				<reportElement x="223" y="0" width="70" height="26" uuid="88e97f14-e29a-4125-ad57-1e898e25c78b"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<text><![CDATA[Precio]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="10" y="0" width="45" height="26" uuid="6d463344-7683-4286-a13e-351e7a0d885d"/>
+				<reportElement x="430" y="0" width="45" height="26" uuid="6d463344-7683-4286-a13e-351e7a0d885d"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<text><![CDATA[Cantidad]]></text>
 			</staticText>
@@ -204,12 +204,12 @@ AND facturas.`fac_id` = $P{clave}]]>
 				<text><![CDATA[Categoría]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="320" y="0" width="70" height="26" uuid="48dff408-c7cf-4840-a3ef-bb4be81a9812"/>
+				<reportElement x="294" y="0" width="60" height="26" uuid="48dff408-c7cf-4840-a3ef-bb4be81a9812"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<text><![CDATA[Descuento]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="400" y="0" width="70" height="26" uuid="367f5a14-08c4-4003-829e-144305a43533"/>
+				<reportElement x="356" y="0" width="70" height="26" uuid="367f5a14-08c4-4003-829e-144305a43533"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<text><![CDATA[Precio con descuento]]></text>
 			</staticText>
@@ -218,12 +218,17 @@ AND facturas.`fac_id` = $P{clave}]]>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<text><![CDATA[Precio final]]></text>
 			</staticText>
+			<staticText>
+				<reportElement x="12" y="0" width="53" height="26" uuid="6ec5e65a-a2da-4e2c-a0c0-c4b7eae4e343"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Código]]></text>
+			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
 		<band height="23" splitType="Stretch">
 			<textField pattern="#,##0.00">
-				<reportElement x="240" y="0" width="70" height="20" uuid="6ed01ede-e1c7-495f-889d-8b61e864559a"/>
+				<reportElement x="223" y="0" width="70" height="20" uuid="6ed01ede-e1c7-495f-889d-8b61e864559a"/>
 				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{factura_detalle_facd_precio}]]></textFieldExpression>
 			</textField>
@@ -232,7 +237,7 @@ AND facturas.`fac_id` = $P{clave}]]>
 				<textFieldExpression><![CDATA[$F{factura_detalle_facd_marca}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="12" y="0" width="39" height="20" uuid="580636d9-7c2a-4826-b9da-d58b86655f3d"/>
+				<reportElement x="430" y="0" width="44" height="20" uuid="580636d9-7c2a-4826-b9da-d58b86655f3d"/>
 				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{factura_detalle_facd_cantidad}]]></textFieldExpression>
 			</textField>
@@ -241,12 +246,12 @@ AND facturas.`fac_id` = $P{clave}]]>
 				<textFieldExpression><![CDATA[$F{factura_detalle_facd_categoria}]]></textFieldExpression>
 			</textField>
 			<textField pattern="###0.0">
-				<reportElement x="323" y="0" width="67" height="20" uuid="0f51f04a-6ae1-4225-bc24-ee8aa152a9fd"/>
+				<reportElement x="294" y="0" width="60" height="20" uuid="0f51f04a-6ae1-4225-bc24-ee8aa152a9fd"/>
 				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{factura_detalle_facd_descuento}]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0.00">
-				<reportElement x="400" y="0" width="70" height="20" uuid="e0559d3e-63be-4324-b7a7-4c13e7dc0cfd"/>
+				<reportElement x="356" y="0" width="70" height="20" uuid="e0559d3e-63be-4324-b7a7-4c13e7dc0cfd"/>
 				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{factura_detalle_facd_precio}-($F{factura_detalle_facd_precio}*$F{factura_detalle_facd_descuento}*0.01)]]></textFieldExpression>
 			</textField>

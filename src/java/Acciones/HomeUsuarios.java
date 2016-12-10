@@ -390,13 +390,10 @@ public class HomeUsuarios extends ActionSupport {
         usuFechaNac2 = year+"-"+month+"-"+day;
         Date date = sdf.parse(usuFechaNac2);
         if (accionocul.equals("a")) {
-           //En este punto podría enviar el email al usuario con un enlace. Lo que puedo hacer es acá rellenar
-           //el email con algún código raro y que el enlace lo que haga es entrar en el usuario y
-           //cambiarle el email por el verdadero email del usuario
            p.setProvincias(ControladoresDAO.cProvincias.RecuperaPorId(Integer.parseInt(provincias2)));
            p.setUsuNombre(usuNombre2);
            p.setUsuApellidos(usuApellidos2);
-           p.setUsuEmail(usuEmail2);
+           p.setUsuEmail("jld+Q.72RAZY5BNW@.21339177");
            p.setUsuPassword(usuPassword2);
            p.setUsuDni(usuDni2);
            p.setUsuCp(usuCp2);
@@ -408,7 +405,9 @@ public class HomeUsuarios extends ActionSupport {
            p.setUsuDescuento(0);
            p.setUsuFechaLimiteDesc(date);
            p.setUsuAdministrador(0);
-           respuesta =  ControladoresDAO.cUsuarios.Inserta(p);
+           respuesta = ControladoresDAO.cUsuarios.Inserta(p);
+           respuesta = ControladoresDAO.cUsuarios.SaberUltimoId();
+           boolean email = ControladoresDAO.cEmail.enviarAlta(usuEmail2, respuesta);
         }
         if (accionocul.equals("m")) {
            p.setProvincias(ControladoresDAO.cProvincias.RecuperaPorId(Integer.parseInt(provincias2)));
@@ -440,5 +439,17 @@ public class HomeUsuarios extends ActionSupport {
             return INPUT;
         }   
        return SUCCESS;
+    }     
+    
+    public String activa() throws Exception{
+        try{
+            u = ControladoresDAO.cUsuarios.RecuperaPorId(Integer.parseInt(accion));
+            u.setUsuEmail(usuEmail2);
+            int respuesta = ControladoresDAO.cUsuarios.Modifica(u);
+            accion = u.getUsuNombre()+" "+u.getUsuApellidos();
+            return SUCCESS;
+        }catch(Exception e){
+            return INPUT;
+        }
     }
 }

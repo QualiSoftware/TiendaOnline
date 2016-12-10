@@ -1,23 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Acciones;
 
-import Modelos.Coleccion;
 import Modelos.Color;
-import Modelos.Usuarios;
 import static com.opensymphony.xwork2.Action.SUCCESS;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import java.util.List;
 import java.util.Map;
 
-/**
- *
- * @author LaPlaga
- */
 public class HomeColor extends ActionSupport {
     
          //sesion
@@ -35,9 +24,6 @@ public class HomeColor extends ActionSupport {
     //variables de carga del formulario
     private int colorId;
     private  String colorDescripcion;
-    
-    
-    
     
     //getters and setters
     public int getClave() {    
@@ -173,5 +159,5 @@ public class HomeColor extends ActionSupport {
             ControladoresDAO.cColor.Elimina(p);
         }        
         return SUCCESS;
-    }    
+    }
 }

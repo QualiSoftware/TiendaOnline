@@ -53,8 +53,6 @@ public class HomeUsuariosValidaciones extends ActionSupport{
     public void setUsuPassword2(String usuPassword2) {
         this.usuPassword2 = usuPassword2;
     }
-    
-    
 
     public Map getSesion() {
         return sesion;
