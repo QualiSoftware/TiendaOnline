@@ -14,9 +14,8 @@ public class cEmail{
     
     public static boolean enviarAlta(String destinatario, int id){
         boolean enviadoAlta = false;
-        String enlace = "http://localhost:8080/TiendaOnline/Vistas/activa.action?accion="+id+"&usuEmail2="+destinatario;
         String asunto = "Activación de cuenta de usuario";
-        String mensaje = "<h1>Para confirmar su usuario </h1><a href=\""+enlace+"\">Presione este enlace</a>";
+        String mensaje = ControladoresDAO.cEmailDisenio.DisenioAlta(destinatario, id);
         enviadoAlta = funcionEnviar(destinatario, "", asunto, mensaje);
         return enviadoAlta;
     }
@@ -24,7 +23,7 @@ public class cEmail{
     public static boolean enviarCorreo(String to, String file){
         boolean enviadoCompra = false;
         String asunto = "Envío de factura";
-        String mensaje = "Se adjunta la factura";
+        String mensaje = ControladoresDAO.cEmailDisenio.DisenioCompra(to, file);
         enviadoCompra = funcionEnviar(to, file, asunto, mensaje);
         if(enviadoCompra){
             //Esto sirve para enviarle la factura también al vendedor cada vez que se realice una venta
@@ -72,24 +71,26 @@ public class cEmail{
                 //Para correo a un solo receptor va esta línea
                 message.setRecipient(Message.RecipientType.TO, new InternetAddress(para));                
                 message.setSubject(asunto);                
-                BodyPart messageBodyPart = new MimeBodyPart();                
-                messageBodyPart.setText(mensaje);                
-                Multipart multipart = new MimeMultipart();                
+                BodyPart messageBodyPart = new MimeBodyPart();
+                messageBodyPart.setContent(mensaje, "text/html");                
+                //messageBodyPart.setText(mensaje);
+                Multipart multipart = new MimeMultipart();
                 multipart.addBodyPart(messageBodyPart);
                 if(!archivo.equals("")){
-                    //attachment
                     messageBodyPart = new MimeBodyPart();
                     Ruta();
                     String filename = ruta + archivo;
-                    //System.out.println("Va a crear el DataSource de la ruta "+filename);
                     DataSource source = new FileDataSource(filename);
                     messageBodyPart.setDataHandler(new DataHandler(source));
                     messageBodyPart.setFileName(archivo);
                     multipart.addBodyPart(messageBodyPart);
-                    //System.out.println("El multipart está listo");
+                    //para agregar la imagen al multipart (aunque no estoy seguro si el multipart se reemplazará, como
+                    //debería ser, o si se agregará lo que traigo a lo que ya había, con lo cual se duplicarán cosas)
+                    //multipart = addCID("cidnombre","ruta comleta del archivo",multipart);
                 }                
                 message.setContent(multipart);                
-                Transport.send(message);                
+                Transport.send(message);
+                multipart = null;
                 enviado = true;                
             }catch(Exception e){
                 e.printStackTrace();
@@ -103,4 +104,13 @@ public class cEmail{
         ruta = ruta.replace(eliminar, "");
         ruta += "Archivos"+System.getProperty("file.separator");       
    }
+    
+    public static Multipart addCID(String cidname,String pathname, Multipart multipart) throws Exception {
+        DataSource fds = new FileDataSource(pathname);
+        BodyPart messageBodyPart = new MimeBodyPart();
+        messageBodyPart.setDataHandler(new DataHandler(fds));
+        messageBodyPart.setHeader("Content-ID","<"+cidname+">");
+        multipart.addBodyPart(messageBodyPart);
+        return multipart;
+    }
 }
