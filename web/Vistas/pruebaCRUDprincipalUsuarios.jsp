@@ -18,7 +18,7 @@
         <%
             Cookie miCookie = null;
             Date fecha = new Date();
-            String texto = "Este es el texto que vamos a guardar en el cookie" + fecha;
+            String texto = "Este es el texto que vamos a guardar en el cookie" + fecha;           
             //Se le asigna el nombre de la cookie y su valor
             miCookie = new Cookie("nombre", texto);
             //Tiempo de Vida
@@ -78,6 +78,13 @@
                                         </s:a>
                                     </td>
                                 </tr>
+                                <tr>
+                                    <td>
+                                        <s:form action="Favoritos" theme="simple">
+                                            <s:textfield type="hidden" value="1" name="filtro" /> <s:property value="totalcestaUsuario"/> <s:submit value="Favoritos"></s:submit>                    
+                                        </s:form>
+                                    </td>
+                                </tr>
                             </table>
                         </s:form>
                     </s:if>
@@ -134,7 +141,13 @@
                             <s:param name="clave" value="#a.roId"/>
                             <i style="font-size: 20px" class="glyphicon glyphicon-euro"></i>
                         </s:a>
-                        <i style="font-size: 20px" class="glyphicon glyphicon-plus-sign"></i>
+                        <s:if test="sesion.usuarioLogueado.usuAdministrador!=1">
+                            <s:a action="AñadeFavoritos">
+                                <i style="font-size: 20px" class="glyphicon glyphicon-plus-sign"></i>
+                            </s:a>
+                        </s:if>
+                                <i style="font-size: 20px" class="glyphicon glyphicon-plus-sign"></i>
+                                
                         <s:a action="CrudActionUsuariosCesta">
                             <s:param name="accion" value="'c'"/>
                             <s:param name="accionocul" value="'c'"/>
