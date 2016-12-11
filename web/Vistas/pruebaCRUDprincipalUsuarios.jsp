@@ -13,20 +13,61 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
         <link rel="stylesheet" href="../Estilos/GeneralEstilos.css"/>
         <title>PruebaCRUD</title>
+        <script>
+            
+         
+            function metefavoritos(nombre,valor){ 
+                alert(document.cookie);
+                var valorleido = leerCookie(nombre);
+                alert(valorleido);
+                var valortotal = parseInt(valor) + parseInt(valorleido);
+                alert(valortotal);
+                document.cookie = nombre+"="+valortotal;
+                alert(document.cookie);
+                document.getElementById("favoritostexto").value = leerCookie(nombre);
+            }
+            function leerCookie(nombre) {
+                var lista = document.cookie.split(";");
+                for (i in lista) {
+                    var busca = lista[i].search(nombre);
+                    if (busca > -1) {micookie=lista[i]}
+                    }
+                var igual = micookie.indexOf("=");
+                var valor = micookie.substring(igual+1);
+                return valor;
+            }
+            
+        </script>
     </head>
     <body>
         <%
-            Cookie miCookie = null;
-            Date fecha = new Date();
-            String texto = "Este es el texto que vamos a guardar en el cookie" + fecha;           
-            //Se le asigna el nombre de la cookie y su valor
-            miCookie = new Cookie("nombre", texto);
-            //Tiempo de Vida
-            miCookie.setMaxAge(60);
-            //Indicar quien podra usar el cockies  si solo va "/" es toda la apliacacion
-            miCookie.setPath("/");
-            //Para crear el fichero cookie real
-            response.addCookie(miCookie);
+            Cookie[] todosLosCookies = request.getCookies();
+            /* El siguiente paso es crear un bucle que vaya leyendo
+            todos los cookies. */
+            Cookie unCookie=null;
+            for (int i = 0; i < todosLosCookies.length; i++) {
+                unCookie = todosLosCookies[i];
+            /* A continuación se compara los nombres de cada uno de
+            los cookies con el que se está buscando. Si se encuentra un
+            cookie con ese nombre se ha dado con el que se está
+            buscando, de forma que se sale del bucle mediante break. */
+                if (unCookie.getName().equals("prenda")) {
+                    break;
+                }
+               Cookie miCookie = null;
+                //Date fecha = new Date();
+                String texto = "0";           
+                //Se le asigna el nombre de la cookie y su valor
+                miCookie = new Cookie("prenda", texto);
+                //Tiempo de Vida
+                //miCookie.setMaxAge(60);
+                //Indicar quien podra usar el cockies  si solo va "/" es toda la apliacacion
+                //miCookie.setPath("/");
+                //Para crear el fichero cookie real
+                response.addCookie(miCookie);
+            }
+            out.println("valor " + unCookie.getValue());
+           
         %>
         <p>Cookie Creada</p>
         <a href="LlamarCookies.jsp">Llamar Cookies</a>
@@ -81,7 +122,25 @@
                                 <tr>
                                     <td>
                                         <s:form action="Favoritos" theme="simple">
-                                            <s:textfield type="hidden" value="1" name="filtro" /> <s:property value="totalcestaUsuario"/> <s:submit value="Favoritos"></s:submit>                    
+                                            <%
+//                                                Cookie[] todosLosCookies = request.getCookies();
+//                                                /* El siguiente paso es crear un bucle que vaya leyendo
+//                                                todos los cookies. */
+//                                                Cookie unCookie=null;
+//                                                for (int i = 0; i < todosLosCookies.length; i++) {
+//                                                    unCookie = todosLosCookies[i];
+//                                                    /* A continuación se compara los nombres de cada uno de
+//                                                    los cookies con el que se está buscando. Si se encuentra un
+//                                                    cookie con ese nombre se ha dado con el que se está
+//                                                    buscando, de forma que se sale del bucle mediante break. */
+//                                                    if (unCookie.getName().equals("prenda")) {
+//                                                        break;
+//                                                    }
+//                                                }
+//                                                out.println("valor " + unCookie.getValue());
+                                            %>
+                                            <input type="text" id="favoritostexto" name="favoritostexto" value="">
+                                            <s:submit value="Favoritos"></s:submit>                    
                                         </s:form>
                                     </td>
                                 </tr>
@@ -146,8 +205,7 @@
                                 <i style="font-size: 20px" class="glyphicon glyphicon-plus-sign"></i>
                             </s:a>
                         </s:if>
-                                <i style="font-size: 20px" class="glyphicon glyphicon-plus-sign"></i>
-                                
+                                <i style="font-size: 20px" class="glyphicon glyphicon-plus-sign" onclick="metefavoritos('prenda',1)"></i>                         
                         <s:a action="CrudActionUsuariosCesta">
                             <s:param name="accion" value="'c'"/>
                             <s:param name="accionocul" value="'c'"/>
