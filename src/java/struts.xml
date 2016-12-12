@@ -316,6 +316,19 @@
             <result>/Vistas/FacturaPDF.jsp</result>   
         </action>
         
+        
+        <action name="Tienda" class="Acciones.HomeRopa" method="RopaFiltro">
+            <result>/Vistas/tienda.jsp</result>           
+        </action>
+        <action name="TiendaLogin" class="Acciones.HomeUsuariosValidaciones" method="Login">
+            <result name="input">/Vistas/tienda.jsp</result>
+            <result name="error">/Vistas/tienda.jsp</result>
+            <result type="redirect">Tienda</result>
+        </action>
+        <action name="TiendaCerrarSesion" class="Acciones.HomeUsuariosValidaciones" method="CerrarSesion">
+            <result type="redirect">Tienda</result>
+        </action>
+        
     </package>
 </struts>
 

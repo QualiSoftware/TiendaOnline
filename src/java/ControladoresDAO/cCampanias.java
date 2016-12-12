@@ -1,6 +1,7 @@
 package ControladoresDAO;
 
 import Modelos.Campania;
+import java.util.Date;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -28,6 +29,34 @@ public class cCampanias {
         }
         sql += "(camNombre like '%"+filtro+"%')";
         sql += " ORDER BY "+orden;
+        Query query =sesion.createQuery(sql); 
+        List<Campania> lc = query.list();
+        return lc;
+    }
+    
+    public static List<Campania> RecuperaCampaniasActivas(){
+        sesion = (Session) NewHibernateUtil.getSession();
+        Date fechaHoy = new Date();        
+        int year = fechaHoy.getYear() + 1900;
+        int month = fechaHoy.getMonth()+1;
+        int day = fechaHoy.getDate();
+        String monthString;
+        String dayString;
+        if(month < 10){
+            monthString = "0"+month;
+        }else{
+            monthString = ""+month;
+        }
+        if(day < 10){
+            dayString = "0"+day;
+        }else{
+            dayString = ""+day;
+        }
+        String hoy = year+"-"+monthString+"-"+dayString;
+        String sql = "From Campania WHERE ";
+        sql += "camFin >= '" + hoy + "'";
+        sql += " AND '" + hoy + "' >= camInicio";
+        sql += " ORDER BY camFin";
         Query query =sesion.createQuery(sql); 
         List<Campania> lc = query.list();
         return lc;
