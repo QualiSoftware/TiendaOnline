@@ -39,8 +39,28 @@ public class HomeMarcas extends ActionSupport {
     private File archivoMarca;
     private String archivoMarcaFileName;
     private List<Ropa> lista_ropa;
+    private String usi;
+    private Usuarios u;
     
     //getters and setters
+
+    public String getUsi() {
+        return usi;
+    }
+
+    public void setUsi(String usi) {
+        this.usi = usi;
+    }
+
+    public Usuarios getU() {
+        return u;
+    }
+
+    public void setU(Usuarios u) {
+        this.u = u;
+    }
+    
+    
 
     public List<Ropa> getLista_ropa() {
         return lista_ropa;
@@ -163,6 +183,26 @@ public class HomeMarcas extends ActionSupport {
         this.Lista_Marcas = Lista_Marcas;
     }
     public String marcasmuestra() throws Exception {
+        if (sesion == null) {
+            sesion = ActionContext.getContext().getSession();
+        }
+        usi = "";
+        // para cuando tengamos sesión de usuario
+        if(sesion.get("usuarioLogueado") != null){
+            if(!sesion.get("usuarioLogueado").equals("")){
+                try{
+                    int aux;
+                    u = (Usuarios) sesion.get("usuarioLogueado");
+                    aux = u.getUsuId();
+                    u = ControladoresDAO.cUsuarios.RecuperaPorId(aux);
+                    sesion.clear();
+                    sesion.put("usuarioLogueado", (Usuarios) u);
+                    usi = ""+u.getUsuId();
+                }catch(Exception e){
+                    System.out.println(e.getMessage());
+                }
+            }
+        }
         Marcas marselec = ControladoresDAO.cMarcas.RecuperaPorId(clave);
         lista_ropa = ControladoresDAO.cRopa.RecuperaPorCampaña(""+marselec.getMarcaId());
         return SUCCESS;
