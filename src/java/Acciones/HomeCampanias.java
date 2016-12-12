@@ -2,6 +2,7 @@ package Acciones;
 
 import Modelos.Campania;
 import Modelos.Marcas;
+import Modelos.Ropa;
 import Modelos.Usuarios;
 import static com.opensymphony.xwork2.Action.SUCCESS;
 import com.opensymphony.xwork2.ActionContext;
@@ -210,6 +211,11 @@ public class HomeCampanias extends ActionSupport {
 
     public void setMarcaId(String marcaId) {
         this.marcaId = marcaId;
+    }
+    public String campanassmuestra() throws Exception{
+        Campania camselec = ControladoresDAO.cCampanias.RecuperaPorId(clave);
+        camselec.getCampaniaRopas();
+        return SUCCESS;
     }
     
     public String CampaniasFiltro() throws Exception {

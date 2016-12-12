@@ -20,6 +20,9 @@
             <result name="error">/Vistas/formularioCRUDcampanias.jsp</result>
             <result type="redirect">CampaniasFiltro</result> 
         </action>
+        <action name="campanassmuestra" class="Acciones.HomeCampanias" method="campanassmuestra" >
+            <result>/Vistas/CRUDmuestracampanias.jsp</result> 
+        </action>
         <action name="volverCampanias">
             <result type="redirect">CampaniasFiltro</result>
         </action>

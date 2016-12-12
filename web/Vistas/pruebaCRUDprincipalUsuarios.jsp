@@ -269,8 +269,11 @@
             </s:iterator>      
             <tr>
                 <s:iterator var="a" value="lista_campanias">
-                <td>                    
-                    <img src="../Imagenes/Campanias/<s:property value="#a.camFoto"/>" height="200" alt="<s:property value="#a.camFoto"/>"/>     
+                <td>          
+                    <s:a action="campanassmuestra">
+                        <s:param name="clave" value="#a.camId"/>
+                         <img src="../Imagenes/Campanias/<s:property value="#a.camFoto"/>" height="200" alt="<s:property value="#a.camFoto"/>"/>               
+                    </s:a>
                 </td>
                 </s:iterator>
             </tr>
