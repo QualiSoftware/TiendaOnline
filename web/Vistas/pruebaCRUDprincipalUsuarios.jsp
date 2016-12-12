@@ -14,8 +14,6 @@
         <link rel="stylesheet" href="../Estilos/GeneralEstilos.css"/>
         <title>PruebaCRUD</title>
         <script>
-            
-         
             function metefavoritos(nombre,valor){ 
                 alert(document.cookie);
                 var valorleido = leerCookie(nombre);
@@ -41,33 +39,33 @@
     </head>
     <body>
         <%
-            Cookie[] todosLosCookies = request.getCookies();
-            /* El siguiente paso es crear un bucle que vaya leyendo
-            todos los cookies. */
-            Cookie unCookie=null;
-            for (int i = 0; i < todosLosCookies.length; i++) {
-                unCookie = todosLosCookies[i];
-            /* A continuación se compara los nombres de cada uno de
-            los cookies con el que se está buscando. Si se encuentra un
-            cookie con ese nombre se ha dado con el que se está
-            buscando, de forma que se sale del bucle mediante break. */
-                if (unCookie.getName().equals("prenda")) {
-                    break;
-                }
-               Cookie miCookie = null;
-                //Date fecha = new Date();
-                String texto = "0";           
-                //Se le asigna el nombre de la cookie y su valor
-                miCookie = new Cookie("prenda", texto);
-                //Tiempo de Vida
-                //miCookie.setMaxAge(60);
-                //Indicar quien podra usar el cockies  si solo va "/" es toda la apliacacion
-                //miCookie.setPath("/");
-                //Para crear el fichero cookie real
-                response.addCookie(miCookie);
-            }
-            out.println("valor " + unCookie.getValue());
-           
+//            Cookie[] todosLosCookies = request.getCookies();
+//            /* El siguiente paso es crear un bucle que vaya leyendo
+//            todos los cookies. */
+//            Cookie unCookie=null;
+//            for (int i = 0; i < todosLosCookies.length; i++) {
+//                unCookie = todosLosCookies[i];
+//            /* A continuación se compara los nombres de cada uno de
+//            los cookies con el que se está buscando. Si se encuentra un
+//            cookie con ese nombre se ha dado con el que se está
+//            buscando, de forma que se sale del bucle mediante break. */
+//                if (unCookie.getName().equals("prenda")) {
+//                    break;
+//                }
+//               Cookie miCookie = null;
+//                //Date fecha = new Date();
+//                String texto = "0";           
+//                //Se le asigna el nombre de la cookie y su valor
+//                miCookie = new Cookie("prenda", texto);
+//                //Tiempo de Vida
+//                //miCookie.setMaxAge(60);
+//                //Indicar quien podra usar el cockies  si solo va "/" es toda la apliacacion
+//                //miCookie.setPath("/");
+//                //Para crear el fichero cookie real
+//                response.addCookie(miCookie);
+//            }
+//            out.println("valor " + unCookie.getValue());
+//           
         %>
         <p>Cookie Creada</p>
         <a href="LlamarCookies.jsp">Llamar Cookies</a>
@@ -122,24 +120,36 @@
                                 <tr>
                                     <td>
                                         <s:form action="Favoritos" theme="simple">
-                                            <%
-//                                                Cookie[] todosLosCookies = request.getCookies();
-//                                                /* El siguiente paso es crear un bucle que vaya leyendo
-//                                                todos los cookies. */
-//                                                Cookie unCookie=null;
-//                                                for (int i = 0; i < todosLosCookies.length; i++) {
-//                                                    unCookie = todosLosCookies[i];
-//                                                    /* A continuación se compara los nombres de cada uno de
-//                                                    los cookies con el que se está buscando. Si se encuentra un
-//                                                    cookie con ese nombre se ha dado con el que se está
-//                                                    buscando, de forma que se sale del bucle mediante break. */
-//                                                    if (unCookie.getName().equals("prenda")) {
-//                                                        break;
-//                                                    }
-//                                                }
-//                                                out.println("valor " + unCookie.getValue());
-                                            %>
-                                            <input type="text" id="favoritostexto" name="favoritostexto" value="">
+                                            
+                                            <input type="text" id="favoritostexto" name="favoritostexto" readonly="true" value="<%
+                                                Cookie[] todosLosCookies = request.getCookies();
+                                                /* El siguiente paso es crear un bucle que vaya leyendo
+                                                todos los cookies. */
+                                                Cookie unCookie=null;
+                                                for (int i = 0; i < todosLosCookies.length; i++) {
+                                                    unCookie = todosLosCookies[i];
+                                                /* A continuación se compara los nombres de cada uno de
+                                                los cookies con el que se está buscando. Si se encuentra un
+                                                cookie con ese nombre se ha dado con el que se está
+                                                buscando, de forma que se sale del bucle mediante break. */
+                                                    if (unCookie.getName().equals("prenda")) {
+                                                        break;
+                                                    }
+                                                   Cookie miCookie = null;
+                                                    //Date fecha = new Date();
+                                                    String texto = "0";           
+                                                    //Se le asigna el nombre de la cookie y su valor
+                                                    miCookie = new Cookie("prenda", texto);
+                                                    //Tiempo de Vida
+                                                    //miCookie.setMaxAge(60);
+                                                    //Indicar quien podra usar el cockies  si solo va "/" es toda la apliacacion
+                                                    //miCookie.setPath("/");
+                                                    //Para crear el fichero cookie real
+                                                    response.addCookie(miCookie);
+                                                }
+                                                out.println(unCookie.getValue());
+
+                                            %>">
                                             <s:submit value="Favoritos"></s:submit>                    
                                         </s:form>
                                     </td>
