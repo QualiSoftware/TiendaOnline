@@ -27,6 +27,7 @@ public class HomeCampanias extends ActionSupport {
     private String orden;
     private  List<Campania> lista_campanias;
     private List<Marcas> lista_marcas;
+    private List<Ropa> lista_ropa;
     //fijos para la carga del formulario
     private int clave;
     private String accion;
@@ -44,6 +45,44 @@ public class HomeCampanias extends ActionSupport {
     private String archivoFileName;
     private Campania c;
     private String marcaId;
+    private String roDescripcion2;
+    private String usi;
+    private Usuarios u;
+
+    public String getUsi() {
+        return usi;
+    }
+
+    public void setUsi(String usi) {
+        this.usi = usi;
+    }
+
+    public Usuarios getU() {
+        return u;
+    }
+
+    public void setU(Usuarios u) {
+        this.u = u;
+    }
+    
+    
+
+    public String getRoDescripcion2() {
+        return roDescripcion2;
+    }
+
+    public void setRoDescripcion2(String roDescripcion2) {
+        this.roDescripcion2 = roDescripcion2;
+    }
+    public List<Ropa> getLista_ropa() {
+        return lista_ropa;
+    }
+
+    public void setLista_ropa(List<Ropa> lista_ropa) {
+        this.lista_ropa = lista_ropa;
+    }
+    
+    
 
     public Map getSesion() {
         return sesion;
@@ -213,8 +252,28 @@ public class HomeCampanias extends ActionSupport {
         this.marcaId = marcaId;
     }
     public String campanassmuestra() throws Exception{
+        if (sesion == null) {
+            sesion = ActionContext.getContext().getSession();
+        }
+        usi = "";
+        // para cuando tengamos sesión de usuario
+        if(sesion.get("usuarioLogueado") != null){
+            if(!sesion.get("usuarioLogueado").equals("")){
+                try{
+                    int aux;
+                    u = (Usuarios) sesion.get("usuarioLogueado");
+                    aux = u.getUsuId();
+                    u = ControladoresDAO.cUsuarios.RecuperaPorId(aux);
+                    sesion.clear();
+                    sesion.put("usuarioLogueado", (Usuarios) u);
+                    usi = ""+u.getUsuId();
+                }catch(Exception e){
+                    System.out.println(e.getMessage());
+                }
+            }
+        }
         Campania camselec = ControladoresDAO.cCampanias.RecuperaPorId(clave);
-        camselec.getCampaniaRopas();
+        lista_ropa = ControladoresDAO.cRopa.RecuperaPorCampaña(""+camselec.getMarcas().getMarcaId());
         return SUCCESS;
     }
     

@@ -1,6 +1,6 @@
 <%-- 
-    Document   : CRUDmuestracampanias
-    Created on : 12-dic-2016, 19:42:08
+    Document   : CRUDmuestramarcas
+    Created on : 12-dic-2016, 23:07:17
     Author     : laPlaga
 --%>
 <%@taglib  prefix="s" uri="/struts-tags" %>
@@ -11,7 +11,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">       
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
         <link rel="stylesheet" href="../Estilos/GeneralEstilos.css"/>
-        <title>Ropa por campañas</title>
+        <title>Ropa por Marcas</title>
         <script>
             function metefavoritos(nombre,valor){ 
                 alert(document.cookie);
@@ -37,7 +37,7 @@
         </script>
     </head>
     <body>
-        <table>
+        <table border="1">
              <tr>
                 <td colspan="13">
                     <s:form action="RopaFiltroU" theme="simple">

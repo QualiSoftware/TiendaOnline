@@ -280,7 +280,11 @@
             <tr>
                 <s:iterator var="a" value="lista_marcas">
                 <td>
-                    <img src="../Imagenes/Marcas/<s:property value="#a.marcaFoto"/>" height="70" alt="<s:property value="#a.marcaFoto"/>"/>
+                    <s:a action="marcasmuestra">
+                        <s:param name="clave" value="#a.marcaId"/>
+                         <img src="../Imagenes/Marcas/<s:property value="#a.marcaFoto"/>" height="70" alt="<s:property value="#a.marcaFoto"/>"/>
+                    </s:a>
+                    
                 </td>
                 </s:iterator>
             </tr>               
