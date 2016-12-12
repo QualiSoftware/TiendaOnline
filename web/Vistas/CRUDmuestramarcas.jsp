@@ -1,6 +1,6 @@
 <%-- 
-    Document   : CRUDmuestracampanias
-    Created on : 12-dic-2016, 19:42:08
+    Document   : CRUDmuestramarcas
+    Created on : 12-dic-2016, 23:07:17
     Author     : laPlaga
 --%>
 <%@taglib  prefix="s" uri="/struts-tags" %>

@@ -27,6 +27,7 @@ public class HomeCampanias extends ActionSupport {
     private String orden;
     private  List<Campania> lista_campanias;
     private List<Marcas> lista_marcas;
+    private List<Ropa> lista_ropa;
     //fijos para la carga del formulario
     private int clave;
     private String accion;
@@ -44,6 +45,24 @@ public class HomeCampanias extends ActionSupport {
     private String archivoFileName;
     private Campania c;
     private String marcaId;
+    private String roDescripcion2;
+
+    public String getRoDescripcion2() {
+        return roDescripcion2;
+    }
+
+    public void setRoDescripcion2(String roDescripcion2) {
+        this.roDescripcion2 = roDescripcion2;
+    }
+    public List<Ropa> getLista_ropa() {
+        return lista_ropa;
+    }
+
+    public void setLista_ropa(List<Ropa> lista_ropa) {
+        this.lista_ropa = lista_ropa;
+    }
+    
+    
 
     public Map getSesion() {
         return sesion;
@@ -214,7 +233,7 @@ public class HomeCampanias extends ActionSupport {
     }
     public String campanassmuestra() throws Exception{
         Campania camselec = ControladoresDAO.cCampanias.RecuperaPorId(clave);
-        camselec.getCampaniaRopas();
+        lista_ropa = ControladoresDAO.cRopa.RecuperaPorCampaña(""+camselec.getMarcas().getMarcaId());
         return SUCCESS;
     }
     

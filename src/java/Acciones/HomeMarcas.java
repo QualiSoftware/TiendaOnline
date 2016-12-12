@@ -1,6 +1,7 @@
 package Acciones;
 
 import Modelos.Marcas;
+import Modelos.Ropa;
 import Modelos.Usuarios;
 import static com.opensymphony.xwork2.Action.SUCCESS;
 import com.opensymphony.xwork2.ActionContext;
@@ -37,8 +38,19 @@ public class HomeMarcas extends ActionSupport {
     private String ruta;
     private File archivoMarca;
     private String archivoMarcaFileName;
+    private List<Ropa> lista_ropa;
     
     //getters and setters
+
+    public List<Ropa> getLista_ropa() {
+        return lista_ropa;
+    }
+
+    public void setLista_ropa(List<Ropa> lista_ropa) {
+        this.lista_ropa = lista_ropa;
+    }
+    
+    
     public int getClave() {    
         return clave;
     }
@@ -149,6 +161,11 @@ public class HomeMarcas extends ActionSupport {
 
     public void setLista_Marcas(List<Marcas> Lista_Marcas) {
         this.Lista_Marcas = Lista_Marcas;
+    }
+    public String marcasmuestra() throws Exception {
+        Marcas marselec = ControladoresDAO.cMarcas.RecuperaPorId(clave);
+        lista_ropa = ControladoresDAO.cRopa.RecuperaPorCampaña(""+marselec.getMarcaId());
+        return SUCCESS;
     }
 
     public String MarcasFiltro() throws Exception {

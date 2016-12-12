@@ -5,6 +5,7 @@ import Modelos.Ropa;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
@@ -50,6 +51,13 @@ public class cRopa {
         Query query = sesion.createQuery(sql);
         ArrayList<Ropa> lt = (ArrayList) query.list();
         return lt;
+    }
+    
+    public static List<Ropa> RecuperaPorCampaña(String filtro){
+        sesion = (Session) NewHibernateUtil.getSession();
+        Query query =sesion.createQuery("FROM Ropa WHERE marcas = "+filtro); 
+        List<Ropa> la = query.list();
+        return la;
     }
 
     public static Ropa RecuperaPorId(int id) {

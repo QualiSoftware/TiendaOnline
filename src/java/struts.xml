@@ -184,6 +184,10 @@
             <result name="error">/Vistas/formularioCRUDmarcas.jsp</result>
             <result type="chain">MarcasFiltro</result> 
         </action>
+        <action name="marcasmuestra" class="Acciones.HomeMarcas" method="marcasmuestra">
+            <result>/Vistas/CRUDmuestramarcas.jsp</result> 
+        </action>
+        
         <action name="volverMarcas">
             <result type="redirect">MarcasFiltro</result>
         </action>
