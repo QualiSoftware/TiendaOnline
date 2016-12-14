@@ -173,7 +173,17 @@
                     </li>                    
                     <li class="dropdown">
                         <a href="#" data-toggle="dropdown" class="dropdown-toggle" style="font-weight: normal;">MUJER <b class="caret"></b></a>
-                        <ul class="dropdown-menu" id="Mujer">                                
+                        <ul class="dropdown-menu" id="Mujer">
+                            <s:iterator var="a" value= "lista_menu_ropa">
+                                <s:if test="#a.clientela.clientelaDescripcion=='Mujer'">
+                                    <li><a href="">
+                                            <s:property value="#a.categoria.catDescripcion"/>
+                                        </a></li>
+                                </s:if>
+                            </s:iterator>
+                            
+                            
+                            <!--
                             <li><a href="#">Zapatos</a></li>
                             <li><a href="http://luislo.esy.es/Vestidos.html">Vestidos</a></li>
                             <li><a href="#">Camisas</a></li>                                    
@@ -187,13 +197,22 @@
                             <li><a href="#">Abrigos</a></li>
                             <li><a href="#">Tops</a></li>
                             <li><a href="#">Cazadoras</a></li>
-                            <li><a href="#">Otros</a></li>                         
+                            <li><a href="#">Otros</a></li>-->
                         </ul>                 
                     </li>
                     <li class="dropdown">
                         <a href="#"  class="dropdown-toggle" style="font-weight: normal;">HOMBRE <b class="caret"></b></a>
-                        <ul class="dropdown-menu" id="hombre">            
-
+                        <ul class="dropdown-menu" id="hombre">
+                            <s:iterator var="a" value= "lista_menu_ropa">
+                                <s:if test="#a.clientela.clientelaDescripcion=='Hombre'">
+                                    <li><a href="">
+                                        <s:property value="#a.categoria.catDescripcion"/>
+                                    </a></li>                                    
+                                </s:if>
+                            </s:iterator>          
+                            
+                            
+                            <!--
                             <li><a href="#">Zapatos</a></li>
                             <li><a href="#">Trajes</a></li>
                             <li><a href="#">Camisas</a></li>                                    
@@ -206,7 +225,7 @@
                             <li><a href="#">Bufandas</a></li>
                             <li><a href="#">Abrigos</a></li>
                             <li><a href="#">Cazadoras</a></li>
-                            <li><a href="#">Otros</a></li>                         
+                            <li><a href="#">Otros</a></li>-->                       
                         </ul>                 
                     </li>
 

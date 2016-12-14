@@ -124,7 +124,7 @@ AND facturas.`fac_id` = $P{clave}]]>
 			</staticText>
 			<image>
 				<reportElement x="24" y="4" width="173" height="59" uuid="6cdfeac2-fae9-43d4-b1b9-82f4e9d59fd3"/>
-				<imageExpression><![CDATA["C:\\Users\\Damian\\Documents\\NetBeansProjects\\TiendaOnline\\TiendaOnline\\web\\Archivos\\Logo.jpg"]]></imageExpression>
+				<imageExpression><![CDATA["..\\Archivos\\Logo.jpg"]]></imageExpression>
 			</image>
 		</band>
 	</title>

@@ -63,7 +63,7 @@ public class HomeRopa extends ActionSupport {
     
 
     //variables específicas a cada controlador
-    private ArrayList<Ropa> lista_ropa;
+    private ArrayList<Ropa> lista_ropa,lista_menu_ropa;
     private List<Categoria> lista_categoria;
     private List<Marcas> lista_marca;
     private List<Clientela> lista_clientela;
@@ -72,7 +72,7 @@ public class HomeRopa extends ActionSupport {
     private List<Color> lista_colores;
     private List<Coleccion> lista_colecciones;
     private List<Subcategoria> lista_subcategoria;
-    private  List<Campania> lista_campanias;
+    private List<Campania> lista_campanias;
     private List<Marcas>lista_marcas;
 
     private Integer roId2;
@@ -105,6 +105,7 @@ public class HomeRopa extends ActionSupport {
     private List<File> archivo = new LinkedList<File>();
     private List<String> archivoContentType = new LinkedList<String>();
     private List<String> archivoFileName = new LinkedList<String>();
+    private boolean hayFotos;
 
     public List<Marcas> getLista_marcas() {
         return lista_marcas;
@@ -113,11 +114,7 @@ public class HomeRopa extends ActionSupport {
     public void setLista_marcas(List<Marcas> lista_marcas) {
         this.lista_marcas = lista_marcas;
     }
-    private boolean hayFotos;
     
-    
-    
-
     public Integer getCantidad() {
         return cantidad;
     }
@@ -329,6 +326,14 @@ public class HomeRopa extends ActionSupport {
 
     public void setLista_campanias(List<Campania> lista_campanias) {
         this.lista_campanias = lista_campanias;
+    }
+
+    public ArrayList<Ropa> getLista_menu_ropa() {
+        return lista_menu_ropa;
+    }
+
+    public void setLista_menu_ropa(ArrayList<Ropa> lista_menu_ropa) {
+        this.lista_menu_ropa = lista_menu_ropa;
     }
 
     public String getCabeceraocul() {
@@ -619,10 +624,24 @@ public class HomeRopa extends ActionSupport {
         lista_ropa_Cestas = ControladoresDAO.cCesta.RecuperaTodos(usi);
         for(Cesta caux:lista_ropa_Cestas){
             totalcestaUsuario += caux.getCestaUnidades();
-        }
-        lista_ropa = ControladoresDAO.cRopa.RecuperaTodos(filtro,orden,fechaI,fechaF,eliminadas);        
+        }       
+        lista_ropa = ControladoresDAO.cRopa.RecuperaTodos(filtro,orden,fechaI,fechaF,eliminadas);
         lista_campanias = ControladoresDAO.cCampanias.RecuperaCampaniasActivas();
         lista_marcas =  ControladoresDAO.cMarcas.RecuperaTodos("");
+        lista_menu_ropa = new ArrayList<Ropa>();
+        for(Ropa lr: lista_ropa){
+            String auxClientela = lr.getClientela().getClientelaDescripcion();
+            String auxCategoria = lr.getCategoria().getCatDescripcion();
+            boolean noEsta = true;
+            for(Ropa lrm: lista_menu_ropa){
+                if(auxClientela.equals(lrm.getClientela().getClientelaDescripcion()) && auxCategoria.equals(lrm.getCategoria().getCatDescripcion())){
+                    noEsta = false;
+                }
+            }
+            if(noEsta){
+                lista_menu_ropa.add(lr);
+            }
+        }
         return SUCCESS;
     }
 

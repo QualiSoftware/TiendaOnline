@@ -59,7 +59,7 @@ public class cRopa {
         List<Ropa> la = query.list();
         return la;
     }
-
+    
     public static Ropa RecuperaPorId(int id) {
         sesion = (Session) NewHibernateUtil.getSession();
         Ropa p = (Ropa) sesion.get(Ropa.class, id);
