@@ -14,6 +14,21 @@
         <link rel="stylesheet" href="../Estilos/GeneralEstilos.css"/>
         <title>PruebaCRUD</title>
         <script>
+            function usarAJAX (valor){
+                var usuario = $("usuario").val();
+                var password = $("password").val();
+                $.getJSON('ajaxActionLogin', {
+                    usuario : usuario,
+                    password : password
+                    }, function(jsonResponse) {
+                    var select = $('#subcategoria2');
+                    select.find('option').remove();
+                    $.each(jsonResponse.stateMap, function(key, value) {
+                    $('<option>').val(key).text(value).appendTo(select);
+                    $("#subcategoria2 option[value="+ valor +"]").attr("selected",true);
+                    });
+              });
+            };
             function metefavoritos(nombre,valor){ 
                 alert(document.cookie);
                 var valorleido = leerCookie(nombre);
@@ -86,7 +101,7 @@
                                         Email
                                     </td>
                                     <td>
-                                        <s:textfield name="usuario" />
+                                        <s:textfield name="usuario" id="usuario" />
                                     </td>
                                     <td>
                                         <s:fielderror fieldName="usuario" theme="simple"/>
@@ -97,7 +112,7 @@
                                         Contraseña
                                     </td>
                                     <td>
-                                        <s:password name="password" />
+                                        <s:password name="password" id="password" />
                                     </td>
                                     <td>
                                         <s:fielderror fieldName="password" />
@@ -176,6 +191,40 @@
                         <s:form action="CestaFiltro" theme="simple">
                             <s:textfield type="hidden" value="1" name="filtro" /> <s:property value="totalcestaUsuario"/> <s:submit value="cesta"></s:submit>                    
                         </s:form>
+                        
+                            <table>
+                                <tr>
+                                    <th>Descripcion</th>
+                                    <th>Color</th>
+                                    <th>Tallas</th>
+                                    <th>Precio</th>
+                                    <th>Fotos</th>                                   
+                                </tr>
+                                <s:iterator var="c" value="lista_ropa_Cestas">
+                                    <tr>
+                                        <td>
+                                            <s:property value="#c.Ropa.roDescripcion"/>
+                                        </td>
+                                        <td>
+                                            <s:property value="#c.Ropa.color.colorDescripcion"/>
+                                        </td>
+                                        <td>
+                                            <s:property value="#c.Ropa.tallas.tallaDescripcion"/>
+                                        </td>
+                                        <td>
+                                            <s:property value="#c.Ropa.roPrecio"/>
+                                        </td>
+                                        <td>
+                                            <s:iterator var="f" value="#c.Ropa.fotoses">
+                                                <s:property value="fotosRuta"/>
+                                            </s:iterator>
+                                            
+                                        </td>
+                                    </tr>
+                                </s:iterator>
+                            </table>
+                            
+                        
                     </s:if>
                 </td>
                 <s:if test="sesion.usuarioLogueado.usuAdministrador==1">

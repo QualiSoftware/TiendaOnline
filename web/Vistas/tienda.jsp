@@ -10,7 +10,7 @@
         <!--Mis Estilos-->
         <link href="http://luislo.esy.es/Estilos/IndexEstilo.css" rel="stylesheet" type="text/css"/>
         <!--Bootstrap-->
-        <link href="http://luislo.esy.es/Estilos/bootstrap-3.3.7-dist/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+        <link href="../Estilos/bootstrap-3.3.7-dist/css/bootstrap.css" rel="stylesheet" type="text/css"/>
         <!--JQuery-->
         <script src="http://luislo.esy.es/Scripts/jquery_3.js"></script>
         <!--Carrusel de fotos-->
