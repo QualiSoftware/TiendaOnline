@@ -60,6 +60,14 @@ public class cRopa {
         return la;
     }
     
+    public static ArrayList<Ropa> RecuperaClientelaCategoria(String cli,String cat){
+       sesion = (Session) NewHibernateUtil.getSession();
+       String sql = "FROM Ropa WHERE clientela.clientelaId = " + cli + " AND categoria.catId = " + cat + " AND roVisible = 1";
+        Query query =sesion.createQuery(sql); 
+        ArrayList<Ropa> lcc = (ArrayList) query.list();
+        return lcc; 
+    }
+    
     public static Ropa RecuperaPorId(int id) {
         sesion = (Session) NewHibernateUtil.getSession();
         Ropa p = (Ropa) sesion.get(Ropa.class, id);

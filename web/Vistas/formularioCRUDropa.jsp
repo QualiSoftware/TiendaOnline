@@ -166,7 +166,7 @@
                         <%
                         } else {
                         %>
-                        <s:select name="marcas2" list="lista_marca" listValue="marcaNombre" 
+                        <s:select name="marcas2" list="lista_marcas" listValue="marcaNombre" 
                                   listKey="marcaId" value="t.marcas.marcaId"/>
                         <%
                             }

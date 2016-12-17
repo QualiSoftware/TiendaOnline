@@ -1,0 +1,16 @@
+<?xml version="1.0"?><svg width="640" height="480" xmlns="http://www.w3.org/2000/svg">
+ <title>number two</title>
+ <g>
+  <title>Layer 1</title>
+  <g id="Layer_1">
+   <rect fill="none" id="rect2005" y="30" x="19" height="319.90512" width="371.9062"/>
+   <circle fill="#000000" id="circle2007" r="121.992447" cy="189.95256" cx="202.57965"/>
+   <g id="g2009">
+    <path fill="white" id="path2011" d="m161.089005,149.867996l3.972,0c26.812988,0 33.962997,-11.959 34.55899,-21.013504l22.841003,0l0,121.299515l-27.806,0l0,-83.543015l-33.565994,0l0,-16.742996l0,0z"/>
+   </g>
+  </g>
+  <ellipse ry="127" rx="128" id="svg_1" cy="197" cx="206" stroke-width="5" stroke="#000000" fill="#000000"/>
+  <ellipse rx="2" id="svg_2" cy="201" cx="91" stroke-width="5" stroke="#000000" fill="#FF0000"/>
+  <text transform="matrix(7.97301 0 0 6.17159 1301.26 94.5397)" xml:space="preserve" text-anchor="middle" font-family="Arial" font-size="24" id="svg_3" y="24.476864" x="-138.906946" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="0" stroke="#ffffff" fill="#ffffff">1</text>
+ </g>
+</svg>
