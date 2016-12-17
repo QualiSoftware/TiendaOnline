@@ -174,7 +174,7 @@
             <div id="menu">
                 <ul class="nav nav-pills">
                     <li class="dropdown">
-                        <a href="#"  class="dropdown-toggle" style="font-weight: normal;">TODAS LA VENTAS</a>
+                        <s:a action="TiendaCampanias"  class="dropdown-toggle" style="font-weight: normal;">TODAS LA VENTAS</s:a>
 
                     </li>                    
                     <li class="dropdown">
@@ -210,9 +210,9 @@
                         <a href="#"  class="dropdown-toggle" style="font-weight: normal;">MARCAS DE TEMPORADA <b class="caret"></b></a>
                         <ul class="dropdown-menu" >
                             <s:iterator var="a" value= "lista_marcas">
-                                <li><s:a action="">
+                                <li><s:a action="TiendaCampanias">
                                         <s:property value="#a.marcaNombre"/>
-                                        <s:param name="marcaId" value="#a.marcas.marcaId"/>
+                                        <s:param name="marcas2" value="#a.marcaId"/>
                                     </s:a></li>
                             </s:iterator>                       
                         </ul>                 

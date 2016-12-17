@@ -277,8 +277,15 @@
                         <s:textfield name="roVisible2" readonly="true" ></s:textfield>
                         <%
                         } else {
+                            String selected = "";
                         %>
-                        <s:textfield name="roVisible2"/>
+                        <s:if test="roVisible2==1">
+                            <% selected="selected=\"selected\"";%>
+                        </s:if>
+                        <select name="roVisible2" id="roVisible2">
+                            <option value="0">No</option>
+                            <option value="1" <%=selected%>>Si</option>
+                        </select>
                         <%
                             }
                         %>

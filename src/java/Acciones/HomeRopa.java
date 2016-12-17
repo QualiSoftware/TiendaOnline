@@ -81,6 +81,7 @@ public class HomeRopa extends ActionSupport {
     private String coleccion2;
     private String color2;
     private String look2;
+    private String marca;
     private String marcas2;
     private String tallas2;
     private String roDescripcion2;
@@ -287,6 +288,14 @@ public class HomeRopa extends ActionSupport {
 
     public void setLook2(String look2) {
         this.look2 = look2;
+    }
+
+    public String getMarca() {
+        return marca;
+    }
+
+    public void setMarca(String marca) {
+        this.marca = marca;
     }
 
     public String getMarcas2() {
@@ -833,7 +842,7 @@ public class HomeRopa extends ActionSupport {
         for(Cesta caux:lista_ropa_Cestas){
             totalcestaUsuario += caux.getCestaUnidades();
         }
-        lista_campanias = ControladoresDAO.cCampanias.RecuperaCampaniasActivas();
+        //lista_campanias = ControladoresDAO.cCampanias.RecuperaCampaniasActivas();
         lista_marcas =  ControladoresDAO.cMarcas.RecuperaTodos("");
         lista_menu_ropa = new ArrayList<Ropa>();
         lista_ropa = ControladoresDAO.cRopa.RecuperaTodos("","categoria.catDescripcion","","","2");
@@ -854,11 +863,20 @@ public class HomeRopa extends ActionSupport {
         if (filtro == null || filtro.equals("null")) {
             filtro = "";
         }
-        lista_ropa = ControladoresDAO.cRopa.RecuperaClientelaCategoria(clientela2, categoria2,filtro);
-        Clientela cli = ControladoresDAO.cClientela.RecuperaPorId(Integer.parseInt(clientela2));
-        clientela = cli.getClientelaDescripcion();
-        Categoria cat = ControladoresDAO.cCategorias.RecuperaPorId(Integer.parseInt(categoria2));
-        categoria = cat.getCatDescripcion();
+        //System.out.println("filtro: "+filtro+" clientela2: "+clientela2+" categoria2: "+categoria2+" marcas2: "+marcas2);
+        if ((marcas2 == null || marcas2.equals("")) && (clientela2 == null || clientela2.equals(""))) {            
+            lista_ropa = ControladoresDAO.cRopa.RecuperaTodos(filtro,"categoria.catDescripcion","","","1");
+        }else if(marcas2 == null || marcas2.equals("")){
+            lista_ropa = ControladoresDAO.cRopa.RecuperaClientelaCategoria(clientela2, categoria2,filtro);
+            Clientela cli = ControladoresDAO.cClientela.RecuperaPorId(Integer.parseInt(clientela2));
+            clientela = cli.getClientelaDescripcion();
+            Categoria cat = ControladoresDAO.cCategorias.RecuperaPorId(Integer.parseInt(categoria2));
+            categoria = cat.getCatDescripcion();
+        }else{
+            lista_ropa = ControladoresDAO.cRopa.RecuperaPorMarca(marcas2, filtro);
+            Marcas mar = ControladoresDAO.cMarcas.RecuperaPorId(Integer.parseInt(marcas2));
+            marca = mar.getMarcaNombre();
+        }
        return SUCCESS;
     }
 }

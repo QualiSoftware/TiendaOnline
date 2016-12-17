@@ -169,6 +169,7 @@
                     <input type="hidden" name="categoria" value="<s:property value="categoria"/>"/>
                     <input type="hidden" name="clientela2" value="<s:property value="clientela2"/>"/>
                     <input type="hidden" name="categoria2" value="<s:property value="categoria2"/>"/>
+                    <input type="hidden" name="marcas2" value="<s:property value="marcas2"/>"/>
                     <div class="form-group">
                         <input type="text" class="form-control" placeholder="Búsqueda" name="filtro" value="<s:property value="filtro"/>">
                     </div>
@@ -178,7 +179,7 @@
             <div id="menu">
                 <ul class="nav nav-pills">
                     <li class="dropdown">
-                        <a href="#"  class="dropdown-toggle" style="font-weight: normal;">TODAS LA VENTAS</a>
+                        <s:a action="TiendaCampanias"  class="dropdown-toggle" style="font-weight: normal;">TODAS LA VENTAS</s:a>
 
                     </li>                    
                     <li class="dropdown">
@@ -214,9 +215,9 @@
                         <a href="#"  class="dropdown-toggle" style="font-weight: normal;">MARCAS DE TEMPORADA <b class="caret"></b></a>
                         <ul class="dropdown-menu" >
                             <s:iterator var="a" value= "lista_marcas">
-                                <li><s:a action="">
+                                <li><s:a action="TiendaCampanias">
                                         <s:property value="#a.marcaNombre"/>
-                                        <s:param name="marcaId" value="#a.marcas.marcaId"/>
+                                        <s:param name="marcas2" value="#a.marcaId"/>
                                     </s:a></li>
                             </s:iterator>                       
                         </ul>                 
@@ -226,7 +227,7 @@
             <div id="linea2" class="linea"></div>
             <div id="contenido">
                 <div id="ruta_Navegacion">
-                    <s:a action="Tienda">Inicio</s:a> > <s:property value="categoria"/> <s:property value="clientela"/>
+                    <s:a action="Tienda">Inicio</s:a> > <s:if test="marcas2==null && clientela2!=null"><s:property value="categoria"/> <s:property value="clientela"/></s:if><s:elseif test="marcas2==null && clientela2==null">Todas las ventas</s:elseif><s:else><s:property value="marca"/></s:else>
                 </div>
                 <div id="nombre_Categoria">
                     <s:property value="categoria"/> <s:property value="clientela"/>
@@ -334,260 +335,6 @@
                         </table>
                     </s:iterator>
                 </div>
-                    <!--
-                    <table  class="imgproducto">                        
-
-                        <tr>
-                            <td ><img src="../Imagenes/Administracion/Vestidos/10990034_1.jpg" alt=""/> </td>                            
-
-                        </tr> 
-                        <tr>
-                            <td style="text-align: left">
-                                <span style="font-size: 15px; text-align: left"> Vestido de Fiesta Salmón</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: left">
-                                <span style=" font-size: 20px; font-weight: bold;">99€ </span>
-                            </td>
-                        </tr>
-                    </table>
-                    <table  class="imgproducto">                        
-
-                        <tr>
-                            <td><img src="../Imagenes/Administracion/Vestidos/1974ebaa615d81f5200ed88b731d7d36.jpg" alt=""/></td>                            
-                        </tr>
-                        <tr>
-                            <td style="text-align: left">
-                                <span style="font-size: 15px; text-align: left"> Vestido de Fiesta Salmón</span>
-                            </td>
-                        </tr>
-                        
-                        <tr>
-                            <td style="text-align: left">
-                                <span style=" font-size: 20px; font-weight: bold;">99€ </span>
-                            </td>
-                        </tr>                       
-                    </table>
-                    <table  class="imgproducto">                        
-
-                        <tr>
-                            <td><img src="../Imagenes/Administracion/Vestidos/2014-Sxey-font-b-Vintage-b-font-font-b-Wedding-b-font-font-b-Dresses-b.jpg" alt=""/></td>                            
-                        </tr>    
-                        <tr>
-                            <td style="text-align: left">
-                                <span style="font-size: 15px; text-align: left"> Vestido de Fiesta Salmón</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: left">
-                                <span style="text-decoration: line-through; font-size: 20px; font-weight: bold" > 120€ </span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: left">
-                                <span style=" font-size: 20px; font-weight: bold; color: red;">99€ </span><span style="font-size: 18px;"> &nbsp;(-17,5%) </span>
-                            </td>
-                        </tr>
-                    </table>
-                    <table  class="imgproducto">                        
-
-                        <tr>
-                            <td><img src="../Imagenes/Administracion/Vestidos/664679695_504.jpg" alt=""/></td>                            
-                        </tr>
-                        <tr>
-                            <td style="text-align: left">
-                                <span style="font-size: 15px; text-align: left"> Vestido de Fiesta Salmón</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: left">
-                                <span style=" font-size: 20px; font-weight: bold; color: red;">99€ </span><span style="text-decoration: line-through; font-size: 20px; font-weight: bold" > 120€</span>
-                            </td>
-                        </tr>
-                        
-                    </table>
-                    <table  class="imgproducto">                        
-
-                        <tr>
-                            <td><img src="../Imagenes/Administracion/Vestidos/664888915_759.jpg" alt=""/></td>                            
-                        </tr>
-                        <tr>
-                            <td style="text-align: left">
-                                <span style="font-size: 15px; text-align: left"> Vestido de Fiesta Salmón</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: left">
-                                <span style=" font-size: 20px; font-weight: bold; color: red;">99€ </span><span style="text-decoration: line-through; font-size: 20px; font-weight: bold" > 120€</span>
-                            </td>
-                        </tr>                        
-                    </table>
-                    <table  class="imgproducto">                        
-
-                        <tr>
-                            <td><img src="../Imagenes/Administracion/Vestidos/665032598_441.jpg" alt=""/></td>                            
-                        </tr>
-                        <tr>
-                            <td style="text-align: left">
-                                <span style="font-size: 15px; text-align: left"> Vestido de Fiesta Salmón</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: left">
-                                <span style=" font-size: 20px; font-weight: bold; color: red;">99€ </span><span style="text-decoration: line-through; font-size: 20px; font-weight: bold" > 120€</span>
-                            </td>
-                        </tr>                        
-                    </table>
-                    <table  class="imgproducto">                        
-
-                        <tr>
-                            <td><img src="../Imagenes/Administracion/Vestidos/Bata-sobre-la-rodilla-Mini-mangas-v-cuello-de-Organza-una-línea-sin-respaldo-cremallera-vestidos.jpg" alt=""/></td>                            
-                        </tr> 
-                        <tr>
-                            <td style="text-align: left">
-                                <span style="font-size: 15px; text-align: left"> Vestido de Fiesta Salmón</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: left">
-                                <span style=" font-size: 20px; font-weight: bold; color: red;">99€ </span><span style="text-decoration: line-through; font-size: 20px; font-weight: bold" > 120€</span>
-                            </td>
-                        </tr>
-                    </table>
-                    <table  class="imgproducto">                        
-
-                        <tr>
-                            <td><img src="../Imagenes/Administracion/Vestidos/New-Arrival-Free-Shipping-Strapless-Bridal-Gown-Black-font-b-Designer-b-font-font-b-Wedding.jpg" alt=""/></td>                            
-                        </tr> 
-                        <tr>
-                            <td style="text-align: left">
-                                <span style="font-size: 15px; text-align: left"> Vestido de Fiesta Salmón</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: left">
-                                <span style=" font-size: 20px; font-weight: bold; color: red;">99€ </span><span style="text-decoration: line-through; font-size: 20px; font-weight: bold" > 120€</span>
-                            </td>
-                        </tr>
-                    </table>
-                    <table  class="imgproducto">                        
-
-                        <tr>
-                            <td><img src="../Imagenes/Administracion/Vestidos/HTB1lhR_HpXXXXa7apXXq6xXFXXXH.jpg" alt=""/></td>                            
-                        </tr>
-                        <tr>
-                            <td style="text-align: left">
-                                <span style="font-size: 15px; text-align: left"> Vestido de Fiesta Salmón</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: left">
-                                <span style=" font-size: 20px; font-weight: bold; color: red;">99€ </span><span style="text-decoration: line-through; font-size: 20px; font-weight: bold" > 120€</span>
-                            </td>
-                        </tr>                        
-                    </table>
-                    <table  class="imgproducto">                        
-
-                        <tr>
-                            <td><img src="../Imagenes/Administracion/Vestidos/vestido_fiesta_coral_2-554x800.jpg" alt=""/></td>                            
-                        </tr>
-                        <tr>
-                            <td style="text-align: left">
-                                <span style="font-size: 15px; text-align: left"> Vestido de Fiesta Salmón</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: left">
-                                <span style=" font-size: 20px; font-weight: bold; color: red;">99€ </span><span style="text-decoration: line-through; font-size: 20px; font-weight: bold" > 120€</span>
-                            </td>
-                        </tr>                        
-                    </table>
-                    <table  class="imgproducto">                        
-
-                        <tr>
-                            <td><img src="../Imagenes/Administracion/Vestidos/vestido_otono-554x800.jpg" alt=""/></td>                            
-                        </tr>
-                        <tr>
-                            <td style="text-align: left">
-                                <span style="font-size: 15px; text-align: left"> Vestido de Fiesta Salmón</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: left">
-                                <span style=" font-size: 20px; font-weight: bold; color: red;">99€ </span><span style="text-decoration: line-through; font-size: 20px; font-weight: bold" > 120€</span>
-                            </td>
-                        </tr>                        
-                    </table>
-                    <table  class="imgproducto">                        
-
-                        <tr>
-                            <td><img src="../Imagenes/Administracion/Vestidos/opción-1014.jpg" alt=""/></td>                            
-                        </tr>
-                        <tr>
-                            <td style="text-align: left">
-                                <span style="font-size: 15px; text-align: left"> Vestido de Fiesta Salmón</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: left">
-                                <span style=" font-size: 20px; font-weight: bold; color: red;">99€ </span><span style="text-decoration: line-through; font-size: 20px; font-weight: bold" > 120€</span>
-                            </td>
-                        </tr>                        
-                    </table>
-                    <table  class="imgproducto">                        
-
-                        <tr>
-                            <td><img src="../Imagenes/Administracion/Vestidos/vestido-largo-culito-.jpg" alt=""/></td>                            
-                        </tr>
-                        <tr>
-                            <td style="text-align: left">
-                                <span style="font-size: 15px; text-align: left"> Vestido de Fiesta Salmón</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: left">
-                                <span style=" font-size: 20px; font-weight: bold; color: red;">99€ </span><span style="text-decoration: line-through; font-size: 20px; font-weight: bold" > 120€</span>
-                            </td>
-                        </tr>                        
-                    </table>
-                    <table  class="imgproducto">                        
-
-                        <tr>
-                            <td><img src="../Imagenes/Administracion/Vestidos/ON321C0D4-K11@12.jpg" alt=""/></td>                            
-                        </tr>
-                        <tr>
-                            <td style="text-align: left">
-                                <span style="font-size: 15px; text-align: left"> Vestido de Fiesta Salmón</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: left">
-                                <span style=" font-size: 20px; font-weight: bold; color: red;">99€ </span><span style="text-decoration: line-through; font-size: 20px; font-weight: bold" > 120€</span>
-                            </td>
-                        </tr>                        
-                    </table>
-                    <table  class="imgproducto">                        
-
-                        <tr>
-                            <td><img src="../Imagenes/Administracion/Vestidos/vestido-zac-posen.jpg" alt=""/></td>                            
-                        </tr> 
-                        <tr>
-                            <td style="text-align: left">
-                                <span style="font-size: 15px; text-align: left"> Vestido de Fiesta Salmón</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: left">
-                                <span style=" font-size: 20px; font-weight: bold; color: red;">99€ </span><span style="text-decoration: line-through; font-size: 20px; font-weight: bold" > 120€</span>
-                            </td>
-                        </tr>
-                    </table>
-                    -->
-
-
-
-                
             </div>
         </div>
         <div id="footer">

@@ -71,6 +71,25 @@ public class cRopa {
             + " OR (roPrecio - (roPrecio * roDescuento / 100)) LIKE '%" + filtro + "%'"
             + " OR color.colorDescripcion LIKE '%" + filtro + "%'"
             + " OR roCaracteristicas LIKE '%" + filtro + "%')";
+        //System.out.println("sql: "+sql);
+        Query query =sesion.createQuery(sql); 
+        ArrayList<Ropa> lcc = (ArrayList) query.list();
+        return lcc; 
+    }
+    
+    public static ArrayList<Ropa> RecuperaPorMarca(String marca,String filtro){
+       sesion = (Session) NewHibernateUtil.getSession();
+       String sql = "FROM Ropa WHERE marcas.marcaId = " + marca
+            + " AND roVisible = 1"
+            + " AND(roDescripcion LIKE '%" + filtro + "%'"
+            + " OR tallas.tallaDescripcion LIKE '%" + filtro + "%'"
+            + " OR roPrecio LIKE '%" + filtro + "%'"
+            + " OR (roPrecio - (roPrecio * roDescuento / 100)) LIKE '%" + filtro + "%'"
+            + " OR color.colorDescripcion LIKE '%" + filtro + "%'"
+            + " OR categoria.catDescripcion LIKE '%" + filtro + "%'"
+            + " OR clientela.clientelaDescripcion LIKE '%" + filtro + "%'"
+            + " OR roCaracteristicas LIKE '%" + filtro + "%')";
+        //System.out.println("sql: "+sql);
         Query query =sesion.createQuery(sql); 
         ArrayList<Ropa> lcc = (ArrayList) query.list();
         return lcc; 
