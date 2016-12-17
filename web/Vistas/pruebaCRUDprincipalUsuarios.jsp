@@ -161,8 +161,11 @@
                                                     //miCookie.setPath("/");
                                                     //Para crear el fichero cookie real
                                                     response.addCookie(miCookie);
+                                                    
                                                 }
-                                                out.println(unCookie.getValue());
+                                                if (unCookie.getName().equals("prenda")) {
+                                                        out.println(unCookie.getValue());
+                                                    }
 
                                             %>">
                                             <s:submit value="Favoritos"></s:submit>                    

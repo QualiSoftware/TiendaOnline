@@ -851,7 +851,10 @@ public class HomeRopa extends ActionSupport {
             }
         }
         lista_ropa.clear();
-        lista_ropa = ControladoresDAO.cRopa.RecuperaClientelaCategoria(clientela2, categoria2);
+        if (filtro == null || filtro.equals("null")) {
+            filtro = "";
+        }
+        lista_ropa = ControladoresDAO.cRopa.RecuperaClientelaCategoria(clientela2, categoria2,filtro);
         Clientela cli = ControladoresDAO.cClientela.RecuperaPorId(Integer.parseInt(clientela2));
         clientela = cli.getClientelaDescripcion();
         Categoria cat = ControladoresDAO.cCategorias.RecuperaPorId(Integer.parseInt(categoria2));

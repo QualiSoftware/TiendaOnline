@@ -164,12 +164,16 @@
             </div>
 
             <div id="filtro">                
-                <form class="navbar-form navbar-left" role="search">
+                <s:form class="navbar-form navbar-left" role="search">
+                    <input type="hidden" name="clientela" value="<s:property value="clientela"/>"/>
+                    <input type="hidden" name="categoria" value="<s:property value="categoria"/>"/>
+                    <input type="hidden" name="clientela2" value="<s:property value="clientela2"/>"/>
+                    <input type="hidden" name="categoria2" value="<s:property value="categoria2"/>"/>
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Búsqueda">
+                        <input type="text" class="form-control" placeholder="Búsqueda" name="filtro" value="<s:property value="filtro"/>">
                     </div>
                     <button style="position: absolute; top:8px; left: 215px;" type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
-                </form>
+                </s:form>
             </div>
             <div id="menu">
                 <ul class="nav nav-pills">
@@ -284,7 +288,7 @@
                                                                 <s:if test="#m.tallas.tallaDescripcion!='L'">
                                                                     <span style="text-decoration:line-through;">
                                                                 </s:if>
-                                                                    L
+                                                                        L
                                                                 <s:if test="#m.tallas.tallaDescripcion!='L'">
                                                                     </span>
                                                                 </s:if>

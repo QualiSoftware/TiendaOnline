@@ -333,7 +333,7 @@
             <result type="redirect">Tienda</result>
         </action>
         <action name="TiendaCampanias" class="Acciones.HomeRopa" method="RopaMenu">
-            <result>/Vistas/tiendaCampania.jsp</result>
+            <result>/Vistas/tiendaMenu.jsp</result>
         </action>
         
     </package>

@@ -60,9 +60,17 @@ public class cRopa {
         return la;
     }
     
-    public static ArrayList<Ropa> RecuperaClientelaCategoria(String cli,String cat){
+    public static ArrayList<Ropa> RecuperaClientelaCategoria(String cli,String cat,String filtro){
        sesion = (Session) NewHibernateUtil.getSession();
-       String sql = "FROM Ropa WHERE clientela.clientelaId = " + cli + " AND categoria.catId = " + cat + " AND roVisible = 1";
+       String sql = "FROM Ropa WHERE clientela.clientelaId = " + cli 
+            + " AND categoria.catId = " + cat 
+            + " AND roVisible = 1"
+            + " AND(roDescripcion LIKE '%" + filtro + "%'"
+            + " OR tallas.tallaDescripcion LIKE '%" + filtro + "%'"
+            + " OR roPrecio LIKE '%" + filtro + "%'"
+            + " OR (roPrecio - (roPrecio * roDescuento / 100)) LIKE '%" + filtro + "%'"
+            + " OR color.colorDescripcion LIKE '%" + filtro + "%'"
+            + " OR roCaracteristicas LIKE '%" + filtro + "%')";
         Query query =sesion.createQuery(sql); 
         ArrayList<Ropa> lcc = (ArrayList) query.list();
         return lcc; 
