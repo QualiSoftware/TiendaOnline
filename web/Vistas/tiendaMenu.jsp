@@ -45,16 +45,16 @@
                         <s:property value="mensajeError" />
                         <s:a action="CestaFiltro" theme="simple">
                             <s:textfield type="hidden" value="1" name="filtro" />
-
-                            <s:property value="totalcestaUsuario"/>
-                            <img src="../Imagenes/Administracion/Shopping-Cart-10.png" alt="" id="imgcesta"/>
-
+                            
+                                <s:property value="totalcestaUsuario"/>
+                                <img src="../Imagenes/Administracion/Shopping-Cart-10.png" alt="" id="imgcesta"/>
+                                
                         </s:a>
                     </s:if>                                
                     <s:if test="sesion.usuarioLogueado.usuAdministrador==1">
-                        <s:form action="RopaAdminFiltro" theme="simple">
-                            <s:submit value="Admin"></s:submit>                    
-                        </s:form>
+                            <s:form action="RopaAdminFiltro" theme="simple">
+                                <s:submit value="Admin"></s:submit>                    
+                            </s:form>
                     </s:if>
                 </div>
                 <div id="iniciar_Sesion">
@@ -62,7 +62,7 @@
                         <a href="#"> 
                             <div id="mi_Cuenta_Txt">Mi Cuenta</div>
                         </a>
-
+                    
                         <s:form action="TiendaLogin" theme="simple">
                             <div id="login">                                        
                                 <table >
@@ -86,10 +86,10 @@
                                     <tr>
                                         <td>
                                             ¿Nuevo Cliente? <s:a action="UsuAlta" ><s:param name="accion" value="'a'"/>¡Regístrate!</s:a>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
                         </s:form>
                     </s:if>
                     <s:if test="sesion.usuarioLogueado.usuId!=''">                    
@@ -174,17 +174,17 @@
                         <input type="text" class="form-control" placeholder="Búsqueda" name="filtro" value="<s:property value="filtro"/>">
                     </div>
                     <button style="position: absolute; top:8px; left: 215px;" type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
-                    </s:form>
+                </s:form>
             </div>
             <div id="menu">
                 <ul class="nav nav-pills">
                     <li class="dropdown">
                         <s:a action="TiendaCampanias"  class="dropdown-toggle" style="font-weight: normal;">TODAS LA VENTAS</s:a>
 
-                        </li>                    
-                        <li class="dropdown">
-                            <a href="#" data-toggle="dropdown" class="dropdown-toggle" style="font-weight: normal;">MUJER <b class="caret"></b></a>
-                            <ul class="dropdown-menu" id="Mujer">
+                    </li>                    
+                    <li class="dropdown">
+                        <a href="#" data-toggle="dropdown" class="dropdown-toggle" style="font-weight: normal;">MUJER <b class="caret"></b></a>
+                        <ul class="dropdown-menu" id="Mujer">
                             <s:iterator var="a" value= "lista_menu_ropa">
                                 <s:if test="#a.clientela.clientelaDescripcion=='Mujer'">
                                     <li><s:a action="TiendaCampanias">
@@ -192,8 +192,8 @@
                                             <s:param name="clientela2" value="#a.clientela.clientelaId"/>
                                             <s:param name="categoria2" value="#a.categoria.catId"/>
                                         </s:a></li>
-                                    </s:if>
-                                </s:iterator>
+                                </s:if>
+                            </s:iterator>
                         </ul>                 
                     </li>
                     <li class="dropdown">
@@ -202,12 +202,12 @@
                             <s:iterator var="a" value= "lista_menu_ropa">
                                 <s:if test="#a.clientela.clientelaDescripcion=='Hombre'">
                                     <li><s:a action="TiendaCampanias">
-                                            <s:property value="#a.categoria.catDescripcion"/>
-                                            <s:param name="clientela2" value="#a.clientela.clientelaId"/>
-                                            <s:param name="categoria2" value="#a.categoria.catId"/>
-                                        </s:a></li>                                    
-                                    </s:if>
-                                </s:iterator>                      
+                                        <s:property value="#a.categoria.catDescripcion"/>
+                                        <s:param name="clientela2" value="#a.clientela.clientelaId"/>
+                                        <s:param name="categoria2" value="#a.categoria.catId"/>
+                                    </s:a></li>                                    
+                                </s:if>
+                            </s:iterator>                      
                         </ul>                 
                     </li>
 
@@ -219,7 +219,7 @@
                                         <s:property value="#a.marcaNombre"/>
                                         <s:param name="marcas2" value="#a.marcaId"/>
                                     </s:a></li>
-                                </s:iterator>                       
+                            </s:iterator>                       
                         </ul>                 
                     </li>                    
                 </ul>                
@@ -228,42 +228,31 @@
             <div id="contenido">
                 <div id="ruta_Navegacion">
                     <s:a action="Tienda">Inicio</s:a> > <s:if test="marcas2==null && clientela2!=null"><s:property value="categoria"/> <s:property value="clientela"/></s:if><s:elseif test="marcas2==null && clientela2==null">Todas las ventas</s:elseif><s:else><s:property value="marca"/></s:else>
-                    </div>
-                    <div id="nombre_Categoria">
+                </div>
+                <div id="nombre_Categoria">
                     <s:property value="categoria"/> <s:property value="clientela"/>
                 </div>
                 <div id="productos" style="margin-top: 50px;">
-                    <% int x = 0;%>
                     <s:iterator var="m" value="lista_ropa">
-                        <table  class="imgproducto">     
-
-                            <tr class="botones_prueba<%=x%>">
+                        <table  class="imgproducto">                                                    
+                            <tr class="botones_prueba">
                                 <td><a href="Detalles.html">
                                         <%int aux = 0;%>
                                         <s:iterator var="f" value="fotoses">
                                             <%
-                                                if (aux == 0) {
+                                            if(aux==0){
                                             %>
-                                            <img src="<s:url value='../Imagenes/%{#m.categoria.catDescripcion}/%{#m.subcategoria.subDescripcion}/%{#f.fotosRuta}'/>" alt="<s:property value="fotosRuta" />" />
+                                                <img src="<s:url value='../Imagenes/%{#m.categoria.catDescripcion}/%{#m.subcategoria.subDescripcion}/%{#f.fotosRuta}'/>" alt="<s:property value="fotosRuta" />" />
                                             <%
-                                                }
-                                                aux++;
+                                            }
+                                            aux++;
                                             %>
                                         </s:iterator>
                                     </a>
-                                    <div id="botones_Galeria<%=x%>" style="position: absolute;
-                                         top: 774px;
-                                         background-color: black;
-                                         width: 266px;
-                                         height:  50px;
-                                         display: block;
-                                         opacity: 1;">
-                                        <div id="vista_Rapida_Img" style="position: absolute;">
+                                    <div id="botones_Galeria">
+                                        <div id="vista_Rapida_Img">
                                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                            <img src="../Imagenes/Administracion/eye.png" title="Vista Rápida" style="box-shadow: 0px 0px 0px;padding-top: 7px;
-                                                 padding-left: 10px;
-                                                 padding-right: 10px;
-                                                 width: 45px; "/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <img src="../Imagenes/Administracion/eye.png" title="Vista Rápida" style="box-shadow: 0px 0px 0px;"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                             <div id="vista_Rapida">
                                                 <table border="0" >                                                
                                                     <tbody>
@@ -283,41 +272,41 @@
                                                             <td>
                                                                 <s:if test="#m.tallas.tallaDescripcion!='XXL'">
                                                                     <span style="text-decoration:line-through;">
-                                                                    </s:if>
+                                                                </s:if>
                                                                     XXL
-                                                                    <s:if test="#m.tallas.tallaDescripcion!='XXL'">
+                                                                <s:if test="#m.tallas.tallaDescripcion!='XXL'">
                                                                     </span>
                                                                 </s:if>
                                                                 <br>
                                                                 <s:if test="#m.tallas.tallaDescripcion!='XL'">
                                                                     <span style="text-decoration:line-through;">
-                                                                    </s:if>
+                                                                </s:if>
                                                                     XL
-                                                                    <s:if test="#m.tallas.tallaDescripcion!='XL'">
+                                                                <s:if test="#m.tallas.tallaDescripcion!='XL'">
                                                                     </span>
                                                                 </s:if>
                                                                 <br>
                                                                 <s:if test="#m.tallas.tallaDescripcion!='L'">
                                                                     <span style="text-decoration:line-through;">
-                                                                    </s:if>
-                                                                    L
-                                                                    <s:if test="#m.tallas.tallaDescripcion!='L'">
+                                                                </s:if>
+                                                                        L
+                                                                <s:if test="#m.tallas.tallaDescripcion!='L'">
                                                                     </span>
                                                                 </s:if>
                                                                 <br>
                                                                 <s:if test="#m.tallas.tallaDescripcion!='M'">
                                                                     <span style="text-decoration:line-through;">
-                                                                    </s:if>
+                                                                </s:if>
                                                                     M
-                                                                    <s:if test="#m.tallas.tallaDescripcion!='M'">
+                                                                <s:if test="#m.tallas.tallaDescripcion!='M'">
                                                                     </span>
                                                                 </s:if>
                                                                 <br>
                                                                 <s:if test="#m.tallas.tallaDescripcion!='S'">
                                                                     <span style="text-decoration:line-through;">
-                                                                    </s:if>
+                                                                </s:if>
                                                                     S
-                                                                    <s:if test="#m.tallas.tallaDescripcion!='S'">
+                                                                <s:if test="#m.tallas.tallaDescripcion!='S'">
                                                                     </span>
                                                                 </s:if>
                                                                 <br><br>
@@ -328,12 +317,8 @@
 
                                             </div>
                                         </div>
-                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="../Imagenes/Administracion/bRTdpoqi9.png" title="Аñadir a Favoritos" style="box-shadow:  0px 0px 0px; padding-left: 10px;
-                                                 padding-right: 10px;
-                                                 width: 45px;"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                        <img src="../Imagenes/Administracion/shopping-basket-xxl.png" title="Añadir a la Cesta" style="box-shadow: 0px 0px 0px; padding-left: 10px;
-                                                 padding-right: 10px;
-                                                 width: 45px;"><br><span style="color: white;">Vista &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Favoritos&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cesta</span>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="../Imagenes/Administracion/bRTdpoqi9.png" title="Аñadir a Favoritos" style="box-shadow:  0px 0px 0px;"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <img src="../Imagenes/Administracion/shopping-basket-xxl.png" title="Añadir a la Cesta" style="box-shadow: 0px 0px 0px;"><br><span style="color: white">Vista &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Favoritos&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cesta</span>
                                     </div>
                                 </td>
                             </tr>
@@ -348,11 +333,10 @@
                                 </td>
                             </tr>
                         </table>
-                        <% x++;%>
                     </s:iterator>
                 </div>
             </div>
         </div>
-        <s:include value="tiendaFooter.jsp" />
+            <s:include value="tiendaFooter.jsp" />
     </body>
 </html>
