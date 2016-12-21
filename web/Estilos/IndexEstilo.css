@@ -674,7 +674,7 @@ hr{
     color: #292c2f;
     border: solid 10px;
 }
-#botones_Galeria{
+/*#botones_Galeria{
     position: absolute;
     top: 774px;
     background-color: black;
@@ -682,17 +682,17 @@ hr{
     height:  50px;
     display: none;
     opacity: 1;        
-}
+}*/
 #botones_Galeria img{
     padding-top: 7px;
     padding-left: 10px;
     padding-right: 10px;
     width: 45px;            
 }
-.botones_prueba:hover #botones_Galeria{
+/*.botones_prueba:hover #botones_Galeria{
     -webkit-transition: .5s;
     display: block;    
-}
+}*/
 #vista_Rapida{ 
     position: absolute;
     width: 190px;
