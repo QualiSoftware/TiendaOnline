@@ -22,6 +22,9 @@
                         document.getElementById('frm').submit();
                     }
                 } else {
+                    if(document.getElementById('accion').value === 'a'){
+                        document.getElementById('frm').action = "AltaCampaniasRopa";
+                    }
                     document.getElementById('frm').submit();
                 }
             }
@@ -31,7 +34,7 @@
         <s:include value="cabeceraHeader.jsp" />
             <div id="marca">Tienda Ropa <img src="../Imagenes/house_hangers.svg" alt="house_hangers" id="logo"/>
             </div>
-            <div id="titulo_Pagina">Categorías</div>
+            <div id="titulo_Pagina">Campañas</div>
                 <s:include value="cabeceraMenuAdministrador.jsp" />
         </div>
         <div  class="linea"></div>
@@ -39,7 +42,9 @@
         <div  class="linea"></div>   
         
         <s:form id="frm" action="CrudActionCampanias" theme="simple" method="post" enctype="multipart/form-data">
-            <input type="hidden" name="accion" id="accion" value=<s:property value="accion" /> />
+            <input type="hidden" name="accion" id="accion" value="<s:property value="accion" />" />
+            <input type="hidden" name="cabeceraocul" value="<s:property value="cabeceraocul" />" />
+            <input type="hidden" name="botonocul" value="<s:property value="botonocul" />" />
             <table>
                 <tr>
                     <td>

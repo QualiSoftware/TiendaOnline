@@ -111,4 +111,13 @@ public class cCampanias {
             return -1;
         }
     }
+    
+    public static int UltimaCampania(){
+        sesion = (Session) NewHibernateUtil.getSession();
+        String sql = "select max(camId) From Campania";
+        Query query = sesion.createQuery(sql);
+        List<Integer> uf = query.list();
+        int i = uf.get(0);
+        return i;
+    }
 }
