@@ -21,9 +21,15 @@
             <result type="redirect">CampaniasFiltro</result> 
         </action>
         <action name="AltaCampaniasRopa" class="Acciones.HomeCampanias" method="CrudActionCampanias">
-            <result type="redirect">CampaniasRopaFiltro</result> 
+            <result type="redirectAction">
+                <param name="actionName">CampaniasRopaFiltro</param>
+                <param name="accion">${accion}</param>
+            </result>
         </action>
         <action name="CampaniasRopaFiltro" class="Acciones.HomeCampaniasRopa" method="CampaniasRopaFiltro">
+            <result>/Vistas/formularioCRUDcampaniasRopa.jsp</result> 
+        </action>
+        <action name="ModificarCampaniasRopa" class="Acciones.HomeCampaniasRopa" method="CampaniasRopaFiltro">
             <result>/Vistas/formularioCRUDcampaniasRopa.jsp</result> 
         </action>
         <action name="CrudActionCampaniasRopa" class="Acciones.HomeCampaniasRopa" method="CrudActionCampaniasRopa">

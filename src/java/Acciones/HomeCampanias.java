@@ -434,4 +434,8 @@ public class HomeCampanias extends ActionSupport {
             System.out.println("El archivo" + ruta + camFoto + " no puede ser borrado");
         }
    }
+   
+    public String redirectAction(){     	
+        return "redirect";
+    }
 }

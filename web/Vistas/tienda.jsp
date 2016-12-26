@@ -236,7 +236,7 @@
                                     <td><img src="../Imagenes/Campanias/<s:property value="#a.camFoto"/>" alt="<s:property value="#a.camNombre"/>"/></td>                            
                                 </tr>                        
                             </table>
-                            <s:param name="marcas2" value="#a.marcas.marcaId"/>
+                            <s:param name="campania" value="#a.camId"/>
                         </s:a>
                     </s:iterator>
                 </div>

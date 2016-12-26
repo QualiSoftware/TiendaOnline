@@ -39,7 +39,7 @@
         <div  class="linea"></div>
         <table border="1">
             <tr>
-                <td colspan="6">
+                <td colspan="7">
                 <s:form action="CampaniasFiltro" theme="simple" style="display:inline;">
                     <s:label value="Fecha con campaña activa " />
                     <s:textfield name="fechaCampania" id="fechaCampania" cssClass="tcal" readonly="true"/>
@@ -163,6 +163,7 @@
                     </s:form>
                 </th>
                 <th>Foto</th>
+                <th>Ropa asignada</th>
             </tr>
             <%String fondo = "fondoOscuro";%>
             <s:iterator var="a" value="lista_campanias">
@@ -194,6 +195,13 @@
                     </td>
                     <td>
                         <img src="../Imagenes/Campanias/<s:property value="#a.camFoto"/>" height="70" alt="<s:property value="#a.camFoto"/>"/>
+                    </td>
+                    <td>
+                        <s:a action="ModificarCampaniasRopa">
+                            <s:param name="camId" value="#a.camId"/>
+                            <s:param name="accion" value="'m'"/>
+                            Modificar ropa<br/>asignada a campaña
+                        </s:a>
                     </td>
                 </tr>
                 <%

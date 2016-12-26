@@ -227,7 +227,11 @@
             <div id="linea2" class="linea"></div>
             <div id="contenido">
                 <div id="ruta_Navegacion">
-                    <s:a action="Tienda">Inicio</s:a> > <s:if test="marcas2==null && clientela2!=null"><s:property value="categoria"/> <s:property value="clientela"/></s:if><s:elseif test="marcas2==null && clientela2==null">Todas las ventas</s:elseif><s:else><s:property value="marca"/></s:else>
+                    <s:a action="Tienda">Inicio</s:a> > 
+                    <s:if test="marcas2==null && clientela2!=null"><s:property value="categoria"/> <s:property value="clientela"/></s:if>
+                    <s:elseif test="marcas2==null && clientela2==null && campania==0">Todas las ventas</s:elseif>
+                    <s:elseif test="campania!=0"><s:property value="campaniaNombre"/></s:elseif>
+                    <s:else><s:property value="marca"/></s:else>
                 </div>
                 <div id="nombre_Categoria">
                     <s:property value="categoria"/> <s:property value="clientela"/>

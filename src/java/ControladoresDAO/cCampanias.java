@@ -74,6 +74,7 @@ public class cCampanias {
         sesion.beginTransaction();
         try{
             if(c!=null){
+                ControladoresDAO.cCampaniasRopa.Elimina(c.getCamId());
                 sesion.delete(c);
                 sesion.getTransaction().commit();
                 return 1;

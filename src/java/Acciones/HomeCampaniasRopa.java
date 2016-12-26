@@ -7,6 +7,7 @@ import Modelos.Ropa;
 import static com.opensymphony.xwork2.Action.SUCCESS;
 import com.opensymphony.xwork2.ActionContext;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 /*  Document   : HomeCampaniasRopa.java
@@ -25,6 +26,7 @@ public class HomeCampaniasRopa {
     private int clave;
     private ArrayList<Ropa> lista_ropa;
     private String checkboxNombre;
+    private List<Integer> lista_ropaEnCampania;
 
     public Map getSesion() {
         return sesion;
@@ -113,38 +115,45 @@ public class HomeCampaniasRopa {
     public void setCheckboxNombre(String checkboxNombre) {
         this.checkboxNombre = checkboxNombre;
     }
+
+    public List<Integer> getLista_ropaEnCampania() {
+        return lista_ropaEnCampania;
+    }
+
+    public void setLista_ropaEnCampania(List<Integer> lista_ropaEnCampania) {
+        this.lista_ropaEnCampania = lista_ropaEnCampania;
+    }
           
     public String CampaniasRopaFiltro() throws Exception {
         if (sesion==null) {
             sesion=ActionContext.getContext().getSession();
         }
-        if(accion==null){
+        if(accion.equals("a")){
             camId = ControladoresDAO.cCampanias.UltimaCampania();
             cabeceraocul = "Alta";
-            botonocul = "Finalizar";
-            accion = "a";
+        }else{
+            cabeceraocul = "Modificación";            
         }
+        botonocul = "Finalizar";
         campania = ControladoresDAO.cCampanias.RecuperaPorId(camId);
-        lista_ropa = ControladoresDAO.cRopa.RecuperaPorMarca(campania.getMarcas().getMarcaId()+"","");
+        lista_ropa = ControladoresDAO.cRopa.RecuperaPorMarca(campania.getMarcas().getMarcaId()+"","");        
+        if(accion.equals("m")){
+            lista_ropaEnCampania = ControladoresDAO.cCampaniasRopa.RecuperaRopaPorCampania(camId);
+        }
         return SUCCESS;
     }
     
     public String CrudActionCampaniasRopa() throws Exception {
         campania = ControladoresDAO.cCampanias.RecuperaPorId(camId);
         String checkboxArray[] = checkboxNombre.split(", ");
+        if (accion.equals("m")) {
+                ControladoresDAO.cCampaniasRopa.Elimina(camId);            
+        }
         for(String ca:checkboxArray){
             ropa = ControladoresDAO.cRopa.RecuperaPorId(Integer.parseInt(ca));
             CampaniaRopaId crid = new CampaniaRopaId(camId, Integer.parseInt(ca));
             CampaniaRopa cr = new CampaniaRopa(crid,campania,ropa);
-            if (accion.equals("a")) {
-                ControladoresDAO.cCampaniasRopa.Inserta(cr);
-            }
-            if (accion.equals("m")) {
-                ControladoresDAO.cCampaniasRopa.Modifica(cr);
-            }
-            if (accion.equals("e")) {
-                ControladoresDAO.cCampaniasRopa.Elimina(cr);
-            }
+            ControladoresDAO.cCampaniasRopa.Inserta(cr);
         }
         return SUCCESS;
     }

@@ -60,7 +60,14 @@
                 <tr>
                     <% i++; %>
                     <td>
-                        <input type="checkbox" name="checkboxNombre" id="checkboxNombre-<%=i%>" value="<s:property value="#a.roId"/>"/>
+                        <% boolean auxBoolean=false; %>
+                        <s:iterator var="b" value="lista_ropaEnCampania">
+                            <s:if test="#a.roId == #b">
+                                <% auxBoolean = true; %>
+                            </s:if>
+                        </s:iterator>
+                        <input type="checkbox" name="checkboxNombre" id="checkboxNombre-<%=i%>" 
+                               value="<s:property value="#a.roId"/>" <% if(auxBoolean){out.print("checked");};%>/>
                     </td>
                     <td>
                         <s:property value="#a.categoria.catDescripcion"/>
