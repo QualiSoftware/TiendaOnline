@@ -29,7 +29,7 @@
         <s:include value="cabeceraHeader.jsp" />
             <div id="marca">Tienda Ropa <img src="../Imagenes/house_hangers.svg" alt="house_hangers" id="logo"/>
             </div>
-            <div id="titulo_Pagina">Categorías</div>
+            <div id="titulo_Pagina">Tallas</div>
                 <s:include value="cabeceraMenuAdministrador.jsp" />
         </div>
         <div  class="linea"></div>

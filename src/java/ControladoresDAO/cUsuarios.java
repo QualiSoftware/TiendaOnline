@@ -12,8 +12,13 @@ public class cUsuarios {
     static Session sesion;
     
      public static List<Usuarios> RecuperaTodos(String filtro){
-        sesion = (Session) NewHibernateUtil.getSession();
-        Query query =sesion.createQuery("FROM Usuarios WHERE usuNombre LIKE '%"+filtro+"%'"); 
+        sesion = (Session) NewHibernateUtil.getSessionModif();
+        String sql = "FROM Usuarios WHERE "
+        + "usuNombre LIKE '%"+filtro+"%' OR "
+        + "usuApellidos LIKE '%"+filtro+"%' OR "
+        + "usuEmail LIKE '%"+filtro+"%' OR "
+        + "usuDni LIKE '%"+filtro+"%'";
+        Query query =sesion.createQuery(sql); 
         List<Usuarios> la = query.list();
         return la;
     }

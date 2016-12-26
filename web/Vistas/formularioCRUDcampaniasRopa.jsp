@@ -41,7 +41,7 @@
                 <s:include value="cabeceraMenuAdministrador.jsp" />
         </div>
         <div  class="linea"></div>
-        <div id="descripcion_Pagina"><h3 class="bold"><s:property value="cabeceraocul" /> de ropa en Campañas</h3></div>
+        <div id="descripcion_Pagina"><h3 class="bold"><s:property value="cabeceraocul" /> de ropa en Campaña <s:property value="campania.camNombre" /></h3></div>
         <div  class="linea"></div>   
         <% 
             String nombreCheck = "check";
@@ -55,6 +55,19 @@
                     <td colspan="11" style="text-align:left;">
                         <input type="checkbox" onclick="marcar(this);" /> Marcar/Desmarcar Todos
                     </td>
+                </tr>
+                <tr>
+                    <th></th>
+                    <th>Categoría</th>
+                    <th>Subcategoría</th>
+                    <th>Clientela</th>
+                    <th>Descripción</th>
+                    <th>Color</th>
+                    <th>Look</th>
+                    <th>Talla</th>
+                    <th>Precio</th>
+                    <th>Descuento individual</th>
+                    <th>Unidades</th>
                 </tr>
                 <s:iterator var="a" value="lista_ropa">
                 <tr>
@@ -106,7 +119,7 @@
                         <input type="button" onclick="Verificar();" value=<s:property value="botonocul" /> />                     
                         &nbsp;&nbsp;&nbsp;&nbsp;
                         <s:a action="volverCampanias">
-                            <i style="font-size: 20px;">No agregar ropa</i>
+                            <i style="font-size: 20px;">No hacer cambios en ropa de campaña</i>
                         </s:a>     
                     </td>
                 </tr>

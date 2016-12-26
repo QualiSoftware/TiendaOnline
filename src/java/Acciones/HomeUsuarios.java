@@ -3,6 +3,8 @@ package Acciones;
 import Modelos.Paises;
 import Modelos.Provincias;
 import Modelos.Usuarios;
+import static com.opensymphony.xwork2.Action.SUCCESS;
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.util.logging.Logger;
 import java.text.SimpleDateFormat;
@@ -13,6 +15,8 @@ import java.util.Map;
 
 public class HomeUsuarios extends ActionSupport {
     
+    private Map sesion;
+    private String filtro;
     private Integer usuId2 = 0;
     private String provincias2;
     private String usuNombre2 = "";
@@ -27,7 +31,7 @@ public class HomeUsuarios extends ActionSupport {
     private String usuTelefono2 = "";
     private String usuLocalidad2 = "";
     private double usuDescuento2;
-    private Date usuFechaLimiteDesc;
+    private String usuFechaLimiteDesc;
     private int usuAdministrador;
     //private Set<Cesta> cestas = new HashSet<Cesta>(0);
     //private Set<Favoritos> favoritoses = new HashSet<Favoritos>(0);    
@@ -44,6 +48,23 @@ public class HomeUsuarios extends ActionSupport {
     private Map<String, String> stateMap = new LinkedHashMap<String, String>();
     private String dummyMsg = "";
     private int respuesta;
+    private List<Usuarios> lista_usuarios;
+
+    public Map getSesion() {
+        return sesion;
+    }
+
+    public void setSesion(Map sesion) {
+        this.sesion = sesion;
+    }
+
+    public String getFiltro() {
+        return filtro;
+    }
+
+    public void setFiltro(String filtro) {
+        this.filtro = filtro;
+    }
     
     public int getRespuesta() {
         return respuesta;
@@ -51,6 +72,14 @@ public class HomeUsuarios extends ActionSupport {
 
     public void setRespuesta(int respuesta) {
         this.respuesta = respuesta;
+    }
+
+    public List<Usuarios> getLista_usuarios() {
+        return lista_usuarios;
+    }
+
+    public void setLista_usuarios(List<Usuarios> lista_usuarios) {
+        this.lista_usuarios = lista_usuarios;
     }
 
     public Map<String, String> getStateMap() {
@@ -245,11 +274,11 @@ public class HomeUsuarios extends ActionSupport {
         this.usuDescuento2 = usuDescuento2;
     }
 
-    public Date getUsuFechaLimiteDesc() {
+    public String getUsuFechaLimiteDesc() {
         return usuFechaLimiteDesc;
     }
 
-    public void setUsuFechaLimiteDesc(Date usuFechaLimiteDesc) {
+    public void setUsuFechaLimiteDesc(String usuFechaLimiteDesc) {
         this.usuFechaLimiteDesc = usuFechaLimiteDesc;
     }
 
@@ -283,6 +312,24 @@ public class HomeUsuarios extends ActionSupport {
 
     public void setUsupais(String usupais) {
         this.usupais = usupais;
+    }
+    
+        public String UsuariosFiltro() throws Exception {
+        if(sesion==null){
+            sesion=ActionContext.getContext().getSession();
+        }
+        /* para cuando tengamos sesión de usuario
+        try{
+            Usuarios u = (Usuarios) sesion.get("usuarioLogueado");
+        }catch(Exception e){
+            return INPUT;
+        }
+        */
+        if(filtro == null){
+            filtro = "";
+        }
+        lista_usuarios = ControladoresDAO.cUsuarios.RecuperaTodos(filtro);
+        return SUCCESS;
     }
     
     public String UsuAlta() throws Exception {
@@ -377,8 +424,92 @@ public class HomeUsuarios extends ActionSupport {
         dummyMsg = "Ajax action Triggered";
         return SUCCESS;
     }
+    
+        public String UsuariosForm() throws Exception {
+        if(sesion==null){
+         sesion=ActionContext.getContext().getSession();
+        }
+        /* para cuando tengamos sesión de usuario
+        try{
+            Usuarios u = (Usuarios) sesion.get("usuarioLogueado");
+            if(u.getUsuAdministrador()!=1){
+                return INPUT;
+            }
+        }catch(Exception e){
+            return INPUT;
+        }
+        */
+        
+        int year;
+        int month;
+        String monthString;
+        int day;
+        String dayString;
+        Usuarios usuario = ControladoresDAO.cUsuarios.RecuperaPorId(clave);
+        usuId2 = usuario.getUsuId();
+        provincias2 = usuario.getProvincias().getProNombre();
+        usuNombre2 = usuario.getUsuNombre();
+        usuApellidos2 = usuario.getUsuApellidos();
+        usuEmail2 = usuario.getUsuEmail();
+        usuDni2 = usuario.getUsuDni();
+        usuDireccion2 = usuario.getUsuDireccion();
+        usuCp2 = usuario.getUsuCp();
+        year = usuario.getUsuFechaNac().getYear() + 1900;
+        month = usuario.getUsuFechaNac().getMonth()+1;
+        day = usuario.getUsuFechaNac().getDate();
+        if(month < 10){
+            monthString = "0"+month;
+        }else{
+            monthString = ""+month;
+        }
+        if(day < 10){
+            dayString = "0"+day;
+        }else{
+            dayString = ""+day;
+        }
+        usuFechaNac2 = dayString+"-"+monthString+"-"+year;
+        usuSexo2 = usuario.isUsuSexo();
+        usuTelefono2 = usuario.getUsuTelefono();
+        usuLocalidad2 = usuario.getUsuLocalidad();
+        usuDescuento2 = usuario.getUsuDescuento();
+        year = usuario.getUsuFechaLimiteDesc().getYear() + 1900;
+        month = usuario.getUsuFechaLimiteDesc().getMonth()+1;
+        day = usuario.getUsuFechaLimiteDesc().getDate();
+        if(month < 10){
+            monthString = "0"+month;
+        }else{
+            monthString = ""+month;
+        }
+        if(day < 10){
+            dayString = "0"+day;
+        }else{
+            dayString = ""+day;
+        }
+        usuFechaLimiteDesc = dayString+"-"+monthString+"-"+year;
+        usuAdministrador = usuario.getUsuAdministrador();
+        countryName = usuario.getProvincias().getPaises().getPaisNombre();
+        if(accion.equals("m")){
+            accionocul = "m";
+            cabeceraocul = "Modificación";
+            botonocul = "Modificar";  
+        }else{
+            accionocul = "e";
+            cabeceraocul = "Eliminación";
+            botonocul = "Eliminar";
+        }
+        return SUCCESS;
+    }
      
     public String CrudActionUsuarios() throws Exception{
+        
+        if(sesion==null){
+         sesion=ActionContext.getContext().getSession();
+        }
+        try{
+            u = (Usuarios) sesion.get("usuarioLogueado");
+        }catch(Exception e){
+            return INPUT;
+        }
         Usuarios p = new Usuarios();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         String year;
@@ -436,7 +567,9 @@ public class HomeUsuarios extends ActionSupport {
         if (accionocul.equals("e")) {
             p = ControladoresDAO.cUsuarios.RecuperaPorId(usuId2);
             ControladoresDAO.cUsuarios.Elimina(p);
-            return INPUT;
+            if(u.getUsuAdministrador() != 1){
+                return INPUT;
+            }
         }   
        return SUCCESS;
     }     
@@ -447,6 +580,21 @@ public class HomeUsuarios extends ActionSupport {
             u.setUsuEmail(usuEmail2);
             int respuesta = ControladoresDAO.cUsuarios.Modifica(u);
             accion = u.getUsuNombre()+" "+u.getUsuApellidos();
+            return SUCCESS;
+        }catch(Exception e){
+            return INPUT;
+        }
+    }
+    
+    public String CambiaContrasenia() throws Exception{
+        try{
+            u = ControladoresDAO.cUsuarios.RecuperaPorId(clave);
+            if(accion.equals("r")){
+                u.setUsuPassword("nueva");
+            }else{
+                u.setUsuPassword(usuPassword2);
+            }
+            int respuesta = ControladoresDAO.cUsuarios.Modifica(u);
             return SUCCESS;
         }catch(Exception e){
             return INPUT;

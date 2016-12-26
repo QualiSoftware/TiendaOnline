@@ -45,7 +45,7 @@
         <div  class="linea"></div>
         <table border="1">
             <tr>
-                <td colspan="19" style="padding-right: 40%;">
+                <td colspan="20" style="padding-right: 40%;">
                     <s:form action="RopaAdminFiltro" theme="simple" id="frm" cssStyle="display:inline;">
                         <s:label value=" Fecha desde " />
                         <s:textfield name="fechaI" id="fechaI" cssClass="tcal" readonly="true"/>
@@ -447,6 +447,7 @@
                 </th>
                 <th>Fotos</th>
                 <th>Acciones con fotos</th>
+                <th>Campañas</th>
             </tr>
             <%String fondo = "fondoOscuro";%>
             <s:iterator var="a" value="lista_ropa">
@@ -553,6 +554,15 @@
                             <s:param name="orden" value="%{orden}" />
                             <i style="font-size: 20px" class="glyphicon glyphicon-trash"></i>
                         </s:a>
+                    </td>
+                    <td>                        
+                        <s:iterator var="r" value="campaniaRopas">
+                            <s:a action="ModificarCampaniasRopa">
+                                <s:property value="#r.campania.camNombre"/><br/>
+                                <s:param name="accion" value="'m'"/>
+                                <s:param name="camId" value="#r.campania.camId"/>
+                            </s:a>
+                        </s:iterator>
                     </td>
                 </tr>
                 <%

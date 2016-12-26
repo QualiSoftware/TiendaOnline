@@ -134,7 +134,7 @@ public class HomeCampaniasRopa {
         }else{
             cabeceraocul = "Modificación";            
         }
-        botonocul = "Finalizar";
+        botonocul = "Guardar";
         campania = ControladoresDAO.cCampanias.RecuperaPorId(camId);
         lista_ropa = ControladoresDAO.cRopa.RecuperaPorMarca(campania.getMarcas().getMarcaId()+"","");        
         if(accion.equals("m")){

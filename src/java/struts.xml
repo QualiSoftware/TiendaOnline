@@ -283,8 +283,29 @@
         </action>
         
         <!-- actions de Usuarios -->
+        <action name="UsuariosFiltro" class="Acciones.HomeUsuarios" method="UsuariosFiltro">
+            <result>/Vistas/CRUDusuarios.jsp</result>           
+        </action>
+        <action name="UsuariosForm" class="Acciones.HomeUsuarios" method="UsuariosForm">
+            <result>/Vistas/formularioCRUDusuariosAdmin.jsp</result>
+        </action>
         <action name="UsuAlta" class="Acciones.HomeUsuarios" method="UsuAlta">
             <result>/Vistas/formularioCRUDusuarios.jsp</result>           
+        </action>
+        <action name="CrudActionUsuarios" class="Acciones.HomeUsuarios" method="CrudActionUsuarios">
+            <result type="redirect">RopaFiltroU</result>
+            <result name="input" type="redirect">CerrarSesion</result>
+            <result name="error">/Vistas/formularioCRUDusuarios.jsp</result>
+        </action>
+        <action name="CrudActionUsuariosAdmin" class="Acciones.HomeUsuarios" method="CrudActionUsuarios">
+            <result type="redirect">UsuariosFiltro</result>
+        </action>
+        <action name="CambiaContrasenia" class="Acciones.HomeUsuarios" method="CambiaContrasenia">
+            <result type="redirect">UsuariosFiltro</result>
+        </action>
+        <action name="activa" class="Acciones.HomeUsuarios" method="activa">
+            <result>/Vistas/activacion.jsp</result>
+            <result name="input">/Vistas/activacionError.jsp</result>
         </action>
         
         <action name="ajaxPaises" class="Acciones.HomeUsuarios" method="ajaxPaises">
@@ -308,16 +329,6 @@
         </action>
         <action name="CerrarSesion" class="Acciones.HomeUsuariosValidaciones" method="CerrarSesion">
             <result type="redirect">RopaFiltroU</result>
-        </action>
-        <!-- actions para crud de usuarios-->
-        <action name="CrudActionUsuarios" class="Acciones.HomeUsuarios" method="CrudActionUsuarios">
-            <result type="redirect">RopaFiltroU</result>
-            <result name="input" type="redirect">CerrarSesion</result>
-            <result name="error">/Vistas/formularioCRUDusuarios.jsp</result>
-        </action>
-        <action name="activa" class="Acciones.HomeUsuarios" method="activa">
-            <result>/Vistas/activacion.jsp</result>
-            <result name="input">/Vistas/activacionError.jsp</result>
         </action>
         
         <!-- actions de Pago -->
