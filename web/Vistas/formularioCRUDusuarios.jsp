@@ -38,9 +38,10 @@
               });
             };
             
-            function Verificar() {
-                if (document.getElementById('accionocul').value === 'e') {
+            function Verificar(action) {
+                if (action === 'e') {
                     if (confirm("¿Seguro que desea borrar?")) {
+                        document.getElementById('accionocul').value = action;
                         document.getElementById('frm').submit();
                     }
                 } else {
@@ -227,14 +228,21 @@
                 </s:else>
                 <tr>
                     <td colspan="2">
-                        <input type="button" onclick="Verificar();" value=<s:property value="botonocul" /> />                     
+                    <s:if test='%{accion == "m" || accion == "a"}'>
+                        <input type="button" onclick="Verificar('m');" value=<s:property value="botonocul" /> />
+                    </s:if>
                         &nbsp;&nbsp;&nbsp;&nbsp;
-                        <s:a action="volverRopaU">
+                        <s:a action="Tienda">
                             <i style="font-size: 20px;">Volver</i>
-                        </s:a>     
+                        </s:a>
                     </td>
                 </tr>
             </table>
+            <s:if test='%{accion == "m"}'>
+                Si desea dar de baja su usuario puede presionar en el botón 
+                 <input type="button" onclick="Verificar('e');" value="Eliminar" /> y sus datos de usuario serán
+                  eliminados de nuestra base de datos.
+            </s:if>
         </s:form>
     </body>
 </html>

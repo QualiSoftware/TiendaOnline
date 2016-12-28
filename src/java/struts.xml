@@ -293,8 +293,8 @@
             <result>/Vistas/formularioCRUDusuarios.jsp</result>           
         </action>
         <action name="CrudActionUsuarios" class="Acciones.HomeUsuarios" method="CrudActionUsuarios">
-            <result type="redirect">RopaFiltroU</result>
-            <result name="input" type="redirect">CerrarSesion</result>
+            <result type="redirect">Tienda</result>
+            <result name="input" type="redirect">TiendaCerrarSesion</result>
             <result name="error">/Vistas/formularioCRUDusuarios.jsp</result>
         </action>
         <action name="CrudActionUsuariosAdmin" class="Acciones.HomeUsuarios" method="CrudActionUsuarios">
@@ -351,8 +351,12 @@
             <result>/Vistas/tienda.jsp</result>           
         </action>
         <action name="TiendaLogin" class="Acciones.HomeUsuariosValidaciones" method="Login">
-            <result name="input">/Vistas/tienda.jsp</result>
-            <result name="error">/Vistas/tienda.jsp</result>
+            <result name="input" type="redirect">Tienda</result>
+            <result name="error" type="redirectAction">
+                <param name="mensajeError">${mensajeError}</param>
+                <param name="usuario">${usuario}</param>
+                <param name="actionName">Tienda</param>
+            </result>
             <result type="redirect">Tienda</result>
         </action>
         <action name="TiendaCerrarSesion" class="Acciones.HomeUsuariosValidaciones" method="CerrarSesion">

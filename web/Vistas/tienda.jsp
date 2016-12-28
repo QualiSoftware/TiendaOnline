@@ -28,7 +28,7 @@
         <title>Tienda Ropa</title>
     </head>
 
-    <body>
+    <body>       
         <div id="todo">            
             <div id="header">
                 <div id="marca">Tienda Ropa <img src="../Imagenes/Administracion/SH14171.jpg" alt="house_hangers" id="logo"/>
@@ -39,47 +39,43 @@
                 </div>
                 <div id="cesta">
                     <s:if test="sesion.usuarioLogueado.usuAdministrador!=1">
-                        <s:property value="mensajeError" />
                         <s:a action="CestaFiltro" theme="simple">
                             <s:textfield type="hidden" value="1" name="filtro" />
-                            
-                                <s:property value="totalcestaUsuario"/>
-                                <img src="../Imagenes/Administracion/Shopping-Cart-10.png" alt="" id="imgcesta"/>
-                                
+                            <s:property value="totalcestaUsuario"/>
+                            <img src="../Imagenes/Administracion/Shopping-Cart-10.png" alt="" id="imgcesta"/>
                         </s:a>
                     </s:if>                                
                     <s:if test="sesion.usuarioLogueado.usuAdministrador==1">
-                            <s:form action="RopaAdminFiltro" theme="simple">
-                                <s:submit value="Admin"></s:submit>                    
-                            </s:form>
+                        <s:form action="RopaAdminFiltro" theme="simple">
+                            <s:submit value="Admin"></s:submit>                    
+                        </s:form>
                     </s:if>
                 </div>
                 <div id="iniciar_Sesion">
                     <s:if test="usi==''">
                         <a href="#"> 
                             <div id="mi_Cuenta_Txt">Mi Cuenta</div>
-                        </a>
-                    
+                        </a>                    
                         <s:form action="TiendaLogin" theme="simple">
                             <div id="login">                                        
                                 <table >
                                     <tr>
                                         <td><span class="glyphicon glyphicon-user" aria-hidden="true" ></span>
                                             <s:textfield name="usuario" class="btn btn-default" aria-label="Left Align" style="text-align: left; color: gray" />
-                                            <!--<input type="text" class="btn btn-default" aria-label="Left Align" style="text-align: left; color: gray" value="Jesús"><br>-->
+                                            <s:fielderror fieldName="usuario" theme="simple"/>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td> <span class="glyphicon glyphicon-lock" aria-hidden="true" ></span>
                                             <s:password name="password" class="btn btn-default" style="text-align: left; color: gray" aria-label="Left Align" />
-                                            <!--<input type="password" class="btn btn-default" style="text-align: left; color: gray" aria-label="Left Align" value="contraseña"><br>-->
+                                            <s:fielderror fieldName="password" />
+                                            <s:property value="mensajeError"/>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
                                             <a href="#">
                                                 <s:submit value="Acceder" style="margin: 0 auto" class="btn btn-default"/>
-                                                <!--<button style="margin: 0 auto" class="btn btn-default">Acceder</button>-->
                                             </a>
                                         </td>
                                     </tr>
@@ -139,11 +135,17 @@
                 <img src="../Imagenes/Administracion/afdf338882d16dd2b1360aa975b18111.png" alt="" style="width: 30px; margin-right: 10px; opacity: 0.9;"/>
                 <div id="menu_Tabla">
                     <table>
-                        <tr>
-                            <td class="con_Borde">
-                                <a href="#"><span class="glyphicon glyphicon-user"></span> Cuenta</a>
-                            </td>
-                        </tr>
+                        <s:if test="sesion.usuarioLogueado.usuId!=''">
+                            <tr>
+                                <td class="con_Borde">
+                                    <s:a action="UsuAlta" >
+                                        <span class="glyphicon glyphicon-user"></span> Cuenta
+                                        <s:param name="clave" value="sesion.usuarioLogueado.usuId"/>
+                                        <s:param name="accion" value="'m'"/>
+                                    </s:a>
+                                </td>
+                            </tr>
+                        </s:if>
                         <tr>
                             <td class="con_Borde">
                                 <a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> Pedidos &nbsp;&nbsp;&nbsp;&nbsp;</a>

@@ -15,6 +15,6 @@
     <body>
         <h1>Cuenta <s:property value="usuEmail2" /> no activada.</h1>
         <h2>Para más información por favor contacte con la tienda vía email. Disculpe las molestias.</h2>
-        <s:a action="RopaFiltroU" >Tienda Ropa</s:a>        
+        <s:a action="Tienda" >Tienda Ropa</s:a>        
     </body>
 </html>

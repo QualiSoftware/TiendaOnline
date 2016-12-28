@@ -50,14 +50,12 @@
                             <s:param name="accion" value="'r'"/>
                             Resetear contraseña
                         </s:a>
-                        <s:if test="#a.usuAdministrador!=1">
-                            &nbsp;&nbsp;&nbsp;&nbsp;
-                            <s:a action="UsuariosForm">
-                                <s:param name="accion" value="'e'"/>
-                                <s:param name="clave" value="#a.usuId"/>
-                                <i style="font-size: 20px" class="glyphicon glyphicon-trash"></i>
-                            </s:a>
-                        </s:if>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <s:a action="UsuariosForm">
+                            <s:param name="accion" value="'e'"/>
+                            <s:param name="clave" value="#a.usuId"/>
+                            <i style="font-size: 20px" class="glyphicon glyphicon-list-alt"></i>
+                        </s:a>
                     </td>
                     <td>
                         <s:property value="#a.usuNombre"/>

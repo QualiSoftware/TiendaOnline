@@ -16,7 +16,7 @@
         <h1>Felicitaciones <s:property value="accion" />, su cuenta ha sido activada!</h1>
         <br/>
         <h2>Acceda a la Tienda</h2>
-        <s:form action="Login" theme="simple">
+        <s:form action="TiendaLogin" theme="simple">
             <table>
                 <tr>
                     <td>
@@ -51,6 +51,6 @@
         <br/>
         <br/>
         <h3>O continúe navegando sin sesión mediante este enlace</h3>
-        <s:a action="RopaFiltroU" >Tienda Ropa</s:a>
+        <s:a action="Tienda" >Tienda Ropa</s:a>
     </body>
 </html>

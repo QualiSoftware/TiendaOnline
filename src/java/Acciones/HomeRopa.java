@@ -21,6 +21,7 @@ import Modelos.Usuarios;
 import static com.opensymphony.xwork2.Action.SUCCESS;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
+import com.opensymphony.xwork2.validator.annotations.RequiredStringValidator;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -49,6 +50,9 @@ public class HomeRopa extends ActionSupport {
     //variables fijas para todos los controladores
     private String filtro;
     private int clave;
+    private String usuario;
+    private String password;
+    private String mensajeError;
     private String accion;
     private String titulo;
     private String boton;
@@ -442,6 +446,32 @@ public class HomeRopa extends ActionSupport {
 
     public void setClave(int clave) {
         this.clave = clave;
+    }
+
+    public String getUsuario() {
+        return usuario;
+    }
+
+    @RequiredStringValidator(message = "Usuario incompleto o erróneo")
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    @RequiredStringValidator(message = "Password incompleto o erróneo")
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getMensajeError() {
+        return mensajeError;
+    }
+
+    public void setMensajeError(String mensajeError) {
+        this.mensajeError = mensajeError;
     }
 
     public String getAccion() {

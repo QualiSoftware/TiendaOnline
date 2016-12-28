@@ -121,7 +121,7 @@ public class HomeUsuariosValidaciones extends ActionSupport{
         }else{
             List<Usuarios> l = ControladoresDAO.cUsuarios.Login(usuario,password);
             if(l.size()==0){
-                mensajeError="Acceso no permitido";
+                mensajeError="Usuario y/o contraseña erróneos";
                 return ERROR;
             }else{
                 if(sesion==null){
@@ -132,14 +132,14 @@ public class HomeUsuariosValidaciones extends ActionSupport{
             }
         }     
     }
-    
+    /*
     @SkipValidation
     public String AbroSesion() throws Exception {
         if(sesion==null){
             sesion=ActionContext.getContext().getSession();
         }
         return SUCCESS;
-    }
+    }*/
     
     @SkipValidation
     public String CerrarSesion() throws Exception {

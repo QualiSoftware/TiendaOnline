@@ -33,12 +33,12 @@
                 <s:include value="cabeceraMenuAdministrador.jsp" />
         </div>
         <div  class="linea"></div>
-        <div id="descripcion_Pagina"><h3 class="bold"><s:property value="cabeceraocul" /> de Usuario</h3></div>
+        <div id="descripcion_Pagina"><h3 class="bold">Detalles de Usuario</h3></div>
         <div  class="linea"></div>
         
         
-        <s:form id="frm" action="CrudActionUsuariosAdmin" theme="simple">
-            <input type="hidden" name="accionocul" id="accionocul" value=<s:property value="accion" /> />
+        <!--<s:form id="frm" action="CrudActionUsuariosAdmin" theme="simple">
+            <input type="hidden" name="accionocul" id="accionocul" value=<s:property value="accion" /> />-->
             <table>
                 <tr>
                     <td>
@@ -164,7 +164,7 @@
                 </tr>
                 <tr>
                     <td colspan="2">
-                        <input type="button" onclick="Verificar();" value=<s:property value="botonocul" /> />
+                        <!--<input type="button" onclick="Verificar();" value=<s:property value="botonocul" /> />-->
                         &nbsp;&nbsp;&nbsp;&nbsp;
                         <s:a action="UsuariosFiltro">
                             <i style="font-size: 20px;">Volver</i>
@@ -172,6 +172,6 @@
                     </td>
                 </tr>
             </table>
-        </s:form>
+        <!--</s:form>-->
     </body>
 </html>
