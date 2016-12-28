@@ -15,7 +15,7 @@
         <link rel="stylesheet" href="../Estilos/GeneralEstilos.css"/>
         <link rel="stylesheet" type="text/css" href="../Calendar/1-simple-calendar/tcal.css" />
         <script type="text/javascript" src="../Calendar/1-simple-calendar/tcal.js"></script>
-        <title><s:property value="cabeceraocul" /> de Clientela</title>
+        <title><s:property value="cabeceraocul" /> de Usuario</title>
         <script src="../Scripts/jquery_3.js" type="text/javascript"></script>
         <script>
             
@@ -51,22 +51,17 @@
         </script>
     </head>
     <body>
-
         <s:form id="frm" action="CrudActionUsuarios" theme="simple">
-            <input type="hidden" name="accionocul" id="accionocul" value=<s:property value="accion" /> />
-            <input type="hidden" name="usuId2" value=<s:property value="usuId2" /> />
+            <input type="hidden" name="accion" id="accionocul" value=<s:property value="accion" /> />
+            <input type="hidden" name="clave" value=<s:property value="clave" /> />
+            <input type="hidden" name="usuId2" value=<s:property value="clave" /> />
             <table>
                 <tr>
                     <td>
                         <s:label for="usuNombre2">Nombre</s:label>  
                     </td>
                     <td>
-                        <s:if test='%{accion == "e"}'>
-                            <s:textfield name="usuNombre2" readonly="true" ></s:textfield>
-                        </s:if>
-                        <s:else>
-                            <s:textfield name="usuNombre2" ></s:textfield>
-                        </s:else>
+                        <s:textfield name="usuNombre2" ></s:textfield>
                     </td>
                 </tr>
                 <tr>
@@ -74,12 +69,7 @@
                         <s:label for="usuApellidos2">Apellidos</s:label>  
                     </td>
                     <td>
-                        <s:if test='%{accion == "e"}'>
-                            <s:textfield name="usuApellidos2" readonly="true" ></s:textfield>
-                        </s:if>
-                        <s:else>
-                            <s:textfield name="usuApellidos2" ></s:textfield>
-                        </s:else>
+                        <s:textfield name="usuApellidos2" ></s:textfield>
                     </td>
                 </tr>
                 <tr>
@@ -87,69 +77,38 @@
                         <s:label for="usuEmail2">Email</s:label>  
                     </td>
                     <td>
-                        <s:if test='%{accion == "e"}'>
-                            <s:textfield name="usuEmail2" readonly="true" ></s:textfield>
-                        </s:if>
-                        <s:else>
-                            <s:textfield name="usuEmail2" ></s:textfield>
-                        </s:else>
+                        <s:textfield name="usuEmail2" ></s:textfield>
                     </td>
                 </tr>
-                <s:if test='%{accion == "e"}'>
-                </s:if>
-                <s:else>
-                <tr>
-                    <td>
-                        <s:label for="usuPassword2">Contraseña</s:label>  
-                    </td>
-                    <td>                        
-                    <s:password name="usuPassword2" ></s:password>
-                    </td>
-                </tr>
-                </s:else>
                 <tr>
                     <td>
                         <s:label for="usuDni2">NIF/NIE</s:label>  
                     </td>
                     <td>
-                        <s:if test='%{accion == "e"}'>
-                            <s:textfield name="usuDni2" readonly="true" ></s:textfield>
-                        </s:if>
-                        <s:else>
-                            <s:textfield name="usuDni2" ></s:textfield>
-                        </s:else>
+                        <s:textfield name="usuDni2" ></s:textfield>
                     </td>
-                </tr>                    
-                <s:if test='%{accion == "e"}'>
-                </s:if>
-                <s:else>
-                    <tr>
-                        <td>
-                            <s:label for="usuSexo2">Sexo</s:label>
-                        </td>
-                        <td>
-                            <% String selected = ""; %>
-                            <s:if test="%{!usuSexo2}">
-                                <% selected = " selected='selected'"; %>
-                            </s:if>
-                            <select name="usuSexo2">
-                                <option value="true">Mujer</option>
-                                <option value="false"<%=selected %>>Hombre</option>
-                            </select>
-                        </td>
-                    </tr>                  
-                </s:else>
+                </tr>
+                <tr>
+                    <td>
+                        <s:label for="usuSexo2">Sexo</s:label>
+                    </td>
+                    <td>
+                        <% String selected = ""; %>
+                        <s:if test="%{!usuSexo2}">
+                            <% selected = " selected='selected'"; %>
+                        </s:if>
+                        <select name="usuSexo2">
+                            <option value="true">Mujer</option>
+                            <option value="false"<%=selected %>>Hombre</option>
+                        </select>
+                    </td>
+                </tr>
                 <tr>
                     <td>
                         <s:label for="usuDireccion2">Dirección</s:label>  
                     </td>
                     <td>
-                        <s:if test='%{accion == "e"}'>
-                            <s:textfield name="usuDireccion2" readonly="true" ></s:textfield>
-                        </s:if>
-                        <s:else>
-                            <s:textfield name="usuDireccion2" ></s:textfield>
-                        </s:else>
+                        <s:textfield name="usuDireccion2" ></s:textfield>
                     </td>
                 </tr>
                 <tr>
@@ -157,12 +116,7 @@
                         <s:label for="usuCp2">Código Postal</s:label>  
                     </td>
                     <td>
-                        <s:if test='%{accion == "e"}'>
-                            <s:textfield name="usuCp2" readonly="true" ></s:textfield>
-                        </s:if>
-                        <s:else>
-                            <s:textfield name="usuCp2" ></s:textfield>
-                        </s:else>
+                        <s:textfield name="usuCp2" ></s:textfield>
                     </td>
                 </tr>
                 <tr>
@@ -170,12 +124,7 @@
                         <s:label for="usuTelefono2">Teléfono</s:label>  
                     </td>
                     <td>
-                        <s:if test='%{accion == "e"}'>
-                            <s:textfield name="usuTelefono2" readonly="true" ></s:textfield>
-                        </s:if>
-                        <s:else>
-                            <s:textfield name="usuTelefono2" ></s:textfield>
-                        </s:else>
+                        <s:textfield name="usuTelefono2" ></s:textfield>
                     </td>
                 </tr>
                 <tr>
@@ -183,12 +132,7 @@
                         <s:label for="usuLocalidad2">Localidad</s:label>  
                     </td>
                     <td>
-                        <s:if test='%{accion == "e"}'>
-                            <s:textfield name="usuLocalidad2" readonly="true" ></s:textfield>
-                        </s:if>
-                        <s:else>
-                            <s:textfield name="usuLocalidad2" ></s:textfield>
-                        </s:else>
+                        <s:textfield name="usuLocalidad2" ></s:textfield>
                     </td>
                 </tr>
                 <tr>
@@ -196,45 +140,42 @@
                         <s:label for="usuFechaNac2">Fecha de nacimiento</s:label>  
                     </td>
                     <td>
-                        <s:if test='%{accion == "e"}'>
-                            <s:textfield name="usuFechaNac2" readonly="true" ></s:textfield>
-                        </s:if>
-                        <s:else>
-                            <s:textfield name="usuFechaNac2" id="usuFechaNac2" cssClass="tcal" readonly="true"/>
-                        </s:else>
+                        <s:textfield name="usuFechaNac2" id="usuFechaNac2" cssClass="tcal" readonly="true"/>
                     </td>
                 </tr>
-                <s:if test='%{accion == "e"}'>
-                </s:if>
-                <s:else>
-                    <tr>
-                        <td>
-                            <s:label for="usupais">País</s:label>  
-                        </td>
-                        <td>                        
-                            <s:select id="pais" name="usupais" list="listaPaises" listValue="paisNombre" 
-                                      listKey="paisId" value="usupais" onchange= "handleChange(this.value)" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <s:label for="provincias2">Provincia</s:label>  
-                        </td>
-                        <td>
-                            <s:select id="provincias2" name="provincias2" list="{'Seleccione Provincia'}" />
-                            <script>usarAJAX(<s:property value="provincias2"></s:property>);</script>
-                        </td>
-                    </tr>
-                </s:else>
+                <tr>
+                    <td>
+                        <s:label for="usupais">País</s:label>  
+                    </td>
+                    <td>                        
+                        <s:select id="pais" name="usupais" list="listaPaises" listValue="paisNombre" 
+                                  listKey="paisId" value="usupais" onchange= "handleChange(this.value)" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <s:label for="provincias2">Provincia</s:label>  
+                    </td>
+                    <td>
+                        <s:select id="provincias2" name="provincias2" list="{'Seleccione Provincia'}" />
+                        <script>usarAJAX(<s:property value="provincias2"></s:property>);</script>
+                    </td>
+                </tr>
                 <tr>
                     <td colspan="2">
-                    <s:if test='%{accion == "m" || accion == "a"}'>
                         <input type="button" onclick="Verificar('m');" value=<s:property value="botonocul" /> />
-                    </s:if>
                         &nbsp;&nbsp;&nbsp;&nbsp;
                         <s:a action="Tienda">
                             <i style="font-size: 20px;">Volver</i>
                         </s:a>
+                        <s:if test='%{accion == "m"}'>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <s:a action="FormContrasenia">
+                                <s:param name="accion" value="accion"/>
+                                <s:param name="clave" value="clave"/>
+                                Modificar contraseña
+                            </s:a>
+                        </s:if>
                     </td>
                 </tr>
             </table>

@@ -49,6 +49,7 @@ public class HomeUsuarios extends ActionSupport {
     private String dummyMsg = "";
     private int respuesta;
     private List<Usuarios> lista_usuarios;
+    private String antigua;
 
     public Map getSesion() {
         return sesion;
@@ -80,6 +81,14 @@ public class HomeUsuarios extends ActionSupport {
 
     public void setLista_usuarios(List<Usuarios> lista_usuarios) {
         this.lista_usuarios = lista_usuarios;
+    }
+
+    public String getAntigua() {
+        return antigua;
+    }
+
+    public void setAntigua(String antigua) {
+        this.antigua = antigua;
     }
 
     public Map<String, String> getStateMap() {
@@ -314,7 +323,7 @@ public class HomeUsuarios extends ActionSupport {
         this.usupais = usupais;
     }
     
-        public String UsuariosFiltro() throws Exception {
+    public String UsuariosFiltro() throws Exception {
         if(sesion==null){
             sesion=ActionContext.getContext().getSession();
         }
@@ -425,7 +434,7 @@ public class HomeUsuarios extends ActionSupport {
         return SUCCESS;
     }
     
-        public String UsuariosForm() throws Exception {
+    public String UsuariosForm() throws Exception {
         if(sesion==null){
          sesion=ActionContext.getContext().getSession();
         }
@@ -520,7 +529,7 @@ public class HomeUsuarios extends ActionSupport {
         day = usuFechaNac2.substring(0, 2);
         usuFechaNac2 = year+"-"+month+"-"+day;
         Date date = sdf.parse(usuFechaNac2);
-        if (accionocul.equals("a")) {
+        if (accion.equals("a")) {
            p.setProvincias(ControladoresDAO.cProvincias.RecuperaPorId(Integer.parseInt(provincias2)));
            p.setUsuNombre(usuNombre2);
            p.setUsuApellidos(usuApellidos2);
@@ -540,7 +549,7 @@ public class HomeUsuarios extends ActionSupport {
            respuesta = ControladoresDAO.cUsuarios.SaberUltimoId();
            boolean email = ControladoresDAO.cEmail.enviarAlta(usuEmail2, respuesta);
         }
-        if (accionocul.equals("m")) {
+        if (accion.equals("m")) {
            p.setProvincias(ControladoresDAO.cProvincias.RecuperaPorId(Integer.parseInt(provincias2)));
            p.setUsuNombre(usuNombre2);
            p.setUsuApellidos(usuApellidos2);
@@ -553,18 +562,14 @@ public class HomeUsuarios extends ActionSupport {
            p.setUsuSexo(usuSexo2);
            p.setUsuFechaNac(date);
            Usuarios ud = ControladoresDAO.cUsuarios.RecuperaPorId(usuId2);
-           if(usuPassword2.equals("")){
-               p.setUsuPassword(ud.getUsuPassword());
-           }else{
-                p.setUsuPassword(usuPassword2);               
-           }
+           p.setUsuPassword(ud.getUsuPassword());
            p.setUsuDescuento(ud.getUsuDescuento());
            p.setUsuFechaLimiteDesc(ud.getUsuFechaLimiteDesc());
            p.setUsuAdministrador(ud.getUsuAdministrador());
            p.setUsuId(usuId2);
            respuesta = ControladoresDAO.cUsuarios.Modifica(p);
         }
-        if (accionocul.equals("e")) {
+        if (accion.equals("e")) {
             p = ControladoresDAO.cUsuarios.RecuperaPorId(usuId2);
             ControladoresDAO.cUsuarios.Elimina(p);
             if(u.getUsuAdministrador() != 1){
@@ -586,13 +591,24 @@ public class HomeUsuarios extends ActionSupport {
         }
     }
     
+    public String FormContrasenia() throws Exception{
+        return SUCCESS;
+    }
+    
     public String CambiaContrasenia() throws Exception{
         try{
             u = ControladoresDAO.cUsuarios.RecuperaPorId(clave);
             if(accion.equals("r")){
                 u.setUsuPassword("nueva");
             }else{
-                u.setUsuPassword(usuPassword2);
+                if(u.getUsuPassword().equals(antigua)){
+                    u.setUsuPassword(usuPassword2);
+                    int respuesta = ControladoresDAO.cUsuarios.Modifica(u);
+                    return NONE;
+                }else{
+                    dummyMsg = "La contraseña antigua que escribió no coincide con su antigua contraseña.\n Por favor repita la operación de cambio de contraseña.";
+                    return INPUT;
+                }
             }
             int respuesta = ControladoresDAO.cUsuarios.Modifica(u);
             return SUCCESS;

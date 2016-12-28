@@ -52,7 +52,6 @@
                         </s:a>
                         &nbsp;&nbsp;&nbsp;&nbsp;
                         <s:a action="UsuariosForm">
-                            <s:param name="accion" value="'e'"/>
                             <s:param name="clave" value="#a.usuId"/>
                             <i style="font-size: 20px" class="glyphicon glyphicon-list-alt"></i>
                         </s:a>

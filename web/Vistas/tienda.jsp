@@ -97,18 +97,6 @@
                             <s:a action="TiendaCerrarSesion" >
                                 <button style="margin: 0 auto" class="btn btn-default">Cerrar Sesión</button>
                             </s:a>
-                            <!--
-                            <s:a action="UsuAlta" >
-                                <s:param name="clave" value="sesion.usuarioLogueado.usuId"/>
-                                <s:param name="accion" value="'m'"/>
-                                <button style="margin: 0 auto" class="btn btn-default">Modificar Usuario</button>
-                            </s:a>
-                            <s:a action="UsuAlta" >
-                                <s:param name="clave" value="sesion.usuarioLogueado.usuId"/>
-                                <s:param name="accion" value="'e'"/>
-                                <button style="margin: 0 auto" class="btn btn-default">Eliminar usuario</button>
-                            </s:a>
-                            -->
                         </div>
                     </s:if>
                 </div>
