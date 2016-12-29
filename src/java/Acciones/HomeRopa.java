@@ -692,8 +692,8 @@ public class HomeRopa extends ActionSupport {
             totalcestaUsuario += caux.getCestaUnidades();
         }       
         lista_ropa = ControladoresDAO.cRopa.RecuperaTodos(filtro,orden,fechaI,fechaF,eliminadas);
-        lista_campanias = ControladoresDAO.cCampanias.RecuperaCampaniasActivas();
-        lista_marcas =  ControladoresDAO.cMarcas.RecuperaTodos("");
+        lista_campanias = ControladoresDAO.cCampanias.RecuperaCampaniasActivas(filtro);
+        lista_marcas =  ControladoresDAO.cMarcas.RecuperaTodos(filtro);
         lista_menu_ropa = new ArrayList<Ropa>();
         for(Ropa lr: lista_ropa){
             String auxClientela = lr.getClientela().getClientelaDescripcion();

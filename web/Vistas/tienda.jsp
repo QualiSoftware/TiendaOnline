@@ -154,9 +154,9 @@
             </div>
 
             <div id="filtro">                
-                <form class="navbar-form navbar-left" role="search">
+                <form class="navbar-form navbar-left" role="search" action="Tienda">
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Búsqueda">
+                        <input type="text" class="form-control" placeholder="Búsqueda" name="filtro" value="<s:property value="filtro"/>">
                     </div>
                     <button style="position: absolute; top:8px; left: 215px;" type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
                 </form>

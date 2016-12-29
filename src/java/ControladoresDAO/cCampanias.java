@@ -34,7 +34,7 @@ public class cCampanias {
         return lc;
     }
     
-    public static List<Campania> RecuperaCampaniasActivas(){
+    public static List<Campania> RecuperaCampaniasActivas(String filtro){
         sesion = (Session) NewHibernateUtil.getSession();
         Date fechaHoy = new Date();        
         int year = fechaHoy.getYear() + 1900;
@@ -56,6 +56,9 @@ public class cCampanias {
         String sql = "From Campania WHERE ";
         sql += "camFin >= '" + hoy + "'";
         sql += " AND '" + hoy + "' >= camInicio";
+        if(!filtro.equals("")){
+            sql += " AND (camNombre LIKE '%"+filtro+"%')";
+        }        
         sql += " ORDER BY camFin";
         Query query =sesion.createQuery(sql); 
         List<Campania> lc = query.list();
