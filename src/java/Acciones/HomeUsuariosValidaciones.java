@@ -10,6 +10,7 @@ import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.validator.annotations.RequiredStringValidator;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import org.apache.struts2.interceptor.validation.SkipValidation;
@@ -122,6 +123,8 @@ public class HomeUsuariosValidaciones extends ActionSupport{
             List<Usuarios> l = ControladoresDAO.cUsuarios.Login(usuario,password);
             if(l.size()==0){
                 mensajeError="Usuario y/o contraseña erróneos";
+                Date d = new Date();
+                System.out.println("Hubo un intento de conexión fallido el " + d + " con user: " + usuario + " pass: " + password);
                 return ERROR;
             }else{
                 if(sesion==null){

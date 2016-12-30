@@ -515,7 +515,9 @@ public class HomeUsuarios extends ActionSupport {
          sesion=ActionContext.getContext().getSession();
         }
         try{
-            u = (Usuarios) sesion.get("usuarioLogueado");
+            if (!accion.equals("a")) {
+                u = (Usuarios) sesion.get("usuarioLogueado");
+            }
         }catch(Exception e){
             return INPUT;
         }

@@ -17,6 +17,7 @@
         <script type="text/javascript" src="../Calendar/1-simple-calendar/tcal.js"></script>
         <title><s:property value="cabeceraocul" /> de Usuario</title>
         <script src="../Scripts/jquery_3.js" type="text/javascript"></script>
+        <script src="../Scripts/ValidacionUsuario.js" type="text/javascript"></script>
         <script>
             
             $(document).ready(function() {
@@ -38,16 +39,6 @@
               });
             };
             
-            function Verificar(action) {
-                if (action === 'e') {
-                    if (confirm("¿Seguro que desea borrar?")) {
-                        document.getElementById('accionocul').value = action;
-                        document.getElementById('frm').submit();
-                    }
-                } else {
-                    document.getElementById('frm').submit();
-                }
-            }
         </script>
     </head>
     <body>
@@ -57,29 +48,52 @@
             <input type="hidden" name="usuId2" value=<s:property value="clave" /> />
             <table>
                 <tr>
-                    <td>
-                        <s:label for="usuNombre2">Nombre</s:label>  
-                    </td>
-                    <td>
-                        <s:textfield name="usuNombre2" ></s:textfield>
+                    <td colspan="2">
+                        <span id="camposVacios"></span>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <s:label for="usuApellidos2">Apellidos</s:label>  
+                        <s:label for="usuNombre2">Nombre (*)</s:label>  
                     </td>
                     <td>
-                        <s:textfield name="usuApellidos2" ></s:textfield>
+                        <s:textfield name="usuNombre2"  id="usuNombre2"></s:textfield>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <s:label for="usuEmail2">Email</s:label>  
+                        <s:label for="usuApellidos2">Apellidos (*)</s:label>  
                     </td>
                     <td>
-                        <s:textfield name="usuEmail2" ></s:textfield>
+                        <s:textfield name="usuApellidos2" id="usuApellidos2" ></s:textfield>
                     </td>
                 </tr>
+                <tr>
+                    <td>
+                        <s:label for="usuEmail2">Email (*)</s:label>  
+                    </td>
+                    <td>
+                        <s:textfield name="usuEmail2" id="usuEmail2" ></s:textfield>
+                    </td>
+                </tr>
+                <s:if test='%{accion == "a"}'>
+                    <tr>
+                        <td>
+                            <s:label for="usuPassword2">Contraseña (*)</s:label>  
+                        </td>
+                        <td>
+                            <s:password name="usuPassword2" id="usuPassword2" ></s:password>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <s:label for="passVerif">Repita la contraseña (*)</s:label>  
+                        </td>
+                        <td>
+                            <s:password id="passVerif" ></s:password>
+                        </td>
+                    </tr>
+                </s:if>
                 <tr>
                     <td>
                         <s:label for="usuDni2">NIF/NIE</s:label>  
@@ -105,39 +119,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <s:label for="usuDireccion2">Dirección</s:label>  
-                    </td>
-                    <td>
-                        <s:textfield name="usuDireccion2" ></s:textfield>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <s:label for="usuCp2">Código Postal</s:label>  
-                    </td>
-                    <td>
-                        <s:textfield name="usuCp2" ></s:textfield>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <s:label for="usuTelefono2">Teléfono</s:label>  
-                    </td>
-                    <td>
-                        <s:textfield name="usuTelefono2" ></s:textfield>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <s:label for="usuLocalidad2">Localidad</s:label>  
-                    </td>
-                    <td>
-                        <s:textfield name="usuLocalidad2" ></s:textfield>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <s:label for="usuFechaNac2">Fecha de nacimiento</s:label>  
+                        <s:label for="usuFechaNac2">Fecha de nacimiento (*)</s:label>  
                     </td>
                     <td>
                         <s:textfield name="usuFechaNac2" id="usuFechaNac2" cssClass="tcal" readonly="true"/>
@@ -145,7 +127,15 @@
                 </tr>
                 <tr>
                     <td>
-                        <s:label for="usupais">País</s:label>  
+                        <s:label for="usuTelefono2">Teléfono (*)</s:label>  
+                    </td>
+                    <td>
+                        <s:textfield name="usuTelefono2" id="usuTelefono2" ></s:textfield>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <s:label for="usupais">País (*)</s:label>  
                     </td>
                     <td>                        
                         <s:select id="pais" name="usupais" list="listaPaises" listValue="paisNombre" 
@@ -154,11 +144,35 @@
                 </tr>
                 <tr>
                     <td>
-                        <s:label for="provincias2">Provincia</s:label>  
+                        <s:label for="provincias2">Provincia (*)</s:label>  
                     </td>
                     <td>
                         <s:select id="provincias2" name="provincias2" list="{'Seleccione Provincia'}" />
                         <script>usarAJAX(<s:property value="provincias2"></s:property>);</script>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <s:label for="usuLocalidad2">Localidad (*)</s:label>  
+                    </td>
+                    <td>
+                        <s:textfield name="usuLocalidad2" id="usuLocalidad2" ></s:textfield>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <s:label for="usuCp2">Código Postal (*)</s:label>  
+                    </td>
+                    <td>
+                        <s:textfield name="usuCp2" id="usuCp2" ></s:textfield>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <s:label for="usuDireccion2">Dirección (*)</s:label>  
+                    </td>
+                    <td>
+                        <s:textfield name="usuDireccion2" id="usuDireccion2" ></s:textfield>
                     </td>
                 </tr>
                 <tr>
