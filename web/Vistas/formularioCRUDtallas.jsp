@@ -12,7 +12,8 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
         <link rel="stylesheet" href="../Estilos/GeneralEstilos.css"/>
-        <title><s:property value="cabeceraocul" /> de Tallas</title>
+        <title><s:property value="cabeceraocul" /> de Talla</title>
+        <script src="../Scripts/ValidacionCampoRelleno.js" type="text/javascript"></script>
         <script>
             function Verificar() {
                 if (document.getElementById('accionocul').value === 'e') {
@@ -20,7 +21,9 @@
                         document.getElementById('frm').submit();
                     }
                 } else {
-                    document.getElementById('frm').submit();
+                    if(CampoRelleno(document.getElementById('tallaDescripcion'),document.getElementById('errores'))){
+                        document.getElementById('frm').submit();
+                    }
                 }
             }
         </script>
@@ -33,7 +36,7 @@
                 <s:include value="cabeceraMenuAdministrador.jsp" />
         </div>
         <div  class="linea"></div>
-        <div id="descripcion_Pagina"><h3 class="bold"><s:property value="cabeceraocul" /> de Tallas</h3></div>
+        <div id="descripcion_Pagina"><h3 class="bold"><s:property value="cabeceraocul" /> de Talla</h3></div>
         <div  class="linea"></div>
         
         
@@ -41,8 +44,13 @@
             <input type="hidden" name="accionocul" id="accionocul" value=<s:property value="accion" /> />
             <table>
                 <tr>
+                    <td colspan="2">
+                        <span id="errores"></span>
+                    </td>
+                </tr>
+                <tr>
                     <td>
-                        <s:label for="tallaId">Codigo</s:label>  
+                        <s:label for="tallaId">Código</s:label>  
                         </td>
                         <td>
                         <s:textfield name="tallaId" readonly="true"></s:textfield>
@@ -53,17 +61,12 @@
                         <s:label for="tallaDescripcion">Descripción</s:label>  
                         </td>
                         <td>
-                        <%
-                            if (request.getAttribute("accionocul") == "e") {
-                        %>
-                        <s:textfield name="tallaDescripcion" readonly="true" ></s:textfield>
-                        <%
-                        } else {
-                        %>
-                        <s:textfield name="tallaDescripcion" ></s:textfield>
-                        <%
-                            }
-                        %>
+                        <s:if test='%{accionocul == "e"}'>
+                            <s:textfield name="tallaDescripcion" readonly="true" ></s:textfield>
+                        </s:if>
+                        <s:else>
+                            <s:textfield name="tallaDescripcion" id="tallaDescripcion"></s:textfield>
+                        </s:else>
                     </td>
                 </tr>
                 <tr>

@@ -307,23 +307,37 @@ public class HomeCampanias extends ActionSupport {
         }catch(Exception e){
             return INPUT;
         }
-         */
+         */        
+        int year;
+        int month;
+        String monthString;
+        int day;
+        String dayString;
         lista_marcas = ControladoresDAO.cMarcas.RecuperaTodos("");
         if(accion.equals("a")){
             camId = 0;
             camNombre = "";
-            camInicio = null;
-            camFin = null;
+            Date fecha = new Date();
+            year = fecha.getYear() + 1900;
+            month = fecha.getMonth()+1;
+            day = fecha.getDate();
+            if(month < 10){
+                monthString = "0"+month;
+            }else{
+                monthString = ""+month;
+            }
+            if(day < 10){
+                dayString = "0"+day;
+            }else{
+                dayString = ""+day;
+            }
+            camInicio = dayString+"-"+monthString+"-"+year;
+            camFin = dayString+"-"+monthString+"-"+year;
             camFoto = "";
             cabeceraocul = "Alta";
             botonocul = "Alta";
         }else{
             c = ControladoresDAO.cCampanias.RecuperaPorId(clave);
-            int year;
-            int month;
-            String monthString;
-            int day;
-            String dayString;
             year = c.getCamInicio().getYear() + 1900;
             month = c.getCamInicio().getMonth()+1;
             day = c.getCamInicio().getDate();

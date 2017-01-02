@@ -12,7 +12,8 @@
         <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
         <link rel="stylesheet" href="../Estilos/GeneralEstilos.css"/>
-        <title><s:property value="cabeceraocul" /> de Marcas</title>
+        <title><s:property value="cabeceraocul" /> de Marca</title>
+        <script src="../Scripts/ValidacionCampoRelleno.js" type="text/javascript"></script>
         <script>
             function Verificar() {
                 if (document.getElementById('accionocul').value === 'e') {
@@ -20,7 +21,9 @@
                         document.getElementById('frm').submit();
                     }
                 } else {
-                    document.getElementById('frm').submit();
+                    if(CampoRelleno(document.getElementById('marcaNombre'),document.getElementById('errores'))){
+                        document.getElementById('frm').submit();
+                    }
                 }
             }
         </script>
@@ -29,19 +32,24 @@
         <s:include value="cabeceraHeader.jsp" />
             <div id="marca">Tienda Ropa <img src="../Imagenes/house_hangers.svg" alt="house_hangers" id="logo"/>
             </div>
-            <div id="titulo_Pagina">Categorías</div>
+            <div id="titulo_Pagina">Marcas</div>
                 <s:include value="cabeceraMenuAdministrador.jsp" />
         </div>
         <div  class="linea"></div>
-        <div id="descripcion_Pagina"><h3 class="bold"><s:property value="cabeceraocul" /> de Marcas</h3></div>
+        <div id="descripcion_Pagina"><h3 class="bold"><s:property value="cabeceraocul" /> de Marca</h3></div>
         <div  class="linea"></div>
         
         <s:form id="frm" action="CrudActionMarcas" theme="simple" method="post" enctype="multipart/form-data">
             <input type="hidden" name="accionocul" id="accionocul" value=<s:property value="accion" /> />
             <table>
                 <tr>
+                    <td colspan="2">
+                        <span id="errores"></span>
+                    </td>
+                </tr>
+                <tr>
                     <td>
-                        <s:label for="marcaId">Codigo</s:label>  
+                        <s:label for="marcaId">Código</s:label>  
                         </td>
                         <td>
                         <s:textfield name="marcaId" readonly="true"></s:textfield>
@@ -49,20 +57,15 @@
                     </tr>
                     <tr>
                         <td>
-                        <s:label for="marcaNombre">Descripción</s:label>  
+                        <s:label for="marcaNombre">Descripción (*)</s:label>  
                         </td>
                         <td>
-                        <%
-                            if (request.getAttribute("accionocul") == "e") {
-                        %>
-                        <s:textfield name="marcaNombre" readonly="true" ></s:textfield>
-                        <%
-                        } else {
-                        %>
-                        <s:textfield name="marcaNombre" ></s:textfield>
-                        <%
-                            }
-                        %>
+                        <s:if test='%{accionocul == "e"}'>
+                            <s:textfield name="marcaNombre" readonly="true" ></s:textfield>
+                        </s:if>
+                        <s:else>
+                            <s:textfield name="marcaNombre" id="marcaNombre"></s:textfield>
+                        </s:else>
                     </td>
                 </tr>
                 <tr>
@@ -70,7 +73,7 @@
                         <s:label for="marcaFoto">Foto</s:label>  
                     </td>
                     <td>
-                        <s:if test='%{accion == "e"}'>
+                        <s:if test='%{accionocul == "e"}'>
                             <input type="hidden" name="marcaFoto" value="<s:property value="marcaFoto" />" />
                             <img src="../Imagenes/Marcas/<s:property value="marcaFoto"/>" height="70" alt="<s:property value="marcaFoto"/>"/>
                         </s:if>

@@ -101,18 +101,6 @@
                             <s:a action="TiendaCerrarSesion" >
                                 <button style="margin: 0 auto" class="btn btn-default">Cerrar Sesión</button>
                             </s:a>
-                            <!--
-                            <s:a action="UsuAlta" >
-                                <s:param name="clave" value="sesion.usuarioLogueado.usuId"/>
-                                <s:param name="accion" value="'m'"/>
-                                <button style="margin: 0 auto" class="btn btn-default">Modificar Usuario</button>
-                            </s:a>
-                            <s:a action="UsuAlta" >
-                                <s:param name="clave" value="sesion.usuarioLogueado.usuId"/>
-                                <s:param name="accion" value="'e'"/>
-                                <button style="margin: 0 auto" class="btn btn-default">Eliminar usuario</button>
-                            </s:a>
-                            -->
                         </div>
                     </s:if>
                 </div>
@@ -229,8 +217,8 @@
                 <div id="ruta_Navegacion">
                     <s:a action="Tienda">Inicio</s:a> > 
                     <s:if test="marcas2==null && clientela2!=null"><s:property value="categoria"/> <s:property value="clientela"/></s:if>
-                    <s:elseif test="marcas2==null && clientela2==null && campania==0">Todas las ventas</s:elseif>
-                    <s:elseif test="campania!=0"><s:property value="campaniaNombre"/></s:elseif>
+                    <s:elseif test="marcas2==null && clientela2==null && campania==null">Todas las ventas</s:elseif>
+                    <s:elseif test="marcas2==null && campania!=null"><s:property value="campaniaNombre"/></s:elseif>
                     <s:else><s:property value="marca"/></s:else>
                 </div>
                 <div id="nombre_Categoria">

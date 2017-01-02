@@ -13,6 +13,7 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
         <link rel="stylesheet" href="../Estilos/GeneralEstilos.css"/>
         <title><s:property value="cabeceraocul" /> de Categoría</title>
+        <script src="../Scripts/ValidacionCampoRelleno.js" type="text/javascript"></script>
         <script>
             function Verificar() {
                 if (document.getElementById('accionocul').value === 'e') {
@@ -20,7 +21,9 @@
                         document.getElementById('frm').submit();
                     }
                 } else {
-                    document.getElementById('frm').submit();
+                    if(CampoRelleno(document.getElementById('catDescripcion'),document.getElementById('errores'))){
+                        document.getElementById('frm').submit();
+                    }
                 }
             }
         </script>
@@ -39,8 +42,13 @@
             <input type="hidden" name="accionocul" id="accionocul" value=<s:property value="accion" /> />
             <table>
                 <tr>
+                    <td colspan="2">
+                        <span id="errores"></span>
+                    </td>
+                </tr>
+                <tr>
                     <td>
-                        <s:label for="catId">Codigo</s:label>  
+                        <s:label for="catId">Código</s:label>  
                         </td>
                         <td>
                         <s:textfield name="catId" readonly="true"></s:textfield>
@@ -48,20 +56,15 @@
                     </tr>
                     <tr>
                         <td>
-                        <s:label for="catDescripcion">Descripción</s:label>  
+                        <s:label for="catDescripcion">Descripción (*)</s:label>  
                         </td>
                         <td>
-                        <%
-                            if (request.getAttribute("accionocul") == "e") {
-                        %>
-                        <s:textfield name="catDescripcion" readonly="true" ></s:textfield>
-                        <%
-                        } else {
-                        %>
-                        <s:textfield name="catDescripcion" ></s:textfield>
-                        <%
-                            }
-                        %>
+                        <s:if test='%{accionocul == "e"}'>
+                            <s:textfield name="catDescripcion" readonly="true" ></s:textfield>
+                        </s:if>
+                        <s:else>
+                            <s:textfield name="catDescripcion" id="catDescripcion"></s:textfield>
+                        </s:else>
                     </td>
                 </tr>
                 <tr>

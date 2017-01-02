@@ -2,6 +2,7 @@ function Verificar(action) {
     var verifica = true;
     var contraseniasIguales = true;
     var mayor18 = true;
+    var emailCorrecto = true;
     if (action === 'e') {
         if (confirm("¿Seguro que desea eliminar su usuario?")) {
             document.getElementById('accionocul').value = action;
@@ -21,18 +22,29 @@ function Verificar(action) {
             verifica = false;
         }
         mayor18 = Mayor18Anios();
-        MensajeError(verifica);
+        /*MensajeError(verifica);*/
     } else {
         mayor18 = Mayor18Anios();
         verifica = RellenaCampos();
-        MensajeError(verifica);
+        /*MensajeError(verifica);*/
     }
-    if(verifica && contraseniasIguales && mayor18){
+    emailCorrecto = validarEmail(document.getElementById('usuEmail2').value);
+    var mensaje = document.getElementById('camposVacios');
+    mensaje.innerHTML = "";
+    if(!verifica){
+        mensaje.innerHTML = "Por favor rellene los campos obligatorios.<br>";
+    }
+    if(!contraseniasIguales){
+        mensaje.innerHTML += "Las contraseñas deben ser iguales.<br>";
+    }
+    if(!mayor18){
+        mensaje.innerHTML += "El usuario debe tener 18 años o más.<br>";
+    }
+    if(!emailCorrecto){
+        mensaje.innerHTML += "El email ingresado es incorrecto.";
+    }
+    if(verifica && contraseniasIguales && mayor18 && emailCorrecto){
         document.getElementById('frm').submit();
-    } else if(verifica && mayor18){
-        document.getElementById('camposVacios').innerHTML = "Las contraseñas deben ser iguales";
-    } else if(verifica && contraseniasIguales){
-        document.getElementById('camposVacios').innerHTML = "El usuario debe tener 18 años o más";
     }
 }
 
@@ -136,10 +148,12 @@ function contraseniaRellena(){
     return envio;
 }
 
-function MensajeError(dato){
-    if(dato){
-        document.getElementById('camposVacios').innerHTML = "";
-    }else{
-        document.getElementById('camposVacios').innerHTML = "Por favor rellene los campos obligatorios";
-    }                
+function validarEmail(email) {
+    var emailOK = true;
+    expr = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+            /*/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;*/
+    if (!expr.test(email)){
+        emailOK = false;
+    }
+    return emailOK;
 }

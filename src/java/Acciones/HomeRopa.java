@@ -865,8 +865,8 @@ public class HomeRopa extends ActionSupport {
        return SUCCESS;
     }
     
+    @SkipValidation
     public String RopaMenu() throws Exception {
-        
         if (sesion == null) {
             sesion = ActionContext.getContext().getSession();
         }
@@ -875,11 +875,8 @@ public class HomeRopa extends ActionSupport {
             if(!sesion.get("usuarioLogueado").equals("")){
                 try{
                     int aux;
+                    u = null;
                     u = (Usuarios) sesion.get("usuarioLogueado");
-                    aux = u.getUsuId();
-                    u = ControladoresDAO.cUsuarios.RecuperaPorId(aux);
-                    sesion.clear();
-                    sesion.put("usuarioLogueado", (Usuarios) u);
                     usi = ""+u.getUsuId();
                 }catch(Exception e){
                     System.out.println(e.getMessage());
@@ -915,7 +912,6 @@ public class HomeRopa extends ActionSupport {
         if ((marcas2 == null || marcas2.equals("")) && (clientela2 == null || clientela2.equals("")) && (campania == null || campania.equals(""))) {            
             lista_ropa = ControladoresDAO.cRopa.RecuperaTodos(filtro,"categoria.catDescripcion","","","1");
         }else if((marcas2 == null || marcas2.equals("")) && (campania == null || campania.equals(""))){
-            System.out.println(campania+2);
             lista_ropa = ControladoresDAO.cRopa.RecuperaClientelaCategoria(clientela2, categoria2,filtro);
             Clientela cli = ControladoresDAO.cClientela.RecuperaPorId(Integer.parseInt(clientela2));
             clientela = cli.getClientelaDescripcion();

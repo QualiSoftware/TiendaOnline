@@ -29,7 +29,6 @@ public class HomeFacturaDetalle extends ActionSupport {
     //variables específicas a cada controlador
     private List<FacturaDetalle> lista_facturaDetalle;
     private Integer facdId;
-    private String facCodigo;
      private Facturas facturas;
      private double facdDescuento;
      private double facdPrecio;
@@ -139,15 +138,7 @@ public class HomeFacturaDetalle extends ActionSupport {
     public void setFacdId(Integer facdId) {
         this.facdId = facdId;
     }
-
-    public String getFacCodigo() {
-        return facCodigo;
-    }
-
-    public void setFacCodigo(String facCodigo) {
-        this.facCodigo = facCodigo;
-    }
-
+    
     public Facturas getFacturas() {
         return facturas;
     }
@@ -253,9 +244,9 @@ public class HomeFacturaDetalle extends ActionSupport {
         if(filtro == null){
             filtro = "";
         }*/
-        facturas = ControladoresDAO.cFacturas.RecuperaPorId(Integer.parseInt(facCodigo));
+        facturas = ControladoresDAO.cFacturas.RecuperaPorId(facdId);
         total = 0.0;
-        lista_facturaDetalle = ControladoresDAO.cFacturaDetalle.RecuperaTodos(""+clave);
+        lista_facturaDetalle = ControladoresDAO.cFacturaDetalle.RecuperaTodos(""+facdId);
         for(FacturaDetalle fd:lista_facturaDetalle){
             total += (fd.getFacdPrecio() - (fd.getFacdPrecio() * fd.getFacdDescuento() / 100)) * fd.getFacdCantidad();
         }

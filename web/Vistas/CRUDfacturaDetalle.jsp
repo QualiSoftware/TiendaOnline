@@ -12,14 +12,14 @@
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
         <link rel="stylesheet" href="../Estilos/GeneralEstilos.css"/>
-        <title>Detalle de factura <s:property value="facCodigo" /></title>
+        <title>Detalle de factura <s:property value="facturas.facCodigo" /></title>
     </head>
     <body>
         <s:include value="cabeceraHeader.jsp" />
             <div id="marca">Tienda Ropa <img src="../Imagenes/house_hangers.svg" alt="house_hangers" id="logo"/>
             </div>
             <div id="titulo_Pagina">
-                Detalle de factura <s:property value="facCodigo" /><br/>
+                Detalle de factura <s:property value="facturas.facCodigo" /><br/>
                 Cliente <s:property value="facturas.facRazonsocial" />&nbsp;&nbsp;&nbsp;&nbsp;
                 Fecha <s:date name="facturas.facFecha" format="dd/MM/yyyy"/>
             </div>

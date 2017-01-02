@@ -27,7 +27,7 @@
         <s:form action="MarcasFiltro" theme="simple">
         <table border="1">
             <tr>
-                <td colspan="2">
+                <td colspan="3">
                     Filtro : <s:textfield name="filtro" /><s:submit value="filtrar"></s:submit>                  
                     &nbsp;&nbsp;&nbsp;&nbsp;
                     <s:a action="MarcasForm">

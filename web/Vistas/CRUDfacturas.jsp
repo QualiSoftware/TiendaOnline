@@ -122,8 +122,7 @@
                 <tr class="<%out.println(fondo);%>">
                     <td>
                         <s:a action="FacturaDetalleFiltro">
-                            <s:param name="clave" value="#a.facId"/>
-                            <s:param name="facCodigo" value="#a.facCodigo"/>
+                            <s:param name="facdId" value="#a.facId"/>
                             <i style="font-size: 20px" class="glyphicon glyphicon-list-alt"></i>
                         </s:a>
                         &nbsp;&nbsp;
