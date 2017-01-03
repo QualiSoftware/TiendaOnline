@@ -318,9 +318,9 @@ public class HomeCesta extends ActionSupport {
         }
         // para cuando tengamos sesión de usuario
          try{
-         u = (Usuarios) sesion.get("usuarioLogueado");
+            u = (Usuarios) sesion.get("usuarioLogueado");
          }catch(Exception e){
-         return INPUT;
+            return INPUT;
          }
         int respuesta;
         c = new Cesta();

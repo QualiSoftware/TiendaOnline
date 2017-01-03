@@ -1,6 +1,7 @@
 package ControladoresDAO;
 
 import Modelos.Facturas;
+import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -108,11 +109,18 @@ public class cFacturas {
     
     public static String SiguienteFactura(){
         sesion = (Session) NewHibernateUtil.getSession();
-        String sql = "select max(facCodigo) From Facturas";
+        String sql = "select facCodigo From Facturas ORDER BY facId";
         Query query = sesion.createQuery(sql);
         List<String> uf = query.list();
-        int i = Integer.parseInt(uf.get(0));
-        i++;
+        int j=-1;
+        List<Integer> listaInt = new ArrayList<Integer>();
+        for(String list:uf){
+            listaInt.add(Integer.parseInt(list));
+            j++;
+        }
+        int i = listaInt.get(j)+1;
+        listaInt.clear();
+        uf.clear();
         return ""+i;
     }
     
