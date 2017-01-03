@@ -66,9 +66,9 @@
         </action>
         <action name="volverCesta">
             <result type="redirect">CestaFiltro</result>
-        </action>        
+        </action>     
         <action name="CestaFiltro" class="Acciones.HomeCesta" method="CestaFiltro">
-            <result>/Vistas/pruebaCRUDCestaFacuracion.jsp</result>           
+            <result>/Vistas/pruebaCRUDCestaFacuracion.jsp</result>
         </action>        
         <action name="CargaEliminaCesta" class="Acciones.HomeCesta" method="CargaEliminaCesta">
             <result>/Vistas/pruebaCRUDformularioUsuarios.jsp</result>           
@@ -376,8 +376,17 @@
         <action name="TiendaCerrarSesion" class="Acciones.HomeUsuariosValidaciones" method="CerrarSesion">
             <result type="redirect">Tienda</result>
         </action>
-        <action name="TiendaCampanias" class="Acciones.HomeRopa" method="RopaMenu">
+        <action name="TiendaMenu" class="Acciones.HomeRopa" method="RopaMenu">
             <result>/Vistas/tiendaMenu.jsp</result>
+        </action>
+        <action name="TiendaCesta" class="Acciones.HomeCesta" method="CrudActionUsuariosCesta">
+            <result type="redirectAction">
+                <param name="clientela2">${clientela2}</param>
+                <param name="categoria2">${categoria2}</param>
+                <param name="marcas2">${marcas2}</param>
+                <param name="campania">${campania}</param>
+                <param name="actionName">TiendaMenu</param>
+            </result>
         </action>
         
     </package>

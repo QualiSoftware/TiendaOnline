@@ -16,7 +16,8 @@
         <s:property value="u.usuNombre"/>
         <center>
             <h1>La factura fue enviada por email</h1>
-            <s:a action="RopaFiltroU">
+            <!--<s:a action="RopaFiltroU">-->
+            <s:a action="Tienda">
                 <i style="font-size: 20px;">Volver a la tienda</i>
             </s:a>
         </center>

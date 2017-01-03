@@ -45,10 +45,40 @@
                         <s:property value="mensajeError" />
                         <s:a action="CestaFiltro" theme="simple">
                             <s:textfield type="hidden" value="1" name="filtro" />
-                            
-                                <s:property value="totalcestaUsuario"/>
-                                <img src="../Imagenes/Administracion/Shopping-Cart-10.png" alt="" id="imgcesta"/>
-                                
+                            <s:property value="totalcestaUsuario"/>
+                            <img src="../Imagenes/Administracion/Shopping-Cart-10.png" alt="" id="imgcesta"/>
+                            <span>
+                                <table>
+                                    <tr>
+                                        <th>Descripcion</th>
+                                        <th>Color</th>
+                                        <th>Tallas</th>
+                                        <th>Precio</th>
+                                        <th>Fotos</th>                                   
+                                    </tr>
+                                    <s:iterator var="c" value="lista_ropa_Cestas">
+                                        <tr>
+                                            <td>
+                                                <s:property value="#c.Ropa.roDescripcion"/>
+                                            </td>
+                                            <td>
+                                                <s:property value="#c.Ropa.color.colorDescripcion"/>
+                                            </td>
+                                            <td>
+                                                <s:property value="#c.Ropa.tallas.tallaDescripcion"/>
+                                            </td>
+                                            <td>
+                                                <s:property value="#c.Ropa.roPrecio"/>
+                                            </td>
+                                            <td>
+                                                <s:iterator var="f" value="#c.Ropa.fotoses">
+                                                    <s:property value="fotosRuta"/>
+                                                </s:iterator>
+                                            </td>
+                                        </tr>
+                                    </s:iterator>
+                                </table>
+                            </span>  
                         </s:a>
                     </s:if>                                
                     <s:if test="sesion.usuarioLogueado.usuAdministrador==1">
@@ -167,7 +197,7 @@
             <div id="menu">
                 <ul class="nav nav-pills">
                     <li class="dropdown">
-                        <s:a action="TiendaCampanias"  class="dropdown-toggle" style="font-weight: normal;">TODAS LA VENTAS</s:a>
+                        <s:a action="TiendaMenu"  class="dropdown-toggle" style="font-weight: normal;">TODAS LA VENTAS</s:a>
 
                     </li>                    
                     <li class="dropdown">
@@ -175,7 +205,7 @@
                         <ul class="dropdown-menu" id="Mujer">
                             <s:iterator var="a" value= "lista_menu_ropa">
                                 <s:if test="#a.clientela.clientelaDescripcion=='Mujer'">
-                                    <li><s:a action="TiendaCampanias">
+                                    <li><s:a action="TiendaMenu">
                                             <s:property value="#a.categoria.catDescripcion"/>
                                             <s:param name="clientela2" value="#a.clientela.clientelaId"/>
                                             <s:param name="categoria2" value="#a.categoria.catId"/>
@@ -189,7 +219,7 @@
                         <ul class="dropdown-menu" id="hombre">
                             <s:iterator var="a" value= "lista_menu_ropa">
                                 <s:if test="#a.clientela.clientelaDescripcion=='Hombre'">
-                                    <li><s:a action="TiendaCampanias">
+                                    <li><s:a action="TiendaMenu">
                                         <s:property value="#a.categoria.catDescripcion"/>
                                         <s:param name="clientela2" value="#a.clientela.clientelaId"/>
                                         <s:param name="categoria2" value="#a.categoria.catId"/>
@@ -203,7 +233,7 @@
                         <a href="#"  class="dropdown-toggle" style="font-weight: normal;">MARCAS DE TEMPORADA <b class="caret"></b></a>
                         <ul class="dropdown-menu" >
                             <s:iterator var="a" value= "lista_marcas">
-                                <li><s:a action="TiendaCampanias">
+                                <li><s:a action="TiendaMenu">
                                         <s:property value="#a.marcaNombre"/>
                                         <s:param name="marcas2" value="#a.marcaId"/>
                                     </s:a></li>
@@ -216,15 +246,15 @@
             <div id="contenido">
                 <div id="ruta_Navegacion">
                     <s:a action="Tienda">Inicio</s:a> > 
-                    <s:if test="marcas2==null && clientela2!=null"><s:property value="categoria"/> <s:property value="clientela"/></s:if>
-                    <s:elseif test="marcas2==null && clientela2==null && campania==null">Todas las ventas</s:elseif>
-                    <s:elseif test="marcas2==null && campania!=null"><s:property value="campaniaNombre"/></s:elseif>
+                    <s:if test="(marcas2==null && clientela2!=null) || (marcas2=='' && clientela2!='')"><s:property value="categoria"/> <s:property value="clientela"/></s:if>
+                    <s:elseif test="(marcas2==null && clientela2==null && campania==null) || (marcas2=='' && clientela2=='' && campania=='')">Todas las ventas</s:elseif>
+                    <s:elseif test="(marcas2==null && campania!=null) || (marcas2=='' && campania!='')"><s:property value="campaniaNombre"/></s:elseif>
                     <s:else><s:property value="marca"/></s:else>
                 </div>
                 <div id="nombre_Categoria">
-                    <s:if test="marcas2==null && clientela2!=null"><s:property value="categoria"/> <s:property value="clientela"/></s:if>
-                    <s:elseif test="marcas2==null && clientela2==null && campania==null">Todos nuestros productos</s:elseif>
-                    <s:elseif test="marcas2==null && campania!=null">Las campañas más exclusivas</s:elseif>
+                    <s:if test="(marcas2==null && clientela2!=null) || (marcas2=='' && clientela2!='')"><s:property value="categoria"/> <s:property value="clientela"/></s:if>
+                    <s:elseif test="(marcas2==null && clientela2==null && campania==null) || (marcas2=='' && clientela2=='' && campania=='')">Todos nuestros productos</s:elseif>
+                    <s:elseif test="(marcas2==null && campania!=null) || (marcas2=='' && campania!='')">Las campañas más exclusivas</s:elseif>
                     <s:else>Las marcas que están de moda</s:else>
                 </div>
                 <div id="productos" style="margin-top: 50px;">
@@ -265,11 +295,11 @@
                                                         <tr>
                                                             <td>Talla</td>
                                                             <td>
-                                                                <s:if test="#m.tallas.tallaDescripcion!='XXL'">
+                                                                <s:if test='#m.tallas.tallaDescripcion!="XXL"'>
                                                                     <span style="text-decoration:line-through;">
                                                                 </s:if>
                                                                     XXL
-                                                                <s:if test="#m.tallas.tallaDescripcion!='XXL'">
+                                                                <s:if test='#m.tallas.tallaDescripcion!="XXL"'>
                                                                     </span>
                                                                 </s:if>
                                                                 <br>
@@ -312,8 +342,23 @@
 
                                             </div>
                                         </div>
-                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="../Imagenes/Administracion/bRTdpoqi9.png" title="Аñadir a Favoritos" style="box-shadow:  0px 0px 0px;"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                        <img src="../Imagenes/Administracion/shopping-basket-xxl.png" title="Añadir a la Cesta" style="box-shadow: 0px 0px 0px;"><br><span style="color: white">Vista &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Favoritos&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cesta</span>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <img src="../Imagenes/Administracion/bRTdpoqi9.png" title="Аñadir a Favoritos" style="box-shadow:  0px 0px 0px;"/>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <s:a action="TiendaCesta">
+                                            <s:param name="clientela2" value="%{clientela2}"/>
+                                            <s:param name="categoria2" value="%{categoria2}"/>
+                                            <s:param name="marcas2" value="%{marcas2}"/>
+                                            <s:param name="campania" value="%{campania}"/>
+                                            <s:param name="accion" value="'c'"/>
+                                            <s:param name="accionocul" value="'c'"/>
+                                            <s:param name="cantidad" value="1"/>
+                                            <s:param name="clave" value="#m.roId"/>
+                                            
+                                                <img src="../Imagenes/Administracion/shopping-basket-xxl.png" title="Añadir a la Cesta" style="box-shadow: 0px 0px 0px;">
+                                            
+                                        </s:a><br>
+                                        <span style="color: white">Vista &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Favoritos&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cesta</span>
                                     </div>
                                 </td>
                             </tr>

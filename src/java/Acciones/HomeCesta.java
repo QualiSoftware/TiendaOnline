@@ -75,6 +75,10 @@ public class HomeCesta extends ActionSupport {
     private String prov;
     private String pais;
     private int facUsuId;
+    private String clientela2;
+    private String categoria2;
+    private String marcas2;
+    private String campania;
     
 
     public boolean isAceptarpago() {
@@ -247,6 +251,38 @@ public class HomeCesta extends ActionSupport {
 
     public void setFacUsuId(int facUsuId) {
         this.facUsuId = facUsuId;
+    }
+
+    public String getClientela2() {
+        return clientela2;
+    }
+
+    public void setClientela2(String clientela2) {
+        this.clientela2 = clientela2;
+    }
+
+    public String getCategoria2() {
+        return categoria2;
+    }
+
+    public void setCategoria2(String categoria2) {
+        this.categoria2 = categoria2;
+    }
+
+    public String getMarcas2() {
+        return marcas2;
+    }
+
+    public void setMarcas2(String marcas2) {
+        this.marcas2 = marcas2;
+    }
+
+    public String getCampania() {
+        return campania;
+    }
+
+    public void setCampania(String campania) {
+        this.campania = campania;
     }
 
     public Integer getCantidad() {

@@ -22,9 +22,10 @@
          <table border="1">
             <tr>
                 <td>
-                    <a href="volverRopaU">
-                            volver
-                        </a>
+                    <!--<a href="volverRopaU">-->
+                    <a href="Tienda">
+                        volver
+                    </a>
                 </td>
                 
             </tr>

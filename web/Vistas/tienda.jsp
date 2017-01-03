@@ -43,6 +43,38 @@
                             <s:textfield type="hidden" value="1" name="filtro" />
                             <s:property value="totalcestaUsuario"/>
                             <img src="../Imagenes/Administracion/Shopping-Cart-10.png" alt="" id="imgcesta"/>
+                            <span>
+                                <table>
+                                    <tr>
+                                        <th>Descripcion</th>
+                                        <th>Color</th>
+                                        <th>Tallas</th>
+                                        <th>Precio</th>
+                                        <th>Fotos</th>                                   
+                                    </tr>
+                                    <s:iterator var="c" value="lista_ropa_Cestas">
+                                        <tr>
+                                            <td>
+                                                <s:property value="#c.Ropa.roDescripcion"/>
+                                            </td>
+                                            <td>
+                                                <s:property value="#c.Ropa.color.colorDescripcion"/>
+                                            </td>
+                                            <td>
+                                                <s:property value="#c.Ropa.tallas.tallaDescripcion"/>
+                                            </td>
+                                            <td>
+                                                <s:property value="#c.Ropa.roPrecio"/>
+                                            </td>
+                                            <td>
+                                                <s:iterator var="f" value="#c.Ropa.fotoses">
+                                                    <s:property value="fotosRuta"/>
+                                                </s:iterator>
+                                            </td>
+                                        </tr>
+                                    </s:iterator>
+                                </table>
+                            </span>  
                         </s:a>
                     </s:if>                                
                     <s:if test="sesion.usuarioLogueado.usuAdministrador==1">
@@ -164,7 +196,7 @@
             <div id="menu">
                 <ul class="nav nav-pills">
                     <li class="dropdown">
-                        <s:a action="TiendaCampanias"  class="dropdown-toggle" style="font-weight: normal;">TODAS LA VENTAS</s:a>
+                        <s:a action="TiendaMenu"  class="dropdown-toggle" style="font-weight: normal;">TODAS LA VENTAS</s:a>
 
                     </li>                    
                     <li class="dropdown">
@@ -172,7 +204,7 @@
                         <ul class="dropdown-menu" id="Mujer">
                             <s:iterator var="a" value= "lista_menu_ropa">
                                 <s:if test="#a.clientela.clientelaDescripcion=='Mujer'">
-                                    <li><s:a action="TiendaCampanias">
+                                    <li><s:a action="TiendaMenu">
                                             <s:property value="#a.categoria.catDescripcion"/>
                                             <s:param name="clientela2" value="#a.clientela.clientelaId"/>
                                             <s:param name="categoria2" value="#a.categoria.catId"/>
@@ -186,7 +218,7 @@
                         <ul class="dropdown-menu" id="hombre">
                             <s:iterator var="a" value= "lista_menu_ropa">
                                 <s:if test="#a.clientela.clientelaDescripcion=='Hombre'">
-                                    <li><s:a action="TiendaCampanias">
+                                    <li><s:a action="TiendaMenu">
                                         <s:property value="#a.categoria.catDescripcion"/>
                                         <s:param name="clientela2" value="#a.clientela.clientelaId"/>
                                         <s:param name="categoria2" value="#a.categoria.catId"/>
@@ -200,7 +232,7 @@
                         <a href="#"  class="dropdown-toggle" style="font-weight: normal;">MARCAS DE TEMPORADA <b class="caret"></b></a>
                         <ul class="dropdown-menu" >
                             <s:iterator var="a" value= "lista_marcas">
-                                <li><s:a action="TiendaCampanias">
+                                <li><s:a action="TiendaMenu">
                                         <s:property value="#a.marcaNombre"/>
                                         <s:param name="marcas2" value="#a.marcaId"/>
                                     </s:a></li>
@@ -217,7 +249,7 @@
                     CAMPAÑAS</div>
                 <div id="campagnas">
                     <s:iterator var="a" value="lista_campanias">
-                        <s:a action="TiendaCampanias">
+                        <s:a action="TiendaMenu">
                             <table  class="imgproducto">                        
                                 <tr>
                                     <td class="descuento"><span class="descuento_Txt">¡10% de Descuento!</span><span class="validez_Txt">Hasta el <s:property value="#a.camFin"/></span></td>
@@ -243,7 +275,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <s:a action="TiendaCampanias">
+                                    <s:a action="TiendaMenu">
                                         <img src="../Imagenes/Marcas/<s:property value="#m.marcaFoto"/>" alt="<s:property value="#m.marcaNombre"/>"/>
                                         <s:param name="marcas2" value="#m.marcaId"/>
                                     </s:a>
