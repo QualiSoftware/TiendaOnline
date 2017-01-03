@@ -222,7 +222,10 @@
                     <s:else><s:property value="marca"/></s:else>
                 </div>
                 <div id="nombre_Categoria">
-                    <s:property value="categoria"/> <s:property value="clientela"/>
+                    <s:if test="marcas2==null && clientela2!=null"><s:property value="categoria"/> <s:property value="clientela"/></s:if>
+                    <s:elseif test="marcas2==null && clientela2==null && campania==null">Todos nuestros productos</s:elseif>
+                    <s:elseif test="marcas2==null && campania!=null">Las campañas más exclusivas</s:elseif>
+                    <s:else>Las marcas que están de moda</s:else>
                 </div>
                 <div id="productos" style="margin-top: 50px;">
                     <s:iterator var="m" value="lista_ropa">
