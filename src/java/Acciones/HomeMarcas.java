@@ -3,10 +3,12 @@ package Acciones;
 import Modelos.Marcas;
 import Modelos.Ropa;
 import Modelos.Usuarios;
+import static com.opensymphony.xwork2.Action.INPUT;
 import static com.opensymphony.xwork2.Action.SUCCESS;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import org.apache.commons.io.FileUtils;
@@ -28,7 +30,6 @@ public class HomeMarcas extends ActionSupport {
     //fijos para la carga del formulario
     private int clave;
     private String accion;
-    private String accionocul;
     private String cabeceraocul;
     private String botonocul;
     //variables de carga del formulario
@@ -41,6 +42,7 @@ public class HomeMarcas extends ActionSupport {
     private List<Ropa> lista_ropa;
     private String usi;
     private Usuarios u;
+    private String mensajeNoBorrar;
     
     //getters and setters
 
@@ -59,8 +61,14 @@ public class HomeMarcas extends ActionSupport {
     public void setU(Usuarios u) {
         this.u = u;
     }
-    
-    
+
+    public String getMensajeNoBorrar() {
+        return mensajeNoBorrar;
+    }
+
+    public void setMensajeNoBorrar(String mensajeNoBorrar) {
+        this.mensajeNoBorrar = mensajeNoBorrar;
+    }
 
     public List<Ropa> getLista_ropa() {
         return lista_ropa;
@@ -85,14 +93,6 @@ public class HomeMarcas extends ActionSupport {
 
     public void setAccion(String accion) {
         this.accion = accion;
-    }
-
-    public String getAccionocul() {
-        return accionocul;
-    }
-
-    public void setAccionocul(String accionocul) {
-        this.accionocul = accionocul;
     }
 
     public String getCabeceraocul() {
@@ -236,7 +236,6 @@ public class HomeMarcas extends ActionSupport {
         if(accion.equals("a")){
             marcaId = 0;
             marcaNombre = "";
-            accionocul = "a";
             cabeceraocul = "Alta";
             botonocul = "Alta";
         }else{
@@ -246,11 +245,9 @@ public class HomeMarcas extends ActionSupport {
             marcaFoto = p.getMarcaFoto();
 
             if(accion.equals("m")){
-                accionocul = "m";
                 cabeceraocul = "Modificar";
                 botonocul = "Modificar";  
             }else{
-                accionocul = "e";
                 cabeceraocul = "Eliminar";
                 botonocul = "Eliminar";
             }
@@ -262,7 +259,7 @@ public class HomeMarcas extends ActionSupport {
         Ruta();
         try{
             Marcas p;
-            if (accionocul.equals("a")) {
+            if (accion.equals("a")) {
                 if(archivoMarca != null){
                     File destFile  = new File(ruta, archivoMarcaFileName);
                     FileUtils.copyFile(archivoMarca, destFile);
@@ -272,7 +269,7 @@ public class HomeMarcas extends ActionSupport {
                 p = new Marcas(marcaNombre,archivoMarcaFileName);
                 ControladoresDAO.cMarcas.Inserta(p);
             }
-            if (accionocul.equals("m")) {
+            if (accion.equals("m")) {
                 if(archivoMarca != null){
                     EliminaArchivo();
                     File destFile  = new File(ruta, archivoMarcaFileName);
@@ -284,10 +281,18 @@ public class HomeMarcas extends ActionSupport {
                 p.setMarcaId(marcaId);
                 ControladoresDAO.cMarcas.Modifica(p);
             }
-            if (accionocul.equals("e")) {
-                EliminaArchivo();
+            if (accion.equals("e")) {
                 p = ControladoresDAO.cMarcas.RecuperaPorId(marcaId);
-                ControladoresDAO.cMarcas.Elimina(p);
+                ArrayList listaInactivas = ControladoresDAO.cRopa.RecuperaTodoPorAlgo("marcas.marcaId",marcaId,0);
+                ArrayList listaActivas = ControladoresDAO.cRopa.RecuperaTodoPorAlgo("marcas.marcaId",marcaId,1);
+                int cantidad = listaActivas.size() + listaInactivas.size();
+                if(cantidad > 0){
+                    mensajeNoBorrar = "Hay "+listaActivas.size()+" ropa visible y "+listaInactivas.size()+" ropa no visible \r\nque utilizan esta Marca.";
+                    return INPUT;
+                }else{
+                    EliminaArchivo();
+                    ControladoresDAO.cMarcas.Elimina(p);
+                }
             }        
             return SUCCESS;
         }catch(Exception e){

@@ -137,5 +137,13 @@ public class cRopa {
         Query query = sesion.createQuery(sql);
         ArrayList<Ropa> lt = (ArrayList) query.list();
         return lt;
-    }    
+    }
+    
+    public static ArrayList<Ropa> RecuperaTodoPorAlgo(String algo, int id, int visible) {
+        sesion = (Session) NewHibernateUtil.getSession();
+        String sql = "From Ropa WHERE " + algo + " = " + id + " AND roVisible = " + visible;
+        Query query = sesion.createQuery(sql);
+        ArrayList<Ropa> lt = (ArrayList) query.list();
+        return lt;
+    }
 }

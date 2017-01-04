@@ -91,7 +91,7 @@
                             <s:textfield name="camNombre" readonly="true" ></s:textfield>
                         </s:if>
                         <s:else>
-                            <s:textfield name="camNombre" id="camNombre"></s:textfield>
+                            <s:textfield name="camNombre" id="camNombre" maxLength="50"></s:textfield>
                         </s:else>
                     </td>
                 </tr>

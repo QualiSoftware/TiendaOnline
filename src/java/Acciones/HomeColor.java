@@ -1,9 +1,11 @@
 package Acciones;
 
 import Modelos.Color;
+import static com.opensymphony.xwork2.Action.INPUT;
 import static com.opensymphony.xwork2.Action.SUCCESS;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -18,12 +20,12 @@ public class HomeColor extends ActionSupport {
     //fijos para la carga del formulario
     private int clave;
     private String accion;
-    private String accionocul;
     private String cabeceraocul;
     private String botonocul;
     //variables de carga del formulario
     private int colorId;
-    private  String colorDescripcion;
+    private String colorDescripcion;
+    private String mensajeNoBorrar;
     
     //getters and setters
     public int getClave() {    
@@ -40,14 +42,6 @@ public class HomeColor extends ActionSupport {
 
     public void setAccion(String accion) {
         this.accion = accion;
-    }
-
-    public String getAccionocul() {
-        return accionocul;
-    }
-
-    public void setAccionocul(String accionocul) {
-        this.accionocul = accionocul;
     }
 
     public String getCabeceraocul() {
@@ -80,6 +74,14 @@ public class HomeColor extends ActionSupport {
 
     public void setColorDescripcion(String colorDescripcion) {
         this.colorDescripcion = colorDescripcion;
+    }
+
+    public String getMensajeNoBorrar() {
+        return mensajeNoBorrar;
+    }
+
+    public void setMensajeNoBorrar(String mensajeNoBorrar) {
+        this.mensajeNoBorrar = mensajeNoBorrar;
     }
 
     public Map getSesion() {
@@ -121,7 +123,6 @@ public class HomeColor extends ActionSupport {
         if(accion.equals("a")){
             colorId = 0;
             colorDescripcion = "";
-            accionocul = "a";
             cabeceraocul = "Alta";
             botonocul = "Alta";
         }else{
@@ -130,11 +131,9 @@ public class HomeColor extends ActionSupport {
             colorDescripcion = p.getColorDescripcion();
 
             if(accion.equals("m")){
-                accionocul = "m";
                 cabeceraocul = "Modificación";
                 botonocul = "Modificar";  
             }else{
-                accionocul = "e";
                 cabeceraocul = "Eliminación";
                 botonocul = "Eliminación";
             }
@@ -143,20 +142,26 @@ public class HomeColor extends ActionSupport {
     }
     
     public String CrudActionColor() throws Exception {         
-        if (accionocul.equals("a")) {            
+        if (accion.equals("a")) {            
            Color p = new Color(colorDescripcion);
-           p.setColorId(colorId);
             ControladoresDAO.cColor.Inserta(p);
         }
-        if (accionocul.equals("m")) {
+        if (accion.equals("m")) {
             Color p = new Color(colorDescripcion); 
             p.setColorId(colorId);
             ControladoresDAO.cColor.Modifica(p);
         }
-        if (accionocul.equals("e")) {
-            Color p = new Color(colorDescripcion); 
-            p.setColorId(colorId);
-            ControladoresDAO.cColor.Elimina(p);
+        if (accion.equals("e")) {
+            Color p = ControladoresDAO.cColor.RecuperaPorId(colorId);
+            ArrayList listaInactivas = ControladoresDAO.cRopa.RecuperaTodoPorAlgo("color.colorId",colorId,0);
+            ArrayList listaActivas = ControladoresDAO.cRopa.RecuperaTodoPorAlgo("color.colorId",colorId,1);
+            int cantidad = listaActivas.size() + listaInactivas.size();
+            if(cantidad > 0){
+                mensajeNoBorrar = "Hay "+listaActivas.size()+" ropa visible y "+listaInactivas.size()+" ropa no visible \r\nque utilizan este Color.";
+                return INPUT;
+            }else{
+                ControladoresDAO.cColor.Elimina(p);
+            }
         }        
         return SUCCESS;
     }

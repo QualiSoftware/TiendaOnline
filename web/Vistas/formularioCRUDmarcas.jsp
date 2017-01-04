@@ -40,11 +40,12 @@
         <div  class="linea"></div>
         
         <s:form id="frm" action="CrudActionMarcas" theme="simple" method="post" enctype="multipart/form-data">
-            <input type="hidden" name="accionocul" id="accionocul" value=<s:property value="accion" /> />
+            <input type="hidden" name="accion" id="accionocul" value=<s:property value="accion" /> />
+            <input type="hidden" name="clave" value=<s:property value="clave" /> />
             <table>
                 <tr>
                     <td colspan="2">
-                        <span id="errores"></span>
+                        <pre><span id="errores"></span><s:property value="mensajeNoBorrar"/></pre>
                     </td>
                 </tr>
                 <tr>
@@ -60,11 +61,11 @@
                         <s:label for="marcaNombre">Descripción (*)</s:label>  
                         </td>
                         <td>
-                        <s:if test='%{accionocul == "e"}'>
+                        <s:if test='%{accion == "e"}'>
                             <s:textfield name="marcaNombre" readonly="true" ></s:textfield>
                         </s:if>
                         <s:else>
-                            <s:textfield name="marcaNombre" id="marcaNombre"></s:textfield>
+                            <s:textfield name="marcaNombre" id="marcaNombre" maxLength="30"></s:textfield>
                         </s:else>
                     </td>
                 </tr>
@@ -73,7 +74,7 @@
                         <s:label for="marcaFoto">Foto</s:label>  
                     </td>
                     <td>
-                        <s:if test='%{accionocul == "e"}'>
+                        <s:if test='%{accion == "e"}'>
                             <input type="hidden" name="marcaFoto" value="<s:property value="marcaFoto" />" />
                             <img src="../Imagenes/Marcas/<s:property value="marcaFoto"/>" height="70" alt="<s:property value="marcaFoto"/>"/>
                         </s:if>
@@ -89,8 +90,10 @@
                 </tr>
                 <tr>
                     <td colspan="2">
-                        <input type="button" onclick="Verificar();" value=<s:property value="botonocul" /> />                     
-                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <s:if test='%{mensajeNoBorrar == "" || mensajeNoBorrar == null}'>
+                            <input type="button" onclick="Verificar();" value=<s:property value="botonocul" /> />                     
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                        </s:if>
                         <s:a action="volverMarcas">
                             <i style="font-size: 20px;">Volver</i>
                         </s:a>     

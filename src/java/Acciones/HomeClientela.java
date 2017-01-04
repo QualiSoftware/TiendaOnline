@@ -11,6 +11,7 @@ import Modelos.Usuarios;
 import static com.opensymphony.xwork2.Action.SUCCESS;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -29,12 +30,12 @@ public class HomeClientela extends ActionSupport {
     //fijos para la carga del formulario
     private int clave;
     private String accion;
-    private String accionocul;
     private String cabeceraocul;
     private String botonocul;
     //variables de carga del formulario
     private int clientelaId;
     private  String clientelaDescripcion;
+    private String mensajeNoBorrar;
     
     
     
@@ -56,12 +57,12 @@ public class HomeClientela extends ActionSupport {
         this.accion = accion;
     }
 
-    public String getAccionocul() {
-        return accionocul;
+    public String getMensajeNoBorrar() {
+        return mensajeNoBorrar;
     }
 
-    public void setAccionocul(String accionocul) {
-        this.accionocul = accionocul;
+    public void setMensajeNoBorrar(String mensajeNoBorrar) {
+        this.mensajeNoBorrar = mensajeNoBorrar;
     }
 
     public String getCabeceraocul() {
@@ -135,7 +136,6 @@ public class HomeClientela extends ActionSupport {
         if(accion.equals("a")){
             clientelaId = 0;
             clientelaDescripcion = "";
-            accionocul = "a";
             cabeceraocul = "Alta";
             botonocul = "Alta";
         }else{
@@ -144,11 +144,9 @@ public class HomeClientela extends ActionSupport {
             clientelaDescripcion = p.getClientelaDescripcion();
 
             if(accion.equals("m")){
-                accionocul = "m";
                 cabeceraocul = "Modificación";
                 botonocul = "Modificar";  
             }else{
-                accionocul = "e";
                 cabeceraocul = "Eliminación";
                 botonocul = "Eliminar";
             }
@@ -158,21 +156,26 @@ public class HomeClientela extends ActionSupport {
     }
     public String CrudActionClientela() throws Exception {
           
-        if (accionocul.equals("a")) {
-            
+        if (accion.equals("a")) {            
            Clientela p = new Clientela(clientelaDescripcion);
-           p.setClientelaId(clientelaId);
             ControladoresDAO.cClientela.Inserta(p);
         }
-        if (accionocul.equals("m")) {
+        if (accion.equals("m")) {
             Clientela p = new Clientela(clientelaDescripcion);
             p.setClientelaId(clientelaId);
             ControladoresDAO.cClientela.Modifica(p);
         }
-        if (accionocul.equals("e")) {
-             Clientela p = new Clientela(clientelaDescripcion);
-           p.setClientelaId(clientelaId);
-            ControladoresDAO.cClientela.Elimina(p);
+        if (accion.equals("e")) {
+             Clientela p = ControladoresDAO.cClientela.RecuperaPorId(clientelaId);
+             ArrayList listaInactivas = ControladoresDAO.cRopa.RecuperaTodoPorAlgo("clientela.clientelaId",clientelaId,0);
+             ArrayList listaActivas = ControladoresDAO.cRopa.RecuperaTodoPorAlgo("clientela.clientelaId",clientelaId,1);
+             int cantidad = listaActivas.size() + listaInactivas.size();
+             if(cantidad > 0){
+                 mensajeNoBorrar = "Hay "+listaActivas.size()+" ropa visible y "+listaInactivas.size()+" ropa no visible \r\nque utilizan esta Clientela.";
+                 return INPUT;
+             }else{
+                ControladoresDAO.cClientela.Elimina(p);  
+             }            
         }
         
         return SUCCESS;

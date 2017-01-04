@@ -36,7 +36,6 @@ public class cColor {
         sesion.beginTransaction();
         try{
             if(esto!=null){
-               System.out.println(esto.getColorId());
                 sesion.delete(esto);
                 sesion.getTransaction().commit();
                 return 1;

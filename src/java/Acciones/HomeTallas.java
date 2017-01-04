@@ -20,7 +20,6 @@ public class HomeTallas extends ActionSupport {
     private String titulo;
     private String boton;
     private Map sesion;
-    private String accionocul;
     private String cabeceraocul;
     private String botonocul;
     
@@ -28,14 +27,7 @@ public class HomeTallas extends ActionSupport {
     private List<Tallas> lista_tallas;
     private Integer tallaId;
     private String tallaDescripcion;
-
-    public String getAccionocul() {
-        return accionocul;
-    }
-
-    public void setAccionocul(String accionocul) {
-        this.accionocul = accionocul;
-    }
+    private String mensajeNoBorrar;
 
     public String getCabeceraocul() {
         return cabeceraocul;
@@ -134,6 +126,14 @@ public class HomeTallas extends ActionSupport {
     public void setTallaDescripcion(String tallaDescripcion) {
         this.tallaDescripcion = tallaDescripcion;
     }
+
+    public String getMensajeNoBorrar() {
+        return mensajeNoBorrar;
+    }
+
+    public void setMensajeNoBorrar(String mensajeNoBorrar) {
+        this.mensajeNoBorrar = mensajeNoBorrar;
+    }
     
     @SkipValidation
     public String TallasFiltro() throws Exception {
@@ -173,46 +173,44 @@ public class HomeTallas extends ActionSupport {
         if(accion.equals("a")){
             tallaId = 0;
             tallaDescripcion = "";
-            accionocul = "a";
             cabeceraocul = "Alta";
             botonocul = "Alta";
         }else{
             Tallas p = ControladoresDAO.cTallas.RecuperaPorId(clave);           
             tallaId = p.getTallaId();
             tallaDescripcion = p.getTallaDescripcion();
-
             if(accion.equals("m")){
-                accionocul = "m";
                 cabeceraocul = "Modificación";
                 botonocul = "Modificar";  
             }else{
-                accionocul = "e";
                 cabeceraocul = "Eliminación";
                 botonocul = "Eliminar";
             }
-            
         }
         return SUCCESS;
     }
-   
-    
-    
 
-        public String CrudActionTallas() throws Exception {         
-        if (accionocul.equals("a")) {            
+    public String CrudActionTallas() throws Exception {         
+        if (accion.equals("a")) {            
            Tallas t = new Tallas(tallaDescripcion);
-           t.setTallaId(tallaId);
             ControladoresDAO.cTallas.Inserta(t);
         }
-        if (accionocul.equals("m")) {
+        if (accion.equals("m")) {
             Tallas t = new Tallas(tallaDescripcion); 
              t.setTallaId(tallaId);
             ControladoresDAO.cTallas.Modifica(t);
         }
-        if (accionocul.equals("e")) {
-            Tallas t = new Tallas(tallaDescripcion); 
-             t.setTallaId(tallaId);
-            ControladoresDAO.cTallas.Elimina(t);
+        if (accion.equals("e")) {
+            ArrayList listaInactivas = ControladoresDAO.cRopa.RecuperaTodoPorAlgo("tallas.tallaId",tallaId,0);
+            ArrayList listaActivas = ControladoresDAO.cRopa.RecuperaTodoPorAlgo("tallas.tallaId",tallaId,1);
+            int cantidad = listaActivas.size() + listaInactivas.size();
+            if(cantidad > 0){
+                mensajeNoBorrar = "Hay "+listaActivas.size()+" ropa visible y "+listaInactivas.size()+" ropa no visible \r\nque utilizan esta Talla.";
+                return INPUT;
+            }else{
+                Tallas t = ControladoresDAO.cTallas.RecuperaPorId(tallaId);
+                ControladoresDAO.cTallas.Elimina(t);
+            }
         }        
         return SUCCESS;
     }  

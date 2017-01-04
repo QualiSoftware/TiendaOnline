@@ -7,9 +7,11 @@ package Acciones;
 
 import Modelos.Look;
 import Modelos.Usuarios;
+import static com.opensymphony.xwork2.Action.INPUT;
 import static com.opensymphony.xwork2.Action.SUCCESS;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -28,15 +30,12 @@ public class HomeLook extends ActionSupport {
     //fijos para la carga del formulario
     private int clave;
     private String accion;
-    private String accionocul;
     private String cabeceraocul;
     private String botonocul;
     //variables de carga del formulario
     private int lookId;
-    private  String lookDescripcion;
-    
-    
-    
+    private String lookDescripcion;
+    private String mensajeNoBorrar;
     
     //getters and setters
     public int getClave() {    
@@ -53,14 +52,6 @@ public class HomeLook extends ActionSupport {
 
     public void setAccion(String accion) {
         this.accion = accion;
-    }
-
-    public String getAccionocul() {
-        return accionocul;
-    }
-
-    public void setAccionocul(String accionocul) {
-        this.accionocul = accionocul;
     }
 
     public String getCabeceraocul() {
@@ -93,6 +84,14 @@ public class HomeLook extends ActionSupport {
 
     public void setLookDescripcion(String lookDescripcion) {
         this.lookDescripcion = lookDescripcion;
+    }
+
+    public String getMensajeNoBorrar() {
+        return mensajeNoBorrar;
+    }
+
+    public void setMensajeNoBorrar(String mensajeNoBorrar) {
+        this.mensajeNoBorrar = mensajeNoBorrar;
     }
 
     public Map getSesion() {
@@ -138,7 +137,6 @@ public class HomeLook extends ActionSupport {
         if(accion.equals("a")){
             lookId = 0;
             lookDescripcion = "";
-            accionocul = "a";
             cabeceraocul = "Alta";
             botonocul = "Alta";
         }else{
@@ -146,11 +144,9 @@ public class HomeLook extends ActionSupport {
             lookId = p.getLookId();
             lookDescripcion = p.getLookDescripcion();
             if(accion.equals("m")){
-                accionocul = "m";
                 cabeceraocul = "Modificación";
                 botonocul = "Modificar";  
             }else{
-                accionocul = "e";
                 cabeceraocul = "Eliminación";
                 botonocul = "Eliminar";
             }
@@ -159,20 +155,26 @@ public class HomeLook extends ActionSupport {
     }
     
     public String CrudActionLook() throws Exception {         
-        if (accionocul.equals("a")) {            
+        if (accion.equals("a")) {            
            Look p = new Look(lookDescripcion);
-           p.setLookId(lookId);
             ControladoresDAO.cLook.Inserta(p);
         }
-        if (accionocul.equals("m")) {
+        if (accion.equals("m")) {
             Look p = new Look(lookDescripcion); 
             p.setLookId(lookId);
             ControladoresDAO.cLook.Modifica(p);
         }
-        if (accionocul.equals("e")) {
-            Look p = new Look(lookDescripcion); 
-            p.setLookId(lookId);
-            ControladoresDAO.cLook.Elimina(p);
+        if (accion.equals("e")) {
+            Look p = ControladoresDAO.cLook.RecuperaPorId(lookId);
+            ArrayList listaInactivas = ControladoresDAO.cRopa.RecuperaTodoPorAlgo("look.lookId",lookId,0);
+            ArrayList listaActivas = ControladoresDAO.cRopa.RecuperaTodoPorAlgo("look.lookId",lookId,1);
+            int cantidad = listaActivas.size() + listaInactivas.size();
+            if(cantidad > 0){
+                mensajeNoBorrar = "Hay "+listaActivas.size()+" ropa visible y "+listaInactivas.size()+" ropa no visible \r\nque utilizan este Look.";
+                return INPUT;
+            }else{
+                ControladoresDAO.cLook.Elimina(p);
+            }
         }        
         return SUCCESS;
     }  

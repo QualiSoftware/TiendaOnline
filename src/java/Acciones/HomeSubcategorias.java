@@ -22,7 +22,6 @@ public class HomeSubcategorias extends ActionSupport {
     private String titulo;
     private String boton;
     private Map sesion;
-    private String accionocul;
     private String cabeceraocul;
     private String botonocul;
 
@@ -32,15 +31,9 @@ public class HomeSubcategorias extends ActionSupport {
     private String subDescripcion;
     private Subcategoria p;
     private List<Categoria> lista_categoria;
+    private int catId;
     private String catId2;
-
-    public String getAccionocul() {
-        return accionocul;
-    }
-
-    public void setAccionocul(String accionocul) {
-        this.accionocul = accionocul;
-    }
+    private String mensajeNoBorrar;
 
     public String getCabeceraocul() {
         return cabeceraocul;
@@ -146,12 +139,28 @@ public class HomeSubcategorias extends ActionSupport {
         this.lista_categoria = lista_categoria;
     }
 
+    public int getCatId() {
+        return catId;
+    }
+
+    public void setCatId(int catId) {
+        this.catId = catId;
+    }
+
     public String getCatId2() {
         return catId2;
     }
 
     public void setCatId2(String catId2) {
         this.catId2 = catId2;
+    }
+
+    public String getMensajeNoBorrar() {
+        return mensajeNoBorrar;
+    }
+
+    public void setMensajeNoBorrar(String mensajeNoBorrar) {
+        this.mensajeNoBorrar = mensajeNoBorrar;
     }
 
     @SkipValidation
@@ -193,7 +202,6 @@ public class HomeSubcategorias extends ActionSupport {
         if (accion.equals("a")) {
             subId = 0;
             subDescripcion = "";
-            accionocul = "a";
             cabeceraocul = "Alta";
             botonocul = "Alta";
         } else {
@@ -202,11 +210,9 @@ public class HomeSubcategorias extends ActionSupport {
             subDescripcion = p.getSubDescripcion();
 
             if (accion.equals("m")) {
-                accionocul = "m";
                 cabeceraocul = "Modificación";
                 botonocul = "Modificar";
             } else {
-                accionocul = "e";
                 cabeceraocul = "Eliminación";
                 botonocul = "Eliminar";
             }
@@ -216,15 +222,15 @@ public class HomeSubcategorias extends ActionSupport {
 
     public String CrudActionSubcategorias() throws Exception {
         boolean modificoCategoria = false;
-        if (clave != Integer.parseInt(catId2)) {
+        if (catId != Integer.parseInt(catId2)) {
             modificoCategoria = true;
         }
         Categoria c = ControladoresDAO.cCategorias.RecuperaPorId(Integer.parseInt(catId2));
-        if (accionocul.equals("a")) {
+        if (accion.equals("a")) {
             p = new Subcategoria(c, subDescripcion);
             ControladoresDAO.cSubcategorias.Inserta(p);
         }
-        if (accionocul.equals("m")) {
+        if (accion.equals("m")) {
             p = new Subcategoria(c, subDescripcion);
             p.setSubId(subId);
             ControladoresDAO.cSubcategorias.Modifica(p);
@@ -237,10 +243,17 @@ public class HomeSubcategorias extends ActionSupport {
                 }
             }
         }
-        if (accionocul.equals("e")) {
-            p = new Subcategoria(c, subDescripcion);
-            p.setSubId(subId);
-            ControladoresDAO.cSubcategorias.Elimina(p);
+        if (accion.equals("e")) {
+            p = ControladoresDAO.cSubcategorias.RecuperaPorId(subId);
+            ArrayList listaInactivas = ControladoresDAO.cRopa.RecuperaTodoPorAlgo("subcategoria.subId",subId,0);
+            ArrayList listaActivas = ControladoresDAO.cRopa.RecuperaTodoPorAlgo("subcategoria.subId",subId,1);
+            int cantidad = listaActivas.size() + listaInactivas.size();
+            if(cantidad > 0){
+                mensajeNoBorrar = "Hay "+listaActivas.size()+" ropa visible y "+listaInactivas.size()+" ropa no visible \r\nque utilizan esta Subcategoría.";
+                return INPUT;
+            }else{
+                ControladoresDAO.cSubcategorias.Elimina(p);
+            }
         }
         return SUCCESS;
     }

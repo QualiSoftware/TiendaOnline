@@ -50,7 +50,12 @@
             <result>/Vistas/formularioCRUDcategoria.jsp</result>
         </action>
         <action name="CrudActionCategorias" class="Acciones.HomeCategorias" method="CrudActionCategorias">
-            <result name="input">/Vistas/formularioCRUDcategoria.jsp</result>
+            <result name="input" type="redirectAction">
+                <param name="accion">${accion}</param>
+                <param name="clave">${clave}</param>
+                <param name="mensajeNoBorrar">${mensajeNoBorrar}</param>
+                <param name="actionName">CategoriasForm</param>
+            </result>
             <result name="error">/Vistas/formularioCRUDcategoria.jsp</result>
             <result type="chain">CategoriaFiltro</result> 
         </action>
@@ -89,7 +94,12 @@
             <result>/Vistas/formularioCRUDclientela.jsp</result>
         </action>
         <action name="CrudActionClientela" class="Acciones.HomeClientela" method="CrudActionClientela">
-            <result name="input">/Vistas/formularioCRUDclientela.jsp</result>
+            <result name="input" type="redirectAction">
+                <param name="accion">${accion}</param>
+                <param name="clave">${clave}</param>
+                <param name="mensajeNoBorrar">${mensajeNoBorrar}</param>
+                <param name="actionName">ClientelaForm</param>
+            </result>
             <result name="error">/Vistas/formularioCRUDclientela.jsp</result>
             <result type="chain">ClientelaFiltro</result> 
         </action>
@@ -105,7 +115,12 @@
             <result>/Vistas/formularioCRUDcolecciones.jsp</result>
         </action>
         <action name="CrudActionColeccion" class="Acciones.HomeColeccion" method="CrudActionColeccion">
-            <result name="input">/Vistas/formularioCRUDcolecciones.jsp</result>
+            <result name="input" type="redirectAction">
+                <param name="accion">${accion}</param>
+                <param name="clave">${clave}</param>
+                <param name="mensajeNoBorrar">${mensajeNoBorrar}</param>
+                <param name="actionName">ColeccionForm</param>
+            </result>
             <result name="error">/Vistas/formularioCRUDcolecciones.jsp</result>
             <result type="chain">ColeccionFiltro</result> 
         </action>
@@ -121,7 +136,12 @@
             <result>/Vistas/formularioCRUDcolores.jsp</result>   
         </action>
         <action name="CrudActionColor" class="Acciones.HomeColor" method="CrudActionColor">
-            <result name="input">/Vistas/formularioCRUDcolores.jsp</result>
+            <result name="input" type="redirectAction">
+                <param name="accion">${accion}</param>
+                <param name="clave">${clave}</param>
+                <param name="mensajeNoBorrar">${mensajeNoBorrar}</param>
+                <param name="actionName">ColorForm</param>
+            </result>
             <result name="error">/Vistas/formularioCRUDcolores.jsp</result>
             <result type="chain">ColorFiltro</result> 
         </action>
@@ -179,7 +199,12 @@
             <result>/Vistas/formularioCRUDlook.jsp</result>   
         </action>
         <action name="CrudActionLook" class="Acciones.HomeLook" method="CrudActionLook">
-            <result name="input">/Vistas/formularioCRUDlook.jsp</result>
+            <result name="input" type="redirectAction">
+                <param name="accion">${accion}</param>
+                <param name="clave">${clave}</param>
+                <param name="mensajeNoBorrar">${mensajeNoBorrar}</param>
+                <param name="actionName">LookForm</param>
+            </result>
             <result name="error">/Vistas/formularioCRUDlook.jsp</result>
             <result type="chain">LookFiltro</result> 
         </action>
@@ -195,7 +220,12 @@
             <result>/Vistas/formularioCRUDmarcas.jsp</result>   
         </action>
         <action name="CrudActionMarcas" class="Acciones.HomeMarcas" method="CrudActionMarcas">
-            <result name="input">/Vistas/formularioCRUDmarcas.jsp</result>
+            <result name="input" type="redirectAction">
+                <param name="accion">${accion}</param>
+                <param name="clave">${clave}</param>
+                <param name="mensajeNoBorrar">${mensajeNoBorrar}</param>
+                <param name="actionName">MarcasForm</param>
+            </result>
             <result name="error">/Vistas/formularioCRUDmarcas.jsp</result>
             <result type="chain">MarcasFiltro</result> 
         </action>
@@ -259,7 +289,12 @@
         </action>
         <action name="CrudActionSubcategorias" class="Acciones.HomeSubcategorias" method="CrudActionSubcategorias">
             <result type="redirect">SubcategoriasFiltro</result>
-            <result name="input">/Vistas/formularioCRUDsubcategorias.jsp</result>
+            <result name="input" type="redirectAction">
+                <param name="accion">${accion}</param>
+                <param name="clave">${clave}</param>
+                <param name="mensajeNoBorrar">${mensajeNoBorrar}</param>
+                <param name="actionName">SubcategoriasForm</param>
+            </result>
             <result name="error">/Vistas/formularioCRUDsubcategorias.jsp</result>
         </action>
         <action name="volverSubcategorias">
@@ -275,7 +310,12 @@
         </action>
         <action name="CrudActionTallas" class="Acciones.HomeTallas" method="CrudActionTallas">
             <result type="redirect">TallasFiltro</result>
-            <result name="input">/Vistas/formularioCRUDtallas.jsp</result>
+            <result name="input" type="redirectAction">
+                <param name="accion">${accion}</param>
+                <param name="clave">${clave}</param>
+                <param name="mensajeNoBorrar">${mensajeNoBorrar}</param>
+                <param name="actionName">TallasForm</param>
+            </result>
             <result name="error">/Vistas/formularioCRUDtallas.jsp</result>
         </action>
         <action name="volverTallas">

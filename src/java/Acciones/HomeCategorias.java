@@ -7,8 +7,10 @@ package Acciones;
 
 import Modelos.Categoria;
 import Modelos.Usuarios;
+import static com.opensymphony.xwork2.Action.INPUT;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -26,12 +28,12 @@ public class HomeCategorias extends ActionSupport {
     //fijos para la carga del formulario
     private int clave;
     private String accion;
-    private String accionocul;
     private String cabeceraocul;
     private String botonocul;
     //variables de carga del formulario
     private int catId;
-    private  String catDescripcion;
+    private String catDescripcion;
+    private String mensajeNoBorrar;
     
     
     
@@ -51,14 +53,6 @@ public class HomeCategorias extends ActionSupport {
 
     public void setAccion(String accion) {
         this.accion = accion;
-    }
-
-    public String getAccionocul() {
-        return accionocul;
-    }
-
-    public void setAccionocul(String accionocul) {
-        this.accionocul = accionocul;
     }
 
     public String getCabeceraocul() {
@@ -93,6 +87,14 @@ public class HomeCategorias extends ActionSupport {
     public void setCatDescripcion(String catDescripcion) {
         this.catDescripcion = catDescripcion;
     }    
+
+    public String getMensajeNoBorrar() {
+        return mensajeNoBorrar;
+    }
+
+    public void setMensajeNoBorrar(String mensajeNoBorrar) {
+        this.mensajeNoBorrar = mensajeNoBorrar;
+    }
 
     public Map getSesion() {
         return sesion;
@@ -132,7 +134,6 @@ public class HomeCategorias extends ActionSupport {
         if(accion.equals("a")){
             catId = 0;
             catDescripcion = "";
-            accionocul = "a";
             cabeceraocul = "Alta";
             botonocul = "Alta";
         }else{
@@ -140,11 +141,9 @@ public class HomeCategorias extends ActionSupport {
             catId = p.getCatId();
             catDescripcion = p.getCatDescripcion();
             if(accion.equals("m")){
-                accionocul = "m";
                 cabeceraocul = "Modificación";
                 botonocul = "Modificar";  
             }else{
-                accionocul = "e";
                 cabeceraocul = "Eliminación";
                 botonocul = "Eliminar";
             }
@@ -153,20 +152,26 @@ public class HomeCategorias extends ActionSupport {
     }
 
     public String CrudActionCategorias() throws Exception {
-        if (accionocul.equals("a")) {
+        if (accion.equals("a")) {
            Categoria p = new Categoria(catDescripcion);
-           p.setCatId(catId);
             ControladoresDAO.cCategorias.Inserta(p);
         }
-        if (accionocul.equals("m")) {
+        if (accion.equals("m")) {
             Categoria p = new Categoria(catDescripcion);
             p.setCatId(catId);
             ControladoresDAO.cCategorias.Modifica(p);
         }
-        if (accionocul.equals("e")) {
-            Categoria p = new Categoria(catDescripcion);
-            p.setCatId(catId);
-            ControladoresDAO.cCategorias.Elimina(p);
+        if (accion.equals("e")) {
+            Categoria p = ControladoresDAO.cCategorias.RecuperaPorId(catId);
+            ArrayList listaInactivas = ControladoresDAO.cRopa.RecuperaTodoPorAlgo("categoria.catId",catId,0);
+            ArrayList listaActivas = ControladoresDAO.cRopa.RecuperaTodoPorAlgo("categoria.catId",catId,1);
+            int cantidad = listaActivas.size() + listaInactivas.size();
+            if(cantidad > 0){
+                mensajeNoBorrar = "Hay "+listaActivas.size()+" ropa visible y "+listaInactivas.size()+" ropa no visible \r\nque utilizan esta Categoría.";
+                return INPUT;
+            }else{
+                ControladoresDAO.cCategorias.Elimina(p);
+            }
         }
         return SUCCESS;
     }

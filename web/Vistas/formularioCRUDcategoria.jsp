@@ -39,11 +39,12 @@
         <div id="descripcion_Pagina"><h3 class="bold"><s:property value="cabeceraocul" /> de Categoria</h3></div>
         <div  class="linea"></div>        
         <s:form id="frm" action="CrudActionCategorias" theme="simple">
-            <input type="hidden" name="accionocul" id="accionocul" value=<s:property value="accion" /> />
+            <input type="hidden" name="accion" id="accionocul" value=<s:property value="accion" /> />
+            <input type="hidden" name="clave" value=<s:property value="clave" /> />
             <table>
                 <tr>
                     <td colspan="2">
-                        <span id="errores"></span>
+                        <pre><span id="errores"></span><s:property value="mensajeNoBorrar"/></pre>
                     </td>
                 </tr>
                 <tr>
@@ -59,18 +60,20 @@
                         <s:label for="catDescripcion">Descripción (*)</s:label>  
                         </td>
                         <td>
-                        <s:if test='%{accionocul == "e"}'>
+                        <s:if test='%{accion == "e"}'>
                             <s:textfield name="catDescripcion" readonly="true" ></s:textfield>
                         </s:if>
                         <s:else>
-                            <s:textfield name="catDescripcion" id="catDescripcion"></s:textfield>
+                            <s:textfield name="catDescripcion" id="catDescripcion" maxLength="100"></s:textfield>
                         </s:else>
                     </td>
                 </tr>
                 <tr>
                     <td colspan="2">
-                        <input type="button" onclick="Verificar();" value=<s:property value="botonocul" /> />                     
-                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <s:if test='%{mensajeNoBorrar == "" || mensajeNoBorrar == null}'>
+                            <input type="button" onclick="Verificar();" value=<s:property value="botonocul" /> />                     
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                        </s:if>
                         <s:a action="volverCategoria">
                             <i style="font-size: 20px;">Volver</i>
                         </s:a>     
