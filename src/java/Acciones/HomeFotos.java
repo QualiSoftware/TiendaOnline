@@ -7,6 +7,7 @@ import static com.opensymphony.xwork2.Action.SUCCESS;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import java.io.File;
+import java.util.Date;
 import org.apache.commons.io.FileUtils;
 import org.apache.struts2.ServletActionContext;
 
@@ -276,30 +277,31 @@ public class HomeFotos extends ActionSupport {
         t = ControladoresDAO.cRopa.RecuperaPorId(roId2);
         int resultado;
         Ruta();
+        Date ahora = new Date();
         if(!elimino1.equals("")){
             File fichero = new File(ruta + elimino1);
             if (fichero.delete()){
-                System.out.println("Archivo " + ruta + elimino1 + " borrado.");
+                System.out.println("Archivo " + ruta + elimino1 + " borrado " + ahora);
             }else{
-                System.out.println("El archivo" + ruta + elimino1 + " no puede ser borrado");
+                System.out.println("El archivo" + ruta + elimino1 + " no puede ser borrado " + ahora);
             }
             resultado = ControladoresDAO.cFotos.Elimina(ControladoresDAO.cFotos.RecuperaFotoABorrar(roId2, elimino1));
         }
         if(!elimino2.equals("")){
             File fichero = new File(ruta + elimino2);
             if (fichero.delete()){
-                System.out.println("Archivo " + ruta + elimino2 + " borrado.");
+                System.out.println("Archivo " + ruta + elimino2 + " borrado " + ahora);
             }else{
-                System.out.println("El archivo" + ruta + elimino2 + " no puede ser borrado");
+                System.out.println("El archivo" + ruta + elimino2 + " no puede ser borrado " + ahora);
             }
             resultado = ControladoresDAO.cFotos.Elimina(ControladoresDAO.cFotos.RecuperaFotoABorrar(roId2, elimino2));
         }
         if(!elimino3.equals("")){
             File fichero = new File(ruta + elimino3);
             if (fichero.delete()){
-                System.out.println("Archivo " + ruta + elimino3 + " borrado.");
+                System.out.println("Archivo " + ruta + elimino3 + " borrado " + ahora);
             }else{
-                System.out.println("El archivo" + ruta + elimino3 + " no puede ser borrado");
+                System.out.println("El archivo" + ruta + elimino3 + " no puede ser borrado " + ahora);
             }
             resultado = ControladoresDAO.cFotos.Elimina(ControladoresDAO.cFotos.RecuperaFotoABorrar(roId2, elimino3));
         }

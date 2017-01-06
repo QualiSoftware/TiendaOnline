@@ -81,6 +81,7 @@ public class HomeRopa extends ActionSupport {
     private Integer roId2;
     private String campania;
     private String campaniaNombre;
+    private int camDescuento;
     private String clientela;
     private String categoria;
     private String clientela2;
@@ -92,7 +93,7 @@ public class HomeRopa extends ActionSupport {
     private String tallas2;
     private String roDescripcion2;
     private double roPrecio2;
-    private double roDescuento2;
+    private int roDescuento2;
     private String roCaracteristicas2;
     private byte roVisible2;
     private int roUnidades2;
@@ -538,6 +539,14 @@ public class HomeRopa extends ActionSupport {
         this.campaniaNombre = campaniaNombre;
     }
 
+    public int getCamDescuento() {
+        return camDescuento;
+    }
+
+    public void setCamDescuento(int camDescuento) {
+        this.camDescuento = camDescuento;
+    }
+
     public String getClientela() {
         return clientela;
     }
@@ -586,11 +595,11 @@ public class HomeRopa extends ActionSupport {
         this.roPrecio2 = roPrecio2;
     }
 
-    public double getRoDescuento2() {
+    public int getRoDescuento2() {
         return roDescuento2;
     }
 
-    public void setRoDescuento2(double roDescuento2) {
+    public void setRoDescuento2(int roDescuento2) {
         this.roDescuento2 = roDescuento2;
     }
 
@@ -739,7 +748,7 @@ public class HomeRopa extends ActionSupport {
             roId2 = 0;
             roDescripcion2 = "";
             roPrecio2 = 0.0;
-            roDescuento2 = 0.0;
+            roDescuento2 = 0;
             roCaracteristicas2 = "";
             roVisible2 = 0;
             roUnidades2 = 0;
@@ -924,6 +933,7 @@ public class HomeRopa extends ActionSupport {
             }
             Campania camp = ControladoresDAO.cCampanias.RecuperaPorId(Integer.parseInt(campania));
             campaniaNombre = camp.getCamNombre();
+            camDescuento = camp.getCamDescuento();
         }else{
             lista_ropa = ControladoresDAO.cRopa.RecuperaPorMarca(marcas2, filtro);
             Marcas mar = ControladoresDAO.cMarcas.RecuperaPorId(Integer.parseInt(marcas2));

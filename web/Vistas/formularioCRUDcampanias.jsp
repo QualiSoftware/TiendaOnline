@@ -97,6 +97,19 @@
                 </tr>
                 <tr>
                     <td>
+                        <s:label for="camDescuento">Descuento</s:label>  
+                    </td>
+                    <td>
+                        <s:if test='%{accion == "e"}'>
+                            <s:textfield name="camDescuento" readonly="true" ></s:textfield>
+                        </s:if>
+                        <s:else>
+                            <s:textfield name="camDescuento" maxLength="4"></s:textfield>
+                        </s:else>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
                         <s:label for="camInicio">Fecha de inicio</s:label>  
                     </td>
                     <td>

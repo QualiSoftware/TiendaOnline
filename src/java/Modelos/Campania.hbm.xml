@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 06-dic-2016 14:39:35 by Hibernate Tools 4.3.1 -->
+<!-- Generated 06-ene-2017 14:44:49 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="Modelos.Campania" table="campania" catalog="tienda_ropa" optimistic-lock="version">
         <id name="camId" type="java.lang.Integer">
@@ -22,6 +22,9 @@
         </property>
         <property name="camFoto" type="string">
             <column name="cam_foto" length="100" not-null="true" />
+        </property>
+        <property name="camDescuento" type="int">
+            <column name="cam_descuento" not-null="true" />
         </property>
         <set name="campaniaRopas" table="campania_ropa" inverse="true" lazy="true" fetch="select">
             <key>

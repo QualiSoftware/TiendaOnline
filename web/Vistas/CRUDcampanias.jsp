@@ -120,6 +120,7 @@
                         <s:submit value="Nombre campaña" />
                     </s:form>
                 </th>
+                <th>Descuento</th>
                 <th>
                     <s:form action="CampaniasFiltro" method="post" theme="simple">
                         <input type="hidden" name="filtro" value="<%=filtro%>" />
@@ -186,6 +187,9 @@
                     </td>
                     <td>
                         <s:property value="#a.camNombre"/>
+                    </td>
+                    <td>
+                        <s:property value="#a.camDescuento"/>
                     </td>
                     <td>
                         <s:property value="#a.camInicio"/>

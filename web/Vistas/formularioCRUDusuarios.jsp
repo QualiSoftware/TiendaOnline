@@ -70,10 +70,15 @@
                 </tr>
                 <tr>
                     <td>
-                        <s:label for="usuEmail2">Email (*)</s:label>  
+                    <s:label for="usuEmail2">Email<s:if test='%{accion == "a"}'> (*)</s:if></s:label>  
                     </td>
                     <td>
-                        <s:textfield name="usuEmail2" id="usuEmail2" ></s:textfield>
+                        <s:if test='%{accion == "a"}'>
+                            <s:textfield name="usuEmail2" id="usuEmail2" ></s:textfield>
+                        </s:if>
+                        <s:else>
+                            <s:textfield name="usuEmail2" id="usuEmail2" readonly="true"></s:textfield>
+                        </s:else>
                     </td>
                 </tr>
                 <s:if test='%{accion == "a"}'>

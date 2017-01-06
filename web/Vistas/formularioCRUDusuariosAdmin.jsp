@@ -66,6 +66,14 @@
             </tr>
             <tr>
                 <td>
+                    <s:label for="usuAlta">Fecha de alta</s:label>  
+                </td>
+                <td>
+                    <s:textfield name="usuAlta" readonly="true" ></s:textfield>
+                </td>
+            </tr>
+            <tr>
+                <td>
                     <s:label for="usuDni2">DNI</s:label>  
                 </td>
                 <td>

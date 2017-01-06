@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 06-dic-2016 14:39:35 by Hibernate Tools 4.3.1 -->
+<!-- Generated 06-ene-2017 14:44:49 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="Modelos.Color" table="color" catalog="tienda_ropa" optimistic-lock="version">
         <id name="colorId" type="java.lang.Integer">
@@ -10,6 +10,9 @@
         </id>
         <property name="colorDescripcion" type="string">
             <column name="color_descripcion" length="30" not-null="true" />
+        </property>
+        <property name="colorFoto" type="string">
+            <column name="color_foto" length="100" not-null="true" />
         </property>
         <set name="ropas" table="ropa" inverse="true" lazy="true" fetch="select">
             <key>

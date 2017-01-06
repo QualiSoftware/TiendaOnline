@@ -37,6 +37,7 @@ public class HomeCampanias extends ActionSupport {
     private int camId;
     private String camMarca;
     private String camNombre;
+    private int camDescuento;
     private String camInicio;
     private String camFin;
     private String camFoto;
@@ -186,6 +187,14 @@ public class HomeCampanias extends ActionSupport {
 
     public void setCamNombre(String camNombre) {
         this.camNombre = camNombre;
+    }
+
+    public int getCamDescuento() {
+        return camDescuento;
+    }
+
+    public void setCamDescuento(int camDescuento) {
+        this.camDescuento = camDescuento;
     }
 
     public String getCamInicio() {
@@ -368,6 +377,7 @@ public class HomeCampanias extends ActionSupport {
             camFin = dayString+"-"+monthString+"-"+year;            
             camId = c.getCamId();
             camNombre = c.getCamNombre();
+            camDescuento = c.getCamDescuento();
             camFoto = c.getCamFoto();
 
             if(accion.equals("m")){
@@ -406,7 +416,7 @@ public class HomeCampanias extends ActionSupport {
                 }else{
                     archivoFileName = "";
                 }
-                c = new Campania(m, camNombre, i, f, archivoFileName);
+                c = new Campania(m, camNombre, i, f, archivoFileName,camDescuento);
                 ControladoresDAO.cCampanias.Inserta(c);
             }
             if (accion.equals("m")) {
@@ -417,7 +427,7 @@ public class HomeCampanias extends ActionSupport {
                 }else{
                     archivoFileName = camFoto;
                 }
-                c = new Campania(m, camNombre, i, f, archivoFileName);
+                c = new Campania(m, camNombre, i, f, archivoFileName,camDescuento);
                 c.setCamId(camId);
                 ControladoresDAO.cCampanias.Modifica(c);
             }
@@ -442,10 +452,11 @@ public class HomeCampanias extends ActionSupport {
    
    public void EliminaArchivo() throws Exception{
         File fichero = new File(ruta+camFoto);
+        Date ahora = new Date();
         if (fichero.delete()){
-            System.out.println("Archivo " + ruta + camFoto + " borrado.");
+            System.out.println("Archivo " + ruta + camFoto + " borrado " + ahora);
         }else{
-            System.out.println("El archivo" + ruta + camFoto + " no puede ser borrado");
+            System.out.println("El archivo" + ruta + camFoto + " no puede ser borrado " + ahora);
         }
    }
    

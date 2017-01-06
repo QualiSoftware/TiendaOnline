@@ -1,5 +1,5 @@
 package Modelos;
-// Generated 06-dic-2016 14:39:33 by Hibernate Tools 4.3.1
+// Generated 06-ene-2017 14:44:47 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -18,25 +18,28 @@ public class Campania  implements java.io.Serializable {
      private Date camInicio;
      private Date camFin;
      private String camFoto;
+     private int camDescuento;
      private Set<CampaniaRopa> campaniaRopas = new HashSet<CampaniaRopa>(0);
 
     public Campania() {
     }
 
 	
-    public Campania(Marcas marcas, String camNombre, Date camInicio, Date camFin, String camFoto) {
+    public Campania(Marcas marcas, String camNombre, Date camInicio, Date camFin, String camFoto, int camDescuento) {
         this.marcas = marcas;
         this.camNombre = camNombre;
         this.camInicio = camInicio;
         this.camFin = camFin;
         this.camFoto = camFoto;
+        this.camDescuento = camDescuento;
     }
-    public Campania(Marcas marcas, String camNombre, Date camInicio, Date camFin, String camFoto, Set<CampaniaRopa> campaniaRopas) {
+    public Campania(Marcas marcas, String camNombre, Date camInicio, Date camFin, String camFoto, int camDescuento, Set<CampaniaRopa> campaniaRopas) {
        this.marcas = marcas;
        this.camNombre = camNombre;
        this.camInicio = camInicio;
        this.camFin = camFin;
        this.camFoto = camFoto;
+       this.camDescuento = camDescuento;
        this.campaniaRopas = campaniaRopas;
     }
    
@@ -81,6 +84,13 @@ public class Campania  implements java.io.Serializable {
     
     public void setCamFoto(String camFoto) {
         this.camFoto = camFoto;
+    }
+    public int getCamDescuento() {
+        return this.camDescuento;
+    }
+    
+    public void setCamDescuento(int camDescuento) {
+        this.camDescuento = camDescuento;
     }
     public Set<CampaniaRopa> getCampaniaRopas() {
         return this.campaniaRopas;

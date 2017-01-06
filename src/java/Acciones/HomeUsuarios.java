@@ -33,6 +33,7 @@ public class HomeUsuarios extends ActionSupport {
     private double usuDescuento2;
     private String usuFechaLimiteDesc;
     private int usuAdministrador;
+    private Date usuAlta;
     //private Set<Cesta> cestas = new HashSet<Cesta>(0);
     //private Set<Favoritos> favoritoses = new HashSet<Favoritos>(0);    
     private String accion = "";
@@ -299,6 +300,14 @@ public class HomeUsuarios extends ActionSupport {
         this.usuAdministrador = usuAdministrador;
     }
 
+    public Date getUsuAlta() {
+        return usuAlta;
+    }
+
+    public void setUsuAlta(Date usuAlta) {
+        this.usuAlta = usuAlta;
+    }
+
     public String getAccion() {
         return accion;
     }
@@ -357,7 +366,7 @@ public class HomeUsuarios extends ActionSupport {
             usuDireccion2 = "";
             usuCp2 = "";
             Date fecha = new Date();
-            year = fecha.getYear() + 1900;
+            year = fecha.getYear() + 1884;
             month = fecha.getMonth()+1;
             day = fecha.getDate();
             if(month < 10){
@@ -496,6 +505,7 @@ public class HomeUsuarios extends ActionSupport {
         }
         usuFechaLimiteDesc = dayString+"-"+monthString+"-"+year;
         usuAdministrador = usuario.getUsuAdministrador();
+        usuAlta = usuario.getUsuAlta();
         countryName = usuario.getProvincias().getPaises().getPaisNombre();
         if(accion.equals("m")){
             accionocul = "m";
@@ -547,6 +557,7 @@ public class HomeUsuarios extends ActionSupport {
            p.setUsuDescuento(0);
            p.setUsuFechaLimiteDesc(date);
            p.setUsuAdministrador(0);
+           p.setUsuAlta(new Date());
            respuesta = ControladoresDAO.cUsuarios.Inserta(p);
            respuesta = ControladoresDAO.cUsuarios.SaberUltimoId();
            boolean email = ControladoresDAO.cEmail.enviarAlta(usuEmail2, respuesta);
@@ -568,6 +579,7 @@ public class HomeUsuarios extends ActionSupport {
            p.setUsuDescuento(ud.getUsuDescuento());
            p.setUsuFechaLimiteDesc(ud.getUsuFechaLimiteDesc());
            p.setUsuAdministrador(ud.getUsuAdministrador());
+           p.setUsuAlta(ud.getUsuAlta());
            p.setUsuId(usuId2);
            respuesta = ControladoresDAO.cUsuarios.Modifica(p);
         }

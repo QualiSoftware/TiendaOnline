@@ -21,7 +21,7 @@
             <s:include value="cabeceraMenuAdministrador.jsp" />
         </div>
         <div  class="linea"></div>
-        <div id="descripcion_Pagina">Aquí puede <span class="bold">modificar y eliminar </span>los usuarios.</div>
+        <div id="descripcion_Pagina">Aquí puede <span class="bold">visualizar y resetear contraseñas </span>de los usuarios.</div>
         <div  class="linea"></div>
         <s:form action="UsuariosFiltro" id="formPrincipal" theme="simple">
         <table border="1">
@@ -35,6 +35,7 @@
                 <th>Nombre</th>
                 <th>Apellidos</th>
                 <th>E-mail</th>
+                <th>Alta</th>
                 <th>DNI</th>
                 <th>Registrado</th>
                 <th>Descuento</th>
@@ -64,6 +65,9 @@
                     </td>
                     <td>
                         <s:property value="#a.usuEmail"/>
+                    </td>
+                    <td>
+                        <s:property value="#a.usuAlta"/>
                     </td>
                     <td>
                         <s:property value="#a.usuDni"/>

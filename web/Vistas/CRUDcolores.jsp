@@ -39,6 +39,7 @@
             <tr>
                 <th>Acciones</th>
                 <th>Color</th>
+                <th>Foto</th>
             </tr>
             <%String fondo = "fondoOscuro";%>
             <s:iterator var="a" value="Lista_Color">
@@ -59,6 +60,11 @@
                     <td>
                         <s:property value="#a.colorDescripcion"/><br>
                     </td>
+                    <td>
+                        <s:if test='#a.colorDescripcion != ""'>
+                            <img src="../Imagenes/Colores/<s:property value="#a.colorFoto"/>" width="30" alt="<s:property value="#a.colorFoto"/>"/>
+                        </s:if>
+                    </td>
                 </tr>
                 <%
                     if(fondo.equals("fondoOscuro")){
@@ -67,7 +73,7 @@
                         fondo="fondoOscuro";
                     }
                 %>
-            </s:iterator> 
+            </s:iterator>
         </table>
         </s:form>
     </body>

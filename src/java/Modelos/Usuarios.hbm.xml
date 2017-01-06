@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 06-dic-2016 14:39:35 by Hibernate Tools 4.3.1 -->
+<!-- Generated 06-ene-2017 14:44:49 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="Modelos.Usuarios" table="usuarios" catalog="tienda_ropa" optimistic-lock="version">
         <id name="usuId" type="java.lang.Integer">
@@ -52,6 +52,9 @@
         </property>
         <property name="usuAdministrador" type="int">
             <column name="usu_administrador" not-null="true" />
+        </property>
+        <property name="usuAlta" type="date">
+            <column name="usu_alta" length="10" not-null="true" />
         </property>
         <set name="cestas" table="cesta" inverse="true" lazy="true" fetch="select">
             <key>

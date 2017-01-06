@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 06-dic-2016 14:39:35 by Hibernate Tools 4.3.1 -->
+<!-- Generated 06-ene-2017 14:44:49 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="Modelos.Ropa" table="ropa" catalog="tienda_ropa" optimistic-lock="version">
         <id name="roId" type="java.lang.Integer">
@@ -38,8 +38,8 @@
         <property name="roPrecio" type="double">
             <column name="ro_precio" precision="8" not-null="true" />
         </property>
-        <property name="roDescuento" type="double">
-            <column name="ro_descuento" precision="4" not-null="true" />
+        <property name="roDescuento" type="int">
+            <column name="ro_descuento" not-null="true" />
         </property>
         <property name="roCaracteristicas" type="string">
             <column name="ro_caracteristicas" length="65535" not-null="true" />

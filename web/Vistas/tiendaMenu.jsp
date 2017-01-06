@@ -261,7 +261,7 @@
                     <s:iterator var="m" value="lista_ropa">
                         <table  class="imgproducto">                                                    
                             <tr class="botones_prueba">
-                                <td><a href="Detalles.html">
+                                <td><a href="#">
                                         <%int aux = 0;%>
                                         <s:iterator var="f" value="fotoses">
                                             <%
@@ -369,7 +369,20 @@
                             </tr>
                             <tr>
                                 <td style="text-align: left">
-                                    <span style="text-decoration: line-through; font-size: 20px; color: #999999; font-weight: bold" ><s:property value="getText('{0,number,##0.00}',{#m.roPrecio})"/> €</span><span style="padding-left: 10px; font-size: 20px; font-weight: bold;"><s:property value="getText('{0,number,##0.00}',{#m.roPrecio - (#m.roPrecio * #m.roDescuento / 100)})"/> €</span>
+                                    <span style="text-decoration: line-through; font-size: 20px; color: #999999; font-weight: bold" ><s:property value="getText('{0,number,##0.00}',{#m.roPrecio})"/> €</span>
+                                    <span style="padding-left: 10px; font-size: 20px; font-weight: bold;">
+                                        <s:if test="(campania!=null) && (campania!='')">
+                                            <s:if test="camDescuento > #m.roDescuento">
+                                                <s:property value="getText('{0,number,##0.00}',{#m.roPrecio - (#m.roPrecio * camDescuento / 100)})"/> €
+                                            </s:if>
+                                            <s:else>
+                                                <s:property value="getText('{0,number,##0.00}',{#m.roPrecio - (#m.roPrecio * #m.roDescuento / 100)})"/> €
+                                            </s:else>
+                                        </s:if>
+                                        <s:else>
+                                            <s:property value="getText('{0,number,##0.00}',{#m.roPrecio - (#m.roPrecio * #m.roDescuento / 100)})"/> €
+                                        </s:else>
+                                    </span>
                                 </td>
                             </tr>
                         </table>

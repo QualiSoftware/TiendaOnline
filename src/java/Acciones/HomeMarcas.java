@@ -9,6 +9,7 @@ import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import org.apache.commons.io.FileUtils;
@@ -310,10 +311,11 @@ public class HomeMarcas extends ActionSupport {
    
    public void EliminaArchivo() throws Exception{
         File fichero = new File(ruta+marcaFoto);
+        Date ahora = new Date();
         if (fichero.delete()){
-            System.out.println("Archivo " + ruta + marcaFoto + " borrado.");
+            System.out.println("Archivo " + ruta + marcaFoto + " borrado " + ahora);
         }else{
-            System.out.println("El archivo" + ruta + marcaFoto + " no puede ser borrado");
+            System.out.println("El archivo" + ruta + marcaFoto + " no puede ser borrado " + ahora);
         }
    }
 }
