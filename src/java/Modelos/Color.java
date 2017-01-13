@@ -1,5 +1,5 @@
 package Modelos;
-// Generated 06-ene-2017 14:44:47 by Hibernate Tools 4.3.1
+// Generated 12-ene-2017 20:00:17 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -14,7 +14,7 @@ public class Color  implements java.io.Serializable {
      private Integer colorId;
      private String colorDescripcion;
      private String colorFoto;
-     private Set<Ropa> ropas = new HashSet<Ropa>(0);
+     private Set<RopaStock> ropaStocks = new HashSet<RopaStock>(0);
 
     public Color() {
     }
@@ -24,10 +24,10 @@ public class Color  implements java.io.Serializable {
         this.colorDescripcion = colorDescripcion;
         this.colorFoto = colorFoto;
     }
-    public Color(String colorDescripcion, String colorFoto, Set<Ropa> ropas) {
+    public Color(String colorDescripcion, String colorFoto, Set<RopaStock> ropaStocks) {
        this.colorDescripcion = colorDescripcion;
        this.colorFoto = colorFoto;
-       this.ropas = ropas;
+       this.ropaStocks = ropaStocks;
     }
    
     public Integer getColorId() {
@@ -51,12 +51,12 @@ public class Color  implements java.io.Serializable {
     public void setColorFoto(String colorFoto) {
         this.colorFoto = colorFoto;
     }
-    public Set<Ropa> getRopas() {
-        return this.ropas;
+    public Set<RopaStock> getRopaStocks() {
+        return this.ropaStocks;
     }
     
-    public void setRopas(Set<Ropa> ropas) {
-        this.ropas = ropas;
+    public void setRopaStocks(Set<RopaStock> ropaStocks) {
+        this.ropaStocks = ropaStocks;
     }
 
 

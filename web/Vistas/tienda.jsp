@@ -55,19 +55,19 @@
                                     <s:iterator var="c" value="lista_ropa_Cestas">
                                         <tr>
                                             <td>
-                                                <s:property value="#c.Ropa.roDescripcion"/>
+                                                <s:property value="#c.ropaStock.ropa.roDescripcion"/>
                                             </td>
                                             <td>
-                                                <s:property value="#c.Ropa.color.colorDescripcion"/>
+                                                <s:property value="#c.ropaStock.color.colorDescripcion"/>
                                             </td>
                                             <td>
-                                                <s:property value="#c.Ropa.tallas.tallaDescripcion"/>
+                                                <s:property value="#c.ropaStock.tallas.tallaDescripcion"/>
                                             </td>
                                             <td>
-                                                <s:property value="#c.Ropa.roPrecio"/>
+                                                <s:property value="#c.ropaStock.ropa.roPrecio"/>
                                             </td>
                                             <td>
-                                                <s:iterator var="f" value="#c.Ropa.fotoses">
+                                                <s:iterator var="f" value="#c.ropaStock.ropa.fotoses">
                                                     <s:property value="fotosRuta"/>
                                                 </s:iterator>
                                             </td>

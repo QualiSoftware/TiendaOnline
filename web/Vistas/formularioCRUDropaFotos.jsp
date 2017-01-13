@@ -1,5 +1,5 @@
 <%-- 
-    Document   : zzBorrar_SubirArchivos
+    Document   : formularioCRUDropaFotos.jsp
     Created on : 10-nov-2016
     Author     : QualiSoftware
 --%>
@@ -23,6 +23,8 @@
                         document.getElementById('frm').action = "EliminaArchivo";
                         document.getElementById('frm').submit();
                     }
+                }else{
+                    document.getElementById('frm').submit();
                 }
             }
         </script>
@@ -42,14 +44,15 @@
             <label style="font-size: 20px;"><span style="font-weight: normal">Fotos de:</span> <s:property value="t.categoria.catDescripcion" />
                 &nbsp;<s:property value="t.subcategoria.subDescripcion" /> 
                 &nbsp;<span style="font-weight: normal">de</span>&nbsp;<s:property value="t.clientela.clientelaDescripcion" />
-                &nbsp;- <span style="font-weight: normal">talla</span>&nbsp;<s:property value="t.tallas.tallaDescripcion" />
-                &nbsp;- <span style="font-weight: normal">marca</span>&nbsp;<s:property value="t.marcas.marcaNombre" />
-                &nbsp;- <span style="font-weight: normal">color</span>&nbsp;<s:property value="t.color.colorDescripcion" />
+                &nbsp;<span style="font-weight: normal">marca</span>&nbsp;<s:property value="t.marcas.marcaNombre" />
             </label><p></p>
             <div id="sel_Archivos">
                 <s:form action="CargaArchivo" id="frm" method="post" enctype="multipart/form-data" theme="simple">
                     <input type="hidden" name="roId2" value=<s:property value="t.roId" /> />
                     <input type="hidden" name="accionocul" value=<s:property value="accionocul" /> />
+                    <input type="hidden" name="filtro" value=<s:property value="filtro" /> >
+                    <input type="hidden" name="eliminadas" value=<s:property value="eliminadas" /> />
+                    <input type="hidden" name="orden" value=<s:property value="orden" /> />
                     <s:iterator var="f" value="t.fotoses">
                         <% nf++;%>
                         <img src="<s:url value='../Imagenes/%{t.categoria.catDescripcion}/%{t.subcategoria.subDescripcion}/%{#f.fotosRuta}'/>" width="65" alt="<s:property value='%{#f.fotosRuta}' />" />
@@ -73,12 +76,14 @@
                         <%}%>
                         <hr style="width: 350px; margin-right: 4000px;">
                     </s:else>
-                    <s:submit value="Subir cambios" align="center"/>
+                    <input type="button" onclick="Verificar();" value="Subir cambios" align="center"/>
                 </s:form>
                 <s:a action="RopaAdminFiltro">
                     <s:param name="filtro" value="%{filtro}" />
+                    <!--
                     <s:param name="fechaI" value="%{fechaI}" />
                     <s:param name="fechaF" value="%{fechaF}" />
+                    -->
                     <s:param name="eliminadas" value="%{eliminadas}" />
                     <s:param name="orden" value="%{orden}" />
                     <p></p><br>

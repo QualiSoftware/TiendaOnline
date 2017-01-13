@@ -1,5 +1,5 @@
 package Modelos;
-// Generated 06-ene-2017 14:44:47 by Hibernate Tools 4.3.1
+// Generated 12-ene-2017 20:00:17 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -13,7 +13,7 @@ public class Tallas  implements java.io.Serializable {
 
      private Integer tallaId;
      private String tallaDescripcion;
-     private Set<Ropa> ropas = new HashSet<Ropa>(0);
+     private Set<RopaStock> ropaStocks = new HashSet<RopaStock>(0);
 
     public Tallas() {
     }
@@ -22,9 +22,9 @@ public class Tallas  implements java.io.Serializable {
     public Tallas(String tallaDescripcion) {
         this.tallaDescripcion = tallaDescripcion;
     }
-    public Tallas(String tallaDescripcion, Set<Ropa> ropas) {
+    public Tallas(String tallaDescripcion, Set<RopaStock> ropaStocks) {
        this.tallaDescripcion = tallaDescripcion;
-       this.ropas = ropas;
+       this.ropaStocks = ropaStocks;
     }
    
     public Integer getTallaId() {
@@ -41,12 +41,12 @@ public class Tallas  implements java.io.Serializable {
     public void setTallaDescripcion(String tallaDescripcion) {
         this.tallaDescripcion = tallaDescripcion;
     }
-    public Set<Ropa> getRopas() {
-        return this.ropas;
+    public Set<RopaStock> getRopaStocks() {
+        return this.ropaStocks;
     }
     
-    public void setRopas(Set<Ropa> ropas) {
-        this.ropas = ropas;
+    public void setRopaStocks(Set<RopaStock> ropaStocks) {
+        this.ropaStocks = ropaStocks;
     }
 
 

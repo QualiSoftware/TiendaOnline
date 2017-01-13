@@ -1,5 +1,5 @@
 package Modelos;
-// Generated 06-ene-2017 14:44:47 by Hibernate Tools 4.3.1
+// Generated 12-ene-2017 20:00:17 by Hibernate Tools 4.3.1
 
 
 
@@ -10,15 +10,15 @@ public class Cesta  implements java.io.Serializable {
 
 
      private Integer cestaId;
-     private Ropa ropa;
+     private RopaStock ropaStock;
      private Usuarios usuarios;
      private int cestaUnidades;
 
     public Cesta() {
     }
 
-    public Cesta(Ropa ropa, Usuarios usuarios, int cestaUnidades) {
-       this.ropa = ropa;
+    public Cesta(RopaStock ropaStock, Usuarios usuarios, int cestaUnidades) {
+       this.ropaStock = ropaStock;
        this.usuarios = usuarios;
        this.cestaUnidades = cestaUnidades;
     }
@@ -30,12 +30,12 @@ public class Cesta  implements java.io.Serializable {
     public void setCestaId(Integer cestaId) {
         this.cestaId = cestaId;
     }
-    public Ropa getRopa() {
-        return this.ropa;
+    public RopaStock getRopaStock() {
+        return this.ropaStock;
     }
     
-    public void setRopa(Ropa ropa) {
-        this.ropa = ropa;
+    public void setRopaStock(RopaStock ropaStock) {
+        this.ropaStock = ropaStock;
     }
     public Usuarios getUsuarios() {
         return this.usuarios;

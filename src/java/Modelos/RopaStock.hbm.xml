@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 12-ene-2017 20:00:19 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Modelos.RopaStock" table="ropa_stock" catalog="tienda_ropa" optimistic-lock="version">
+        <id name="rostockId" type="java.lang.Integer">
+            <column name="rostock_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="color" class="Modelos.Color" fetch="select">
+            <column name="rostock_color_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="ropa" class="Modelos.Ropa" fetch="select">
+            <column name="rostock_ro_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="tallas" class="Modelos.Tallas" fetch="select">
+            <column name="rostock_talla_id" not-null="true" />
+        </many-to-one>
+        <property name="rostockUnidades" type="int">
+            <column name="rostock_unidades" not-null="true" />
+        </property>
+        <property name="rostockFecha" type="date">
+            <column name="rostock_fecha" length="10" not-null="true" />
+        </property>
+        <set name="cestas" table="cesta" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="cesta_rostock_id" not-null="true" />
+            </key>
+            <one-to-many class="Modelos.Cesta" />
+        </set>
+    </class>
+</hibernate-mapping>

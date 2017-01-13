@@ -1,15 +1,15 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 06-ene-2017 14:44:49 by Hibernate Tools 4.3.1 -->
+<!-- Generated 12-ene-2017 20:00:19 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="Modelos.Cesta" table="cesta" catalog="tienda_ropa" optimistic-lock="version">
         <id name="cestaId" type="java.lang.Integer">
             <column name="cesta_id" />
             <generator class="identity" />
         </id>
-        <many-to-one name="ropa" class="Modelos.Ropa" fetch="select">
-            <column name="cesta_ro_id" not-null="true" />
+        <many-to-one name="ropaStock" class="Modelos.RopaStock" fetch="select">
+            <column name="cesta_rostock_id" not-null="true" />
         </many-to-one>
         <many-to-one name="usuarios" class="Modelos.Usuarios" fetch="select">
             <column name="cesta_usu_id" not-null="true" />

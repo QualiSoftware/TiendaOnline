@@ -16,7 +16,7 @@ public class cRopa {
     public static ArrayList<Ropa> RecuperaTodos(String filtro, String orden, String fi, String ff, String eliminadas) {
         sesion = (Session) NewHibernateUtil.getSession();
         String sql = "From Ropa WHERE ";
-        if(!fi.equals("") && !ff.equals("")){
+        /*if(!fi.equals("") && !ff.equals("")){
             String year;
             String month;
             String day;
@@ -29,7 +29,7 @@ public class cRopa {
             day = ff.substring(0, 2);
             ff = year+"-"+month+"-"+day;
             sql += "roFecha >= '" + fi + "' AND roFecha <= '" + ff + "' AND";
-        }
+        }*/
         if(!eliminadas.equals("2")){
             sql += " (roVisible = '" + eliminadas + "') AND";
         }
@@ -37,13 +37,13 @@ public class cRopa {
         sql += " OR marcas.marcaNombre LIKE '%" + filtro + "%'";
         sql += " OR clientela.clientelaDescripcion LIKE '%" + filtro + "%'";
         sql += " OR look.lookDescripcion LIKE '%" + filtro + "%'";
-        sql += " OR tallas.tallaDescripcion LIKE '%" + filtro + "%'";
+        //sql += " OR tallas.tallaDescripcion LIKE '%" + filtro + "%'";
         sql += " OR roPrecio LIKE '%" + filtro + "%'";
         sql += " OR roDescuento LIKE '%" + filtro + "%'";
-        sql += " OR color.colorDescripcion LIKE '%" + filtro + "%'";
+        //sql += " OR color.colorDescripcion LIKE '%" + filtro + "%'";
         sql += " OR coleccion.coleccionDescripcion LIKE '%" + filtro + "%'";
         sql += " OR roCaracteristicas LIKE '%" + filtro + "%'";
-        sql += " OR roUnidades LIKE '%" + filtro + "%'";
+        //sql += " OR roUnidades LIKE '%" + filtro + "%'";
         sql += " OR categoria.catDescripcion LIKE '%" + filtro + "%'";
         sql += " OR subcategoria.subDescripcion LIKE '%" + filtro + "%')";
         sql += " ORDER BY "+orden;
@@ -66,10 +66,10 @@ public class cRopa {
             + " AND categoria.catId = " + cat 
             + " AND roVisible = 1"
             + " AND(roDescripcion LIKE '%" + filtro + "%'"
-            + " OR tallas.tallaDescripcion LIKE '%" + filtro + "%'"
+            //+ " OR tallas.tallaDescripcion LIKE '%" + filtro + "%'"
             + " OR roPrecio LIKE '%" + filtro + "%'"
             + " OR (roPrecio - (roPrecio * roDescuento / 100)) LIKE '%" + filtro + "%'"
-            + " OR color.colorDescripcion LIKE '%" + filtro + "%'"
+            //+ " OR color.colorDescripcion LIKE '%" + filtro + "%'"
             + " OR roCaracteristicas LIKE '%" + filtro + "%')";
         //System.out.println("sql: "+sql);
         Query query =sesion.createQuery(sql); 
@@ -82,10 +82,10 @@ public class cRopa {
        String sql = "FROM Ropa WHERE marcas.marcaId = " + marca
             + " AND roVisible = 1"
             + " AND(roDescripcion LIKE '%" + filtro + "%'"
-            + " OR tallas.tallaDescripcion LIKE '%" + filtro + "%'"
+            //+ " OR tallas.tallaDescripcion LIKE '%" + filtro + "%'"
             + " OR roPrecio LIKE '%" + filtro + "%'"
             + " OR (roPrecio - (roPrecio * roDescuento / 100)) LIKE '%" + filtro + "%'"
-            + " OR color.colorDescripcion LIKE '%" + filtro + "%'"
+            //+ " OR color.colorDescripcion LIKE '%" + filtro + "%'"
             + " OR categoria.catDescripcion LIKE '%" + filtro + "%'"
             + " OR clientela.clientelaDescripcion LIKE '%" + filtro + "%'"
             + " OR roCaracteristicas LIKE '%" + filtro + "%')";
@@ -108,13 +108,14 @@ public class cRopa {
             sesion.save(t);
             sesion.getTransaction().commit();
             sesion.evict(t);
-            return 1;
+            int id = SaberUltimoId();
+            return id;
         } catch (Exception e) {
             sesion.getTransaction().rollback();
             System.out.println("Exception: " + e);
             return -1;
         }
-    }    
+    }
 
     public static int Modifica(Ropa t) {
         sesion = (Session) NewHibernateUtil.getSessionModif();
@@ -145,5 +146,13 @@ public class cRopa {
         Query query = sesion.createQuery(sql);
         ArrayList<Ropa> lt = (ArrayList) query.list();
         return lt;
+    }
+    
+    public static int SaberUltimoId(){
+        sesion = (Session) NewHibernateUtil.getSession();
+        String sql = "select max(roId) From Ropa";
+        Query query = sesion.createQuery(sql);
+        List<Integer> uf = query.list();
+        return uf.get(0);
     }
 }

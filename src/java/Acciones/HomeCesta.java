@@ -54,6 +54,7 @@ import org.hibernate.Session;
 public class HomeCesta extends ActionSupport {
 
     private Integer roId2;
+    private int rostockId;
     private Integer cantidad;
     private Cesta c;
     private Cesta ce;
@@ -213,6 +214,14 @@ public class HomeCesta extends ActionSupport {
         this.roId2 = roId2;
     }
 
+    public int getRostockId() {
+        return rostockId;
+    }
+
+    public void setRostockId(int rostockId) {
+        this.rostockId = rostockId;
+    }
+
     public Usuarios getU() {
         return u;
     }
@@ -316,7 +325,8 @@ public class HomeCesta extends ActionSupport {
         c = new Cesta();
         c.setCestaId(clave);
         c.setCestaUnidades(cantidad);
-        c.setRopa(ControladoresDAO.cRopa.RecuperaPorId(roId2));
+        //c.setRopa(ControladoresDAO.cRopa.RecuperaPorId(roId2));
+        c.setRopaStock(ControladoresDAO.cRopaStock.RecuperaPorId(rostockId));
         c.setUsuarios(ControladoresDAO.cUsuarios.RecuperaPorId(u.getUsuId()));
         ce = ControladoresDAO.cCesta.RecuperaPorId(clave);
         System.out.println(accionocul);
@@ -343,7 +353,7 @@ public class HomeCesta extends ActionSupport {
         lista_ropa_Cestas = ControladoresDAO.cCesta.RecuperaTodos(""+u.getUsuId());
 
         for (Cesta aux : lista_ropa_Cestas) {
-            precio += aux.getCestaUnidades() * (aux.getRopa().getRoPrecio() - aux.getRopa().getRoDescuento());
+            precio += aux.getCestaUnidades() * (aux.getRopaStock().getRopa().getRoPrecio() - (aux.getRopaStock().getRopa().getRoPrecio() * aux.getRopaStock().getRopa().getRoDescuento() / 100));
         }
         return SUCCESS;
     }
@@ -362,7 +372,8 @@ public class HomeCesta extends ActionSupport {
         c = new Cesta();
         c.setCestaId(clave);
         c.setCestaUnidades(cantidad);
-        c.setRopa(ControladoresDAO.cRopa.RecuperaPorId(clave));
+        //c.setRopa(ControladoresDAO.cRopa.RecuperaPorId(clave));
+        c.setRopaStock(ControladoresDAO.cRopaStock.RecuperaPorId(rostockId));
         c.setUsuarios(ControladoresDAO.cUsuarios.RecuperaPorId(u.getUsuId()));
         //System.out.println(accionocul);
         if (accionocul.equals("e")) {
@@ -373,12 +384,14 @@ public class HomeCesta extends ActionSupport {
             }
 
         } else {
+            //Evaluar si ya existía esa ropa en la cesta y si existía modificar la cantidad
+            //En la BBDD, Cesta se debe relacionar con rostock_id y no con ro_id
             respuesta = ControladoresDAO.cCesta.InsertaRopaCestaUsuario(c);
         }
-        lista_ropa_Cestas = ControladoresDAO.cCesta.RecuperaTodos("");
+        lista_ropa_Cestas = ControladoresDAO.cCesta.RecuperaTodos(""); //esto debería recuperar todo POR USUARIO
 
         for (Cesta aux : lista_ropa_Cestas) {
-            precio += aux.getCestaUnidades() * (aux.getRopa().getRoPrecio() - aux.getRopa().getRoDescuento());
+            precio += aux.getCestaUnidades() * (aux.getRopaStock().getRopa().getRoPrecio() - (aux.getRopaStock().getRopa().getRoPrecio() * aux.getRopaStock().getRopa().getRoDescuento() / 100));
         }
 
         return SUCCESS;
@@ -403,7 +416,7 @@ public class HomeCesta extends ActionSupport {
         lista_ropa_Cestas = ControladoresDAO.cCesta.RecuperaTodos(""+u.getUsuId());
         
         for (Cesta aux : lista_ropa_Cestas) {
-            precio += aux.getCestaUnidades() * (aux.getRopa().getRoPrecio() - aux.getRopa().getRoDescuento());
+            precio += aux.getCestaUnidades() * (aux.getRopaStock().getRopa().getRoPrecio() - (aux.getRopaStock().getRopa().getRoPrecio() * aux.getRopaStock().getRopa().getRoDescuento() / 100));
             
         }
 
@@ -413,10 +426,10 @@ public class HomeCesta extends ActionSupport {
     public String CargaEliminaCesta() throws Exception {
 
         t = ControladoresDAO.cCesta.RecuperaPorId(clave);
-        clientela = t.getRopa().getClientela().getClientelaDescripcion();
+        clientela = t.getRopaStock().getRopa().getClientela().getClientelaDescripcion();
         clave = t.getCestaId();
-        roId2 = t.getRopa().getRoId();
-        precioEliminar = t.getCestaUnidades() * (t.getRopa().getRoPrecio() - t.getRopa().getRoDescuento());
+        roId2 = t.getRopaStock().getRopa().getRoId();
+        precioEliminar = t.getCestaUnidades() * (t.getRopaStock().getRopa().getRoPrecio() - (t.getRopaStock().getRopa().getRoPrecio() * t.getRopaStock().getRopa().getRoDescuento() / 100));
         cantidad = t.getCestaUnidades();
         accionocul = "e";
         cabeceraocul = "Eliminar";
@@ -439,7 +452,7 @@ public class HomeCesta extends ActionSupport {
         us = cUsuarios.RecuperaPorId(u.getUsuId());
         lista_ropa_Cestas = ControladoresDAO.cCesta.RecuperaTodos(""+u.getUsuId());
         for (Cesta aux : lista_ropa_Cestas) {
-            precio += aux.getCestaUnidades() * (aux.getRopa().getRoPrecio() - aux.getRopa().getRoDescuento());
+            precio += aux.getCestaUnidades() * (aux.getRopaStock().getRopa().getRoPrecio() - (aux.getRopaStock().getRopa().getRoPrecio() * aux.getRopaStock().getRopa().getRoDescuento() / 100));
         }
         return SUCCESS;
     }
@@ -468,12 +481,16 @@ public class HomeCesta extends ActionSupport {
             lista_ropa_Cestas = cCesta.RecuperaTodos(""+u.getUsuId());
             int nada;
             for (Cesta c : lista_ropa_Cestas) {
-                FacturaDetalle fd = new FacturaDetalle(f, c.getRopa().getRoDescuento(), 
-                        c.getRopa().getRoPrecio(), c.getRopa().getTallas().getTallaDescripcion(), 
-                        c.getCestaUnidades(), c.getRopa().getMarcas().getMarcaNombre(), 
-                        c.getRopa().getClientela().getClientelaDescripcion(), 
-                        c.getRopa().getCategoria().getCatDescripcion(), c.getRopa().getSubcategoria().getSubDescripcion(), 
-                        c.getRopa().getColor().getColorDescripcion());
+                FacturaDetalle fd = new FacturaDetalle(f, 
+                        c.getRopaStock().getRopa().getRoDescuento(), 
+                        c.getRopaStock().getRopa().getRoPrecio(), 
+                        c.getRopaStock().getTallas().getTallaDescripcion(), 
+                        c.getCestaUnidades(), 
+                        c.getRopaStock().getRopa().getMarcas().getMarcaNombre(), 
+                        c.getRopaStock().getRopa().getClientela().getClientelaDescripcion(), 
+                        c.getRopaStock().getRopa().getCategoria().getCatDescripcion(), 
+                        c.getRopaStock().getRopa().getSubcategoria().getSubDescripcion(), 
+                        c.getRopaStock().getColor().getColorDescripcion());
                 nada = ControladoresDAO.cFacturaDetalle.Inserta(fd);
                 if(nada == 1){
                     Cesta cesta = cCesta.RecuperaPorId(c.getCestaId());

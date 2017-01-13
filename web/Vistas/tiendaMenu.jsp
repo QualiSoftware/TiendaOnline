@@ -1,5 +1,5 @@
 <%-- 
-    Document   : tiendaCampania
+    Document   : tiendaMenu.jsp
     Created on : 15-dic-2016
     Author     : QualiSoftware
 --%>
@@ -21,6 +21,24 @@
         <!--Carrusel de fotos-->
         <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js' type='text/javascript'></script>
         <script src="../Scripts/Carrusel.js" type="text/javascript"></script>
+        <script>
+            function abrir(rostockId){
+                var ventana = window.open("tiendaCestaPopUp.jsp?clave="+rostockId,"Color","width=300,height=300, resizable=no, scrollbars=no, menubar=no");
+                /*ventana.document(document.getElementById('formulario').submit());
+                ventana.document.write(document.getElementById('color')+'<br>');*/
+            }
+            /*$(document).ready(function(){
+                $('#imagen_grande').hide();
+                $("#imagenChica").on("click",function(e){
+                    $("#imagen_grande").fadeIn(2000);
+                    e.stopPropagation(); //esto es para evitar que se ejecute la siguiente función
+                });
+                $("#imagen_grande").on("click", function(){
+                //$(document).on("click keypress", function(){
+                    $("#imagen_grande").fadeOut(1500);
+                });
+            });*/
+        </script>
         <!-- Estilos Footer -->
         <link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
@@ -59,19 +77,19 @@
                                     <s:iterator var="c" value="lista_ropa_Cestas">
                                         <tr>
                                             <td>
-                                                <s:property value="#c.Ropa.roDescripcion"/>
+                                                <s:property value="#c.ropaStock.Ropa.roDescripcion"/>
                                             </td>
                                             <td>
-                                                <s:property value="#c.Ropa.color.colorDescripcion"/>
+                                                <s:property value="#c.ropaStock.color.colorDescripcion"/>
                                             </td>
                                             <td>
-                                                <s:property value="#c.Ropa.tallas.tallaDescripcion"/>
+                                                <s:property value="#c.ropaStock.tallas.tallaDescripcion"/>
                                             </td>
                                             <td>
-                                                <s:property value="#c.Ropa.roPrecio"/>
+                                                <s:property value="#c.ropaStock.Ropa.roPrecio"/>
                                             </td>
                                             <td>
-                                                <s:iterator var="f" value="#c.Ropa.fotoses">
+                                                <s:iterator var="f" value="#c.ropaStock.Ropa.fotoses">
                                                     <s:property value="fotosRuta"/>
                                                 </s:iterator>
                                             </td>
@@ -290,51 +308,78 @@
                                                         </tr>
                                                         <tr>
                                                             <td>Color</td>
-                                                            <td><span style="width: 200px; height: 20px; background-color: red; color: red">....</span></td>
+                                                            <td>
+                                                                <script>
+                                                                    var arrayColoresNombre = new Array();
+                                                                    var arrayColoresFoto = new Array();
+                                                                    var i;
+                                                                    var bool = true;
+                                                                    <s:iterator var="c" value="ropaStocks">
+                                                                        bool = true;
+                                                                        for(i = 0; i < arrayColoresNombre.length;i++){
+                                                                            if(arrayColoresNombre[i] == '<s:property value="#c.color.colorDescripcion"/>'){
+                                                                                bool = false;
+                                                                            }
+                                                                        }
+                                                                        if(bool){
+                                                                            arrayColoresFoto.push('<s:property value="#c.color.colorFoto"/>');
+                                                                            arrayColoresNombre.push('<s:property value="#c.color.colorDescripcion"/>');
+                                                                        }
+                                                                    </s:iterator>
+                                                                    for (i = 0; i < arrayColoresNombre.length; i++) {
+                                                                        document.write("<img src='../Imagenes/Colores/" + arrayColoresFoto[i] + "' width='10' alt='" + arrayColoresNombre[i] + "'/>");
+                                                                    }
+                                                                </script>
+                                                                <!--<span style="width: 200px; height: 20px; background-color: red; color: red">....</span>-->
+                                                            </td>
                                                         </tr>
                                                         <tr>
                                                             <td>Talla</td>
                                                             <td>
-                                                                <s:if test='#m.tallas.tallaDescripcion!="XXL"'>
-                                                                    <span style="text-decoration:line-through;">
-                                                                </s:if>
-                                                                    XXL
-                                                                <s:if test='#m.tallas.tallaDescripcion!="XXL"'>
-                                                                    </span>
-                                                                </s:if>
+                                                                <script>
+                                                                    var arrayTallasDescripcion = new Array();
+                                                                    var i;
+                                                                    var bool = true;
+                                                                    <s:iterator var="t" value="ropaStocks">
+                                                                        bool = true;
+                                                                        for(i = 0; i < arrayTallasDescripcion.length;i++){
+                                                                            if(arrayTallasDescripcion[i] == '<s:property value="#t.tallas.tallaDescripcion"/>'){
+                                                                                bool = false;
+                                                                            }
+                                                                        }
+                                                                        if(bool){
+                                                                            arrayTallasDescripcion.push('<s:property value="#t.tallas.tallaDescripcion"/>');
+                                                                        }
+                                                                    </s:iterator>
+                                                                    <s:iterator var="l" value="lista_tallas">
+                                                                        bool = false;
+                                                                        for (i = 0; i < arrayTallasDescripcion.length; i++) {
+                                                                            if(arrayTallasDescripcion[i] == '<s:property value="#l.tallaDescripcion"/>'){
+                                                                                bool = true;
+                                                                                break;
+                                                                            }
+                                                                        }
+                                                                        if(bool){
+                                                                            document.write(arrayTallasDescripcion[i] + "<br>");
+                                                                        }else{
+                                                                            document.write("<span style='text-decoration:line-through;'>" + '<s:property value="#l.tallaDescripcion"/>' + "</span><br>");
+                                                                        }
+                                                                    </s:iterator>
+                                                                </script>
+                                                                <!--
+                                                                <span style="text-decoration:line-through;">
+                                                                XXL
+                                                                </span>
                                                                 <br>
-                                                                <s:if test="#m.tallas.tallaDescripcion!='XL'">
-                                                                    <span style="text-decoration:line-through;">
-                                                                </s:if>
-                                                                    XL
-                                                                <s:if test="#m.tallas.tallaDescripcion!='XL'">
-                                                                    </span>
-                                                                </s:if>
+                                                                XL
                                                                 <br>
-                                                                <s:if test="#m.tallas.tallaDescripcion!='L'">
-                                                                    <span style="text-decoration:line-through;">
-                                                                </s:if>
-                                                                        L
-                                                                <s:if test="#m.tallas.tallaDescripcion!='L'">
-                                                                    </span>
-                                                                </s:if>
+                                                                L
                                                                 <br>
-                                                                <s:if test="#m.tallas.tallaDescripcion!='M'">
-                                                                    <span style="text-decoration:line-through;">
-                                                                </s:if>
-                                                                    M
-                                                                <s:if test="#m.tallas.tallaDescripcion!='M'">
-                                                                    </span>
-                                                                </s:if>
+                                                                M
                                                                 <br>
-                                                                <s:if test="#m.tallas.tallaDescripcion!='S'">
-                                                                    <span style="text-decoration:line-through;">
-                                                                </s:if>
-                                                                    S
-                                                                <s:if test="#m.tallas.tallaDescripcion!='S'">
-                                                                    </span>
-                                                                </s:if>
-                                                                <br><br>
+                                                                S
+                                                                <br>-->
+                                                                <br>
                                                             </td>
                                                         </tr>
                                                     </tbody>
@@ -345,19 +390,8 @@
                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                         <img src="../Imagenes/Administracion/bRTdpoqi9.png" title="Аñadir a Favoritos" style="box-shadow:  0px 0px 0px;"/>
                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                        <s:a action="TiendaCesta">
-                                            <s:param name="clientela2" value="%{clientela2}"/>
-                                            <s:param name="categoria2" value="%{categoria2}"/>
-                                            <s:param name="marcas2" value="%{marcas2}"/>
-                                            <s:param name="campania" value="%{campania}"/>
-                                            <s:param name="accion" value="'c'"/>
-                                            <s:param name="accionocul" value="'c'"/>
-                                            <s:param name="cantidad" value="1"/>
-                                            <s:param name="clave" value="#m.roId"/>
-                                            
-                                                <img src="../Imagenes/Administracion/shopping-basket-xxl.png" title="Añadir a la Cesta" style="box-shadow: 0px 0px 0px;">
-                                            
-                                        </s:a><br>
+                                        <img onclick="abrir(<s:property value="#m.roId"/>);" src="../Imagenes/Administracion/shopping-basket-xxl.png" title="Añadir a la Cesta" style="box-shadow: 0px 0px 0px;">
+                                        <br>
                                         <span style="color: white">Vista &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Favoritos&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cesta</span>
                                     </div>
                                 </td>
@@ -390,6 +424,6 @@
                 </div>
             </div>
         </div>
-            <s:include value="tiendaFooter.jsp" />
+        <s:include value="tiendaFooter.jsp" />
     </body>
 </html>

@@ -182,7 +182,12 @@
             <result>/Vistas/formularioCRUDropaFotos.jsp</result>   
         </action>
         <action name="CargaArchivo" class="Acciones.HomeFotos" method="CargaArchivo">
-            <result type="redirect">RopaAdminFiltro</result>
+            <result type="redirectAction">
+                <param name="filtro">${filtro}</param>
+                <param name="eliminadas">${eliminadas}</param>
+                <param name="orden">${orden}</param>
+                <param name="actionName">RopaAdminFiltro</param>
+            </result>
             <result name="input">/Vistas/formularioCRUDropaFotos.jsp</result>
         </action>
         
@@ -260,10 +265,28 @@
         <action name="RopaAdminForm" class="Acciones.HomeRopa" method="RopaForm">
             <result>/Vistas/formularioCRUDropa.jsp</result>   
         </action> 
+        <action name="RopaStockAdminForm" class="Acciones.HomeRopa" method="RopaForm">
+            <result>/Vistas/formularioCRUDropaStock.jsp</result>   
+        </action>
         <action name="CrudActionRopaAdmin" class="Acciones.HomeRopa" method="CrudActionRopa">
             <result type="redirect">RopaAdminFiltro</result>
             <result name="input">/Vistas/formularioCRUDropaFotos.jsp</result>
             <result name="error">/Vistas/formularioCRUDropa.jsp</result>
+        </action>
+        <action name="CrudActionRopaStockAdmin" class="Acciones.HomeRopaStock" method="CrudActionRopaStock">
+            <result type="redirectAction">
+                <param name="filtro">${filtro}</param>
+                <param name="eliminadas">${eliminadas}</param>
+                <param name="orden">${orden}</param>
+                <param name="actionName">RopaAdminFiltro</param>
+            </result>
+            <result name="input">/Vistas/formularioCRUDropaStock.jsp</result>
+            <result name="error">/Vistas/formularioCRUDropaStock.jsp</result>
+        </action>
+        <action name="CrudActionRopaStockAdminMas" class="Acciones.HomeRopaStock" method="CrudActionRopaStock">
+            <result>/Vistas/formularioCRUDropaStock.jsp</result>
+            <result name="input">/Vistas/formularioCRUDropaStock.jsp</result>
+            <result name="error">/Vistas/formularioCRUDropaStock.jsp</result>
         </action>
         <action name="volverRopaAdmin">
             <result type="redirect">RopaAdminFiltro</result>
@@ -374,6 +397,7 @@
                 <param name="excludeNullProperties">true</param>
                 <param name="noCache">true</param>
             </result>
+            <result name="input" type="redirect">Tienda</result>
         </action>
         
         <action name="Login" class="Acciones.HomeUsuariosValidaciones" method="Login">
@@ -418,6 +442,9 @@
         </action>
         <action name="TiendaMenu" class="Acciones.HomeRopa" method="RopaMenu">
             <result>/Vistas/tiendaMenu.jsp</result>
+        </action>
+        <action name="TiendaListas" class="Acciones.HomeRopa" method="RopaMenu">
+            <result>/Vistas/tiendaCestaPopUp.jsp</result>
         </action>
         <action name="TiendaCesta" class="Acciones.HomeCesta" method="CrudActionUsuariosCesta">
             <result type="redirectAction">

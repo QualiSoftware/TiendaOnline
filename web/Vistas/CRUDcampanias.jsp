@@ -39,7 +39,7 @@
         <div  class="linea"></div>
         <table border="1">
             <tr>
-                <td colspan="7">
+                <td colspan="8">
                 <s:form action="CampaniasFiltro" theme="simple" style="display:inline;">
                     <s:label value="Fecha con campaña activa " />
                     <s:textfield name="fechaCampania" id="fechaCampania" cssClass="tcal" readonly="true"/>

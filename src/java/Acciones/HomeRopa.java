@@ -15,6 +15,7 @@ import Modelos.Fotos;
 import Modelos.Look;
 import Modelos.Marcas;
 import Modelos.Ropa;
+import Modelos.RopaStock;
 import Modelos.Subcategoria;
 import Modelos.Tallas;
 import Modelos.Usuarios;
@@ -60,6 +61,7 @@ public class HomeRopa extends ActionSupport {
     private String cabeceraocul;
     private String botonocul;
     private Ropa t;
+    private RopaStock rstock;
     private String orden;
     private String fechaI;
     private String fechaF;
@@ -78,7 +80,9 @@ public class HomeRopa extends ActionSupport {
     private List<Campania> lista_campanias;
     private List<Marcas>lista_marcas;
 
+    private int roId;
     private Integer roId2;
+    private int rostockId;
     private String campania;
     private String campaniaNombre;
     private int camDescuento;
@@ -329,6 +333,14 @@ public class HomeRopa extends ActionSupport {
         this.t = t;
     }
 
+    public RopaStock getRstock() {
+        return rstock;
+    }
+
+    public void setRstock(RopaStock rstock) {
+        this.rstock = rstock;
+    }
+
     public List<Subcategoria> getLista_subcategoria() {
         return lista_subcategoria;
     }
@@ -515,12 +527,28 @@ public class HomeRopa extends ActionSupport {
         this.lista_ropa = lista_ropa;
     }
 
+    public int getRoId() {
+        return roId;
+    }
+
+    public void setRoId(int roId) {
+        this.roId = roId;
+    }
+
     public Integer getRoId2() {
         return roId2;
     }
 
     public void setRoId2(Integer roId2) {
         this.roId2 = roId2;
+    }
+
+    public int getRostockId() {
+        return rostockId;
+    }
+
+    public void setRostockId(int rostockId) {
+        this.rostockId = rostockId;
     }
 
     public String getCampania() {
@@ -670,12 +698,7 @@ public class HomeRopa extends ActionSupport {
         if(sesion.get("usuarioLogueado") != null){
             if(!sesion.get("usuarioLogueado").equals("")){
                 try{
-                    int aux;
                     u = (Usuarios) sesion.get("usuarioLogueado");
-                    aux = u.getUsuId();
-                    u = ControladoresDAO.cUsuarios.RecuperaPorId(aux);
-                    sesion.clear();
-                    sesion.put("usuarioLogueado", (Usuarios) u);
                     usi = ""+u.getUsuId();
                 }catch(Exception e){
                     System.out.println(e.getMessage());
@@ -743,33 +766,28 @@ public class HomeRopa extends ActionSupport {
         lista_colecciones = ControladoresDAO.cColeccion.RecuperaTodos("");
         lista_categoria = ControladoresDAO.cCategorias.RecuperaTodos("");
         lista_subcategoria = ControladoresDAO.cSubcategorias.RecuperaTodos("");
+        int year;
+        int month;
+        String monthString;
+        int day;
+        String dayString;
         if (accion.equals("a")) {
-            titulo = "Alta";
             roId2 = 0;
             roDescripcion2 = "";
             roPrecio2 = 0.0;
             roDescuento2 = 0;
             roCaracteristicas2 = "";
-            roVisible2 = 0;
-            roUnidades2 = 0;
-            roFecha2 = null;
+            roVisible2 = 1;
             fotoses2 = null;
             fotoAlta1 = "";
             fotoAlta2 = "";
             fotoAlta3 = "";
-            accionocul = "a";
-            cabeceraocul = "Alta";
-            botonocul = "Alta";
-        } else {
-            t = ControladoresDAO.cRopa.RecuperaPorId(clave);
-            int year;
-            int month;
-            String monthString;
-            int day;
-            String dayString;
-            year = t.getRoFecha().getYear() + 1900;
-            month = t.getRoFecha().getMonth()+1;
-            day = t.getRoFecha().getDate();
+            rostockId = 0;
+            roUnidades2 = 0;            
+            Date hoy = new Date();
+            year = hoy.getYear() + 1900;
+            month = hoy.getMonth()+1;
+            day = hoy.getDate();
             if(month < 10){
                 monthString = "0"+month;
             }else{
@@ -780,14 +798,38 @@ public class HomeRopa extends ActionSupport {
             }else{
                 dayString = ""+day;
             }
-            roFecha2 = dayString+"-"+monthString+"-"+year;
-            roId2 = t.getRoId();
-            roDescripcion2 = t.getRoDescripcion();
-            roPrecio2 = t.getRoPrecio();
-            roDescuento2 = t.getRoDescuento();
-            roCaracteristicas2 = t.getRoCaracteristicas();
-            roVisible2 = t.getRoVisible();
-            roUnidades2 = t.getRoUnidades();
+            roFecha2 = dayString+"-"+monthString+"-"+year; 
+            titulo = "Alta";           
+            accionocul = "a";
+            cabeceraocul = "Alta";
+            botonocul = "Alta";
+        } else {
+            if(rostockId == -1){
+                t = ControladoresDAO.cRopa.RecuperaPorId(clave);
+                roId2 = clave;
+                roDescripcion2 = t.getRoDescripcion();
+                roPrecio2 = t.getRoPrecio();
+                roDescuento2 = t.getRoDescuento();
+                roCaracteristicas2 = t.getRoCaracteristicas();
+                roVisible2 = t.getRoVisible();
+            }else{            
+                rstock = ControladoresDAO.cRopaStock.RecuperaPorId(rostockId);
+                year = rstock.getRostockFecha().getYear() + 1900;
+                month = rstock.getRostockFecha().getMonth()+1;
+                day = rstock.getRostockFecha().getDate();
+                if(month < 10){
+                    monthString = "0"+month;
+                }else{
+                    monthString = ""+month;
+                }
+                if(day < 10){
+                    dayString = "0"+day;
+                }else{
+                    dayString = ""+day;
+                }
+                roFecha2 = dayString+"-"+monthString+"-"+year;
+                roUnidades2 = rstock.getRostockUnidades();
+            }
         }
         if (accion.equals("m")) {
             accionocul = "m";
@@ -805,13 +847,13 @@ public class HomeRopa extends ActionSupport {
             cabeceraocul = "Añadir Cesta";
             botonocul = "Añadir Cesta";
         }
-
         return SUCCESS;
     }
 
     @SkipValidation
     public String CrudActionRopa() throws Exception {
         int respuesta;
+        /*
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         String year;
         String month;
@@ -820,26 +862,27 @@ public class HomeRopa extends ActionSupport {
         month = roFecha2.substring(3, 5);
         day = roFecha2.substring(0, 2);
         roFecha2 = year+"-"+month+"-"+day;
-        Date fecha = sdf.parse(roFecha2);
+        Date fecha = sdf.parse(roFecha2);*/
         if (roId2 != 0) {
             t = ControladoresDAO.cRopa.RecuperaPorId(roId2);
         } else {
+            //rstock = new RopaStock();
             t = new Ropa();
         }
         if (!accionocul.equals("e")) {
             t.setClientela(ControladoresDAO.cClientela.RecuperaPorId(Integer.parseInt(clientela2)));
             t.setColeccion(ControladoresDAO.cColeccion.RecuperaPorId(Integer.parseInt(coleccion2)));
-            t.setColor(ControladoresDAO.cColor.RecuperaPorId(Integer.parseInt(color2)));
+            //rstock.setColor(ControladoresDAO.cColor.RecuperaPorId(Integer.parseInt(color2)));
             t.setLook(ControladoresDAO.cLook.RecuperaPorId(Integer.parseInt(look2)));
             t.setMarcas(ControladoresDAO.cMarcas.RecuperaPorId(Integer.parseInt(marcas2)));
-            t.setTallas(ControladoresDAO.cTallas.RecuperaPorId(Integer.parseInt(tallas2)));
+            //rstock.setTallas(ControladoresDAO.cTallas.RecuperaPorId(Integer.parseInt(tallas2)));
             t.setRoDescripcion(roDescripcion2);
             t.setRoPrecio(roPrecio2);
             t.setRoDescuento(roDescuento2);
             t.setRoCaracteristicas(roCaracteristicas2);
             t.setRoVisible(roVisible2);
-            t.setRoUnidades(roUnidades2);
-            t.setRoFecha(fecha);
+            //rstock.setRostockUnidades(roUnidades2);
+            //rstock.setRostockFecha(fecha);
             if(!hayFotos){
                 t.setCategoria(ControladoresDAO.cCategorias.RecuperaPorId(Integer.parseInt(categoria2)));
                 t.setSubcategoria(ControladoresDAO.cSubcategorias.RecuperaPorId(Integer.parseInt(subcategoria2)));
@@ -847,12 +890,16 @@ public class HomeRopa extends ActionSupport {
         }
         if (accionocul.equals("a")) {
             respuesta = ControladoresDAO.cRopa.Inserta(t);
+            //rstock.setRopa(ControladoresDAO.cRopa.RecuperaPorId(respuesta));
+            //respuesta = ControladoresDAO.cRopaStock.Modifica(rstock);
             if(confotos){
                 return INPUT;
             }
         }
         if (accionocul.equals("m")) {            
             respuesta = ControladoresDAO.cRopa.Modifica(t);
+            //rstock.setRopa(t);
+            //respuesta = ControladoresDAO.cRopaStock.Modifica(rstock);
         }
         if (accionocul.equals("e")) {
             byte b = 0;
@@ -862,6 +909,7 @@ public class HomeRopa extends ActionSupport {
         return SUCCESS;
     }
     
+    @SkipValidation
     public String ajaxAction() throws Exception{
        Categoria c = ControladoresDAO.cCategorias.RecuperaPorId(Integer.parseInt(countryName));
                   for(Subcategoria auxsubcat:c.getSubcategorias()){
@@ -870,7 +918,7 @@ public class HomeRopa extends ActionSupport {
                       //System.out.println(stateMap);
                   }
 
-           dummyMsg = "Ajax action Triggered";
+           //dummyMsg = "Ajax action Triggered";
        return SUCCESS;
     }
     
@@ -883,7 +931,7 @@ public class HomeRopa extends ActionSupport {
         if(sesion.get("usuarioLogueado") != null){
             if(!sesion.get("usuarioLogueado").equals("")){
                 try{
-                    int aux;
+                    //int aux;
                     u = null;
                     u = (Usuarios) sesion.get("usuarioLogueado");
                     usi = ""+u.getUsuId();
@@ -898,6 +946,8 @@ public class HomeRopa extends ActionSupport {
         }
         //lista_campanias = ControladoresDAO.cCampanias.RecuperaCampaniasActivas();
         lista_marcas =  ControladoresDAO.cMarcas.RecuperaTodos("");
+        lista_tallas = ControladoresDAO.cTallas.RecuperaTodos("");
+        lista_colores = ControladoresDAO.cColor.RecuperaTodos("");
         lista_menu_ropa = new ArrayList<Ropa>();
         lista_ropa = ControladoresDAO.cRopa.RecuperaTodos("","categoria.catDescripcion","","","2");
         for(Ropa lr: lista_ropa){

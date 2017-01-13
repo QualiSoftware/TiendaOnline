@@ -29,5 +29,6 @@
     <mapping resource="Modelos/Tallas.hbm.xml"/>
     <mapping resource="Modelos/Facturas.hbm.xml"/>
     <mapping resource="Modelos/Clientela.hbm.xml"/>
+    <mapping resource="Modelos/RopaStock.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

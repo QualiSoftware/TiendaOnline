@@ -9,13 +9,11 @@
 <%@page pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-    <head>
+    <head xmlns="http://www.w3.org/1999/xhtml">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-        <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
         <link rel="stylesheet" href="../Estilos/GeneralEstilos.css"/>
-        <link rel="stylesheet" type="text/css" href="../Calendar/1-simple-calendar/tcal.css" />
-        <script type="text/javascript" src="../Calendar/1-simple-calendar/tcal.js"></script>
         <title>Formulario</title>
         <script src="../Scripts/jquery_3.js" type="text/javascript"></script>
         <script>
@@ -50,7 +48,7 @@
                     document.getElementById('frm').submit();
                 }
             }
-        </script>        
+        </script>     
     </head>
     <body>
         <s:include value="cabeceraHeader.jsp" />
@@ -62,7 +60,7 @@
         <div  class="linea"></div>
         <div id="descripcion_Pagina"><h3 class="bold"><s:label name="cabeceraocul" theme="simple" /> de Ropa</h3></div>
         <div  class="linea"></div>
-        <s:form id="frm" action="CrudActionRopaAdmin" theme="simple" method="post" enctype="multipart/form-data">
+        <s:form id="frm" action="CrudActionRopaAdmin" theme="simple">
             <input type="hidden" name="accionocul" id="accionocul" value=<s:property value="accion" /> />
             <input type="hidden" name="confotos" id="confotos" value="true" />
             <table>
@@ -79,18 +77,13 @@
                         <s:label for="clientela2">Clientela</s:label>  
                         </td>
                         <td>
-                        <%
-                            if (request.getAttribute("accionocul") == "e" || request.getAttribute("accionocul") == "c") {
-                        %>
-                        <s:textfield name="t.clientela.clientelaDescripcion" readonly="true" ></s:textfield>
-                        <%
-                        } else {
-                        %>
-                        <s:select name="clientela2" list="lista_clientela" listValue="clientelaDescripcion" 
+                        <s:if test='%{accionocul == "e" || accionocul == "c"}'>
+                            <s:textfield name="t.clientela.clientelaDescripcion" readonly="true" ></s:textfield>
+                        </s:if>
+                        <s:else>
+                            <s:select name="clientela2" list="lista_clientela" listValue="clientelaDescripcion" 
                                   listKey="clientelaId" value="t.clientela.clientelaId"/>
-                        <%
-                            }
-                        %>
+                        </s:else>
                     </td>
                 </tr>
                 <tr>
@@ -98,38 +91,13 @@
                         <s:label for="coleccion2">Colección</s:label>  
                         </td>
                         <td>
-                        <%
-                            if (request.getAttribute("accionocul") == "e" || request.getAttribute("accionocul") == "c") {
-                        %>
-                        <s:textfield name="t.coleccion.coleccionDescripcion" readonly="true" ></s:textfield>
-                        <%
-                        } else {
-                        %>
-                        <s:select name="coleccion2" list="lista_colecciones" listValue="coleccionDescripcion" 
+                        <s:if test='%{accionocul == "e" || accionocul == "c"}'>
+                            <s:textfield name="t.coleccion.coleccionDescripcion" readonly="true" ></s:textfield>
+                        </s:if>
+                        <s:else>
+                            <s:select name="coleccion2" list="lista_colecciones" listValue="coleccionDescripcion" 
                                   listKey="coleccionId" value="t.coleccion.coleccionId"/>
-                        <%
-                            }
-                        %>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <s:label for="color2">Color</s:label>  
-                        </td>
-
-                        <td>
-                        <%
-                            if (request.getAttribute("accionocul") == "e"|| request.getAttribute("accionocul") == "c") {
-                        %>
-                        <s:textfield name="t.color.colorDescripcion" readonly="true" ></s:textfield>
-                        <%
-                        } else {
-                        %>
-                        <s:select name="color2" list="lista_colores" listValue="colorDescripcion" 
-                                  listKey="colorId" value="t.color.colorId"/>
-                        <%
-                            }
-                        %>
+                        </s:else>
                     </td>
                 </tr>
                 <tr>
@@ -138,18 +106,13 @@
                         </td>
 
                         <td>
-                        <%
-                            if (request.getAttribute("accionocul") == "e"|| request.getAttribute("accionocul") == "c") {
-                        %>
-                        <s:textfield name="t.look.lookDescripcion" readonly="true" ></s:textfield>
-                        <%
-                        } else {
-                        %>
-                        <s:select name="look2" list="lista_look" listValue="lookDescripcion" 
+                        <s:if test='%{accionocul == "e" || accionocul == "c"}'>
+                            <s:textfield name="t.look.lookDescripcion" readonly="true" ></s:textfield>
+                        </s:if>
+                        <s:else>
+                            <s:select name="look2" list="lista_look" listValue="lookDescripcion" 
                                   listKey="lookId" value="t.look.lookId"/>
-                        <%
-                            }
-                        %>
+                        </s:else>
 
                     </td>
                 </tr>
@@ -159,39 +122,14 @@
                         <s:label for="marcas2">Marca</s:label>  
                         </td>
                         <td>
-                        <%
-                            if (request.getAttribute("accionocul") == "e"|| request.getAttribute("accionocul") == "c") {
-                        %>
-                        <s:textfield name="t.marcas.marcaNombre" readonly="true" ></s:textfield>
-                        <%
-                        } else {
-                        %>
-                        <s:select name="marcas2" list="lista_marcas" listValue="marcaNombre" 
+                        <s:if test='%{accionocul == "e" || accionocul == "c"}'>
+                            <s:textfield name="t.marcas.marcaNombre" readonly="true" ></s:textfield>
+                        </s:if>
+                        <s:else>
+                            <s:select name="marcas2" list="lista_marcas" listValue="marcaNombre" 
                                   listKey="marcaId" value="t.marcas.marcaId"/>
-                        <%
-                            }
-                        %>
+                        </s:else>
 
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <s:label for="tallas2">Talla</s:label>  
-                        </td>
-
-                        <td>
-                        <%
-                            if (request.getAttribute("accionocul") == "e"|| request.getAttribute("accionocul") == "c") {
-                        %>
-                        <s:textfield name="t.tallas.tallaDescripcion" readonly="true" ></s:textfield>
-                        <%
-                        } else {
-                        %>
-                        <s:select name="tallas2" list="lista_tallas" listValue="tallaDescripcion" 
-                                  listKey="tallaId" value="t.tallas.tallaId"/>
-                        <%
-                            }
-                        %>
                     </td>
                 </tr>
                 <tr>
@@ -199,17 +137,12 @@
                         <s:label for="roDescripcion2">Descripción</s:label>  
                         </td>
                         <td>
-                        <%
-                            if (request.getAttribute("accionocul") == "e"|| request.getAttribute("accionocul") == "c") {
-                        %>
-                        <s:textfield name="roDescripcion2" readonly="true" ></s:textfield>
-                        <%
-                        } else {
-                        %>
-                        <s:textfield name="roDescripcion2"/>
-                        <%
-                            }
-                        %>
+                        <s:if test='%{accionocul == "e" || accionocul == "c"}'>
+                            <s:textfield name="roDescripcion2" readonly="true" ></s:textfield>
+                        </s:if>
+                        <s:else>
+                            <s:textfield name="roDescripcion2"/>
+                        </s:else>
                     </td>
                 </tr>
                 <tr>
@@ -217,17 +150,12 @@
                         <s:label for="roPrecio2">Precio</s:label>  
                         </td>
                         <td>
-                        <%
-                            if (request.getAttribute("accionocul") == "e"|| request.getAttribute("accionocul") == "c") {
-                        %>
-                        <s:textfield name="roPrecio2" readonly="true" ></s:textfield>
-                        <%
-                        } else {
-                        %>
-                        <s:textfield name="roPrecio2"/>
-                        <%
-                            }
-                        %>
+                        <s:if test='%{accionocul == "e" || accionocul == "c"}'>
+                            <s:textfield name="roPrecio2" readonly="true" ></s:textfield>
+                        </s:if>
+                        <s:else>
+                            <s:textfield name="roPrecio2"/>
+                        </s:else>
                     </td>
                 </tr>
                 <tr>
@@ -235,17 +163,12 @@
                         <s:label for="roDescuento2">Descuento</s:label>  
                         </td>
                         <td>
-                        <%
-                            if (request.getAttribute("accionocul") == "e"|| request.getAttribute("accionocul") == "c") {
-                        %>
-                        <s:textfield name="roDescuento2" readonly="true" ></s:textfield>
-                        <%
-                        } else {
-                        %>
-                        <s:textfield name="roDescuento2"/>
-                        <%
-                            }
-                        %>
+                        <s:if test='%{accionocul == "e" || accionocul == "c"}'>
+                            <s:textfield name="roDescuento2" readonly="true" ></s:textfield>
+                        </s:if>
+                        <s:else>
+                            <s:textfield name="roDescuento2"/>
+                        </s:else>
                     </td>
                 </tr>
                 <tr>
@@ -253,17 +176,12 @@
                         <s:label for="roCaracteristicas2">Características</s:label>  
                         </td>
                         <td>
-                        <%
-                            if (request.getAttribute("accionocul") == "e"|| request.getAttribute("accionocul") == "c") {
-                        %>
-                        <s:textfield name="roCaracteristicas2" readonly="true" ></s:textfield>
-                        <%
-                        } else {
-                        %>
-                        <s:textfield name="roCaracteristicas2"/>
-                        <%
-                            }
-                        %>
+                        <s:if test='%{accionocul == "e" || accionocul == "c"}'>
+                            <s:textfield name="roCaracteristicas2" readonly="true" ></s:textfield>
+                        </s:if>
+                        <s:else>
+                            <s:textfield name="roCaracteristicas2"/>
+                        </s:else>
                     </td>
                 </tr>
                 <tr>
@@ -271,61 +189,19 @@
                         <s:label for="roVisible2">Visible</s:label>  
                         </td>
                         <td>
-                        <%
-                            if (request.getAttribute("accionocul") == "e"|| request.getAttribute("accionocul") == "c") {
-                        %>
+                        <s:if test='%{accionocul == "e" || accionocul == "c"}'>
                         <s:textfield name="roVisible2" readonly="true" ></s:textfield>
-                        <%
-                        } else {
-                            String selected = "";
-                        %>
-                        <s:if test="roVisible2==1">
-                            <% selected="selected=\"selected\"";%>
                         </s:if>
-                        <select name="roVisible2" id="roVisible2">
-                            <option value="0">No</option>
-                            <option value="1" <%=selected%>>Si</option>
-                        </select>
-                        <%
-                            }
-                        %>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <s:label for="roUnidades2">Unidades</s:label>  
-                        </td>
-                        <td>
-                        <%
-                            if (request.getAttribute("accionocul") == "e"|| request.getAttribute("accionocul") == "c") {
-                        %>
-                        <s:textfield name="roUnidades2" readonly="true" ></s:textfield>
-                        <%
-                        } else {
-                        %>
-                        <s:textfield name="roUnidades2"/>
-                        <%
-                            }
-                        %>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <s:label for="roFecha2">Fecha</s:label>  
-                        </td>
-                        <td>
-                        <%
-                            if (request.getAttribute("accionocul") == "e"|| request.getAttribute("accionocul") == "c") {
-                        %>
-                        <s:textfield name="roFecha2" readonly="true" ></s:textfield>
-                        <%
-                        } else {
-                        %>
-                        <s:textfield name="roFecha2" id="roFecha2" cssClass="tcal" readonly="true"/>
-                        <!--<s:textfield name="roFecha2"/>-->
-                        <%
-                            }
-                        %>
+                        <s:else>
+                            <% String selected = ""; %>
+                            <s:if test="roVisible2==0">
+                                <% selected="selected=\"selected\"";%>
+                            </s:if>
+                            <select name="roVisible2" id="roVisible2">
+                                <option value="1">Si</option>
+                                <option value="0" <%=selected%>>No</option>
+                            </select>
+                        </s:else>
                     </td>
                 </tr>
                 <tr>
@@ -379,16 +255,16 @@
                 <%}%>
                 <tr>
                     <td colspan="2">
-                        <%
-                            if (request.getAttribute("accionocul") == "a") {
-                        %>
-                        <input type="button" onclick="Verificar();" value="Agregar fotos" />
-                        <input type="button" onclick="AltaSinFotos();" value="No agregar fotos" />
-                        <%} else {%>
-                        <input type="button" onclick="Verificar();" value=<s:property value="botonocul" /> />
-                        <%}%>
+                        <s:if test='%{accionocul == "a"}'>
+                            <input type="button" onclick="Verificar();" value="Agregar fotos" />
+                            <input type="button" onclick="AltaSinFotos();" value="No agregar fotos" />
+                        </s:if>
+                        <s:else>
+                            <input type="button" onclick="Verificar();" value=<s:property value="botonocul" /> />
+                        </s:else>
                     </td>
                 </tr>
+                <!--Hasta acá debe ir en segunda tabla-->
             </table>
         </s:form>
     <center>
