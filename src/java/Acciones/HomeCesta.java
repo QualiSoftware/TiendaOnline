@@ -21,6 +21,7 @@ import Modelos.Color;
 import Modelos.FacturaDetalle;
 import Modelos.Facturas;
 import Modelos.Marcas;
+import Modelos.RopaStock;
 import Modelos.Subcategoria;
 import Modelos.Tallas;
 import Modelos.Usuarios;
@@ -80,6 +81,8 @@ public class HomeCesta extends ActionSupport {
     private String categoria2;
     private String marcas2;
     private String campania;
+    private int ropa,color,talla;
+    private RopaStock ropaStock;
     
 
     public boolean isAceptarpago() {
@@ -294,6 +297,30 @@ public class HomeCesta extends ActionSupport {
         this.campania = campania;
     }
 
+    public int getRopa() {
+        return ropa;
+    }
+
+    public void setRopa(int ropa) {
+        this.ropa = ropa;
+    }
+
+    public int getColor() {
+        return color;
+    }
+
+    public void setColor(int color) {
+        this.color = color;
+    }
+
+    public int getTalla() {
+        return talla;
+    }
+
+    public void setTalla(int talla) {
+        this.talla = talla;
+    }
+
     public Integer getCantidad() {
         return cantidad;
     }
@@ -362,20 +389,19 @@ public class HomeCesta extends ActionSupport {
         if (sesion == null) {
             sesion = ActionContext.getContext().getSession();
         }
-        // para cuando tengamos sesión de usuario
          try{
             u = (Usuarios) sesion.get("usuarioLogueado");
          }catch(Exception e){
+             //si no hay usuario logueado por ahora entra acá
             return INPUT;
          }
         int respuesta;
         c = new Cesta();
         c.setCestaId(clave);
         c.setCestaUnidades(cantidad);
-        //c.setRopa(ControladoresDAO.cRopa.RecuperaPorId(clave));
-        c.setRopaStock(ControladoresDAO.cRopaStock.RecuperaPorId(rostockId));
         c.setUsuarios(ControladoresDAO.cUsuarios.RecuperaPorId(u.getUsuId()));
-        //System.out.println(accionocul);
+        ropaStock = ControladoresDAO.cRopaStock.RecuperaPorRopaColorTalla(ropa, color, talla);
+        c.setRopaStock(ropaStock);
         if (accionocul.equals("e")) {
             if (cantidad > 0) {
                 respuesta = ControladoresDAO.cCesta.Modifica(c);
@@ -384,16 +410,30 @@ public class HomeCesta extends ActionSupport {
             }
 
         } else {
-            //Evaluar si ya existía esa ropa en la cesta y si existía modificar la cantidad
-            //En la BBDD, Cesta se debe relacionar con rostock_id y no con ro_id
-            respuesta = ControladoresDAO.cCesta.InsertaRopaCestaUsuario(c);
+            lista_ropa_Cestas = ControladoresDAO.cCesta.RecuperaTodos(""+u.getUsuId());
+            boolean aumentaCantidad = false;
+            int cestaIdAux = 0;
+            for(Cesta c:lista_ropa_Cestas){
+                if(c.getRopaStock().getRostockId() == ropaStock.getRostockId()){
+                    aumentaCantidad = true;
+                    cestaIdAux = c.getCestaId();
+                }
+            }
+            if(aumentaCantidad){
+                c = new Cesta();
+                c = ControladoresDAO.cCesta.RecuperaPorId(cestaIdAux);
+                cestaIdAux = c.getCestaUnidades();
+                int total = cantidad + cestaIdAux;
+                c.setCestaUnidades(total);
+                respuesta = ControladoresDAO.cCesta.Modifica(c);
+            }else{
+                respuesta = ControladoresDAO.cCesta.InsertaRopaCestaUsuario(c);
+            }
         }
-        lista_ropa_Cestas = ControladoresDAO.cCesta.RecuperaTodos(""); //esto debería recuperar todo POR USUARIO
-
+        lista_ropa_Cestas = ControladoresDAO.cCesta.RecuperaTodos(""+u.getUsuId());
         for (Cesta aux : lista_ropa_Cestas) {
             precio += aux.getCestaUnidades() * (aux.getRopaStock().getRopa().getRoPrecio() - (aux.getRopaStock().getRopa().getRoPrecio() * aux.getRopaStock().getRopa().getRoDescuento() / 100));
         }
-
         return SUCCESS;
     }
 

@@ -422,12 +422,12 @@
         
         <action name="GenerarFactura">
             <result>/Vistas/FacturaPDF.jsp</result>   
-        </action>
-        
+        </action>        
         
         <action name="Tienda" class="Acciones.HomeRopa" method="RopaFiltro">
             <result>/Vistas/tienda.jsp</result>           
         </action>
+        
         <action name="TiendaLogin" class="Acciones.HomeUsuariosValidaciones" method="Login">
             <result name="input" type="redirect">Tienda</result>
             <result name="error" type="redirectAction">
@@ -437,15 +437,19 @@
             </result>
             <result type="redirect">Tienda</result>
         </action>
+        
         <action name="TiendaCerrarSesion" class="Acciones.HomeUsuariosValidaciones" method="CerrarSesion">
             <result type="redirect">Tienda</result>
         </action>
+        
         <action name="TiendaMenu" class="Acciones.HomeRopa" method="RopaMenu">
             <result>/Vistas/tiendaMenu.jsp</result>
         </action>
-        <action name="TiendaListas" class="Acciones.HomeRopa" method="RopaMenu">
+        
+        <action name="RopaPopUp" class="Acciones.HomeRopaStock" method="RopaPopUp">
             <result>/Vistas/tiendaCestaPopUp.jsp</result>
         </action>
+        
         <action name="TiendaCesta" class="Acciones.HomeCesta" method="CrudActionUsuariosCesta">
             <result type="redirectAction">
                 <param name="clientela2">${clientela2}</param>
@@ -454,6 +458,7 @@
                 <param name="campania">${campania}</param>
                 <param name="actionName">TiendaMenu</param>
             </result>
+            <result name="input" type="redirect">Tienda</result>
         </action>
         
     </package>

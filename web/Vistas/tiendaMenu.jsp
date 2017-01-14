@@ -22,22 +22,11 @@
         <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js' type='text/javascript'></script>
         <script src="../Scripts/Carrusel.js" type="text/javascript"></script>
         <script>
+            var ventana;
             function abrir(rostockId){
-                var ventana = window.open("tiendaCestaPopUp.jsp?clave="+rostockId,"Color","width=300,height=300, resizable=no, scrollbars=no, menubar=no");
-                /*ventana.document(document.getElementById('formulario').submit());
-                ventana.document.write(document.getElementById('color')+'<br>');*/
+                ventana = window.open("tiendaCestaPopUp.jsp?clave="+rostockId,"TallaYColor","width=300,height=300, resizable=no, scrollbars=no, menubar=no");
+                /*ventana.document.write(document.getElementById('color')+'<br>');*/
             }
-            /*$(document).ready(function(){
-                $('#imagen_grande').hide();
-                $("#imagenChica").on("click",function(e){
-                    $("#imagen_grande").fadeIn(2000);
-                    e.stopPropagation(); //esto es para evitar que se ejecute la siguiente función
-                });
-                $("#imagen_grande").on("click", function(){
-                //$(document).on("click keypress", function(){
-                    $("#imagen_grande").fadeOut(1500);
-                });
-            });*/
         </script>
         <!-- Estilos Footer -->
         <link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
@@ -64,7 +53,7 @@
                         <s:a action="CestaFiltro" theme="simple">
                             <s:textfield type="hidden" value="1" name="filtro" />
                             <s:property value="totalcestaUsuario"/>
-                            <img src="../Imagenes/Administracion/Shopping-Cart-10.png" alt="" id="imgcesta"/>
+                            <img src="../Imagenes/Administracion/Shopping-Cart-10.png" alt="" id="imgcesta"/>                            
                             <span>
                                 <table>
                                     <tr>
@@ -72,31 +61,35 @@
                                         <th>Color</th>
                                         <th>Tallas</th>
                                         <th>Precio</th>
-                                        <th>Fotos</th>                                   
+                                        <th></th>                                   
                                     </tr>
                                     <s:iterator var="c" value="lista_ropa_Cestas">
                                         <tr>
                                             <td>
-                                                <s:property value="#c.ropaStock.Ropa.roDescripcion"/>
+                                                <s:property value="#c.ropaStock.ropa.roDescripcion"/>
                                             </td>
                                             <td>
                                                 <s:property value="#c.ropaStock.color.colorDescripcion"/>
                                             </td>
                                             <td>
+                                                <center>
                                                 <s:property value="#c.ropaStock.tallas.tallaDescripcion"/>
+                                                </center>
                                             </td>
                                             <td>
-                                                <s:property value="#c.ropaStock.Ropa.roPrecio"/>
+                                                <s:property value="getText('{0,number,##0.00}',{#c.ropaStock.ropa.roPrecio})"/>
                                             </td>
-                                            <td>
-                                                <s:iterator var="f" value="#c.ropaStock.Ropa.fotoses">
-                                                    <s:property value="fotosRuta"/>
+                                            <td><% int cero=0; %>
+                                                <s:iterator var="f" value="#c.ropaStock.ropa.fotoses">
+                                                    <% if(cero<1){%>
+                                                    <img src="<s:url value='../Imagenes/%{#c.ropaStock.ropa.categoria.catDescripcion}/%{#c.ropaStock.ropa.subcategoria.subDescripcion}/%{#f.fotosRuta}'/>" alt="<s:property value="fotosRuta" />" width="20" />
+                                                    <% cero++;}%>
                                                 </s:iterator>
                                             </td>
                                         </tr>
                                     </s:iterator>
                                 </table>
-                            </span>  
+                            </span>
                         </s:a>
                     </s:if>                                
                     <s:if test="sesion.usuarioLogueado.usuAdministrador==1">
@@ -390,8 +383,15 @@
                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                         <img src="../Imagenes/Administracion/bRTdpoqi9.png" title="Аñadir a Favoritos" style="box-shadow:  0px 0px 0px;"/>
                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                        <img onclick="abrir(<s:property value="#m.roId"/>);" src="../Imagenes/Administracion/shopping-basket-xxl.png" title="Añadir a la Cesta" style="box-shadow: 0px 0px 0px;">
-                                        <br>
+                                        <s:a action="RopaPopUp">
+                                            <s:param name="clientela2" value="%{clientela2}"/>
+                                            <s:param name="categoria2" value="%{categoria2}"/>
+                                            <s:param name="marcas2" value="%{marcas2}"/>
+                                            <s:param name="campania" value="campania"/>
+                                            <s:param name="roId" value="#m.roId"/>
+                                            <img src="../Imagenes/Administracion/shopping-basket-xxl.png" title="Añadir a la Cesta" style="box-shadow: 0px 0px 0px;">
+                                        </s:a>
+                                            <br>
                                         <span style="color: white">Vista &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Favoritos&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cesta</span>
                                     </div>
                                 </td>

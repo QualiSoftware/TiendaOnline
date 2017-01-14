@@ -11,26 +11,48 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
+        <script>
+            function Volver(){
+                document.getElementById('frm').action = "TiendaMenu";
+                document.getElementById('frm').submit();                
+            }
+        </script>
     </head>
     <body>
-        <h1>Hello World! <% out.println(request.getParameter("clave")); %></h1>
-                                    <span id="listados">
-                                            <s:select name="color" list="lista_colores" listValue="colorDescripcion" 
-                                                      listKey="colorId" value="rstock.color.colorId" theme="simple"/>
-                                        <s:a action="TiendaCesta">
-                                            <s:param name="clientela2" value="%{clientela2}"/>
-                                            <s:param name="categoria2" value="%{categoria2}"/>
-                                            <s:param name="marcas2" value="%{marcas2}"/>
-                                            <s:param name="campania" value="%{campania}"/>
-                                            <s:param name="accion" value="'c'"/>
-                                            <s:param name="accionocul" value="'c'"/>
-                                            <s:param name="cantidad" value="1"/>
-                                            <s:param name="clave" value="#m.roId"/>
-                                            Enviar
-                                        </s:a> 
-                                    </span>
-        <a href="/TiendaOnline/Vistas/TiendaCesta.action?clientela2=&amp;categoria2=&amp;marcas2=&amp;campania=&amp;accion=c&amp;accionocul=c&amp;cantidad=1&amp;clave=<% out.println(request.getParameter("clave")); %>">
-            <img src="../Imagenes/Colores/Azul.jpg" title="Añadir a la Cesta">
-        </a>
+        <h1>Color, Talla y Cantidad</h1>
+        <br/>
+        <table>
+        <s:form id="frm" action="TiendaCesta" method="POST" theme="simple">
+            <input type="hidden" name="clientela2" value="<s:property value="clientela2"/>"/>
+            <input type="hidden" name="categoria2" value="<s:property value="categoria2"/>"/>
+            <input type="hidden" name="marcas2" value="<s:property value="marcas2"/>"/>
+            <input type="hidden" name="campania" value="<s:property value="campania"/>"/>
+            <input type="hidden" name="accionocul" value="'c'"/>
+            <input type="hidden" name="ropa" value="<s:property value="roId"/>"/>
+            <tr>
+                <td>
+                    <s:select name="color" list="lista_colores" listValue="colorDescripcion" 
+                        listKey="colorId"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <s:select name="talla" list="lista_tallas" listValue="tallaDescripcion" 
+                              listKey="tallaId"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="number" name="cantidad" min="1" step="1" value="1">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <s:submit value="Agregar al carrito"/>
+                    <input type="button" value="Cancelar" onclick="Volver();"/>
+                </td>
+            </tr>                
+        </s:form>
+        </table>
     </body>
 </html>

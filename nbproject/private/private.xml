@@ -6,9 +6,10 @@
             <file>file:/C:/Users/Damian/Documents/NetBeansProjects/TiendaOnline/TiendaOnline/web/Vistas/home.jsp</file>
             <file>file:/C:/Users/Damian/Documents/NetBeansProjects/TiendaOnline/TiendaOnline/src/java/struts.xml</file>
             <file>file:/C:/Users/Damian/Documents/NetBeansProjects/TiendaOnline/TiendaOnline/src/java/Acciones/HomeRopa.java</file>
-            <file>file:/C:/Users/Damian/Documents/NetBeansProjects/TiendaOnline/TiendaOnline/src/java/Acciones/HomeRopaStock.java</file>
-            <file>file:/C:/Users/Damian/Documents/NetBeansProjects/TiendaOnline/TiendaOnline/web/Vistas/formularioCRUDropaStock.jsp</file>
-            <file>file:/C:/Users/Damian/Documents/NetBeansProjects/TiendaOnline/TiendaOnline/web/Vistas/CRUDropa.jsp</file>
+            <file>file:/C:/Users/Damian/Documents/NetBeansProjects/TiendaOnline/TiendaOnline/web/Vistas/tienda.jsp</file>
+            <file>file:/C:/Users/Damian/Documents/NetBeansProjects/TiendaOnline/TiendaOnline/src/java/Acciones/HomeCesta.java</file>
+            <file>file:/C:/Users/Damian/Documents/NetBeansProjects/TiendaOnline/TiendaOnline/web/Vistas/tiendaCestaPopUp.jsp</file>
+            <file>file:/C:/Users/Damian/Documents/NetBeansProjects/TiendaOnline/TiendaOnline/web/Vistas/tiendaMenu.jsp</file>
         </group>
     </open-files>
 </project-private>

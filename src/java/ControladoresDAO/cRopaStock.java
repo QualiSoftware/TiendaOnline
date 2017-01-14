@@ -17,6 +17,16 @@ public class cRopaStock {
         List<RopaStock> lt = query.list();
         return lt;
     }
+    
+    public static RopaStock RecuperaPorRopaColorTalla(int roId, int color, int talla){
+        sesion = (Session) NewHibernateUtil.getSession();
+        String sql = "From RopaStock WHERE ropa.roId="+roId+" AND color.colorId="+color+" AND tallas.tallaId="+talla;
+        Query query = sesion.createQuery(sql);
+        List<RopaStock> lt = query.list();
+        RopaStock rs = lt.get(0);
+        return rs;
+    }
+    
     public static RopaStock RecuperaPorId(int id){
         sesion = (Session) NewHibernateUtil.getSession();
         RopaStock rs = (RopaStock) sesion.get(RopaStock.class, id);

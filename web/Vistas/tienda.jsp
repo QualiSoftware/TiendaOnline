@@ -50,7 +50,7 @@
                                         <th>Color</th>
                                         <th>Tallas</th>
                                         <th>Precio</th>
-                                        <th>Fotos</th>                                   
+                                        <th></th>                                   
                                     </tr>
                                     <s:iterator var="c" value="lista_ropa_Cestas">
                                         <tr>
@@ -61,14 +61,18 @@
                                                 <s:property value="#c.ropaStock.color.colorDescripcion"/>
                                             </td>
                                             <td>
+                                                <center>
                                                 <s:property value="#c.ropaStock.tallas.tallaDescripcion"/>
+                                                </center>
                                             </td>
                                             <td>
-                                                <s:property value="#c.ropaStock.ropa.roPrecio"/>
+                                                <s:property value="getText('{0,number,##0.00}',{#c.ropaStock.ropa.roPrecio})"/>
                                             </td>
-                                            <td>
+                                            <td><% int cero=0; %>
                                                 <s:iterator var="f" value="#c.ropaStock.ropa.fotoses">
-                                                    <s:property value="fotosRuta"/>
+                                                    <% if(cero<1){%>
+                                                    <img src="<s:url value='../Imagenes/%{#c.ropaStock.ropa.categoria.catDescripcion}/%{#c.ropaStock.ropa.subcategoria.subDescripcion}/%{#f.fotosRuta}'/>" alt="<s:property value="fotosRuta" />" width="20" />
+                                                    <% cero++;}%>
                                                 </s:iterator>
                                             </td>
                                         </tr>
