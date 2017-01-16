@@ -15,7 +15,7 @@ public class cEmail{
     public static boolean enviarAlta(String destinatario, int id){
         boolean enviadoAlta = false;
         String asunto = "Activación de cuenta de usuario";
-        String mensaje = ControladoresDAO.cEmailDisenio.DisenioAlta(destinatario, id);
+        String mensaje = ControladoresDAO.cEmailDisenio.DisenioAlta(id);
         enviadoAlta = funcionEnviar(destinatario, "", asunto, mensaje);
         return enviadoAlta;
     }

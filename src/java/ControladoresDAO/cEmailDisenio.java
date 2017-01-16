@@ -2,8 +2,9 @@ package ControladoresDAO;
 
 public class cEmailDisenio {
     
-    public static String DisenioAlta(String destinatario, int id){
-        String enlace = "http://localhost:8080/TiendaOnline/Vistas/activa.action?accion="+id+"&usuEmail2="+destinatario;
+    public static String DisenioAlta(int id){
+        //al subir al servidor cambiar este enlace
+        String enlace = "http://localhost:8080/TiendaOnline/Vistas/activa.action?accion="+id;
         String mensaje = "<HTML><BODY>"
                 + "<h1>Para confirmar su usuario </h1><a href=\""+enlace+"\">Presione este enlace</a>"
                 + "</BODY></HTML>";

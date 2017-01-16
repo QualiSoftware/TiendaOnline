@@ -545,7 +545,7 @@ public class HomeUsuarios extends ActionSupport {
            p.setProvincias(ControladoresDAO.cProvincias.RecuperaPorId(Integer.parseInt(provincias2)));
            p.setUsuNombre(usuNombre2);
            p.setUsuApellidos(usuApellidos2);
-           p.setUsuEmail("jld+Q.72RAZY5BNW@.21339177");
+           p.setUsuEmail(usuEmail2);
            p.setUsuPassword(usuPassword2);
            p.setUsuDni(usuDni2);
            p.setUsuCp(usuCp2);
@@ -558,6 +558,8 @@ public class HomeUsuarios extends ActionSupport {
            p.setUsuFechaLimiteDesc(date);
            p.setUsuAdministrador(0);
            p.setUsuAlta(new Date());
+           byte act = 0;
+           p.setUsuActivo(act);
            respuesta = ControladoresDAO.cUsuarios.Inserta(p);
            respuesta = ControladoresDAO.cUsuarios.SaberUltimoId();
            boolean email = ControladoresDAO.cEmail.enviarAlta(usuEmail2, respuesta);
@@ -596,7 +598,8 @@ public class HomeUsuarios extends ActionSupport {
     public String activa() throws Exception{
         try{
             u = ControladoresDAO.cUsuarios.RecuperaPorId(Integer.parseInt(accion));
-            u.setUsuEmail(usuEmail2);
+            byte act = 1;
+            u.setUsuActivo(act);
             int respuesta = ControladoresDAO.cUsuarios.Modifica(u);
             accion = u.getUsuNombre()+" "+u.getUsuApellidos();
             return SUCCESS;

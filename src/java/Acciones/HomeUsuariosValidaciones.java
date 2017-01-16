@@ -107,7 +107,7 @@ public class HomeUsuariosValidaciones extends ActionSupport{
     
     public String Login() throws Exception {
         //System.out.println("respuesta "+respuesta);
-        if(respuesta == 1){
+        /*if(respuesta == 1){
             List<Usuarios> l = ControladoresDAO.cUsuarios.Login(usuEmail2,usuPassword2);
             if(l.size()==0){
                 mensajeError="Acceso no permitido";
@@ -119,7 +119,7 @@ public class HomeUsuariosValidaciones extends ActionSupport{
                 sesion.put("usuarioLogueado", (Usuarios) l.get(0));
                 return SUCCESS;
             }
-        }else{
+        }else{*/
             List<Usuarios> l = ControladoresDAO.cUsuarios.Login(usuario,password);
             if(l.size()==0){
                 mensajeError="Usuario y/o contraseña erróneos";
@@ -127,13 +127,21 @@ public class HomeUsuariosValidaciones extends ActionSupport{
                 System.out.println("Hubo un intento de conexión fallido el " + d + " con user: " + usuario + " pass: " + password);
                 return ERROR;
             }else{
-                if(sesion==null){
-                    sesion=ActionContext.getContext().getSession();
+                Usuarios usuario = (Usuarios) l.get(0);
+                if(usuario.getUsuActivo() == 1){
+                    if(sesion==null){
+                        sesion=ActionContext.getContext().getSession();
+                    }
+                    sesion.put("usuarioLogueado", (Usuarios) l.get(0));
+                    return SUCCESS;
+                }else{
+                    mensajeError="Usuario inactivo";
+                    Date d = new Date();
+                    System.out.println("El usuario inactivo " + usuario.getUsuEmail() + " intentó loguearse el " + d );
+                    return ERROR;
                 }
-                sesion.put("usuarioLogueado", (Usuarios) l.get(0));
-                return SUCCESS;
             }
-        }     
+        //}     
     }
     /*
     @SkipValidation
