@@ -40,9 +40,9 @@
                 <div id="cesta">
                     <s:if test="sesion.usuarioLogueado.usuAdministrador!=1">
                         <s:a action="CestaFiltro" theme="simple">
-                            <s:textfield type="hidden" value="1" name="filtro" />
-                            <s:property value="totalcestaUsuario"/>
+                            <s:textfield type="hidden" value="1" name="filtro" theme="simple"/>
                             <img src="../Imagenes/Administracion/Shopping-Cart-10.png" alt="" id="imgcesta"/>
+                            <div id="cantidad_Cesta"><s:property value="totalcestaUsuario"/></div>
                             <span>
                                 <table>
                                     <tr>
@@ -50,7 +50,9 @@
                                         <th>Color</th>
                                         <th>Tallas</th>
                                         <th>Precio</th>
-                                        <th></th>                                   
+                                        <th>Cantidad</th>
+                                        <th>Total</th>
+                                        <th>Foto</th>                                   
                                     </tr>
                                     <s:iterator var="c" value="lista_ropa_Cestas">
                                         <tr>
@@ -66,7 +68,19 @@
                                                 </center>
                                             </td>
                                             <td>
-                                                <s:property value="getText('{0,number,##0.00}',{#c.ropaStock.ropa.roPrecio})"/>
+                                            <center>
+                                                <s:property value="getText('{0,number,##0.00}',{#c.ropaStock.ropa.roPrecio - (#c.ropaStock.ropa.roPrecio * #c.ropaStock.ropa.roDescuento / 100)})"/>
+                                            </center>
+                                            </td>
+                                            <td>
+                                            <center>
+                                                <s:property value="#c.cestaUnidades"/>
+                                            </center>
+                                            </td>
+                                            <td>
+                                            <center>
+                                                <s:property value="getText('{0,number,##0.00}',{(#c.ropaStock.ropa.roPrecio - (#c.ropaStock.ropa.roPrecio * #c.ropaStock.ropa.roDescuento / 100)) * #c.cestaUnidades})"/>
+                                            </center>
                                             </td>
                                             <td><% int cero=0; %>
                                                 <s:iterator var="f" value="#c.ropaStock.ropa.fotoses">

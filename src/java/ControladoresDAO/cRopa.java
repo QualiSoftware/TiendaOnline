@@ -14,7 +14,7 @@ public class cRopa {
     static Session sesion;
 
     public static ArrayList<Ropa> RecuperaTodos(String filtro, String orden, String fi, String ff, String eliminadas) {
-        sesion = (Session) NewHibernateUtil.getSession();
+        sesion = (Session) NewHibernateUtil.getSessionModif();
         String sql = "From Ropa WHERE ";
         /*if(!fi.equals("") && !ff.equals("")){
             String year;
@@ -96,7 +96,7 @@ public class cRopa {
     }
     
     public static Ropa RecuperaPorId(int id) {
-        sesion = (Session) NewHibernateUtil.getSession();
+        sesion = (Session) NewHibernateUtil.getSessionModif();
         Ropa p = (Ropa) sesion.get(Ropa.class, id);
         return p;
     }

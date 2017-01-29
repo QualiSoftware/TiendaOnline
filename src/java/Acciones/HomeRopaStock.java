@@ -1,6 +1,10 @@
 package Acciones;
 
+import Modelos.Campania;
+import Modelos.Categoria;
+import Modelos.Clientela;
 import Modelos.Color;
+import Modelos.Marcas;
 import Modelos.Ropa;
 import Modelos.RopaStock;
 import Modelos.Tallas;
@@ -38,7 +42,9 @@ public class HomeRopaStock {
     private Usuarios u;
     private List<RopaStock> lista_ropaStock;
     private String clientela2,categoria2,marcas2,campania;
-    
+    private ArrayList<Ropa> lista_ropa,lista_menu_ropa;
+    private List<Marcas>lista_marcas;
+    private String clientela, categoria, marca, campaniaNombre;
 
     public String getAccion() {
         return accion;
@@ -144,6 +150,10 @@ public class HomeRopaStock {
         this.rstock = rstock;
     }
 
+    public Ropa getT() {
+        return t;
+    }
+
     public int getRoId() {
         return roId;
     }
@@ -206,6 +216,62 @@ public class HomeRopaStock {
 
     public void setClientela2(String clientela2) {
         this.clientela2 = clientela2;
+    }
+
+    public ArrayList<Ropa> getLista_ropa() {
+        return lista_ropa;
+    }
+
+    public void setLista_ropa(ArrayList<Ropa> lista_ropa) {
+        this.lista_ropa = lista_ropa;
+    }
+
+    public ArrayList<Ropa> getLista_menu_ropa() {
+        return lista_menu_ropa;
+    }
+
+    public void setLista_menu_ropa(ArrayList<Ropa> lista_menu_ropa) {
+        this.lista_menu_ropa = lista_menu_ropa;
+    }
+
+    public List<Marcas> getLista_marcas() {
+        return lista_marcas;
+    }
+
+    public void setLista_marcas(List<Marcas> lista_marcas) {
+        this.lista_marcas = lista_marcas;
+    }
+
+    public String getClientela() {
+        return clientela;
+    }
+
+    public void setClientela(String clientela) {
+        this.clientela = clientela;
+    }
+
+    public String getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
+    }
+
+    public String getMarca() {
+        return marca;
+    }
+
+    public void setMarca(String marca) {
+        this.marca = marca;
+    }
+
+    public String getCampaniaNombre() {
+        return campaniaNombre;
+    }
+
+    public void setCampaniaNombre(String campaniaNombre) {
+        this.campaniaNombre = campaniaNombre;
     }
 
     public String getCategoria2() {
@@ -273,6 +339,35 @@ public class HomeRopaStock {
                 if(bool){
                     lista_tallas.add(lista_ropaStock.get(i).getTallas());
                 }
+            }
+            lista_menu_ropa = new ArrayList<Ropa>();
+            lista_ropa = ControladoresDAO.cRopa.RecuperaTodos("","categoria.catDescripcion","","","2");
+            for(Ropa lr: lista_ropa){
+                String auxClientela = lr.getClientela().getClientelaDescripcion();
+                String auxCategoria = lr.getCategoria().getCatDescripcion();
+                boolean noEsta = true;
+                for(Ropa lrm: lista_menu_ropa){
+                    if(auxClientela.equals(lrm.getClientela().getClientelaDescripcion()) && auxCategoria.equals(lrm.getCategoria().getCatDescripcion())){
+                        noEsta = false;
+                    }
+                }
+                if(noEsta){
+                    lista_menu_ropa.add(lr);
+                }
+            }
+            lista_marcas =  ControladoresDAO.cMarcas.RecuperaTodos("");
+            lista_ropa.clear();
+            if (filtro == null || filtro.equals("null")) {
+                filtro = "";
+            }
+            t = ControladoresDAO.cRopa.RecuperaPorId(roId);
+            clientela = t.getClientela().getClientelaDescripcion();
+            categoria = t.getCategoria().getCatDescripcion();
+            marca = t.getMarcas().getMarcaNombre();
+            System.out.println("campania: " + campania);
+            if(!campania.equals("")){
+                Campania camp = ControladoresDAO.cCampanias.RecuperaPorId(Integer.parseInt(campania));
+                campaniaNombre = camp.getCamNombre();
             }
            return SUCCESS;
     }

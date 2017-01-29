@@ -719,10 +719,6 @@ public class HomeRopa extends ActionSupport {
         if(eliminadas == null || eliminadas.equals("null")){
             eliminadas = "2";
         }
-        lista_ropa_Cestas = ControladoresDAO.cCesta.RecuperaTodos(usi);
-        for(Cesta caux:lista_ropa_Cestas){
-            totalcestaUsuario += caux.getCestaUnidades();
-        }       
         lista_ropa = ControladoresDAO.cRopa.RecuperaTodos(filtro,orden,fechaI,fechaF,eliminadas);
         lista_campanias = ControladoresDAO.cCampanias.RecuperaCampaniasActivas(filtro);
         lista_marcas =  ControladoresDAO.cMarcas.RecuperaTodos(filtro);
@@ -739,6 +735,12 @@ public class HomeRopa extends ActionSupport {
             if(noEsta){
                 lista_menu_ropa.add(lr);
             }
+        }        
+        lista_ropa_Cestas = ControladoresDAO.cCesta.RecuperaTodos(usi);
+        for(Cesta caux:lista_ropa_Cestas){
+            totalcestaUsuario += caux.getCestaUnidades();
+            caux.getRopaStock().setRopa(descuentoEnRopa(caux.getRopaStock().getRopa()));
+            //System.out.println(caux.getRopaStock().getRopa().getRoDescripcion()+" - "+caux.getCestaUnidades()+" - "+caux.getRopaStock().getRopa().getRoPrecio());
         }
         return SUCCESS;
     }
@@ -939,10 +941,6 @@ public class HomeRopa extends ActionSupport {
                     System.out.println(e.getMessage());
                 }
             }
-        }        
-        lista_ropa_Cestas = ControladoresDAO.cCesta.RecuperaTodos(usi);
-        for(Cesta caux:lista_ropa_Cestas){
-            totalcestaUsuario += caux.getCestaUnidades();
         }
         //lista_campanias = ControladoresDAO.cCampanias.RecuperaCampaniasActivas();
         lista_marcas =  ControladoresDAO.cMarcas.RecuperaTodos("");
@@ -989,6 +987,35 @@ public class HomeRopa extends ActionSupport {
             Marcas mar = ControladoresDAO.cMarcas.RecuperaPorId(Integer.parseInt(marcas2));
             marca = mar.getMarcaNombre();
         }
+        lista_ropa = poneDescuentosBien(lista_ropa);        
+        lista_ropa_Cestas = ControladoresDAO.cCesta.RecuperaTodos(usi);
+        for(Cesta caux:lista_ropa_Cestas){
+            totalcestaUsuario += caux.getCestaUnidades();
+            caux.getRopaStock().setRopa(descuentoEnRopa(caux.getRopaStock().getRopa()));
+            //System.out.println(caux.getRopaStock().getRopa().getRoDescripcion()+" - "+caux.getCestaUnidades()+" - "+caux.getRopaStock().getRopa().getRoPrecio());
+        }
        return SUCCESS;
+    }
+    
+    public ArrayList<Ropa> poneDescuentosBien (ArrayList<Ropa> lista){
+        ArrayList<Ropa> listaConDescuentosBien = new ArrayList<>();
+        for(Ropa lr: lista){
+            listaConDescuentosBien.add(descuentoEnRopa(lr));
+        }
+        return listaConDescuentosBien;
+    }
+    
+    private Ropa descuentoEnRopa(Ropa r){
+            List<Integer> listaCampaniasDeEstaRopa = ControladoresDAO.cCampaniasRopa.RecuperaCampaniasPorRopa(r.getRoId());
+            if(!listaCampaniasDeEstaRopa.isEmpty()){
+                Date hoy = new Date();
+                for(Integer camId:listaCampaniasDeEstaRopa){
+                    Campania cam = ControladoresDAO.cCampanias.RecuperaPorId(camId);
+                    if(hoy.after(cam.getCamInicio()) && hoy.before(cam.getCamFin())){
+                        r.setRoDescuento(cam.getCamDescuento());
+                    }
+                }
+            }
+        return r;
     }
 }

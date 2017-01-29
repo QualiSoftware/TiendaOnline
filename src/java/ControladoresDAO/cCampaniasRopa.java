@@ -24,6 +24,18 @@ public class cCampaniasRopa {
         return lista;
     }
     
+    public static List<Integer> RecuperaCampaniasPorRopa(int roId){
+        sesion = (Session) NewHibernateUtil.getSession();
+        String sql = "From CampaniaRopa WHERE camro_ro_id = "+roId;
+        Query query = sesion.createQuery(sql);
+        List<CampaniaRopa> lcr = query.list();
+        List<Integer> lista = new ArrayList<Integer>();
+        for(CampaniaRopa cr:lcr){
+            lista.add(cr.getCampania().getCamId());
+        }
+        return lista;
+    }
+    
     public static int  Elimina(int camId){
         Connection con = null;
         int respuesta = -1;

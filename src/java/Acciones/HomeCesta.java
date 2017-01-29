@@ -391,6 +391,9 @@ public class HomeCesta extends ActionSupport {
         }
          try{
             u = (Usuarios) sesion.get("usuarioLogueado");
+            if(u.getUsuAdministrador() == 1){
+                return INPUT;                
+            }
          }catch(Exception e){
              //si no hay usuario logueado por ahora entra acá
             return INPUT;

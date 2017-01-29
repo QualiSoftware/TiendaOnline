@@ -61,7 +61,9 @@
                                         <th>Color</th>
                                         <th>Tallas</th>
                                         <th>Precio</th>
-                                        <th></th>                                   
+                                        <th>Cantidad</th>
+                                        <th>Total</th>
+                                        <th>Foto</th>                                   
                                     </tr>
                                     <s:iterator var="c" value="lista_ropa_Cestas">
                                         <tr>
@@ -77,7 +79,19 @@
                                                 </center>
                                             </td>
                                             <td>
-                                                <s:property value="getText('{0,number,##0.00}',{#c.ropaStock.ropa.roPrecio})"/>
+                                            <center>
+                                                <s:property value="getText('{0,number,##0.00}',{#c.ropaStock.ropa.roPrecio - (#c.ropaStock.ropa.roPrecio * #c.ropaStock.ropa.roDescuento / 100)})"/>
+                                            </center>
+                                            </td>
+                                            <td>
+                                            <center>
+                                                <s:property value="#c.cestaUnidades"/>
+                                            </center>
+                                            </td>
+                                            <td>
+                                            <center>
+                                                <s:property value="getText('{0,number,##0.00}',{(#c.ropaStock.ropa.roPrecio - (#c.ropaStock.ropa.roPrecio * #c.ropaStock.ropa.roDescuento / 100)) * #c.cestaUnidades})"/>
+                                            </center>
                                             </td>
                                             <td><% int cero=0; %>
                                                 <s:iterator var="f" value="#c.ropaStock.ropa.fotoses">
@@ -270,9 +284,16 @@
                 </div>
                 <div id="productos" style="margin-top: 50px;">
                     <s:iterator var="m" value="lista_ropa">
+                        <s:if test="#m.ropaStocks.size != 0">
                         <table  class="imgproducto">                                                    
                             <tr class="botones_prueba">
-                                <td><a href="#">
+                                <td>
+                                    <s:a action="RopaPopUp">
+                                        <s:param name="clientela2" value="%{clientela2}"/>
+                                        <s:param name="categoria2" value="%{categoria2}"/>
+                                        <s:param name="marcas2" value="%{marcas2}"/>
+                                        <s:param name="campania" value="campania"/>
+                                        <s:param name="roId" value="#m.roId"/>
                                         <%int aux = 0;%>
                                         <s:iterator var="f" value="fotoses">
                                             <%
@@ -284,7 +305,7 @@
                                             aux++;
                                             %>
                                         </s:iterator>
-                                    </a>
+                                    </s:a>
                                     <div id="botones_Galeria">
                                         <div id="vista_Rapida_Img">
                                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -359,25 +380,11 @@
                                                                         }
                                                                     </s:iterator>
                                                                 </script>
-                                                                <!--
-                                                                <span style="text-decoration:line-through;">
-                                                                XXL
-                                                                </span>
-                                                                <br>
-                                                                XL
-                                                                <br>
-                                                                L
-                                                                <br>
-                                                                M
-                                                                <br>
-                                                                S
-                                                                <br>-->
                                                                 <br>
                                                             </td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
-
                                             </div>
                                         </div>
                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -403,23 +410,19 @@
                             </tr>
                             <tr>
                                 <td style="text-align: left">
+                                    <span style="font-size: 15px; text-align: left"> <s:property value="#m.marcas.marcaNombre"/></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: left">
                                     <span style="text-decoration: line-through; font-size: 20px; color: #999999; font-weight: bold" ><s:property value="getText('{0,number,##0.00}',{#m.roPrecio})"/> €</span>
                                     <span style="padding-left: 10px; font-size: 20px; font-weight: bold;">
-                                        <s:if test="(campania!=null) && (campania!='')">
-                                            <s:if test="camDescuento > #m.roDescuento">
-                                                <s:property value="getText('{0,number,##0.00}',{#m.roPrecio - (#m.roPrecio * camDescuento / 100)})"/> €
-                                            </s:if>
-                                            <s:else>
-                                                <s:property value="getText('{0,number,##0.00}',{#m.roPrecio - (#m.roPrecio * #m.roDescuento / 100)})"/> €
-                                            </s:else>
-                                        </s:if>
-                                        <s:else>
-                                            <s:property value="getText('{0,number,##0.00}',{#m.roPrecio - (#m.roPrecio * #m.roDescuento / 100)})"/> €
-                                        </s:else>
+                                        <s:property value="getText('{0,number,##0.00}',{#m.roPrecio - (#m.roPrecio * #m.roDescuento / 100)})"/> €
                                     </span>
                                 </td>
                             </tr>
                         </table>
+                        </s:if>
                     </s:iterator>
                 </div>
             </div>
