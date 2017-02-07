@@ -43,56 +43,54 @@
                             <s:textfield type="hidden" value="1" name="filtro" theme="simple"/>
                             <img src="../Imagenes/Administracion/Shopping-Cart-10.png" alt="" id="imgcesta"/>
                             <div id="cantidad_Cesta"><s:property value="totalcestaUsuario"/></div>
-                            <span>
-                                <table>
+                            <table id="cesta_Hover">
+                                <tr>
+                                    <th>Descripcion</th>
+                                    <th>Color</th>
+                                    <th>Tallas</th>
+                                    <th>Precio</th>
+                                    <th>Cantidad</th>
+                                    <th>Total</th>
+                                    <th>Foto</th>                                   
+                                </tr>
+                                <s:iterator var="c" value="lista_ropa_Cestas">
                                     <tr>
-                                        <th>Descripcion</th>
-                                        <th>Color</th>
-                                        <th>Tallas</th>
-                                        <th>Precio</th>
-                                        <th>Cantidad</th>
-                                        <th>Total</th>
-                                        <th>Foto</th>                                   
+                                        <td>
+                                            <s:property value="#c.ropaStock.ropa.roDescripcion"/>
+                                        </td>
+                                        <td>
+                                            <s:property value="#c.ropaStock.color.colorDescripcion"/>
+                                        </td>
+                                        <td>
+                                            <center>
+                                            <s:property value="#c.ropaStock.tallas.tallaDescripcion"/>
+                                            </center>
+                                        </td>
+                                        <td>
+                                        <center>
+                                            <s:property value="getText('{0,number,##0.00}',{#c.ropaStock.ropa.roPrecio - (#c.ropaStock.ropa.roPrecio * #c.ropaStock.ropa.roDescuento / 100)})"/>
+                                        </center>
+                                        </td>
+                                        <td>
+                                        <center>
+                                            <s:property value="#c.cestaUnidades"/>
+                                        </center>
+                                        </td>
+                                        <td>
+                                        <center>
+                                            <s:property value="getText('{0,number,##0.00}',{(#c.ropaStock.ropa.roPrecio - (#c.ropaStock.ropa.roPrecio * #c.ropaStock.ropa.roDescuento / 100)) * #c.cestaUnidades})"/>
+                                        </center>
+                                        </td>
+                                        <td><% int cero=0; %>
+                                            <s:iterator var="f" value="#c.ropaStock.ropa.fotoses">
+                                                <% if(cero<1){%>
+                                                <img src="<s:url value='../Imagenes/%{#c.ropaStock.ropa.categoria.catDescripcion}/%{#c.ropaStock.ropa.subcategoria.subDescripcion}/%{#f.fotosRuta}'/>" alt="<s:property value="fotosRuta" />" width="20" />
+                                                <% cero++;}%>
+                                            </s:iterator>
+                                        </td>
                                     </tr>
-                                    <s:iterator var="c" value="lista_ropa_Cestas">
-                                        <tr>
-                                            <td>
-                                                <s:property value="#c.ropaStock.ropa.roDescripcion"/>
-                                            </td>
-                                            <td>
-                                                <s:property value="#c.ropaStock.color.colorDescripcion"/>
-                                            </td>
-                                            <td>
-                                                <center>
-                                                <s:property value="#c.ropaStock.tallas.tallaDescripcion"/>
-                                                </center>
-                                            </td>
-                                            <td>
-                                            <center>
-                                                <s:property value="getText('{0,number,##0.00}',{#c.ropaStock.ropa.roPrecio - (#c.ropaStock.ropa.roPrecio * #c.ropaStock.ropa.roDescuento / 100)})"/>
-                                            </center>
-                                            </td>
-                                            <td>
-                                            <center>
-                                                <s:property value="#c.cestaUnidades"/>
-                                            </center>
-                                            </td>
-                                            <td>
-                                            <center>
-                                                <s:property value="getText('{0,number,##0.00}',{(#c.ropaStock.ropa.roPrecio - (#c.ropaStock.ropa.roPrecio * #c.ropaStock.ropa.roDescuento / 100)) * #c.cestaUnidades})"/>
-                                            </center>
-                                            </td>
-                                            <td><% int cero=0; %>
-                                                <s:iterator var="f" value="#c.ropaStock.ropa.fotoses">
-                                                    <% if(cero<1){%>
-                                                    <img src="<s:url value='../Imagenes/%{#c.ropaStock.ropa.categoria.catDescripcion}/%{#c.ropaStock.ropa.subcategoria.subDescripcion}/%{#f.fotosRuta}'/>" alt="<s:property value="fotosRuta" />" width="20" />
-                                                    <% cero++;}%>
-                                                </s:iterator>
-                                            </td>
-                                        </tr>
-                                    </s:iterator>
-                                </table>
-                            </span>  
+                                </s:iterator>
+                            </table>
                         </s:a>
                     </s:if>                                
                     <s:if test="sesion.usuarioLogueado.usuAdministrador==1">
@@ -202,14 +200,13 @@
                     </table>                                        
                 </div>
             </div>
-
-            <div id="filtro">                
-                <form class="navbar-form navbar-left" role="search" action="Tienda">
+            <div id="filtro" class="navbar-form navbar-left">
+                <s:form role="search" action="Tienda" theme="simple">
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Búsqueda" name="filtro" value="<s:property value="filtro"/>">
+                        <input type="text" style="position: absolute; top:0px; left: 0px;" class="form-control" placeholder="Búsqueda" name="filtro" value="<s:property value="filtro"/>">
                     </div>
-                    <button style="position: absolute; top:8px; left: 215px;" type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
-                </form>
+                    <button style="position: absolute; top:0px; left: 215px;" type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+                </s:form>
             </div>
             <div id="menu">
                 <ul class="nav nav-pills">
@@ -259,8 +256,6 @@
                     </li>                    
                 </ul>                
             </div>
-
-
             <div id="linea2" class="linea"></div>
             <div id="contenido"><br>
                 <div id="campañas_Titulo">

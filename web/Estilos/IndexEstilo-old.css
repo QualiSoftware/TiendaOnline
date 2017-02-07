@@ -1,15 +1,4 @@
-/*Clases Sueltas*/
-.display_B {
-    display: block;    
-}
-.pointer{
-    cursor: pointer;
-}
-.no_Decoration {
-    text-decoration: none;    
-}
 
-/*Fin de Clases Sueltas*/
 #todo {
     width: 80%;    
     margin: 0 auto;
@@ -58,41 +47,18 @@
     padding-left: 15px;
 }
 #cesta {
-    position: relative;
+    position: absolute;
     margin-left: 1130px;
-    margin-top: -40px;        
+    margin-top: 20px;
+    
+    margin-top: 20px;
     padding-right: 20px;
     float: right;
 }
-#cesta:hover #cantidad_Cesta{
-    -webkit-transform:scale(1.2);
-    -webkit-transition: .2s;
-}
-#cesta:not(:hover) #cantidad_Cesta{        
-    -webkit-transition: .2s;
-}
-
 #imgcesta{
-    width: 55px;    
+    width: 55px;
+    
 }
-#imgcesta_Titulo{
-    width: 45px;    
-}
-#cantidad_Cesta{
-    position: absolute;
-    top: 0;
-    right: 0;
-    margin-right: 10px;
-    background-color: red;
-    color: white;
-    width: 21px;
-    padding-top: 1px;
-    text-align: center;
-    border-radius: 10px 10px;
-    font-weight: bold;
-    display: none;
-}
-
 #iniciar_Sesion{
     position: absolute;
     margin-left: 1120px;
@@ -295,16 +261,16 @@
     display: none;
 }
 #menu_Tabla a{
-    color: black;
-    text-decoration: none;
+        color: black;
+        text-decoration: none;
 }
 #menu_Tabla a:hover{
-    color: #5383d3;
-    text-decoration: none;
+        color: #5383d3;
+        text-decoration: none;
 }
 
 .glyphicon{
-    color: black;
+        color: black;
 }
 #menu_Tabla tr{
 }
@@ -350,8 +316,8 @@
     font-weight: bold;
 }
 #productos {
-    margin-top: -70px;
-    margin-left: 35px;
+   margin-top: -70px;
+   margin-left: 35px;
 }
 .descuento{
     position: relative;
@@ -376,7 +342,7 @@
 #contenido{
     margin: 0 auto;
     text-align: center;
-    clear: both;
+
 }
 #campagnas img{
     width: 350px;
@@ -507,7 +473,6 @@ Incio del los estilos del Desplegable
     clear: both;
     margin: 0px;
     padding: 0px;
-    margin-top: 20px;
 }
 #tipo_Pago{
     margin-left: 20px;
@@ -699,7 +664,7 @@ Incio del los estilos del Desplegable
     font-size: 20px;
 }
 #nombre_Categoria{
-    margin-top: 25px;
+    margin-top: 50px;
     font-size: 40px;
     font-weight: bold;
     text-align: left;
@@ -711,7 +676,7 @@ hr{
 }
 #botones_Galeria{
     position: absolute;
-    top: 700px;
+    top: 774px;
     background-color: black;
     width: 266px;
     height:  50px;
@@ -725,8 +690,8 @@ hr{
     width: 45px;            
 }
 .botones_prueba:hover #botones_Galeria{
-    -webkit-transition: 0.5s;
-    display: block;        
+    -webkit-transition: .5s;
+    display: block;    
 }
 #vista_Rapida{ 
     position: absolute;
@@ -741,56 +706,10 @@ hr{
     position: absolute;
 }
 #vista_Rapida_Img:hover #vista_Rapida{
-    display: block;   
-    -webkit-transition: 0.5s;
+    display: block;    
 }
 
 /*Detalles*/
-.color_Box{
-    border: 1px #999999 solid; 
-    border-radius: 5px;
-}
-.color_Box:hover{
-    -webkit-transform: scale(1.1);
-    -webkit-transition: .2s;
-}
-.color_Box:not(:hover){    
-    -webkit-transition: .2s;
-}
-#color1{
-    width: 20px;
-    height: 20px;
-    background-color: red;
-    float: left;
-    border-radius: 5px;
-    cursor: pointer;
-}
-#color2{
-    width: 20px;
-    height: 20px;
-    background-color: #ffc68e;
-    float: left;
-    margin-left: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-}
-.color_Elegido{
-    opacity: 0.3;
-    border: 2px solid black;
-    -webkit-transform: scale(1.2);
-}
-.color_No_Elegido{
-    opacity: 1;
-}
-.color_No_Elegido:hover{
-    -webkit-transform: scale(1.2);
-    -webkit-transition: .2s;
-    border: 1px solid black;
-}
-.color_No_Elegido:not(:hover){    
-    -webkit-transition: .2s;
-}
-
 #contenido_Detalles a{
     text-decoration: none;
 }
@@ -802,7 +721,7 @@ hr{
 }
 
 .img_Principal{
-    margin-left: 0px;
+    margin-left: 240px;
     width: 400px;
     float: left;
 }
@@ -813,17 +732,11 @@ hr{
 }
 .detalle_info {
     margin-left: 700px;
-    padding-top: 50px;
-    margin: 0 auto;
-    margin-left: 100px;
-    float: left;
-}
-.detalle_info table thead{
-    padding-bottom: 500px;
+
 }
 .detalle_info td{
     padding-right: 100px;
-    padding-bottom: 40px;
+    padding-bottom: 10px;
 
 }
 .mas_Fotos {
@@ -902,21 +815,18 @@ hr{
 
 #cesta_Hover{
     position: absolute;
-    width: 180px;
     display: none;
     font-size: 10px;
-    background-color: #eeeeee;
-    color: #575151;
+    background-color: #292c2f;
+    color: white;
     padding: 5px;
     border-radius: 5px;
-    top: 55px;
-    right: 0px;
-    z-index: 1;
+    top: 70px;
+    right: 250px;
 }
 #cesta_Hover td{
     padding-right: 10px;
     padding-left: 10px;
-    padding-top: 10px;
 }
 
 .desplegar_Cesta:hover #cesta_Hover{
@@ -926,43 +836,23 @@ hr{
     margin: auto;
     text-align: center;
     padding-top: 0px;
-    background-color: red;
-    width: 80px;
+    background-color: crimson;
+    width: 100px;
     border-radius: 5px;
-    margin-bottom: 5px;
-    margin-top: -10px;
 }
 #realizar_Pedido {
     text-decoration: none;
 }
 #realizar_Pedido:hover{
     -webkit-transform:scale(1.05);
-    -webkit-transition: .2s;
     cursor: pointer;
-}
-#realizar_Pedido:not(:hover){    
-    -webkit-transition: .3s;
-}
-.btn_RealizarPedido{    
-    color: white;    
 }
 
 /*Cesta*/
-.detalle_info_Cesta {
-    margin-left: 700px;
-    padding-top: 0px;
-    margin: 0 auto;
-    margin-left: 100px;
-    float: left;
-}
-.detalle_info_Cesta td{
-    padding-right: 100px;
-    padding-bottom: 0px;
-}
 #cesta_Titulo{
     font-weight: bold;
     font-size: 30px;
-    margin-bottom: 0px;
+    margin-bottom: 50px;
     margin-left: 100px;
 }
 #contenido_Detalles{       
@@ -984,62 +874,24 @@ hr{
     float: left;
 }
 #pagar{
-    position: absolute;    
-    background-color: #e7e6e6;
-    border-radius: 10px;
-    padding: 10px;    
-}
-#contenedor_Pagar {
+
     position: absolute;
-    width: 500px;
     float: right;
-    top: 260px;                               
+    top: 370px;
     margin-left: 600px;
-}                    
-#pagar.fixed {
-    position: fixed;
-    top: 20px;
-}    
-.apartados_Pagar{
-    padding-bottom: 50px;
+    background-color: #cccccc;
+    border-radius: 10px;
 }
-.titulo_Producto_Cesta{    
-    color: #4a4a4a;
-}
-.titulo_Producto_Cesta:hover{    
-    color: #5383d3;
-}
-.btn_Elminar_Producto{
-    width: 60px;    
-    text-align: center;
-    margin-left: 6px;
-    background-color: #4a4a4a;
-    color: white;
-    cursor: pointer;
-    border-radius: 3px;
-}
-.btn_Elminar_Producto:hover{
-    -webkit-transform: scale(1.1);
-    -webkit-transition: .3s;
-}
-.btn_Elminar_Producto:not(:hover){    
-    -webkit-transition: .3s;
+#pagar {
+
+    padding: 10px;
+
 }
 #metodo_Img{
-    width: 200px;
+    width: 30px;
 }
 #cesta_Img{
     width: 120px;
-    
-}
-#cesta_Img:hover{
-    box-shadow: 5px 5px 10px;
-    cursor: pointer;
-    -webkit-transition: .2s;
-    -webkit-transform: scale(1.02);    
-}
-#cesta_Img:not(:hover){    
-    -webkit-transition: .2s;      
 }
 
 /*PDF*/

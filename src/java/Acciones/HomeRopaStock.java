@@ -2,6 +2,7 @@ package Acciones;
 
 import Modelos.Campania;
 import Modelos.Categoria;
+import Modelos.Cesta;
 import Modelos.Clientela;
 import Modelos.Color;
 import Modelos.Marcas;
@@ -37,6 +38,8 @@ public class HomeRopaStock {
     private int roId;
     private List<Tallas> lista_tallas;
     private List<Color> lista_colores;
+    private ArrayList<Cesta> lista_ropa_Cestas;
+    private int totalcestaUsuario = 0;
     private String usi;
     private Map sesion;
     private Usuarios u;
@@ -178,6 +181,22 @@ public class HomeRopaStock {
         this.lista_colores = lista_colores;
     }
 
+    public ArrayList<Cesta> getLista_ropa_Cestas() {
+        return lista_ropa_Cestas;
+    }
+
+    public void setLista_ropa_Cestas(ArrayList<Cesta> lista_ropa_Cestas) {
+        this.lista_ropa_Cestas = lista_ropa_Cestas;
+    }
+
+    public int getTotalcestaUsuario() {
+        return totalcestaUsuario;
+    }
+
+    public void setTotalcestaUsuario(int totalcestaUsuario) {
+        this.totalcestaUsuario = totalcestaUsuario;
+    }
+
     public String getUsi() {
         return usi;
     }
@@ -299,77 +318,84 @@ public class HomeRopaStock {
     }
 
     public String RopaPopUp() throws Exception {
-            if (sesion == null) {
-                sesion = ActionContext.getContext().getSession();
-            }
-            usi = "";        
-            if(sesion.get("usuarioLogueado") != null){
-                if(!sesion.get("usuarioLogueado").equals("")){
-                    try{
-                        //int aux;
-                        u = null;
-                        u = (Usuarios) sesion.get("usuarioLogueado");
-                        usi = ""+u.getUsuId();
-                    }catch(Exception e){
-                        System.out.println(e.getMessage());
-                    }
+        if (sesion == null) {
+            sesion = ActionContext.getContext().getSession();
+        }
+        usi = "";        
+        if(sesion.get("usuarioLogueado") != null){
+            if(!sesion.get("usuarioLogueado").equals("")){
+                try{
+                    //int aux;
+                    u = null;
+                    u = (Usuarios) sesion.get("usuarioLogueado");
+                    usi = ""+u.getUsuId();
+                }catch(Exception e){
+                    System.out.println(e.getMessage());
                 }
             }
-            lista_ropaStock = ControladoresDAO.cRopaStock.RecuperaTodos(roId, "");
-            lista_colores = new ArrayList<Color>();
-            lista_tallas = new ArrayList<Tallas>();
-            lista_colores.add(lista_ropaStock.get(0).getColor());
-            lista_tallas.add(lista_ropaStock.get(0).getTallas());
-            for(int i=1;i<lista_ropaStock.size();i++){
-                boolean bool = true;
-                for(int j=0;j<lista_colores.size();j++){
-                    if(lista_ropaStock.get(i).getColor().getColorId() == lista_colores.get(j).getColorId()){
-                        bool = false;
-                    }
-                }
-                if(bool){
-                    lista_colores.add(lista_ropaStock.get(i).getColor());
-                }
-                bool = true;
-                for(int j=0;j<lista_tallas.size();j++){
-                    if(lista_ropaStock.get(i).getTallas().getTallaId() == lista_tallas.get(j).getTallaId()){
-                        bool = false;
-                    }
-                }
-                if(bool){
-                    lista_tallas.add(lista_ropaStock.get(i).getTallas());
+        }
+        lista_ropaStock = ControladoresDAO.cRopaStock.RecuperaTodos(roId, "");
+        lista_colores = new ArrayList<Color>();
+        lista_tallas = new ArrayList<Tallas>();
+        lista_colores.add(lista_ropaStock.get(0).getColor());
+        lista_tallas.add(lista_ropaStock.get(0).getTallas());
+        for(int i=1;i<lista_ropaStock.size();i++){
+            boolean bool = true;
+            for(int j=0;j<lista_colores.size();j++){
+                if(lista_ropaStock.get(i).getColor().getColorId() == lista_colores.get(j).getColorId()){
+                    bool = false;
                 }
             }
-            lista_menu_ropa = new ArrayList<Ropa>();
-            lista_ropa = ControladoresDAO.cRopa.RecuperaTodos("","categoria.catDescripcion","","","2");
-            for(Ropa lr: lista_ropa){
-                String auxClientela = lr.getClientela().getClientelaDescripcion();
-                String auxCategoria = lr.getCategoria().getCatDescripcion();
-                boolean noEsta = true;
-                for(Ropa lrm: lista_menu_ropa){
-                    if(auxClientela.equals(lrm.getClientela().getClientelaDescripcion()) && auxCategoria.equals(lrm.getCategoria().getCatDescripcion())){
-                        noEsta = false;
-                    }
-                }
-                if(noEsta){
-                    lista_menu_ropa.add(lr);
+            if(bool){
+                lista_colores.add(lista_ropaStock.get(i).getColor());
+            }
+            bool = true;
+            for(int j=0;j<lista_tallas.size();j++){
+                if(lista_ropaStock.get(i).getTallas().getTallaId() == lista_tallas.get(j).getTallaId()){
+                    bool = false;
                 }
             }
-            lista_marcas =  ControladoresDAO.cMarcas.RecuperaTodos("");
-            lista_ropa.clear();
-            if (filtro == null || filtro.equals("null")) {
-                filtro = "";
+            if(bool){
+                lista_tallas.add(lista_ropaStock.get(i).getTallas());
             }
-            t = ControladoresDAO.cRopa.RecuperaPorId(roId);
-            clientela = t.getClientela().getClientelaDescripcion();
-            categoria = t.getCategoria().getCatDescripcion();
-            marca = t.getMarcas().getMarcaNombre();
-            System.out.println("campania: " + campania);
-            if(!campania.equals("")){
-                Campania camp = ControladoresDAO.cCampanias.RecuperaPorId(Integer.parseInt(campania));
-                campaniaNombre = camp.getCamNombre();
+        }
+        lista_menu_ropa = new ArrayList<Ropa>();
+        lista_ropa = ControladoresDAO.cRopa.RecuperaTodos("","categoria.catDescripcion","","","2");
+        for(Ropa lr: lista_ropa){
+            String auxClientela = lr.getClientela().getClientelaDescripcion();
+            String auxCategoria = lr.getCategoria().getCatDescripcion();
+            boolean noEsta = true;
+            for(Ropa lrm: lista_menu_ropa){
+                if(auxClientela.equals(lrm.getClientela().getClientelaDescripcion()) && auxCategoria.equals(lrm.getCategoria().getCatDescripcion())){
+                    noEsta = false;
+                }
             }
-           return SUCCESS;
+            if(noEsta){
+                lista_menu_ropa.add(lr);
+            }
+        }
+        lista_marcas =  ControladoresDAO.cMarcas.RecuperaTodos("");
+        lista_ropa.clear();
+        if (filtro == null || filtro.equals("null")) {
+            filtro = "";
+        }
+        Ropa tr = ControladoresDAO.cRopa.RecuperaPorId(roId);
+        clientela = tr.getClientela().getClientelaDescripcion();
+        categoria = tr.getCategoria().getCatDescripcion();
+        marca = tr.getMarcas().getMarcaNombre();
+        t = descuentoEnRopa(tr);
+        //System.out.println("campania: " + campania);
+        if(!campania.equals("")){
+            Campania camp = ControladoresDAO.cCampanias.RecuperaPorId(Integer.parseInt(campania));
+            campaniaNombre = camp.getCamNombre();
+        }
+        lista_ropa_Cestas = ControladoresDAO.cCesta.RecuperaTodos(usi);
+        for(Cesta caux:lista_ropa_Cestas){
+            totalcestaUsuario += caux.getCestaUnidades();
+            caux.getRopaStock().setRopa(descuentoEnRopa(caux.getRopaStock().getRopa()));
+            //System.out.println(caux.getRopaStock().getRopa().getRoDescripcion()+" - "+caux.getCestaUnidades()+" - "+caux.getRopaStock().getRopa().getRoPrecio());
+        }
+        return SUCCESS;
     }
     
     public String CrudActionRopaStock() throws Exception {
@@ -416,5 +442,19 @@ public class HomeRopaStock {
         }else{
             return INPUT;
         }
+    }
+    
+    private Ropa descuentoEnRopa(Ropa r){
+        List<Integer> listaCampaniasDeEstaRopa = ControladoresDAO.cCampaniasRopa.RecuperaCampaniasPorRopa(r.getRoId());
+        if(!listaCampaniasDeEstaRopa.isEmpty()){
+            Date hoy = new Date();
+            for(Integer camId:listaCampaniasDeEstaRopa){
+                Campania cam = ControladoresDAO.cCampanias.RecuperaPorId(camId);
+                if(hoy.after(cam.getCamInicio()) && hoy.before(cam.getCamFin())){
+                    r.setRoDescuento(cam.getCamDescuento());
+                }
+            }
+        }
+        return r;
     }
 }
