@@ -458,7 +458,9 @@ public class HomeCesta extends ActionSupport {
         //System.out.println("usuario cesta "+u.getUsuId());
         lista_ropa_Cestas = ControladoresDAO.cCesta.RecuperaTodos(""+u.getUsuId());
         
+        cantidad = 0;
         for (Cesta aux : lista_ropa_Cestas) {
+            cantidad = cantidad + aux.getCestaUnidades();
             precio += aux.getCestaUnidades() * (aux.getRopaStock().getRopa().getRoPrecio() - (aux.getRopaStock().getRopa().getRoPrecio() * aux.getRopaStock().getRopa().getRoDescuento() / 100));
             
         }

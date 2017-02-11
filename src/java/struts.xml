@@ -73,7 +73,7 @@
             <result type="redirect">CestaFiltro</result>
         </action>     
         <action name="CestaFiltro" class="Acciones.HomeCesta" method="CestaFiltro">
-            <result>/Vistas/pruebaCRUDCestaFacuracion.jsp</result>
+            <result>/Vistas/tiendaCesta.jsp</result>
         </action>        
         <action name="CargaEliminaCesta" class="Acciones.HomeCesta" method="CargaEliminaCesta">
             <result>/Vistas/pruebaCRUDformularioUsuarios.jsp</result>           
