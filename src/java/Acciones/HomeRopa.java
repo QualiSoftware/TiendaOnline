@@ -1005,7 +1005,7 @@ public class HomeRopa extends ActionSupport {
         return listaConDescuentosBien;
     }
     
-    private Ropa descuentoEnRopa(Ropa r){
+    public Ropa descuentoEnRopa(Ropa r){
             List<Integer> listaCampaniasDeEstaRopa = ControladoresDAO.cCampaniasRopa.RecuperaCampaniasPorRopa(r.getRoId());
             if(!listaCampaniasDeEstaRopa.isEmpty()){
                 Date hoy = new Date();

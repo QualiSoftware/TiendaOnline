@@ -27,7 +27,13 @@ public class cUsuarios {
         sesion = (Session) NewHibernateUtil.getSessionModif();
         Usuarios p =(Usuarios) sesion.get(Usuarios.class, id);
         return p;
-    }    
+    }
+    
+    public static Usuarios RecuperaPorIdSinModificarSesion(int id){
+        sesion = (Session) NewHibernateUtil.getSession();
+        Usuarios p =(Usuarios) sesion.get(Usuarios.class, id);
+        return p;
+    }
     
     public static int  Elimina(Usuarios esto){
         sesion = (Session) NewHibernateUtil.getSessionModif();

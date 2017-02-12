@@ -381,7 +381,7 @@
                                         Código Postal: 
                                     </td>                            
                                     <td>
-                                        <s:property value="%{u.usuCp}"/>
+                                        <s:property value="u.usuCp"/>
                                     </td>                            
                                 </tr>
                                 <tr>
@@ -389,7 +389,7 @@
                                         Provincia: 
                                     </td>                            
                                     <td>
-                                        <s:property value="%{u.provincias.proNombre}"/>
+                                        <s:property value="u.provincias.proNombre"/>
                                     </td>                            
                                 </tr>
                                 <tr>

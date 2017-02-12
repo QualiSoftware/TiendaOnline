@@ -21,6 +21,7 @@ import Modelos.Color;
 import Modelos.FacturaDetalle;
 import Modelos.Facturas;
 import Modelos.Marcas;
+import Modelos.Ropa;
 import Modelos.RopaStock;
 import Modelos.Subcategoria;
 import Modelos.Tallas;
@@ -44,6 +45,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
+import org.hibernate.Hibernate;
 import org.hibernate.Session;
 
 
@@ -60,6 +62,8 @@ public class HomeCesta extends ActionSupport {
     private Cesta c;
     private Cesta ce;
     private ArrayList<Cesta> lista_ropa_Cestas;
+    private ArrayList<Ropa> lista_ropa,lista_menu_ropa;
+    private List<Marcas>lista_marcas;
     private String filtro;
     private Map sesion;
     private Double precio = 0.0;
@@ -191,6 +195,22 @@ public class HomeCesta extends ActionSupport {
 
     public void setLista_ropa_Cestas(ArrayList<Cesta> lista_ropa_Cestas) {
         this.lista_ropa_Cestas = lista_ropa_Cestas;
+    }
+
+    public ArrayList<Ropa> getLista_menu_ropa() {
+        return lista_menu_ropa;
+    }
+
+    public void setLista_menu_ropa(ArrayList<Ropa> lista_menu_ropa) {
+        this.lista_menu_ropa = lista_menu_ropa;
+    }
+
+    public List<Marcas> getLista_marcas() {
+        return lista_marcas;
+    }
+
+    public void setLista_marcas(List<Marcas> lista_marcas) {
+        this.lista_marcas = lista_marcas;
     }
 
     public String getFiltro() {
@@ -447,9 +467,11 @@ public class HomeCesta extends ActionSupport {
         }
         // para cuando tengamos sesión de usuario
          try{
-         u = (Usuarios) sesion.get("usuarioLogueado");
+         Usuarios user = (Usuarios) sesion.get("usuarioLogueado");
+         u = ControladoresDAO.cUsuarios.RecuperaPorIdSinModificarSesion(user.getUsuId());
+         u.getProvincias().getPaises().getPaisNombre(); //esta línea sólo sirve para que se cargue provincia y país
          }catch(Exception e){
-         return INPUT;
+            return INPUT;
          }
        
         if (filtro == null) {
@@ -464,6 +486,23 @@ public class HomeCesta extends ActionSupport {
             precio += aux.getCestaUnidades() * (aux.getRopaStock().getRopa().getRoPrecio() - (aux.getRopaStock().getRopa().getRoPrecio() * aux.getRopaStock().getRopa().getRoDescuento() / 100));
             
         }
+        lista_menu_ropa = new ArrayList<Ropa>();
+        lista_ropa = ControladoresDAO.cRopa.RecuperaTodos("","categoria.catDescripcion","","","2");
+        for(Ropa lr: lista_ropa){
+            String auxClientela = lr.getClientela().getClientelaDescripcion();
+            String auxCategoria = lr.getCategoria().getCatDescripcion();
+            boolean noEsta = true;
+            for(Ropa lrm: lista_menu_ropa){
+                if(auxClientela.equals(lrm.getClientela().getClientelaDescripcion()) && auxCategoria.equals(lrm.getCategoria().getCatDescripcion())){
+                    noEsta = false;
+                }
+            }
+            if(noEsta){
+                lista_menu_ropa.add(lr);
+            }
+        }
+        lista_marcas =  ControladoresDAO.cMarcas.RecuperaTodos("");
+        lista_ropa.clear();
 
         return SUCCESS;
     }
@@ -508,8 +547,10 @@ public class HomeCesta extends ActionSupport {
         }
         // para cuando tengamos sesión de usuario
         try{
-           u = (Usuarios) sesion.get("usuarioLogueado");
+           Usuarios user = (Usuarios) sesion.get("usuarioLogueado");
+           u = ControladoresDAO.cUsuarios.RecuperaPorId(user.getUsuId());
         }catch(Exception e){
+            System.out.println("e: " + e);
            return INPUT;
         }
         boolean respuestaPago = true;
@@ -527,6 +568,8 @@ public class HomeCesta extends ActionSupport {
                 lista_ropa_Cestas = cCesta.RecuperaTodos(""+u.getUsuId());
                 int nada;
                 for (Cesta c : lista_ropa_Cestas) {
+                    HomeRopa hr = new HomeRopa();
+                    c.getRopaStock().setRopa(hr.descuentoEnRopa(c.getRopaStock().getRopa()));
                     FacturaDetalle fd = new FacturaDetalle(f, 
                             c.getRopaStock().getRopa().getRoDescuento(), 
                             c.getRopaStock().getRopa().getRoPrecio(), 
@@ -537,7 +580,8 @@ public class HomeCesta extends ActionSupport {
                             c.getRopaStock().getRopa().getCategoria().getCatDescripcion(), 
                             c.getRopaStock().getRopa().getSubcategoria().getSubDescripcion(), 
                             c.getRopaStock().getColor().getColorDescripcion());
-                    nada = ControladoresDAO.cFacturaDetalle.Inserta(fd);
+                    //al hacer el siguiente paso me modifica el descuento de la ropa en la BBDD
+                    nada = ControladoresDAO.cFacturaDetalle.Inserta(fd); //
                     if(nada == 1){
                         Cesta cesta = cCesta.RecuperaPorId(c.getCestaId());
                         nada = ControladoresDAO.cCesta.Elimina(cesta);

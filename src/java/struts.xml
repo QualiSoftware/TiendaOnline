@@ -74,6 +74,7 @@
         </action>     
         <action name="CestaFiltro" class="Acciones.HomeCesta" method="CestaFiltro">
             <result>/Vistas/tiendaCesta.jsp</result>
+            <result name="error">/Vistas/pruebaErrorFactura.jsp</result>
         </action>        
         <action name="CargaEliminaCesta" class="Acciones.HomeCesta" method="CargaEliminaCesta">
             <result>/Vistas/pruebaCRUDformularioUsuarios.jsp</result>           
