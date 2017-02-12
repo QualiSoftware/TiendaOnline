@@ -506,7 +506,7 @@ public class HomeCesta extends ActionSupport {
        if (sesion == null) {
             sesion = ActionContext.getContext().getSession();
         }
-        // para cuando tengamos sesión de usuario               
+        // para cuando tengamos sesión de usuario
         try{
            u = (Usuarios) sesion.get("usuarioLogueado");
         }catch(Exception e){
@@ -515,42 +515,47 @@ public class HomeCesta extends ActionSupport {
         boolean respuestaPago = true;
         //En este punto, el boolean respuestaPago se crearía como false y a continuación se redirigiría a la página
         //donde se genera el cobro. Y la respuesta de esa página es la que le dará el nuevo valor a respuestaPago
-        if(respuestaPago){
-            String numFac = ControladoresDAO.cFacturas.SiguienteFactura();
-            Date dateFechaHoy = new Date();            
-            Facturas f = new Facturas(u.getUsuId(), numFac, u.getUsuNombre()+" "+u.getUsuApellidos(), u.getUsuDireccion(), 
-                    u.getUsuLocalidad(), prov, u.getUsuCp(), 
-                    pais, u.getUsuDni(), (int)u.getUsuDescuento(), 
-                    dateFechaHoy, 21, obs);
-            clave = ControladoresDAO.cFacturas.Inserta(f);
-            lista_ropa_Cestas = cCesta.RecuperaTodos(""+u.getUsuId());
-            int nada;
-            for (Cesta c : lista_ropa_Cestas) {
-                FacturaDetalle fd = new FacturaDetalle(f, 
-                        c.getRopaStock().getRopa().getRoDescuento(), 
-                        c.getRopaStock().getRopa().getRoPrecio(), 
-                        c.getRopaStock().getTallas().getTallaDescripcion(), 
-                        c.getCestaUnidades(), 
-                        c.getRopaStock().getRopa().getMarcas().getMarcaNombre(), 
-                        c.getRopaStock().getRopa().getClientela().getClientelaDescripcion(), 
-                        c.getRopaStock().getRopa().getCategoria().getCatDescripcion(), 
-                        c.getRopaStock().getRopa().getSubcategoria().getSubDescripcion(), 
-                        c.getRopaStock().getColor().getColorDescripcion());
-                nada = ControladoresDAO.cFacturaDetalle.Inserta(fd);
-                if(nada == 1){
-                    Cesta cesta = cCesta.RecuperaPorId(c.getCestaId());
-                    nada = ControladoresDAO.cCesta.Elimina(cesta);
-                    cesta = null;
+        try{
+            if(respuestaPago){
+                String numFac = ControladoresDAO.cFacturas.SiguienteFactura();
+                Date dateFechaHoy = new Date();            
+                Facturas f = new Facturas(u.getUsuId(), numFac, u.getUsuNombre()+" "+u.getUsuApellidos(), u.getUsuDireccion(), 
+                        u.getUsuLocalidad(), u.getProvincias().getProNombre(), u.getUsuCp(), 
+                        u.getProvincias().getPaises().getPaisNombre(), u.getUsuDni(), (int)u.getUsuDescuento(), 
+                        dateFechaHoy, 21, obs);
+                clave = ControladoresDAO.cFacturas.Inserta(f);
+                lista_ropa_Cestas = cCesta.RecuperaTodos(""+u.getUsuId());
+                int nada;
+                for (Cesta c : lista_ropa_Cestas) {
+                    FacturaDetalle fd = new FacturaDetalle(f, 
+                            c.getRopaStock().getRopa().getRoDescuento(), 
+                            c.getRopaStock().getRopa().getRoPrecio(), 
+                            c.getRopaStock().getTallas().getTallaDescripcion(), 
+                            c.getCestaUnidades(), 
+                            c.getRopaStock().getRopa().getMarcas().getMarcaNombre(), 
+                            c.getRopaStock().getRopa().getClientela().getClientelaDescripcion(), 
+                            c.getRopaStock().getRopa().getCategoria().getCatDescripcion(), 
+                            c.getRopaStock().getRopa().getSubcategoria().getSubDescripcion(), 
+                            c.getRopaStock().getColor().getColorDescripcion());
+                    nada = ControladoresDAO.cFacturaDetalle.Inserta(fd);
+                    if(nada == 1){
+                        Cesta cesta = cCesta.RecuperaPorId(c.getCestaId());
+                        nada = ControladoresDAO.cCesta.Elimina(cesta);
+                        cesta = null;
+                    }
+                    fd = null;
                 }
-                fd = null;
+                numFac = null;
+                dateFechaHoy = null;
+                f = null;
+                lista_ropa_Cestas = null;
+                return SUCCESS;
+            }else{
+                return INPUT;
             }
-            numFac = null;
-            dateFechaHoy = null;
-            f = null;
-            lista_ropa_Cestas = null;
-            return SUCCESS;
-        }else{
+        } catch(Exception e){
+            System.out.println("e: " + e);
             return INPUT;
-        }        
+        }
     }
 }

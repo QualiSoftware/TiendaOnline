@@ -417,7 +417,7 @@
         <!-- pagar y envia correo -->
         <action name="Pagar" class="Acciones.HomeCesta" method="Pagar">
             <result>/Vistas/pruebaPagarCorreo.jsp</result>
-            <result name="input">/Vistas/pruebaCRUDprincipalUsuarios.jsp</result>
+            <result name="input" type="redirect">Tienda</result>
         </action>
         
         <action name="GenerarFactura">
@@ -447,7 +447,7 @@
         </action>
         
         <action name="RopaPopUp" class="Acciones.HomeRopaStock" method="RopaPopUp">
-            <result>/Vistas/tiendaCestaPopUp.jsp</result>
+            <result>/Vistas/tiendaDetalles.jsp</result>
         </action>
         
         <action name="TiendaCesta" class="Acciones.HomeCesta" method="CrudActionUsuariosCesta">

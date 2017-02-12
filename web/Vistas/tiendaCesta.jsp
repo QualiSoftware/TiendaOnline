@@ -440,6 +440,16 @@
                                     </td>                            
                                 </tr>
                                 <tr>
+                                    <td colspan="2" class="bold" style="padding-top: 10px;">
+                                        Observaciones
+                                    </td>
+                                </tr>
+                                <tr>                                    
+                                    <td colspan="10">
+                                        <s:textarea label="Observaciones" name="obs" cols="46" rows="2" theme="simple"/>
+                                    </td>
+                                </tr>
+                                <tr>
                                     <td colspan="2" >
                                         <button type="submit" style="margin-left: 150px" id="añadircesta_Btn">
                                             <div>Realizar Pedido</div>
