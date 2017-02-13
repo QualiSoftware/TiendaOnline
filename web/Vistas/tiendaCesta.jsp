@@ -67,62 +67,7 @@
                     <img src="../Imagenes/Administracion/flag_spain_blog.png" alt=""/>
                     <img src="../Imagenes/Administracion/lrgscaleunited_kingdom_great_british_union_jack_flag.png" alt=""/>
                 </div>
-                <div id="cesta">
-                    <s:if test="sesion.usuarioLogueado.usuAdministrador!=1">
-                        <s:a action="CestaFiltro" theme="simple">
-                            <s:textfield type="hidden" value="1" name="filtro" theme="simple"/>
-                            <img src="../Imagenes/Administracion/Shopping-Cart-10.png" alt="" id="imgcesta"/>
-                            <div id="cantidad_Cesta"><s:property value="totalcestaUsuario"/></div>
-                            <table id="cesta_Hover">
-                                <tr>
-                                    <th>Descripcion</th>
-                                    <th>Color</th>
-                                    <th>Tallas</th>
-                                    <th>Precio</th>
-                                    <th>Cantidad</th>
-                                    <th>Total</th>
-                                    <th>Foto</th>                                   
-                                </tr>
-                                <s:iterator var="c" value="lista_ropa_Cestas">
-                                    <tr>
-                                        <td>
-                                            <s:property value="#c.ropaStock.ropa.roDescripcion"/>
-                                        </td>
-                                        <td>
-                                            <s:property value="#c.ropaStock.color.colorDescripcion"/>
-                                        </td>
-                                        <td>
-                                            <center>
-                                            <s:property value="#c.ropaStock.tallas.tallaDescripcion"/>
-                                            </center>
-                                        </td>
-                                        <td>
-                                        <center>
-                                            <s:property value="getText('{0,number,##0.00}',{#c.ropaStock.ropa.roPrecio - (#c.ropaStock.ropa.roPrecio * #c.ropaStock.ropa.roDescuento / 100)})"/>
-                                        </center>
-                                        </td>
-                                        <td>
-                                        <center>
-                                            <s:property value="#c.cestaUnidades"/>
-                                        </center>
-                                        </td>
-                                        <td>
-                                        <center>
-                                            <s:property value="getText('{0,number,##0.00}',{(#c.ropaStock.ropa.roPrecio - (#c.ropaStock.ropa.roPrecio * #c.ropaStock.ropa.roDescuento / 100)) * #c.cestaUnidades})"/>
-                                        </center>
-                                        </td>
-                                        <td><% int cero=0; %>
-                                            <s:iterator var="f" value="#c.ropaStock.ropa.fotoses">
-                                                <% if(cero<1){%>
-                                                <img src="<s:url value='../Imagenes/%{#c.ropaStock.ropa.categoria.catDescripcion}/%{#c.ropaStock.ropa.subcategoria.subDescripcion}/%{#f.fotosRuta}'/>" alt="<s:property value="fotosRuta" />" width="20" />
-                                                <% cero++;}%>
-                                            </s:iterator>
-                                        </td>
-                                    </tr>
-                                </s:iterator>
-                            </table>
-                        </s:a>
-                    </s:if>                                
+                <div id="cesta">                                
                     <s:if test="sesion.usuarioLogueado.usuAdministrador==1">
                         <s:form action="RopaAdminFiltro" theme="simple">
                             <s:submit value="Admin"></s:submit>                    
