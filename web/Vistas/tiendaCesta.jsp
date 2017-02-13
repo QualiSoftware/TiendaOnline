@@ -306,7 +306,7 @@
                         </thead>
                         <tr>
                             <td rowspan="4">
-                                <a href="Detalles.html">
+                                <a href="#">
                                     <% int cero=0; %>
                                     <s:iterator var="f" value="#a.ropaStock.ropa.fotoses">
                                         <% if(cero<1){%>
@@ -317,7 +317,7 @@
                             </td>
                             <td>Color:</td>
                             <td>
-                                <div id="color1" class="color_Box"></div> <s:property value="#c.ropaStock.color.colorDescripcion"/>
+                                <div id="color1" class="color_Box"></div> <s:property value="#a.ropaStock.color.colorDescripcion"/>
                             </td>
                         </tr>
                         <tr>
@@ -344,7 +344,12 @@
                         </tr>
                         <tr>
                             <td colspan="3">
-                                <div class="btn_Elminar_Producto">Eliminar</div>
+                                <s:a action="CrudActionUsuariosCesta">
+                                    <s:param name="cantidad" value="0"/>
+                                    <s:param name="accionocul" value="'e'"/>
+                                    <s:param name="clave" value="#a.cestaId"/>
+                                    <div class="btn_Elminar_Producto">Eliminar</div>
+                                </s:a>
                             </td>
                         </tr>
                     </table>

@@ -420,19 +420,21 @@ public class HomeCesta extends ActionSupport {
          }
         int respuesta;
         c = new Cesta();
-        c.setCestaId(clave);
-        c.setCestaUnidades(cantidad);
-        c.setUsuarios(ControladoresDAO.cUsuarios.RecuperaPorId(u.getUsuId()));
-        ropaStock = ControladoresDAO.cRopaStock.RecuperaPorRopaColorTalla(ropa, color, talla);
-        c.setRopaStock(ropaStock);
         if (accionocul.equals("e")) {
+            c = ControladoresDAO.cCesta.RecuperaPorId(clave);
             if (cantidad > 0) {
+                c.setCestaUnidades(cantidad);
                 respuesta = ControladoresDAO.cCesta.Modifica(c);
             } else {
                 respuesta = ControladoresDAO.cCesta.Elimina(c);
             }
 
         } else {
+            c.setCestaId(clave);
+            c.setCestaUnidades(cantidad);
+            c.setUsuarios(ControladoresDAO.cUsuarios.RecuperaPorId(u.getUsuId()));
+            ropaStock = ControladoresDAO.cRopaStock.RecuperaPorRopaColorTalla(ropa, color, talla);
+            c.setRopaStock(ropaStock);
             lista_ropa_Cestas = ControladoresDAO.cCesta.RecuperaTodos(""+u.getUsuId());
             boolean aumentaCantidad = false;
             int cestaIdAux = 0;
@@ -453,10 +455,10 @@ public class HomeCesta extends ActionSupport {
                 respuesta = ControladoresDAO.cCesta.InsertaRopaCestaUsuario(c);
             }
         }
-        lista_ropa_Cestas = ControladoresDAO.cCesta.RecuperaTodos(""+u.getUsuId());
+        /*lista_ropa_Cestas = ControladoresDAO.cCesta.RecuperaTodos(""+u.getUsuId());
         for (Cesta aux : lista_ropa_Cestas) {
             precio += aux.getCestaUnidades() * (aux.getRopaStock().getRopa().getRoPrecio() - (aux.getRopaStock().getRopa().getRoPrecio() * aux.getRopaStock().getRopa().getRoDescuento() / 100));
-        }
+        }*/
         return SUCCESS;
     }
 
@@ -483,8 +485,7 @@ public class HomeCesta extends ActionSupport {
         cantidad = 0;
         for (Cesta aux : lista_ropa_Cestas) {
             cantidad = cantidad + aux.getCestaUnidades();
-            precio += aux.getCestaUnidades() * (aux.getRopaStock().getRopa().getRoPrecio() - (aux.getRopaStock().getRopa().getRoPrecio() * aux.getRopaStock().getRopa().getRoDescuento() / 100));
-            
+            precio += aux.getCestaUnidades() * (aux.getRopaStock().getRopa().getRoPrecio() - (aux.getRopaStock().getRopa().getRoPrecio() * aux.getRopaStock().getRopa().getRoDescuento() / 100));            
         }
         lista_menu_ropa = new ArrayList<Ropa>();
         lista_ropa = ControladoresDAO.cRopa.RecuperaTodos("","categoria.catDescripcion","","","2");
@@ -549,6 +550,7 @@ public class HomeCesta extends ActionSupport {
         try{
            Usuarios user = (Usuarios) sesion.get("usuarioLogueado");
            u = ControladoresDAO.cUsuarios.RecuperaPorId(user.getUsuId());
+           facUsuId = u.getUsuId(); //Esta variable la usaré para el envío del email
         }catch(Exception e){
             System.out.println("e: " + e);
            return INPUT;
@@ -569,6 +571,7 @@ public class HomeCesta extends ActionSupport {
                 int nada;
                 for (Cesta c : lista_ropa_Cestas) {
                     HomeRopa hr = new HomeRopa();
+                    int auxDescuento = c.getRopaStock().getRopa().getRoDescuento();
                     c.getRopaStock().setRopa(hr.descuentoEnRopa(c.getRopaStock().getRopa()));
                     FacturaDetalle fd = new FacturaDetalle(f, 
                             c.getRopaStock().getRopa().getRoDescuento(), 
@@ -581,7 +584,8 @@ public class HomeCesta extends ActionSupport {
                             c.getRopaStock().getRopa().getSubcategoria().getSubDescripcion(), 
                             c.getRopaStock().getColor().getColorDescripcion());
                     //al hacer el siguiente paso me modifica el descuento de la ropa en la BBDD
-                    nada = ControladoresDAO.cFacturaDetalle.Inserta(fd); //
+                    c.getRopaStock().getRopa().setRoDescuento(auxDescuento);
+                    nada = ControladoresDAO.cFacturaDetalle.Inserta(fd);
                     if(nada == 1){
                         Cesta cesta = cCesta.RecuperaPorId(c.getCestaId());
                         nada = ControladoresDAO.cCesta.Elimina(cesta);

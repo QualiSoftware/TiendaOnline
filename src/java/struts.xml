@@ -81,9 +81,9 @@
         </action>        
         <!-- añade directamente a cesta desde la pagina principal -->
         <action name="CrudActionUsuariosCesta" class="Acciones.HomeCesta" method="CrudActionUsuariosCesta">
-            <result type="redirect">RopaFiltroU</result>
-            <result name="input">/Vistas/pruebaCRUDformularioUsuarios.jsp</result>
-            <result name="error">/Vistas/pruebaCRUDformularioUsuarios.jsp</result>
+            <result type="redirect">CestaFiltro</result>
+            <result name="input" type="redirect">Tienda</result>
+            <result name="error" type="redirect">Tienda</result>
         </action>
         
         
