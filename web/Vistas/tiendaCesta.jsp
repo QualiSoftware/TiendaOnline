@@ -251,14 +251,15 @@
                         </thead>
                         <tr>
                             <td rowspan="4">
-                                <a href="#">
+                                <s:a action="RopaPopUp">
+                                    <s:param name="roId" value="#a.ropaStock.ropa.roId"/>
                                     <% int cero=0; %>
                                     <s:iterator var="f" value="#a.ropaStock.ropa.fotoses">
                                         <% if(cero<1){%>
                                         <img  id="cesta_Img" src="<s:url value='../Imagenes/%{#a.ropaStock.ropa.categoria.catDescripcion}/%{#a.ropaStock.ropa.subcategoria.subDescripcion}/%{#f.fotosRuta}'/>" alt="<s:property value="fotosRuta" />" width="120" />
                                         <% cero++;}%>
                                     </s:iterator>
-                                </a>
+                                </s:a>
                             </td>
                             <td>Color:</td>
                             <td>
@@ -284,12 +285,17 @@
                                 Cantidad
                             </td>
                             <td>
-                                <s:property value="#a.cestaUnidades"/>
+                                <s:form action="CestaFiltro" theme="simple" method="post">
+                                    <input type="number" name="cantidad" min="1" step="1" value="<s:property value="#a.cestaUnidades"/>">
+                                    <input type="hidden" name="accionocul" value="e"/>
+                                    <input type="hidden" name="clave" value="<s:property value="#a.cestaId"/>"/>
+                                    <button><div class="btn_Elminar_Producto">Modificar Cantidad</div></button>
+                                </s:form>
                             </td>                        
                         </tr>
                         <tr>
                             <td colspan="3">
-                                <s:a action="CrudActionUsuariosCesta">
+                                <s:a action="CestaFiltro">
                                     <s:param name="cantidad" value="0"/>
                                     <s:param name="accionocul" value="'e'"/>
                                     <s:param name="clave" value="#a.cestaId"/>

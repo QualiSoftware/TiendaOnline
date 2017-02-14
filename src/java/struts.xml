@@ -74,12 +74,12 @@
         </action>     
         <action name="CestaFiltro" class="Acciones.HomeCesta" method="CestaFiltro">
             <result>/Vistas/tiendaCesta.jsp</result>
+            <result name="input" type="redirect">Tienda</result>
             <result name="error">/Vistas/pruebaErrorFactura.jsp</result>
         </action>        
         <action name="CargaEliminaCesta" class="Acciones.HomeCesta" method="CargaEliminaCesta">
             <result>/Vistas/pruebaCRUDformularioUsuarios.jsp</result>           
-        </action>        
-        <!-- añade directamente a cesta desde la pagina principal -->
+        </action>
         <action name="CrudActionUsuariosCesta" class="Acciones.HomeCesta" method="CrudActionUsuariosCesta">
             <result type="redirect">CestaFiltro</result>
             <result name="input" type="redirect">Tienda</result>

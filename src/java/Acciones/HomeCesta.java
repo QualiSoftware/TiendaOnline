@@ -20,6 +20,7 @@ import Modelos.Clientela;
 import Modelos.Color;
 import Modelos.FacturaDetalle;
 import Modelos.Facturas;
+import Modelos.Fotos;
 import Modelos.Marcas;
 import Modelos.Ropa;
 import Modelos.RopaStock;
@@ -410,7 +411,8 @@ public class HomeCesta extends ActionSupport {
             sesion = ActionContext.getContext().getSession();
         }
          try{
-            u = (Usuarios) sesion.get("usuarioLogueado");
+            Usuarios user = (Usuarios) sesion.get("usuarioLogueado");
+            u = ControladoresDAO.cUsuarios.RecuperaPorIdSinModificarSesion(user.getUsuId());
             if(u.getUsuAdministrador() == 1){
                 return INPUT;                
             }
@@ -469,9 +471,9 @@ public class HomeCesta extends ActionSupport {
         }
         // para cuando tengamos sesión de usuario
          try{
-         Usuarios user = (Usuarios) sesion.get("usuarioLogueado");
-         u = ControladoresDAO.cUsuarios.RecuperaPorIdSinModificarSesion(user.getUsuId());
-         u.getProvincias().getPaises().getPaisNombre(); //esta línea sólo sirve para que se cargue provincia y país
+            Usuarios user = (Usuarios) sesion.get("usuarioLogueado");
+            u = ControladoresDAO.cUsuarios.RecuperaPorIdSinModificarSesion(user.getUsuId());
+            u.getProvincias().getPaises().getPaisNombre(); //esta línea sólo sirve para que se cargue provincia y país
          }catch(Exception e){
             return INPUT;
          }
@@ -479,13 +481,20 @@ public class HomeCesta extends ActionSupport {
         if (filtro == null) {
             filtro = "";
         }
-        //System.out.println("usuario cesta "+u.getUsuId());
-        lista_ropa_Cestas = ControladoresDAO.cCesta.RecuperaTodos(""+u.getUsuId());
-        
-        cantidad = 0;
-        for (Cesta aux : lista_ropa_Cestas) {
-            cantidad = cantidad + aux.getCestaUnidades();
-            precio += aux.getCestaUnidades() * (aux.getRopaStock().getRopa().getRoPrecio() - (aux.getRopaStock().getRopa().getRoPrecio() * aux.getRopaStock().getRopa().getRoDescuento() / 100));            
+        try{
+            int respuesta;
+            c = new Cesta();
+            if (accionocul.equals("e")) {
+                c = ControladoresDAO.cCesta.RecuperaPorId(clave);
+                if (cantidad > 0) {
+                    c.setCestaUnidades(cantidad);
+                    respuesta = ControladoresDAO.cCesta.Modifica(c);
+                } else {
+                    respuesta = ControladoresDAO.cCesta.Elimina(c);
+                }
+            }
+        }catch(Exception e){
+            //no necesito que haga nada acá. Es sólo por si accionocul no existe.
         }
         lista_menu_ropa = new ArrayList<Ropa>();
         lista_ropa = ControladoresDAO.cRopa.RecuperaTodos("","categoria.catDescripcion","","","2");
@@ -504,6 +513,15 @@ public class HomeCesta extends ActionSupport {
         }
         lista_marcas =  ControladoresDAO.cMarcas.RecuperaTodos("");
         lista_ropa.clear();
+        lista_ropa_Cestas = ControladoresDAO.cCesta.RecuperaTodos(""+u.getUsuId());
+        cantidad = 0;
+        for (Cesta aux : lista_ropa_Cestas) {
+            cantidad = cantidad + aux.getCestaUnidades();
+            precio += aux.getCestaUnidades() * (aux.getRopaStock().getRopa().getRoPrecio() - (aux.getRopaStock().getRopa().getRoPrecio() * aux.getRopaStock().getRopa().getRoDescuento() / 100));
+            for(Fotos f:aux.getRopaStock().getRopa().getFotoses()){
+                f.getFotosRuta(); //esto sólo sirve para cargar las fotos en memoria y que no de error de sesion
+            }
+        }
 
         return SUCCESS;
     }

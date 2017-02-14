@@ -385,9 +385,13 @@ public class HomeRopaStock {
         marca = tr.getMarcas().getMarcaNombre();
         t = descuentoEnRopa(tr);
         //System.out.println("campania: " + campania);
-        if(!campania.equals("")){
-            Campania camp = ControladoresDAO.cCampanias.RecuperaPorId(Integer.parseInt(campania));
-            campaniaNombre = camp.getCamNombre();
+        try{
+            if(!campania.equals("")){
+                Campania camp = ControladoresDAO.cCampanias.RecuperaPorId(Integer.parseInt(campania));
+                campaniaNombre = camp.getCamNombre();
+            }
+        }catch(Exception e){
+            campaniaNombre = "";
         }
         lista_ropa_Cestas = ControladoresDAO.cCesta.RecuperaTodos(usi);
         for(Cesta caux:lista_ropa_Cestas){
