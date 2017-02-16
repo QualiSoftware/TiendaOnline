@@ -50,7 +50,23 @@
         <!-- Scripts Propios-->
         <script src="../Scripts/Tienda_Scripts.js" type="text/javascript"></script>              
         <script>
-            window.onload = cesta_Aniadir;            
+            window.onload = cesta_Aniadir;
+        </script>
+        <script>
+            function MasMenosCantidad(valor,i){
+                alert(nombre);
+                var cant = document.getElementById("cantidadIndividual"+i).value;
+                if(valor == '+'){
+                    cant++;
+                }
+                if(valor == '-'){
+                    cant--;
+                }
+                alert("La nueva cantidad es: " + cant);
+                document.getElementById("cantidadIndividual"+i).value = cant;
+                alert("document.getElementById('cantidadIndividual'+i).value: " + document.getElementById("cantidadIndividual"+i).value);
+                document.getElementById("formCantidad").submit();
+            }
         </script>
         <title>MyLook - Cesta</title>
     </head>
@@ -234,7 +250,7 @@
             <div id="contenido_Detalles">
                 <div id="cesta_Titulo">Mi Cesta <img src="../Imagenes/Administracion/Shopping-Cart-10.png" alt="" id="imgcesta_Titulo"/></div>
                 <div class="detalle_info_Cesta">
-                    
+                <% int cant = 1;%>   
                 <s:iterator var="a" value="lista_ropa_Cestas">
                     <hr>
                     <table> 
@@ -285,14 +301,21 @@
                                 Cantidad
                             </td>
                             <td>
-                                <s:form action="CestaFiltro" theme="simple" method="post">
-                                    <input type="number" name="cantidad" min="1" step="1" value="<s:property value="#a.cestaUnidades"/>">
-                                    <input type="hidden" name="accionocul" value="e"/>
-                                    <input type="hidden" name="clave" value="<s:property value="#a.cestaId"/>"/>
-                                    <button><div class="btn_Elminar_Producto">Modificar Cantidad</div></button>
-                                </s:form>
-                            </td>                        
+                                <s:form id="formCantidad" action="CestaFiltro" theme="simple" method="post">
+                                <input type="text" name="cantidad" id="cantidadIndividual<%=cant%>" readonly="readonly" 
+                                       style="width: 25px;text-align: center;" value="<s:property value="#a.cestaUnidades"/>">
+                                &nbsp;
+                                <input type="hidden" name="accionocul" value="e"/>
+                                <input type="hidden" name="clave" value="<s:property value="#a.cestaId"/>"/>
+                                <img src="../Imagenes/Administracion/Signo_Mas.png" width="45" id="mas" 
+                                     style="cursor:pointer" onclick="MasMenosCantidad('+',<%=cant%>);"/>&nbsp;
+                                <img src="../Imagenes/Administracion/Signo_Menos.png" width="45" id="menos"
+                                     style="cursor:pointer" onclick="MasMenosCantidad('-',<%=cant%>);"/>
+<!--                                    <button><div class="btn_Elminar_Producto">Modificar Cantidad</div></button>-->
+                            </s:form>
+                            </td>                       
                         </tr>
+                        <%cant++;%>
                         <tr>
                             <td colspan="3">
                                 <s:a action="CestaFiltro">
