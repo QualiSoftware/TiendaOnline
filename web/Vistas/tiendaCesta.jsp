@@ -53,18 +53,15 @@
             window.onload = cesta_Aniadir;
         </script>
         <script>
-            function MasMenosCantidad(valor,i){
-                alert(nombre);
-                var cant = document.getElementById("cantidadIndividual"+i).value;
+            function MasMenosCantidad(valor,cantidad,id){
+                document.getElementById("clave").value = id;
                 if(valor == '+'){
-                    cant++;
+                    cantidad++;
                 }
                 if(valor == '-'){
-                    cant--;
+                    cantidad--;
                 }
-                alert("La nueva cantidad es: " + cant);
-                document.getElementById("cantidadIndividual"+i).value = cant;
-                alert("document.getElementById('cantidadIndividual'+i).value: " + document.getElementById("cantidadIndividual"+i).value);
+                document.getElementById("cantidadIndividual").value = cantidad;
                 document.getElementById("formCantidad").submit();
             }
         </script>
@@ -250,7 +247,6 @@
             <div id="contenido_Detalles">
                 <div id="cesta_Titulo">Mi Cesta <img src="../Imagenes/Administracion/Shopping-Cart-10.png" alt="" id="imgcesta_Titulo"/></div>
                 <div class="detalle_info_Cesta">
-                <% int cant = 1;%>   
                 <s:iterator var="a" value="lista_ropa_Cestas">
                     <hr>
                     <table> 
@@ -272,7 +268,7 @@
                                     <% int cero=0; %>
                                     <s:iterator var="f" value="#a.ropaStock.ropa.fotoses">
                                         <% if(cero<1){%>
-                                        <img  id="cesta_Img" src="<s:url value='../Imagenes/%{#a.ropaStock.ropa.categoria.catDescripcion}/%{#a.ropaStock.ropa.subcategoria.subDescripcion}/%{#f.fotosRuta}'/>" alt="<s:property value="fotosRuta" />" width="120" />
+                                        <img  id="cesta_Img" src="<s:url value='../Imagenes/%{#a.ropaStock.ropa.categoria.catDescripcion}/%{#a.ropaStock.ropa.subcategoria.subDescripcion}/%{#f.fotosRuta}'/>" alt="<s:property value="fotosRuta" />" />
                                         <% cero++;}%>
                                     </s:iterator>
                                 </s:a>
@@ -290,7 +286,7 @@
                         </tr>
                         <tr>
                             <td>
-                                Precio:
+                                Precio individual:
                             </td>
                             <td>
                                 <s:property value="getText('{0,number,##0.00}',{#a.ropaStock.ropa.roPrecio - (#a.ropaStock.ropa.roPrecio * #a.ropaStock.ropa.roDescuento / 100)})"/> €
@@ -301,21 +297,28 @@
                                 Cantidad
                             </td>
                             <td>
-                                <s:form id="formCantidad" action="CestaFiltro" theme="simple" method="post">
-                                <input type="text" name="cantidad" id="cantidadIndividual<%=cant%>" readonly="readonly" 
+                            <s:form id="formCantidad" action="CestaFiltro" theme="simple" method="post">
+                                <input type="hidden" name="accionocul" value="e"/>
+                                <input type="hidden" name="clave" id="clave"/>
+                                <img src="../Imagenes/Administracion/Signo_Menos.png" id="menos"
+                                     style="cursor:pointer; width: 35px;" onclick="MasMenosCantidad('-',<s:property value="#a.cestaUnidades"/>,<s:property value="#a.cestaId"/>);"/>
+                                &nbsp;
+                                <input type="text" name="cantidad" id="cantidadIndividual" readonly="readonly" 
                                        style="width: 25px;text-align: center;" value="<s:property value="#a.cestaUnidades"/>">
                                 &nbsp;
-                                <input type="hidden" name="accionocul" value="e"/>
-                                <input type="hidden" name="clave" value="<s:property value="#a.cestaId"/>"/>
-                                <img src="../Imagenes/Administracion/Signo_Mas.png" width="45" id="mas" 
-                                     style="cursor:pointer" onclick="MasMenosCantidad('+',<%=cant%>);"/>&nbsp;
-                                <img src="../Imagenes/Administracion/Signo_Menos.png" width="45" id="menos"
-                                     style="cursor:pointer" onclick="MasMenosCantidad('-',<%=cant%>);"/>
-<!--                                    <button><div class="btn_Elminar_Producto">Modificar Cantidad</div></button>-->
+                                <img src="../Imagenes/Administracion/Signo_Mas.png" id="mas" 
+                                     style="cursor:pointer; width: 35px;" onclick="MasMenosCantidad('+',<s:property value="#a.cestaUnidades"/>,<s:property value="#a.cestaId"/>);"/>
                             </s:form>
                             </td>                       
                         </tr>
-                        <%cant++;%>
+                        <tr>
+                            <td>
+                                Importe por <s:property value="#a.cestaUnidades"/> prendas:
+                            </td>
+                            <td>
+                                <s:property value="getText('{0,number,##0.00}',{#a.cestaUnidades * (#a.ropaStock.ropa.roPrecio - (#a.ropaStock.ropa.roPrecio * #a.ropaStock.ropa.roDescuento / 100))})"/> €
+                            </td>
+                        </tr>
                         <tr>
                             <td colspan="3">
                                 <s:a action="CestaFiltro">
@@ -405,7 +408,7 @@
                                         Total
                                     </td>                            
                                     <td>
-                                        <s:property value="precio"/>€
+                                        <s:property value="getText('{0,number,##0.00}',{precio})"/>€
                                     </td>                            
                                 </tr>
                                 <tr>

@@ -483,6 +483,7 @@ public class HomeCesta extends ActionSupport {
         }
         try{
             int respuesta;
+
             c = new Cesta();
             if (accionocul.equals("e")) {
                 c = ControladoresDAO.cCesta.RecuperaPorId(clave);
