@@ -13,9 +13,13 @@ import Modelos.Usuarios;
 import static com.opensymphony.xwork2.Action.INPUT;
 import static com.opensymphony.xwork2.Action.SUCCESS;
 import com.opensymphony.xwork2.ActionContext;
+import com.opensymphony.xwork2.ActionSupport;
+import com.opensymphony.xwork2.util.logging.Logger;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -48,6 +52,10 @@ public class HomeRopaStock {
     private ArrayList<Ropa> lista_ropa,lista_menu_ropa;
     private List<Marcas>lista_marcas;
     private String clientela, categoria, marca, campaniaNombre;
+    private Map<String, String> stateMap2 = new LinkedHashMap<String, String>();
+    private String roId2;
+    private String precio;
+    private String precioConDescuento;
 
     public String getAccion() {
         return accion;
@@ -293,6 +301,38 @@ public class HomeRopaStock {
         this.campaniaNombre = campaniaNombre;
     }
 
+    public Map<String, String> getStateMap2() {
+        return stateMap2;
+    }
+
+    public void setStateMap2(Map<String, String> stateMap2) {
+        this.stateMap2 = stateMap2;
+    }
+
+    public String getRoId2() {
+        return roId2;
+    }
+
+    public void setRoId2(String roId2) {
+        this.roId2 = roId2;
+    }
+
+    public String getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(String precio) {
+        this.precio = precio;
+    }
+
+    public String getPrecioConDescuento() {
+        return precioConDescuento;
+    }
+
+    public void setPrecioConDescuento(String precioConDescuento) {
+        this.precioConDescuento = precioConDescuento;
+    }
+    
     public String getCategoria2() {
         return categoria2;
     }
@@ -348,6 +388,9 @@ public class HomeRopaStock {
             }
             if(bool){
                 lista_colores.add(lista_ropaStock.get(i).getColor());
+                //Las dos líneas siguientes son necesarias para cargar la descripción en memoria, nada más.
+                int tam = lista_colores.size();
+                lista_colores.get(tam-1).getColorDescripcion();
             }
             bool = true;
             for(int j=0;j<lista_tallas.size();j++){
@@ -384,7 +427,9 @@ public class HomeRopaStock {
         categoria = tr.getCategoria().getCatDescripcion();
         marca = tr.getMarcas().getMarcaNombre();
         t = descuentoEnRopa(tr);
-        //System.out.println("campania: " + campania);
+        DecimalFormat df = new DecimalFormat("#.00");
+        precio = df.format(t.getRoPrecio());
+        precioConDescuento = df.format(t.getRoPrecio() - (t.getRoPrecio() * t.getRoDescuento() / 100));
         try{
             if(!campania.equals("")){
                 Campania camp = ControladoresDAO.cCampanias.RecuperaPorId(Integer.parseInt(campania));
@@ -460,5 +505,13 @@ public class HomeRopaStock {
             }
         }
         return r;
+    }
+    
+    public String ajaxTallas() throws Exception{
+        List<RopaStock> lista_ropaStock2 = ControladoresDAO.cRopaStock.RecuperaPorRopaColor(Integer.parseInt(roId2), Integer.parseInt(color2));
+        for(int i=0;i<lista_ropaStock2.size();i++){
+            stateMap2.put(""+lista_ropaStock2.get(i).getTallas().getTallaId(), lista_ropaStock2.get(i).getTallas().getTallaDescripcion());
+        }
+        return SUCCESS;
     }
 }

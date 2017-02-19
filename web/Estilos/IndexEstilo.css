@@ -760,10 +760,11 @@ hr{
 #color1{
     width: 20px;
     height: 20px;
-    background-color: red;
+    /*background-color: #F00;  eliminar esta línea, agregar la de margen-right y se puede eliminar todo #color2 que ya no se usa*/ 
     float: left;
     border-radius: 5px;
     cursor: pointer;
+    margin-right: 10px;
 }
 #color2{
     width: 20px;

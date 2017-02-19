@@ -50,7 +50,44 @@
         <!-- Scripts Propios-->
         <script src="../Scripts/Tienda_Scripts.js" type="text/javascript"></script>              
         <script>
-            window.onload = cesta_Aniadir;            
+            window.onload = muestra_Cantidad;            
+        </script>
+        <script>            
+            function ValidoDetalles(){
+                if(document.getElementById('colorOculto').value == ''){
+                    alert("Debe seleccionar un color");
+                }else{
+                    document.getElementById('frm').submit();
+                }
+            }
+            
+            function elijoColor(elegido,id) {
+                var obj = document.getElementById('coloresDiv').getElementsByTagName('div');
+                for(var i=0;i<obj.length;i++){
+                    if(i == (elegido-1)){
+                        obj[i].className = 'color_Elegido';
+                    }else{
+                        obj[i].className = 'color_No_Elegido';
+                    }
+                }
+                document.getElementById('colorOculto').value = id;
+                usarAJAXColor();
+            }
+            
+            function usarAJAXColor(){
+                var valorColor = document.getElementById('colorOculto').value;
+                var valorRopa = document.getElementById('ropa').value;
+                $.getJSON('ajaxTallas', {
+                    color2 : valorColor,
+                    roId2 : valorRopa
+                }, function(jsonResponse2) { 
+                    var select2 = $('#tallaMuchosColores');
+                    select2.find('option').remove();
+                    $.each(jsonResponse2.stateMap2, function(key, value) {
+                        $('<option>').val(key).text(value).appendTo(select2);
+                    });
+                });
+            };            
         </script>
         <title>MyLook - Detalle Ropa</title>
     </head>
@@ -67,32 +104,6 @@
                     <img src="../Imagenes/Administracion/flag_spain_blog.png" alt=""/>
                     <img src="../Imagenes/Administracion/lrgscaleunited_kingdom_great_british_union_jack_flag.png" alt=""/>
                 </div>
-<!--            <div id="cesta">
-                    <img src="../Imagenes/Administracion/Shopping-Cart-10.png" alt="" id="imgcesta"/>
-                    <div id="cantidad_Cesta"><s:property value="totalcestaUsuario"/></div>
-                    <table id="cesta_Hover">
-                        <tr>
-                            <td>Cantidad</td>
-                            <td>1</td>
-                        </tr>
-
-                        <tr>
-                            <td>Artículo</td>
-                            <td>Vestido de Fiesta Salmón</td>
-                        </tr>
-                        <tr>
-                            <td>Precio</td>
-                            <td>99€</td>
-                        </tr>
-                        <tr>
-                            <td>Total</td>
-                            <td>99€</td>
-                        </tr>
-                        <tr >
-                            <td colspan="2"><br><div id="realizar_Pedido" class="btn_RealizarPedido" onclick="location.href = 'Cesta.html';" style="padding-top: 2px;">Realizar Pedido</div></td>                            
-                        </tr>
-                    </table>
-                </div>-->
                 <div id="cesta">
                     <s:if test="sesion.usuarioLogueado.usuAdministrador!=1">
                         <s:a action="CestaFiltro" theme="simple">
@@ -225,11 +236,17 @@
                 <img src="../Imagenes/Administracion/afdf338882d16dd2b1360aa975b18111.png" alt="" style="width: 30px; margin-right: 10px; opacity: 0.9;"/>
                 <div id="menu_Tabla">
                     <table>
-                        <tr>
-                            <td class="con_Borde">
-                                <a href="#"><span class="glyphicon glyphicon-user"></span> Cuenta</a>
-                            </td>
-                        </tr>
+                        <s:if test="sesion.usuarioLogueado.usuId!=''">
+                            <tr>
+                                <td class="con_Borde">
+                                    <s:a action="UsuAlta" >
+                                        <span class="glyphicon glyphicon-user"></span> Cuenta
+                                        <s:param name="clave" value="sesion.usuarioLogueado.usuId"/>
+                                        <s:param name="accion" value="'m'"/>
+                                    </s:a>
+                                </td>
+                            </tr>
+                        </s:if>
                         <tr>
                             <td class="con_Borde">
                                 <a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> Pedidos &nbsp;&nbsp;&nbsp;&nbsp;</a>
@@ -332,7 +349,7 @@
                 <input type='hidden' name='marcas2' value='<s:property value="marcas2"/>'/>
                 <input type='hidden' name='campania' value='<s:property value="campania"/>'/>
                 <input type='hidden' name="accionocul" value="'c'"/>
-                <input type='hidden' name='ropa' value='<s:property value="roId"/>'/>
+                <input type='hidden' name='ropa' id='ropa' value='<s:property value="roId"/>'/>
                 <div class="nombre_Detalle">
                     <s:property value="t.roDescripcion"/>
                 </div>
@@ -354,29 +371,32 @@
                         <tr>
                             <td>Color:</td>
                             <td>
-                                <s:select name="color" list="lista_colores" listValue="colorDescripcion" 
-                                    listKey="colorId"/>
-                                <div id="color1" onclick="myFunction()" class="pointer, color_Box"></div>
-                                <div id="color2" onclick="myFunction2()" class="pointer, color_Box"></div>
-
-
-                                <script>
-                                    function myFunction() {
-                                        document.getElementById("color1").className = 'color_Elegido';
-                                        document.getElementById("color2").className = 'color_No_Elegido';
-                                    }
-                                    function myFunction2() {
-                                        document.getElementById("color2").className = 'color_Elegido';
-                                        document.getElementById("color1").className = 'color_No_Elegido';
-                                    }
-                                </script>
+                                <div id="coloresDiv">
+                                <% int cantColores = 0; %>
+                                <s:iterator value="lista_colores" var="col">
+                                    <% cantColores++; %>
+                                    <div id="color1" onclick="elijoColor(<%=cantColores%>,<s:property value="#col.colorId"/>);" class="color_No_Elegido" 
+                                         style="background-color: <s:property value="#col.colorDescripcion"/>;"></div>
+                                </s:iterator>
+                                <% if(cantColores == 1){ %>
+                                    <s:iterator value="lista_colores" var="col">
+                                        <input type='hidden' name='color' id='colorOculto' value='<s:property value="#col.colorId"/>'/>
+                                    </s:iterator>
+                                <% }else{ %>
+                                    <input type='hidden' name='color' id='colorOculto' value=''/>
+                                <% } %>
+                                </div>
                             </td>
                         </tr>                        
                         <tr>
                             <td>Selecione talla:</td>
                             <td>
-                                <s:select name="talla" list="lista_tallas" listValue="tallaDescripcion" 
-                                    listKey="tallaId"/>
+                                <% if(cantColores == 1){ %>
+                                    <s:select name="talla" list="lista_tallas" listValue="tallaDescripcion" 
+                                        listKey="tallaId"/>
+                                <% }else{ %>
+                                    <s:select id="tallaMuchosColores" name="talla" list="{'Seleccione Color'}" />
+                                <% } %>
                             </td>
                         </tr>
                         <tr>
@@ -384,8 +404,7 @@
                                 Precio:
                             </td>
                             <td>
-                                <s:property value="getText('{0,number,##0.00}',{t.roPrecio - (t.roPrecio * t.roDescuento / 100)})"/>
-                                <span style="text-decoration: line-through; font-size: 15px; color: #999999; font-weight: bold" ><s:property value="t.roPrecio"/></span><span style="padding-left: 10px; font-size: 15px; font-weight: bold;"><s:property value="t.roPrecio - (t.roPrecio * t.roDescuento / 100)"/> €</span>
+                                <span style="text-decoration: line-through; font-size: 15px; color: #999999; font-weight: bold" ><s:property value="precio"/></span><span style="padding-left: 10px; font-size: 15px; font-weight: bold;"><s:property value="precioConDescuento"/> €</span>
                             </td>
                         </tr>
                         <tr>
@@ -398,7 +417,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <button type="submit"    id="añadircesta_Btn">
+                                <button type="button" onclick="ValidoDetalles();" id="añadircesta_Btn">
                                     <div>Añadir a la Cesta</div>
                                 </button>
                             </td>
@@ -407,7 +426,6 @@
                             </td>
                         </tr>                        
                     </table>
-
                 </div>
                 <table class="mas_Fotos thumbnails">
                     <tr>
