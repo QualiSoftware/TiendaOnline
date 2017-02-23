@@ -905,7 +905,7 @@ hr{
     position: absolute;
     width: 180px;
     display: none;
-    font-size: 10px;
+    font-size: 12px;
     background-color: #eeeeee;
     color: #575151;
     padding: 5px;
@@ -913,6 +913,7 @@ hr{
     top: 55px;
     right: 0px;
     z-index: 1;
+    box-shadow: 5px 5px 10px;
 }
 #cesta_Hover td{
     padding-right: 10px;
@@ -922,6 +923,18 @@ hr{
 
 .desplegar_Cesta:hover #cesta_Hover{
     display: block;
+}
+.descripcion_CestaPreview{
+    padding-bottom: 50px;
+}
+.img_CestaPreview img{
+    height: 50px;
+    padding-left: 2px;
+}
+.linea_CestaPreview{
+    color: grey; height: 0px; width: 150px; border-top: solid 0.5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 #realizar_Pedido{
     margin: auto;
