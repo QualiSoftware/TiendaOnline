@@ -80,10 +80,8 @@
                                             Color:
                                         </td>
                                         <td>
-<!--                                        Aquí debería de ir un cudradito de color como los que hay en 
-                                            http://www.luislo.esy.es/Detalles.html
--->
-                                            <s:property value="#c.ropaStock.color.colorDescripcion"/>
+                                            <div id="color1" style="background-color: <s:property value="#c.ropaStock.color.colorDescripcion"/>;">
+                                            </div>                                            
                                         </td>
                                     </tr>                                        
                                     <tr>
