@@ -157,16 +157,26 @@
                 <img src="../Imagenes/Administracion/afdf338882d16dd2b1360aa975b18111.png" alt="" style="width: 30px; margin-right: 10px; opacity: 0.9;"/>
                 <div id="menu_Tabla">
                     <table>
-                        <tr>
-                            <td class="con_Borde">
-                                <a href="#"><span class="glyphicon glyphicon-user"></span> Cuenta</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="con_Borde">
-                                <a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> Pedidos &nbsp;&nbsp;&nbsp;&nbsp;</a>
-                            </td>
-                        </tr>
+                        <s:if test="sesion.usuarioLogueado.usuId!=''">
+                            <tr>
+                                <td class="con_Borde">
+                                    <s:a action="UsuAlta" >
+                                        <span class="glyphicon glyphicon-user"></span> Cuenta
+                                        <s:param name="clave" value="sesion.usuarioLogueado.usuId"/>
+                                        <s:param name="accion" value="'m'"/>
+                                    </s:a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="con_Borde">
+                                    <s:a action="pedidos">
+                                        <span class="glyphicon glyphicon-shopping-cart"></span> Pedidos
+                                        <s:param name="clave" value="sesion.usuarioLogueado.usuId"/>
+                                    </s:a>
+                                    </a>
+                                </td>
+                            </tr>
+                        </s:if>
                         <tr>
                             <td class="con_Borde">
                                 <a href="#"><span class="glyphicon glyphicon-question-sign"></span> Ayuda</a>

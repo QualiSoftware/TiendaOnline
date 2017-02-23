@@ -469,6 +469,9 @@
             <result name="input" type="redirect">Tienda</result>
         </action>
         
+        <action name="pedidos" class="Acciones.HomeUsuarios" method="pedidos">
+            <result>/Vistas/tiendaPedidos.jsp</result>           
+        </action>        
     </package>
 </struts>
 

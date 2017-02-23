@@ -1,13 +1,19 @@
 package Acciones;
 
+import Modelos.Campania;
+import Modelos.Cesta;
+import Modelos.Facturas;
+import Modelos.Marcas;
 import Modelos.Paises;
 import Modelos.Provincias;
+import Modelos.Ropa;
 import Modelos.Usuarios;
 import static com.opensymphony.xwork2.Action.SUCCESS;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.util.logging.Logger;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -51,6 +57,12 @@ public class HomeUsuarios extends ActionSupport {
     private int respuesta;
     private List<Usuarios> lista_usuarios;
     private String antigua;
+    private String usi;
+    private ArrayList<Ropa> lista_ropa,lista_menu_ropa;
+    private List<Marcas>lista_marcas;
+    private ArrayList<Cesta> lista_ropa_Cestas;
+    private int totalcestaUsuario = 0;
+    private List<Facturas> lista_facturas;
 
     public Map getSesion() {
         return sesion;
@@ -90,6 +102,54 @@ public class HomeUsuarios extends ActionSupport {
 
     public void setAntigua(String antigua) {
         this.antigua = antigua;
+    }
+
+    public ArrayList<Ropa> getLista_menu_ropa() {
+        return lista_menu_ropa;
+    }
+
+    public void setLista_menu_ropa(ArrayList<Ropa> lista_menu_ropa) {
+        this.lista_menu_ropa = lista_menu_ropa;
+    }
+
+    public List<Marcas> getLista_marcas() {
+        return lista_marcas;
+    }
+
+    public void setLista_marcas(List<Marcas> lista_marcas) {
+        this.lista_marcas = lista_marcas;
+    }
+
+    public ArrayList<Cesta> getLista_ropa_Cestas() {
+        return lista_ropa_Cestas;
+    }
+
+    public void setLista_ropa_Cestas(ArrayList<Cesta> lista_ropa_Cestas) {
+        this.lista_ropa_Cestas = lista_ropa_Cestas;
+    }
+
+    public int getTotalcestaUsuario() {
+        return totalcestaUsuario;
+    }
+
+    public void setTotalcestaUsuario(int totalcestaUsuario) {
+        this.totalcestaUsuario = totalcestaUsuario;
+    }
+
+    public String getUsi() {
+        return usi;
+    }
+
+    public void setUsi(String usi) {
+        this.usi = usi;
+    }
+
+    public List<Facturas> getLista_facturas() {
+        return lista_facturas;
+    }
+
+    public void setLista_facturas(List<Facturas> lista_facturas) {
+        this.lista_facturas = lista_facturas;
     }
 
     public Map<String, String> getStateMap() {
@@ -351,6 +411,9 @@ public class HomeUsuarios extends ActionSupport {
     }
     
     public String UsuAlta() throws Exception {
+        if(sesion==null){
+            sesion=ActionContext.getContext().getSession();
+        }
         int year;
         int month;
         String monthString;
@@ -430,7 +493,8 @@ public class HomeUsuarios extends ActionSupport {
             accionocul = "e";
             cabeceraocul = "Eliminación";
             botonocul = "Eliminar";
-        }
+        }        
+        cargarMenuDesplegable();
         return SUCCESS;
     }
      
@@ -631,6 +695,55 @@ public class HomeUsuarios extends ActionSupport {
             return SUCCESS;
         }catch(Exception e){
             return INPUT;
+        }
+    }
+
+    public String pedidos(){
+        if(sesion==null){
+            sesion=ActionContext.getContext().getSession();
+        }
+        cargarMenuDesplegable();
+        lista_facturas = ControladoresDAO.cFacturas.RecuperaPorUsuario(u.getUsuId());
+        return SUCCESS;
+    }
+    
+    public void cargarMenuDesplegable(){
+        
+        usi = "";
+        if(sesion.get("usuarioLogueado") != null){
+            if(!sesion.get("usuarioLogueado").equals("")){
+                try{
+                    u = (Usuarios) sesion.get("usuarioLogueado");
+                    usi = ""+u.getUsuId();
+                }catch(Exception e){
+                    System.out.println(e.getMessage());
+                }
+            }
+        }        
+        if (filtro == null || filtro.equals("null")) {
+            filtro = "";
+        }
+        lista_ropa = ControladoresDAO.cRopa.RecuperaTodos(filtro,"categoria.catDescripcion","","","2");
+        lista_marcas =  ControladoresDAO.cMarcas.RecuperaTodos(filtro);
+        lista_menu_ropa = new ArrayList<Ropa>();
+        for(Ropa lr: lista_ropa){
+            String auxClientela = lr.getClientela().getClientelaDescripcion();
+            String auxCategoria = lr.getCategoria().getCatDescripcion();
+            boolean noEsta = true;
+            for(Ropa lrm: lista_menu_ropa){
+                if(auxClientela.equals(lrm.getClientela().getClientelaDescripcion()) && auxCategoria.equals(lrm.getCategoria().getCatDescripcion())){
+                    noEsta = false;
+                }
+            }
+            if(noEsta){
+                lista_menu_ropa.add(lr);
+            }
+        }        
+        lista_ropa_Cestas = ControladoresDAO.cCesta.RecuperaTodos(usi);
+        HomeRopa homeRopa = new HomeRopa();
+        for(Cesta caux:lista_ropa_Cestas){
+            totalcestaUsuario += caux.getCestaUnidades();
+            caux.getRopaStock().setRopa(homeRopa.descuentoEnRopa(caux.getRopaStock().getRopa()));
         }
     }
 }

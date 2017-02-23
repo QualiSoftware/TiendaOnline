@@ -187,12 +187,16 @@
                                     </s:a>
                                 </td>
                             </tr>
+                            <tr>
+                                <td class="con_Borde">
+                                    <s:a action="pedidos">
+                                        <span class="glyphicon glyphicon-shopping-cart"></span> Pedidos
+                                        <s:param name="clave" value="sesion.usuarioLogueado.usuId"/>
+                                    </s:a>
+                                    </a>
+                                </td>
+                            </tr>
                         </s:if>
-                        <tr>
-                            <td class="con_Borde">
-                                <a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> Pedidos &nbsp;&nbsp;&nbsp;&nbsp;</a>
-                            </td>
-                        </tr>
                         <tr>
                             <td class="con_Borde">
                                 <a href="#"><span class="glyphicon glyphicon-question-sign"></span> Ayuda</a>

@@ -740,7 +740,6 @@ public class HomeRopa extends ActionSupport {
         for(Cesta caux:lista_ropa_Cestas){
             totalcestaUsuario += caux.getCestaUnidades();
             caux.getRopaStock().setRopa(descuentoEnRopa(caux.getRopaStock().getRopa()));
-            //System.out.println(caux.getRopaStock().getRopa().getRoDescripcion()+" - "+caux.getCestaUnidades()+" - "+caux.getRopaStock().getRopa().getRoPrecio());
         }
         return SUCCESS;
     }
