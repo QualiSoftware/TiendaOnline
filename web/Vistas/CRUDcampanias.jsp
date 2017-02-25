@@ -29,8 +29,11 @@
     </head>
     <body>
         <s:include value="cabeceraHeader.jsp" />
-            <div id="marca">Tienda Ropa <img src="../Imagenes/house_hangers.svg" alt="house_hangers" id="logo"/>
-            </div>
+                <div id="marca">
+                    <s:a action="Tienda">
+                        Tienda Ropa <img src="../Imagenes/Administracion/SH14171.jpg" alt="house_hangers" id="logo"/>
+                    </s:a>
+                </div>
             <div id="titulo_Pagina">Campañas</div>
             <s:include value="cabeceraMenuAdministrador.jsp" />
         </div>
@@ -192,10 +195,10 @@
                         <s:property value="#a.camDescuento"/>
                     </td>
                     <td>
-                        <s:property value="#a.camInicio"/>
+                        <s:date name="#a.camInicio" format="dd/MM/yyyy"/>
                     </td>
                     <td>
-                        <s:property value="#a.camFin"/>
+                        <s:date name="#a.camFin" format="dd/MM/yyyy"/>
                     </td>
                     <td>
                         <img src="../Imagenes/Campanias/<s:property value="#a.camFoto"/>" height="70" alt="<s:property value="#a.camFoto"/>"/>

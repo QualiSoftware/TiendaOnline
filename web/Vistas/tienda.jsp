@@ -309,7 +309,7 @@
                         <s:a action="TiendaMenu">
                             <table  class="imgproducto">                        
                                 <tr>
-                                    <td class="descuento"><span class="descuento_Txt">¡<s:property value="#a.camDescuento"/>% de Descuento!</span><span class="validez_Txt">Hasta el <s:property value="#a.camFin"/></span></td>
+                                    <td class="descuento"><span class="descuento_Txt">¡<s:property value="#a.camDescuento"/>% de Descuento!</span><span class="validez_Txt">Hasta el <s:date name="#a.camFin" format="dd/MM/yyyy"/></span></td>
                                 </tr>
                                 <tr>
                                     <td><img src="../Imagenes/Campanias/<s:property value="#a.camFoto"/>" alt="<s:property value="#a.camNombre"/>"/></td>                            

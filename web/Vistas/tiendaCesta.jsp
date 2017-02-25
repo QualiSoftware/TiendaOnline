@@ -285,7 +285,8 @@
                             </td>
                             <td>Color:</td>
                             <td>
-                                <div id="color1" class="color_Box"></div> <s:property value="#a.ropaStock.color.colorDescripcion"/>
+                                <div id="color1" style="background-color: <s:property value="#a.ropaStock.color.colorDescripcion"/>;">
+                                </div>
                             </td>
                         </tr>
                         <tr>

@@ -417,8 +417,9 @@
         </action> 
         <!-- pagar y envia correo -->
         <action name="Pagar" class="Acciones.HomeCesta" method="Pagar">
-            <result>/Vistas/pruebaPagarCorreo.jsp</result>
-            <result name="input" type="redirect">Tienda</result>
+            <result>/Vistas/paginaPagar.jsp</result>
+            <result name="error" type="redirect">Tienda</result>
+            <result name="input">/Vistas/paginaPagarError.jsp</result>
         </action>
         
         <action name="GenerarFactura">

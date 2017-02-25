@@ -35,8 +35,11 @@
     </head>
     <body>
         <s:include value="cabeceraHeader.jsp" />
-            <div id="marca">Tienda Ropa <img src="../Imagenes/house_hangers.svg" alt="house_hangers" id="logo"/>
-            </div>
+                <div id="marca">
+                    <s:a action="Tienda">
+                        Tienda Ropa <img src="../Imagenes/Administracion/SH14171.jpg" alt="house_hangers" id="logo"/>
+                    </s:a>
+                </div>
             <div id="titulo_Pagina">Ropas</div>
             <s:include value="cabeceraMenuAdministrador.jsp" />
         </div>
@@ -509,7 +512,7 @@
                                 </td><td>
                                     <s:property value="#r.rostockUnidades"/>
                                 </td><td>
-                                    <s:property value="#r.rostockFecha"/>
+                                    <s:date name="#r.rostockFecha" format="dd/MM/yyyy"/>
                                 </td>
                                 <td>
                                     <s:a action="RopaStockAdminForm">

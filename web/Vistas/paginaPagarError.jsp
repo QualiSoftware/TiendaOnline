@@ -1,6 +1,6 @@
 <%-- 
-    Document   : Confirmacion
-    Created on : 04-dic-2016
+    Document   : paginaPagarError.jsp
+    Created on : 25-feb-2017
     Author     : QualiSoftware
 --%>
 <%@taglib prefix="s" uri="/struts-tags" %>
@@ -9,12 +9,11 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Error al pagar</title>
     </head>
     <body>
-        <s:property value="u.usuNombre"/>
         <center>
-            <h1>La factura fue enviada por email</h1>
+            <h1><s:property value="u.usuNombre"/>, ha habido un problema con el pago de la factura</h1>
             <s:a action="Tienda">
                 <i style="font-size: 20px;">Volver a la tienda</i>
             </s:a>

@@ -31,7 +31,10 @@
     </head>
     <body style="margin: 0 auto;">
         <s:include value="cabeceraHeader.jsp" />
-                <div id="marca">Tienda Ropa <img src="../Imagenes/house_hangers.svg" alt="house_hangers" id="logo"/>
+                <div id="marca">
+                    <s:a action="Tienda">
+                        Tienda Ropa <img src="../Imagenes/Administracion/SH14171.jpg" alt="house_hangers" id="logo"/>
+                    </s:a>
                 </div>
                 <div id="titulo_Pagina">Fotos</div>
             <s:include value="cabeceraMenuAdministrador.jsp" />

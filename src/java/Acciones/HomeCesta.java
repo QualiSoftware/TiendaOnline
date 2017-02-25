@@ -572,7 +572,7 @@ public class HomeCesta extends ActionSupport {
            facUsuId = u.getUsuId(); //Esta variable la usaré para el envío del email
         }catch(Exception e){
             System.out.println("e: " + e);
-           return INPUT;
+           return ERROR;
         }
         boolean respuestaPago = true;
         //En este punto, el boolean respuestaPago se crearía como false y a continuación se redirigiría a la página

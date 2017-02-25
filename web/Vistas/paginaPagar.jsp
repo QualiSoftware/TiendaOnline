@@ -1,7 +1,7 @@
 <%-- 
-    Document   : pruebaPagarCorreo
+    Document   : paginaPagar.jsp
     Created on : 02-nov-2016, 21:22:24
-    Author     : javiermartinroncero
+    Author     : Qualisoftware
 --%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.text.DateFormat"%>
@@ -54,8 +54,7 @@
         
         int id = Integer.parseInt(""+request.getAttribute("facUsuId"));
         usuario = ControladoresDAO.cUsuarios.RecuperaPorId(id);
-        //response.sendRedirect("RopaFiltroU.action");
-        response.sendRedirect("pruebaPagarConfirmacion.jsp");
+        response.sendRedirect("pedidos");
         emailEnviado = ControladoresDAO.cEmail.enviarCorreo(usuario.getUsuEmail(),nombreArchivo);
     }catch(Exception e){
         System.out.println("Error: "+e.getMessage());

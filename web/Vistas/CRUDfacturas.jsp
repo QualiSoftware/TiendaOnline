@@ -23,8 +23,11 @@
     </head>
     <body>
         <s:include value="cabeceraHeader.jsp" />
-            <div id="marca">Tienda Ropa <img src="../Imagenes/house_hangers.svg" alt="house_hangers" id="logo"/>
-            </div>
+                <div id="marca">
+                    <s:a action="Tienda">
+                        Tienda Ropa <img src="../Imagenes/Administracion/SH14171.jpg" alt="house_hangers" id="logo"/>
+                    </s:a>
+                </div>
             <div id="titulo_Pagina">Facturas</div>
             <s:include value="cabeceraMenuAdministrador.jsp" />
         </div>
@@ -133,40 +136,40 @@
                         </s:a>
                     </td>
                     <td>
-                        <s:property value="#a.facCodigo"/><br>
+                        <s:property value="#a.facCodigo"/>
                     </td>
                     <td>
-                        <s:property value="#a.facRazonsocial"/><br>
+                        <s:property value="#a.facRazonsocial"/>
                     </td>
                     <td>
-                        <s:property value="#a.facDireccion"/><br>
+                        <s:property value="#a.facDireccion"/>
                     </td>
                     <td>
-                        <s:property value="#a.facPoblacion"/><br>
+                        <s:property value="#a.facPoblacion"/>
                     </td>
                     <td>
-                        <s:property value="#a.facProvincia"/><br>
+                        <s:property value="#a.facProvincia"/>
                     </td>
                     <td>
-                        <s:property value="#a.facCp"/><br>
+                        <s:property value="#a.facCp"/>
                     </td>
                     <td>
-                        <s:property value="#a.facPais"/><br>
+                        <s:property value="#a.facPais"/>
                     </td>
                     <td>
-                        <s:property value="#a.facDni"/><br>
+                        <s:property value="#a.facDni"/>
                     </td>
                     <td>
-                        <s:property value="#a.facDescuento"/><br>
+                        <s:property value="#a.facDescuento"/>
                     </td>
                     <td>
-                        <s:date name="#a.facFecha" format="dd/MM/yyyy hh:mm" /><br>
+                        <s:date name="#a.facFecha" format="dd/MM/yyyy hh:mm" />
                     </td>
                     <td>
-                        <s:property value="#a.facIva"/><br>
+                        <s:property value="#a.facIva"/>
                     </td>
                     <td>
-                        <s:property value="#a.facObservaciones"/><br>
+                        <s:property value="#a.facObservaciones"/>
                     </td>
                 </tr>
                 <%
