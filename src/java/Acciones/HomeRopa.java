@@ -772,6 +772,7 @@ public class HomeRopa extends ActionSupport {
         String monthString;
         int day;
         String dayString;
+        t = ControladoresDAO.cRopa.RecuperaPorId(clave);
         if (accion.equals("a")) {
             roId2 = 0;
             roDescripcion2 = "";
@@ -806,7 +807,6 @@ public class HomeRopa extends ActionSupport {
             botonocul = "Alta";
         } else {
             if(rostockId == -1){
-                t = ControladoresDAO.cRopa.RecuperaPorId(clave);
                 roId2 = clave;
                 roDescripcion2 = t.getRoDescripcion();
                 roPrecio2 = t.getRoPrecio();

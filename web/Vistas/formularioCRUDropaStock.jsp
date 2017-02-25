@@ -44,8 +44,18 @@
         <div  class="linea"></div>
         <div id="descripcion_Pagina"><h3 class="bold"><s:label name="cabeceraocul" theme="simple" /> de Stock de ropa</h3></div>
         <div  class="linea"></div>
+        <div>
+            <!--A este div habría que darle formato o ubicarlo a un costado del formulario-->
+            Descripción: <s:property value="%{t.roDescripcion}"/>
+            <% int cero=0; %>
+            <s:iterator var="f" value="t.fotoses">
+                <% if(cero<1){%>
+                <img  id="cesta_Img" src="<s:url value='../Imagenes/%{t.categoria.catDescripcion}/%{t.subcategoria.subDescripcion}/%{#f.fotosRuta}'/>" alt="<s:property value="#f.fotosRuta" />" width="60" />
+                <% cero++;}%>
+            </s:iterator>
+        </div>
         <s:form id="frm" action="CrudActionRopaStockAdmin" theme="simple">
-            <input type="hidden" name="accion" id="accionocul"value=<s:property value="accion" /> />
+            <input type="hidden" name="accion" id="accionocul" value=<s:property value="accion" /> />
             <input type="hidden" name="roId" value=<s:property value="roId" /> />
             <input type="hidden" name="filtro" value=<s:property value="filtro" /> />
             <input type="hidden" name="eliminadas" value=<s:property value="eliminadas" /> />
@@ -79,7 +89,8 @@
                     </td>
                     <td>
                         <s:if test='%{accion == "e" || accion == "c"}'>
-                            <s:textfield name="rstock.color.colorDescripcion" readonly="true" ></s:textfield>
+                            <div id="color1" style="background-color: <s:property value="rstock.color.colorDescripcion"/>;">
+                            </div>
                         </s:if>
                         <s:else>
                             <s:select name="color2" list="lista_colores" listValue="colorDescripcion" 

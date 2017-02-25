@@ -30,7 +30,7 @@
             }
         </script>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
-        <link rel="stylesheet" href="../Estilos/GeneralEstilos.css"/>
+        <link rel="stylesheet" href="../Estilos/GeneralEstilos.css"/>        
         <title>Ropa</title>
     </head>
     <body>
@@ -492,11 +492,9 @@
                                         <s:param name="accion" value="'a'"/>
                                         <s:param name="rostockId" value="0"/>
                                         <s:param name="roId" value="#a.roId"/>
+                                        <s:param name="clave" value="#a.roId"/>
+                                        <!--Debería investigar el código para sacar clave de acá-->
                                         <s:param name="filtro" value="%{filtro}" />
-                                        <!--
-                                        <s:param name="fechaI" value="%{fechaI}" />
-                                        <s:param name="fechaF" value="%{fechaF}" />
-                                        -->
                                         <s:param name="eliminadas" value="%{eliminadas}" />
                                         <s:param name="orden" value="%{orden}" />
                                         <i style="font-size: 20px" class="glyphicon glyphicon-plus"> Agregar Stock</i>
@@ -508,7 +506,9 @@
                                 <td>
                                     <s:property value="#r.tallas.tallaDescripcion"/>
                                 </td><td>
-                                    <s:property value="#r.color.colorDescripcion"/>
+                                    <%--<s:property value="#r.color.colorDescripcion"/>--%>
+                                    <div id="color1" style="background-color: <s:property value="#r.color.colorDescripcion"/>;">
+                                    </div>
                                 </td><td>
                                     <s:property value="#r.rostockUnidades"/>
                                 </td><td>
