@@ -257,6 +257,7 @@
             <div id="contenido_Detalles">
                 <div id="cesta_Titulo">Mi Cesta <img src="../Imagenes/Administracion/Shopping-Cart-10.png" alt="" id="imgcesta_Titulo"/></div>
                 <div class="detalle_info_Cesta">
+                <s:set var="cantidadRopa" value="0"/>
                 <s:iterator var="a" value="lista_ropa_Cestas">
                     <hr>
                     <table> 
@@ -290,7 +291,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>Selecione talla:</td>
+                            <td>Talla:</td>
                             <td>
                                 <s:property value="#a.ropaStock.tallas.tallaDescripcion"/>
                             </td>
@@ -341,118 +342,120 @@
                             </td>
                         </tr>
                     </table>
+                <s:set var="cantidadRopa" value="%{#cantidadRopa + 1}"/>
                 </s:iterator>
-                    
-                    
-                <s:form id="frm" action="Pagar" method="POST" theme="simple">
-                    <div id="contenedor_Pagar">
-                        <div id="pagar">
-                            <table>                            
-                                <tr class="apartados_Pagar">
-                                    <td colspan="2" class="bold apartados_Pagar">
-                                        <span class="apartados_Pagar" style="padding-bottom: 50px;">Datos de Envío<br></span>
-                                    </td>                            
-                                </tr>
-                                <tr>
-                                    <td style="padding-top: 5px;">
-                                        Dirección: 
-                                    </td>                            
-                                    <td style="padding-top: 5px;">
-                                        <s:property value="u.usuDireccion"/>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Ciudad: 
-                                    </td>                            
-                                    <td>
-                                        <s:property value="u.usuLocalidad"/>
-                                    </td>  
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Código Postal: 
-                                    </td>                            
-                                    <td>
-                                        <s:property value="u.usuCp"/>
-                                    </td>                            
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Provincia: 
-                                    </td>                            
-                                    <td>
-                                        <s:property value="u.provincias.proNombre"/>
-                                    </td>                            
-                                </tr>
-                                <tr>
-                                    <td>
-                                        País: 
-                                    </td>                            
-                                    <td>
-                                        <s:property value="u.provincias.paises.paisNombre"/>
-                                    </td>                            
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Titular: 
-                                    </td>                            
-                                    <td>
-                                        <s:property value="u.usuNombre"/> <s:property value="u.usuApellidos"/>
-                                    </td>                            
-                                </tr>
-                                <tr>
-                                    <td colspan="2" class="bold" style="padding-top: 10px;">
-                                        Artículos
-                                    </td>                           
-                                </tr>
-                                <tr>
-                                    <td style="padding-top: 5px;">
-                                        Cantidad
-                                    </td>                            
-                                    <td style="padding-top: 5px;">
-                                        <s:property value="cantidad"/>
-                                    </td>                            
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Total
-                                    </td>                            
-                                    <td>
-                                        <s:property value="getText('{0,number,##0.00}',{precio})"/>€
-                                    </td>                            
-                                </tr>
-                                <tr>
-                                    <td colspan="2" class="bold" style="padding-top: 10px;">
-                                        Métodos de pago
-                                    </td>                           
-                                </tr>
-                                <tr>                                                        
-                                    <td colspan="2">
-                                        <img id="metodo_Img" src="../Imagenes/Administracion/Pago/Metodos_Pago.PNG" alt="" />
-                                    </td>                            
-                                </tr>
-                                <tr>
-                                    <td colspan="2" class="bold" style="padding-top: 10px;">
-                                        Observaciones
-                                    </td>
-                                </tr>
-                                <tr>                                    
-                                    <td colspan="10">
-                                        <s:textarea label="Observaciones" name="obs" cols="46" rows="2" theme="simple"/>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2" >
-                                        <button type="submit" style="margin-left: 150px" id="añadircesta_Btn">
-                                            <div>Realizar Pedido</div>
-                                        </button>
-                                    </td>
-                                </tr>
-                            </table>
+                
+                <s:if test="#cantidadRopa > 0">    
+                    <s:form id="frm" action="Pagar" method="POST" theme="simple">
+                        <div id="contenedor_Pagar">
+                            <div id="pagar">
+                                <table>                            
+                                    <tr class="apartados_Pagar">
+                                        <td colspan="2" class="bold apartados_Pagar">
+                                            <span class="apartados_Pagar" style="padding-bottom: 50px;">Datos de Envío<br></span>
+                                        </td>                            
+                                    </tr>
+                                    <tr>
+                                        <td style="padding-top: 5px;">
+                                            Dirección: 
+                                        </td>                            
+                                        <td style="padding-top: 5px;">
+                                            <s:property value="u.usuDireccion"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Ciudad: 
+                                        </td>                            
+                                        <td>
+                                            <s:property value="u.usuLocalidad"/>
+                                        </td>  
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Código Postal: 
+                                        </td>                            
+                                        <td>
+                                            <s:property value="u.usuCp"/>
+                                        </td>                            
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Provincia: 
+                                        </td>                            
+                                        <td>
+                                            <s:property value="u.provincias.proNombre"/>
+                                        </td>                            
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            País: 
+                                        </td>                            
+                                        <td>
+                                            <s:property value="u.provincias.paises.paisNombre"/>
+                                        </td>                            
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Titular: 
+                                        </td>                            
+                                        <td>
+                                            <s:property value="u.usuNombre"/> <s:property value="u.usuApellidos"/>
+                                        </td>                            
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2" class="bold" style="padding-top: 10px;">
+                                            Artículos
+                                        </td>                           
+                                    </tr>
+                                    <tr>
+                                        <td style="padding-top: 5px;">
+                                            Cantidad
+                                        </td>                            
+                                        <td style="padding-top: 5px;">
+                                            <s:property value="cantidad"/>
+                                        </td>                            
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Total
+                                        </td>                            
+                                        <td>
+                                            <s:property value="getText('{0,number,##0.00}',{precio})"/>€
+                                        </td>                            
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2" class="bold" style="padding-top: 10px;">
+                                            Métodos de pago
+                                        </td>                           
+                                    </tr>
+                                    <tr>                                                        
+                                        <td colspan="2">
+                                            <img id="metodo_Img" src="../Imagenes/Administracion/Pago/Metodos_Pago.PNG" alt="" />
+                                        </td>                            
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2" class="bold" style="padding-top: 10px;">
+                                            Observaciones
+                                        </td>
+                                    </tr>
+                                    <tr>                                    
+                                        <td colspan="10">
+                                            <s:textarea label="Observaciones" name="obs" cols="46" rows="2" theme="simple"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2" >
+                                            <button type="submit" style="margin-left: 150px" id="añadircesta_Btn">
+                                                <div>Realizar Pedido</div>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
                         </div>
-                    </div>
-                </s:form>
+                    </s:form>
+                </s:if>
                 </div>
             </div>
             <s:include value="tiendaFooter.jsp" />

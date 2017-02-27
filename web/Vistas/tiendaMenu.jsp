@@ -59,49 +59,83 @@
                             <img src="../Imagenes/Administracion/Shopping-Cart-10.png" alt="" id="imgcesta"/>
                             <div id="cantidad_Cesta"><s:property value="totalcestaUsuario"/></div>
                             <table id="cesta_Hover">
-                                <tr>
-                                    <th>Descripcion</th>
-                                    <th>Color</th>
-                                    <th>Tallas</th>
-                                    <th>Precio</th>
-                                    <th>Cantidad</th>
-                                    <th>Total</th>
-                                    <th>Foto</th>                                   
-                                </tr>
+                                <!--                                <tr>
+                                                                    <th>Descripcion</th>
+                                                                    <th>Color</th>
+                                                                    <th>Tallas</th>
+                                                                    <th>Precio</th>
+                                                                    <th>Cantidad</th>
+                                                                    <th>Total</th>
+                                                                    <th>Foto</th>                                   
+                                                                </tr>-->
                                 <s:iterator var="c" value="lista_ropa_Cestas">
-                                    <tr>
-                                        <td>
+                                    <tr style="">
+                                        <td class="img_CestaPreview">
+                                            Artículo:<br>
+                                            <% int cero = 0; %>
+                                            <s:iterator var="f" value="#c.ropaStock.ropa.fotoses">
+                                                <% if (cero < 1) {%>
+                                                <img src="<s:url value='../Imagenes/%{#c.ropaStock.ropa.categoria.catDescripcion}/%{#c.ropaStock.ropa.subcategoria.subDescripcion}/%{#f.fotosRuta}'/>" alt="<s:property value="fotosRuta" />"/>
+                                                <% cero++;
+                                                    }%>
+                                            </s:iterator>                                                
+                                        </td>
+                                        <td class="descripcion_CestaPreview">
                                             <s:property value="#c.ropaStock.ropa.roDescripcion"/>
                                         </td>
+                                    </tr>                                        
+                                    <tr>
                                         <td>
-                                            <s:property value="#c.ropaStock.color.colorDescripcion"/>
+                                            Color:
                                         </td>
                                         <td>
-                                            <center>
+                                            <div id="color1" style="background-color: <s:property value="#c.ropaStock.color.colorDescripcion"/>;">
+                                            </div>                                            
+                                        </td>
+                                    </tr>                                        
+                                    <tr>
+                                        <td>
+                                            Talla:
+                                        </td>
+                                        <td>
                                             <s:property value="#c.ropaStock.tallas.tallaDescripcion"/>
-                                            </center>
+                                        </td>
+                                    </tr>                                        
+                                    <tr>
+                                        <td>
+                                            Precio:
                                         </td>
                                         <td>
-                                        <center>
                                             <s:property value="getText('{0,number,##0.00}',{#c.ropaStock.ropa.roPrecio - (#c.ropaStock.ropa.roPrecio * #c.ropaStock.ropa.roDescuento / 100)})"/>
-                                        </center>
+                                        </td>
+                                    </tr>                                        
+                                    <tr>
+                                        <td>
+                                            Cantidad:
                                         </td>
                                         <td>
-                                        <center>
                                             <s:property value="#c.cestaUnidades"/>
-                                        </center>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2" ><hr class="linea_CestaPreview"></td>                                
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Precio total:
                                         </td>
                                         <td>
-                                        <center>
                                             <s:property value="getText('{0,number,##0.00}',{(#c.ropaStock.ropa.roPrecio - (#c.ropaStock.ropa.roPrecio * #c.ropaStock.ropa.roDescuento / 100)) * #c.cestaUnidades})"/>
-                                        </center>
                                         </td>
-                                        <td><% int cero=0; %>
-                                            <s:iterator var="f" value="#c.ropaStock.ropa.fotoses">
-                                                <% if(cero<1){%>
-                                                <img src="<s:url value='../Imagenes/%{#c.ropaStock.ropa.categoria.catDescripcion}/%{#c.ropaStock.ropa.subcategoria.subDescripcion}/%{#f.fotosRuta}'/>" alt="<s:property value="fotosRuta" />" width="20" />
-                                                <% cero++;}%>
-                                            </s:iterator>
+<!--                                    Yo en http://www.luislo.esy.es/Detalles.html en la cesta hay un botón para
+                                        comprar, lo metemos o no?
+-->
+                                    </tr>                                        
+                                    <tr>
+                                        <td>
+
+                                        </td>
+                                        <td>
                                         </td>
                                     </tr>
                                 </s:iterator>
