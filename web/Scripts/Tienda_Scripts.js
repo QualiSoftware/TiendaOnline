@@ -10,7 +10,8 @@ function muestra_Cantidad() {
     document.getElementById("cesta").onmouseout = oculta_Cesta;
 }
 function muestra_Cesta(){
-    document.getElementById("cesta_Hover").style = "display:block; '-webkit-transition: 2.2s;'";           
+    document.getElementById("imgcesta").style = "cursor: pointer;";
+    document.getElementById("cesta_Hover").style = "display:block; cursor:pointer; '-webkit-transition: 2.2s;'";        
 }
 function agranda_Cantidad(){
     document.getElementById("cantidad_Cesta").style = "font-size:111px;";   
