@@ -709,14 +709,14 @@ public class HomeRopa extends ActionSupport {
         if (filtro == null || filtro.equals("null")) {
             filtro = "";
         }
-        if(orden == null || orden.equals("null") || orden.equals("")){
+        if(orden == null || orden.equals("null") || orden.equals("") || orden.equals("/")){
             orden = "categoria.catDescripcion";
         }
         if((fechaI == null) || (fechaF == null) || fechaI.equals("null") || fechaF.equals("null")){
             fechaI = "";
             fechaF = "";
         }
-        if(eliminadas == null || eliminadas.equals("null")){
+        if(eliminadas == null || eliminadas.equals("null") || eliminadas.equals("/") || eliminadas.equals("")){
             eliminadas = "2";
         }
         lista_ropa = ControladoresDAO.cRopa.RecuperaTodos(filtro,orden,fechaI,fechaF,eliminadas);
@@ -941,7 +941,6 @@ public class HomeRopa extends ActionSupport {
                 }
             }
         }
-        //lista_campanias = ControladoresDAO.cCampanias.RecuperaCampaniasActivas();
         lista_marcas =  ControladoresDAO.cMarcas.RecuperaTodos("");
         lista_tallas = ControladoresDAO.cTallas.RecuperaTodos("");
         lista_colores = ControladoresDAO.cColor.RecuperaTodos("");

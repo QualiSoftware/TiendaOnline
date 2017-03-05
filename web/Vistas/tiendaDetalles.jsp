@@ -25,6 +25,13 @@
         <link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
 
+        <!-- Scripts Propios-->
+        <script src="../Scripts/Tienda_Scripts.js" type="text/javascript"></script>              
+        <script>
+            window.onload = muestra_Cantidad;            
+        </script>
+        <title>MyLook - Detalle Ropa</title>
+            
         <!-- FancyBox-->
         <script src="../Scripts/Fancy.js" type="text/javascript"></script>
         <!-- Add jQuery library -->
@@ -47,10 +54,12 @@
         <!-- Zoom-->
         <link rel="stylesheet" href="../Estilos/easyzoom.css" />
 
-        <!-- Scripts Propios-->
-        <script src="../Scripts/Tienda_Scripts.js" type="text/javascript"></script>              
         <script>
-            window.onload = muestra_Cantidad;            
+            var ventana;
+            function abrir(rostockId){
+                ventana = window.open("tiendaCestaPopUp.jsp?clave="+rostockId,"TallaYColor","width=300,height=300, resizable=no, scrollbars=no, menubar=no");
+                /*ventana.document.write(document.getElementById('color')+'<br>');*/
+            }
         </script>
         <script>            
             function ValidoDetalles(){
@@ -89,7 +98,6 @@
                 });
             };            
         </script>
-        <title>MyLook - Detalle Ropa</title>
     </head>
 
     <body>
@@ -204,8 +212,7 @@
                     <s:if test="usi==''">
                         <a href="#"> 
                             <div id="mi_Cuenta_Txt">Mi Cuenta</div>
-                        </a>
-                    
+                        </a>                    
                         <s:form action="TiendaLogin" theme="simple">
                             <div id="login">                                        
                                 <table >

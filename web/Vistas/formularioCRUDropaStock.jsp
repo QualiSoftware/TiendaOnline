@@ -24,10 +24,15 @@
                         document.getElementById('frm').submit();
                     }
                 } else {
-                    if(dato == 0){
-                        document.getElementById('frm').action = "CrudActionRopaStockAdminMas";
+                    var unidades = document.getElementById('roUnidades2').value;
+                    if(isNaN(unidades) || unidades < 1){
+                        alert("Unidades mal ingresadas");
+                    }else{
+                        if(dato == 0){
+                            document.getElementById('frm').action = "CrudActionRopaStockAdminMas";
+                        }
+                        document.getElementById('frm').submit();
                     }
-                    document.getElementById('frm').submit();
                 }
             }
         </script>     
@@ -74,8 +79,9 @@
                         <s:label for="tallas2">Talla</s:label>  
                     </td>
                     <td>
-                        <s:if test='%{accion == "e" || accion == "c"}'>
+                        <s:if test='%{accion == "e" || accion == "c" || accion == "m"}'>
                             <s:textfield name="rstock.tallas.tallaDescripcion" readonly="true" ></s:textfield>
+                            <input type="hidden" name="tallas2" value=<s:property value="rstock.tallas.tallaId" /> />
                         </s:if>
                         <s:else>
                             <s:select name="tallas2" list="lista_tallas" listValue="tallaDescripcion" 
@@ -88,8 +94,9 @@
                         <s:label for="color2">Color</s:label>  
                     </td>
                     <td>
-                        <s:if test='%{accion == "e" || accion == "c"}'>
+                        <s:if test='%{accion == "e" || accion == "c" || accion == "m"}'>
                             <div id="color1" style="background-color: <s:property value="rstock.color.colorDescripcion"/>;">
+                            <input type="hidden" name="color2" value=<s:property value="rstock.color.colorId" /> />
                             </div>
                         </s:if>
                         <s:else>
@@ -107,7 +114,7 @@
                             <s:textfield name="roUnidades2" readonly="true" ></s:textfield>
                         </s:if>
                         <s:else>
-                            <s:textfield name="roUnidades2"/>
+                            <s:textfield id="roUnidades2" name="roUnidades2"/>
                         </s:else>
                     </td>
                 </tr>

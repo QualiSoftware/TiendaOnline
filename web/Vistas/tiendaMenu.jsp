@@ -21,13 +21,6 @@
         <!--Carrusel de fotos-->
         <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js' type='text/javascript'></script>
         <script src="../Scripts/Carrusel.js" type="text/javascript"></script>
-        <script>
-            var ventana;
-            function abrir(rostockId){
-                ventana = window.open("tiendaCestaPopUp.jsp?clave="+rostockId,"TallaYColor","width=300,height=300, resizable=no, scrollbars=no, menubar=no");
-                /*ventana.document.write(document.getElementById('color')+'<br>');*/
-            }
-        </script>
         <!-- Estilos Footer -->
         <link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">

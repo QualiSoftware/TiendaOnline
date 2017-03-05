@@ -22,6 +22,8 @@ import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import javax.servlet.http.HttpSession;
+import org.apache.struts2.interceptor.validation.SkipValidation;
 
 public class HomeRopaStock {
     
@@ -357,6 +359,7 @@ public class HomeRopaStock {
         this.campania = campania;
     }
 
+    @SkipValidation
     public String RopaPopUp() throws Exception {
         if (sesion == null) {
             sesion = ActionContext.getContext().getSession();
@@ -448,6 +451,9 @@ public class HomeRopaStock {
     }
     
     public String CrudActionRopaStock() throws Exception {
+        if (sesion == null) {
+            sesion = ActionContext.getContext().getSession();
+        }
         int respuesta = 0;
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         String year;
@@ -468,19 +474,28 @@ public class HomeRopaStock {
             botonocul = "Alta";
             rstock = new RopaStock();
         }
+        RopaStock yaExiste = null;
         if (!accion.equals("e")) {
             rstock.setColor(ControladoresDAO.cColor.RecuperaPorId(Integer.parseInt(color2)));
             rstock.setTallas(ControladoresDAO.cTallas.RecuperaPorId(Integer.parseInt(tallas2)));
-            rstock.setRostockUnidades(roUnidades2);
+            yaExiste = ControladoresDAO.cRopaStock.RecuperaPorRopaColorTalla(roId, Integer.parseInt(color2), Integer.parseInt(tallas2));
+            if(yaExiste != null){
+                rstock = ControladoresDAO.cRopaStock.RecuperaPorId(yaExiste.getRostockId());
+                rstock.setRostockUnidades(rstock.getRostockUnidades() + roUnidades2);
+                roUnidades2 = 0;
+                respuesta = 1;
+            }else{
+                rstock.setRostockUnidades(roUnidades2);
+            }
             rstock.setRostockFecha(fecha);
         }
-        if (accion.equals("a")) {
+        if (accion.equals("a") && yaExiste == null) {
             t = ControladoresDAO.cRopa.RecuperaPorId(roId);
             rstock.setRopa(t);
             respuesta = ControladoresDAO.cRopaStock.Inserta(rstock);
             roUnidades2 = 0;            
         }
-        if (accion.equals("m")) {
+        if (accion.equals("m") || yaExiste != null) {
             respuesta = ControladoresDAO.cRopaStock.Modifica(rstock);
         }
         if (accion.equals("e")) {

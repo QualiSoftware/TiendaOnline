@@ -31,7 +31,12 @@ public class cRopaStock {
         String sql = "From RopaStock WHERE ropa.roId="+roId+" AND color.colorId="+color+" AND tallas.tallaId="+talla;
         Query query = sesion.createQuery(sql);
         List<RopaStock> lt = query.list();
-        RopaStock rs = lt.get(0);
+        RopaStock rs = null;
+        try{
+            rs = lt.get(0);
+        }catch(Exception e){
+            
+        }
         return rs;
     }
     
@@ -42,7 +47,7 @@ public class cRopaStock {
     }
     
     public static int Inserta(RopaStock t){
-        sesion = (Session) NewHibernateUtil.getSessionModif();
+        sesion = (Session) NewHibernateUtil.getSession();
         sesion.beginTransaction();
         try{
             sesion.save(t);
