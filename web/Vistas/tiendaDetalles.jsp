@@ -399,17 +399,21 @@
                     <s:property value="t.roDescripcion"/>
                 </div>
                 <br>
-                <div class="easyzoom easyzoom--overlay easyzoom--with-thumbnails" 
-                     style="margin-left: 240px;
-                     left: 0px;
-
-                     padding-left: 0px;
-                     float: left;" >
-                    <a href="../Imagenes/Administracion/Vestidos/Detalles/663786002_393_2.jpg"  >
-                        <img class="img_Principal" src="../Imagenes/Administracion/Vestidos/Detalles/663786002_393_2.jpg" alt="" />
-                    </a>
-                </div>
-
+                <s:set var="contador" value="0"/>           
+                <s:iterator var="f" value="t.fotoses">
+                    <s:if test="#contador < 1">
+                        <div class="easyzoom easyzoom--overlay easyzoom--with-thumbnails" 
+                             style="margin-left: 240px;
+                             left: 0px;
+                             padding-left: 0px;
+                             float: left;" >
+                            <a href="<s:url value='../Imagenes/%{t.categoria.catDescripcion}/%{t.subcategoria.subDescripcion}/%{#f.fotosRuta}'/>"  >
+                                <img class="img_Principal" src="<s:url value='../Imagenes/%{t.categoria.catDescripcion}/%{t.subcategoria.subDescripcion}/%{#f.fotosRuta}'/>" alt="" />
+                            </a>
+                        </div>
+                        <s:set var="contador" value="%{#contador + 1}"/>
+                    </s:if>
+                </s:iterator>
 
                 <div class="detalle_info" style="z-index: 200">
                     <table>                    
@@ -472,15 +476,17 @@
                         </tr>                        
                     </table>
                 </div>
-                <table class="mas_Fotos thumbnails">
-                    <tr>
-                        <td>
-                            <a  href="../Imagenes/Administracion/Vestidos/Detalles/663786005_194_2.jpg" data-standard="../Imagenes/Administracion/Vestidos/Detalles/663786005_194_2.jpg">
-                                <img src="../Imagenes/Administracion/Vestidos/Detalles/663786005_194_2.jpg" alt=""/>
-                            </a>
-                        </td>
-                    </tr>        
-                    <tr>
+                <table class="mas_Fotos thumbnails">                    
+                    <s:iterator var="f" value="t.fotoses">
+                        <tr>
+                            <td>
+                                <a  href="<s:url value='../Imagenes/%{t.categoria.catDescripcion}/%{t.subcategoria.subDescripcion}/%{#f.fotosRuta}'/>" data-standard="<s:url value='../Imagenes/%{t.categoria.catDescripcion}/%{t.subcategoria.subDescripcion}/%{#f.fotosRuta}'/>">
+                                    <img src="<s:url value='../Imagenes/%{t.categoria.catDescripcion}/%{t.subcategoria.subDescripcion}/%{#f.fotosRuta}'/>" alt=""/>
+                                </a>
+                            </td>
+                        </tr>
+                    </s:iterator>
+<!--                    <tr>
                         <td>
                             <a  href="../Imagenes/Administracion/Vestidos/Detalles/663786008_184_2.jpg" data-standard="../Imagenes/Administracion/Vestidos/Detalles/663786008_184_2.jpg">
                                 <img src="../Imagenes/Administracion/Vestidos/Detalles/663786008_184_2.jpg" alt=""/>
@@ -500,7 +506,7 @@
                                 <img src="../Imagenes/Administracion/Vestidos/Detalles/663786002_393_2.jpg" alt=""/>
                             </a>
                         </td>
-                    </tr>
+                    </tr>-->
                 </table>               
             </s:form>
             </div>            

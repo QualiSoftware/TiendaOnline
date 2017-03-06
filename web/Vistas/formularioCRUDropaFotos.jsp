@@ -69,6 +69,7 @@
                         <br>
                     </s:iterator>
                     <s:if test='%{accionocul == "e"}'>
+                        <input type="button" onclick="Verificar();" value="Eliminar fotos seleccionadas" align="center"/>
                     </s:if>
                     <s:else>
                         <%for (int i = nf; i < cantMaxFotos; i++) {%>
@@ -78,8 +79,8 @@
                         <input type="hidden" name="borra<%=i + 1%>" value="no borra" />
                         <%}%>
                         <hr style="width: 350px; margin-right: 4000px;">
+                        <input type="button" onclick="Verificar();" value="Subir cambios" align="center"/>
                     </s:else>
-                    <input type="button" onclick="Verificar();" value="Subir cambios" align="center"/>
                 </s:form>
                 <s:a action="RopaAdminFiltro">
                     <s:param name="filtro" value="%{filtro}" />
