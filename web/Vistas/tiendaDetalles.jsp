@@ -405,8 +405,8 @@
 
                      padding-left: 0px;
                      float: left;" >
-                    <a href="../Imagenes/Vestidos/Detalles/663786002_393_2.jpg"  >
-                        <img class="img_Principal" src="../Imagenes/Vestidos/Detalles/663786002_393_2.jpg" alt="" />
+                    <a href="../Imagenes/Administracion/Vestidos/Detalles/663786002_393_2.jpg"  >
+                        <img class="img_Principal" src="../Imagenes/Administracion/Vestidos/Detalles/663786002_393_2.jpg" alt="" />
                     </a>
                 </div>
 
@@ -475,29 +475,29 @@
                 <table class="mas_Fotos thumbnails">
                     <tr>
                         <td>
-                            <a  href="Imagenes/Vestidos/Detalles/663786005_194_2.jpg" data-standard="Imagenes/Vestidos/Detalles/663786005_194_2.jpg">
-                                <img src="Imagenes/Vestidos/Detalles/663786005_194_2.jpg" alt=""/>
+                            <a  href="../Imagenes/Administracion/Vestidos/Detalles/663786005_194_2.jpg" data-standard="../Imagenes/Administracion/Vestidos/Detalles/663786005_194_2.jpg">
+                                <img src="../Imagenes/Administracion/Vestidos/Detalles/663786005_194_2.jpg" alt=""/>
                             </a>
                         </td>
                     </tr>        
                     <tr>
                         <td>
-                            <a  href="Imagenes/Vestidos/Detalles/663786008_184_2.jpg" data-standard="Imagenes/Vestidos/Detalles/663786008_184_2.jpg">
-                                <img src="Imagenes/Vestidos/Detalles/663786008_184_2.jpg" alt=""/>
+                            <a  href="../Imagenes/Administracion/Vestidos/Detalles/663786008_184_2.jpg" data-standard="../Imagenes/Administracion/Vestidos/Detalles/663786008_184_2.jpg">
+                                <img src="../Imagenes/Administracion/Vestidos/Detalles/663786008_184_2.jpg" alt=""/>
                             </a>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <a class="fancybox" href="Imagenes/Vestidos/Detalles/663786009_563_2.jpg" data-standard="Imagenes/Vestidos/Detalles/663786009_563_2.jpg">
-                                <img src="Imagenes/Vestidos/Detalles/663786009_563_2.jpg" alt=""/>
+                            <a class="fancybox" href="../Imagenes/Administracion/Vestidos/Detalles/663786009_563_2.jpg" data-standard="../Imagenes/Administracion/Vestidos/Detalles/663786009_563_2.jpg">
+                                <img src="../Imagenes/Administracion/Vestidos/Detalles/663786009_563_2.jpg" alt=""/>
                             </a>
                         </td>
                     </tr>    
                     <tr>
                         <td>
-                            <a class="fancybox" data-fancybox-group="thumb" href="Imagenes/Vestidos/Detalles/663786002_393_2.jpg" data-standard="Imagenes/Vestidos/Detalles/663786002_393_2.jpg">
-                                <img src="Imagenes/Vestidos/Detalles/663786002_393_2.jpg" alt=""/>
+                            <a class="fancybox" data-fancybox-group="thumb" href="../Imagenes/Administracion/Vestidos/Detalles/663786002_393_2.jpg" data-standard="../Imagenes/Administracion/Vestidos/Detalles/663786002_393_2.jpg">
+                                <img src="../Imagenes/Administracion/Vestidos/Detalles/663786002_393_2.jpg" alt=""/>
                             </a>
                         </td>
                     </tr>
