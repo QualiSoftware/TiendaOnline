@@ -92,11 +92,32 @@
                 }, function(jsonResponse2) { 
                     var select2 = $('#tallaMuchosColores');
                     select2.find('option').remove();
+                    var aux = 0;
                     $.each(jsonResponse2.stateMap2, function(key, value) {
+                        if(aux < 1){
+                            aux = key;
+                        }
                         $('<option>').val(key).text(value).appendTo(select2);
                     });
+                    cambioMaximo(aux);
                 });
-            };            
+            }
+            
+            function cambioMaximo(tallaId){
+                var valorColor = document.getElementById('colorOculto').value;
+                var valorRopa = document.getElementById('ropa').value;
+                $.getJSON('ajaxMaximo', {
+                    color2 : valorColor,
+                    roId2 : valorRopa,
+                    tallas2 : tallaId
+                }, function(jsonResponse2) {
+                    var select3 = document.getElementById('cantidad');
+                    select3.value = 1;
+                    $.each(jsonResponse2.stateMap2, function(key, value) {
+                        select3.setAttribute('max',value);
+                    });
+                });
+            }
         </script>
     </head>
 
@@ -442,9 +463,10 @@
                             <td>
                                 <% if(cantColores == 1){ %>
                                     <s:select name="talla" list="lista_tallas" listValue="tallaDescripcion" 
-                                        listKey="tallaId"/>
+                                              listKey="tallaId" onchange="cambioMaximo(this.value);"/>
                                 <% }else{ %>
-                                    <s:select id="tallaMuchosColores" name="talla" list="{'Seleccione Color'}" />
+                                    <s:select id="tallaMuchosColores" name="talla" 
+                                              list="{'Seleccione Color'}" onchange="cambioMaximo(this.value);"/>
                                 <% } %>
                             </td>
                         </tr>
@@ -461,7 +483,7 @@
                                 Cantidad: 
                             </td>                            
                             <td>
-                                <input type="number" name="cantidad" min="1" step="1" value="1">
+                                <input type="number" id="cantidad" name="cantidad" min="1" max="<s:property value="%{maximo}"/>" step="1" value="1">
                             </td>                            
                         </tr>
                         <tr>

@@ -459,6 +459,13 @@
             </result>
         </action>
         
+        <action name="ajaxMaximo" class="Acciones.HomeRopaStock" method="ajaxMaximo">
+            <result type="json">
+                <param name="excludeNullProperties">true</param>
+                <param name="noCache">true</param>
+            </result>
+        </action>
+        
         <action name="TiendaCesta" class="Acciones.HomeCesta" method="CrudActionUsuariosCesta">
             <result type="redirectAction">
                 <param name="clientela2">${clientela2}</param>

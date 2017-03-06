@@ -58,6 +58,7 @@ public class HomeRopaStock {
     private String roId2;
     private String precio;
     private String precioConDescuento;
+    private int maximo;
 
     public String getAccion() {
         return accion;
@@ -334,6 +335,14 @@ public class HomeRopaStock {
     public void setPrecioConDescuento(String precioConDescuento) {
         this.precioConDescuento = precioConDescuento;
     }
+
+    public int getMaximo() {
+        return maximo;
+    }
+
+    public void setMaximo(int maximo) {
+        this.maximo = maximo;
+    }
     
     public String getCategoria2() {
         return categoria2;
@@ -426,6 +435,11 @@ public class HomeRopaStock {
             filtro = "";
         }
         Ropa tr = ControladoresDAO.cRopa.RecuperaPorId(roId);
+        if(lista_colores.size() == 1){
+            maximo = lista_ropaStock.get(0).getRostockUnidades();
+        }else{
+            maximo = 1;
+        }
         clientela = tr.getClientela().getClientelaDescripcion();
         categoria = tr.getCategoria().getCatDescripcion();
         marca = tr.getMarcas().getMarcaNombre();
@@ -527,6 +541,13 @@ public class HomeRopaStock {
         for(int i=0;i<lista_ropaStock2.size();i++){
             stateMap2.put(""+lista_ropaStock2.get(i).getTallas().getTallaId(), lista_ropaStock2.get(i).getTallas().getTallaDescripcion());
         }
+        return SUCCESS;
+    }
+    
+    public String ajaxMaximo() throws Exception{
+        RopaStock ropaStockMaximo = ControladoresDAO.cRopaStock.RecuperaPorRopaColorTalla(Integer.parseInt(roId2), Integer.parseInt(color2), Integer.parseInt(tallas2));
+        stateMap2.clear();
+        stateMap2.put("", ""+ropaStockMaximo.getRostockUnidades());
         return SUCCESS;
     }
 }
