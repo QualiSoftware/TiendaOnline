@@ -565,18 +565,22 @@ public class HomeCesta extends ActionSupport {
        if (sesion == null) {
             sesion = ActionContext.getContext().getSession();
         }
-        // para cuando tengamos sesión de usuario
         try{
-           Usuarios user = (Usuarios) sesion.get("usuarioLogueado");
-           u = ControladoresDAO.cUsuarios.RecuperaPorId(user.getUsuId());
-           facUsuId = u.getUsuId(); //Esta variable la usaré para el envío del email
+            Usuarios user = (Usuarios) sesion.get("usuarioLogueado");
+            u = ControladoresDAO.cUsuarios.RecuperaPorId(user.getUsuId());
+            facUsuId = u.getUsuId(); //Esta variable la usaré para el envío del email
+            lista_ropa_Cestas = cCesta.RecuperaTodos(""+u.getUsuId());
         }catch(Exception e){
             System.out.println("e: " + e);
            return ERROR;
         }
-        boolean respuestaPago = true;
-        //En este punto, el boolean respuestaPago se crearía como false y a continuación se redirigiría a la página
-        //donde se genera el cobro. Y la respuesta de esa página es la que le dará el nuevo valor a respuestaPago
+        boolean hayStock = verificoQueHayStock(lista_ropa_Cestas);
+        boolean respuestaPago = false;
+        if(hayStock){
+            //En este punto se redirigiría a la página donde se genera el cobro.
+            //Y la respuesta de esa página es la que le dará el nuevo valor a respuestaPago.
+            respuestaPago = true;
+        }
         try{
             if(respuestaPago){
                 String numFac = ControladoresDAO.cFacturas.SiguienteFactura();
@@ -586,7 +590,6 @@ public class HomeCesta extends ActionSupport {
                         u.getProvincias().getPaises().getPaisNombre(), u.getUsuDni(), (int)u.getUsuDescuento(), 
                         dateFechaHoy, 21, obs);
                 clave = ControladoresDAO.cFacturas.Inserta(f);
-                lista_ropa_Cestas = cCesta.RecuperaTodos(""+u.getUsuId());
                 int nada;
                 for (Cesta c : lista_ropa_Cestas) {
                     HomeRopa hr = new HomeRopa();
@@ -624,5 +627,15 @@ public class HomeCesta extends ActionSupport {
             System.out.println("e: " + e);
             return INPUT;
         }
+    }
+
+    private boolean verificoQueHayStock(ArrayList<Cesta> lista_ropa_Cestas) {
+        boolean resp = true;
+        for(Cesta c:lista_ropa_Cestas){
+            if(c.getCestaUnidades() > c.getRopaStock().getRostockUnidades()){
+                resp = false;
+            }
+        }
+        return resp;
     }
 }

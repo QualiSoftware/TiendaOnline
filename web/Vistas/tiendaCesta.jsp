@@ -53,7 +53,7 @@
             window.onload = cesta_Aniadir;
         </script>
         <script>
-            function MasMenosCantidad(valor,cantidad,id){
+            function MasMenosCantidad(valor,cantidad,id,stock){
                 document.getElementById("clave").value = id;
                 if(valor == '+'){
                     cantidad++;
@@ -61,8 +61,12 @@
                 if(valor == '-'){
                     cantidad--;
                 }
-                document.getElementById("cantidadIndividual").value = cantidad;
-                document.getElementById("formCantidad").submit();
+                if(cantidad <= stock){
+                    document.getElementById("cantidadIndividual").value = cantidad;
+                    document.getElementById("formCantidad").submit();
+                }else{
+                    alert("En este momento tenemos "+stock+" prendas en stock. Disculpe las molestias.");
+                }
             }
         </script>
         <title>MyLook - Cesta</title>
@@ -313,13 +317,13 @@
                                 <input type="hidden" name="accionocul" value="e"/>
                                 <input type="hidden" name="clave" id="clave"/>
                                 <img src="../Imagenes/Administracion/Signo_Menos.png" id="menos"
-                                     style="cursor:pointer; width: 35px;" onclick="MasMenosCantidad('-',<s:property value="#a.cestaUnidades"/>,<s:property value="#a.cestaId"/>);"/>
+                                     style="cursor:pointer; width: 35px;" onclick="MasMenosCantidad('-',<s:property value="#a.cestaUnidades"/>,<s:property value="#a.cestaId"/>,<s:property value="#a.ropaStock.rostockUnidades"/>);"/>
                                 &nbsp;
                                 <input type="text" name="cantidad" id="cantidadIndividual" readonly="readonly" 
                                        style="width: 25px;text-align: center;" value="<s:property value="#a.cestaUnidades"/>">
                                 &nbsp;
                                 <img src="../Imagenes/Administracion/Signo_Mas.png" id="mas" 
-                                     style="cursor:pointer; width: 35px;" onclick="MasMenosCantidad('+',<s:property value="#a.cestaUnidades"/>,<s:property value="#a.cestaId"/>);"/>
+                                     style="cursor:pointer; width: 35px;" onclick="MasMenosCantidad('+',<s:property value="#a.cestaUnidades"/>,<s:property value="#a.cestaId"/>,<s:property value="#a.ropaStock.rostockUnidades"/>);"/>
                             </s:form>
                             </td>                       
                         </tr>
