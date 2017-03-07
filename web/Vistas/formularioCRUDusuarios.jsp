@@ -73,16 +73,9 @@
                             <s:textfield type="hidden" value="1" name="filtro" theme="simple"/>
                             <img src="../Imagenes/Administracion/Shopping-Cart-10.png" alt="" id="imgcesta"/>
                             <div id="cantidad_Cesta"><s:property value="totalcestaUsuario"/></div>
+                            <s:if test="%{totalcestaUsuario > 0}">
+                            <s:set var="importeTotal" value="0"/>
                             <table id="cesta_Hover">
-                                <!--                                <tr>
-                                                                    <th>Descripcion</th>
-                                                                    <th>Color</th>
-                                                                    <th>Tallas</th>
-                                                                    <th>Precio</th>
-                                                                    <th>Cantidad</th>
-                                                                    <th>Total</th>
-                                                                    <th>Foto</th>                                   
-                                                                </tr>-->
                                 <s:iterator var="c" value="lista_ropa_Cestas">
                                     <tr style="">
                                         <td class="img_CestaPreview">
@@ -122,6 +115,7 @@
                                         </td>
                                         <td>
                                             <s:property value="getText('{0,number,##0.00}',{#c.ropaStock.ropa.roPrecio - (#c.ropaStock.ropa.roPrecio * #c.ropaStock.ropa.roDescuento / 100)})"/>
+                                            <s:set var="importeTotal" value="%{#importeTotal + (#c.cestaUnidades * (#c.ropaStock.ropa.roPrecio - (#c.ropaStock.ropa.roPrecio * #c.ropaStock.ropa.roDescuento / 100)))}"/>
                                         </td>
                                     </tr>                                        
                                     <tr>
@@ -135,26 +129,24 @@
                                     <tr>
                                         <td colspan="2" ><hr class="linea_CestaPreview"></td>                                
                                     </tr>
-                                    <tr>
-                                        <td>
-                                            Precio total:
-                                        </td>
-                                        <td>
-                                            <s:property value="getText('{0,number,##0.00}',{(#c.ropaStock.ropa.roPrecio - (#c.ropaStock.ropa.roPrecio * #c.ropaStock.ropa.roDescuento / 100)) * #c.cestaUnidades})"/>
-                                        </td>
-<!--                                    Yo en http://www.luislo.esy.es/Detalles.html en la cesta hay un botón para
-                                        comprar, lo metemos o no?
--->
-                                    </tr>                                        
-                                    <tr>
-                                        <td>
-
-                                        </td>
-                                        <td>
-                                        </td>
-                                    </tr>
                                 </s:iterator>
+                                <tr>
+                                    <td>
+                                        Precio total:
+                                    </td>
+                                    <td>
+                                        <s:property value="getText('{0,number,##0.00}',{#importeTotal})"/>
+                                    </td>
+                                </tr>                                        
+                                <tr>
+                                    <td>
+
+                                    </td>
+                                    <td>
+                                    </td>
+                                </tr>
                             </table>
+                            </s:if>
                         </s:a>
                     </s:if>                                
                     <s:if test="sesion.usuarioLogueado.usuAdministrador==1">
