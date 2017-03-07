@@ -710,8 +710,8 @@ hr{
     border: solid 10px;
 }
 #botones_Galeria{
-    position: absolute;
-    top: 700px;
+    position: relative;
+    margin-top: -50px;
     background-color: black;
     width: 266px;
     height:  50px;
