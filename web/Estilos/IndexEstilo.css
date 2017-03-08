@@ -720,13 +720,13 @@ hr{
     width: 266px;
     height:  50px;
     display: none;
-    opacity: 1;        
+    opacity: 1;  
+    padding-top: 5px;
 }
 #botones_Galeria img{
-    padding-top: 7px;
-    padding-left: 10px;
+    
     padding-right: 10px;
-    width: 45px;            
+    width: 35px;            
 }
 .botones_prueba:hover #botones_Galeria{
     -webkit-transition: 0.5s;
@@ -735,14 +735,22 @@ hr{
 #vista_Rapida{ 
     position: absolute;
     width: 160px;
-    margin-top: -305px;
+    margin-top: -320px;
     left: 10px;
     background-color: white;     
     box-shadow: #8f9296 5px 5px 10px;
     display: none;
 }
-#vista_Rapida td{ 
-    padding-right: 0px;
+#vista_Rapida table{ 
+    /*margin-left:-50px;*/ 
+    /*left: -50px;
+    width: 160px;
+    /*margin-left: -50px;*/
+    padding-left: -50px
+}
+#vista_Rapida td:nth-child(even){ 
+    padding-left: 10px;
+    /*padding-bottom: 10px;*/
 }
 #vista_Rapida_Img{
     position: absolute;
