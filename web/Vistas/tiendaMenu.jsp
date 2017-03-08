@@ -351,11 +351,11 @@
                                                         </tr>
                                                         <tr>
                                                             <td style="padding-left:10px;">Precio</td>
-                                                            <td><s:property value="getText('{0,number,##0.00}',{#m.roPrecio - (#m.roPrecio * #m.roDescuento / 100)})"/> €</td>
+                                                            <td style="padding-left:10px;"><s:property value="getText('{0,number,##0.00}',{#m.roPrecio - (#m.roPrecio * #m.roDescuento / 100)})"/> €</td>
                                                         </tr>
                                                         <tr>
                                                             <td style="padding-left:10px;">Color</td>
-                                                            <td style="padding-right:0px;">
+                                                            <td style="padding-left:10px; padding-right:0px; margin-right:0px;">
                                                                 <script>
                                                                     var arrayColoresNombre = new Array();
                                                                     var arrayColoresFoto = new Array();
@@ -374,15 +374,15 @@
                                                                         }
                                                                     </s:iterator>
                                                                     for (i = 0; i < arrayColoresNombre.length; i++) {
-                                                                        document.write("<img src='../Imagenes/Colores/" + arrayColoresFoto[i] + "' style='width:40px; box-shadow: 0px 0px 0px; padding-left:0px;' alt='" + arrayColoresNombre[i] + "'/>");
+                                                                        document.write("<img src='../Imagenes/Colores/" + arrayColoresFoto[i] + "' style='width:30px; box-shadow: 0px 0px 0px; padding-left:0px; margin-right:0px; padding-bottom: 10px; ' alt='" + arrayColoresNombre[i] + "'/>");
                                                                     }
                                                                 </script>
                                                                 <!--<span style="width: 200px; height: 20px; background-color: red; color: red">....</span>-->
                                                             </td>
                                                         </tr>
                                                         <tr>
-                                                            <td style="padding-left:10px;">Talla</td>
-                                                            <td>
+                                                            <td style="padding-left:10px; padding-bottom: 120px;">Talla</td>
+                                                            <td style="padding-left:10px;">
                                                                 <script>
                                                                     var arrayTallasDescripcion = new Array();
                                                                     var i;
