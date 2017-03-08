@@ -14,6 +14,7 @@ import ControladoresDAO.cRopa;
 import ControladoresDAO.cSubcategorias;
 import ControladoresDAO.cTallas;
 import ControladoresDAO.cUsuarios;
+import Modelos.Campania;
 import Modelos.Categoria;
 import Modelos.Cesta;
 import Modelos.Clientela;
@@ -513,7 +514,7 @@ public class HomeCesta extends ActionSupport {
             }
         }
         lista_marcas =  ControladoresDAO.cMarcas.RecuperaTodos("");
-        lista_ropa.clear();
+        lista_ropa = poneDescuentosBien(lista_ropa);
         lista_ropa_Cestas = ControladoresDAO.cCesta.RecuperaTodos(""+u.getUsuId());
         cantidad = 0;
         for (Cesta aux : lista_ropa_Cestas) {
@@ -522,6 +523,7 @@ public class HomeCesta extends ActionSupport {
             for(Fotos f:aux.getRopaStock().getRopa().getFotoses()){
                 f.getFotosRuta(); //esto sólo sirve para cargar las fotos en memoria y que no de error de sesion
             }
+            System.out.println("aux.getRopaStock().getRopa().getRoPrecio(): "+aux.getRopaStock().getRopa().getRoPrecio()+" - aux.getCestaUnidades(): "+aux.getCestaUnidades()+" - aux.getRopaStock().getRopa().getRoDescuento(): "+aux.getRopaStock().getRopa().getRoDescuento());
         }
 
         return SUCCESS;
@@ -637,5 +639,27 @@ public class HomeCesta extends ActionSupport {
             }
         }
         return resp;
+    }
+    
+    public ArrayList<Ropa> poneDescuentosBien (ArrayList<Ropa> lista){
+        ArrayList<Ropa> listaConDescuentosBien = new ArrayList<>();
+        for(Ropa lr: lista){
+            listaConDescuentosBien.add(descuentoEnRopa(lr));
+        }
+        return listaConDescuentosBien;
+    }
+    
+    public Ropa descuentoEnRopa(Ropa r){
+            List<Integer> listaCampaniasDeEstaRopa = ControladoresDAO.cCampaniasRopa.RecuperaCampaniasPorRopa(r.getRoId());
+            if(!listaCampaniasDeEstaRopa.isEmpty()){
+                Date hoy = new Date();
+                for(Integer camId:listaCampaniasDeEstaRopa){
+                    Campania cam = ControladoresDAO.cCampanias.RecuperaPorId(camId);
+                    if(hoy.after(cam.getCamInicio()) && hoy.before(cam.getCamFin())){
+                        r.setRoDescuento(cam.getCamDescuento());
+                    }
+                }
+            }
+        return r;
     }
 }
