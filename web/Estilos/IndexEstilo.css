@@ -709,6 +709,10 @@ hr{
     color: #292c2f;
     border: solid 10px;
 }
+.table_VistaRapida{
+    text-align: left;
+}
+
 #botones_Galeria{
     position: relative;
     margin-top: -50px;
@@ -736,6 +740,9 @@ hr{
     background-color: white;     
     box-shadow: #8f9296 5px 5px 10px;
     display: none;
+}
+#vista_Rapida td{ 
+    padding-right: 0px;
 }
 #vista_Rapida_Img{
     position: absolute;
