@@ -53,23 +53,25 @@
             window.onload = cesta_Aniadir;
         </script>
         <script>
-            function MasMenosCantidad(valor,cantidad,id,stock){
+            function MasMenosCantidad(valor, cantidad, id, stock) {
                 document.getElementById("clave").value = id;
-                if(valor == '+'){
+                if (valor == '+') {
                     cantidad++;
                 }
-                if(valor == '-'){
+                if (valor == '-') {
                     cantidad--;
                 }
-                if(cantidad <= stock){
+                if (cantidad <= stock) {
                     document.getElementById("cantidadIndividual").value = cantidad;
                     document.getElementById("formCantidad").submit();
-                }else{
-                    if(valor == '-'){
+                } else {
+                    if (valor == '-') {
                         document.getElementById("cantidadIndividual").value = stock;
                         document.getElementById("formCantidad").submit();
-                    }else{
-                        alert("En este momento tenemos "+stock+" prendas en stock. Disculpe las molestias.");
+                        document.getElementById("Stock_Excedido").style = "display:none;";
+                    } else {
+//                        alert("En este momento tenemos " + stock + " prendas en stock. Disculpe las molestias.");
+                        document.getElementById("Stock_Excedido").style = "display:block;";
                     }
                 }
             }
@@ -101,7 +103,7 @@
                         <a href="#"> 
                             <div id="mi_Cuenta_Txt">Mi Cuenta</div>
                         </a>
-                    
+
                         <s:form action="TiendaLogin" theme="simple">
                             <div id="login">                                        
                                 <table >
@@ -125,10 +127,10 @@
                                     <tr>
                                         <td>
                                             ¿Nuevo Cliente? <s:a action="UsuAlta" ><s:param name="accion" value="'a'"/>¡Regístrate!</s:a>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
                         </s:form>
                     </s:if>
                     <s:if test="sesion.usuarioLogueado.usuId!=''">                    
@@ -211,17 +213,17 @@
                         <input type="text" style="position: absolute; top:0px; left: 0px;" class="form-control" placeholder="Búsqueda" name="filtro" value="<s:property value="filtro"/>">
                     </div>
                     <button style="position: absolute; top:0px; left: 215px;" type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
-                </s:form>
+                    </s:form>
             </div>
             <div id="menu">
                 <ul class="nav nav-pills">
                     <li class="dropdown">
                         <s:a action="TiendaMenu"  class="dropdown-toggle" style="font-weight: normal;">TODAS LA VENTAS</s:a>
 
-                    </li>                    
-                    <li class="dropdown">
-                        <a href="#" data-toggle="dropdown" class="dropdown-toggle" style="font-weight: normal;">MUJER <b class="caret"></b></a>
-                        <ul class="dropdown-menu" id="Mujer">
+                        </li>                    
+                        <li class="dropdown">
+                            <a href="#" data-toggle="dropdown" class="dropdown-toggle" style="font-weight: normal;">MUJER <b class="caret"></b></a>
+                            <ul class="dropdown-menu" id="Mujer">
                             <s:iterator var="a" value= "lista_menu_ropa">
                                 <s:if test="#a.clientela.clientelaDescripcion=='Mujer'">
                                     <li><s:a action="TiendaMenu">
@@ -229,8 +231,8 @@
                                             <s:param name="clientela2" value="#a.clientela.clientelaId"/>
                                             <s:param name="categoria2" value="#a.categoria.catId"/>
                                         </s:a></li>
-                                </s:if>
-                            </s:iterator>
+                                    </s:if>
+                                </s:iterator>
                         </ul>                 
                     </li>
                     <li class="dropdown">
@@ -239,12 +241,12 @@
                             <s:iterator var="a" value= "lista_menu_ropa">
                                 <s:if test="#a.clientela.clientelaDescripcion=='Hombre'">
                                     <li><s:a action="TiendaMenu">
-                                        <s:property value="#a.categoria.catDescripcion"/>
-                                        <s:param name="clientela2" value="#a.clientela.clientelaId"/>
-                                        <s:param name="categoria2" value="#a.categoria.catId"/>
-                                    </s:a></li>                                    
-                                </s:if>
-                            </s:iterator>                      
+                                            <s:property value="#a.categoria.catDescripcion"/>
+                                            <s:param name="clientela2" value="#a.clientela.clientelaId"/>
+                                            <s:param name="categoria2" value="#a.categoria.catId"/>
+                                        </s:a></li>                                    
+                                    </s:if>
+                                </s:iterator>                      
                         </ul>                 
                     </li>
 
@@ -256,7 +258,7 @@
                                         <s:property value="#a.marcaNombre"/>
                                         <s:param name="marcas2" value="#a.marcaId"/>
                                     </s:a></li>
-                            </s:iterator>                       
+                                </s:iterator>                       
                         </ul>                 
                     </li>                    
                 </ul>                
@@ -266,205 +268,211 @@
             <div id="contenido_Detalles">
                 <div id="cesta_Titulo">Mi Cesta <img src="../Imagenes/Administracion/Shopping-Cart-10.png" alt="" id="imgcesta_Titulo"/></div>
                 <div class="detalle_info_Cesta">
-                <s:set var="cantidadRopa" value="0"/>
-                <s:iterator var="a" value="lista_ropa_Cestas">
-                    <hr>
-                    <table> 
-                        <thead >
+                    <s:set var="cantidadRopa" value="0"/>
+                    <s:iterator var="a" value="lista_ropa_Cestas">
+                        <hr class="linea_divisoria_articulos">
+                        <table> 
+                            <thead >
+                                <tr>
+                                    <td class="bold" style="padding-bottom: 10px;" colspan="3">
+                                        <a href="Detalles.html">
+                                            <span class="titulo_Producto_Cesta">
+                                                <s:property value="#a.ropaStock.ropa.roDescripcion"/>
+                                            </span>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </thead>
                             <tr>
-                                <td class="bold" style="padding-bottom: 10px;" colspan="3">
-                                    <a href="Detalles.html">
-                                        <span class="titulo_Producto_Cesta">
-                                            <s:property value="#a.ropaStock.ropa.roDescripcion"/>
-                                        </span>
-                                    </a>
+                                <td rowspan="4">
+                                    <s:a action="RopaPopUp">
+                                        <s:param name="roId" value="#a.ropaStock.ropa.roId"/>
+                                        <% int cero = 0; %>
+                                        <s:iterator var="f" value="#a.ropaStock.ropa.fotoses">
+                                            <% if (cero < 1) {%>
+                                            <img  id="cesta_Img" src="<s:url value='../Imagenes/%{#a.ropaStock.ropa.categoria.catDescripcion}/%{#a.ropaStock.ropa.subcategoria.subDescripcion}/%{#f.fotosRuta}'/>" alt="<s:property value="fotosRuta" />" />
+                                            <% cero++;
+                                                }%>
+                                        </s:iterator>
+                                    </s:a>
+                                </td>
+                                <td>Color:</td>
+                                <td>
+                                    <div id="color1" style="background-color: <s:property value="#a.ropaStock.color.colorDescripcion"/>;">
+                                    </div>
                                 </td>
                             </tr>
-                        </thead>
-                        <tr>
-                            <td rowspan="4">
-                                <s:a action="RopaPopUp">
-                                    <s:param name="roId" value="#a.ropaStock.ropa.roId"/>
-                                    <% int cero=0; %>
-                                    <s:iterator var="f" value="#a.ropaStock.ropa.fotoses">
-                                        <% if(cero<1){%>
-                                        <img  id="cesta_Img" src="<s:url value='../Imagenes/%{#a.ropaStock.ropa.categoria.catDescripcion}/%{#a.ropaStock.ropa.subcategoria.subDescripcion}/%{#f.fotosRuta}'/>" alt="<s:property value="fotosRuta" />" />
-                                        <% cero++;}%>
-                                    </s:iterator>
-                                </s:a>
-                            </td>
-                            <td>Color:</td>
-                            <td>
-                                <div id="color1" style="background-color: <s:property value="#a.ropaStock.color.colorDescripcion"/>;">
+                            <tr>
+                                <td>Talla:</td>
+                                <td>
+                                    <s:property value="#a.ropaStock.tallas.tallaDescripcion"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Precio individual:
+                                </td>
+                                <td>
+                                    <s:property value="getText('{0,number,##0.00}',{#a.ropaStock.ropa.roPrecio - (#a.ropaStock.ropa.roPrecio * #a.ropaStock.ropa.roDescuento / 100)})"/> €
+                                </td>
+                            </tr>
+                            <tr>
+                                <td  style='padding-top: 2px;'>
+                                    Cantidad:
+                                </td>
+                                <td>
+                                    <s:form id="formCantidad" action="CestaFiltro" theme="simple" method="post">
+                                        <input type="hidden" name="accionocul" value="e"/>
+                                        <input type="hidden" name="clave" id="clave"/>
+                                        <img src="../Imagenes/Administracion/Signo_Menos.png" id="menos"
+                                             style="cursor:pointer; width: 30px; padding-top: 13px;" onclick="MasMenosCantidad('-',<s:property value="#a.cestaUnidades"/>,<s:property value="#a.cestaId"/>,<s:property value="#a.ropaStock.rostockUnidades"/>);"/>
+                                        &nbsp;
+                                        <input type="text" name="cantidad" id="cantidadIndividual" readonly="readonly" 
+                                               style="width: 25px;text-align: center;" value="<s:property value="#a.cestaUnidades"/>">
+                                        &nbsp;
+                                        <img src="../Imagenes/Administracion/Signo_Mas.png" id="mas" 
+                                             style="cursor:pointer; width: 30px; padding-top: 13px;" onclick="MasMenosCantidad('+',<s:property value="#a.cestaUnidades"/>,<s:property value="#a.cestaId"/>,<s:property value="#a.ropaStock.rostockUnidades"/>);"/>
+                                        <div id="Stock_Excedido">El límite de Stock para este artículo es de X unidades.</div>
+                                    </s:form>
+                                </td>  
+
+                            </tr>
+<!--                            <tr>
+                                <td id="Stock_Excedido">asdñlfkjasdfasdfasdfasdfasdf</td>
+                            </tr>-->
+                            <tr>
+                                <td class="Importe_por_Prendas">
+                                    Importe por <s:property value="#a.cestaUnidades"/> prendas:
+                                </td>
+                                <td class="Importe_por_PrendasNo">
+                                    <s:property value="getText('{0,number,##0.00}',{#a.cestaUnidades * (#a.ropaStock.ropa.roPrecio - (#a.ropaStock.ropa.roPrecio * #a.ropaStock.ropa.roDescuento / 100))})"/> €
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">
+                                    <s:a action="CestaFiltro">
+                                        <s:param name="cantidad" value="0"/>
+                                        <s:param name="accionocul" value="'e'"/>
+                                        <s:param name="clave" value="#a.cestaId"/>
+                                        <div class="btn_Elminar_Producto">Eliminar</div>
+                                    </s:a>
+                                </td>
+                            </tr>
+                        </table>
+                        <s:set var="cantidadRopa" value="%{#cantidadRopa + 1}"/>
+                    </s:iterator>
+
+                    <s:if test="#cantidadRopa > 0">    
+                        <s:form id="frm" action="Pagar" method="POST" theme="simple">
+                            <div id="contenedor_Pagar">
+                                <div id="pagar">
+                                    <table>                            
+                                        <tr class="apartados_Pagar">
+                                            <td colspan="2" class="bold apartados_Pagar">
+                                                <span class="apartados_Pagar" style="padding-bottom: 50px;">Datos de Envío<br></span>
+                                            </td>                            
+                                        </tr>
+                                        <tr>
+                                            <td style="padding-top: 5px;">
+                                                Dirección: 
+                                            </td>                            
+                                            <td style="padding-top: 5px;">
+                                                <s:property value="u.usuDireccion"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Ciudad: 
+                                            </td>                            
+                                            <td>
+                                                <s:property value="u.usuLocalidad"/>
+                                            </td>  
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Código Postal: 
+                                            </td>                            
+                                            <td>
+                                                <s:property value="u.usuCp"/>
+                                            </td>                            
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Provincia: 
+                                            </td>                            
+                                            <td>
+                                                <s:property value="u.provincias.proNombre"/>
+                                            </td>                            
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                País: 
+                                            </td>                            
+                                            <td>
+                                                <s:property value="u.provincias.paises.paisNombre"/>
+                                            </td>                            
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Titular: 
+                                            </td>                            
+                                            <td>
+                                                <s:property value="u.usuNombre"/> <s:property value="u.usuApellidos"/>
+                                            </td>                            
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" class="bold" style="padding-top: 10px;">
+                                                Artículos
+                                            </td>                           
+                                        </tr>
+                                        <tr>
+                                            <td style="padding-top: 5px;">
+                                                Cantidad
+                                            </td>                            
+                                            <td style="padding-top: 5px;">
+                                                <s:property value="cantidad"/>
+                                            </td>                            
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Total
+                                            </td>                            
+                                            <td>
+                                                <s:property value="getText('{0,number,##0.00}',{precio})"/>€
+                                            </td>                            
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" class="bold" style="padding-top: 10px;">
+                                                Métodos de pago
+                                            </td>                           
+                                        </tr>
+                                        <tr>                                                        
+                                            <td colspan="2">
+                                                <img id="metodo_Img" src="../Imagenes/Administracion/Pago/Metodos_Pago.PNG" alt="" />
+                                            </td>                            
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" class="bold" style="padding-top: 10px;">
+                                                Observaciones
+                                            </td>
+                                        </tr>
+                                        <tr>                                    
+                                            <td colspan="10">
+                                                <s:textarea label="Observaciones" name="obs" cols="46" rows="2" theme="simple"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" >
+                                                <button type="submit" style="margin-left: 150px" id="añadircesta_Btn">
+                                                    <div>Realizar Pedido</div>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </table>
                                 </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Talla:</td>
-                            <td>
-                                <s:property value="#a.ropaStock.tallas.tallaDescripcion"/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Precio individual:
-                            </td>
-                            <td>
-                                <s:property value="getText('{0,number,##0.00}',{#a.ropaStock.ropa.roPrecio - (#a.ropaStock.ropa.roPrecio * #a.ropaStock.ropa.roDescuento / 100)})"/> €
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Cantidad
-                            </td>
-                            <td>
-                            <s:form id="formCantidad" action="CestaFiltro" theme="simple" method="post">
-                                <input type="hidden" name="accionocul" value="e"/>
-                                <input type="hidden" name="clave" id="clave"/>
-                                <img src="../Imagenes/Administracion/Signo_Menos.png" id="menos"
-                                     style="cursor:pointer; width: 35px;" onclick="MasMenosCantidad('-',<s:property value="#a.cestaUnidades"/>,<s:property value="#a.cestaId"/>,<s:property value="#a.ropaStock.rostockUnidades"/>);"/>
-                                &nbsp;
-                                <input type="text" name="cantidad" id="cantidadIndividual" readonly="readonly" 
-                                       style="width: 25px;text-align: center;" value="<s:property value="#a.cestaUnidades"/>">
-                                &nbsp;
-                                <img src="../Imagenes/Administracion/Signo_Mas.png" id="mas" 
-                                     style="cursor:pointer; width: 35px;" onclick="MasMenosCantidad('+',<s:property value="#a.cestaUnidades"/>,<s:property value="#a.cestaId"/>,<s:property value="#a.ropaStock.rostockUnidades"/>);"/>
-                            </s:form>
-                            </td>                       
-                        </tr>
-                        <tr>
-                            <td>
-                                Importe por <s:property value="#a.cestaUnidades"/> prendas:
-                            </td>
-                            <td>
-                                <s:property value="getText('{0,number,##0.00}',{#a.cestaUnidades * (#a.ropaStock.ropa.roPrecio - (#a.ropaStock.ropa.roPrecio * #a.ropaStock.ropa.roDescuento / 100))})"/> €
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="3">
-                                <s:a action="CestaFiltro">
-                                    <s:param name="cantidad" value="0"/>
-                                    <s:param name="accionocul" value="'e'"/>
-                                    <s:param name="clave" value="#a.cestaId"/>
-                                    <div class="btn_Elminar_Producto">Eliminar</div>
-                                </s:a>
-                            </td>
-                        </tr>
-                    </table>
-                <s:set var="cantidadRopa" value="%{#cantidadRopa + 1}"/>
-                </s:iterator>
-                
-                <s:if test="#cantidadRopa > 0">    
-                    <s:form id="frm" action="Pagar" method="POST" theme="simple">
-                        <div id="contenedor_Pagar">
-                            <div id="pagar">
-                                <table>                            
-                                    <tr class="apartados_Pagar">
-                                        <td colspan="2" class="bold apartados_Pagar">
-                                            <span class="apartados_Pagar" style="padding-bottom: 50px;">Datos de Envío<br></span>
-                                        </td>                            
-                                    </tr>
-                                    <tr>
-                                        <td style="padding-top: 5px;">
-                                            Dirección: 
-                                        </td>                            
-                                        <td style="padding-top: 5px;">
-                                            <s:property value="u.usuDireccion"/>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            Ciudad: 
-                                        </td>                            
-                                        <td>
-                                            <s:property value="u.usuLocalidad"/>
-                                        </td>  
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            Código Postal: 
-                                        </td>                            
-                                        <td>
-                                            <s:property value="u.usuCp"/>
-                                        </td>                            
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            Provincia: 
-                                        </td>                            
-                                        <td>
-                                            <s:property value="u.provincias.proNombre"/>
-                                        </td>                            
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            País: 
-                                        </td>                            
-                                        <td>
-                                            <s:property value="u.provincias.paises.paisNombre"/>
-                                        </td>                            
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            Titular: 
-                                        </td>                            
-                                        <td>
-                                            <s:property value="u.usuNombre"/> <s:property value="u.usuApellidos"/>
-                                        </td>                            
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2" class="bold" style="padding-top: 10px;">
-                                            Artículos
-                                        </td>                           
-                                    </tr>
-                                    <tr>
-                                        <td style="padding-top: 5px;">
-                                            Cantidad
-                                        </td>                            
-                                        <td style="padding-top: 5px;">
-                                            <s:property value="cantidad"/>
-                                        </td>                            
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            Total
-                                        </td>                            
-                                        <td>
-                                            <s:property value="getText('{0,number,##0.00}',{precio})"/>€
-                                        </td>                            
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2" class="bold" style="padding-top: 10px;">
-                                            Métodos de pago
-                                        </td>                           
-                                    </tr>
-                                    <tr>                                                        
-                                        <td colspan="2">
-                                            <img id="metodo_Img" src="../Imagenes/Administracion/Pago/Metodos_Pago.PNG" alt="" />
-                                        </td>                            
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2" class="bold" style="padding-top: 10px;">
-                                            Observaciones
-                                        </td>
-                                    </tr>
-                                    <tr>                                    
-                                        <td colspan="10">
-                                            <s:textarea label="Observaciones" name="obs" cols="46" rows="2" theme="simple"/>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2" >
-                                            <button type="submit" style="margin-left: 150px" id="añadircesta_Btn">
-                                                <div>Realizar Pedido</div>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                </table>
                             </div>
-                        </div>
-                    </s:form>
-                </s:if>
+                        </s:form>
+                    </s:if>
                 </div>
             </div>
             <s:include value="tiendaFooter.jsp" />

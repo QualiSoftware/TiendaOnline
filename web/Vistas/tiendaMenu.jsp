@@ -346,15 +346,15 @@
                                             <div id="vista_Rapida">
                                                 <table class="table_VistaRapida">                                                
                                                     <tbody>
-                                                        <tr>
+<!--                                                        <tr>
                                                             <td colspan="2" style="font-weight: bold; padding: 10px;"><s:property value="#m.roDescripcion"/></td>
-                                                        </tr>
+                                                        </tr>-->
                                                         <tr>
                                                             <td style="padding-left:10px; width: 20px;">Precio</td>
                                                             <td><s:property value="getText('{0,number,##0.00}',{#m.roPrecio - (#m.roPrecio * #m.roDescuento / 100)})"/> €</td>
                                                         </tr>
                                                         <tr>
-                                                            <td style="padding-left:10px; ">Color</td>
+                                                            <td style="padding-left:10px; vertical-align: top;">Color</td>
                                                             <td>
                                                                 <script>
                                                                     var arrayColoresNombre = new Array();
