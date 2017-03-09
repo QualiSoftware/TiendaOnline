@@ -65,7 +65,12 @@
                     document.getElementById("cantidadIndividual").value = cantidad;
                     document.getElementById("formCantidad").submit();
                 }else{
-                    alert("En este momento tenemos "+stock+" prendas en stock. Disculpe las molestias.");
+                    if(valor == '-'){
+                        document.getElementById("cantidadIndividual").value = stock;
+                        document.getElementById("formCantidad").submit();
+                    }else{
+                        alert("En este momento tenemos "+stock+" prendas en stock. Disculpe las molestias.");
+                    }
                 }
             }
         </script>
