@@ -1049,17 +1049,18 @@ hr{
     margin-left: 100px;
     float: left;
 }
-#Stock_Excedido{
+/*.Stock_Excedido{
     position: relative;
-    /*padding-left: -100px;*/
-    /*bottom: 200px;*/
-    /*text-align: left;*/
+    padding-left: -100px;
+    bottom: 200px;
+    text-align: left;
     left: -205px;
     
     display: none;
+    display: block;
     color: red;
     
-}
+}*/
 #pagar{
     position: absolute;    
     background-color: #e7e6e6;
