@@ -198,7 +198,7 @@
                     </a>
                 </div>
             </div>
-            <div id="linea1" class="linea"></div>
+            <div class="linea" style="height: 3px;"></div>
             <div id="menu_Desplegable">
                 <img src="../Imagenes/Administracion/afdf338882d16dd2b1360aa975b18111.png" alt="" style="width: 30px; margin-right: 10px; opacity: 0.9;"/>
                 <div id="menu_Tabla">
@@ -292,7 +292,7 @@
                     </li>                    
                 </ul>                
             </div>
-            <div id="linea2" class="linea"></div>
+                        <div class="linea" style="height: 3px;"></div>
             <div id="contenido"><br>
                 <div id="campañas_Titulo">
                     CAMPAÑAS</div>
@@ -311,8 +311,9 @@
                         </s:a>
                     </s:iterator>
                 </div>
-                <div style="font-size: 50px; color: white;">prueba</div>
-                <div id="linea" class="linea"></div>
+                <!--<div style="height: 50px; width: 40px; color: black; padding-top: 25px;">asdf</div>-->
+                <div class="linea" style="padding-top: 50px; background-color: white;"></div>
+                <div class="linea" style="height: 3px;"></div>
                 <div id="marcas_Titulo">
                     MARCAS
                 </div>
