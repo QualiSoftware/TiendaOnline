@@ -431,7 +431,11 @@
         </action>
         
         <action name="TiendaLogin" class="Acciones.HomeUsuariosValidaciones" method="Login">
-            <result name="input" type="redirect">Tienda</result>
+            <result name="input" type="redirectAction">
+                <param name="mensajeError">${mensajeError}</param>
+                <param name="usuario">${usuario}</param>
+                <param name="actionName">Tienda</param>
+            </result>
             <result name="error" type="redirectAction">
                 <param name="mensajeError">${mensajeError}</param>
                 <param name="usuario">${usuario}</param>

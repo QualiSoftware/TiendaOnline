@@ -232,11 +232,15 @@
                                     <tr>
                                         <td><span class="glyphicon glyphicon-user" aria-hidden="true" ></span>
                                             <s:textfield name="usuario" class="btn btn-default" aria-label="Left Align" style="text-align: left; color: gray" />
+                                            <s:fielderror fieldName="usuario" theme="simple"/>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td> <span class="glyphicon glyphicon-lock" aria-hidden="true" ></span>
                                             <s:password name="password" class="btn btn-default" style="text-align: left; color: gray" aria-label="Left Align" />
+                                            <s:fielderror fieldName="password" />
+                                            <input type="hidden" name="mensajeError" value="<s:property value="mensajeError"/>"/>
+                                            <s:property value="mensajeError"/>
                                         </td>
                                     </tr>
                                     <tr>
@@ -249,10 +253,10 @@
                                     <tr>
                                         <td>
                                             ¿Nuevo Cliente? <s:a action="UsuAlta" ><s:param name="accion" value="'a'"/>¡Regístrate!</s:a>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
                         </s:form>
                     </s:if>
                     <s:if test="sesion.usuarioLogueado.usuId!=''">                    
@@ -267,6 +271,8 @@
                         </div>
                     </s:if>
                 </div>
+                <s:if test="mensajeError == null"><script>fijarLogin('none');</script></s:if>
+                <s:else><script>fijarLogin('block');</script></s:else>
                 <div id="apadrina">
                     <a href="#"><div id="apadrina_Txt">Apadrina  &nbsp;<span class="sin_Decoracion">|</span></div>
                     </a>

@@ -133,40 +133,9 @@
                 </div>
                 <div id="iniciar_Sesion">
                     <s:if test="usi==''">
-                        <a href="#"> 
-                            <div id="mi_Cuenta_Txt">Mi Cuenta</div>
-                        </a>                    
-                        <s:form action="TiendaLogin" theme="simple">
-                            <div id="login">                                        
-                                <table >
-                                    <tr>
-                                        <td><span class="glyphicon glyphicon-user" aria-hidden="true" ></span>
-                                            <s:textfield name="usuario" class="btn btn-default" aria-label="Left Align" style="text-align: left; color: gray" />
-                                            <s:fielderror fieldName="usuario" theme="simple"/>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td> <span class="glyphicon glyphicon-lock" aria-hidden="true" ></span>
-                                            <s:password name="password" class="btn btn-default" style="text-align: left; color: gray" aria-label="Left Align" />
-                                            <s:fielderror fieldName="password" />
-                                            <s:property value="mensajeError"/>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <a href="#">
-                                                <s:submit value="Acceder" style="margin: 0 auto" class="btn btn-default"/>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            ¿Nuevo Cliente? <s:a action="UsuAlta" ><s:param name="accion" value="'a'"/>¡Regístrate!</s:a>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </div>
-                        </s:form>
+                        <% 
+                          response.sendRedirect("Vistas/Tienda.action");
+                        %>
                     </s:if>
                     <s:if test="sesion.usuarioLogueado.usuId!=''">                    
                         <a href="#"> 

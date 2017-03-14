@@ -4,6 +4,5 @@
     Author     : javiermartinroncero
 --%>
 <% 
-  //response.sendRedirect("Vistas/RopaFiltroU.action");
   response.sendRedirect("Vistas/Tienda.action");
 %>
