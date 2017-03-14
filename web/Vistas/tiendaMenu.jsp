@@ -344,21 +344,21 @@
                                     </s:a>
                                     <div id="botones_Galeria">
                                         <div id="vista_Rapida_Img">
-                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                             <img src="../Imagenes/Administracion/eye.png" title="Vista Rápida" style="box-shadow: 0px 0px 0px;"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                             <div id="vista_Rapida">
                                                 <table class="table_VistaRapida">                                                
                                                     <tbody>
-                                                        <tr>
+<!--                                                        <tr>
                                                             <td colspan="2" style="font-weight: bold; padding: 10px;"><s:property value="#m.roDescripcion"/></td>
+                                                        </tr>-->
+                                                        <tr>
+                                                            <td style="padding-left:10px; width: 20px;">Precio</td>
+                                                            <td><s:property value="getText('{0,number,##0.00}',{#m.roPrecio - (#m.roPrecio * #m.roDescuento / 100)})"/> €</td>
                                                         </tr>
                                                         <tr>
-                                                            <td style="padding-left:10px;">Precio</td>
-                                                            <td style="padding-left:10px;"><s:property value="getText('{0,number,##0.00}',{#m.roPrecio - (#m.roPrecio * #m.roDescuento / 100)})"/> €</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td style="padding-left:10px;">Color</td>
-                                                            <td style="padding-left:10px; padding-right:0px; margin-right:0px;">
+                                                            <td style="padding-left:10px; vertical-align: top;">Color</td>
+                                                            <td>
                                                                 <script>
                                                                     var arrayColoresNombre = new Array();
                                                                     var arrayColoresFoto = new Array();
@@ -377,7 +377,7 @@
                                                                         }
                                                                     </s:iterator>
                                                                     for (i = 0; i < arrayColoresNombre.length; i++) {
-                                                                        document.write("<img src='../Imagenes/Colores/" + arrayColoresFoto[i] + "' style='width:30px; box-shadow: 0px 0px 0px; padding-left:0px; margin-right:0px; padding-bottom: 10px; ' alt='" + arrayColoresNombre[i] + "'/>");
+                                                                        document.write("<img src='../Imagenes/Colores/" + arrayColoresFoto[i] + "' style='width:30px; box-shadow: 0px 0px 0px; padding-bottom: 5px; ' alt='" + arrayColoresNombre[i] + "'/>");
                                                                     }
                                                                 </script>
                                                                 <!--<span style="width: 200px; height: 20px; background-color: red; color: red">....</span>-->
@@ -385,7 +385,7 @@
                                                         </tr>
                                                         <tr>
                                                             <td style="padding-left:10px; padding-bottom: 120px;">Talla</td>
-                                                            <td style="padding-left:10px;">
+                                                            <td >
                                                                 <script>
                                                                     var arrayTallasDescripcion = new Array();
                                                                     var i;
@@ -423,9 +423,9 @@
                                                 </table>
                                             </div>
                                         </div>
-                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                         <img src="../Imagenes/Administracion/bRTdpoqi9.png" title="Аñadir a Favoritos" style="box-shadow:  0px 0px 0px;"/>
-                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                         <s:a action="RopaPopUp">
                                             <s:param name="clientela2" value="%{clientela2}"/>
                                             <s:param name="categoria2" value="%{categoria2}"/>

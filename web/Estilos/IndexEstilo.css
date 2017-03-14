@@ -378,9 +378,16 @@
     text-align: center;
     clear: both;
 }
+#campagnas{
+    padding-bottom: 100px;
+    margin-bottom: 100px;
+    bottom: 100px;
+    
+}
 #campagnas img{
     width: 350px;
-    height: 250px
+    height: 250px;
+    margin-bottom: 0px;    
 }
 #lineaprimera{
 
@@ -392,8 +399,8 @@
 }
 .imgproducto{
     float: left;
-    padding: 10px;
-    margin-top: 30px;
+    /*padding: 10px;*/
+    /*margin-top: 30px;*/
     margin-left: 25px;   
 
 }
@@ -405,9 +412,7 @@
 }
 #productos img:hover .descuento{
     z-index: 1;
-    opacity: 0;    
-     
-
+    opacity: 0;         
 }
 .imgproducto td{
     padding-top: 10px;    
@@ -424,9 +429,7 @@
 #marcas img{
     width: 300px;
     height: 200px;
-    margin-right: 50px;
-    
-
+    margin-right: 50px;    
 }
 #marcas img:hover{
     opacity: 0.6;
@@ -720,13 +723,13 @@ hr{
     width: 266px;
     height:  50px;
     display: none;
-    opacity: 1;        
+    opacity: 1;  
+    padding-top: 5px;
 }
 #botones_Galeria img{
-    padding-top: 7px;
-    padding-left: 10px;
+    
     padding-right: 10px;
-    width: 45px;            
+    width: 35px;            
 }
 .botones_prueba:hover #botones_Galeria{
     -webkit-transition: 0.5s;
@@ -735,14 +738,22 @@ hr{
 #vista_Rapida{ 
     position: absolute;
     width: 160px;
-    margin-top: -305px;
+    bottom: 40px;
     left: 10px;
     background-color: white;     
     box-shadow: #8f9296 5px 5px 10px;
     display: none;
 }
-#vista_Rapida td{ 
-    padding-right: 0px;
+#vista_Rapida table{ 
+    /*margin-left:-50px;*/ 
+    /*left: -50px;
+    width: 160px;
+    /*margin-left: -50px;*/
+    padding-left: -50px
+}
+#vista_Rapida td:nth-child(even){ 
+    padding-left: 10px;
+    /*padding-bottom: 10px;*/
 }
 #vista_Rapida_Img{
     position: absolute;
@@ -996,10 +1007,26 @@ hr{
     margin: 0 auto;
     margin-left: 100px;
     float: left;
+    min-height: 400px;
+    
 }
 .detalle_info_Cesta td{
     padding-right: 100px;
     padding-bottom: 0px;
+}
+.Importe_por_Prendas{
+    position: absolute;
+    padding-left: 220px;
+    
+}
+.Importe_por_PrendasNo{
+    position: absolute;
+    padding-left: 1428px;
+    
+}
+.linea_divisoria_articulos{
+    width: 550px;
+    margin-left: 0px;
 }
 #cesta_Titulo{
     font-weight: bold;
@@ -1025,6 +1052,18 @@ hr{
     margin-left: 100px;
     float: left;
 }
+/*.Stock_Excedido{
+    position: relative;
+    padding-left: -100px;
+    bottom: 200px;
+    text-align: left;
+    left: -205px;
+    
+    display: none;
+    display: block;
+    color: red;
+    
+}*/
 #pagar{
     position: absolute;    
     background-color: #e7e6e6;
@@ -1038,6 +1077,13 @@ hr{
     top: 260px;                               
     margin-left: 600px;
 }                    
+#contenedor_Pagar td{    
+    padding-right: 0px;    
+}                 
+#contenedor_Pagar td:nth-child(even){
+    padding-left: 30px;
+    
+}                 
 #pagar.fixed {
     position: fixed;
     top: 20px;
