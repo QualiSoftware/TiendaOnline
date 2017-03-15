@@ -20,16 +20,16 @@
 #header {
     padding-top: 10px;
     padding-bottom: 130px;
-    
+
 }
 #header a{
     text-decoration: none;
 }
 #header a{
-    
+
 }
 #header div:hover{
-    
+
     text-decoration: none;
 }
 #introduccion{
@@ -128,6 +128,9 @@
     z-index: 10;
     box-shadow:  #8f9296 5px 5px 10px;
 }
+#login:not(:hover){
+    display: none;
+}
 #login td{
     padding: 5px;
     margin: 0 auto; 
@@ -138,7 +141,36 @@
     height: 25px;
     width: 150px;
     background-color: white;
+    color: black;
+    border-radius: 5px;
+    border: 0px;
+    padding-left: 3px;
+    outline: 0px;
 }
+#login input:hover{
+    border-radius: 5px;
+    border: 1px solid grey;
+    cursor: pointer;
+    outline: 0px;
+}
+/*Estilo de autocompletar de los inputs*/
+#login input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus
+input:-webkit-autofill, 
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+    border: 1px solid grey;
+    -webkit-text-fill-color: black;
+    -webkit-box-shadow: 0 0 0px 1000px white inset;
+    transition: background-color 5000s ease-in-out 0s;
+    cursor: pointer;
+}
+/* FIN Estilo de autocompletar de los inputs*/
 #login button{
     font-size: 11px;
     color: black;    
@@ -172,6 +204,7 @@
     font-size: 11px;
     color: black;    
 }
+
 #apadrina{
     position: absolute;    
     margin-left: 910px;
@@ -272,7 +305,7 @@
     font-size: 20px;
     font-weight: normal;
     line-height: 1.42857143;
-    
+
 }
 #menu ul{        
     margin-left: 0px;    
@@ -372,9 +405,14 @@
     font-size: 15px;
     padding-bottom: 8px;
     padding-top: 0px;
-    z-index: 1;    
-    
+    z-index: 1;
+    border: 0px solid;
 }
+
+/*.imgproducto:hover .descuento{
+    opacity: 0.5;
+    -webkit-transform: scale(1.05);
+}*/
 .descuento_Txt{
     margin-right: 200px;
 }
@@ -392,7 +430,7 @@
     padding-bottom: 100px;
     margin-bottom: 100px;
     bottom: 100px;
-    
+
 }
 #campagnas img{
     width: 350px;
@@ -404,26 +442,35 @@
 }
 #productos img{
     width: 265px;
+
     
-    
+}
+#productos img:hover{
+    opacity: 0.5;
+    box-shadow: 5px 5px 5px black;
+    -webkit-transition: 0.5s;
+}
+#productos img:not(:hover){    
+    -webkit-transition: 0.5s;
 }
 .imgproducto{
     float: left;
     /*padding: 10px;*/
     /*margin-top: 30px;*/
     margin-left: 25px;   
-
+/*    height: 250px;
+    width: 350px;*/
 }
-#productos img:hover{
+/*#productos img:hover{
     opacity: 0.6;    
     cursor: pointer;
     box-shadow: #8f9296 5px 5px 10px;     
 
-}
-#productos img:hover .descuento{
+}*/
+/*#productos img:hover .descuento{
     z-index: 1;
     opacity: 0;         
-}
+}*/
 .imgproducto td{
     padding-top: 10px;    
 }
@@ -441,10 +488,15 @@
     height: 200px;
     margin-right: 50px;    
 }
-#marcas img:hover{
+#marcas img:hover {
     opacity: 0.6;
     cursor: pointer;
-    box-shadow: #8f9296 5px 5px 10px;     
+    box-shadow: #8f9296 5px 5px 10px; 
+    -webkit-transition: 0.5s;
+}
+#marcas img:not(:hover){
+    
+    -webkit-transition: 0.5s;
 }
 .img_Marcas{
     float: left;    
@@ -527,7 +579,7 @@ Incio del los estilos del Desplegable
 }
 #tipo_Pago img{
     width: 40px;
-    
+
 }
 #tipo_Transporte{
     margin-left: 0px;
@@ -737,9 +789,12 @@ hr{
     padding-top: 5px;
 }
 #botones_Galeria img{
-    
+
     padding-right: 10px;
     width: 35px;            
+}
+.prueba{
+    border-radius: 5px 5px 5px 5px;
 }
 .botones_prueba:hover #botones_Galeria{
     -webkit-transition: 0.5s;
@@ -953,7 +1008,7 @@ hr{
 }
 #cesta_Hover::-webkit-scrollbar {
     width: 1em;
-    
+
     cursor: pointer;
 }
 
@@ -1018,7 +1073,7 @@ hr{
     margin-left: 100px;
     float: left;
     min-height: 400px;
-    
+
 }
 .detalle_info_Cesta td{
     padding-right: 100px;
@@ -1027,12 +1082,12 @@ hr{
 .Importe_por_Prendas{
     position: absolute;
     padding-left: 220px;
-    
+
 }
 .Importe_por_PrendasNo{
     position: absolute;
     padding-left: 1428px;
-    
+
 }
 .linea_divisoria_articulos{
     width: 550px;
@@ -1092,7 +1147,7 @@ hr{
 }                 
 #contenedor_Pagar td:nth-child(even){
     padding-left: 30px;
-    
+
 }                 
 #pagar.fixed {
     position: fixed;
@@ -1128,7 +1183,7 @@ hr{
 }
 #cesta_Img{
     width: 120px;
-    
+
 }
 #cesta_Img:hover{
     box-shadow: 5px 5px 10px;

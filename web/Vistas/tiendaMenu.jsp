@@ -377,7 +377,7 @@
                                                                         }
                                                                     </s:iterator>
                                                                     for (i = 0; i < arrayColoresNombre.length; i++) {
-                                                                        document.write("<img src='../Imagenes/Colores/" + arrayColoresFoto[i] + "' style='width:30px; box-shadow: 0px 0px 0px; padding-bottom: 5px; ' alt='" + arrayColoresNombre[i] + "'/>");
+                                                                        document.write("<img src='../Imagenes/Colores/" + arrayColoresFoto[i] + "'style='width:30px; box-shadow: 0px 0px 0px; padding-bottom: 5px; border-radius: 500px 5px 5px 5px;' class='prueba' alt='" + arrayColoresNombre[i] + "'/>");
                                                                     }
                                                                 </script>
                                                                 <!--<span style="width: 200px; height: 20px; background-color: red; color: red">....</span>-->
