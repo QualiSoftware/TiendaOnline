@@ -150,7 +150,7 @@
                                             <s:password name="password" class="btn btn-default" style="text-align: left; color: gray" aria-label="Left Align" />
                                             <s:fielderror fieldName="password" />
                                             <input type="hidden" name="mensajeError" value="<s:property value="mensajeError"/>"/>
-                                            <s:property value="mensajeError"/>
+                                            <span style="color: red;"><s:property value="mensajeError"/></span>
                                         </td>
                                     </tr>
                                     <tr>
