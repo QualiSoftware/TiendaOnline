@@ -150,7 +150,7 @@
                                             <s:password name="password" class="btn btn-default" style="text-align: left; color: gray" aria-label="Left Align" />
                                             <s:fielderror fieldName="password" />
                                             <input type="hidden" name="mensajeError" value="<s:property value="mensajeError"/>"/>
-                                            <span style="color: red;"><s:property value="mensajeError"/></span>
+                                            <span style="color: red; font-size: 13px;"><s:property value="mensajeError"/></span>
                                         </td>
                                     </tr>
                                     <tr>
@@ -171,7 +171,7 @@
                     </s:if>
                     <s:if test="sesion.usuarioLogueado.usuId!=''">                    
                         <a href="#"> 
-                            <div id="mi_Cuenta_Txt">¡Bienvenido <s:property value="sesion.usuarioLogueado.usuNombre"/>!</div>
+                            <div id="mi_Cuenta_Txt">¡Bienvenido <div id="nick_Login"><s:property value="sesion.usuarioLogueado.usuNombre"/>!</div></div>
                         </a>
 
                         <div id="login" style="width: 50px; margin-right: 50px; margin-top: 0px;">                                        
