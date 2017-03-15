@@ -793,9 +793,7 @@ hr{
     padding-right: 10px;
     width: 35px;            
 }
-.prueba{
-    border-radius: 5px 5px 5px 5px;
-}
+
 .botones_prueba:hover #botones_Galeria{
     -webkit-transition: 0.5s;
     display: block;        
