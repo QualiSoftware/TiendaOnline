@@ -31,7 +31,7 @@
             window.onload = muestra_Cantidad;
         </script>
 
-        <title>Tienda Ropa</title>
+        <title>Tienda Ropa</title>       
     </head>
 
     <body>       
@@ -138,25 +138,27 @@
                         </a>                    
                         <s:form action="TiendaLogin" theme="simple">
                             <div id="login">                                        
-                                <table >
+                                <table onMouseOut="display:none" >
                                     <tr>
                                         <td><span class="glyphicon glyphicon-user" aria-hidden="true" ></span>
-                                            <s:textfield name="usuario" class="btn btn-default" aria-label="Left Align" style="text-align: left; color: gray" />
+                                            <s:textfield name="usuario" class="btn btn-default" aria-label="Left Align" style="text-align: left; background-color: white; margin-top:10px; margin-left:5px;" />
                                             <s:fielderror fieldName="usuario" theme="simple"/>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td> <span class="glyphicon glyphicon-lock" aria-hidden="true" ></span>
-                                            <s:password name="password" class="btn btn-default" style="text-align: left; color: gray" aria-label="Left Align" />
+                                            <s:password name="password" class="btn btn-default" style="text-align: left; color: gray; margin-bottom: 3px; margin-left:5px;" aria-label="Left Align" />
                                             <s:fielderror fieldName="password" />
+                                            
                                             <input type="hidden" name="mensajeError" value="<s:property value="mensajeError"/>"/>
-                                            <span style="color: red; font-size: 13px;"><s:property value="mensajeError"/></span>
+                                            <span style="color: red; font-size: 13px; padding-left: 18px; position: relative;"><s:property value="mensajeError"/></span>
                                         </td>
                                     </tr>
+                                    
                                     <tr>
                                         <td>
                                             <a href="#">
-                                                <s:submit value="Acceder" style="margin: 0 auto" class="btn btn-default"/>
+                                                <s:submit value="Acceder" style="margin: 0 auto; width: 100px; border: 1px grey solid;" onMouseOver="this.style.cssText='box-shadow: 5px 5px 5px grey; width: 100px; -webkit-transform: scale(1.09);'" onMouseOut="this.style.cssText='box-shadow: 0px; width: 100px; -webkit-transform: scale(1); border: 1px solid'" class="btn btn-default btn_Acceder"/>
                                             </a>
                                         </td>
                                     </tr>
@@ -303,15 +305,15 @@
             <div id="contenido"><br>
                 <div id="campañas_Titulo">
                     CAMPAÑAS</div>
-                <div id="campagnas">
+                <div id="campagnas" >
                     <s:iterator var="a" value="lista_campanias">
                         <s:a action="TiendaMenu">
-                            <table  class="imgproducto">                        
+                            <table style="height: 250px; width: 350px;" class="imgproducto" >                        
                                 <tr>
                                     <td class="descuento"><span class="descuento_Txt">¡<s:property value="#a.camDescuento"/>% de Descuento!</span><span class="validez_Txt">Hasta el <s:date name="#a.camFin" format="dd/MM/yyyy"/></span></td>
                                 </tr>
                                 <tr>
-                                    <td><img src="../Imagenes/Campanias/<s:property value="#a.camFoto"/>" alt="<s:property value="#a.camNombre"/>"/></td>                            
+                                    <td><img style="height: 250px; width: 350px;" id="prueba" onmouseover="this.style.cssText='opacity: 0.5; box-shadow: 5px 5px 5px black; -webkit-transition: 0.5s;'" onmouseout="this.style.cssText='opacity: 1; -webkit-transform: scale(1); -webkit-transition: 0.5s; box-shadow: 0px 0px 0px white;'" src="../Imagenes/Campanias/<s:property value="#a.camFoto"/>" alt="<s:property value="#a.camNombre"/>"/></td>                            
                                 </tr>                        
                             </table>
                             <s:param name="campania" value="#a.camId"/>
