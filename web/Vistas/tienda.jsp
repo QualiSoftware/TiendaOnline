@@ -162,11 +162,15 @@
                                     </tr>
                                     <tr>
                                         <td>
-                                            ¿Nuevo Cliente? <s:a action="UsuAlta" ><s:param name="accion" value="'a'"/>¡Regístrate!</s:a>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </div>
+                                            ¿Nuevo Cliente? 
+                                            <s:a action="UsuAlta" >
+                                                <s:param name="clave" value="1"/>
+                                                <s:param name="accion" value="'a'"/>¡Regístrate!
+                                            </s:a>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
                         </s:form>
                     </s:if>
                     <s:if test="sesion.usuarioLogueado.usuId!=''">                    
