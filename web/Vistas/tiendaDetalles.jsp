@@ -1,5 +1,5 @@
 <%-- 
-    Document   : tiendaCestaDetalles
+    Document   : tiendaDetalles
     Created on : 12-ene-2017, 23:52:13
     Author     : QualiSoftware
 --%>

@@ -52,54 +52,8 @@
         <script>
             window.onload = cesta_Aniadir;
         </script>
-        <script>
-            function MasMenosCantidad(valor,cantidad,id,stock){
-                document.getElementById("clave").value = id;
-                if(valor == '+'){
-                    cantidad++;
-                }
-                if(valor == '-'){
-                    cantidad--;
-                }
-                if(cantidad <= stock){
-                    document.getElementById("cantidadIndividual").value = cantidad;
-                    document.getElementById("formCantidad").submit();
-                    prueba = document.getElementsByClassName("Stock_Excedido")[i].style = "display:none;";
-
-
-//                    for(i=0; i<1000; i++){
-//                        prueba = document.getElementsByClassName("Stock_Excedido")[i].style = "display:none;";
-//                    }
-//                    document.getElementsByClassName("Stock_Excedido")[0].style = "display:none;";
-
-                } else {                    
-                    if(valor == '-'){
-                        document.getElementById("cantidadIndividual").value = stock;
-                        document.getElementById("formCantidad").submit();
-//                                                        document.getElementById("Stock_Excedido").style = "display:none;";
-                        prueba = document.getElementsByClassName("Stock_Excedido")[i].style = "display:none;";
-//                        var prueba;
-//                                                        document.getElementsByClassName("Stock_Excedido").style = "display:none;";
-
-
-
-                    } else {
-//                        alert("En este momento tenemos " + stock + " prendas en stock. Disculpe las molestias.");
-//                        document.getElementById("Stock_Excedido").style = "display:block;";
-                        var prueba = document.getElementsByClassName("Stock_Excedido");
-                        for (i = 0; i<1000; i++) {
-                        prueba[i].style = "display:block;";
-//                        var prueba;
-
-//                                                        document.getElementsByClassName("Stock_Excedido").style = "display:block;";
-                        }
-                    }
-                }
-            }
-        </script>
         <title>MyLook - Cesta</title>
     </head>
-
     <body>
         <div id="todo">
             <div id="header">
@@ -121,8 +75,8 @@
                 </div>
                 <div id="iniciar_Sesion">
                     <s:if test="usi==''">
-                        <% 
-                          response.sendRedirect("Vistas/Tienda.action");
+                        <%
+                            response.sendRedirect("Vistas/Tienda.action");
                         %>
                     </s:if>
                     <s:if test="sesion.usuarioLogueado.usuId!=''">                    
@@ -276,7 +230,7 @@
                                 </tr>
                             </thead>
                             <tr>
-                                <td rowspan="4">
+                                <td rowspan="4" style="padding-right: 100px;">
                                     <s:a action="RopaPopUp">
                                         <s:param name="roId" value="#a.ropaStock.ropa.roId"/>
                                         <% int cero = 0; %>
@@ -317,28 +271,49 @@
                                         <input type="hidden" name="accionocul" value="e"/>
                                         <input type="hidden" name="clave" id="clave"/>
                                         <img src="../Imagenes/Administracion/Signo_Menos.png" id="menos"
-                                             style="cursor:pointer; width: 30px; padding-top: 13px;" onclick="MasMenosCantidad('-',<s:property value="#a.cestaUnidades"/>,<s:property value="#a.cestaId"/>,<s:property value="#a.ropaStock.rostockUnidades"/>);"/>
+                                             style="cursor:pointer; width: 30px; padding-top: 13px;" onclick="MasMenosCantidad<s:property value="#a.cestaId"/>('-',<s:property value="#a.cestaUnidades"/>,<s:property value="#a.cestaId"/>,<s:property value="#a.ropaStock.rostockUnidades"/>);"/>
                                         &nbsp;
                                         <input type="text" name="cantidad" id="cantidadIndividual" readonly="readonly" 
                                                style="width: 25px;text-align: center;" value="<s:property value="#a.cestaUnidades"/>">
                                         &nbsp;
                                         <img src="../Imagenes/Administracion/Signo_Mas.png" id="mas" 
-                                             style="cursor:pointer; width: 30px; padding-top: 13px;" onclick="MasMenosCantidad('+',<s:property value="#a.cestaUnidades"/>,<s:property value="#a.cestaId"/>,<s:property value="#a.ropaStock.rostockUnidades"/>);"/>
-                                        <div id="Stock_Excedido" class="Stock_Excedido" style="position: relative; left: -205px; color:red; display:none;">El límite de Stock para este artículo es de X unidades.</div>                                        
+                                             style="cursor:pointer; width: 30px; padding-top: 13px;" onclick="MasMenosCantidad<s:property value="#a.cestaId"/>('+',<s:property value="#a.cestaUnidades"/>,<s:property value="#a.cestaId"/>,<s:property value="#a.ropaStock.rostockUnidades"/>);"/>
+                                        <div id="Stock_Excedido" class="Stock_Excedido" style="position: relative; left: -205px; color:red; display:none;">El límite de Stock para este artículo es de X unidades.</div>
                                     </s:form>
+                                    <script>
+                                        function MasMenosCantidad<s:property value="#a.cestaId"/>(valor, cantidad, id, stock) {
+                                            document.getElementById("clave").value = id;
+                                            if (valor == '+') {
+                                                cantidad++;
+                                            }
+                                            if (valor == '-') {
+                                                cantidad--;
+                                            }
+                                            if (cantidad <= stock) {
+                                                document.getElementById("cantidadIndividual").value = cantidad;
+                                                document.getElementById("formCantidad").submit();
+                                            } else {
+                                                if (valor == '-') {
+                                                    document.getElementById("cantidadIndividual").value = stock;
+                                                    document.getElementById("formCantidad").submit();
+                                                } else {
+                                                    document.getElementById("Stock_Excedido<s:property value="#a.cestaId"/>").innerHTML = "En este momento tenemos " + stock + " prendas en stock. Disculpe las molestias.";
+                                                }
+                                            }
+                                        }
+                                    </script>
                                 </td>  
-
                             </tr>
-                            <!--                            <tr>
-                                                            <td id="Stock_Excedido">asdñlfkjasdfasdfasdfasdfasdf</td>
-                                                        </tr>-->
                             <tr>
-                                <td class="Importe_por_Prendas">
+                                <!--<td class="Importe_por_Prendas">--><td></td><td style="width:180px;">
                                     Importe por <s:property value="#a.cestaUnidades"/> prendas:
                                 </td>
-                                <td class="Importe_por_PrendasNo">
+                                <!--<td class="Importe_por_PrendasNo">--><td>
                                     <s:property value="getText('{0,number,##0.00}',{#a.cestaUnidades * (#a.ropaStock.ropa.roPrecio - (#a.ropaStock.ropa.roPrecio * #a.ropaStock.ropa.roDescuento / 100))})"/> €
                                 </td>
+                            </tr>
+                            <tr>
+                                <td id="Stock_Excedido<s:property value="#a.cestaId"/>" colspan="3" style="color:red;"></td>
                             </tr>
                             <tr>
                                 <td colspan="3">

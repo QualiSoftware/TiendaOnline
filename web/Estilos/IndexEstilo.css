@@ -1074,10 +1074,10 @@ hr{
 
 }
 .detalle_info_Cesta td{
-    padding-right: 100px;
+    /*padding-right: 100px;*/
     padding-bottom: 0px;
 }
-.Importe_por_Prendas{
+/*.Importe_por_Prendas{
     position: absolute;
     padding-left: 220px;
 
@@ -1086,7 +1086,7 @@ hr{
     position: absolute;
     padding-left: 1428px;
 
-}
+}*/
 .linea_divisoria_articulos{
     width: 550px;
     margin-left: 0px;
