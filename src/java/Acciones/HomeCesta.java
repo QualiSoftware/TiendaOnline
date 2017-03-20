@@ -380,10 +380,10 @@ public class HomeCesta extends ActionSupport {
         c.setRopaStock(ControladoresDAO.cRopaStock.RecuperaPorId(rostockId));
         c.setUsuarios(ControladoresDAO.cUsuarios.RecuperaPorId(u.getUsuId()));
         ce = ControladoresDAO.cCesta.RecuperaPorId(clave);
-        System.out.println(accionocul);
+//        System.out.println(accionocul);
         if (accionocul.equals("e")) {
-            System.out.println("unidades tiene " + ce.getCestaUnidades());
-            System.out.println("unidades tiene que tener " + cantidad);
+//            System.out.println("unidades tiene " + ce.getCestaUnidades());
+//            System.out.println("unidades tiene que tener " + cantidad);
             if (cantidad == ce.getCestaUnidades()) {
                 respuesta = ControladoresDAO.cCesta.Elimina(c);
             } else {
@@ -520,7 +520,7 @@ public class HomeCesta extends ActionSupport {
             for(Fotos f:aux.getRopaStock().getRopa().getFotoses()){
                 f.getFotosRuta(); //esto sólo sirve para cargar las fotos en memoria y que no de error de sesion
             }
-            System.out.println("aux.getRopaStock().getRopa().getRoPrecio(): "+aux.getRopaStock().getRopa().getRoPrecio()+" - aux.getCestaUnidades(): "+aux.getCestaUnidades()+" - aux.getRopaStock().getRopa().getRoDescuento(): "+aux.getRopaStock().getRopa().getRoDescuento());
+            //System.out.println("aux.getRopaStock().getRopa().getRoPrecio(): "+aux.getRopaStock().getRopa().getRoPrecio()+" - aux.getCestaUnidades(): "+aux.getCestaUnidades()+" - aux.getRopaStock().getRopa().getRoDescuento(): "+aux.getRopaStock().getRopa().getRoDescuento());
         }
 
         return SUCCESS;
@@ -608,6 +608,12 @@ public class HomeCesta extends ActionSupport {
                     c.getRopaStock().getRopa().setRoDescuento(auxDescuento);
                     nada = ControladoresDAO.cFacturaDetalle.Inserta(fd);
                     if(nada == 1){
+                        //Reduzco el stock de la ropa
+                        ropaStock = ControladoresDAO.cRopaStock.RecuperaPorId(c.getRopaStock().getRostockId());
+                        int unidadesActuales = ropaStock.getRostockUnidades();
+                        ropaStock.setRostockUnidades(unidadesActuales - c.getCestaUnidades());
+                        ControladoresDAO.cRopaStock.Modifica(ropaStock);
+                        //Vacío la cesta
                         Cesta cesta = cCesta.RecuperaPorId(c.getCestaId());
                         nada = ControladoresDAO.cCesta.Elimina(cesta);
                         cesta = null;

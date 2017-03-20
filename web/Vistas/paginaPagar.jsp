@@ -56,6 +56,9 @@
         usuario = ControladoresDAO.cUsuarios.RecuperaPorId(id);
         response.sendRedirect("pedidos");
         emailEnviado = ControladoresDAO.cEmail.enviarCorreo(usuario.getUsuEmail(),nombreArchivo);
+        if(emailEnviado){
+            System.out.println("Se envió una factura con fecha " + date);
+        }
     }catch(Exception e){
         System.out.println("Error: "+e.getMessage());
     }
