@@ -278,7 +278,7 @@
                                         &nbsp;
                                         <img src="../Imagenes/Administracion/Signo_Mas.png" id="mas" 
                                              style="cursor:pointer; width: 30px; padding-top: 13px;" onclick="MasMenosCantidad<s:property value="#a.cestaId"/>('+',<s:property value="#a.cestaUnidades"/>,<s:property value="#a.cestaId"/>,<s:property value="#a.ropaStock.rostockUnidades"/>);"/>
-                                        <div id="Stock_Excedido" class="Stock_Excedido" style="position: relative; left: -205px; color:red; display:none;">El límite de Stock para este artículo es de X unidades.</div>
+                                        <!--<div id="Stock_Excedido" class="Stock_Excedido">El límite de Stock para este artículo es de X unidades.</div>-->
                                     </s:form>
                                     <script>
                                         function MasMenosCantidad<s:property value="#a.cestaId"/>(valor, cantidad, id, stock) {
@@ -297,7 +297,7 @@
                                                     document.getElementById("cantidadIndividual").value = stock;
                                                     document.getElementById("formCantidad").submit();
                                                 } else {
-                                                    document.getElementById("Stock_Excedido<s:property value="#a.cestaId"/>").innerHTML = "En este momento tenemos " + stock + " prendas en stock. Disculpe las molestias.";
+                                                    document.getElementById("Stock_Excedido<s:property value="#a.cestaId"/>").innerHTML = "En este momento tenemos " + stock + " prendas en stock.<br>Disculpe las molestias.";
                                                 }
                                             }
                                         }
@@ -313,7 +313,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td id="Stock_Excedido<s:property value="#a.cestaId"/>" colspan="3" style="color:red;"></td>
+                                <td id="Stock_Excedido<s:property value="#a.cestaId"/>" colspan="3" style="color:red; position:absolute; margin-left: 220px;"></td>
                             </tr>
                             <tr>
                                 <td colspan="3">

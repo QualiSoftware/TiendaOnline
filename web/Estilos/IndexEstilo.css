@@ -985,7 +985,8 @@ hr{
 #cesta_Hover{
     position: absolute;
     width: 180px;
-    height: 230px;
+    min-height: 230px;
+    max-height: 460px;
     display: none;
     font-size: 12px;
     background-color: #eeeeee;
@@ -1115,18 +1116,22 @@ hr{
     margin-left: 100px;
     float: left;
 }
-/*.Stock_Excedido{
-    position: relative;
-    padding-left: -100px;
+.Stock_Excedido{
+    position: absolute;
+    padding-left: 1000px;
     bottom: 200px;
     text-align: left;
-    left: -205px;
+    /*left: -205px;*/
     
     display: none;
     display: block;
     color: red;
     
-}*/
+}
+div[id^=”Stock_Excedido”]{
+    
+} 
+
 #pagar{
     position: absolute;    
     background-color: #e7e6e6;
