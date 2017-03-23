@@ -30,7 +30,7 @@
         <script>
             window.onload = muestra_Cantidad;            
         </script>
-        <title>MyLook - Detalle Ropa</title>
+        <title><s:property value="t.roDescripcion"/></title>
             
         <!-- FancyBox-->
         <script src="../Scripts/Fancy.js" type="text/javascript"></script>
@@ -274,21 +274,18 @@
                 <s:if test="mensajeError == null"><script>fijarLogin('none');</script></s:if>
                 <s:else><script>fijarLogin('block');</script></s:else>
                 <div id="apadrina">
-                    <a href="#"><div id="apadrina_Txt">Apadrina  &nbsp;<span class="sin_Decoracion">|</span></div>
-                    </a>
+                    <s:a action="apadrina"><div id="apadrina_Txt">Apadrina  &nbsp;<span class="sin_Decoracion">|</span></div></s:a>
                 </div>
 
                 <div id="quienes_Somos">
-                    <a href="#"><div id="quienes_Somos_Txt"> ¿Quiénes somos? &nbsp; <span class="sin_Decoracion">|</span></div></a>
+                <s:a action="quienesSomos"><div id="quienes_Somos_Txt"> ¿Quiénes somos? &nbsp; <span class="sin_Decoracion">|</span></div></s:a>
 
                 </div>
                 <div id="contacto">
-                    <a href="#"><div id="contacto_Txt">Contacto  &nbsp;<span class="sin_Decoracion">|</span></div>
-                    </a>
+                <s:a action="contacto"><div id="contacto_Txt">Contacto  &nbsp;<span class="sin_Decoracion">|</span></div></s:a>
                 </div>
                 <div id="lista_Deseos">
-                    <a href="#"><div id="lista_Deseos_Txt">Lista de deseos <span class="glyphicon glyphicon-star" style="color: black;"></span>  &nbsp;<span class="sin_Decoracion">|</span></div>
-                    </a>
+                <s:a action="listaDeseos"><div id="lista_Deseos_Txt">Lista de deseos <span class="glyphicon glyphicon-star" style="color: black;"></span>  &nbsp;<span class="sin_Decoracion">|</span></div></s:a>
                 </div>
             </div>
             <div id="linea1" class="linea"></div>
@@ -318,12 +315,12 @@
                         </s:if>
                         <tr>
                             <td class="con_Borde">
-                                <a href="#"><span class="glyphicon glyphicon-question-sign"></span> Ayuda</a>
+                            <s:a action="ayuda"><span class="glyphicon glyphicon-question-sign"></span> Ayuda</s:a>
                             </td>
                         </tr>                        
                         <tr>
                             <td >
-                                <a href="#"><span class="glyphicon glyphicon-option-vertical"></span> Otros</a>
+                            <s:a action="otros"><span class="glyphicon glyphicon-option-vertical"></span> Otros</s:a>
                             </td>
                         </tr>
                     </table>                                        

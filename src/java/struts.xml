@@ -483,7 +483,43 @@
         
         <action name="pedidos" class="Acciones.HomeUsuarios" method="pedidos">
             <result>/Vistas/tiendaPedidos.jsp</result>           
-        </action>        
+        </action>
+        
+        <action name="ayuda" class="Acciones.HomeRopa" method="RopaFiltro">
+            <result>/Vistas/tiendaAyuda.jsp</result>
+            <result name="input" type="redirect">Tienda</result>  
+            <result name="error" type="redirect">Tienda</result>  
+        </action>
+        
+        <action name="otros" class="Acciones.HomeRopa" method="RopaFiltro">
+            <result>/Vistas/tiendaOtros.jsp</result>  
+            <result name="input" type="redirect">Tienda</result>  
+            <result name="error" type="redirect">Tienda</result>    
+        </action>
+        
+        <action name="quienesSomos" class="Acciones.HomeRopa" method="RopaFiltro">
+            <result>/Vistas/tiendaQuienesSomos.jsp</result>  
+            <result name="input" type="redirect">Tienda</result>  
+            <result name="error" type="redirect">Tienda</result>    
+        </action>
+        
+        <action name="contacto" class="Acciones.HomeRopa" method="RopaFiltro">
+            <result>/Vistas/tiendaContacto.jsp</result>  
+            <result name="input" type="redirect">Tienda</result>  
+            <result name="error" type="redirect">Tienda</result>    
+        </action>
+        
+        <action name="apadrina" class="Acciones.HomeRopa" method="RopaFiltro">
+            <result>/Vistas/tiendaApadrina.jsp</result>  
+            <result name="input" type="redirect">Tienda</result>  
+            <result name="error" type="redirect">Tienda</result>    
+        </action>
+        
+        <action name="listaDeseos" class="Acciones.HomeRopa" method="RopaFiltro">
+            <result>/Vistas/tiendaListaDeseos.jsp</result>  
+            <result name="input" type="redirect">Tienda</result>  
+            <result name="error" type="redirect">Tienda</result>    
+        </action>
     </package>
 </struts>
 

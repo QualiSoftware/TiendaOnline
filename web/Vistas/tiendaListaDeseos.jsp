@@ -1,6 +1,6 @@
 <%-- 
-    Document   : tiendaMenu.jsp
-    Created on : 15-dic-2016
+    Document   : tiendaListaDeseos
+    Created on : 23-mar-2017
     Author     : QualiSoftware
 --%>
 
@@ -30,12 +30,7 @@
         <script>
             window.onload = muestra_Cantidad;            
         </script>
-        <title>
-            <s:if test="(marcas2==null && clientela2!=null) || (marcas2=='' && clientela2!='')"><s:property value="categoria"/> <s:property value="clientela"/></s:if>
-                    <s:elseif test="(marcas2==null && clientela2==null && campania==null) || (marcas2=='' && clientela2=='' && campania=='')">Todas las ventas</s:elseif>
-                    <s:elseif test="(marcas2==null && campania!=null) || (marcas2=='' && campania!='')"><s:property value="campaniaNombre"/></s:elseif>
-                    <s:else><s:property value="marca"/></s:else>
-        </title>
+        <title>Lista de Deseos</title>
     </head>
 
     <body>
@@ -202,7 +197,8 @@
                 <s:a action="contacto"><div id="contacto_Txt">Contacto  &nbsp;<span class="sin_Decoracion">|</span></div></s:a>
                 </div>
                 <div id="lista_Deseos">
-                <s:a action="listaDeseos"><div id="lista_Deseos_Txt">Lista de deseos <span class="glyphicon glyphicon-star" style="color: black;"></span>  &nbsp;<span class="sin_Decoracion">|</span></div></s:a>
+                    <a href="#"><div id="lista_Deseos_Txt">Lista de deseos <span class="glyphicon glyphicon-star" style="color: black;"></span>  &nbsp;<span class="sin_Decoracion">|</span></div>
+                    </a>
                 </div>
             </div>
             <div id="linea1" class="linea"></div>
@@ -305,166 +301,57 @@
                     </li>                    
                 </ul>                
             </div>
-            <div id="linea2" class="linea"></div>
-            <div id="contenido">
-                <div id="ruta_Navegacion">
-                    <s:a action="Tienda">Inicio</s:a> > 
-                    <s:if test="(marcas2==null && clientela2!=null) || (marcas2=='' && clientela2!='')"><s:property value="categoria"/> <s:property value="clientela"/></s:if>
-                    <s:elseif test="(marcas2==null && clientela2==null && campania==null) || (marcas2=='' && clientela2=='' && campania=='')">Todas las ventas</s:elseif>
-                    <s:elseif test="(marcas2==null && campania!=null) || (marcas2=='' && campania!='')"><s:property value="campaniaNombre"/></s:elseif>
-                    <s:else><s:property value="marca"/></s:else>
-                </div>
-                <div id="nombre_Categoria">
-                    <s:if test="(marcas2==null && clientela2!=null) || (marcas2=='' && clientela2!='')"><s:property value="categoria"/> <s:property value="clientela"/></s:if>
-                    <s:elseif test="(marcas2==null && clientela2==null && campania==null) || (marcas2=='' && clientela2=='' && campania=='')">Todos nuestros productos</s:elseif>
-                    <s:elseif test="(marcas2==null && campania!=null) || (marcas2=='' && campania!='')">Las campañas más exclusivas</s:elseif>
-                    <s:else>Las marcas que están de moda</s:else>
-                </div>
-                <div id="productos" style="margin-top: 50px;">
-                    <s:iterator var="m" value="lista_ropa">
-                        <s:if test="#m.ropaStocks.size != 0">
-                        <table  class="imgproducto">                                                    
-                            <tr class="botones_prueba">
-                                <td>
-                                    <s:a action="RopaPopUp">
-                                        <s:param name="clientela2" value="%{clientela2}"/>
-                                        <s:param name="categoria2" value="%{categoria2}"/>
-                                        <s:param name="marcas2" value="%{marcas2}"/>
-                                        <s:param name="campania" value="campania"/>
-                                        <s:param name="roId" value="#m.roId"/>
-                                        <%int aux = 0;%>
-                                        <s:iterator var="f" value="fotoses">
-                                            <%
-                                            if(aux==0){
-                                            %>
-                                                <img src="<s:url value='../Imagenes/%{#m.categoria.catDescripcion}/%{#m.subcategoria.subDescripcion}/%{#f.fotosRuta}'/>" alt="<s:property value="fotosRuta" />" />
-                                            <%
-                                            }
-                                            aux++;
-                                            %>
-                                        </s:iterator>
-                                    </s:a>
-                                    <div id="botones_Galeria">
-                                        <div id="vista_Rapida_Img">
-                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                            <img src="../Imagenes/Administracion/eye.png" title="Vista Rápida" style="box-shadow: 0px 0px 0px;"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                            <div id="vista_Rapida">
-                                                <table class="table_VistaRapida">                                                
-                                                    <tbody>
-<!--                                                        <tr>
-                                                            <td colspan="2" style="font-weight: bold; padding: 10px;"><s:property value="#m.roDescripcion"/></td>
-                                                        </tr>-->
-                                                        <tr>
-                                                            <td style="padding-left:10px; width: 20px;">Precio</td>
-                                                            <td><s:property value="getText('{0,number,##0.00}',{#m.roPrecio - (#m.roPrecio * #m.roDescuento / 100)})"/> €</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td style="padding-left:10px; vertical-align: top;">Color</td>
-                                                            <td>
-                                                                <script>
-                                                                    var arrayColoresNombre = new Array();
-                                                                    var arrayColoresFoto = new Array();
-                                                                    var i;
-                                                                    var bool = true;
-                                                                    <s:iterator var="c" value="ropaStocks">
-                                                                        bool = true;
-                                                                        for(i = 0; i < arrayColoresNombre.length;i++){
-                                                                            if(arrayColoresNombre[i] == '<s:property value="#c.color.colorDescripcion"/>'){
-                                                                                bool = false;
-                                                                            }
-                                                                        }
-                                                                        if(bool){
-                                                                            arrayColoresFoto.push('<s:property value="#c.color.colorFoto"/>');
-                                                                            arrayColoresNombre.push('<s:property value="#c.color.colorDescripcion"/>');
-                                                                        }
-                                                                    </s:iterator>
-                                                                    for (i = 0; i < arrayColoresNombre.length; i++) {
-                                                                        document.write("<img src='../Imagenes/Colores/" + arrayColoresFoto[i] + "'style='width:20px; box-shadow: 0px 0px 0px; padding-bottom: 0px; padding-right: 0px; margin-right: 10px; margin-bottom: 8px; border-radius: 5px 5px 5px 5px;' alt='" + arrayColoresNombre[i] + "'/>");
-                                                                    }
-                                                                </script>
-                                                                <!--<span style="width: 200px; height: 20px; background-color: red; color: red">....</span>-->
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td style="padding-left:10px; padding-bottom: 120px;">Talla</td>
-                                                            <td >
-                                                                <script>
-                                                                    var arrayTallasDescripcion = new Array();
-                                                                    var i;
-                                                                    var bool = true;
-                                                                    <s:iterator var="t" value="ropaStocks">
-                                                                        bool = true;
-                                                                        for(i = 0; i < arrayTallasDescripcion.length;i++){
-                                                                            if(arrayTallasDescripcion[i] == '<s:property value="#t.tallas.tallaDescripcion"/>'){
-                                                                                bool = false;
-                                                                            }
-                                                                        }
-                                                                        if(bool){
-                                                                            arrayTallasDescripcion.push('<s:property value="#t.tallas.tallaDescripcion"/>');
-                                                                        }
-                                                                    </s:iterator>
-                                                                    <s:iterator var="l" value="lista_tallas">
-                                                                        bool = false;
-                                                                        for (i = 0; i < arrayTallasDescripcion.length; i++) {
-                                                                            if(arrayTallasDescripcion[i] == '<s:property value="#l.tallaDescripcion"/>'){
-                                                                                bool = true;
-                                                                                break;
-                                                                            }
-                                                                        }
-                                                                        if(bool){
-                                                                            document.write(arrayTallasDescripcion[i] + "<br>");
-                                                                        }else{
-                                                                            document.write("<span style='text-decoration:line-through;'>" + '<s:property value="#l.tallaDescripcion"/>' + "</span><br>");
-                                                                        }
-                                                                    </s:iterator>
-                                                                </script>
-                                                                <br>
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                        <img src="../Imagenes/Administracion/bRTdpoqi9.png" title="Аñadir a Favoritos" style="box-shadow:  0px 0px 0px;"/>
-                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                        <s:a action="RopaPopUp">
-                                            <s:param name="clientela2" value="%{clientela2}"/>
-                                            <s:param name="categoria2" value="%{categoria2}"/>
-                                            <s:param name="marcas2" value="%{marcas2}"/>
-                                            <s:param name="campania" value="campania"/>
-                                            <s:param name="roId" value="#m.roId"/>
-                                            <img src="../Imagenes/Administracion/shopping-basket-xxl.png" title="Añadir a la Cesta" style="box-shadow: 0px 0px 0px;">
-                                        </s:a>
-                                            <br>
-                                        <span style="color: white">Vista &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Favoritos&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cesta</span>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="text-align: left">
-                                    <span style="font-size: 15px; text-align: left"> <s:property value="#m.roDescripcion"/></span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="text-align: left">
-                                    <span style="font-size: 15px; text-align: left"> <s:property value="#m.marcas.marcaNombre"/></span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="text-align: left">
-                                    <span style="text-decoration: line-through; font-size: 20px; color: #999999; font-weight: bold" ><s:property value="getText('{0,number,##0.00}',{#m.roPrecio})"/> €</span>
-                                    <span style="padding-left: 10px; font-size: 20px; font-weight: bold;">
-                                        <s:property value="getText('{0,number,##0.00}',{#m.roPrecio - (#m.roPrecio * #m.roDescuento / 100)})"/> €
-                                    </span>
-                                </td>
-                            </tr>
-                        </table>
-                        </s:if>
+                        <div class="linea" style="height: 3px;"></div>
+<!--            <div id="contenido"><br>
+                <div id="campañas_Titulo">
+                    CAMPAÑAS</div>
+                <div id="campagnas" >
+                    <s:iterator var="a" value="lista_campanias">
+                        <s:a action="TiendaMenu">
+                            <table style="height: 250px; width: 350px;" class="imgproducto" >                        
+                                <tr>
+                                    <td class="descuento"><span class="descuento_Txt">¡<s:property value="#a.camDescuento"/>% de Descuento!</span><span class="validez_Txt">Hasta el <s:date name="#a.camFin" format="dd/MM/yyyy"/></span></td>
+                                </tr>
+                                <tr>
+                                    <td><img style="height: 250px; width: 350px;" id="prueba" onmouseover="this.style.cssText='opacity: 0.5; box-shadow: 5px 5px 5px black; -webkit-transition: 0.5s;'" onmouseout="this.style.cssText='opacity: 1; -webkit-transform: scale(1); -webkit-transition: 0.5s; box-shadow: 0px 0px 0px white;'" src="../Imagenes/Campanias/<s:property value="#a.camFoto"/>" alt="<s:property value="#a.camNombre"/>"/></td>                            
+                                </tr>                        
+                            </table>
+                            <s:param name="campania" value="#a.camId"/>
+                        </s:a>
                     </s:iterator>
                 </div>
-            </div>
+                <div style="height: 50px; width: 40px; color: black; padding-top: 25px;">asdf</div>
+                <div class="linea" style="padding-top: 50px; background-color: white;"></div>
+                <div class="linea" style="height: 3px;"></div>
+                <div id="marcas_Titulo">
+                    MARCAS
+                </div>
+                <div id="marcas">
+                    <s:iterator var="m" value="lista_marcas">
+                        <table  class="img_Marcas">                        
+                            <tr>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <s:a action="TiendaMenu">
+                                        <img src="../Imagenes/Marcas/<s:property value="#m.marcaFoto"/>" alt="<s:property value="#m.marcaNombre"/>"/>
+                                        <s:param name="marcas2" value="#m.marcaId"/>
+                                    </s:a>
+                                </td>                            
+                            </tr>                        
+                        </table>
+                    </s:iterator>
+                </div>
+            </div>-->
         </div>
         <s:include value="tiendaFooter.jsp" />
+        <div id="cookies">
+            <div id="cookies">
+                <p>Esta web utiliza cookies para obtener datos estadísticos de la navegación de sus usuarios. Si continúas navegando consideramos que aceptas su uso.
+                    <a href="http://luislo.esy.es/politica-privacidad.php">Más información</a>
+                    <a onclick="aceptar_cookies();" style="cursor:pointer;">X Cerrar</a></p>
+            </div>
+        </div>
     </body>
 </html>
