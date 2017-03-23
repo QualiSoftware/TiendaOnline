@@ -290,6 +290,7 @@
                 <input type="hidden" name="accion" id="accionocul" value=<s:property value="accion" /> />
                 <input type="hidden" name="clave" value=<s:property value="clave" /> />
                 <input type="hidden" name="usuId2" value=<s:property value="clave" /> />
+                <div id="prueba">
                 <table id="cuenta_Usuario">
                     <tr>
                         <td colspan="2">
@@ -301,7 +302,7 @@
                             <s:label for="usuNombre2">Nombre (*)</s:label>  
                         </td>
                         <td>
-                            <s:textfield name="usuNombre2"  id="usuNombre2"></s:textfield>
+                        <s:textfield name="usuNombre2" cssClass="formulario_Rellenar" id="usuNombre2"></s:textfield>
                         </td>
                     </tr>
                     <tr>
@@ -309,7 +310,7 @@
                             <s:label for="usuApellidos2">Apellidos (*)</s:label>  
                         </td>
                         <td>
-                            <s:textfield name="usuApellidos2" id="usuApellidos2" ></s:textfield>
+                            <s:textfield name="usuApellidos2" cssClass="formulario_Rellenar" id="usuApellidos2" ></s:textfield>
                         </td>
                     </tr>
                     <tr>
@@ -318,10 +319,10 @@
                         </td>
                         <td>
                             <s:if test='%{accion == "a"}'>
-                                <s:textfield name="usuEmail2" id="usuEmail2" ></s:textfield>
+                                <s:textfield name="usuEmail2" cssClass="formulario_Rellenar" id="usuEmail2" ></s:textfield>
                             </s:if>
                             <s:else>
-                                <s:textfield name="usuEmail2" id="usuEmail2" readonly="true"></s:textfield>
+                                <s:textfield name="usuEmail2" cssClass="formulario_Rellenar" id="usuEmail2" readonly="true"></s:textfield>
                             </s:else>
                         </td>
                     </tr>
@@ -331,7 +332,7 @@
                             <s:label for="usuPassword2">Contraseña (*)</s:label>  
                         </td>
                         <td>
-                            <s:password name="usuPassword2" id="usuPassword2" ></s:password>
+                            <s:password name="usuPassword2" cssClass="formulario_Rellenar" id="usuPassword2" ></s:password>
                         </td>
                     </tr>
                     <tr>
@@ -339,7 +340,7 @@
                             <s:label for="passVerif">Repita la contraseña (*)</s:label>  
                         </td>
                         <td>
-                            <s:password id="passVerif" ></s:password>
+                            <s:password id="passVerif" cssClass="formulario_Rellenar"></s:password>
                         </td>
                     </tr>
                     </s:if>
@@ -348,7 +349,7 @@
                             <s:label for="usuDni2">NIF/NIE</s:label>  
                         </td>
                         <td>
-                            <s:textfield name="usuDni2" ></s:textfield>
+                            <s:textfield name="usuDni2" cssClass="formulario_Rellenar"></s:textfield>
                         </td>
                     </tr>
                     <tr>
@@ -360,7 +361,7 @@
                             <s:if test="%{!usuSexo2}">
                             <% selected = " selected='selected'";%>
                             </s:if>
-                            <select name="usuSexo2">
+                            <select name="usuSexo2" class="formulario_Rellenar" style="width: 110px">
                                 <option value="true">Mujer</option>
                                 <option value="false"<%=selected%>>Hombre</option>
                             </select>
@@ -371,7 +372,7 @@
                             <s:label for="usuFechaNac2">Fecha de nacimiento (*)</s:label>  
                         </td>
                         <td>
-                            <s:textfield name="usuFechaNac2" id="usuFechaNac2" cssClass="tcal" readonly="true"/>
+                        <s:textfield name="usuFechaNac2" id="usuFechaNac2" cssClass="tcal formulario_Rellenar" cssStyle="padding-right: 10px;" readonly="true"/>
                         </td>
                     </tr>
                     <tr>
@@ -379,7 +380,7 @@
                             <s:label for="usuTelefono2">Teléfono (*)</s:label>  
                         </td>
                         <td>
-                            <s:textfield name="usuTelefono2" id="usuTelefono2" ></s:textfield>
+                            <s:textfield name="usuTelefono2" id="usuTelefono2" cssClass="formulario_Rellenar" ></s:textfield>
                         </td>
                     </tr>
                     <tr>
@@ -387,7 +388,7 @@
                             <s:label for="usupais">País (*)</s:label>  
                         </td>
                         <td>                        
-                            <s:select id="pais" name="usupais" list="listaPaises" listValue="paisNombre" 
+                        <s:select cssClass="formulario_Rellenar" cssStyle="width: 190px;" id="pais" name="usupais" list="listaPaises" listValue="paisNombre" 
                                   listKey="paisId" value="usupais" onchange= "handleChange(this.value)" />
                         </td>
                     </tr>
@@ -396,7 +397,7 @@
                             <s:label for="provincias2">Provincia (*)</s:label>  
                         </td>
                         <td>
-                            <s:select id="provincias2" name="provincias2" list="{'Seleccione Provincia'}" />
+                            <s:select id="provincias2" cssClass="formulario_Rellenar" name="provincias2" list="{'Seleccione Provincia'}" />
                         <script>usarAJAX(<s:property value="provincias2"></s:property>);</script>
                         </td>
                     </tr>
@@ -405,7 +406,7 @@
                             <s:label for="usuLocalidad2">Localidad (*)</s:label>  
                         </td>
                         <td>
-                            <s:textfield name="usuLocalidad2" id="usuLocalidad2" ></s:textfield>
+                            <s:textfield name="usuLocalidad2" id="usuLocalidad2" cssClass="formulario_Rellenar"></s:textfield>
                         </td>
                     </tr>
                     <tr>
@@ -413,7 +414,7 @@
                             <s:label for="usuCp2">Código Postal (*)</s:label>  
                         </td>
                         <td>
-                            <s:textfield name="usuCp2" id="usuCp2" ></s:textfield>
+                            <s:textfield name="usuCp2" id="usuCp2" cssClass="formulario_Rellenar"></s:textfield>
                         </td>
                     </tr>
                     <tr>
@@ -421,7 +422,7 @@
                             <s:label for="usuDireccion2">Dirección (*)</s:label>  
                         </td>
                         <td>
-                            <s:textfield name="usuDireccion2" id="usuDireccion2" ></s:textfield>
+                            <s:textfield name="usuDireccion2" id="usuDireccion2" cssClass="formulario_Rellenar"></s:textfield>
                         </td>
                     </tr>
                     <tr >
@@ -450,6 +451,7 @@
                 </s:if>
             </s:form>
                 </div>    
+                </div>
         </div>
         <s:include value="tiendaFooter.jsp" />
         <div id="cookies">
