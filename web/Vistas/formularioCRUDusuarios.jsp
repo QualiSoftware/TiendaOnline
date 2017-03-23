@@ -372,7 +372,7 @@
                             <s:label for="usuFechaNac2">Fecha de nacimiento (*)</s:label>  
                         </td>
                         <td>
-                        <s:textfield name="usuFechaNac2" id="usuFechaNac2" cssClass="tcal formulario_Rellenar" cssStyle="padding-right: 10px;" readonly="true"/>
+                        <s:textfield name="usuFechaNac2" id="usuFechaNac2" cssClass="tcal formulario_rellenar_Fecha" cssStyle="padding-right: 10px;" readonly="true"/>
                         </td>
                     </tr>
                     <tr>

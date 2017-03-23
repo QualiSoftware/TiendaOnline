@@ -10,7 +10,7 @@
 
 /* input box in default state */ 
 .tcalInput {
-	background: url('img/cal.gif') 90% 50% no-repeat;
+	background: url('img/cal.gif') 90% 40% no-repeat;
 	padding-right: 20px;
 	cursor: pointer;
         width: 110px;
