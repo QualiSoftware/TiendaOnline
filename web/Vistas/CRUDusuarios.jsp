@@ -29,7 +29,7 @@
         <s:form action="UsuariosFiltro" id="formPrincipal" theme="simple">
         <table border="1">
             <tr>
-                <td colspan="9">
+                <td colspan="11">
                     Filtro : <s:textfield name="filtro" /><s:submit value="filtrar"></s:submit>
                 </td>
             </tr>
@@ -41,6 +41,7 @@
                 <th>Alta</th>
                 <th>DNI</th>
                 <th>Registrado</th>
+                <th>Activo</th>
                 <th>Descuento</th>
                 <th>Fecha límite descuento</th>
                 <th>Teléfono</th>
@@ -79,6 +80,10 @@
                         <s:if test="#a.usuAdministrador==0">Registrado</s:if>
                         <s:elseif test="#a.usuAdministrador==1">Administrador</s:elseif>
                         <s:elseif test="#a.usuAdministrador==2">No registrado</s:elseif>
+                    </td>
+                    <td>
+                        <s:if test="#a.usuActivo==0">No</s:if>
+                        <s:elseif test="#a.usuActivo==1">Si</s:elseif>
                     </td>
                     <td>
                         <s:property value="#a.usuDescuento"/>

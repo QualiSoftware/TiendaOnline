@@ -56,7 +56,7 @@
         <title><s:property value="cabeceraocul" /> de Usuario</title>
     </head>
     <body>
-        <div id="todo">        
+        <div id="todo">
             <div id="header">
                 <div id="marca">
                     <s:a action="Tienda">
@@ -157,9 +157,41 @@
                 </div>
                 <div id="iniciar_Sesion">
                     <s:if test="usi==''">
-                        <% 
-                          response.sendRedirect("Vistas/Tienda.action");
-                        %>
+                        <a href="#"> 
+                            <div id="mi_Cuenta_Txt">Mi Cuenta</div>
+                        </a>                    
+                        <s:form action="TiendaLogin" theme="simple">
+                            <div id="login">                                        
+                                <table >
+                                    <tr>
+                                        <td><span class="glyphicon glyphicon-user" aria-hidden="true" ></span>
+                                            <s:textfield name="usuario" class="btn btn-default" aria-label="Left Align" style="text-align: left; color: gray" />
+                                            <s:fielderror fieldName="usuario" theme="simple"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td> <span class="glyphicon glyphicon-lock" aria-hidden="true" ></span>
+                                            <s:password name="password" class="btn btn-default" style="text-align: left; color: gray" aria-label="Left Align" />
+                                            <s:fielderror fieldName="password" />
+                                            <input type="hidden" name="mensajeError" value="<s:property value="mensajeError"/>"/>
+                                            <s:property value="mensajeError"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href="#">
+                                                <s:submit value="Acceder" style="margin: 0 auto" class="btn btn-default"/>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            ¿Nuevo Cliente? <s:a action="UsuAlta" ><s:param name="accion" value="'a'"/>¡Regístrate!</s:a>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                        </s:form>
                     </s:if>
                     <s:if test="sesion.usuarioLogueado.usuId!=''">                    
                         <a href="#"> 
@@ -173,6 +205,8 @@
                         </div>
                     </s:if>
                 </div>
+                <s:if test="mensajeError == null"><script>fijarLogin('none');</script></s:if>
+                <s:else><script>fijarLogin('block');</script></s:else>
                 <div id="apadrina">
                     <s:a action="apadrina"><div id="apadrina_Txt">Apadrina  &nbsp;<span class="sin_Decoracion">|</span></div></s:a>
                 </div>
@@ -182,13 +216,13 @@
 
                 </div>
                 <div id="contacto">
-                <s:a action="contacto"><div id="contacto_Txt">Contacto  &nbsp;<span class="sin_Decoracion">|</span></div></s:a>                    
+                <s:a action="contacto"><div id="contacto_Txt">Contacto  &nbsp;<span class="sin_Decoracion">|</span></div></s:a>
                 </div>
                 <div id="lista_Deseos">
                 <s:a action="listaDeseos"><div id="lista_Deseos_Txt">Lista de deseos <span class="glyphicon glyphicon-star" style="color: black;"></span>  &nbsp;<span class="sin_Decoracion">|</span></div></s:a>
                 </div>
             </div>
-           <div id="linea1" class="linea"></div>
+            <div id="linea1" class="linea"></div>
             <div id="menu_Desplegable">
                 <img src="../Imagenes/Administracion/afdf338882d16dd2b1360aa975b18111.png" alt="" style="width: 30px; margin-right: 10px; opacity: 0.9;"/>
                 <div id="menu_Tabla">

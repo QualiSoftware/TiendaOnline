@@ -50,24 +50,6 @@
             <tr>
                 <td colspan="16" style="padding-right: 30%;">
                     <s:form action="RopaAdminFiltro" theme="simple" id="frm" cssStyle="display:inline;">
-                        <!--
-                        <s:label value=" Fecha desde " />
-                        <s:textfield name="fechaI" id="fechaI" cssClass="tcal" readonly="true"/>
-                        &nbsp;&nbsp;
-                        <s:label value="hasta " />
-                        <s:textfield name="fechaF" id="fechaF" cssClass="tcal" readonly="true"/>
-                        <%/*
-                            if((request.getParameter("fechaI") != null) && (request.getParameter("fechaF")) != null){
-                                if(!(request.getParameter("fechaI").equals("")) && !(request.getParameter("fechaF").equals(""))
-                                        && !(request.getParameter("fechaI").equals("null")) && !(request.getParameter("fechaF").equals("null"))){
-                                   */ %>
-                                    <input type="button" value="Borrar fechas" onclick="BorrarFechas();">
-                                    <%/*
-                                }
-                            }*/
-                        %>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        -->
                         Filtrar Ropa: <s:textfield name="filtro" />
                         &nbsp;&nbsp;&nbsp;&nbsp;
                         <%
