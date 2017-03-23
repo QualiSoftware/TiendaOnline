@@ -26,7 +26,9 @@
                 } else {
                     var unidades = document.getElementById('roUnidades2').value;
                     if(isNaN(unidades) || unidades < 1){
-                        alert("Unidades mal ingresadas");
+                        document.getElementById("mensajesError").innerHTML = "Unidades mal ingresadas";
+                    }else if(document.getElementById('color').value == 0){
+                        document.getElementById("mensajesError").innerHTML = "Debe seleccionar un color";
                     }else{
                         if(dato == 0){
                             document.getElementById('frm').action = "CrudActionRopaStockAdminMas";
@@ -35,7 +37,12 @@
                     }
                 }
             }
-        </script>     
+            
+            function fondo() {
+                var e = document.getElementById("color");
+                document.getElementById("color").style.backgroundColor = e.options[e.selectedIndex].text;
+            }
+        </script>
     </head>
     <body>
         <s:include value="cabeceraHeader.jsp" />
@@ -100,8 +107,15 @@
                             </div>
                         </s:if>
                         <s:else>
-                            <s:select name="color2" list="lista_colores" listValue="colorDescripcion" 
-                                      listKey="colorId" value="rstock.color.colorId"/>
+                            <!--<s:select name="color2" list="lista_colores" listValue="colorDescripcion" 
+                                      listKey="colorId" value="rstock.color.colorId"/>-->
+                            <select name="color2" id="color" class="decorated" onchange="fondo()">
+                                <option value="0">Seleccione un color</option>
+                                <s:iterator var="c" value="lista_colores">
+                                    <option value="<s:property value="#c.colorId"/>" style="background-color:<s:property value="#c.colorDescripcion"/>;"/><s:property value="#c.colorDescripcion"/></option>
+                                </s:iterator>
+                                
+                            </select>
                         </s:else>
                     </td>
                 </tr>
@@ -141,6 +155,7 @@
                 </tr>
             </table>
         </s:form>
+        <div id="mensajesError"></div>
     <center>
         <s:form action="RopaAdminFiltro" method="post" theme="simple">
             <input type="hidden" name="filtro" value=<s:property value="filtro" /> />
