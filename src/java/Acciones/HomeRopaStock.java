@@ -50,10 +50,10 @@ public class HomeRopaStock {
     private Map sesion;
     private Usuarios u;
     private List<RopaStock> lista_ropaStock;
-    private String clientela2,categoria2,marcas2,campania;
+    private String clientela2,categoria2,campania;
     private ArrayList<Ropa> lista_ropa,lista_menu_ropa;
     private List<Marcas>lista_marcas;
-    private String clientela, categoria, marca, campaniaNombre;
+    private String clientela, categoria, marca, campaniaNombre,marcaNom;
     private Map<String, String> stateMap2 = new LinkedHashMap<String, String>();
     private String roId2;
     private String precio;
@@ -304,6 +304,14 @@ public class HomeRopaStock {
         this.campaniaNombre = campaniaNombre;
     }
 
+    public String getMarcaNom() {
+        return marcaNom;
+    }
+
+    public void setMarcaNom(String marcaNom) {
+        this.marcaNom = marcaNom;
+    }
+
     public Map<String, String> getStateMap2() {
         return stateMap2;
     }
@@ -350,14 +358,6 @@ public class HomeRopaStock {
 
     public void setCategoria2(String categoria2) {
         this.categoria2 = categoria2;
-    }
-
-    public String getMarcas2() {
-        return marcas2;
-    }
-
-    public void setMarcas2(String marcas2) {
-        this.marcas2 = marcas2;
     }
 
     public String getCampania() {
@@ -442,7 +442,7 @@ public class HomeRopaStock {
         }
         clientela = tr.getClientela().getClientelaDescripcion();
         categoria = tr.getCategoria().getCatDescripcion();
-        marca = tr.getMarcas().getMarcaNombre();
+        marcaNom = tr.getMarcas().getMarcaNombre();
         t = descuentoEnRopa(tr);
         DecimalFormat df = new DecimalFormat("#.00");
         precio = df.format(t.getRoPrecio());

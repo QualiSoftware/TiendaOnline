@@ -474,7 +474,7 @@
             <result type="redirectAction">
                 <param name="clientela2">${clientela2}</param>
                 <param name="categoria2">${categoria2}</param>
-                <param name="marcas2">${marcas2}</param>
+                <param name="marca">${marca}</param>
                 <param name="campania">${campania}</param>
                 <param name="actionName">TiendaMenu</param>
             </result>

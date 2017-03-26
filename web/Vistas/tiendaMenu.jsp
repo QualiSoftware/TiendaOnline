@@ -31,10 +31,10 @@
             window.onload = muestra_Cantidad;            
         </script>
         <title>
-            <s:if test="(marcas2==null && clientela2!=null) || (marcas2=='' && clientela2!='')"><s:property value="categoria"/> <s:property value="clientela"/></s:if>
-                    <s:elseif test="(marcas2==null && clientela2==null && campania==null) || (marcas2=='' && clientela2=='' && campania=='')">Todas las ventas</s:elseif>
-                    <s:elseif test="(marcas2==null && campania!=null) || (marcas2=='' && campania!='')"><s:property value="campaniaNombre"/></s:elseif>
-                    <s:else><s:property value="marca"/></s:else>
+            <s:if test="(marca==null && clientela2!=null) || (marca=='' && clientela2!='')"><s:property value="categoria"/> <s:property value="clientela"/></s:if>
+                    <s:elseif test="(marca==null && clientela2==null && campania==null) || (marca=='' && clientela2=='' && campania=='')">Todas las ventas</s:elseif>
+                    <s:elseif test="(marca==null && campania!=null) || (marca=='' && campania!='')"><s:property value="campaniaNombre"/></s:elseif>
+                    <s:else><s:property value="marcaNom"/></s:else>
         </title>
     </head>
 
@@ -249,7 +249,7 @@
                     <input type="hidden" name="categoria" value="<s:property value="categoria"/>"/>
                     <input type="hidden" name="clientela2" value="<s:property value="clientela2"/>"/>
                     <input type="hidden" name="categoria2" value="<s:property value="categoria2"/>"/>
-                    <input type="hidden" name="marcas2" value="<s:property value="marcas2"/>"/>
+                    <input type="hidden" name="marca" value="<s:property value="marca"/>"/>
                     <input type="hidden" name="campania" value="<s:property value="campania"/>"/>
                     <div class="form-group">
                         <input type="text" style="position: absolute; top:0px; left: 0px;" class="form-control" placeholder="Búsqueda" name="filtro" value="<s:property value="filtro"/>">
@@ -298,7 +298,7 @@
                             <s:iterator var="a" value= "lista_marcas">
                                 <li><s:a action="TiendaMenu">
                                         <s:property value="#a.marcaNombre"/>
-                                        <s:param name="marcas2" value="#a.marcaId"/>
+                                        <s:param name="marca" value="#a.marcaId"/>
                                     </s:a></li>
                             </s:iterator>                       
                         </ul>                 
@@ -309,15 +309,15 @@
             <div id="contenido">
                 <div id="ruta_Navegacion">
                     <s:a action="Tienda">Inicio</s:a> > 
-                    <s:if test="(marcas2==null && clientela2!=null) || (marcas2=='' && clientela2!='')"><s:property value="categoria"/> <s:property value="clientela"/></s:if>
-                    <s:elseif test="(marcas2==null && clientela2==null && campania==null) || (marcas2=='' && clientela2=='' && campania=='')">Todas las ventas</s:elseif>
-                    <s:elseif test="(marcas2==null && campania!=null) || (marcas2=='' && campania!='')"><s:property value="campaniaNombre"/></s:elseif>
-                    <s:else><s:property value="marca"/></s:else>
+                    <s:if test="(marca==null && clientela2!=null) || (marca=='' && clientela2!='')"><s:property value="categoria"/> <s:property value="clientela"/></s:if>
+                    <s:elseif test="(marca==null && clientela2==null && campania==null) || (marca=='' && clientela2=='' && campania=='')">Todas las ventas</s:elseif>
+                    <s:elseif test="(marca==null && campania!=null) || (marca=='' && campania!='')"><s:property value="campaniaNombre"/></s:elseif>
+                    <s:else><s:property value="marcaNom"/></s:else>
                 </div>
                 <div id="nombre_Categoria">
-                    <s:if test="(marcas2==null && clientela2!=null) || (marcas2=='' && clientela2!='')"><s:property value="categoria"/> <s:property value="clientela"/></s:if>
-                    <s:elseif test="(marcas2==null && clientela2==null && campania==null) || (marcas2=='' && clientela2=='' && campania=='')">Todos nuestros productos</s:elseif>
-                    <s:elseif test="(marcas2==null && campania!=null) || (marcas2=='' && campania!='')">Las campañas más exclusivas</s:elseif>
+                    <s:if test="(marca==null && clientela2!=null) || (marca=='' && clientela2!='')"><s:property value="categoria"/> <s:property value="clientela"/></s:if>
+                    <s:elseif test="(marca==null && clientela2==null && campania==null) || (marca=='' && clientela2=='' && campania=='')">Todos nuestros productos</s:elseif>
+                    <s:elseif test="(marca==null && campania!=null) || (marca=='' && campania!='')">Las campañas más exclusivas</s:elseif>
                     <s:else>Las marcas que están de moda</s:else>
                 </div>
                 <div id="productos" style="margin-top: 50px;">
@@ -329,7 +329,7 @@
                                     <s:a action="RopaPopUp">
                                         <s:param name="clientela2" value="%{clientela2}"/>
                                         <s:param name="categoria2" value="%{categoria2}"/>
-                                        <s:param name="marcas2" value="%{marcas2}"/>
+                                        <s:param name="marca" value="%{marca}"/>
                                         <s:param name="campania" value="campania"/>
                                         <s:param name="roId" value="#m.roId"/>
                                         <%int aux = 0;%>
@@ -431,7 +431,7 @@
                                         <s:a action="RopaPopUp">
                                             <s:param name="clientela2" value="%{clientela2}"/>
                                             <s:param name="categoria2" value="%{categoria2}"/>
-                                            <s:param name="marcas2" value="%{marcas2}"/>
+                                            <s:param name="marca" value="%{marca}"/>
                                             <s:param name="campania" value="campania"/>
                                             <s:param name="roId" value="#m.roId"/>
                                             <img src="../Imagenes/Administracion/shopping-basket-xxl.png" title="Añadir a la Cesta" style="box-shadow: 0px 0px 0px;">

@@ -291,7 +291,7 @@
                             <s:iterator var="a" value= "lista_marcas">
                                 <li><s:a action="TiendaMenu">
                                         <s:property value="#a.marcaNombre"/>
-                                        <s:param name="marcas2" value="#a.marcaId"/>
+                                        <s:param name="marca" value="#a.marcaId"/>
                                     </s:a></li>
                                 </s:iterator>                       
                         </ul>                 
@@ -333,7 +333,7 @@
                                 <td>
                                     <s:a action="TiendaMenu">
                                         <img src="../Imagenes/Marcas/<s:property value="#m.marcaFoto"/>" alt="<s:property value="#m.marcaNombre"/>"/>
-                                        <s:param name="marcas2" value="#m.marcaId"/>
+                                        <s:param name="marca" value="#m.marcaId"/>
                                     </s:a>
                                 </td>                            
                             </tr>                        

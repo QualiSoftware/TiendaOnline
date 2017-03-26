@@ -93,6 +93,7 @@ public class HomeRopa extends ActionSupport {
     private String color2;
     private String look2;
     private String marca;
+    private String marcaNom;
     private String marcas2;
     private String tallas2;
     private String roDescripcion2;
@@ -307,6 +308,14 @@ public class HomeRopa extends ActionSupport {
 
     public void setMarca(String marca) {
         this.marca = marca;
+    }
+
+    public String getMarcaNom() {
+        return marcaNom;
+    }
+
+    public void setMarcaNom(String marcaNom) {
+        this.marcaNom = marcaNom;
     }
 
     public String getMarcas2() {
@@ -963,16 +972,15 @@ public class HomeRopa extends ActionSupport {
         if (filtro == null || filtro.equals("null")) {
             filtro = "";
         }
-        //System.out.println("filtro: "+filtro+" clientela2: "+clientela2+" categoria2: "+categoria2+" marcas2: "+marcas2);
-        if ((marcas2 == null || marcas2.equals("")) && (clientela2 == null || clientela2.equals("")) && (campania == null || campania.equals(""))) {            
+        if ((marca == null || marca.equals("")) && (clientela2 == null || clientela2.equals("")) && (campania == null || campania.equals(""))) {            
             lista_ropa = ControladoresDAO.cRopa.RecuperaTodos(filtro,"categoria.catDescripcion","","","1");
-        }else if((marcas2 == null || marcas2.equals("")) && (campania == null || campania.equals(""))){
+        }else if((marca == null || marca.equals("")) && (campania == null || campania.equals(""))){
             lista_ropa = ControladoresDAO.cRopa.RecuperaClientelaCategoria(clientela2, categoria2,filtro);
             Clientela cli = ControladoresDAO.cClientela.RecuperaPorId(Integer.parseInt(clientela2));
             clientela = cli.getClientelaDescripcion();
             Categoria cat = ControladoresDAO.cCategorias.RecuperaPorId(Integer.parseInt(categoria2));
             categoria = cat.getCatDescripcion();
-        }else if(marcas2 == null || marcas2.equals("")){
+        }else if(marca == null || marca.equals("")){
             List <Integer> listaRoId = ControladoresDAO.cCampaniasRopa.RecuperaRopaPorCampania(Integer.parseInt(campania));
             for(Integer lroid:listaRoId){
                 lista_ropa.add(ControladoresDAO.cRopa.RecuperaPorId(lroid));
@@ -981,9 +989,9 @@ public class HomeRopa extends ActionSupport {
             campaniaNombre = camp.getCamNombre();
             camDescuento = camp.getCamDescuento();
         }else{
-            lista_ropa = ControladoresDAO.cRopa.RecuperaPorMarca(marcas2, filtro);
-            Marcas mar = ControladoresDAO.cMarcas.RecuperaPorId(Integer.parseInt(marcas2));
-            marca = mar.getMarcaNombre();
+            lista_ropa = ControladoresDAO.cRopa.RecuperaPorMarca(marca, filtro);
+            Marcas mar = ControladoresDAO.cMarcas.RecuperaPorId(Integer.parseInt(marca));
+            marcaNom = mar.getMarcaNombre();
         }
         lista_ropa = poneDescuentosBien(lista_ropa);        
         lista_ropa_Cestas = ControladoresDAO.cCesta.RecuperaTodos(usi);

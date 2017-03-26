@@ -332,7 +332,7 @@
                     <input type="hidden" name="categoria" value=""/>
                     <input type="hidden" name="clientela2" value=""/>
                     <input type="hidden" name="categoria2" value=""/>
-                    <input type="hidden" name="marcas2" value=""/>
+                    <input type="hidden" name="marca" value=""/>
                     <input type="hidden" name="campania" value=""/>
                     <div class="form-group">
                         <input type="text" style="position: absolute; top:0px; left: 0px;" class="form-control" placeholder="Búsqueda" name="filtro" value="<s:property value="filtro"/>">
@@ -381,7 +381,7 @@
                             <s:iterator var="a" value= "lista_marcas">
                                 <li><s:a action="TiendaMenu">
                                         <s:property value="#a.marcaNombre"/>
-                                        <s:param name="marcas2" value="#a.marcaId"/>
+                                        <s:param name="marca" value="#a.marcaId"/>
                                     </s:a></li>
                             </s:iterator>                       
                         </ul>                 
@@ -394,12 +394,12 @@
                 <s:a action="TiendaMenu">
                     <s:param name="clientela2" value="%{clientela2}"/>
                     <s:param name="categoria2" value="%{categoria2}"/>
-                    <s:param name="marcas2" value="%{marcas2}"/>
+                    <s:param name="marca" value="%{marca}"/>
                     <s:param name="campania" value="campania"/>
-                    <s:if test="(marcas2==null && clientela2!=null) || (marcas2=='' && clientela2!='')"><s:property value="categoria"/> <s:property value="clientela"/></s:if>
-                    <s:elseif test="(marcas2==null && clientela2==null && campania==null) || (marcas2=='' && clientela2=='' && campania=='')">Todas las ventas</s:elseif>
-                    <s:elseif test="(marcas2==null && campania!=null) || (marcas2=='' && campania!='')"><s:property value="campaniaNombre"/></s:elseif>
-                    <s:else><s:property value="marca"/></s:else>
+                    <s:if test="(marca==null && clientela2!=null) || (marca=='' && clientela2!='')"><s:property value="categoria"/> <s:property value="clientela"/></s:if>
+                    <s:elseif test="(marca==null && clientela2==null && campania==null) || (marca=='' && clientela2=='' && campania=='')">Todas las ventas</s:elseif>
+                    <s:elseif test="(marca==null && campania!=null) || (marca=='' && campania!='')"><s:property value="campaniaNombre"/></s:elseif>
+                    <s:else><s:property value="marcaNom"/></s:else>
                 </s:a> > 
                 <s:property value="t.roDescripcion"/>
             </div>
@@ -407,7 +407,7 @@
             <s:form id="frm" action="TiendaCesta" method="POST" theme="simple">
                 <input type='hidden' name='clientela2' value='<s:property value="clientela2"/>'/>
                 <input type='hidden' name='categoria2' value='<s:property value="categoria2"/>'/>
-                <input type='hidden' name='marcas2' value='<s:property value="marcas2"/>'/>
+                <input type='hidden' name='marca' value='<s:property value="marca"/>'/>
                 <input type='hidden' name='campania' value='<s:property value="campania"/>'/>
                 <input type='hidden' name="accionocul" value="'c'"/>
                 <input type='hidden' name='ropa' id='ropa' value='<s:property value="roId"/>'/>
@@ -470,7 +470,14 @@
                                 Precio:
                             </td>
                             <td>
-                                <span style="text-decoration: line-through; font-size: 15px; color: #999999; font-weight: bold" ><s:property value="precio"/></span><span style="padding-left: 10px; font-size: 15px; font-weight: bold;"><s:property value="precioConDescuento"/> €</span>
+                                <span style="text-decoration: line-through; font-size: 15px; color: #999999; font-weight: bold" >
+                                    <s:property value="precio"/>
+                                    <s:property value="getText('{0,number,##0.00}',{t.ropaStock.ropa.roPrecio})"/>
+                                </span>
+                                <span style="padding-left: 10px; font-size: 15px; font-weight: bold;">
+                                    <s:property value="precioConDescuento"/> €
+                                    <s:property value="getText('{0,number,##0.00}',{t.ropaStock.ropa.roPrecio - (t.ropaStock.ropa.roPrecio * t.ropaStock.ropa.roDescuento / 100)})"/>
+                                </span>
                             </td>
                         </tr>
                         <tr>

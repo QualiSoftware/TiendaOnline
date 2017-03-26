@@ -305,14 +305,6 @@ public class HomeCesta extends ActionSupport {
         this.categoria2 = categoria2;
     }
 
-    public String getMarcas2() {
-        return marcas2;
-    }
-
-    public void setMarcas2(String marcas2) {
-        this.marcas2 = marcas2;
-    }
-
     public String getCampania() {
         return campania;
     }
