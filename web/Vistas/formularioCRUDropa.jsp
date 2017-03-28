@@ -77,14 +77,14 @@
                     </tr>
                     <tr>
                         <td>
-                        <s:label for="clientela2">Clientela</s:label>  
+                        <s:label for="clientela">Clientela</s:label>  
                         </td>
                         <td>
                         <s:if test='%{accionocul == "e" || accionocul == "c"}'>
                             <s:textfield name="t.clientela.clientelaDescripcion" readonly="true" ></s:textfield>
                         </s:if>
                         <s:else>
-                            <s:select name="clientela2" list="lista_clientela" listValue="clientelaDescripcion" 
+                            <s:select name="clientela" list="lista_clientela" listValue="clientelaDescripcion" 
                                   listKey="clientelaId" value="t.clientela.clientelaId"/>
                         </s:else>
                     </td>
@@ -122,14 +122,14 @@
                 <tr>
 
                     <td>
-                        <s:label for="marcas2">Marca</s:label>  
+                        <s:label for="marca">Marca</s:label>  
                         </td>
                         <td>
                         <s:if test='%{accionocul == "e" || accionocul == "c"}'>
                             <s:textfield name="t.marcas.marcaNombre" readonly="true" ></s:textfield>
                         </s:if>
                         <s:else>
-                            <s:select name="marcas2" list="lista_marcas" listValue="marcaNombre" 
+                            <s:select name="marca" list="lista_marcas" listValue="marcaNombre" 
                                   listKey="marcaId" value="t.marcas.marcaId"/>
                         </s:else>
 
@@ -226,7 +226,7 @@
                         <%
                         } else {
                         %>
-                            <s:select id="categoria" name="categoria2" list="lista_categoria" listValue="catDescripcion" 
+                            <s:select id="categoria" name="categoria" list="lista_categoria" listValue="catDescripcion" 
                                       listKey="catId" value="t.categoria.catId" onchange= "handleChange(this.value)" />
                         <%
                             }

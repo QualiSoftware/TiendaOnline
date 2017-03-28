@@ -452,7 +452,8 @@
             <result>/Vistas/tiendaMenu.jsp</result>
         </action>
         
-        <action name="RopaPopUp" class="Acciones.HomeRopaStock" method="RopaPopUp">
+        <action name="RopaPopUp" class="Acciones.HomeRopa" method="RopaPopUp">
+        <!--<action name="RopaPopUp" class="Acciones.HomeRopaStock" method="RopaPopUp">-->
             <result>/Vistas/tiendaDetalles.jsp</result>
         </action>
         
