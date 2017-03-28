@@ -78,6 +78,7 @@ public class HomeCesta extends ActionSupport {
     private String botonocul;
     private String accionocul;
     private String clientela;
+    private String clientelaNombre;
     private Double precioEliminar = 0.0;
     private boolean aceptarpago;
     private Usuarios u;
@@ -85,8 +86,6 @@ public class HomeCesta extends ActionSupport {
     private String prov;
     private String pais;
     private int facUsuId;
-    private String clientela2;
-    private String categoria2;
     private String marcas2;
     private String campania;
     private int ropa,color,talla;
@@ -143,6 +142,14 @@ public class HomeCesta extends ActionSupport {
 
     public void setClientela(String clientela) {
         this.clientela = clientela;
+    }
+
+    public String getClientelaNombre() {
+        return clientelaNombre;
+    }
+
+    public void setClientelaNombre(String clientelaNombre) {
+        this.clientelaNombre = clientelaNombre;
     }
 
     public int getClave() {
@@ -287,22 +294,6 @@ public class HomeCesta extends ActionSupport {
 
     public void setFacUsuId(int facUsuId) {
         this.facUsuId = facUsuId;
-    }
-
-    public String getClientela2() {
-        return clientela2;
-    }
-
-    public void setClientela2(String clientela2) {
-        this.clientela2 = clientela2;
-    }
-
-    public String getCategoria2() {
-        return categoria2;
-    }
-
-    public void setCategoria2(String categoria2) {
-        this.categoria2 = categoria2;
     }
 
     public String getCampania() {
@@ -521,7 +512,7 @@ public class HomeCesta extends ActionSupport {
     public String CargaEliminaCesta() throws Exception {
 
         t = ControladoresDAO.cCesta.RecuperaPorId(clave);
-        clientela = t.getRopaStock().getRopa().getClientela().getClientelaDescripcion();
+        clientelaNombre = t.getRopaStock().getRopa().getClientela().getClientelaDescripcion();
         clave = t.getCestaId();
         roId2 = t.getRopaStock().getRopa().getRoId();
         precioEliminar = t.getCestaUnidades() * (t.getRopaStock().getRopa().getRoPrecio() - (t.getRopaStock().getRopa().getRoPrecio() * t.getRopaStock().getRopa().getRoDescuento() / 100));

@@ -279,8 +279,8 @@
                                 <s:if test="#a.clientela.clientelaDescripcion=='Mujer'">
                                     <li><s:a action="TiendaMenu">
                                             <s:property value="#a.categoria.catDescripcion"/>
-                                            <s:param name="clientela2" value="#a.clientela.clientelaId"/>
-                                            <s:param name="categoria2" value="#a.categoria.catId"/>
+                                            <s:param name="clientela" value="#a.clientela.clientelaId"/>
+                                            <s:param name="categoria" value="#a.categoria.catId"/>
                                         </s:a></li>
                                 </s:if>
                             </s:iterator>
@@ -293,8 +293,8 @@
                                 <s:if test="#a.clientela.clientelaDescripcion=='Hombre'">
                                     <li><s:a action="TiendaMenu">
                                         <s:property value="#a.categoria.catDescripcion"/>
-                                        <s:param name="clientela2" value="#a.clientela.clientelaId"/>
-                                        <s:param name="categoria2" value="#a.categoria.catId"/>
+                                        <s:param name="clientela" value="#a.clientela.clientelaId"/>
+                                        <s:param name="categoria" value="#a.categoria.catId"/>
                                     </s:a></li>                                    
                                 </s:if>
                             </s:iterator>                      
@@ -307,7 +307,7 @@
                             <s:iterator var="a" value= "lista_marcas">
                                 <li><s:a action="TiendaMenu">
                                         <s:property value="#a.marcaNombre"/>
-                                        <s:param name="marcas2" value="#a.marcaId"/>
+                                        <s:param name="marca" value="#a.marcaId"/>
                                     </s:a></li>
                             </s:iterator>                       
                         </ul>                 

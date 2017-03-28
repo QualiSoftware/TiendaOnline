@@ -50,7 +50,7 @@ public class HomeRopaStock {
     private Map sesion;
     private Usuarios u;
     private List<RopaStock> lista_ropaStock;
-    private String clientela2,categoria2,campania;
+    private String campania, clientelaNombre, categoriaNombre;
     private ArrayList<Ropa> lista_ropa,lista_menu_ropa;
     private List<Marcas>lista_marcas;
     private String clientela, categoria, marca, campaniaNombre,marcaNom;
@@ -240,14 +240,6 @@ public class HomeRopaStock {
         this.lista_ropaStock = lista_ropaStock;
     }
 
-    public String getClientela2() {
-        return clientela2;
-    }
-
-    public void setClientela2(String clientela2) {
-        this.clientela2 = clientela2;
-    }
-
     public ArrayList<Ropa> getLista_ropa() {
         return lista_ropa;
     }
@@ -351,14 +343,6 @@ public class HomeRopaStock {
     public void setMaximo(int maximo) {
         this.maximo = maximo;
     }
-    
-    public String getCategoria2() {
-        return categoria2;
-    }
-
-    public void setCategoria2(String categoria2) {
-        this.categoria2 = categoria2;
-    }
 
     public String getCampania() {
         return campania;
@@ -366,6 +350,22 @@ public class HomeRopaStock {
 
     public void setCampania(String campania) {
         this.campania = campania;
+    }
+
+    public String getClientelaNombre() {
+        return clientelaNombre;
+    }
+
+    public void setClientelaNombre(String clientelaNombre) {
+        this.clientelaNombre = clientelaNombre;
+    }
+
+    public String getCategoriaNombre() {
+        return categoriaNombre;
+    }
+
+    public void setCategoriaNombre(String categoriaNombre) {
+        this.categoriaNombre = categoriaNombre;
     }
 
     @SkipValidation
@@ -440,8 +440,8 @@ public class HomeRopaStock {
         }else{
             maximo = 1;
         }
-        clientela = tr.getClientela().getClientelaDescripcion();
-        categoria = tr.getCategoria().getCatDescripcion();
+        clientelaNombre = tr.getClientela().getClientelaDescripcion();
+        categoriaNombre = tr.getCategoria().getCatDescripcion();
         marcaNom = tr.getMarcas().getMarcaNombre();
         t = descuentoEnRopa(tr);
         DecimalFormat df = new DecimalFormat("#.00");

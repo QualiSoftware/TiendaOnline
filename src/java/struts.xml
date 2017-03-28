@@ -472,8 +472,8 @@
         
         <action name="TiendaCesta" class="Acciones.HomeCesta" method="CrudActionUsuariosCesta">
             <result type="redirectAction">
-                <param name="clientela2">${clientela2}</param>
-                <param name="categoria2">${categoria2}</param>
+                <param name="clientela">${clientela}</param>
+                <param name="categoria">${categoria}</param>
                 <param name="marca">${marca}</param>
                 <param name="campania">${campania}</param>
                 <param name="actionName">TiendaMenu</param>

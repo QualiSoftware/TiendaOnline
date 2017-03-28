@@ -243,9 +243,9 @@
                 <s:form role="search" action="TiendaMenu" theme="simple">
                     <input type="hidden" name="clientela" value="<s:property value="clientela"/>"/>
                     <input type="hidden" name="categoria" value="<s:property value="categoria"/>"/>
-                    <input type="hidden" name="clientela2" value="<s:property value="clientela2"/>"/>
-                    <input type="hidden" name="categoria2" value="<s:property value="categoria2"/>"/>
-                    <input type="hidden" name="marcas2" value="<s:property value="marcas2"/>"/>
+                    <input type="hidden" name="clientelaNombre" value="<s:property value="clientelaNombre"/>"/>
+                    <input type="hidden" name="categoriaNombre" value="<s:property value="categoriaNombre"/>"/>
+                    <input type="hidden" name="marca" value="<s:property value="marca"/>"/>
                     <input type="hidden" name="campania" value="<s:property value="campania"/>"/>
                     <div class="form-group">
                         <input type="text" style="position: absolute; top:0px; left: 0px;" class="form-control" placeholder="Búsqueda" name="filtro" value="<s:property value="filtro"/>">
@@ -266,8 +266,8 @@
                                 <s:if test="#a.clientela.clientelaDescripcion=='Mujer'">
                                     <li><s:a action="TiendaMenu">
                                             <s:property value="#a.categoria.catDescripcion"/>
-                                            <s:param name="clientela2" value="#a.clientela.clientelaId"/>
-                                            <s:param name="categoria2" value="#a.categoria.catId"/>
+                                            <s:param name="clientela" value="#a.clientela.clientelaId"/>
+                                            <s:param name="categoria" value="#a.categoria.catId"/>
                                         </s:a></li>
                                 </s:if>
                             </s:iterator>
@@ -280,8 +280,8 @@
                                 <s:if test="#a.clientela.clientelaDescripcion=='Hombre'">
                                     <li><s:a action="TiendaMenu">
                                         <s:property value="#a.categoria.catDescripcion"/>
-                                        <s:param name="clientela2" value="#a.clientela.clientelaId"/>
-                                        <s:param name="categoria2" value="#a.categoria.catId"/>
+                                        <s:param name="clientela" value="#a.clientela.clientelaId"/>
+                                        <s:param name="categoria" value="#a.categoria.catId"/>
                                     </s:a></li>                                    
                                 </s:if>
                             </s:iterator>                      
@@ -294,7 +294,7 @@
                             <s:iterator var="a" value= "lista_marcas">
                                 <li><s:a action="TiendaMenu">
                                         <s:property value="#a.marcaNombre"/>
-                                        <s:param name="marcas2" value="#a.marcaId"/>
+                                        <s:param name="marca" value="#a.marcaId"/>
                                     </s:a></li>
                             </s:iterator>                       
                         </ul>                 

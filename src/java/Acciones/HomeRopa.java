@@ -88,7 +88,10 @@ public class HomeRopa extends ActionSupport {
     private int camDescuento;
     private String clientela;
     private String categoria;
+    private String categoria2;
     private String clientela2;
+    private String categoriaNombre;
+    private String clientelaNombre;
     private String coleccion2;
     private String color2;
     private String look2;
@@ -105,7 +108,6 @@ public class HomeRopa extends ActionSupport {
     private String accionocul;
     private String roFecha2;
     private Set<Fotos> fotoses2;
-    private String categoria2;
     private String subcategoria2;
     private String fotoAlta1;
     private String fotoAlta2;
@@ -608,6 +610,22 @@ public class HomeRopa extends ActionSupport {
         this.clientela2 = clientela2;
     }
 
+    public String getCategoriaNombre() {
+        return categoriaNombre;
+    }
+
+    public void setCategoriaNombre(String categoriaNombre) {
+        this.categoriaNombre = categoriaNombre;
+    }
+
+    public String getClientelaNombre() {
+        return clientelaNombre;
+    }
+
+    public void setClientelaNombre(String clientelaNombre) {
+        this.clientelaNombre = clientelaNombre;
+    }
+
     public String getColor2() {
         return color2;
     }
@@ -972,14 +990,14 @@ public class HomeRopa extends ActionSupport {
         if (filtro == null || filtro.equals("null")) {
             filtro = "";
         }
-        if ((marca == null || marca.equals("")) && (clientela2 == null || clientela2.equals("")) && (campania == null || campania.equals(""))) {            
+        if ((marca == null || marca.equals("")) && (clientela == null || clientela.equals("")) && (campania == null || campania.equals(""))) {            
             lista_ropa = ControladoresDAO.cRopa.RecuperaTodos(filtro,"categoria.catDescripcion","","","1");
         }else if((marca == null || marca.equals("")) && (campania == null || campania.equals(""))){
-            lista_ropa = ControladoresDAO.cRopa.RecuperaClientelaCategoria(clientela2, categoria2,filtro);
-            Clientela cli = ControladoresDAO.cClientela.RecuperaPorId(Integer.parseInt(clientela2));
-            clientela = cli.getClientelaDescripcion();
-            Categoria cat = ControladoresDAO.cCategorias.RecuperaPorId(Integer.parseInt(categoria2));
-            categoria = cat.getCatDescripcion();
+            lista_ropa = ControladoresDAO.cRopa.RecuperaClientelaCategoria(clientela, categoria,filtro);
+            Clientela cli = ControladoresDAO.cClientela.RecuperaPorId(Integer.parseInt(clientela));
+            clientelaNombre = cli.getClientelaDescripcion();
+            Categoria cat = ControladoresDAO.cCategorias.RecuperaPorId(Integer.parseInt(categoria));
+            categoriaNombre = cat.getCatDescripcion();
         }else if(marca == null || marca.equals("")){
             List <Integer> listaRoId = ControladoresDAO.cCampaniasRopa.RecuperaRopaPorCampania(Integer.parseInt(campania));
             for(Integer lroid:listaRoId){
