@@ -15,10 +15,15 @@
 	cursor: pointer;
         width: 110px;
 }
+.tcalInput:hover {
+	background-color: red;
+        
+}
 
 /* additional properties for input boxe in activated state, above still applies unless in conflict */
 .tcalActive {
 	background-image: url('img/no_cal.gif');
+        background-color: red;
 }
 /* container of calendar's pop-up */
 #tcal {

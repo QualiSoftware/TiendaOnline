@@ -319,7 +319,7 @@
                 <input type="hidden" name="accion" id="accionocul" value=<s:property value="accion" /> />
                 <input type="hidden" name="clave" value=<s:property value="clave" /> />
                 <input type="hidden" name="usuId2" value=<s:property value="clave" /> />
-                <div id="prueba">
+                
                 <table id="cuenta_Usuario">
                     <tr>
                         <td colspan="2">
@@ -327,10 +327,10 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>
+                        <td style="padding-top: 20px;">
                             <s:label for="usuNombre2">Nombre (*)</s:label>  
                         </td>
-                        <td>
+                        <td style="padding-top: 20px;">
                         <s:textfield name="usuNombre2" cssClass="formulario_Rellenar" id="usuNombre2"></s:textfield>
                         </td>
                     </tr>
@@ -401,7 +401,7 @@
                             <s:label for="usuFechaNac2">Fecha de nacimiento (*)</s:label>  
                         </td>
                         <td>
-                        <s:textfield name="usuFechaNac2" id="usuFechaNac2" cssClass="tcal formulario_rellenar_Fecha" cssStyle="padding-right: 10px;" readonly="true"/>
+                        <s:textfield name="usuFechaNac2" id="usuFechaNac2" cssClass="tcal formulario_rellenar_Fecha" cssStyle="padding-right: 10px; background-color: white;" readonly="true"/>
                         </td>
                     </tr>
                     <tr>
@@ -455,18 +455,31 @@
                         </td>
                     </tr>
                     <tr >
-                        <td colspan="2" id="cuenta_usuario_Botonera">
-                            <input type="button" onclick="Verificar('m');" value=<s:property value="botonocul" /> />
+                        <td colspan="2" id="cuenta_usuario_Botonera" style="padding-bottom: 30px;">
+                            <input class="botones_cuenta_usuario" style="margin-bottom: 0px; vertical-align: 0px; border: 0px; background-color: #cc0033;
+    color: white;
+    
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 3px;
+    padding-top: 3px;
+    cursor: pointer;
+    border-radius: 5px;
+    height: 26px;
+    text-align: center;
+    font-size: 15px;
+    box-shadow: 3px 3px 3px grey;
+    text-decoration: none; " type="button" onclick="Verificar('m');" value=<s:property value="botonocul" /> />
                         &nbsp;&nbsp;&nbsp;&nbsp;
                         <s:a action="Tienda">
-                            <i style="font-size: 20px;">Volver</i>
+                            <i  class="botones_cuenta_usuario" style="text-decoration: none;"><span style="text-decoration: none;">Volver</span></i>
                         </s:a>
                         <s:if test='%{accion == "m"}'>
                             &nbsp;&nbsp;&nbsp;&nbsp;
                             <s:a action="FormContrasenia">
                                 <s:param name="accion" value="accion"/>
                                 <s:param name="clave" value="clave"/>
-                                Modificar contraseña
+                                <span class="botones_cuenta_usuario">Modificar contraseña</span>
                             </s:a>
                         </s:if>
                         </td>
@@ -480,7 +493,7 @@
                 </s:if>
             </s:form>
                 </div>    
-                </div>
+                
         </div>
         <s:include value="tiendaFooter.jsp" />
         <div id="cookies">

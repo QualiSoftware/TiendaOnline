@@ -1229,13 +1229,30 @@ div[id^=”Stock_Excedido”]{
 
 #cuenta_Usuario{
     margin-top: 50px;    
-    margin-left: 50px;    
+    margin-left: 50px;
+    background-color: #dedede;
+    padding: 200px;
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px grey;
 }
 #cuenta_Usuario td{
     padding-bottom: 10px;
     
 }
 #cuenta_Usuario td:nth-child(even){
+    padding-left: 30px;
+    padding-right: 30px;
+    
+}
+#cuenta_Usuario input:hover{
+    background-color: whitesmoke;
+    /*-webkit-transition: 0.3s;*/
+}
+#cuenta_Usuario select:hover{
+    background-color: whitesmoke;
+    /*-webkit-transition: 0.3s;*/
+}
+#cuenta_Usuario td:nth-child(odd){
     padding-left: 30px;
     
 }
@@ -1253,7 +1270,7 @@ div[id^=”Stock_Excedido”]{
     border-radius: 5px;
     padding-left: 5px;
     padding-right: 5px;
-    box-shadow: 3px 3px 3px #ececec;
+    box-shadow: 3px 3px 3px #cacaca;
     width: 190px;
 }
 .formulario_rellenar_Fecha{
@@ -1261,8 +1278,11 @@ div[id^=”Stock_Excedido”]{
     border-radius: 5px;
     padding-left: 5px;
     padding-right: 5px;
-    box-shadow: 3px 3px 3px #ececec;
+    box-shadow: 3px 3px 3px #cacaca;
     width: 110px;
+}
+.formulario_rellenar_Fecha:hover {
+    background-color: red;
 }
 
 /*#prueba:-webkit-autofill,
@@ -1304,4 +1324,26 @@ select:-webkit-autofill:focus{
     border-radius: 5px;
 }
 
+.botones_cuenta_usuario{
+    background-color: #cc0033;
+    color: white;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    height: 30px;
+    text-align: center;
+    font-size: 15px;
+    box-shadow: 3px 3px 3px grey;
+    text-decoration: none;
+}
+.botones_cuenta_usuario:hover{
+    text-decoration: none;
+    -webkit-transform: scale(1.1);
+    -webkit-transition: 0.3s;
+}
+.botones_cuenta_usuario a{
+    text-decoration: none;
+}
 /* FIN Cuenta Usuario */
