@@ -37,7 +37,6 @@ public class cClientela {
         sesion.beginTransaction();
         try{
             if(esto!=null){
-               System.out.println(esto.getClientelaId());
                 sesion.delete(esto);
                 sesion.getTransaction().commit();
                 sesion.evict(esto);

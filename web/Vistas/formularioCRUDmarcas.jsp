@@ -79,15 +79,22 @@
                     <td>
                         <s:if test='%{accion == "e"}'>
                             <input type="hidden" name="marcaFoto" value="<s:property value="marcaFoto" />" />
-                            <img src="../Imagenes/Marcas/<s:property value="marcaFoto"/>" height="70" alt="<s:property value="marcaFoto"/>"/>
+                            <s:if test="marcaFoto != ''">
+                                <img src="../Imagenes/Marcas/<s:property value="marcaFoto"/>" height="70" alt="<s:property value="marcaFoto"/>"/>
+                            </s:if>
                         </s:if>
                         <s:elseif test='%{accion == "a"}'>
                             <input type="file" name="archivoMarca"/>
                         </s:elseif>
                         <s:else>
                             <input type="hidden" name="marcaFoto" value="<s:property value="marcaFoto" />" />
-                            <img src="../Imagenes/Marcas/<s:property value="marcaFoto"/>" height="70" alt="<s:property value="marcaFoto"/>"/>
-                            <input type="file" name="archivoMarca"/>
+                            <s:if test="marcaFoto != ''">
+                                <img src="../Imagenes/Marcas/<s:property value="marcaFoto"/>" height="70" alt="<s:property value="marcaFoto"/>"/>
+                                <input type="file" name="archivoMarca"/>
+                            </s:if>
+                            <s:else>
+                                <input type="file" name="archivoMarca"/>
+                            </s:else>
                         </s:else>
                     </td>
                 </tr>

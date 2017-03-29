@@ -201,11 +201,9 @@ public class HomeTallas extends ActionSupport {
             ControladoresDAO.cTallas.Modifica(t);
         }
         if (accion.equals("e")) {
-            ArrayList listaInactivas = ControladoresDAO.cRopa.RecuperaTodoPorAlgo("tallas.tallaId",tallaId,0);
-            ArrayList listaActivas = ControladoresDAO.cRopa.RecuperaTodoPorAlgo("tallas.tallaId",tallaId,1);
-            int cantidad = listaActivas.size() + listaInactivas.size();
-            if(cantidad > 0){
-                mensajeNoBorrar = "Hay "+listaActivas.size()+" ropa visible y "+listaInactivas.size()+" ropa no visible \r\nque utilizan esta Talla.";
+            List cantidad = ControladoresDAO.cRopaStock.RecuperaPorTalla(tallaId);
+            if(cantidad.size() > 0){
+                mensajeNoBorrar = "Hay "+cantidad.size()+" prendas que utilizan esta Talla.";
                 return INPUT;
             }else{
                 Tallas t = ControladoresDAO.cTallas.RecuperaPorId(tallaId);

@@ -813,16 +813,14 @@ public class HomeRopa extends ActionSupport {
         if (sesion == null) {
             sesion = ActionContext.getContext().getSession();
         }
-        /* para cuando tengamos sesión de usuario
          try{
-         Usuarios u = (Usuarios) sesion.get("usuarioLogueado");
-         if(u.getUsuAdministrador()!=1){
-         return INPUT;
-         }
+            Usuarios u = (Usuarios) sesion.get("usuarioLogueado");
+            if(u.getUsuAdministrador()!=1){
+                return INPUT;
+            }
          }catch(Exception e){
-         return INPUT;
+            return INPUT;
          }
-         */
         lista_marcas = ControladoresDAO.cMarcas.RecuperaTodos("");
         lista_clientela = ControladoresDAO.cClientela.RecuperaTodos("");
         lista_look = ControladoresDAO.cLook.RecuperaTodos("");
@@ -935,11 +933,11 @@ public class HomeRopa extends ActionSupport {
             t = new Ropa();
         }
         if (!accionocul.equals("e")) {
-            t.setClientela(ControladoresDAO.cClientela.RecuperaPorId(Integer.parseInt(clientela2)));
+            t.setClientela(ControladoresDAO.cClientela.RecuperaPorId(Integer.parseInt(clientela)));
             t.setColeccion(ControladoresDAO.cColeccion.RecuperaPorId(Integer.parseInt(coleccion2)));
             //rstock.setColor(ControladoresDAO.cColor.RecuperaPorId(Integer.parseInt(color2)));
             t.setLook(ControladoresDAO.cLook.RecuperaPorId(Integer.parseInt(look2)));
-            t.setMarcas(ControladoresDAO.cMarcas.RecuperaPorId(Integer.parseInt(marcas2)));
+            t.setMarcas(ControladoresDAO.cMarcas.RecuperaPorId(Integer.parseInt(marca)));
             //rstock.setTallas(ControladoresDAO.cTallas.RecuperaPorId(Integer.parseInt(tallas2)));
             t.setRoDescripcion(roDescripcion2);
             t.setRoPrecio(roPrecio2);
@@ -949,7 +947,7 @@ public class HomeRopa extends ActionSupport {
             //rstock.setRostockUnidades(roUnidades2);
             //rstock.setRostockFecha(fecha);
             if(!hayFotos){
-                t.setCategoria(ControladoresDAO.cCategorias.RecuperaPorId(Integer.parseInt(categoria2)));
+                t.setCategoria(ControladoresDAO.cCategorias.RecuperaPorId(Integer.parseInt(categoria)));
                 t.setSubcategoria(ControladoresDAO.cSubcategorias.RecuperaPorId(Integer.parseInt(subcategoria2)));
             }
         }

@@ -64,7 +64,9 @@
                         <s:property value="#a.marcaNombre"/><br>
                     </td>
                     <td>
-                        <img src="../Imagenes/Marcas/<s:property value="#a.marcaFoto"/>" height="70" alt="<s:property value="#a.marcaFoto"/>"/>
+                        <s:if test="#a.marcaFoto != ''">
+                            <img src="../Imagenes/Marcas/<s:property value="#a.marcaFoto"/>" height="70" alt="<s:property value="#a.marcaFoto"/>"/>
+                        </s:if>
                     </td>
                 </tr>
                 <%

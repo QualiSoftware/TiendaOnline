@@ -264,7 +264,8 @@
             <result>/Vistas/CRUDropa.jsp</result>           
         </action>
         <action name="RopaAdminForm" class="Acciones.HomeRopa" method="RopaForm">
-            <result>/Vistas/formularioCRUDropa.jsp</result>   
+            <result>/Vistas/formularioCRUDropa.jsp</result>
+            <result name="input" type="redirect">Tienda</result>   
         </action> 
         <action name="RopaStockAdminForm" class="Acciones.HomeRopa" method="RopaForm">
             <result>/Vistas/formularioCRUDropaStock.jsp</result>   

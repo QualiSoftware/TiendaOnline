@@ -36,7 +36,6 @@ public class cColeccion {
         sesion.beginTransaction();
         try{
             if(esto!=null){
-               System.out.println(esto.getColeccionId());
                 sesion.delete(esto);
                 sesion.getTransaction().commit();
                 return 1;

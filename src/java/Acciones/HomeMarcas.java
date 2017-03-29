@@ -272,7 +272,9 @@ public class HomeMarcas extends ActionSupport {
             }
             if (accion.equals("m")) {
                 if(archivoMarca != null){
-                    EliminaArchivo();
+                    if(!marcaFoto.equals("")){
+                        EliminaArchivo();
+                    }
                     File destFile  = new File(ruta, archivoMarcaFileName);
                     FileUtils.copyFile(archivoMarca, destFile);
                 }else{
@@ -291,7 +293,9 @@ public class HomeMarcas extends ActionSupport {
                     mensajeNoBorrar = "Hay "+listaActivas.size()+" ropa visible y "+listaInactivas.size()+" ropa no visible \r\nque utilizan esta Marca.";
                     return INPUT;
                 }else{
-                    EliminaArchivo();
+                    if(!marcaFoto.equals("")){
+                        EliminaArchivo();
+                    }
                     ControladoresDAO.cMarcas.Elimina(p);
                 }
             }        

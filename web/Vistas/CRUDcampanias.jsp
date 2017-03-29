@@ -50,7 +50,7 @@
                         if((request.getParameter("fechaCampania") != null)){
                             if(!(request.getParameter("fechaCampania").equals(""))){
                                 %>
-                                <input type="button" value="Borrar fechas" onclick="BorrarFecha();">
+                                <input type="button" value="Borrar fecha" onclick="BorrarFecha();">
                                 <%
                             }
                         }
