@@ -647,6 +647,7 @@ public class HomeUsuarios extends ActionSupport {
            p.setUsuAdministrador(ud.getUsuAdministrador());
            p.setUsuAlta(ud.getUsuAlta());
            p.setUsuId(usuId2);
+           p.setUsuActivo(ud.getUsuActivo());
            respuesta = ControladoresDAO.cUsuarios.Modifica(p);
         }
         if (accion.equals("e")) {

@@ -471,16 +471,36 @@
     box-shadow: 3px 3px 3px grey;
     text-decoration: none; " type="button" onclick="Verificar('m');" value=<s:property value="botonocul" /> />
                         &nbsp;&nbsp;&nbsp;&nbsp;
-                        <s:a action="Tienda">
-                            <i  class="botones_cuenta_usuario" style="text-decoration: none;"><span style="text-decoration: none;">Volver</span></i>
-                        </s:a>
+                        <input class="botones_cuenta_usuario" style="margin-bottom: 0px; vertical-align: 0px; border: 0px; background-color: #cc0033;
+    color: white;
+    
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 3px;
+    padding-top: 3px;
+    cursor: pointer;
+    border-radius: 5px;
+    height: 26px;
+    text-align: center;
+    font-size: 15px;
+    box-shadow: 3px 3px 3px grey;
+    text-decoration: none; " type="button" onclick="Verificar('v');" value="Volver" />
                         <s:if test='%{accion == "m"}'>
                             &nbsp;&nbsp;&nbsp;&nbsp;
-                            <s:a action="FormContrasenia">
-                                <s:param name="accion" value="accion"/>
-                                <s:param name="clave" value="clave"/>
-                                <span class="botones_cuenta_usuario">Modificar contraseña</span>
-                            </s:a>
+                            <input class="botones_cuenta_usuario" style="margin-bottom: 0px; vertical-align: 0px; border: 0px; background-color: #cc0033;
+    color: white;
+    
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 3px;
+    padding-top: 3px;
+    cursor: pointer;
+    border-radius: 5px;
+    height: 26px;
+    text-align: center;
+    font-size: 15px;
+    box-shadow: 3px 3px 3px grey;
+    text-decoration: none; " type="button" onclick="Verificar('c');" value="Modificar contraseña" />
                         </s:if>
                         </td>
                      </tr>

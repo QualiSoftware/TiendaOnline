@@ -1,50 +1,58 @@
 function Verificar(action) {
-    var verifica = true;
-    var contraseniasIguales = true;
-    var mayor18 = true;
-    var emailCorrecto = true;
-    if (action === 'e') {
-        if (confirm("¿Seguro que desea eliminar su usuario?")) {
-            document.getElementById('accionocul').value = action;
-        }else{
-            verifica = false;
-        }
-    } else if(document.getElementById('accionocul').value === 'a') {
-        if(document.getElementById('usuPassword2').value != document.getElementById('passVerif').value){
-            contraseniasIguales = false;
-            verifica = false;
-        }
-        var aux1 = RellenaCampos();
-        var aux2 = contraseniaRellena();
-        if(aux1 && aux2){
-            verifica = true;
-        }else{
-            verifica = false;
-        }
-        mayor18 = Mayor18Anios();
-        /*MensajeError(verifica);*/
-    } else {
-        mayor18 = Mayor18Anios();
-        verifica = RellenaCampos();
-        /*MensajeError(verifica);*/
-    }
-    emailCorrecto = validarEmail(document.getElementById('usuEmail2').value);
-    var mensaje = document.getElementById('camposVacios');
-    mensaje.innerHTML = "";
-    if(!verifica){
-        mensaje.innerHTML = "Por favor rellene los campos obligatorios.<br>";
-    }
-    if(!contraseniasIguales){
-        mensaje.innerHTML += "Las contraseñas deben ser iguales.<br>";
-    }
-    if(!mayor18){
-        mensaje.innerHTML += "El usuario debe tener 18 años o más.<br>";
-    }
-    if(!emailCorrecto){
-        mensaje.innerHTML += "El email ingresado es incorrecto.";
-    }
-    if(verifica && contraseniasIguales && mayor18 && emailCorrecto){
+    if(action === 'v'){
+        document.getElementById('frm').action = "Tienda";
         document.getElementById('frm').submit();
+    }else if(action === 'c'){
+        document.getElementById('frm').action = "FormContrasenia";
+        document.getElementById('frm').submit();
+    }else{
+        var verifica = true;
+        var contraseniasIguales = true;
+        var mayor18 = true;
+        var emailCorrecto = true;
+        if (action === 'e') {
+            if (confirm("¿Seguro que desea eliminar su usuario?")) {
+                document.getElementById('accionocul').value = action;
+            }else{
+                verifica = false;
+            }
+        } else if(document.getElementById('accionocul').value === 'a') {
+            if(document.getElementById('usuPassword2').value != document.getElementById('passVerif').value){
+                contraseniasIguales = false;
+                verifica = false;
+            }
+            var aux1 = RellenaCampos();
+            var aux2 = contraseniaRellena();
+            if(aux1 && aux2){
+                verifica = true;
+            }else{
+                verifica = false;
+            }
+            mayor18 = Mayor18Anios();
+            /*MensajeError(verifica);*/
+        } else {
+            mayor18 = Mayor18Anios();
+            verifica = RellenaCampos();
+            /*MensajeError(verifica);*/
+        }
+        emailCorrecto = validarEmail(document.getElementById('usuEmail2').value);
+        var mensaje = document.getElementById('camposVacios');
+        mensaje.innerHTML = "";
+        if(!verifica){
+            mensaje.innerHTML = "Por favor rellene los campos obligatorios.<br>";
+        }
+        if(!contraseniasIguales){
+            mensaje.innerHTML += "Las contraseñas deben ser iguales.<br>";
+        }
+        if(!mayor18){
+            mensaje.innerHTML += "El usuario debe tener 18 años o más.<br>";
+        }
+        if(!emailCorrecto){
+            mensaje.innerHTML += "El email ingresado es incorrecto.";
+        }
+        if(verifica && contraseniasIguales && mayor18 && emailCorrecto){
+            document.getElementById('frm').submit();
+        }
     }
 }
 
