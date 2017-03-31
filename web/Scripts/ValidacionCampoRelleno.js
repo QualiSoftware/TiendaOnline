@@ -2,7 +2,7 @@ function CampoRelleno(campo,mensaje){
     var relleno = true;
     mensaje.innerHTML = "";
     if(campo.value == ""){
-        mensaje.innerHTML = "Por favor rellene los campos obligatorios.";
+        mensaje.innerHTML = "Por favor rellene los campos obligatorios";
         campo.style.borderColor="red";
         relleno = false;
     }else{
@@ -27,7 +27,7 @@ function FechasCorrectas(inicio,fin,mensaje){
         fechaOK = false;
     }
     if(!fechaOK){
-        mensaje.innerHTML = "La fecha de fin de campaña debe ser <br>mayor o igual a la fecha de inicio.";
+        mensaje.innerHTML = "La fecha de fin de campaña debe ser <br>mayor o igual a la fecha de inicio";
     }
     return fechaOK;
 }

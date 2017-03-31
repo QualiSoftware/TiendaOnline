@@ -103,7 +103,7 @@
                     <td>
                         <s:if test='%{accion == "e" || accion == "c" || accion == "m"}'>
                             <div id="color1" style="background-color: <s:property value="rstock.color.colorDescripcion"/>;">
-                            <input type="hidden" name="color2" value=<s:property value="rstock.color.colorId" /> />
+                            <input type="hidden" id="color" name="color2" value=<s:property value="rstock.color.colorId" /> />
                             </div>
                         </s:if>
                         <s:else>

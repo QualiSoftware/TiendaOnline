@@ -86,7 +86,7 @@
                         <input type="hidden" name="filtro" value="<%=filtro%>" />
                         <input type="hidden" name="fechaCampania" value="<%=fechaCampania%>" />
                         <%
-                            if(orden.equals("camMarca ASC") || orden.equals("camMarca DESC")){
+                            if(orden.equals("marcas.marcaNombre ASC") || orden.equals("marcas.marcaNombre DESC")){
                                 ascendente[0] = !ascendente[0];
                             }else{
                                 ascendente[0] = true;
@@ -98,7 +98,7 @@
                                 completollamada[0] = " DESC";
                             }
                         %>
-                        <input type="hidden" name="orden" value="camMarca<%=completollamada[0]%>" />
+                        <input type="hidden" name="orden" value="marcas.marcaNombre<%=completollamada[0]%>" />
                         <s:submit value="Marca" />
                     </s:form>
                 </th>

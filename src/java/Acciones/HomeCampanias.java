@@ -65,8 +65,8 @@ public class HomeCampanias extends ActionSupport {
     public void setU(Usuarios u) {
         this.u = u;
     }
-    
-    
+
+
 
     public String getRoDescripcion2() {
         return roDescripcion2;

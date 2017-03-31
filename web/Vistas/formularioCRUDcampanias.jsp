@@ -25,10 +25,19 @@
                 } else {
                     if(CampoRelleno(document.getElementById('camNombre'),document.getElementById('errores'))){
                         if(FechasCorrectas(document.getElementById('camInicio').value,document.getElementById('camFin').value,document.getElementById('errores'))){
+                            var tieneArchivo  = true;
                             if(document.getElementById('accion').value === 'a'){
-                                document.getElementById('frm').action = "AltaCampaniasRopa";
+                                var input = document.getElementById('archivo');
+                                    if (!input.files[0]) {
+                                        tieneArchivo = false;
+                                        CampoRelleno(input,document.getElementById('errores'))
+                                    }else{
+                                        document.getElementById('frm').action = "AltaCampaniasRopa";
+                                    }
                             }
-                            document.getElementById('frm').submit();
+                            if(tieneArchivo){
+                                document.getElementById('frm').submit();
+                            }
                         }
                     }
                 }
@@ -139,20 +148,18 @@
                 </tr>
                 <tr>
                     <td>
-                        <s:label for="camFoto">Foto</s:label>  
+                        <s:label for="camFoto">Foto (*)</s:label>  
                     </td>
                     <td>
-                        <s:if test='%{accion == "e"}'>
-                            <input type="hidden" name="camFoto" value="<s:property value="camFoto" />" />
-                            <img src="../Imagenes/Campanias/<s:property value="camFoto"/>" height="70" alt="<s:property value="camFoto"/>"/>
+                        <s:if test='%{accion == "a"}'>
+                            <input type="file" name="archivo" id="archivo"/>
                         </s:if>
-                        <s:elseif test='%{accion == "a"}'>
-                            <input type="file" name="archivo"/>
-                        </s:elseif>
                         <s:else>
                             <input type="hidden" name="camFoto" value="<s:property value="camFoto" />" />
                             <img src="../Imagenes/Campanias/<s:property value="camFoto"/>" height="70" alt="<s:property value="camFoto"/>"/>
-                            <input type="file" name="archivo"/>
+                            <s:if test='%{accion != "e"}'>
+                                <input type="file" name="archivo" id="archivo"/>
+                            </s:if>
                         </s:else>
                     </td>
                 </tr>
