@@ -353,6 +353,7 @@
         </action>
         <action name="UsuariosForm" class="Acciones.HomeUsuarios" method="UsuariosForm">
             <result>/Vistas/formularioCRUDusuariosAdmin.jsp</result>
+            <result name="input" type="redirect">Tienda</result>
         </action>
         <action name="UsuAlta" class="Acciones.HomeUsuarios" method="UsuAlta">
             <result>/Vistas/formularioCRUDusuarios.jsp</result>           

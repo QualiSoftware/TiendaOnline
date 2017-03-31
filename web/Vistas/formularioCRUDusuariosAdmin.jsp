@@ -8,10 +8,31 @@
 <%@page pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <head xmlns="http://www.w3.org/1999/xhtml">
+        <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
+        <!--Calendario-->
+        <link rel="stylesheet" type="text/css" href="../Calendar/1-simple-calendar/tcal.css" />
+        <script type="text/javascript" src="../Calendar/1-simple-calendar/tcal.js"></script>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
         <link rel="stylesheet" href="../Estilos/GeneralEstilos.css"/>
+        <script>
+            function validoModif(){
+                var descAux = document.getElementById("descuento").value;
+                var desc = descAux.replace(",",".");
+                if(isNaN(desc)){
+                    document.getElementById("errorDescuento").innerHTML = "Debe ser un número válido";
+                }else{
+                    if(desc < 0){
+                        document.getElementById("errorDescuento").innerHTML = "Debe ser un número positivo";                        
+                    }else if(desc > 99.99){
+                        document.getElementById("errorDescuento").innerHTML = "Máximo 99,99";
+                    }else{
+                        document.getElementById("descuento").value = desc;
+                        document.getElementById("frm").submit();
+                    }
+                }
+            }
+        </script>
         <title>Detalles de Usuario</title>
     </head>
     <body>
@@ -31,7 +52,9 @@
             </h3>
         </div>
         <div  class="linea"></div>
-        <s:form action="CrudActionUsuariosAdmin" theme="simple">
+        <s:form id="frm" action="CrudActionUsuariosAdmin" theme="simple">
+        <input type="hidden" name="accion" value="m" />
+        <input type="hidden" name="modificaAdmin" value="modificaAdmin" />
         <table>
             <tr>
                 <td>
@@ -93,10 +116,11 @@
             </tr>
             <tr>
                 <td>
-                    <s:label for="usuDescuento2">Descuento asignado</s:label>  
+                    <s:label for="usuDescuento2">Descuento asignado</s:label>
                 </td>
                 <td>
-                    <s:textfield name="usuDescuento2" readonly="true" ></s:textfield>
+                    <s:textfield name="usuDescuento2" id="descuento"></s:textfield>
+                    <span id="errorDescuento"></span>
                 </td>
             </tr>
             <tr>
@@ -104,7 +128,8 @@
                     <s:label for="usuFechaLimiteDesc">Fecha límite<br/>del descuento</s:label>  
                 </td>
                 <td>
-                    <s:textfield name="usuFechaLimiteDesc" readonly="true" ></s:textfield>
+                    <s:textfield name="usuFechaLimiteDesc" id="usuFechaNac2" cssClass="tcal formulario_rellenar_Fecha" cssStyle="padding-right: 10px; background-color: white;" readonly="true"/>
+                    <%--<s:textfield name="usuFechaLimiteDesc" readonly="true" ></s:textfield>--%>
                 </td>
             </tr>
             <tr>
@@ -149,6 +174,7 @@
             </tr>
             <tr>
                 <td colspan="2">
+                    <input type="button" value="Modificar Descuento" onclick="validoModif();"/>
                     &nbsp;&nbsp;&nbsp;&nbsp;
                     <s:a action="UsuariosFiltro">
                         <i style="font-size: 20px;">Volver</i>

@@ -25,6 +25,7 @@ public class HomeUsuarios extends ActionSupport {
     private String filtro;
     private Integer usuId2 = 0;
     private String provincias2;
+    private String modificaAdmin;
     private String usuNombre2 = "";
     private String usuApellidos2 = "";
     private String usuEmail2 = "";
@@ -39,7 +40,7 @@ public class HomeUsuarios extends ActionSupport {
     private double usuDescuento2;
     private String usuFechaLimiteDesc;
     private int usuAdministrador;
-    private Date usuAlta;
+    private String usuAlta;
     //private Set<Cesta> cestas = new HashSet<Cesta>(0);
     //private Set<Favoritos> favoritoses = new HashSet<Favoritos>(0);    
     private String accion = "";
@@ -248,6 +249,14 @@ public class HomeUsuarios extends ActionSupport {
         this.provincias2 = provincias2;
     }
 
+    public String getModificaAdmin() {
+        return modificaAdmin;
+    }
+
+    public void setModificaAdmin(String modificaAdmin) {
+        this.modificaAdmin = modificaAdmin;
+    }
+
     public String getUsuNombre2() {
         return usuNombre2;
     }
@@ -360,11 +369,11 @@ public class HomeUsuarios extends ActionSupport {
         this.usuAdministrador = usuAdministrador;
     }
 
-    public Date getUsuAlta() {
+    public String getUsuAlta() {
         return usuAlta;
     }
 
-    public void setUsuAlta(Date usuAlta) {
+    public void setUsuAlta(String usuAlta) {
         this.usuAlta = usuAlta;
     }
 
@@ -511,7 +520,6 @@ public class HomeUsuarios extends ActionSupport {
         if(sesion==null){
          sesion=ActionContext.getContext().getSession();
         }
-        /* para cuando tengamos sesión de usuario
         try{
             Usuarios u = (Usuarios) sesion.get("usuarioLogueado");
             if(u.getUsuAdministrador()!=1){
@@ -520,7 +528,6 @@ public class HomeUsuarios extends ActionSupport {
         }catch(Exception e){
             return INPUT;
         }
-        */
         
         int year;
         int month;
@@ -569,7 +576,20 @@ public class HomeUsuarios extends ActionSupport {
         }
         usuFechaLimiteDesc = dayString+"-"+monthString+"-"+year;
         usuAdministrador = usuario.getUsuAdministrador();
-        usuAlta = usuario.getUsuAlta();
+        year = usuario.getUsuAlta().getYear() + 1900;
+        month = usuario.getUsuAlta().getMonth()+1;
+        day = usuario.getUsuAlta().getDate();
+        if(month < 10){
+            monthString = "0"+month;
+        }else{
+            monthString = ""+month;
+        }
+        if(day < 10){
+            dayString = "0"+day;
+        }else{
+            dayString = ""+day;
+        }
+        usuAlta = dayString+"-"+monthString+"-"+year;
         countryName = usuario.getProvincias().getPaises().getPaisNombre();
         if(accion.equals("m")){
             accionocul = "m";
@@ -629,26 +649,37 @@ public class HomeUsuarios extends ActionSupport {
            boolean email = ControladoresDAO.cEmail.enviarAlta(usuEmail2, respuesta);
         }
         if (accion.equals("m")) {
-           p.setProvincias(ControladoresDAO.cProvincias.RecuperaPorId(Integer.parseInt(provincias2)));
-           p.setUsuNombre(usuNombre2);
-           p.setUsuApellidos(usuApellidos2);
-           p.setUsuEmail(usuEmail2);
-           p.setUsuDni(usuDni2);
-           p.setUsuCp(usuCp2);
-           p.setUsuDireccion(usuDireccion2);
-           p.setUsuTelefono(usuTelefono2);
-           p.setUsuLocalidad(usuLocalidad2);
-           p.setUsuSexo(usuSexo2);
-           p.setUsuFechaNac(date);
-           Usuarios ud = ControladoresDAO.cUsuarios.RecuperaPorId(usuId2);
-           p.setUsuPassword(ud.getUsuPassword());
-           p.setUsuDescuento(ud.getUsuDescuento());
-           p.setUsuFechaLimiteDesc(ud.getUsuFechaLimiteDesc());
-           p.setUsuAdministrador(ud.getUsuAdministrador());
-           p.setUsuAlta(ud.getUsuAlta());
-           p.setUsuId(usuId2);
-           p.setUsuActivo(ud.getUsuActivo());
-           respuesta = ControladoresDAO.cUsuarios.Modifica(p);
+            if(modificaAdmin != null && !modificaAdmin.equals("null")){
+                p = ControladoresDAO.cUsuarios.RecuperaPorId(usuId2);
+                p.setUsuDescuento(usuDescuento2);
+                year = usuFechaLimiteDesc.substring(6, 10);
+                month = usuFechaLimiteDesc.substring(3, 5);
+                day = usuFechaLimiteDesc.substring(0, 2);
+                usuFechaLimiteDesc = year+"-"+month+"-"+day;
+                Date dateDescuento = sdf.parse(usuFechaLimiteDesc);
+                p.setUsuFechaLimiteDesc(dateDescuento);
+            }else{
+                p.setProvincias(ControladoresDAO.cProvincias.RecuperaPorId(Integer.parseInt(provincias2)));
+                p.setUsuNombre(usuNombre2);
+                p.setUsuApellidos(usuApellidos2);
+                p.setUsuEmail(usuEmail2);
+                p.setUsuDni(usuDni2);
+                p.setUsuCp(usuCp2);
+                p.setUsuDireccion(usuDireccion2);
+                p.setUsuTelefono(usuTelefono2);
+                p.setUsuLocalidad(usuLocalidad2);
+                p.setUsuSexo(usuSexo2);
+                p.setUsuFechaNac(date);
+                Usuarios ud = ControladoresDAO.cUsuarios.RecuperaPorId(usuId2);
+                p.setUsuPassword(ud.getUsuPassword());
+                p.setUsuDescuento(ud.getUsuDescuento());
+                p.setUsuFechaLimiteDesc(ud.getUsuFechaLimiteDesc());
+                p.setUsuAdministrador(ud.getUsuAdministrador());
+                p.setUsuAlta(ud.getUsuAlta());
+                p.setUsuId(usuId2);
+                p.setUsuActivo(ud.getUsuActivo());
+            }
+            respuesta = ControladoresDAO.cUsuarios.Modifica(p);
         }
         if (accion.equals("e")) {
             p = ControladoresDAO.cUsuarios.RecuperaPorId(usuId2);
