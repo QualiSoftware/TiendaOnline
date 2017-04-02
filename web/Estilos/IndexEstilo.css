@@ -1226,9 +1226,15 @@ div[id^=”Stock_Excedido”]{
 }
 
 /* INICIO Cuenta Usuario */
-
+#titulo_Cuenta_Usuario{
+    position: absolute;
+    margin-left: 50px;
+    margin-top: -70px;
+    font-size: 30px;
+    font-weight: bold;
+}
 #cuenta_Usuario{
-    margin-top: 50px;    
+    margin-top: 100px;    
     margin-left: 50px;
     background-color: #dedede;
     padding: 200px;
@@ -1325,6 +1331,7 @@ select:-webkit-autofill:focus{
 }
 
 .botones_cuenta_usuario{
+    border: 0px;
     background-color: #cc0033;
     color: white;
     padding: 5px;
@@ -1343,7 +1350,25 @@ select:-webkit-autofill:focus{
     -webkit-transform: scale(1.1);
     -webkit-transition: 0.3s;
 }
-.botones_cuenta_usuario a{
+.btn_Eliminar_cuenta_usuario{
+    border: 0px;
+    background-color: black;
+    color: white;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    height: 30px;
+    text-align: center;
+    font-size: 15px;
+    box-shadow: 3px 3px 3px grey;
     text-decoration: none;
 }
+.btn_Eliminar_cuenta_usuario:hover{
+    text-decoration: none;
+    -webkit-transform: scale(1.1);
+    -webkit-transition: 0.3s;
+}
+
 /* FIN Cuenta Usuario */
