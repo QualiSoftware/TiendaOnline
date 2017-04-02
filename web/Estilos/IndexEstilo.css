@@ -1234,6 +1234,7 @@ div[id^=”Stock_Excedido”]{
     font-weight: bold;
 }
 #cuenta_Usuario{
+    border: 0px;
     margin-top: 100px;    
     margin-left: 50px;
     background-color: #dedede;
@@ -1354,7 +1355,7 @@ select:-webkit-autofill:focus{
     background-color: #cc0033;
 }
 .btn_Eliminar_cuenta_usuario{
-    border: 0px;
+    border: solid white 0px;
     background-color: black;
     color: white;
     padding: 5px;
@@ -1375,5 +1376,6 @@ select:-webkit-autofill:focus{
     -webkit-transform: scale(1.1);
     -webkit-transition: 0.3s;
 }
+
 
 /* FIN Cuenta Usuario */

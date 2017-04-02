@@ -12,6 +12,8 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
         <link rel="stylesheet" href="../Estilos/GeneralEstilos.css"/>
+        <link rel="stylesheet" href="../Estilos/IndexEstilo.css"/>
+        
         <title>Cambio de contraseña</title>
         <script>
             function Verificar() {
@@ -30,13 +32,14 @@
         <s:form id="frm" action="CambiaContrasenia" theme="simple">
             <input type="hidden" name="accion" id="accionocul" value=<s:property value="accion" /> />
             <input type="hidden" name="clave" value=<s:property value="clave" /> />
-            <table>
+            <span id="titulo_Cuenta_Usuario">Modifique su contraseña <span class="glyphicon glyphicon-lock" aria-hidden="true"></span></span>
+            <table id="cuenta_Usuario">
                 <tr>
-                    <td>
+                    <td style="padding-top: 25px;">
                         <s:label for="antigua">Antigua contraseña</s:label>  
                     </td>
-                    <td>                        
-                    <s:password name="antigua" ></s:password>
+                    <td style="padding-top: 25px;">                        
+                    <s:password name="antigua" cssClass="formulario_Rellenar" ></s:password>
                     </td>
                 </tr>
                 <tr>
@@ -44,7 +47,7 @@
                         <s:label for="nueva1">Nueva contraseña</s:label>  
                     </td>
                     <td>                        
-                        <s:password name="usuPassword2" id="nueva1"></s:password>
+                        <s:password name="usuPassword2" cssClass="formulario_Rellenar" id="nueva1"></s:password>
                     </td>
                 </tr>
                 <tr>
@@ -52,7 +55,7 @@
                         <s:label for="nueva2">Repita nueva contraseña</s:label>  
                     </td>
                     <td>                        
-                        <s:password name="nueva2" id="nueva2"></s:password>
+                        <s:password name="nueva2" cssClass="formulario_Rellenar" id="nueva2"></s:password>
                     </td>
                 </tr>
                 <tr>
@@ -61,8 +64,24 @@
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="2">
-                        <input type="button" onclick="Verificar();" value="Cambiar" />
+                    <td colspan="2" style="padding-top: 0px; padding-bottom: 20px; padding-left: -30px;">
+                        <input type="button" onclick="Verificar();" value="Cambiar" class="botones_cuenta_usuario" style="margin-bottom: 0px; 
+                                       vertical-align: 0px; 
+                                       border: 0px; 
+                                       background-color: #cc0033;
+                                       color: white;
+                                       padding-left: 10px;
+                                       padding-right: 10px;
+                                       padding-bottom: 3px;
+                                       padding-top: 3px;
+                                       cursor: pointer;
+                                       border-radius: 5px;
+                                       height: 26px;
+                                       text-align: center;
+                                       font-size: 15px;
+                                       box-shadow: 3px 3px 3px grey;
+                                       text-decoration: none;
+                                       margin-left: -70px;" />
                         &nbsp;&nbsp;&nbsp;&nbsp;
                         <s:a action="UsuAlta">
                             <s:param name="accion" value="accion"/>
