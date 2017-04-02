@@ -318,6 +318,7 @@
                 <input type="hidden" name="clave" value=<s:property value="clave" /> />
                 <input type="hidden" name="usuId2" value=<s:property value="clave" /> />
                 <span id="titulo_Cuenta_Usuario">Cuenta de Usuario <span class="glyphicon glyphicon-user" aria-hidden="true"></span></span>
+
                 <table id="cuenta_Usuario">
                     <tr>
                         <td colspan="2">
@@ -454,20 +455,71 @@
                         </tr>
                         <tr >
                             <td colspan="2" id="cuenta_usuario_Botonera" style="padding-bottom: 30px;">
-                                <input class="botones_cuenta_usuario" type="button" onclick="Verificar('m');" value=<s:property value="botonocul" /> />
+                                <input class="botones_cuenta_usuario" 
+                                       style="margin-bottom: 0px; 
+                                       vertical-align: 0px; 
+                                       border: 0px; 
+                                       background-color: #cc0033;
+                                       color: white;
+                                       padding-left: 10px;
+                                       padding-right: 10px;
+                                       padding-bottom: 3px;
+                                       padding-top: 3px;
+                                       cursor: pointer;
+                                       border-radius: 5px;
+                                       height: 26px;
+                                       text-align: center;
+                                       font-size: 15px;
+                                       box-shadow: 3px 3px 3px grey;
+                                       text-decoration: none; " 
+                                       type="button" onclick="Verificar('m');" value=<s:property value="botonocul" /> />
                             &nbsp;&nbsp;&nbsp;&nbsp;
-                            <input class="botones_cuenta_usuario" type="button" onclick="Verificar('v');" value="Volver" />
+                            <input class="botones_cuenta_usuario" 
+                                   style="margin-bottom: 0px; 
+                                   vertical-align: 0px; 
+                                   border: 0px; 
+                                   background-color: #cc0033;
+                                   color: white;
+                                   padding-left: 10px;
+                                   padding-right: 10px;
+                                   padding-bottom: 3px;
+                                   padding-top: 3px;
+                                   cursor: pointer;
+                                   border-radius: 5px;
+                                   height: 26px;
+                                   text-align: center;
+                                   font-size: 15px;
+                                   box-shadow: 3px 3px 3px grey;
+                                   text-decoration: none; " 
+                                   type="button" onclick="Verificar('v');" value="Volver" />
                             <s:if test='%{accion == "m"}'>
                                 &nbsp;&nbsp;&nbsp;&nbsp;
-                                <input class="botones_cuenta_usuario" type="button" onclick="Verificar('c');" value="Modificar contraseña" />
+                                <input class="botones_cuenta_usuario" 
+                                       style="margin-bottom: 0px; 
+                                       vertical-align: 0px; 
+                                       border: 0px; 
+                                       background-color: #cc0033;
+                                       color: white;
+                                       padding-left: 10px;
+                                       padding-right: 10px;
+                                       padding-bottom: 3px;
+                                       padding-top: 3px;
+                                       cursor: pointer;
+                                       border-radius: 5px;
+                                       height: 26px;
+                                       text-align: center;
+                                       font-size: 15px;
+                                       box-shadow: 3px 3px 3px grey;
+                                       text-decoration: none; " 
+                                       type="button" onclick="Verificar('c');" value="Modificar contraseña" />
                             </s:if>
                         </td>
                     </tr>
                 </table>
                 <div id="cuenta_usuario_Pie">
                     <s:if test='%{accion == "m"}'>
-                        Si desea dar de baja su usuario puede presionar en el botón 
-                        <input type="button" onclick="Verificar('e');" class="btn_Eliminar_cuenta_usuario"  value="Eliminar" /> y sus datos de usuario serán
+                        Si desea dar de baja su usuario puede presionar en el botón&nbsp;
+                        <input type="button" class="btn_Eliminar_cuenta_usuario" onclick="Verificar('e');" value="Eliminar" />&nbsp; y sus datos de usuario serán
                         eliminados de nuestra base de datos.
                     </s:if>
                 </s:form>
