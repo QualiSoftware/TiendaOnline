@@ -77,14 +77,14 @@
                     </tr>
                     <tr>
                         <td>
-                        <s:label for="clientela">Clientela</s:label>  
+                        <s:label for="cliCodigo">Clientela</s:label>  
                         </td>
                         <td>
                         <s:if test='%{accionocul == "e" || accionocul == "c"}'>
                             <s:textfield name="t.clientela.clientelaDescripcion" readonly="true" ></s:textfield>
                         </s:if>
                         <s:else>
-                            <s:select name="clientela" list="lista_clientela" listValue="clientelaDescripcion" 
+                            <s:select name="cliCodigo" list="lista_clientela" listValue="clientelaDescripcion" 
                                   listKey="clientelaId" value="t.clientela.clientelaId"/>
                         </s:else>
                     </td>
@@ -209,7 +209,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <s:label for="categoria">Categoría</s:label>  
+                        <s:label for="catCodigo">Categoría</s:label>  
                     </td>
                     
 
@@ -226,7 +226,7 @@
                         <%
                         } else {
                         %>
-                            <s:select id="categoria" name="categoria" list="lista_categoria" listValue="catDescripcion" 
+                            <s:select id="categoria" name="catCodigo" list="lista_categoria" listValue="catDescripcion" 
                                       listKey="catId" value="t.categoria.catId" onchange= "handleChange(this.value)" />
                         <%
                             }

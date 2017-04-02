@@ -222,8 +222,8 @@
                                 <s:if test="#a.clientela.clientelaDescripcion=='Mujer'">
                                     <li><s:a action="TiendaMenu">
                                             <s:property value="#a.categoria.catDescripcion"/>
-                                            <s:param name="clientela" value="#a.clientela.clientelaId"/>
-                                            <s:param name="categoria" value="#a.categoria.catId"/>
+                                            <s:param name="cliCodigo" value="#a.clientela.clientelaId"/>
+                                            <s:param name="catCodigo" value="#a.categoria.catId"/>
                                         </s:a></li>
                                 </s:if>
                             </s:iterator>
@@ -236,8 +236,8 @@
                                 <s:if test="#a.clientela.clientelaDescripcion=='Hombre'">
                                     <li><s:a action="TiendaMenu">
                                         <s:property value="#a.categoria.catDescripcion"/>
-                                        <s:param name="clientela" value="#a.clientela.clientelaId"/>
-                                        <s:param name="categoria" value="#a.categoria.catId"/>
+                                        <s:param name="cliCodigo" value="#a.clientela.clientelaId"/>
+                                        <s:param name="catCodigo" value="#a.categoria.catId"/>
                                     </s:a></li>                                    
                                 </s:if>
                             </s:iterator>                      

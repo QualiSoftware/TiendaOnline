@@ -112,16 +112,13 @@ public class cFacturas {
         String sql = "select facCodigo From Facturas ORDER BY facId";
         Query query = sesion.createQuery(sql);
         List<String> uf = query.list();
-        int j=-1;
-        List<Integer> listaInt = new ArrayList<Integer>();
+        int i = 0;
         for(String list:uf){
-            listaInt.add(Integer.parseInt(list));
-            j++;
+            i = Integer.parseInt(list);
         }
-        int i = listaInt.get(j)+1;
-        listaInt.clear();
+        i++;
         uf.clear();
-        return ""+i;
+        return String.format("%06d", i);
     }
     
     public static int SaberUltimoId(){

@@ -152,7 +152,8 @@
           
         <!-- action de Facturas-->
         <action name="FacturasFiltro" class="Acciones.HomeFacturas" method="FacturasFiltro" >
-            <result>/Vistas/CRUDfacturas.jsp</result> 
+            <result>/Vistas/CRUDfacturas.jsp</result>
+            <result name="input" type="redirect">Tienda</result>
         </action>
         <action name="volverFacturas">
             <result type="redirect">FacturasFiltro</result>
@@ -455,7 +456,6 @@
         </action>
         
         <action name="RopaPopUp" class="Acciones.HomeRopa" method="RopaPopUp">
-        <!--<action name="RopaPopUp" class="Acciones.HomeRopaStock" method="RopaPopUp">-->
             <result>/Vistas/tiendaDetalles.jsp</result>
         </action>
         
@@ -475,8 +475,8 @@
         
         <action name="TiendaCesta" class="Acciones.HomeCesta" method="CrudActionUsuariosCesta">
             <result type="redirectAction">
-                <param name="clientela">${clientela}</param>
-                <param name="categoria">${categoria}</param>
+                <param name="cliCodigo">${cliCodigo}</param>
+                <param name="catCodigo">${catCodigo}</param>
                 <param name="marca">${marca}</param>
                 <param name="campania">${campania}</param>
                 <param name="actionName">TiendaMenu</param>

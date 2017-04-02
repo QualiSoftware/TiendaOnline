@@ -276,14 +276,15 @@ public class HomeFacturas extends ActionSupport {
         if(sesion==null){
             sesion=ActionContext.getContext().getSession();
         }
-        /* para cuando tengamos sesión de usuario
         try{
             Usuarios u = (Usuarios) sesion.get("usuarioLogueado");
-        }catch(Exception e){
+            if(u.getUsuAdministrador()!=1){
+                return INPUT;
+            }
+         }catch(Exception e){
             return INPUT;
-        }
-        */
-        if(filtro == null){
+         }
+        if(filtro == null || filtro.equals("null")){
             filtro = "";
         }
         if(orden == null){

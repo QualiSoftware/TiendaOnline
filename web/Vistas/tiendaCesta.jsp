@@ -146,8 +146,8 @@
             </div>
             <div id="filtro" class="navbar-form navbar-left">
                 <s:form role="search" action="TiendaMenu" theme="simple">
-                    <input type="hidden" name="clientela" value=""/>
-                    <input type="hidden" name="categoria" value=""/>
+                    <input type="hidden" name="cliCodigo" value=""/>
+                    <input type="hidden" name="catCodigo" value=""/>
                     <input type="hidden" name="clientelaNombre" value=""/>
                     <input type="hidden" name="categoriaNombre" value=""/>
                     <input type="hidden" name="marca" value=""/>
@@ -171,8 +171,8 @@
                                 <s:if test="#a.clientela.clientelaDescripcion=='Mujer'">
                                     <li><s:a action="TiendaMenu">
                                             <s:property value="#a.categoria.catDescripcion"/>
-                                            <s:param name="clientela" value="#a.clientela.clientelaId"/>
-                                            <s:param name="categoria" value="#a.categoria.catId"/>
+                                            <s:param name="cliCodigo" value="#a.clientela.clientelaId"/>
+                                            <s:param name="catCodigo" value="#a.categoria.catId"/>
                                         </s:a></li>
                                     </s:if>
                                 </s:iterator>
@@ -185,8 +185,8 @@
                                 <s:if test="#a.clientela.clientelaDescripcion=='Hombre'">
                                     <li><s:a action="TiendaMenu">
                                             <s:property value="#a.categoria.catDescripcion"/>
-                                            <s:param name="clientela" value="#a.clientela.clientelaId"/>
-                                            <s:param name="categoria" value="#a.categoria.catId"/>
+                                            <s:param name="cliCodigo" value="#a.clientela.clientelaId"/>
+                                            <s:param name="catCodigo" value="#a.categoria.catId"/>
                                         </s:a></li>                                    
                                     </s:if>
                                 </s:iterator>                      

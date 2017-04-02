@@ -241,8 +241,8 @@
             </div>
             <div id="filtro" class="navbar-form navbar-left">
                 <s:form role="search" action="TiendaMenu" theme="simple">
-                    <input type="hidden" name="clientela" value="<s:property value="clientela"/>"/>
-                    <input type="hidden" name="categoria" value="<s:property value="categoria"/>"/>
+                    <input type="hidden" name="cliCodigo" value="<s:property value="cliCodigo"/>"/>
+                    <input type="hidden" name="catCodigo" value="<s:property value="catCodigo"/>"/>
                     <input type="hidden" name="clientelaNombre" value="<s:property value="clientelaNombre"/>"/>
                     <input type="hidden" name="categoriaNombre" value="<s:property value="categoriaNombre"/>"/>
                     <input type="hidden" name="marca" value="<s:property value="marca"/>"/>
@@ -266,8 +266,8 @@
                                 <s:if test="#a.clientela.clientelaDescripcion=='Mujer'">
                                     <li><s:a action="TiendaMenu">
                                             <s:property value="#a.categoria.catDescripcion"/>
-                                            <s:param name="clientela" value="#a.clientela.clientelaId"/>
-                                            <s:param name="categoria" value="#a.categoria.catId"/>
+                                            <s:param name="cliCodigo" value="#a.clientela.clientelaId"/>
+                                            <s:param name="catCodigo" value="#a.categoria.catId"/>
                                         </s:a></li>
                                 </s:if>
                             </s:iterator>
@@ -280,8 +280,8 @@
                                 <s:if test="#a.clientela.clientelaDescripcion=='Hombre'">
                                     <li><s:a action="TiendaMenu">
                                         <s:property value="#a.categoria.catDescripcion"/>
-                                        <s:param name="clientela" value="#a.clientela.clientelaId"/>
-                                        <s:param name="categoria" value="#a.categoria.catId"/>
+                                        <s:param name="cliCodigo" value="#a.clientela.clientelaId"/>
+                                        <s:param name="catCodigo" value="#a.categoria.catId"/>
                                     </s:a></li>                                    
                                 </s:if>
                             </s:iterator>                      

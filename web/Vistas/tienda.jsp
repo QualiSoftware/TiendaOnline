@@ -248,7 +248,7 @@
                         <input type="text" style="position: absolute; top:0px; left: 0px;" class="form-control" placeholder="Búsqueda" name="filtro" value="<s:property value="filtro"/>">
                     </div>
                     <button style="position: absolute; top:0px; left: 215px;" type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
-                    </s:form>
+                </s:form>
             </div>
             <div id="menu">
                 <ul class="nav nav-pills">
@@ -263,8 +263,8 @@
                                 <s:if test="#a.clientela.clientelaDescripcion=='Mujer'">
                                     <li><s:a action="TiendaMenu">
                                             <s:property value="#a.categoria.catDescripcion"/>
-                                            <s:param name="clientela" value="#a.clientela.clientelaId"/>
-                                            <s:param name="categoria" value="#a.categoria.catId"/>
+                                            <s:param name="cliCodigo" value="#a.clientela.clientelaId"/>
+                                            <s:param name="catCodigo" value="#a.categoria.catId"/>
                                         </s:a></li>
                                     </s:if>
                                 </s:iterator>
@@ -277,8 +277,8 @@
                                 <s:if test="#a.clientela.clientelaDescripcion=='Hombre'">
                                     <li><s:a action="TiendaMenu">
                                             <s:property value="#a.categoria.catDescripcion"/>
-                                            <s:param name="clientela" value="#a.clientela.clientelaId"/>
-                                            <s:param name="categoria" value="#a.categoria.catId"/>
+                                            <s:param name="cliCodigo" value="#a.clientela.clientelaId"/>
+                                            <s:param name="catCodigo" value="#a.categoria.catId"/>
                                         </s:a></li>                                    
                                     </s:if>
                                 </s:iterator>                      
@@ -303,7 +303,7 @@
                 <div id="campañas_Titulo">
                     CAMPAÑAS</div>
                 <div id="campagnas" >
-                    <s:iterator var="a" value="lista_campanias">
+                    <s:iterator var="a" value="lista_campaniasTienda">
                         <s:a action="TiendaMenu">
                             <table style="height: 250px; width: 350px;" class="imgproducto" >                        
                                 <tr>
@@ -328,7 +328,7 @@
                     MARCAS
                 </div>
                 <div id="marcas">
-                    <s:iterator var="m" value="lista_marcas">
+                    <s:iterator var="m" value="lista_marcasTienda">
                         <table  class="img_Marcas">                        
                             <tr>
                                 <td></td>

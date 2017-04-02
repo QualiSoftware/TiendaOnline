@@ -77,7 +77,8 @@ public class HomeCesta extends ActionSupport {
     private String cabeceraocul;
     private String botonocul;
     private String accionocul;
-    private String clientela;
+    private String cliCodigo;
+    private String catCodigo;
     private String clientelaNombre;
     private Double precioEliminar = 0.0;
     private boolean aceptarpago;
@@ -86,7 +87,7 @@ public class HomeCesta extends ActionSupport {
     private String prov;
     private String pais;
     private int facUsuId;
-    private String marcas2;
+    private String marca;
     private String campania;
     private int ropa,color,talla;
     private RopaStock ropaStock;
@@ -136,12 +137,28 @@ public class HomeCesta extends ActionSupport {
         this.t = t;
     }
 
-    public String getClientela() {
-        return clientela;
+    public String getCliCodigo() {
+        return cliCodigo;
     }
 
-    public void setClientela(String clientela) {
-        this.clientela = clientela;
+    public void setCliCodigo(String cliCodigo) {
+        this.cliCodigo = cliCodigo;
+    }
+
+    public String getCatCodigo() {
+        return catCodigo;
+    }
+
+    public void setCatCodigo(String catCodigo) {
+        this.catCodigo = catCodigo;
+    }
+
+    public String getMarca() {
+        return marca;
+    }
+
+    public void setMarca(String marca) {
+        this.marca = marca;
     }
 
     public String getClientelaNombre() {
