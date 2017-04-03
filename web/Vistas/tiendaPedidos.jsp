@@ -259,15 +259,15 @@
             </div>
             <div id="linea2" class="linea"></div>
             
-            
-            <table border="1">
+            <span id="titulo_Pedidos">Tus Pedidos <span class="glyphicon glyphicon-shopping-cart"></span></span>
+            <table border="1" id="Pedidos">
             <tr>
                 <th>Descargar</th>
                 <th>Código</th>
                 <th>Nombre / Razón Social</th>
                 <th>Fecha</th>
                 <th>Importe</th>
-                <th>Observaciones</th>
+                <th class="pedido_Observaciones">Observaciones</th>
             </tr>
             <%String fondo = "fondoOscuro";%>
             <s:iterator var="a" value="lista_facturas">
@@ -295,7 +295,7 @@
                         </s:iterator>
                         <s:property value="getText('{0,number,##0.00}',{#total})"/>
                     </td>
-                    <td>
+                    <td class="pedido_Observaciones">
                         <s:property value="#a.facObservaciones"/>
                     </td>
                 </tr>

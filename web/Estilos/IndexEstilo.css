@@ -1379,3 +1379,46 @@ select:-webkit-autofill:focus{
 
 
 /* FIN Cuenta Usuario */
+
+/*INICIO Pedidos*/
+
+#titulo_Pedidos{
+    position: absolute;
+    margin-left: 50px;
+    margin-top: 40px;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+#Pedidos{
+    border: 0px;
+    margin-top: 100px;    
+    margin-left: 50px;
+    background-color: #dedede;
+    padding: 200px;
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px grey;
+}
+#Pedidos td{
+    padding-bottom: 10px;
+    text-align: center;
+    padding: 5px;
+}
+#Pedidos th{
+    padding-bottom: 10px;
+    text-align: center;
+    padding: 5px;
+}
+
+.glyphicon-print{
+    color: #cc0033;
+}
+.glyphicon-print:hover{
+    color: black;
+    -webkit-transform: scale(1.2);
+    -webkit-transition: 0.3s;
+}
+.pedido_Observaciones{
+    max-width: 350px;
+}
+/*FIN Pedidos*/
