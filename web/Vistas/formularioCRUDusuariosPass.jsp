@@ -35,7 +35,7 @@
             <span id="titulo_Cuenta_Usuario">Modifique su contraseña <span class="glyphicon glyphicon-lock" aria-hidden="true"></span></span>
             <table id="cuenta_Usuario">
                 <tr>
-                    <td style="padding-top: 25px;">
+                    <td style="padding-top: 25px; text-align: left;">
                         <s:label for="antigua">Antigua contraseña</s:label>  
                     </td>
                     <td style="padding-top: 25px;">                        
@@ -43,7 +43,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>
+                    <td style="text-align: left;">
                         <s:label for="nueva1">Nueva contraseña</s:label>  
                     </td>
                     <td>                        
