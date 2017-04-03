@@ -158,7 +158,7 @@
                                     <tr>
                                         <td>
                                             <a href="#">
-                                                <s:submit value="Acceder" style="margin: 0 auto; width: 100px; border: 1px grey solid;" onMouseOver="this.style.cssText='box-shadow: 5px 5px 5px grey; width: 100px; -webkit-transform: scale(1.09);'" onMouseOut="this.style.cssText='box-shadow: 0px; width: 100px; -webkit-transform: scale(1); border: 1px solid'" class="btn btn-default btn_Acceder"/>
+                                                <s:submit value="Acceder" style="margin: 0 auto; width: 100px; border: 0px grey solid; background-color: #cc0033; box-shadow: 5px 5px 5px grey; color: white;" onMouseOver="this.style.cssText='width: 100px; -webkit-transform: scale(1.09); -webkit-transition: .3s; border: 0px grey solid; color: white; background-color: #cc0033; box-shadow: 5px 5px 5px grey;'" onMouseOut="this.style.cssText='box-shadow: 0px; width: 100px; -webkit-transform: scale(1); -webkit-transition: .3s; border: 0px grey solid; color: white; background-color: #cc0033; box-shadow: 5px 5px 5px grey;'" class="btn btn-default btn_Acceder"/>
                                             </a>
                                         </td>
                                     </tr>

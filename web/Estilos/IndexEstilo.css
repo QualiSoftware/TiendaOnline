@@ -148,12 +148,14 @@
     outline: 0px;
 }
 #login input:hover{
-    border-radius: 5px;
+    border-radius: 5px;    
     border: 1px solid grey;
-    cursor: pointer;
+    cursor: auto;
     outline: 0px;
 }
+
 /*Estilo de autocompletar de los inputs*/
+
 #login input:-webkit-autofill,
 input:-webkit-autofill:hover, 
 input:-webkit-autofill:focus
@@ -168,9 +170,15 @@ select:-webkit-autofill:focus {
     -webkit-text-fill-color: black;
     -webkit-box-shadow: 0 0 0px 1000px white inset;
     transition: background-color 5000s ease-in-out 0s;
-    cursor: pointer;
+    cursor: auto;
 }
+#login input:hover{
+   
+ 
+}
+
 /* FIN Estilo de autocompletar de los inputs*/
+
 #login button{
     font-size: 11px;
     color: black;    
@@ -1422,3 +1430,6 @@ select:-webkit-autofill:focus{
     max-width: 350px;
 }
 /*FIN Pedidos*/
+.btn_Acceder{
+    color: red;
+}
