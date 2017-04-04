@@ -219,15 +219,17 @@
                                     </s:a>
                                 </td>
                             </tr>
-                            <tr>
-                                <td class="con_Borde">
-                                    <s:a action="pedidos">
-                                        <span class="glyphicon glyphicon-shopping-cart"></span> Pedidos
-                                        <s:param name="clave" value="sesion.usuarioLogueado.usuId"/>
-                                    </s:a>
-                                    </a>
-                                </td>
-                            </tr>
+                            <s:if test="sesion.usuarioLogueado.usuAdministrador!=1">
+                                <tr>
+                                    <td class="con_Borde">
+                                        <s:a action="pedidos">
+                                            <span class="glyphicon glyphicon-shopping-cart"></span> Pedidos
+                                            <s:param name="clave" value="sesion.usuarioLogueado.usuId"/>
+                                        </s:a>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </s:if>
                         </s:if>
                         <tr>
                             <td class="con_Borde">

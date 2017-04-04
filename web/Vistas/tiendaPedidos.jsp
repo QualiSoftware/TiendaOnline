@@ -179,14 +179,6 @@
                                     </s:a>
                                 </td>
                             </tr>
-                            <tr>
-                                <td class="con_Borde">
-                                    <a href="#">
-                                        <span class="glyphicon glyphicon-shopping-cart"></span> Pedidos
-                                    </a>
-                                    </a>
-                                </td>
-                            </tr>
                         </s:if>
                         <tr>
                             <td class="con_Borde">

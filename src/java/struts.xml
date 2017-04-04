@@ -356,6 +356,10 @@
             <result>/Vistas/formularioCRUDusuariosAdmin.jsp</result>
             <result name="input" type="redirect">Tienda</result>
         </action>
+        <action name="UsuAltaAdmin" class="Acciones.HomeUsuarios" method="UsuAlta">
+            <result>/Vistas/formularioCRUDusuariosAdmin.jsp</result>
+            <result name="input" type="redirect">Tienda</result>
+        </action>
         <action name="UsuAlta" class="Acciones.HomeUsuarios" method="UsuAlta">
             <result>/Vistas/formularioCRUDusuarios.jsp</result>           
         </action>

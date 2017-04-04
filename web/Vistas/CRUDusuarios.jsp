@@ -50,14 +50,17 @@
             <s:iterator var="a" value="lista_usuarios">
                 <tr class="<%out.println(fondo);%>">
                     <td>
-                        <s:a action="CambiaContrasenia" title="Al resetear la contraseña la misma pasará a ser la palabra nueva">
-                            <s:param name="clave" value="#a.usuId"/>
-                            <s:param name="accion" value="'r'"/>
-                            Resetear contraseña
-                        </s:a>
+                        <s:if test="#a.usuAdministrador!=1">
+                            <s:a action="CambiaContrasenia" title="Al resetear la contraseña la misma pasará a ser la palabra nueva">
+                                <s:param name="clave" value="#a.usuId"/>
+                                <s:param name="accion" value="'r'"/>
+                                Resetear contraseña
+                            </s:a>
+                        </s:if>
                         &nbsp;&nbsp;&nbsp;&nbsp;
                         <s:a action="UsuariosForm">
                             <s:param name="clave" value="#a.usuId"/>
+                            <s:param name="accion" value="'m'"/>
                             <i style="font-size: 20px" class="glyphicon glyphicon-list-alt"></i>
                         </s:a>
                     </td>
