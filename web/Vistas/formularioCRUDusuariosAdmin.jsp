@@ -57,7 +57,14 @@
                 });
             }
         </script>
-        <title>Detalles de Usuario</title>
+        <title>
+            <s:if test="clave != -1">
+                Detalles de Usuario
+            </s:if>
+            <s:else>
+                Alta de Usuario
+            </s:else>
+        </title>
     </head>
     <body>
         <s:include value="cabeceraHeader.jsp" />
@@ -66,13 +73,25 @@
                         Tienda Ropa <img src="../Imagenes/Administracion/SH14171.jpg" alt="house_hangers" id="logo"/>
                     </s:a>
                 </div>
-        <div id="titulo_Pagina">Usuarios</div>
+        <div id="titulo_Pagina">
+            <s:if test="clave != -1">
+                Usuarios
+            </s:if>
+            <s:else>
+                Alta de Administrador
+            </s:else>
+        </div>
         <s:include value="cabeceraMenuAdministrador.jsp" />
         </div>
         <div  class="linea"></div>
         <div id="descripcion_Pagina">
             <h3 class="bold">
+                <s:if test="clave != -1">
                 Detalles de <s:property value="usuNombre2"/> <s:property value="usuApellidos2"/>
+                </s:if>
+                <s:else>
+                    Alta de usuario Administrador
+                </s:else>
             </h3>
         </div>
         <div  class="linea"></div>

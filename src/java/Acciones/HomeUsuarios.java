@@ -409,6 +409,8 @@ public class HomeUsuarios extends ActionSupport {
     public void setUsupais(String usupais) {
         this.usupais = usupais;
     }
+        
+    HomeUsuariosValidaciones huv = new HomeUsuariosValidaciones();
     
     public String UsuariosFiltro() throws Exception {
         if(sesion==null){
@@ -648,7 +650,7 @@ public class HomeUsuarios extends ActionSupport {
             p.setUsuNombre(usuNombre2);
             p.setUsuApellidos(usuApellidos2);
             p.setUsuEmail(usuEmail2);
-            p.setUsuPassword(usuPassword2);
+            p.setUsuPassword(huv.encriptar(usuPassword2));
             p.setUsuDni(usuDni2);
             p.setUsuCp(usuCp2);
             p.setUsuDireccion(usuDireccion2);
@@ -743,10 +745,12 @@ public class HomeUsuarios extends ActionSupport {
         try{
             u = ControladoresDAO.cUsuarios.RecuperaPorId(clave);
             if(accion.equals("r")){
-                u.setUsuPassword("nueva");
+                String cont = "nueva";
+                u.setUsuPassword(huv.encriptar(cont));
             }else{
-                if(u.getUsuPassword().equals(antigua)){
-                    u.setUsuPassword(usuPassword2);
+                List<Usuarios> l = ControladoresDAO.cUsuarios.Login(u.getUsuEmail(), huv.encriptar(antigua));
+                if(l.size() > 0){
+                    u.setUsuPassword(huv.encriptar(usuPassword2));
                     int respuesta = ControladoresDAO.cUsuarios.Modifica(u);
                     return NONE;
                 }else{

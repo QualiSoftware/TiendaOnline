@@ -106,51 +106,28 @@ public class HomeUsuariosValidaciones extends ActionSupport{
     }
     
     public String Login() throws Exception {
-        //System.out.println("respuesta "+respuesta);
-        /*if(respuesta == 1){
-            List<Usuarios> l = ControladoresDAO.cUsuarios.Login(usuEmail2,usuPassword2);
-            if(l.size()==0){
-                mensajeError="Acceso no permitido";
-                return ERROR;
-            }else{
+        List<Usuarios> l = ControladoresDAO.cUsuarios.Login(usuario,encriptar(password));
+        if(l.size()==0){
+            mensajeError="Usuario y/o contraseña erróneos";
+            Date d = new Date();
+            System.out.println("Hubo un intento de conexión fallido el " + d + " con user: " + usuario + " pass: " + password);
+            return ERROR;
+        }else{
+            Usuarios usuario = (Usuarios) l.get(0);
+            if(usuario.getUsuActivo() == 1){
                 if(sesion==null){
                     sesion=ActionContext.getContext().getSession();
                 }
                 sesion.put("usuarioLogueado", (Usuarios) l.get(0));
                 return SUCCESS;
-            }
-        }else{*/
-            List<Usuarios> l = ControladoresDAO.cUsuarios.Login(usuario,password);
-            if(l.size()==0){
-                mensajeError="Usuario y/o contraseña erróneos";
-                Date d = new Date();
-                System.out.println("Hubo un intento de conexión fallido el " + d + " con user: " + usuario + " pass: " + password);
-                return ERROR;
             }else{
-                Usuarios usuario = (Usuarios) l.get(0);
-                if(usuario.getUsuActivo() == 1){
-                    if(sesion==null){
-                        sesion=ActionContext.getContext().getSession();
-                    }
-                    sesion.put("usuarioLogueado", (Usuarios) l.get(0));
-                    return SUCCESS;
-                }else{
-                    mensajeError="Usuario inactivo";
-                    Date d = new Date();
-                    System.out.println("El usuario inactivo " + usuario.getUsuEmail() + " intentó loguearse el " + d );
-                    return ERROR;
-                }
+                mensajeError="Usuario inactivo";
+                Date d = new Date();
+                System.out.println("El usuario inactivo " + usuario.getUsuEmail() + " intentó loguearse el " + d );
+                return ERROR;
             }
-        //}     
-    }
-    /*
-    @SkipValidation
-    public String AbroSesion() throws Exception {
-        if(sesion==null){
-            sesion=ActionContext.getContext().getSession();
         }
-        return SUCCESS;
-    }*/
+    }
     
     @SkipValidation
     public String CerrarSesion() throws Exception {
@@ -159,5 +136,25 @@ public class HomeUsuariosValidaciones extends ActionSupport{
             }
             sesion.put("usuarioLogueado", "");
             return SUCCESS;
+    }
+    
+    public String encriptar(String pass){
+        
+        char[] array = pass.toCharArray();
+        char[] array2 = new char[array.length];
+        for(int i=0; i<array.length; i++){
+            array[i] = (char) (array[i] + (char) 3);
+            array2[i] = (char) (array[i] + (char) 7);
+        }
+        char[] arrayFinal = new char[array.length * 3];
+        for(int j=0; j<array.length; j++){
+            arrayFinal[3*j] = array[j];
+            arrayFinal[(3*j)+1] = array2[j];
+            arrayFinal[(3*j)+2] = (char) (array[j] + (char) 9);
+        }
+        //System.out.println("pass: "+pass);
+        //System.out.println("arrayFinal: "+String.valueOf(arrayFinal));
+        String salida = org.apache.commons.lang3.StringEscapeUtils.unescapeJava(String.valueOf(arrayFinal));
+        return salida;
     }
 }
