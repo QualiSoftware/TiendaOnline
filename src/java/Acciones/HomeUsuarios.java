@@ -602,13 +602,13 @@ public class HomeUsuarios extends ActionSupport {
         }else{
             dayString = ""+day;
         }
-        //usuActivo = usuario.getUsuActivo();
-        byte aux = usuario.getUsuActivo();
-        if(aux == 0){
-            usuActivo = false;
-        }else{
-            usuActivo = true;
-        }
+        usuActivo = usuario.isUsuActivo();
+//        byte aux = usuario.getUsuActivo();
+//        if(aux == 0){
+//            usuActivo = false;
+//        }else{
+//            usuActivo = true;
+//        }
         usuAlta = dayString+"-"+monthString+"-"+year;
         countryName = usuario.getProvincias().getPaises().getPaisNombre();
         if(accion.equals("m")){
@@ -663,15 +663,15 @@ public class HomeUsuarios extends ActionSupport {
             p.setUsuAlta(new Date());
             if(clave != -1){
                 p.setUsuAdministrador(0);
-                byte act = 0;
-                p.setUsuActivo(act);
+//                byte act = 0;
+                p.setUsuActivo(false);
                 respuesta = ControladoresDAO.cUsuarios.Inserta(p);
                 respuesta = ControladoresDAO.cUsuarios.SaberUltimoId();
                 boolean email = ControladoresDAO.cEmail.enviarAlta(usuEmail2, respuesta);
             }else{
                 p.setUsuAdministrador(1);
-                byte act = 1;
-                p.setUsuActivo(act);
+//                byte act = 1;
+                p.setUsuActivo(true);
                 respuesta = ControladoresDAO.cUsuarios.Inserta(p);
             }
         }
@@ -685,12 +685,12 @@ public class HomeUsuarios extends ActionSupport {
                 usuFechaLimiteDesc = year+"-"+month+"-"+day;
                 Date dateDescuento = sdf.parse(usuFechaLimiteDesc);
                 p.setUsuFechaLimiteDesc(dateDescuento);
-                //p.setUsuActivo(usuActivo);
-                byte aux = 0;
-                if(usuActivo){
-                    aux = 1;
-                }
-                p.setUsuActivo(aux);
+                p.setUsuActivo(usuActivo);
+//                byte aux = 0;
+//                if(usuActivo){
+//                    aux = 1;
+//                }
+//                p.setUsuActivo(aux);
             }else{
                 p.setProvincias(ControladoresDAO.cProvincias.RecuperaPorId(Integer.parseInt(provincias2)));
                 p.setUsuNombre(usuNombre2);
@@ -710,7 +710,7 @@ public class HomeUsuarios extends ActionSupport {
                 p.setUsuAdministrador(ud.getUsuAdministrador());
                 p.setUsuAlta(ud.getUsuAlta());
                 p.setUsuId(usuId2);
-                p.setUsuActivo(ud.getUsuActivo());
+                p.setUsuActivo(ud.isUsuActivo());
             }
             respuesta = ControladoresDAO.cUsuarios.Modifica(p);
         }
@@ -727,8 +727,8 @@ public class HomeUsuarios extends ActionSupport {
     public String activa() throws Exception{
         try{
             u = ControladoresDAO.cUsuarios.RecuperaPorId(Integer.parseInt(accion));
-            byte act = 1;
-            u.setUsuActivo(act);
+//            byte act = 1;
+            u.setUsuActivo(true);
             int respuesta = ControladoresDAO.cUsuarios.Modifica(u);
             accion = u.getUsuNombre()+" "+u.getUsuApellidos();
             return SUCCESS;

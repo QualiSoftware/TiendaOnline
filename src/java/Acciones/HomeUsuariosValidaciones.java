@@ -114,7 +114,7 @@ public class HomeUsuariosValidaciones extends ActionSupport{
             return ERROR;
         }else{
             Usuarios usuario = (Usuarios) l.get(0);
-            if(usuario.getUsuActivo() == 1){
+            if(usuario.isUsuActivo()){
                 if(sesion==null){
                     sesion=ActionContext.getContext().getSession();
                 }

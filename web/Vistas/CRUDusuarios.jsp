@@ -85,8 +85,8 @@
                         <s:elseif test="#a.usuAdministrador==2">No registrado</s:elseif>
                     </td>
                     <td>
-                        <s:if test="#a.usuActivo==0">No</s:if>
-                        <s:elseif test="#a.usuActivo==1">Si</s:elseif>
+                        <s:if test="!#a.usuActivo">No</s:if>
+                        <s:elseif test="#a.usuActivo">Si</s:elseif>
                     </td>
                     <td>
                         <s:property value="#a.usuDescuento"/>
