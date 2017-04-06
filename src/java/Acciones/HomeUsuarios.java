@@ -449,7 +449,7 @@ public class HomeUsuarios extends ActionSupport {
             usuDireccion2 = "";
             usuCp2 = "";
             Date fecha = new Date();
-            year = fecha.getYear() + 1884;
+            year = fecha.getYear() + 1882;
             month = fecha.getMonth()+1;
             day = fecha.getDate();
             if(month < 10){

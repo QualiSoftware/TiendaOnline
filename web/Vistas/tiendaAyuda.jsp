@@ -222,16 +222,10 @@
                                             <span class="glyphicon glyphicon-shopping-cart"></span> Pedidos
                                             <s:param name="clave" value="sesion.usuarioLogueado.usuId"/>
                                         </s:a>
-                                        </a>
                                     </td>
                                 </tr>
                             </s:if>
-                        </s:if>
-                        <tr>
-                            <td class="con_Borde">
-                                <a href="#"><span class="glyphicon glyphicon-question-sign"></span> Ayuda</a>
-                            </td>
-                        </tr>                        
+                        </s:if>                        
                         <tr>
                             <td >
                             <s:a action="otros"><span class="glyphicon glyphicon-option-vertical"></span> Otros</s:a>

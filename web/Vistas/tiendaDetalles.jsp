@@ -310,7 +310,6 @@
                                             <span class="glyphicon glyphicon-shopping-cart"></span> Pedidos
                                             <s:param name="clave" value="sesion.usuarioLogueado.usuId"/>
                                         </s:a>
-                                        </a>
                                     </td>
                                 </tr>
                             </s:if>

@@ -227,13 +227,6 @@
                     <div id="menu_Tabla">
                         <table>
                         <s:if test="sesion.usuarioLogueado.usuId!=''">
-                            <tr>
-                                <td class="con_Borde">
-                                    <a href="#">
-                                        <span class="glyphicon glyphicon-user"></span> Cuenta
-                                    </a>
-                                </td>
-                            </tr>
                             <s:if test="sesion.usuarioLogueado.usuAdministrador!=1">
                                 <tr>
                                     <td class="con_Borde">
@@ -241,7 +234,6 @@
                                             <span class="glyphicon glyphicon-shopping-cart"></span> Pedidos
                                             <s:param name="clave" value="sesion.usuarioLogueado.usuId"/>
                                         </s:a>
-                                        </a>
                                     </td>
                                 </tr>
                             </s:if>
