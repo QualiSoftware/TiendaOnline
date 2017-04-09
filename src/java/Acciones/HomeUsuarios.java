@@ -678,11 +678,7 @@ public class HomeUsuarios extends ActionSupport {
                 Date dateDescuento = sdf.parse(usuFechaLimiteDesc);
                 p.setUsuFechaLimiteDesc(dateDescuento);
                 p.setUsuActivo(usuActivo);
-//                byte aux = 0;
-//                if(usuActivo){
-//                    aux = 1;
-//                }
-//                p.setUsuActivo(aux);
+                respuesta = ControladoresDAO.cUsuarios.Modifica(p);
             }else{
                 p.setProvincias(ControladoresDAO.cProvincias.RecuperaPorId(Integer.parseInt(provincias2)));
                 p.setUsuNombre(usuNombre2);
@@ -703,8 +699,12 @@ public class HomeUsuarios extends ActionSupport {
                 p.setUsuAlta(ud.getUsuAlta());
                 p.setUsuId(usuId2);
                 p.setUsuActivo(ud.isUsuActivo());
+                respuesta = ControladoresDAO.cUsuarios.Modifica(p);
+                UsuAlta();
+                if(respuesta == 1){
+                    modificaAdmin = "Modificación realizada correctamente";
+                }
             }
-            respuesta = ControladoresDAO.cUsuarios.Modifica(p);
         }
         if (accion.equals("e")) {
             p = ControladoresDAO.cUsuarios.RecuperaPorId(usuId2);
