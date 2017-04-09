@@ -51,6 +51,9 @@ function oculta_Cesta(){
 function fijarLogin(value){
     if(value == "block"){
         $('#login').css('display',value);
+        $('#iniciar_Sesion').hover(
+                function(){$('#login').css('display',value);},
+                function(){$('#login').css('display','none');});
     }else{
         $('#iniciar_Sesion').hover(
                 function(){$('#login').css('display','block');},
