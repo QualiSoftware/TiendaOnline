@@ -17,6 +17,8 @@
         <script src="../Scripts/jquery_3.js"></script>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
         <link rel="stylesheet" href="../Estilos/GeneralEstilos.css"/>
+        <!--Validaciones de usuario-->
+        <script src="../Scripts/ValidacionUsuario.js" type="text/javascript"></script>
         <script>
             $(document).ready(function () {
                 $('#pais').change(function (event) {
@@ -40,7 +42,7 @@
                         }
                     }
                 }else{
-                    document.getElementById("frm").submit();
+                    Verificar('a');
                 }
             }
             function usarAJAX(valor) {
@@ -102,9 +104,14 @@
                 <input type="hidden" name="modificaAdmin" value="modificaAdmin" />
             </s:if>
             <s:else>
-                <input type="hidden" name="accion" value="a" />
+                <input type="hidden" name="accion" id="accionocul" value="a" />
             </s:else>
         <table>
+            <tr>
+                <td colspan="2">
+                    <span id="camposVacios"></span>
+                </td>
+            </tr>
             <s:if test="clave != -1">
                 <tr>
                     <td>
@@ -167,7 +174,7 @@
                         <s:textfield name="usuEmail2" readonly="true" ></s:textfield>
                 </s:if>
                 <s:else>
-                    <s:textfield name="usuEmail2"></s:textfield>
+                    <s:textfield name="usuEmail2" id="usuEmail2"></s:textfield>
                 </s:else>
                 </td>
             </tr>
@@ -180,7 +187,7 @@
                         <s:textfield name="usuTelefono2" readonly="true" ></s:textfield>
                     </s:if>
                     <s:else>
-                        <s:textfield name="usuTelefono2"></s:textfield>
+                        <s:textfield name="usuTelefono2" id="usuTelefono2"></s:textfield>
                     </s:else>
                 </td>
             </tr>
@@ -236,7 +243,6 @@
                     </td>
                     <td>
                         <s:textfield name="usuFechaLimiteDesc" id="usuFechaNac2" cssClass="tcal formulario_rellenar_Fecha" cssStyle="padding-right: 10px; background-color: white;" readonly="true"/>
-                        <%--<s:textfield name="usuFechaLimiteDesc" readonly="true" ></s:textfield>--%>
                     </td>
                 </tr>
                 <tr>
@@ -305,7 +311,7 @@
                         <s:textfield name="usuLocalidad2" readonly="true" ></s:textfield>
                     </s:if>
                     <s:else>
-                        <s:textfield name="usuLocalidad2"></s:textfield>
+                        <s:textfield name="usuLocalidad2" id="usuLocalidad2"></s:textfield>
                     </s:else>
                 </td>
             </tr>
@@ -318,7 +324,7 @@
                         <s:textfield name="usuCp2" readonly="true" ></s:textfield>
                     </s:if>
                     <s:else>
-                        <s:textfield name="usuCp2"></s:textfield>
+                        <s:textfield name="usuCp2" id="usuCp2"></s:textfield>
                     </s:else>
                 </td>
             </tr>
@@ -331,7 +337,7 @@
                         <s:textfield name="usuDireccion2" readonly="true" ></s:textfield>
                     </s:if>
                     <s:else>
-                        <s:textfield name="usuDireccion2"></s:textfield>
+                        <s:textfield name="usuDireccion2" id="usuDireccion2"></s:textfield>
                     </s:else>
                 </td>
             </tr>
