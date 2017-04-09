@@ -603,12 +603,6 @@ public class HomeUsuarios extends ActionSupport {
             dayString = ""+day;
         }
         usuActivo = usuario.isUsuActivo();
-//        byte aux = usuario.getUsuActivo();
-//        if(aux == 0){
-//            usuActivo = false;
-//        }else{
-//            usuActivo = true;
-//        }
         usuAlta = dayString+"-"+monthString+"-"+year;
         countryName = usuario.getProvincias().getPaises().getPaisNombre();
         if(accion.equals("m")){
@@ -663,14 +657,12 @@ public class HomeUsuarios extends ActionSupport {
             p.setUsuAlta(new Date());
             if(clave != -1){
                 p.setUsuAdministrador(0);
-//                byte act = 0;
                 p.setUsuActivo(false);
                 respuesta = ControladoresDAO.cUsuarios.Inserta(p);
                 respuesta = ControladoresDAO.cUsuarios.SaberUltimoId();
                 boolean email = ControladoresDAO.cEmail.enviarAlta(usuEmail2, respuesta);
             }else{
                 p.setUsuAdministrador(1);
-//                byte act = 1;
                 p.setUsuActivo(true);
                 respuesta = ControladoresDAO.cUsuarios.Inserta(p);
             }
@@ -727,7 +719,6 @@ public class HomeUsuarios extends ActionSupport {
     public String activa() throws Exception{
         try{
             u = ControladoresDAO.cUsuarios.RecuperaPorId(Integer.parseInt(accion));
-//            byte act = 1;
             u.setUsuActivo(true);
             int respuesta = ControladoresDAO.cUsuarios.Modifica(u);
             accion = u.getUsuNombre()+" "+u.getUsuApellidos();
@@ -738,6 +729,11 @@ public class HomeUsuarios extends ActionSupport {
     }
     
     public String FormContrasenia() throws Exception{
+        if(sesion==null){
+            sesion=ActionContext.getContext().getSession();
+        }
+        u = ControladoresDAO.cUsuarios.RecuperaPorId(clave);
+        cargarMenuDesplegable();
         return SUCCESS;
     }
     

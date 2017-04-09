@@ -1,7 +1,7 @@
 <%-- 
     Document   : CRUDmuestracampanias
     Created on : 12-dic-2016, 19:42:08
-    Author     : laPlaga
+    Author     : QualiSoftware
 --%>
 <%@taglib  prefix="s" uri="/struts-tags" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

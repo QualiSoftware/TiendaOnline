@@ -1,7 +1,7 @@
 <%-- 
     Document   : CRUDmuestramarcas
     Created on : 12-dic-2016, 23:07:17
-    Author     : laPlaga
+    Author     : QualiSoftware
 --%>
 <%@taglib  prefix="s" uri="/struts-tags" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
