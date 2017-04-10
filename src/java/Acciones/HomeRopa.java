@@ -944,36 +944,21 @@ public class HomeRopa extends ActionSupport {
     @SkipValidation
     public String CrudActionRopa() throws Exception {
         int respuesta;
-        /*
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        String year;
-        String month;
-        String day;
-        year = roFecha2.substring(6, 10);
-        month = roFecha2.substring(3, 5);
-        day = roFecha2.substring(0, 2);
-        roFecha2 = year+"-"+month+"-"+day;
-        Date fecha = sdf.parse(roFecha2);*/
         if (roId2 != 0) {
             t = ControladoresDAO.cRopa.RecuperaPorId(roId2);
         } else {
-            //rstock = new RopaStock();
             t = new Ropa();
         }
         if (!accionocul.equals("e")) {
             t.setClientela(ControladoresDAO.cClientela.RecuperaPorId(Integer.parseInt(cliCodigo)));
             t.setColeccion(ControladoresDAO.cColeccion.RecuperaPorId(Integer.parseInt(coleccion2)));
-            //rstock.setColor(ControladoresDAO.cColor.RecuperaPorId(Integer.parseInt(color2)));
             t.setLook(ControladoresDAO.cLook.RecuperaPorId(Integer.parseInt(look2)));
             t.setMarcas(ControladoresDAO.cMarcas.RecuperaPorId(Integer.parseInt(marca)));
-            //rstock.setTallas(ControladoresDAO.cTallas.RecuperaPorId(Integer.parseInt(tallas2)));
             t.setRoDescripcion(roDescripcion2);
             t.setRoPrecio(roPrecio2);
             t.setRoDescuento(roDescuento2);
             t.setRoCaracteristicas(roCaracteristicas2);
             t.setRoVisible(roVisible2);
-            //rstock.setRostockUnidades(roUnidades2);
-            //rstock.setRostockFecha(fecha);
             if(!hayFotos){
                 t.setCategoria(ControladoresDAO.cCategorias.RecuperaPorId(Integer.parseInt(catCodigo)));
                 t.setSubcategoria(ControladoresDAO.cSubcategorias.RecuperaPorId(Integer.parseInt(subcategoria2)));
@@ -981,16 +966,12 @@ public class HomeRopa extends ActionSupport {
         }
         if (accionocul.equals("a")) {
             respuesta = ControladoresDAO.cRopa.Inserta(t);
-            //rstock.setRopa(ControladoresDAO.cRopa.RecuperaPorId(respuesta));
-            //respuesta = ControladoresDAO.cRopaStock.Modifica(rstock);
             if(confotos){
                 return INPUT;
             }
         }
         if (accionocul.equals("m")) {            
             respuesta = ControladoresDAO.cRopa.Modifica(t);
-            //rstock.setRopa(t);
-            //respuesta = ControladoresDAO.cRopaStock.Modifica(rstock);
         }
         if (accionocul.equals("e")) {
             byte b = 0;

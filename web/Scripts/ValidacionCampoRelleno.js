@@ -1,6 +1,5 @@
 function CampoRelleno(campo,mensaje){
     var relleno = true;
-    mensaje.innerHTML = "";
     if(campo.value == ""){
         mensaje.innerHTML = "Por favor rellene los campos obligatorios";
         campo.style.borderColor="red";
@@ -30,4 +29,21 @@ function FechasCorrectas(inicio,fin,mensaje){
         mensaje.innerHTML = "La fecha de fin de campaña debe ser <br>mayor o igual a la fecha de inicio";
     }
     return fechaOK;
+}
+
+function NumeroPositivoCorrecto(campo,mensaje){
+    var todoOK = true;
+    var preAux = campo.value.replace(",",".");
+    if(isNaN(preAux)){
+        todoOK = false;
+    }else if(preAux < 0){
+        todoOK = false;
+    }
+    if(todoOK){
+        campo.style.borderColor="white";
+    }else{
+        mensaje.innerHTML = "<br>Campo numérico incorrecto";
+        campo.style.borderColor="red";
+    }
+    return todoOK;
 }

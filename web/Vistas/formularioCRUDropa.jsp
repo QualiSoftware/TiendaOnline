@@ -16,6 +16,7 @@
         <link rel="stylesheet" href="../Estilos/GeneralEstilos.css"/>
         <title>Formulario</title>
         <script src="../Scripts/jquery_3.js" type="text/javascript"></script>
+        <script src="../Scripts/ValidacionCampoRelleno.js" type="text/javascript"></script>
         <script>
             $(document).ready(function() {
                $('#categoria').change(function(event) {
@@ -45,7 +46,33 @@
                         document.getElementById('frm').submit();
                     }
                 } else {
-                    document.getElementById('frm').submit();
+                    var rellenoOK = true;
+                    var numeroOK = true;
+                    if(!CampoRelleno(document.getElementById('roDescripcion2'),document.getElementById('errores'))){
+                        rellenoOK = false;
+                    }
+                    if(!CampoRelleno(document.getElementById('roPrecio2'),document.getElementById('errores'))){
+                        rellenoOK = false;
+                    }else if(!NumeroPositivoCorrecto(document.getElementById('roPrecio2'),document.getElementById('erroresPrecio'))){
+                        numeroOK = false;
+                    }
+                    if(!CampoRelleno(document.getElementById('roDescuento2'),document.getElementById('errores'))){
+                        rellenoOK = false;
+                    }else if(!NumeroPositivoCorrecto(document.getElementById('roDescuento2'),document.getElementById('erroresPrecio'))){
+                        numeroOK = false;
+                    }
+                    if(!CampoRelleno(document.getElementById('roCaracteristicas2'),document.getElementById('errores'))){
+                        rellenoOK = false;
+                    }
+                    if(rellenoOK){
+                        document.getElementById('errores').innerHTML = "";
+                    }
+                    if(numeroOK){
+                        document.getElementById('erroresPrecio').innerHTML = "";
+                    }
+                    if(rellenoOK && numeroOK){
+                        document.getElementById('frm').submit();
+                    }
                 }
             }
         </script>     
@@ -67,6 +94,11 @@
             <input type="hidden" name="accionocul" id="accionocul" value=<s:property value="accion" /> />
             <input type="hidden" name="confotos" id="confotos" value="true" />
             <table>
+                <tr>
+                    <td colspan="2">
+                        <pre><span id="errores"></span><span id="erroresPrecio"></span></pre>
+                    </td>
+                </tr>
                 <tr>
                     <td>
                         <s:label for="roId2">Código</s:label>  
@@ -120,7 +152,6 @@
                     </td>
                 </tr>
                 <tr>
-
                     <td>
                         <s:label for="marca">Marca</s:label>  
                         </td>
@@ -137,53 +168,53 @@
                 </tr>
                 <tr>
                     <td>
-                        <s:label for="roDescripcion2">Descripción</s:label>  
+                        <s:label for="roDescripcion2">Descripción (*)</s:label>  
                         </td>
                         <td>
                         <s:if test='%{accionocul == "e" || accionocul == "c"}'>
-                            <s:textfield name="roDescripcion2" readonly="true" ></s:textfield>
+                            <s:textfield name="roDescripcion2" id="roDescripcion2" readonly="true" ></s:textfield>
                         </s:if>
                         <s:else>
-                            <s:textfield name="roDescripcion2"/>
+                            <s:textfield name="roDescripcion2" id="roDescripcion2" />
                         </s:else>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <s:label for="roPrecio2">Precio</s:label>  
+                        <s:label for="roPrecio2">Precio (*)</s:label>  
                         </td>
                         <td>
                         <s:if test='%{accionocul == "e" || accionocul == "c"}'>
-                            <s:textfield name="roPrecio2" readonly="true" ></s:textfield>
+                            <s:textfield name="roPrecio2" id="roPrecio2" readonly="true" ></s:textfield>
                         </s:if>
                         <s:else>
-                            <s:textfield name="roPrecio2"/>
+                            <s:textfield name="roPrecio2" id="roPrecio2" />
                         </s:else>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <s:label for="roDescuento2">Descuento</s:label>  
+                        <s:label for="roDescuento2">Descuento (*)</s:label>  
                         </td>
                         <td>
                         <s:if test='%{accionocul == "e" || accionocul == "c"}'>
-                            <s:textfield name="roDescuento2" readonly="true" ></s:textfield>
+                            <s:textfield name="roDescuento2" id="roDescuento2" readonly="true" ></s:textfield>
                         </s:if>
                         <s:else>
-                            <s:textfield name="roDescuento2"/>
+                            <s:textfield name="roDescuento2" id="roDescuento2" />
                         </s:else>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <s:label for="roCaracteristicas2">Características</s:label>  
+                        <s:label for="roCaracteristicas2">Características (*)</s:label>  
                         </td>
                         <td>
                         <s:if test='%{accionocul == "e" || accionocul == "c"}'>
-                            <s:textfield name="roCaracteristicas2" readonly="true" ></s:textfield>
+                            <s:textfield name="roCaracteristicas2" id="roCaracteristicas2" readonly="true" ></s:textfield>
                         </s:if>
                         <s:else>
-                            <s:textfield name="roCaracteristicas2"/>
+                            <s:textfield name="roCaracteristicas2" id="roCaracteristicas2" />
                         </s:else>
                     </td>
                 </tr>
