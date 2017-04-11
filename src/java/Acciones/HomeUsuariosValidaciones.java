@@ -30,6 +30,12 @@ public class HomeUsuariosValidaciones extends ActionSupport{
     private int respuesta;
     private String usuEmail2 = "";
     private String usuPassword2 = "";
+    private String actionName;
+    private String cliCodigo;
+    private String catCodigo;
+    private String marca;
+    private String campania;
+    private int roId;
 
     public int getRespuesta() {
         return respuesta;
@@ -53,6 +59,54 @@ public class HomeUsuariosValidaciones extends ActionSupport{
 
     public void setUsuPassword2(String usuPassword2) {
         this.usuPassword2 = usuPassword2;
+    }
+
+    public String getActionName() {
+        return actionName;
+    }
+
+    public void setActionName(String actionName) {
+        this.actionName = actionName;
+    }
+
+    public String getCliCodigo() {
+        return cliCodigo;
+    }
+
+    public void setCliCodigo(String cliCodigo) {
+        this.cliCodigo = cliCodigo;
+    }
+
+    public String getCatCodigo() {
+        return catCodigo;
+    }
+
+    public void setCatCodigo(String catCodigo) {
+        this.catCodigo = catCodigo;
+    }
+
+    public String getMarca() {
+        return marca;
+    }
+
+    public void setMarca(String marca) {
+        this.marca = marca;
+    }
+
+    public String getCampania() {
+        return campania;
+    }
+
+    public void setCampania(String campania) {
+        this.campania = campania;
+    }
+
+    public int getRoId() {
+        return roId;
+    }
+
+    public void setRoId(int roId) {
+        this.roId = roId;
     }
 
     public Map getSesion() {

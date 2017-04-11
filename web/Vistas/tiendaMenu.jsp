@@ -144,6 +144,11 @@
                             <div id="mi_Cuenta_Txt">Mi Cuenta</div>
                         </a>                    
                         <s:form action="TiendaLogin" theme="simple">
+                            <input type="hidden" name="actionName" value="TiendaMenu.action"/>
+                            <input type="hidden" name="cliCodigo" value="<s:property value="cliCodigo"/>"/>
+                            <input type="hidden" name="catCodigo" value="<s:property value="catCodigo"/>"/>
+                            <input type="hidden" name="marca" value="<s:property value="marca"/>"/>
+                            <input type="hidden" name="campania" value="<s:property value="campania"/>"/>
                             <div id="login">                                        
                                 <table >
                                     <tr>
@@ -248,10 +253,10 @@
                 <s:form role="search" action="TiendaMenu" theme="simple">
                     <input type="hidden" name="cliCodigo" value="<s:property value="cliCodigo"/>"/>
                     <input type="hidden" name="catCodigo" value="<s:property value="catCodigo"/>"/>
-                    <input type="hidden" name="clientelaNombre" value="<s:property value="clientelaNombre"/>"/>
-                    <input type="hidden" name="categoriaNombre" value="<s:property value="categoriaNombre"/>"/>
                     <input type="hidden" name="marca" value="<s:property value="marca"/>"/>
                     <input type="hidden" name="campania" value="<s:property value="campania"/>"/>
+                    <input type="hidden" name="clientelaNombre" value="<s:property value="clientelaNombre"/>"/>
+                    <input type="hidden" name="categoriaNombre" value="<s:property value="categoriaNombre"/>"/>
                     <div class="form-group">
                         <input type="text" style="position: absolute; top:0px; left: 0px;" class="form-control" placeholder="Búsqueda" name="filtro" value="<s:property value="filtro"/>">
                     </div>

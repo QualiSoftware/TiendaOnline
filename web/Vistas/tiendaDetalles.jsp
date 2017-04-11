@@ -227,6 +227,12 @@
                             <div id="mi_Cuenta_Txt">Mi Cuenta</div>
                         </a>                    
                         <s:form action="TiendaLogin" theme="simple">
+                            <input type="hidden" name="actionName" value="RopaPopUp.action"/>
+                            <input type="hidden" name="roId" value="<s:property value="roId"/>"/>
+                            <input type="hidden" name="cliCodigo" value="<s:property value="cliCodigo"/>"/>
+                            <input type="hidden" name="catCodigo" value="<s:property value="catCodigo"/>"/>
+                            <input type="hidden" name="marca" value="<s:property value="marca"/>"/>
+                            <input type="hidden" name="campania" value="<s:property value="campania"/>"/>
                             <div id="login">                                        
                                 <table >
                                     <tr>
@@ -511,27 +517,6 @@
                             </td>
                         </tr>
                     </s:iterator>
-<!--                    <tr>
-                        <td>
-                            <a  href="../Imagenes/Administracion/Vestidos/Detalles/663786008_184_2.jpg" data-standard="../Imagenes/Administracion/Vestidos/Detalles/663786008_184_2.jpg">
-                                <img src="../Imagenes/Administracion/Vestidos/Detalles/663786008_184_2.jpg" alt=""/>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <a class="fancybox" href="../Imagenes/Administracion/Vestidos/Detalles/663786009_563_2.jpg" data-standard="../Imagenes/Administracion/Vestidos/Detalles/663786009_563_2.jpg">
-                                <img src="../Imagenes/Administracion/Vestidos/Detalles/663786009_563_2.jpg" alt=""/>
-                            </a>
-                        </td>
-                    </tr>    
-                    <tr>
-                        <td>
-                            <a class="fancybox" data-fancybox-group="thumb" href="../Imagenes/Administracion/Vestidos/Detalles/663786002_393_2.jpg" data-standard="../Imagenes/Administracion/Vestidos/Detalles/663786002_393_2.jpg">
-                                <img src="../Imagenes/Administracion/Vestidos/Detalles/663786002_393_2.jpg" alt=""/>
-                            </a>
-                        </td>
-                    </tr>-->
                 </table>               
             </s:form>
             </div>            

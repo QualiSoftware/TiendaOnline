@@ -1109,6 +1109,9 @@ public class HomeRopa extends ActionSupport {
         lista_tallas = new ArrayList<Tallas>();
         lista_colores.add(lista_ropaStock.get(0).getColor());
         lista_tallas.add(lista_ropaStock.get(0).getTallas());
+        //Las dos líneas que siguen las necesito sólo para que funcione el login en tiendaDetalle.jsp
+        lista_colores.get(0).getColorDescripcion();
+        lista_tallas.get(0).getTallaDescripcion();
         for(int i=1;i<lista_ropaStock.size();i++){
             boolean bool = true;
             for(int j=0;j<lista_colores.size();j++){
@@ -1130,6 +1133,9 @@ public class HomeRopa extends ActionSupport {
             }
             if(bool){
                 lista_tallas.add(lista_ropaStock.get(i).getTallas());
+                //Las dos líneas siguientes son necesarias para cargar la descripción en memoria, nada más.
+                int tam = lista_tallas.size();
+                lista_tallas.get(tam-1).getTallaDescripcion();
             }
         }
         lista_menu_ropa = new ArrayList<Ropa>();

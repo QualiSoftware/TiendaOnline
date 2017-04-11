@@ -448,7 +448,14 @@
                 <param name="usuario">${usuario}</param>
                 <param name="actionName">Tienda</param>
             </result>
-            <result type="redirect">Tienda</result>
+            <result name="success" type="redirectAction">
+                <param name="cliCodigo">${cliCodigo}</param>
+                <param name="catCodigo">${catCodigo}</param>
+                <param name="marca">${marca}</param>
+                <param name="campania">${campania}</param>
+                <param name="roId">${roId}</param>
+                <param name="actionName">${actionName}</param>
+            </result>
         </action>
         
         <action name="TiendaCerrarSesion" class="Acciones.HomeUsuariosValidaciones" method="CerrarSesion">
