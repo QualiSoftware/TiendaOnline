@@ -441,12 +441,22 @@
             <result name="input" type="redirectAction">
                 <param name="mensajeError">${mensajeError}</param>
                 <param name="usuario">${usuario}</param>
-                <param name="actionName">Tienda</param>
+                <param name="cliCodigo">${cliCodigo}</param>
+                <param name="catCodigo">${catCodigo}</param>
+                <param name="marca">${marca}</param>
+                <param name="campania">${campania}</param>
+                <param name="roId">${roId}</param>
+                <param name="actionName">${actionName}</param>
             </result>
             <result name="error" type="redirectAction">
                 <param name="mensajeError">${mensajeError}</param>
                 <param name="usuario">${usuario}</param>
-                <param name="actionName">Tienda</param>
+                <param name="cliCodigo">${cliCodigo}</param>
+                <param name="catCodigo">${catCodigo}</param>
+                <param name="marca">${marca}</param>
+                <param name="campania">${campania}</param>
+                <param name="roId">${roId}</param>
+                <param name="actionName">${actionName}</param>
             </result>
             <result name="success" type="redirectAction">
                 <param name="cliCodigo">${cliCodigo}</param>
