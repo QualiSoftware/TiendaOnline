@@ -637,8 +637,8 @@ public class HomeUsuarios extends ActionSupport {
         year = usuFechaNac2.substring(6, 10);
         month = usuFechaNac2.substring(3, 5);
         day = usuFechaNac2.substring(0, 2);
-        usuFechaNac2 = year+"-"+month+"-"+day;
-        Date date = sdf.parse(usuFechaNac2);
+        String auxFecha = year+"-"+month+"-"+day;
+        Date date = sdf.parse(auxFecha);
         if (accion.equals("a")) {
             p.setProvincias(ControladoresDAO.cProvincias.RecuperaPorId(Integer.parseInt(provincias2)));
             p.setUsuNombre(usuNombre2);
@@ -651,7 +651,20 @@ public class HomeUsuarios extends ActionSupport {
             p.setUsuSexo(usuSexo2);
             p.setUsuTelefono(usuTelefono2);
             p.setUsuLocalidad(usuLocalidad2);
-            p.setUsuFechaNac(date);
+            List<Usuarios> usuLista = ControladoresDAO.cUsuarios.recuperaPorEmail(usuEmail2);
+            if(usuLista.size() > 0){
+                usuFechaNac2 = day + "-" + month + "-" + year;
+                modificaAdmin = "El email ingresado ya existe como usuario";
+                listaPaises = ControladoresDAO.cPaises.RecuperaTodos("");
+                listaProvincias = ControladoresDAO.cProvincias.RecuperaTodos("");
+                accionocul = "a";
+                cabeceraocul = "Alta";
+                botonocul = "Alta";
+                cargarMenuDesplegable();
+                return ERROR;
+            }else{
+                p.setUsuFechaNac(date);
+            }
             p.setUsuDescuento(0);
             p.setUsuFechaLimiteDesc(date);
             p.setUsuAlta(new Date());

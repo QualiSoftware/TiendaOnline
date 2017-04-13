@@ -96,4 +96,12 @@ public class cUsuarios {
         List<Integer> uf = query.list();
         return uf.get(0);
     }
+    
+    public static List<Usuarios> recuperaPorEmail(String u){
+        sesion = (Session) NewHibernateUtil.getSession();
+        Criteria criterio = sesion.createCriteria(Usuarios.class);
+        criterio.add(Restrictions.eq("usuEmail", u));
+        List<Usuarios> lista = criterio.list();
+        return lista;
+    }  
 }
