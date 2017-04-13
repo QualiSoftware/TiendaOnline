@@ -303,49 +303,10 @@
                     </li>                    
                 </ul>                
             </div>
-                        <div class="linea" style="height: 3px;"></div>
-<!--            <div id="contenido"><br>
-                <div id="campañas_Titulo">
-                    CAMPAÑAS</div>
-                <div id="campagnas" >
-                    <s:iterator var="a" value="lista_campanias">
-                        <s:a action="TiendaMenu">
-                            <table style="height: 250px; width: 350px;" class="imgproducto" >                        
-                                <tr>
-                                    <td class="descuento"><span class="descuento_Txt">¡<s:property value="#a.camDescuento"/>% de Descuento!</span><span class="validez_Txt">Hasta el <s:date name="#a.camFin" format="dd/MM/yyyy"/></span></td>
-                                </tr>
-                                <tr>
-                                    <td><img style="height: 250px; width: 350px;" id="prueba" onmouseover="this.style.cssText='opacity: 0.5; box-shadow: 5px 5px 5px black; -webkit-transition: 0.5s;'" onmouseout="this.style.cssText='opacity: 1; -webkit-transform: scale(1); -webkit-transition: 0.5s; box-shadow: 0px 0px 0px white;'" src="../Imagenes/Campanias/<s:property value="#a.camFoto"/>" alt="<s:property value="#a.camNombre"/>"/></td>                            
-                                </tr>                        
-                            </table>
-                            <s:param name="campania" value="#a.camId"/>
-                        </s:a>
-                    </s:iterator>
-                </div>
-                <div style="height: 50px; width: 40px; color: black; padding-top: 25px;">asdf</div>
-                <div class="linea" style="padding-top: 50px; background-color: white;"></div>
-                <div class="linea" style="height: 3px;"></div>
-                <div id="marcas_Titulo">
-                    MARCAS
-                </div>
-                <div id="marcas">
-                    <s:iterator var="m" value="lista_marcas">
-                        <table  class="img_Marcas">                        
-                            <tr>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <s:a action="TiendaMenu">
-                                        <img src="../Imagenes/Marcas/<s:property value="#m.marcaFoto"/>" alt="<s:property value="#m.marcaNombre"/>"/>
-                                        <s:param name="marcas2" value="#m.marcaId"/>
-                                    </s:a>
-                                </td>                            
-                            </tr>                        
-                        </table>
-                    </s:iterator>
-                </div>
-            </div>-->
+            <div class="linea" style="height: 3px;"></div>
+            
+            <!--Acá va el contenido de esta página-->
+            
         </div>
         <s:include value="tiendaFooter.jsp" />
         <div id="cookies">

@@ -661,6 +661,7 @@ public class HomeUsuarios extends ActionSupport {
                 respuesta = ControladoresDAO.cUsuarios.Inserta(p);
                 respuesta = ControladoresDAO.cUsuarios.SaberUltimoId();
                 boolean email = ControladoresDAO.cEmail.enviarAlta(usuEmail2, respuesta);
+                cabeceraocul = "Alta";
             }else{
                 p.setUsuAdministrador(1);
                 p.setUsuActivo(true);
@@ -709,11 +710,12 @@ public class HomeUsuarios extends ActionSupport {
         if (accion.equals("e")) {
             p = ControladoresDAO.cUsuarios.RecuperaPorId(usuId2);
             ControladoresDAO.cUsuarios.Elimina(p);
-            if(u.getUsuAdministrador() != 1){
-                return INPUT;
-            }
-        }   
-       return SUCCESS;
+            cabeceraocul = "Eliminación";
+            HomeUsuariosValidaciones huv = new HomeUsuariosValidaciones();
+            huv.CerrarSesion();
+        }
+        cargarMenuDesplegable(); 
+        return SUCCESS;
     }     
     
     public String activa() throws Exception{

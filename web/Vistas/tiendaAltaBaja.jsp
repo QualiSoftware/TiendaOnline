@@ -1,11 +1,11 @@
 <%-- 
-    Document   : tiendaContacto
-    Created on : 23-mar-2017
+    Document   : tiendaAltaBaja.jsp
+    Created on : 13-abr-2016
     Author     : QualiSoftware
 --%>
 
+<%@taglib  prefix="s" uri="/struts-tags" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@taglib prefix="s" uri="/struts-tags" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -30,9 +30,8 @@
         <script>
             window.onload = muestra_Cantidad;            
         </script>
-        <title>Contacto</title>
+        <title><s:property value="cabeceraocul" /> realizada correctamente</title>
     </head>
-
     <body>
         <div id="todo">
             <div id="header">
@@ -139,7 +138,7 @@
                             <div id="mi_Cuenta_Txt">Mi Cuenta</div>
                         </a>                    
                         <s:form action="TiendaLogin" theme="simple">
-                            <input type="hidden" name="actionName" value="contacto.action"/>
+                            <input type="hidden" name="actionName" value="apadrina.action"/>
                             <div id="login">                                        
                                 <table >
                                     <tr>
@@ -187,7 +186,8 @@
                 <s:if test="mensajeError == null"><script>fijarLogin('none');</script></s:if>
                 <s:else><script>fijarLogin('block');</script></s:else>
                 <div id="apadrina">
-                    <s:a action="apadrina"><div id="apadrina_Txt">Apadrina  &nbsp;<span class="sin_Decoracion">|</span></div></s:a>
+                    <a href="#"><div id="apadrina_Txt">Apadrina  &nbsp;<span class="sin_Decoracion">|</span></div>
+                    </a>
                 </div>
 
                 <div id="quienes_Somos">
@@ -195,8 +195,7 @@
 
                 </div>
                 <div id="contacto">
-                    <a href="#"><div id="contacto_Txt">Contacto  &nbsp;<span class="sin_Decoracion">|</span></div>
-                    </a>
+                <s:a action="contacto"><div id="contacto_Txt">Contacto  &nbsp;<span class="sin_Decoracion">|</span></div></s:a>
                 </div>
                 <div id="lista_Deseos">
                 <s:a action="listaDeseos"><div id="lista_Deseos_Txt">Lista de deseos <span class="glyphicon glyphicon-star" style="color: black;"></span>  &nbsp;<span class="sin_Decoracion">|</span></div></s:a>
@@ -304,9 +303,24 @@
                 </ul>                
             </div>
             <div class="linea" style="height: 3px;"></div>
-            
-            <!--Acá va el contenido de esta página-->
-            
+        <center>
+        <h1><s:property value="cabeceraocul" /> de su cuenta realizada correctamente</h1>
+        <s:if test='%{accion == "a"}'>
+            <br/>
+            <br/>
+            <br/>
+            Por favor revise su correo electrónico que tendrá un enlace para activar su cuenta.
+        </s:if>
+        <s:elseif test='%{accion == "e"}'>
+            <br/>
+            <br/>
+            <br/>
+            Le agradecemos haber formado parte de los usuarios de nuestra tienda y esperamos que vuelva en otro momento.
+        </s:elseif>
+        <br/>
+        <br/>
+        <br/>
+        </center>
         </div>
         <s:include value="tiendaFooter.jsp" />
         <div id="cookies">

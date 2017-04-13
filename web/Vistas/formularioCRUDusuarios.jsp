@@ -160,6 +160,7 @@
                             <div id="mi_Cuenta_Txt">Mi Cuenta</div>
                         </a>                    
                         <s:form action="TiendaLogin" theme="simple">
+                            <input type="hidden" name="actionName" value="Tienda.action"/>
                             <div id="login">                                        
                                 <table >
                                     <tr>
