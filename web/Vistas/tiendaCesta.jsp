@@ -43,12 +43,11 @@
         <script type="text/javascript" src="../Fancy/source/helpers/jquery.fancybox-thumbs.js"></script>
         <!-- Add Media helper (this is optional) -->
         <script type="text/javascript" src="../Fancy/source/helpers/jquery.fancybox-media.js"></script>
-
+        
         <!-- Zoom-->
         <link rel="stylesheet" href="../Estilos/easyzoom.css" />
-
         <!-- Scripts Propios-->
-        <script src="../Scripts/Tienda_Scripts.js" type="text/javascript"></script>              
+        <script src="../Scripts/Tienda_Scripts.js" type="text/javascript"></script>
         <script>
             window.onload = cesta_Aniadir;
         </script>

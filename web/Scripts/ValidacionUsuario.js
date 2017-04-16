@@ -165,3 +165,12 @@ function validarEmail(email) {
     }
     return emailOK;
 }
+
+function usuarioLogin() {
+    var rellena = contraseniaRellena();
+    if(rellena){
+        document.getElementById("frmLogin").submit();
+    }else{
+        fijarLogin('block');
+    }
+}

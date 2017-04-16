@@ -25,7 +25,7 @@
         <link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
         <!-- Scripts Propios-->
-        <script src="../Scripts/Tienda_Scripts.js" type="text/javascript"></script>              
+        <script src="../Scripts/Tienda_Scripts.js" type="text/javascript"></script>
         <script>
             window.onload = muestra_Cantidad;
         </script>

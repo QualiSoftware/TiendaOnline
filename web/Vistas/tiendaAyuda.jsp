@@ -23,10 +23,11 @@
         <script src="../Scripts/Carrusel.js" type="text/javascript"></script>
         <!-- Estilos Footer -->
         <link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
-        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
-        
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">        
         <!-- Scripts Propios-->
-        <script src="../Scripts/Tienda_Scripts.js" type="text/javascript"></script>              
+        <script src="../Scripts/Tienda_Scripts.js" type="text/javascript"></script>
+        <!-- Validación usuarios-->
+        <script src="../Scripts/ValidacionUsuario.js" type="text/javascript"></script>              
         <script>
             window.onload = muestra_Cantidad;            
         </script>
@@ -137,39 +138,43 @@
                     <s:if test="usi==''">
                         <a href="#"> 
                             <div id="mi_Cuenta_Txt">Mi Cuenta</div>
-                        </a>                    
-                        <s:form action="TiendaLogin" theme="simple">
+                        </a>                      
+                        <s:form id="frmLogin" action="TiendaLogin" theme="simple">
                             <input type="hidden" name="actionName" value="ayuda.action"/>
                             <div id="login">                                        
-                                <table >
+                                <table onMouseOut="display:none" >
                                     <tr>
                                         <td><span class="glyphicon glyphicon-user" aria-hidden="true" ></span>
-                                            <s:textfield name="usuario" class="btn btn-default" aria-label="Left Align" style="text-align: left; color: gray" />
+                                            <s:textfield name="usuario" id="usuPassword2" class="btn btn-default" aria-label="Left Align" style="text-align: left; background-color: white; margin-top:10px; margin-left:5px;" />
                                             <s:fielderror fieldName="usuario" theme="simple"/>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td> <span class="glyphicon glyphicon-lock" aria-hidden="true" ></span>
-                                            <s:password name="password" class="btn btn-default" style="text-align: left; color: gray" aria-label="Left Align" />
-                                            <s:fielderror fieldName="password" />
+                                            <s:password name="password" id="passVerif" class="btn btn-default" style="text-align: left; color: gray; margin-bottom: 3px; margin-left:5px;" aria-label="Left Align" />
+                                            <s:fielderror fieldName="password" />                                            
                                             <input type="hidden" name="mensajeError" value="<s:property value="mensajeError"/>"/>
-                                            <s:property value="mensajeError"/>
+                                            <span style="color: red; font-size: 13px; padding-left: 18px; position: relative;"><s:property value="mensajeError"/></span>
                                         </td>
-                                    </tr>
+                                    </tr>                                    
                                     <tr>
                                         <td>
                                             <a href="#">
-                                                <s:submit value="Acceder" style="margin: 0 auto" class="btn btn-default"/>
+                                                <input type="button" onclick="usuarioLogin();" value="Acceder" style="margin: 0 auto; width: 100px; border: 0px grey solid; background-color: #cc0033; box-shadow: 5px 5px 5px grey; color: white;" onMouseOver="this.style.cssText='width: 100px; -webkit-transform: scale(1.09); -webkit-transition: .3s; border: 0px grey solid; color: white; background-color: #cc0033; box-shadow: 5px 5px 5px grey;'" onMouseOut="this.style.cssText='box-shadow: 0px; width: 100px; -webkit-transform: scale(1); -webkit-transition: .3s; border: 0px grey solid; color: white; background-color: #cc0033; box-shadow: 5px 5px 5px grey;'" class="btn btn-default btn_Acceder"/>
                                             </a>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            ¿Nuevo Cliente? <s:a action="UsuAlta" ><s:param name="accion" value="'a'"/>¡Regístrate!</s:a>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </div>
+                                            ¿Nuevo Cliente? 
+                                            <s:a action="UsuAlta" >
+                                                <s:param name="clave" value="1"/>
+                                                <s:param name="accion" value="'a'"/>¡Regístrate!
+                                            </s:a>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
                         </s:form>
                     </s:if>
                     <s:if test="sesion.usuarioLogueado.usuId!=''">                    
