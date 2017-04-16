@@ -438,7 +438,8 @@ public class HomeCampanias extends ActionSupport {
             }        
             return SUCCESS;
         }catch(Exception e){
-            System.out.println("No se pudo grabar el archivo. Error: "+e.getMessage());
+            HomeUsuariosValidaciones huv = new HomeUsuariosValidaciones();
+            huv.escribirEnArchivoLog("No se pudo grabar el archivo de campaña. Error: "+e.getMessage());
             return INPUT;            
         }
     }
@@ -454,9 +455,11 @@ public class HomeCampanias extends ActionSupport {
         File fichero = new File(ruta+camFoto);
         Date ahora = new Date();
         if (fichero.delete()){
-            System.out.println("Archivo " + ruta + camFoto + " borrado " + ahora);
+            HomeUsuariosValidaciones huv = new HomeUsuariosValidaciones();
+            huv.escribirEnArchivoLog("Archivo " + ruta + camFoto + " de campaña borrado " + ahora);
         }else{
-            System.out.println("El archivo" + ruta + camFoto + " no puede ser borrado " + ahora);
+            HomeUsuariosValidaciones huv = new HomeUsuariosValidaciones();
+            huv.escribirEnArchivoLog("El archivo" + ruta + camFoto + " de campaña no puede ser borrado " + ahora);
         }
    }
    

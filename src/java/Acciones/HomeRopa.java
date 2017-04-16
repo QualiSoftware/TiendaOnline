@@ -986,10 +986,7 @@ public class HomeRopa extends ActionSupport {
        Categoria c = ControladoresDAO.cCategorias.RecuperaPorId(Integer.parseInt(countryName));
                   for(Subcategoria auxsubcat:c.getSubcategorias()){
                       stateMap.put(""+auxsubcat.getSubId(), auxsubcat.getSubDescripcion());
-                      //System.out.println("id"+auxsubcat.getSubId()+"descri"+auxsubcat.getSubDescripcion());
-                      //System.out.println(stateMap);
                   }
-
            //dummyMsg = "Ajax action Triggered";
        return SUCCESS;
     }

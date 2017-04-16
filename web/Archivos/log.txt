@@ -1,0 +1,7 @@
+Hubo un intento de conexión fallido el Sun Apr 16 17:59:56 CEST 2017 con user: pepe@pepe.c pass: rts
+Hubo un intento de conexión fallido el Sun Apr 16 18:00:11 CEST 2017 con user: pepe@pepe.c pass: er
+El usuario inactivo luis@luis.com intentó loguearse el Sun Apr 16 18:01:56 CEST 2017
+Archivo C:\Users\Damian\Documents\NetBeansProjects\TiendaOnline\TiendaOnline\web\Imagenes\Camisas\A cuadros\Danubio.jpg borrado Sun Apr 16 18:17:11 CEST 2017
+Archivo C:\Users\Damian\Documents\NetBeansProjects\TiendaOnline\TiendaOnline\web\Imagenes\Campanias\5.PNG de campaña borrado Sun Apr 16 18:18:33 CEST 2017
+Archivo C:\Users\Damian\Documents\NetBeansProjects\TiendaOnline\TiendaOnline\web\Imagenes\Campanias\lagunas Ruidera.jpg de campaña borrado Sun Apr 16 18:20:21 CEST 2017
+Archivo C:\Users\Damian\Documents\NetBeansProjects\TiendaOnline\TiendaOnline\web\Imagenes\Camisas\A cuadros\error tienda01.jpg borrado Sun Apr 16 18:21:14 CEST 2017

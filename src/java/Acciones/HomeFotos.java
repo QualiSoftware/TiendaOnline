@@ -212,7 +212,6 @@ public class HomeFotos extends ActionSupport {
       try{
         t = ControladoresDAO.cRopa.RecuperaPorId(roId2);
         Ruta();
-        //System.out.println("Ruta: "+ruta);
         if(archivo1 != null){
             File destFile  = new File(ruta, archivo1FileName);
             FileUtils.copyFile(archivo1, destFile);
@@ -262,7 +261,8 @@ public class HomeFotos extends ActionSupport {
             }
         }
       }catch(Exception e){
-            System.out.println("Error al copiar archivos: " + e.getMessage());
+            HomeUsuariosValidaciones huv = new HomeUsuariosValidaciones();
+            huv.escribirEnArchivoLog("Error al copiar archivos: " + e.getMessage());
       }
       return SUCCESS;
   } 
@@ -281,33 +281,36 @@ public class HomeFotos extends ActionSupport {
         if(!elimino1.equals("")){
             File fichero = new File(ruta + elimino1);
             if (fichero.delete()){
-                System.out.println("Archivo " + ruta + elimino1 + " borrado " + ahora);
+                HomeUsuariosValidaciones huv = new HomeUsuariosValidaciones();
+                huv.escribirEnArchivoLog("Archivo " + ruta + elimino1 + " borrado " + ahora);
             }else{
-                System.out.println("El archivo" + ruta + elimino1 + " no puede ser borrado " + ahora);
+                HomeUsuariosValidaciones huv = new HomeUsuariosValidaciones();
+                huv.escribirEnArchivoLog("El archivo" + ruta + elimino1 + " no puede ser borrado " + ahora);
             }
             resultado = ControladoresDAO.cFotos.Elimina(ControladoresDAO.cFotos.RecuperaFotoABorrar(roId2, elimino1));
         }
         if(!elimino2.equals("")){
             File fichero = new File(ruta + elimino2);
             if (fichero.delete()){
-                System.out.println("Archivo " + ruta + elimino2 + " borrado " + ahora);
+                HomeUsuariosValidaciones huv = new HomeUsuariosValidaciones();
+                huv.escribirEnArchivoLog("Archivo " + ruta + elimino2 + " borrado " + ahora);
             }else{
-                System.out.println("El archivo" + ruta + elimino2 + " no puede ser borrado " + ahora);
+                HomeUsuariosValidaciones huv = new HomeUsuariosValidaciones();
+                huv.escribirEnArchivoLog("El archivo" + ruta + elimino2 + " no puede ser borrado " + ahora);
             }
             resultado = ControladoresDAO.cFotos.Elimina(ControladoresDAO.cFotos.RecuperaFotoABorrar(roId2, elimino2));
         }
         if(!elimino3.equals("")){
             File fichero = new File(ruta + elimino3);
             if (fichero.delete()){
-                System.out.println("Archivo " + ruta + elimino3 + " borrado " + ahora);
+                HomeUsuariosValidaciones huv = new HomeUsuariosValidaciones();
+                huv.escribirEnArchivoLog("Archivo " + ruta + elimino3 + " borrado " + ahora);
             }else{
-                System.out.println("El archivo" + ruta + elimino3 + " no puede ser borrado " + ahora);
+                HomeUsuariosValidaciones huv = new HomeUsuariosValidaciones();
+                huv.escribirEnArchivoLog("El archivo" + ruta + elimino3 + " no puede ser borrado " + ahora);
             }
             resultado = ControladoresDAO.cFotos.Elimina(ControladoresDAO.cFotos.RecuperaFotoABorrar(roId2, elimino3));
         }
-       //System.out.println("elimino1: "+ruta+elimino1);
-       //System.out.println("elimino2: "+ruta+elimino2);
-       //System.out.println("elimino3: "+ruta+elimino3);
        
        return SUCCESS;
    }

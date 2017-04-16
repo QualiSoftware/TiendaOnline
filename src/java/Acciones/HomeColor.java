@@ -214,7 +214,8 @@ public class HomeColor extends ActionSupport {
             }        
             return SUCCESS;
         }catch(Exception e){
-            System.out.println("No se pudo grabar el archivo. Error: "+e.getMessage());
+            HomeUsuariosValidaciones huv = new HomeUsuariosValidaciones();
+            huv.escribirEnArchivoLog("No se pudo grabar el archivo de color. Error: "+e.getMessage());
             return INPUT;            
         }
     }    
@@ -230,9 +231,11 @@ public class HomeColor extends ActionSupport {
         File fichero = new File(ruta+colorFoto);
         Date ahora = new Date();
         if (fichero.delete()){
-            System.out.println("Archivo " + ruta + colorFoto + " borrado " + ahora);
+            HomeUsuariosValidaciones huv = new HomeUsuariosValidaciones();
+            huv.escribirEnArchivoLog("Archivo " + ruta + colorFoto + " de color borrado " + ahora);
         }else{
-            System.out.println("El archivo" + ruta + colorFoto + " no puede ser borrado " + ahora);
+            HomeUsuariosValidaciones huv = new HomeUsuariosValidaciones();
+            huv.escribirEnArchivoLog("El archivo" + ruta + colorFoto + " de color no puede ser borrado " + ahora);
         }
     }
 }

@@ -301,7 +301,8 @@ public class HomeMarcas extends ActionSupport {
             }        
             return SUCCESS;
         }catch(Exception e){
-            System.out.println("No se pudo grabar el archivo. Error: "+e.getMessage());
+            HomeUsuariosValidaciones huv = new HomeUsuariosValidaciones();
+            huv.escribirEnArchivoLog("No se pudo grabar el archivo de marca. Error: "+e.getMessage());
             return INPUT;            
         }
     }    
@@ -317,9 +318,11 @@ public class HomeMarcas extends ActionSupport {
         File fichero = new File(ruta+marcaFoto);
         Date ahora = new Date();
         if (fichero.delete()){
-            System.out.println("Archivo " + ruta + marcaFoto + " borrado " + ahora);
+            HomeUsuariosValidaciones huv = new HomeUsuariosValidaciones();
+            huv.escribirEnArchivoLog("Archivo " + ruta + marcaFoto + " de marca borrado " + ahora);
         }else{
-            System.out.println("El archivo" + ruta + marcaFoto + " no puede ser borrado " + ahora);
+            HomeUsuariosValidaciones huv = new HomeUsuariosValidaciones();
+            huv.escribirEnArchivoLog("El archivo" + ruta + marcaFoto + " de marca no puede ser borrado " + ahora);
         }
    }
 }

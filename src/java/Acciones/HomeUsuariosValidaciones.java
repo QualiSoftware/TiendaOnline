@@ -9,10 +9,15 @@ import Modelos.Usuarios;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.validator.annotations.RequiredStringValidator;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.validation.SkipValidation;
 
 /**
@@ -36,6 +41,7 @@ public class HomeUsuariosValidaciones extends ActionSupport{
     private String marca;
     private String campania;
     private int roId;
+    private String ruta;
 
     public int getRespuesta() {
         return respuesta;
@@ -164,7 +170,7 @@ public class HomeUsuariosValidaciones extends ActionSupport{
         if(l.size()==0){
             mensajeError="Usuario y/o contraseña erróneos";
             Date d = new Date();
-            System.out.println("Hubo un intento de conexión fallido el " + d + " con user: " + usuario + " pass: " + password);
+            escribirEnArchivoLog("Hubo un intento de conexión fallido el " + d + " con user: " + usuario + " pass: " + password);
             return ERROR;
         }else{
             Usuarios usuario = (Usuarios) l.get(0);
@@ -177,11 +183,39 @@ public class HomeUsuariosValidaciones extends ActionSupport{
             }else{
                 mensajeError="Usuario inactivo";
                 Date d = new Date();
-                System.out.println("El usuario inactivo " + usuario.getUsuEmail() + " intentó loguearse el " + d );
+                escribirEnArchivoLog("El usuario inactivo " + usuario.getUsuEmail() + " intentó loguearse el " + d );
                 return ERROR;
             }
         }
     }
+    
+    public void escribirEnArchivoLog (String mensaje) {
+        Ruta();
+        File archivo = null;
+        FileWriter fr = null;
+        try{
+            archivo  = new File(ruta, "log.txt");
+            fr = new FileWriter(archivo, true);
+            fr.write(mensaje);
+            fr.write("\r\n");
+        } catch(Exception e){
+            e.printStackTrace();
+        } finally {
+            try {
+                if (null != fr)
+                   fr.close();
+                } catch (Exception e2) {
+                   e2.printStackTrace();
+                }
+        }
+    }
+    
+   private void Ruta(){
+        ruta = ServletActionContext.getRequest().getSession().getServletContext().getRealPath("/");
+        String eliminar = "build"+System.getProperty("file.separator");
+        ruta = ruta.replace(eliminar, "");
+        ruta += "Archivos"+System.getProperty("file.separator");       
+   }
     
     @SkipValidation
     public String CerrarSesion() throws Exception {
