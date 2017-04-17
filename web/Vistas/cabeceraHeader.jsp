@@ -4,5 +4,7 @@
             <div id="login">
                 <a href="/TiendaOnline/Vistas/UsuariosFiltro.action">Usuarios</a>
                 <br><br>
+                <a href="/TiendaOnline/Vistas/listadoEmailUsuarios.action">Listado email usuarios</a>
+                <br><br>
                 <a href="/TiendaOnline/Vistas/UsuAltaAdmin.action?clave=-1&accion=a">Alta usuario Administrador</a>
                 </div>

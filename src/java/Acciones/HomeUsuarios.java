@@ -430,6 +430,19 @@ public class HomeUsuarios extends ActionSupport {
         return SUCCESS;
     }
     
+    public String listadoEmailUsuarios() throws Exception {
+        if(sesion==null){
+            sesion=ActionContext.getContext().getSession();
+        }
+        try{
+            Usuarios u = (Usuarios) sesion.get("usuarioLogueado");
+        }catch(Exception e){
+            return INPUT;
+        }
+        lista_usuarios = ControladoresDAO.cUsuarios.RecuperaTodosMenosAdmin();
+        return SUCCESS;
+    }
+    
     public String UsuAlta() throws Exception {
         if(sesion==null){
             sesion=ActionContext.getContext().getSession();

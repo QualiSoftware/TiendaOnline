@@ -23,6 +23,14 @@ public class cUsuarios {
         return la;
     }
     
+     public static List<Usuarios> RecuperaTodosMenosAdmin(){
+        sesion = (Session) NewHibernateUtil.getSessionModif();
+        String sql = "FROM Usuarios WHERE usuAdministrador != 1 ORDER BY usuEmail";
+        Query query =sesion.createQuery(sql); 
+        List<Usuarios> la = query.list();
+        return la;
+    }
+    
     public static Usuarios RecuperaPorId(int id){
         sesion = (Session) NewHibernateUtil.getSessionModif();
         Usuarios p =(Usuarios) sesion.get(Usuarios.class, id);

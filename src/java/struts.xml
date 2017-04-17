@@ -544,6 +544,12 @@
             <result name="input" type="redirect">Tienda</result>  
             <result name="error" type="redirect">Tienda</result>    
         </action>
+        
+        <action name="listadoEmailUsuarios" class="Acciones.HomeUsuarios" method="listadoEmailUsuarios">
+            <result>/Vistas/CRUDlistadoEmailUsuarios.jsp</result>  
+            <result name="input" type="redirect">Tienda</result>  
+            <result name="error" type="redirect">Tienda</result>    
+        </action>        
     </package>
 </struts>
 
