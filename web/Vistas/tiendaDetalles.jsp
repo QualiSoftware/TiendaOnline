@@ -235,7 +235,7 @@
                             <input type="hidden" name="marca" value="<s:property value="marca"/>"/>
                             <input type="hidden" name="campania" value="<s:property value="campania"/>"/>
                             <div id="login">                                        
-                                <table onMouseOut="display:none" >
+                                <table>
                                     <tr>
                                         <td><span class="glyphicon glyphicon-user" aria-hidden="true" ></span>
                                             <s:textfield name="usuario" id="usuPassword2" class="btn btn-default" aria-label="Left Align" style="text-align: left; background-color: white; margin-top:10px; margin-left:5px;" />

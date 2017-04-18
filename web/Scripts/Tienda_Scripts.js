@@ -5,7 +5,10 @@ function cesta_Aniadir() {
     
 }
 function muestra_Cantidad() {
-    document.getElementById("cantidad_Cesta").style = "display:block;";
+    var cant = document.getElementById("cantidad_Cesta");
+    if(cant != null){
+        cant.style.display = "block";
+    }
     document.getElementById("cesta").onmouseover = muestra_Cesta;
     document.getElementById("cesta").onmouseout = oculta_Cesta;
 }
@@ -24,7 +27,9 @@ function oculta_Cesta(){
 
 //Fixe con Limite
             $(function () {
-                var top = $('#pagar').offset().top - parseFloat($('#pagar').css('marginTop').replace(/auto/, 0));
+                if($('#pagar').val() != undefined){
+                    var top = $('#pagar').offset().top - parseFloat($('#pagar').css('marginTop').replace(/auto/, 0));
+                }                
                 var footTop = $('#footer').offset().top - parseFloat($('#footer').css('marginTop').replace(/auto/, 0));
 
                 var maxY = footTop - $('#pagar').outerHeight();
