@@ -135,7 +135,8 @@
                 <div id="iniciar_Sesion">
                     <s:if test="usi==''">
                         <a href="#"> 
-                            <div id="mi_Cuenta_Txt">Mi Cuenta</div>
+<!--viejo-->                            <!--<div id="mi_Cuenta_Txt">Mi Cuenta</div>-->
+<!--nuevo-->                            <div id="mi_Cuenta_Txt" onclick="fijarLogin();">Mi Cuenta</div>
                         </a>                    
                         <s:form id="frmLogin" action="TiendaLogin" theme="simple">
                             <input type="hidden" name="actionName" value="Tienda.action"/>
@@ -176,8 +177,11 @@
                         </s:form>
                     </s:if>
                     <s:if test="sesion.usuarioLogueado.usuId!=''">                    
-                        <a href="#"> 
-                            <div id="mi_Cuenta_Txt">¡Bienvenido <div id="nick_Login"><s:property value="sesion.usuarioLogueado.usuNombre"/>!</div></div>
+                        <a href="#">
+<!--viejo-->                            <!--<div id="mi_Cuenta_Txt">-->
+<!--nuevo-->                            <div id="mi_Cuenta_Txt" onclick="fijarLogin();">
+                                ¡Bienvenido <div id="nick_Login"><s:property value="sesion.usuarioLogueado.usuNombre"/>!</div>
+                            </div>
                         </a>
 
                         <div id="login" style="width: 50px; margin-right: 50px; margin-top: 0px;">                                        
@@ -187,8 +191,9 @@
                         </div>
                     </s:if>
                 </div>
-                <s:if test="mensajeError == null"><script>fijarLogin('none');</script></s:if>
-                <s:else><script>fijarLogin('block');</script></s:else>
+<!--nuevo-->                <s:if test="mensajeError == 'Usuario y/o contraseña erróneos'"><script>fijarLogin('block');</script></s:if>
+<!--viejo-->                <!--<s:if test="mensajeError == null"><script>fijarLogin('none');</script></s:if>-->
+<!--viejo-->                <!--<s:else><script>fijarLogin('block');</script></s:else>-->
                 <div id="apadrina">
                     <s:a action="apadrina"><div id="apadrina_Txt">Apadrina  &nbsp;<span class="sin_Decoracion">|</span></div></s:a>
                 </div>
@@ -204,7 +209,7 @@
                 <s:a action="listaDeseos"><div id="lista_Deseos_Txt">Lista de deseos <span class="glyphicon glyphicon-star" style="color: black;"></span>  &nbsp;<span class="sin_Decoracion">|</span></div></s:a>
                 </div>
             </div>
-            <div class="linea" style="height: 3px;"></div>
+                    <div class="linea" style="height: 3px;"></div>
             <div id="menu_Desplegable">
                 <img src="../Imagenes/Administracion/afdf338882d16dd2b1360aa975b18111.png" alt="" style="width: 30px; margin-right: 10px; opacity: 0.9;"/>
                 <div id="menu_Tabla">

@@ -26,42 +26,58 @@ function oculta_Cesta(){
 //FIN de Añadir, mostrar y ocultar Cesta
 
 //Fixe con Limite
-            $(function () {
-                if($('#pagar').val() != undefined){
-                    var top = $('#pagar').offset().top - parseFloat($('#pagar').css('marginTop').replace(/auto/, 0));
-                }                
-                var footTop = $('#footer').offset().top - parseFloat($('#footer').css('marginTop').replace(/auto/, 0));
+$(function () {
+    if($('#pagar').val() != undefined){
+        var top = $('#pagar').offset().top - parseFloat($('#pagar').css('marginTop').replace(/auto/, 0));
+    }                
+    var footTop = $('#footer').offset().top - parseFloat($('#footer').css('marginTop').replace(/auto/, 0));
 
-                var maxY = footTop - $('#pagar').outerHeight();
+    var maxY = footTop - $('#pagar').outerHeight();
 
-                $(window).scroll(function (evt) {
-                    var y = $(this).scrollTop();
-                    if (y > top) {
-                        if (y < maxY) {
-                            $('#pagar').addClass('fixed').removeAttr('style');
-                        } else {
-                            $('#pagar').removeClass('fixed').css({
-                                position: 'absolute',
-                                top: (maxY - top) + 'px'
-                            });
-                        }
-                    } else {
-                        $('#pagar').removeClass('fixed');
-                    }
+    $(window).scroll(function (evt) {
+        var y = $(this).scrollTop();
+        if (y > top) {
+            if (y < maxY) {
+                $('#pagar').addClass('fixed').removeAttr('style');
+            } else {
+                $('#pagar').removeClass('fixed').css({
+                    position: 'absolute',
+                    top: (maxY - top) + 'px'
                 });
-            });
-       
+            }
+        } else {
+            $('#pagar').removeClass('fixed');
+        }
+    });
+});
+        
 // FIN de Fixe con Limite
             
-function fijarLogin(value){
-    if(value == "block"){
-        $('#login').css('display',value);
-        $('#iniciar_Sesion').hover(
-                function(){$('#login').css('display',value);},
-                function(){$('#login').css('display','none');});
+//function fijarLogin(value){
+//    if(value == "block"){
+//        $('#login').css('display',value);
+//        $('#iniciar_Sesion').hover(
+//                function(){$('#login').css('display',value);},
+//                function(){$('#login').css('display','none');});
+//    }else{
+//        $('#iniciar_Sesion').hover(
+//                function(){$('#login').css('display','block');},
+//                function(){$('#login').css('display',value);});
+//    }
+//}
+           
+var verif=true;
+function fijarLogin(valor){
+    if(valor == 'block'){
+        verif = true;
     }else{
-        $('#iniciar_Sesion').hover(
-                function(){$('#login').css('display','block');},
-                function(){$('#login').css('display',value);});
+        varif = false;
     }
-}
+    if(verif){
+        $('#login').css('display','block');
+        verif=false;
+    }else{
+        $('#login').css('display','none');
+        verif=true;
+    }                    
+};
