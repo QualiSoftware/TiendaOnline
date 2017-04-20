@@ -138,10 +138,11 @@
                         %>
                     </s:if>
                     <s:if test="sesion.usuarioLogueado.usuId!=''">                    
-                        <a href="#"> 
-                            <div id="mi_Cuenta_Txt">¡Bienvenido <s:property value="sesion.usuarioLogueado.usuNombre"/>!</div>
+                        <a href="#">
+                            <div id="mi_Cuenta_Txt" onclick="fijarLogin();">
+                                ¡Bienvenido <div id="nick_Login"><s:property value="sesion.usuarioLogueado.usuNombre"/>!</div>
+                            </div>
                         </a>
-
                         <div id="login" style="width: 50px; margin-right: 50px; margin-top: 0px;">                                        
                             <s:a action="TiendaCerrarSesion" >
                                 <button style="margin: 0 auto" class="btn btn-default">Cerrar Sesión</button>

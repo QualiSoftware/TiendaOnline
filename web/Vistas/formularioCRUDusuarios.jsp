@@ -157,7 +157,7 @@
                 <div id="iniciar_Sesion">
                     <s:if test="usi==''">
                         <a href="#"> 
-                            <div id="mi_Cuenta_Txt">Mi Cuenta</div>
+                            <div id="mi_Cuenta_Txt" onclick="fijarLogin();">Mi Cuenta</div>
                         </a>                    
                         <s:form id="frmLogin" action="TiendaLogin" theme="simple">
                             <input type="hidden" name="actionName" value="Tienda.action"/>
@@ -200,10 +200,11 @@
                         </s:form>
                     </s:if>
                     <s:if test="sesion.usuarioLogueado.usuId!=''">                    
-                        <a href="#"> 
-                            <div id="mi_Cuenta_Txt">¡Bienvenido <s:property value="sesion.usuarioLogueado.usuNombre"/>!</div>
+                        <a href="#">
+                            <div id="mi_Cuenta_Txt" onclick="fijarLogin();">
+                                ¡Bienvenido <div id="nick_Login"><s:property value="sesion.usuarioLogueado.usuNombre"/>!</div>
+                            </div>
                         </a>
-
                         <div id="login" style="width: 50px; margin-right: 50px; margin-top: 0px;">                                        
                             <s:a action="TiendaCerrarSesion" >
                                 <button style="margin: 0 auto" class="btn btn-default">Cerrar Sesión</button>
@@ -211,8 +212,7 @@
                         </div>
                     </s:if>
                 </div>
-                <s:if test="mensajeError == null"><script>fijarLogin('none');</script></s:if>
-                <s:else><script>fijarLogin('block');</script></s:else>
+                <s:if test="mensajeError == 'Usuario y/o contraseña erróneos'"><script>fijarLogin('block');</script></s:if>
                     <div id="apadrina">
                     <s:a action="apadrina"><div id="apadrina_Txt">Apadrina  &nbsp;<span class="sin_Decoracion">|</span></div></s:a>
                     </div>
