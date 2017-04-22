@@ -42,7 +42,7 @@
                         }
                     }
                 }else{
-                    Verificar('a');
+                    verificarUsuario('a');
                 }
             }
             function usarAJAX(valor) {
@@ -153,7 +153,7 @@
                         <s:label for="usuPassword2">Contraseña (*)</s:label>  
                     </td>
                     <td>
-                        <s:password name="usuPassword2" cssClass="formulario_Rellenar" id="usuPassword2" ></s:password>
+                        <s:password name="usuPassword2" cssClass="formulario_Rellenar" id="password1" ></s:password>
                     </td>
                 </tr>
                 <tr>
@@ -161,7 +161,7 @@
                         <s:label for="passVerif">Repita la contraseña (*)</s:label>  
                     </td>
                     <td>
-                        <s:password id="passVerif" cssClass="formulario_Rellenar"></s:password>
+                        <s:password id="password2" cssClass="formulario_Rellenar"></s:password>
                     </td>
                 </tr>                       
             </s:else>

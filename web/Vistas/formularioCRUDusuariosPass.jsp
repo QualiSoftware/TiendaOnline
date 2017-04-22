@@ -30,12 +30,13 @@
         <script>
             function Verificar(orden) {
                 if(orden == 'cambiar'){
-                    if (document.getElementById('nueva1').value === document.getElementById('nueva2').value) {
-                        if (confirm("¿Seguro que desea cambiar la contraseña?")) {
-                            document.getElementById('frm').submit();
-                        }
+                    if(document.getElementById('nueva1').value === ""){
+                        document.getElementById("divError").innerHTML = "La contraseña no puede estar vacía";
+                    }else if (document.getElementById('nueva1').value === document.getElementById('nueva2').value) {
+                        document.getElementById("divError").innerHTML = "";
+                        document.getElementById('frm').submit();
                     } else {
-                        alert("La contraseña nueva no es igual a la contraseña nueva repetida")
+                        document.getElementById("divError").innerHTML = "La contraseña nueva no es igual a la contraseña nueva repetida";
                     }
                 }else if(orden == 'volver'){
                     document.getElementById('frm').action = "UsuAlta";
@@ -277,6 +278,7 @@
                 </ul>                
             </div>
             <div class="linea" style="height: 3px;"></div>
+                <div id="divError"></div>
             <s:form id="frm" action="CambiaContrasenia" theme="simple">
                 <input type="hidden" name="accion" id="accionocul" value=<s:property value="accion" /> />
                 <input type="hidden" name="clave" id="clave" value=<s:property value="clave" /> />

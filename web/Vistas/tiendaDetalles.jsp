@@ -65,13 +65,14 @@
         <script>            
             function ValidoDetalles(){
                 if(document.getElementById('colorOculto').value == ''){
-                    alert("Debe seleccionar un color");
+                    document.getElementById("divError").innerHTML = "Debe seleccionar un color";
                 }else{
                     document.getElementById('frm').submit();
                 }
             }
             
             function elijoColor(elegido,id) {
+                document.getElementById("divError").innerHTML = "";
                 var obj = document.getElementById('coloresDiv').getElementsByTagName('div');
                 for(var i=0;i<obj.length;i++){
                     if(i == (elegido-1)){
@@ -444,6 +445,7 @@
                 </s:iterator>
 
                 <div class="detalle_info" style="z-index: 200">
+                <div id="divError"></div>
                     <table>                    
                         <tr>
                             <td>Color:</td>

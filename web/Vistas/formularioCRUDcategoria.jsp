@@ -12,14 +12,15 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
         <link rel="stylesheet" href="../Estilos/GeneralEstilos.css"/>
+        <script src="../Scripts/confirmacionEliminacion.js" type="text/javascript"></script>
+        <link href="../Estilos/estilosBorrado.css" rel="stylesheet" type="text/css"/>
         <title><s:property value="cabeceraocul" /> de Categoría</title>
         <script src="../Scripts/ValidacionCampoRelleno.js" type="text/javascript"></script>
         <script>
             function Verificar() {
                 if (document.getElementById('accionocul').value === 'e') {
-                    if (confirm("¿Seguro que desea borrar?")) {
-                        document.getElementById('frm').submit();
-                    }
+                    document.getElementById('botonera').style.display = 'none';
+                    document.getElementById('confirmacionEliminacion').style.display = 'block';
                 } else {
                     if(CampoRelleno(document.getElementById('catDescripcion'),document.getElementById('errores'))){
                         document.getElementById('frm').submit();
@@ -72,7 +73,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="2">
+                    <td colspan="2" id="botonera">
                         <s:if test='%{mensajeNoBorrar == "" || mensajeNoBorrar == null}'>
                             <input type="button" onclick="Verificar();" value=<s:property value="botonocul" /> />                     
                             &nbsp;&nbsp;&nbsp;&nbsp;
@@ -84,5 +85,6 @@
                 </tr>
             </table>
         </s:form>
+        <s:include value="formularioConfirmacionEliminacion.jsp" />
     </body>
 </html>

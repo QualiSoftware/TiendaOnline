@@ -14,6 +14,8 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
         <link rel="stylesheet" href="../Estilos/GeneralEstilos.css"/>
+        <link href="../Estilos/estilosBorrado.css" rel="stylesheet" type="text/css"/>
+        <script src="../Scripts/confirmacionEliminacion.js" type="text/javascript"></script>
         <title>Formulario</title>
         <script src="../Scripts/jquery_3.js" type="text/javascript"></script>
         <script src="../Scripts/ValidacionCampoRelleno.js" type="text/javascript"></script>
@@ -42,9 +44,8 @@
             }
             function Verificar() {
                 if (document.getElementById('accionocul').value === 'e') {
-                    if (confirm("¿Seguro que desea borrar?")) {
-                        document.getElementById('frm').submit();
-                    }
+                    document.getElementById('botonera').style.display = 'none';
+                    document.getElementById('confirmacionEliminacion').style.display = 'block';
                 } else {
                     var rellenoOK = true;
                     var numeroOK = true;
@@ -288,7 +289,7 @@
                 <tr><td colspan="2">No se pueden modificar categoría y subcategoría ya que tiene fotos asociadas</td></tr>
                 <%}%>
                 <tr>
-                    <td colspan="2">
+                    <td colspan="2" id="botonera">
                         <s:if test='%{accionocul == "a"}'>
                             <input type="button" onclick="Verificar();" value="Agregar fotos" />
                             <input type="button" onclick="AltaSinFotos();" value="No agregar fotos" />
@@ -298,7 +299,6 @@
                         </s:else>
                     </td>
                 </tr>
-                <!--Hasta acá debe ir en segunda tabla-->
             </table>
         </s:form>
     <center>
@@ -311,5 +311,6 @@
             <s:submit value="Cancelar" />
         </s:form>
     </center>
+    <s:include value="formularioConfirmacionEliminacion.jsp" />
     </body>
 </html>

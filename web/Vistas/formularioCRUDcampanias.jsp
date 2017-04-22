@@ -14,14 +14,15 @@
         <script type="text/javascript" src="../Calendar/1-simple-calendar/tcal.js"></script>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
         <link rel="stylesheet" href="../Estilos/GeneralEstilos.css"/>
+        <link href="../Estilos/estilosBorrado.css" rel="stylesheet" type="text/css"/>
+        <script src="../Scripts/confirmacionEliminacion.js" type="text/javascript"></script>
         <title><s:property value="cabeceraocul" /> de Campaña</title>
         <script src="../Scripts/ValidacionCampoRelleno.js" type="text/javascript"></script>
         <script>
             function Verificar() {
                 if (document.getElementById('accion').value === 'e') {
-                    if (confirm("¿Seguro que desea borrar?")) {
-                        document.getElementById('frm').submit();
-                    }
+                    document.getElementById('botonera').style.display = 'none';
+                    document.getElementById('confirmacionEliminacion').style.display = 'block';
                 } else {
                     if(CampoRelleno(document.getElementById('camNombre'),document.getElementById('errores'))){
                         if(FechasCorrectas(document.getElementById('camInicio').value,document.getElementById('camFin').value,document.getElementById('errores'))){
@@ -164,7 +165,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="2">
+                    <td colspan="2" id="botonera">
                         <input type="button" onclick="Verificar();" value=<s:property value="botonocul" /> />                     
                         &nbsp;&nbsp;&nbsp;&nbsp;
                         <s:a action="volverCampanias">
@@ -174,5 +175,6 @@
                 </tr>
             </table>
         </s:form>
+        <s:include value="formularioConfirmacionEliminacion.jsp" />
     </body>
 </html>

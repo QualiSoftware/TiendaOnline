@@ -33,3 +33,4 @@ Hubo un intento de conexión fallido el Wed Apr 19 23:46:39 CEST 2017 con user: d
 Hubo un intento de conexión fallido el Wed Apr 19 23:46:55 CEST 2017 con user: dusheff@hotmail.com pass: 9
 Hubo un intento de conexión fallido el Wed Apr 19 23:52:22 CEST 2017 con user: dusheff@hotmail.com pass: dusheff4
 Hubo un intento de conexión fallido el Wed Apr 19 23:54:48 CEST 2017 con user: dusheff@hotmail.com pass: dusheffeee
+Archivo C:\Users\Damian\Documents\NetBeansProjects\TiendaOnline\TiendaOnline\web\Imagenes\Pantalones\Cortos\error tienda01.jpg borrado Sat Apr 22 17:51:36 CEST 2017

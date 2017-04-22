@@ -1,4 +1,4 @@
-function Verificar(action) {
+function verificarUsuario(action) {
     if(action === 'v'){
         document.getElementById('frm').action = "Tienda";
         document.getElementById('frm').submit();
@@ -10,30 +10,41 @@ function Verificar(action) {
         var contraseniasIguales = true;
         var mayor18 = true;
         var emailCorrecto = true;
+        var noEsEliminacion = true;
         if (action === 'e') {
-            if (confirm("¿Seguro que desea eliminar su usuario?")) {
-                document.getElementById('accionocul').value = action;
-            }else{
-                verifica = false;
-            }
+            document.getElementById('cuenta_usuario_Botonera').style.display = 'none';
+            document.getElementById('confirmacionEliminacion').style.display = 'block';
+            noEsEliminacion = false;
         } else if(document.getElementById('accionocul').value === 'a') {
-            if(document.getElementById('usuPassword2').value != document.getElementById('passVerif').value){
+            if(document.getElementById('password1').value != document.getElementById('password2').value){
                 contraseniasIguales = false;
                 verifica = false;
             }
             var aux1 = RellenaCampos();
-            var aux2 = contraseniaRellena();
+            var pass1 = document.getElementById('password1');
+            var pass2 = document.getElementById('password2');
+            var aux2 = true;
+            if(pass1.value == ""){
+                pass1.style.borderColor="red";
+                aux2 = false;
+            }else{
+                pass1.style.borderColor="white";
+            }
+            if(pass2.value == ""){
+                pass2.style.borderColor="red";
+                aux2 = false;
+            }else{
+                pass2.style.borderColor="white";
+            }
             if(aux1 && aux2){
                 verifica = true;
             }else{
                 verifica = false;
             }
             mayor18 = Mayor18Anios();
-            /*MensajeError(verifica);*/
         } else {
             mayor18 = Mayor18Anios();
             verifica = RellenaCampos();
-            /*MensajeError(verifica);*/
         }
         emailCorrecto = validarEmail(document.getElementById('usuEmail2').value);
         var mensaje = document.getElementById('camposVacios');
@@ -50,7 +61,7 @@ function Verificar(action) {
         if(!emailCorrecto){
             mensaje.innerHTML += "El email ingresado es incorrecto.";
         }
-        if(verifica && contraseniasIguales && mayor18 && emailCorrecto){
+        if(verifica && contraseniasIguales && mayor18 && emailCorrecto && noEsEliminacion){
             document.getElementById('frm').submit();
         }
     }

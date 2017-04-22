@@ -14,15 +14,16 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
-        <link rel="stylesheet" href="../Estilos/GeneralEstilos.css"/>
+        <link rel="stylesheet" href="../Estilos/GeneralEstilos.css"/> 
+        <link href="../Estilos/estilosBorrado.css" rel="stylesheet" type="text/css"/>
+        <script src="../Scripts/confirmacionEliminacion.js" type="text/javascript"></script>
         <title>Subir Fotos</title>
         <script>
             function Verificar() {
                 if (document.getElementById('accionocul').value === 'e') {
-                    if (confirm("¿Seguro que desea borrar?")) {
-                        document.getElementById('frm').action = "EliminaArchivo";
-                        document.getElementById('frm').submit();
-                    }
+                    document.getElementById('botonera').style.display = 'none';
+                    document.getElementById('confirmacionEliminacion').style.display = 'block';
+                    document.getElementById('frm').action = "EliminaArchivo";
                 }else{
                     document.getElementById('frm').submit();
                 }
@@ -69,7 +70,7 @@
                         <br>
                     </s:iterator>
                     <s:if test='%{accionocul == "e"}'>
-                        <input type="button" onclick="Verificar();" value="Eliminar fotos seleccionadas" align="center"/>
+                        <input type="button" id="botonera" onclick="Verificar();" value="Eliminar fotos seleccionadas" align="center"/>
                     </s:if>
                     <s:else>
                         <%for (int i = nf; i < cantMaxFotos; i++) {%>
@@ -84,10 +85,6 @@
                 </s:form>
                 <s:a action="RopaAdminFiltro">
                     <s:param name="filtro" value="%{filtro}" />
-                    <!--
-                    <s:param name="fechaI" value="%{fechaI}" />
-                    <s:param name="fechaF" value="%{fechaF}" />
-                    -->
                     <s:param name="eliminadas" value="%{eliminadas}" />
                     <s:param name="orden" value="%{orden}" />
                     <p></p><br>
@@ -95,5 +92,6 @@
                 </s:a>
             </div>
         </div>
+        <s:include value="formularioConfirmacionEliminacion.jsp" />
     </body>
 </html>

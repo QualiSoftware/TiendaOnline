@@ -12,13 +12,14 @@
         <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
         <link rel="stylesheet" href="../Estilos/GeneralEstilos.css"/>
+        <script src="../Scripts/confirmacionEliminacion.js" type="text/javascript"></script>
+        <link href="../Estilos/estilosBorrado.css" rel="stylesheet" type="text/css"/>
         <title><s:property value="cabeceraocul" /> de ropa en campaña</title>
         <script>
             function Verificar() {
                 if (document.getElementById('accion').value === 'e') {
-                    if (confirm("¿Seguro que desea borrar?")) {
-                        document.getElementById('frm').submit();
-                    }
+                    document.getElementById('botonera').style.display = 'none';
+                    document.getElementById('confirmacionEliminacion').style.display = 'block';
                 } else {
                     document.getElementById('frm').submit();
                 }
@@ -118,7 +119,7 @@
                 </tr>
                 </s:iterator>
                 <tr>
-                    <td colspan="13">
+                    <td colspan="13" id="botonera">
                         <input type="button" onclick="Verificar();" value=<s:property value="botonocul" /> />                     
                         &nbsp;&nbsp;&nbsp;&nbsp;
                         <s:a action="volverCampanias">
@@ -129,5 +130,6 @@
             </table>
             <input type="hidden" id="__multiselect_CrudActionCampaniasRopa_checkboxNombre" name="__multiselect_checkboxNombre" value="" />
         </s:form>
+        <s:include value="formularioConfirmacionEliminacion.jsp" />
     </body>
 </html>

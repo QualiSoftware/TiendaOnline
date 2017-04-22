@@ -1,0 +1,43 @@
+/*Para la eliminación del usuario*/
+.btnConfirmar{
+    background-color: #cc0033;
+    color: white;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 90px;
+    text-align: center;
+}
+.btnConfirmar:hover {
+    -webkit-transform:scale(1.1);
+    -webkit-transition: .2s;
+}
+.btnCancelar{
+    background-color: #292c2f;
+    color: white;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 90px;
+    text-align: center;
+}
+.btnCancelar:hover{
+    -webkit-transform:scale(1.1);
+    -webkit-transition: .2s;
+
+}
+#confirmacionEliminacion{
+    display:none;
+    position: fixed;
+    right: 40%;
+    top: 40%;
+    width: 20%;
+    height: 20%;
+    z-index: 1000;
+    background-color: #f5e79e;
+}
+/*FIN para la eliminación del usuario*/

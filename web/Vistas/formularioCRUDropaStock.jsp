@@ -12,7 +12,9 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
         <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
-        <link rel="stylesheet" href="../Estilos/GeneralEstilos.css"/>
+        <link rel="stylesheet" href="../Estilos/GeneralEstilos.css"/> 
+        <link href="../Estilos/estilosBorrado.css" rel="stylesheet" type="text/css"/>
+        <script src="../Scripts/confirmacionEliminacion.js" type="text/javascript"></script>
         <link rel="stylesheet" type="text/css" href="../Calendar/1-simple-calendar/tcal.css" />
         <script type="text/javascript" src="../Calendar/1-simple-calendar/tcal.js"></script>
         <title>Formulario Stock</title>
@@ -20,9 +22,8 @@
         <script>
             function Verificar(dato) {
                 if (document.getElementById('accionocul').value === 'e') {
-                    if (confirm("¿Seguro que desea borrar?")) {
-                        document.getElementById('frm').submit();
-                    }
+                    document.getElementById('botonera').style.display = 'none';
+                    document.getElementById('confirmacionEliminacion').style.display = 'block';
                 } else {
                     var unidades = document.getElementById('roUnidades2').value;
                     if(isNaN(unidades) || unidades < 1){
@@ -146,7 +147,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="2">
+                    <td colspan="2" id="botonera">
                         <input type="button" onclick="Verificar();" value="<s:property value="botonocul" /><s:if test='%{accion == "a"}'> y finalizar</s:if>" />
                         <s:if test='%{accion == "a"}'>
                             <input type="button" onclick="Verificar(0);" value="Ingresar más" />
@@ -164,5 +165,6 @@
             <s:submit value="Cancelar" />
         </s:form>
     </center>
+        <s:include value="formularioConfirmacionEliminacion.jsp" />
 </body>
 </html>

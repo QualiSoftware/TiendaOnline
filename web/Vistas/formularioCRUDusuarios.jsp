@@ -19,6 +19,7 @@
         <link rel="shortcut icon" href="../Imagenes/Administracion/Favicon house_hangers.png">        
         <!--Mis Estilos-->
         <link href="../Estilos/IndexEstilo.css" rel="stylesheet" type="text/css"/>
+        <link href="../Estilos/estilosBorrado.css" rel="stylesheet" type="text/css"/>
         <!--Bootstrap-->
         <link href="../Estilos/bootstrap-3.3.7-dist/css/bootstrap.css" rel="stylesheet" type="text/css"/>
         <!--JQuery-->
@@ -50,7 +51,16 @@
                     });
                 });
             }
-            ;
+
+            function respuestaEliminacion(respuesta){
+                if(respuesta){
+                    document.getElementById('accionocul').value = 'e';
+                    document.getElementById('frm').submit();        
+                }else{
+                    document.getElementById('cuenta_usuario_Botonera').style.display = '';
+                    document.getElementById('confirmacionEliminacion').style.display = 'none';
+                }
+            }
         </script>
         <title><s:property value="cabeceraocul" /> de Usuario</title>
     </head>
@@ -363,7 +373,7 @@
                                 <s:label for="usuPassword2">Contraseña (*)</s:label>  
                                 </td>
                                 <td>
-                                <s:password name="usuPassword2" cssClass="formulario_Rellenar" id="usuPassword2" ></s:password>
+                                <s:password name="usuPassword2" cssClass="formulario_Rellenar" id="password1" ></s:password>
                                 </td>
                             </tr>
                             <tr>
@@ -371,7 +381,7 @@
                                 <s:label for="passVerif">Repita la contraseña (*)</s:label>  
                                 </td>
                                 <td>
-                                <s:password id="passVerif" cssClass="formulario_Rellenar"></s:password>
+                                <s:password id="password2" cssClass="formulario_Rellenar"></s:password>
                                 </td>
                             </tr>
                     </s:if>
@@ -475,7 +485,7 @@
                                        font-size: 15px;
                                        box-shadow: 3px 3px 3px grey;
                                        text-decoration: none; " 
-                                       type="button" onclick="Verificar('m');" value=<s:property value="botonocul" /> />
+                                       type="button" onclick="verificarUsuario('m');" value=<s:property value="botonocul" /> />
                             &nbsp;&nbsp;&nbsp;&nbsp;
                             <input class="botones_cuenta_usuario" 
                                    style="margin-bottom: 0px; 
@@ -494,7 +504,7 @@
                                    font-size: 15px;
                                    box-shadow: 3px 3px 3px grey;
                                    text-decoration: none; " 
-                                   type="button" onclick="Verificar('v');" value="Volver" />
+                                   type="button" onclick="verificarUsuario('v');" value="Volver" />
                             <s:if test='%{accion == "m"}'>
                                 &nbsp;&nbsp;&nbsp;&nbsp;
                                 <input class="botones_cuenta_usuario" 
@@ -514,7 +524,7 @@
                                        font-size: 15px;
                                        box-shadow: 3px 3px 3px grey;
                                        text-decoration: none; " 
-                                       type="button" onclick="Verificar('c');" value="Modificar contraseña" />
+                                       type="button" onclick="verificarUsuario('c');" value="Modificar contraseña" />
                             </s:if>
                         </td>
                     </tr>
@@ -522,7 +532,7 @@
                 <div id="cuenta_usuario_Pie">
                     <s:if test='%{accion == "m"}'>
                         Si desea dar de baja su usuario puede presionar en el botón&nbsp;
-                        <input type="button" class="btn_Eliminar_cuenta_usuario" onclick="Verificar('e');" value="Eliminar" />&nbsp; y sus datos de usuario serán
+                        <input type="button" class="btn_Eliminar_cuenta_usuario" onclick="verificarUsuario('e');" value="Eliminar" />&nbsp; y sus datos de usuario serán
                         eliminados de nuestra base de datos.
                     </s:if>
                 </s:form>
@@ -536,6 +546,11 @@
                     <a href="http://luislo.esy.es/politica-privacidad.php">Más información</a>
                     <a onclick="aceptar_cookies();" style="cursor:pointer;">X Cerrar</a></p>
             </div>
+        </div>
+        <div id="confirmacionEliminacion">
+            ¿Confirma que desea eliminar?<br/>
+            <div class="btnConfirmar" onclick="respuestaEliminacion(true);">Eliminar</div>
+            <div class="btnCancelar" onclick="respuestaEliminacion(false);">Cancelar</div>            
         </div>
     </body>
 </html>
