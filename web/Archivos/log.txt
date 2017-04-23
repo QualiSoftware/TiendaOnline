@@ -34,3 +34,13 @@ Hubo un intento de conexión fallido el Wed Apr 19 23:46:55 CEST 2017 con user: d
 Hubo un intento de conexión fallido el Wed Apr 19 23:52:22 CEST 2017 con user: dusheff@hotmail.com pass: dusheff4
 Hubo un intento de conexión fallido el Wed Apr 19 23:54:48 CEST 2017 con user: dusheff@hotmail.com pass: dusheffeee
 Archivo C:\Users\Damian\Documents\NetBeansProjects\TiendaOnline\TiendaOnline\web\Imagenes\Pantalones\Cortos\error tienda01.jpg borrado Sat Apr 22 17:51:36 CEST 2017
+Se envió una factura con fecha Sat Apr 22 19:11:05 CEST 2017 de Damián Usheff Gonzalez-Santamaría, código de usuario 13
+Se envió una factura con fecha Sat Apr 22 19:13:12 CEST 2017 de Damián Usheff Gonzalez-Santamaría, código de usuario 13
+Se envió una factura con fecha Sun Apr 23 21:31:23 CEST 2017 de Damián Usheff Gonzalez-Santamaría, código de usuario 13
+Se envió una factura con fecha Sun Apr 23 21:35:13 CEST 2017 de Damián Usheff Gonzalez-Santamaría, código de usuario 13
+Se envió una factura con fecha Sun Apr 23 22:02:00 CEST 2017 de Damián Usheff Gonzalez-Santamaría, código de usuario 13
+Se envió una factura con fecha Sun Apr 23 22:05:29 CEST 2017 de Damián Usheff Gonzalez-Santamaría, código de usuario 13
+Se envió una factura con fecha Sun Apr 23 22:13:52 CEST 2017 de Damián Usheff Gonzalez-Santamaría, código de usuario 13
+Se envió una factura con fecha Sun Apr 23 22:34:00 CEST 2017 de Damián Usheff Gonzalez-Santamaría, código de usuario 13
+El usuario inactivo borro@borro.com intentó loguearse el Sun Apr 23 22:37:28 CEST 2017
+El usuario inactivo borro@borro.com intentó loguearse el Sun Apr 23 22:39:30 CEST 2017

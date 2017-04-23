@@ -1413,3 +1413,10 @@ select:-webkit-autofill:focus{
 .btn_Acceder{
     color: red;
 }
+#espera{
+    display:none;
+    position: fixed;
+    right: 40%;
+    top: 40%;
+    z-index: 1000;    
+}

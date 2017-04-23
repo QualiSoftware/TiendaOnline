@@ -62,6 +62,8 @@ function verificarUsuario(action) {
             mensaje.innerHTML += "El email ingresado es incorrecto.";
         }
         if(verifica && contraseniasIguales && mayor18 && emailCorrecto && noEsEliminacion){
+            document.getElementById('cuenta_usuario_Botonera').style.display = 'none';
+            document.getElementById('espera').style.display = "block";
             document.getElementById('frm').submit();
         }
     }

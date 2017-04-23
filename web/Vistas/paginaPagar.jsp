@@ -3,6 +3,7 @@
     Created on : 02-nov-2016, 21:22:24
     Author     : Qualisoftware
 --%>
+<%@page import="Acciones.HomeUsuariosValidaciones"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.text.DateFormat"%>
 <%@page import="java.sql.Connection"%>
@@ -14,6 +15,7 @@
 <%@page import="ControladoresDAO.cPDFConexion" %>
 <%@page import="Modelos.Usuarios"%>
 <%@page language="java" trimDirectiveWhitespaces="true"%>
+<META HTTP-EQUIV="Refresh" CONTENT="0;URL=pedidos.action">
 <%
     Usuarios usuario = null;
     boolean emailEnviado = false;
@@ -54,11 +56,14 @@
         
         int id = Integer.parseInt(""+request.getAttribute("facUsuId"));
         usuario = ControladoresDAO.cUsuarios.RecuperaPorId(id);
-        response.sendRedirect("pedidos");
         emailEnviado = ControladoresDAO.cEmail.enviarCorreo(usuario.getUsuEmail(),nombreArchivo);
         if(emailEnviado){
-            System.out.println("Se envió una factura con fecha " + date);
+            System.out.println();
+            HomeUsuariosValidaciones huv = new HomeUsuariosValidaciones();
+            huv.escribirEnArchivoLog("Se envió una factura con fecha " + date + " de " + usuario.getUsuNombre() +
+                    " " + usuario.getUsuApellidos() + ", código de usuario " + usuario.getUsuId());
         }
+        response.sendRedirect("pedidos.action");
     }catch(Exception e){
         System.out.println("Error: "+e.getMessage());
     }

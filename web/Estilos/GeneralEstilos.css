@@ -231,3 +231,10 @@ td, th {
     border-radius: 5px;
     margin-right: 10px;
 }
+#espera{
+    display:none;
+    position: fixed;
+    right: 40%;
+    top: 40%;
+    z-index: 1000;    
+}

@@ -552,5 +552,6 @@
             <div class="btnConfirmar" onclick="respuestaEliminacion(true);">Eliminar</div>
             <div class="btnCancelar" onclick="respuestaEliminacion(false);">Cancelar</div>            
         </div>
+        <img id="espera" src="../Imagenes/Administracion/espera.gif" />
     </body>
 </html>

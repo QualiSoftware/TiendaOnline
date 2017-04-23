@@ -167,7 +167,7 @@
             </s:else>
             <tr>
                 <td>
-                    <s:label for="usuEmail2">E-mail</s:label>  
+                    <s:label for="usuEmail2">E-mail (*)</s:label>  
                 </td>
                 <td>
                 <s:if test="clave != -1">
@@ -180,7 +180,7 @@
             </tr>
             <tr>
                 <td>
-                    <s:label for="usuTelefono2">Teléfono</s:label>  
+                    <s:label for="usuTelefono2">Teléfono (*)</s:label>  
                 </td>
                 <td>
                     <s:if test="clave != -1">
@@ -216,7 +216,7 @@
             </tr>
             <tr>
                 <td>
-                    <s:label for="usuFechaNac2">Fecha de nacimiento</s:label>  
+                    <s:label for="usuFechaNac2">Fecha de nacimiento (*)</s:label>  
                 </td>
                 <td>
                     <s:if test="clave != -1">
@@ -304,7 +304,7 @@
             </tr>
             <tr>
                 <td>
-                    <s:label for="usuLocalidad2">Ciudad</s:label>  
+                    <s:label for="usuLocalidad2">Ciudad (*)</s:label>  
                 </td>
                 <td>
                     <s:if test="clave != -1">
@@ -317,7 +317,7 @@
             </tr>
             <tr>
                 <td>
-                    <s:label for="usuCp2">Código Postal</s:label>  
+                    <s:label for="usuCp2">Código Postal (*)</s:label>  
                 </td>
                 <td>
                     <s:if test="clave != -1">
@@ -330,7 +330,7 @@
             </tr>
             <tr>
                 <td>
-                    <s:label for="usuDireccion2">Dirección</s:label>  
+                    <s:label for="usuDireccion2">Dirección (*)</s:label>  
                 </td>
                 <td>
                     <s:if test="clave != -1">
@@ -342,7 +342,7 @@
                 </td>
             </tr>
             <tr>
-                <td colspan="2">
+                <td colspan="2" id="cuenta_usuario_Botonera">
                 <s:if test="clave != -1">
                     <s:set var="esAdmin" value="0"/>
                 </s:if>
@@ -358,5 +358,6 @@
             </tr>
         </table>
         </s:form>
+        <img id="espera" src="../Imagenes/Administracion/espera.gif" />
     </body>
 </html>

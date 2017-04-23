@@ -427,10 +427,10 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td colspan="2" >
-                                                <button type="submit" style="margin-left: 150px" id="añadircesta_Btn">
-                                                    <div>Realizar Pedido</div>
-                                                </button>
+                                            <td colspan="2" id="botonEnvio">
+                                                <div style="margin-left: 150px" id="añadircesta_Btn">
+                                                    <div onclick="enviarPedido();">Realizar Pedido</div>
+                                                </div>
                                             </td>
                                         </tr>
                                     </table>
@@ -442,5 +442,13 @@
             </div>
             <s:include value="tiendaFooter.jsp" />
         </div>
+        <script>
+            function enviarPedido(){
+                document.getElementById('botonEnvio').style.display = 'none';
+                document.getElementById('espera').style.display = "block";
+                document.getElementById('frm').submit();
+            }
+        </script>
+        <img id="espera" src="../Imagenes/Administracion/espera.gif" />
     </body>
 </html>
