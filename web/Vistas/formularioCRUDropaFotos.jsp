@@ -45,7 +45,7 @@
         <div  class="linea"></div>
         <input type="hidden" id="accionocul" value=<s:property value="accionocul" /> />
         <div class="formulario_Fotos" >
-            <label style="font-size: 20px;"><span style="font-weight: normal">Fotos de:</span> <s:property value="t.categoria.catDescripcion" />
+            <label style="font-size: 20px; margin-left: 150px;"><span style="font-weight: normal">Fotos de:</span> <s:property value="t.categoria.catDescripcion" />
                 &nbsp;<s:property value="t.subcategoria.subDescripcion" /> 
                 &nbsp;<span style="font-weight: normal">de</span>&nbsp;<s:property value="t.clientela.clientelaDescripcion" />
                 &nbsp;<span style="font-weight: normal">marca</span>&nbsp;<s:property value="t.marcas.marcaNombre" />
@@ -88,7 +88,7 @@
                     <s:param name="eliminadas" value="%{eliminadas}" />
                     <s:param name="orden" value="%{orden}" />
                     <p></p><br>
-                        <i style="font-size: 20px" class="glyphicon glyphicon-share-alt"> No hacer cambios en fotos</i>
+                        <i style="font-size: 20px; margin-bottom: 100px;" class="glyphicon glyphicon-share-alt"> No hacer cambios en fotos.</i>
                 </s:a>
             </div>
         </div>

@@ -88,13 +88,13 @@
             <div id="titulo_Pagina">Ropa</div>
                 <s:include value="cabeceraMenuAdministrador.jsp" />
         
-        <div  class="linea"></div>
+                <div  class="linea" style="margin-top: 30px;"></div>
         <div id="descripcion_Pagina"><h3 class="bold"><s:label name="cabeceraocul" theme="simple" /> de Ropa</h3></div>
         <div  class="linea"></div>
         <s:form id="frm" action="CrudActionRopaAdmin" theme="simple">
             <input type="hidden" name="accionocul" id="accionocul" value=<s:property value="accion" /> />
             <input type="hidden" name="confotos" id="confotos" value="true" />
-            <table>
+            <table class="table_Crud">
                 <tr>
                     <td colspan="2">
                         <pre><span id="errores"></span><span id="erroresPrecio"></span></pre>
@@ -289,7 +289,7 @@
                 <tr><td colspan="2">No se pueden modificar categoría y subcategoría ya que tiene fotos asociadas</td></tr>
                 <%}%>
                 <tr>
-                    <td colspan="2" id="botonera">
+                    <td colspan="2" id="botonera" class="botones_Crud" >
                         <s:if test='%{accionocul == "a"}'>
                             <input type="button" onclick="Verificar();" value="Agregar fotos" />
                             <input type="button" onclick="AltaSinFotos();" value="No agregar fotos" />

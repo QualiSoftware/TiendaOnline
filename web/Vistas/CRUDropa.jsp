@@ -43,12 +43,12 @@
             <div id="titulo_Pagina">Ropas</div>
             <s:include value="cabeceraMenuAdministrador.jsp" />
         </div>
-        <div  class="linea"></div>
+        <div  class="linea" style="height: 2px;"></div>
         <div id="descripcion_Pagina">Aquí puede <span class="bold">añadir, modificar y eliminar </span>la ropa y el stock de la misma.</div>
-        <div  class="linea"></div>
-        <table border="1">
+        <div  class="linea" style="height: 2px;"></div>
+        <table border="1" style="margin-bottom: 100px;">
             <tr>
-                <td colspan="16" style="padding-right: 30%;">
+                <td colspan="16" style="padding-right: 30%; border-right: 2px solid black;">
                     <s:form action="RopaAdminFiltro" theme="simple" id="frm" cssStyle="display:inline;">
                         Filtrar Ropa: <s:textfield name="filtro" />
                         &nbsp;&nbsp;&nbsp;&nbsp;
@@ -391,7 +391,7 @@
                 </th>
                 <th>Fotos</th>
                 <th>Acciones con fotos</th>
-                <th>Campañas</th>
+                <th style="border-top: solid 2px black;">Campañas</th>
             </tr>
             <%String fondo = "fondoOscuro";String fondo2 = "fondoClaro";%>
             <s:iterator var="a" value="lista_ropa">
@@ -467,7 +467,7 @@
                         <s:property value="#a.roDescuento"/>
                     </td>
                     <td>
-                        <table>
+                        <table class="table_AgregarStock">
                             <tr>
                                 <td colspan="5">
                                     <s:a action="RopaStockAdminForm">

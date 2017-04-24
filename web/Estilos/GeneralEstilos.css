@@ -1,7 +1,25 @@
 body {
     margin: auto;
 }
-
+.table_Crud td{
+    text-align: left;
+}
+.botones_Crud {
+    
+    text-align: center !important;
+    margin: 0 auto;
+    
+}
+.fondoOscuro2 {
+    background-color: #ccffcc;
+}
+.table_AgregarStock{
+    margin-top: 0px;
+}
+.table_AgregarStock td{
+    padding-top: 0px;
+    padding-bottom: 0px;    
+}
 #header {
     position: relative;
     text-align: center;

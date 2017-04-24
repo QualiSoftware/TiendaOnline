@@ -40,7 +40,7 @@
             <s:include value="cabeceraMenuAdministrador.jsp" />
         </div>
         <div  class="linea"></div>
-        <table border="1">
+        <table border="1" style="margin-bottom: 100px;">
             <tr>
                 <td colspan="13">
                     <s:form action="FacturasFiltro" theme="simple">

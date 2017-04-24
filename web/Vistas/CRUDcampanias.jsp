@@ -40,7 +40,7 @@
         <div  class="linea"></div>
         <div id="descripcion_Pagina">Aquí puede <span class="bold">añadir, modificar y eliminar </span>las campañas.</div>
         <div  class="linea"></div>
-        <table border="1">
+        <table border="1" style="margin-bottom: 100px;">
             <tr>
                 <td colspan="8">
                 <s:form action="CampaniasFiltro" theme="simple" style="display:inline;">

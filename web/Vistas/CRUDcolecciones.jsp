@@ -28,7 +28,7 @@
         <div id="descripcion_Pagina">Aquí puede <span class="bold">añadir, modificar y eliminar </span>las colecciones.</div>
         <div  class="linea"></div>
         <s:form action="ColeccionFiltro" theme="simple">
-        <table border="1">
+        <table border="1" style="margin-bottom: 100px;">
             <tr>
                 <td colspan="2">
                     Filtro : <s:textfield name="filtro" /><s:submit value="filtrar"></s:submit>                      

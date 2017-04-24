@@ -28,7 +28,7 @@
         <div id="descripcion_Pagina">Aquí puede <span class="bold">añadir, modificar y eliminar </span>las marcas.</div>
         <div  class="linea"></div>
         <s:form action="MarcasFiltro" theme="simple">
-        <table border="1">
+        <table border="1" style="margin-bottom: 100px;">
             <tr>
                 <td colspan="3">
                     Filtro : <s:textfield name="filtro" /><s:submit value="filtrar"></s:submit>                  
