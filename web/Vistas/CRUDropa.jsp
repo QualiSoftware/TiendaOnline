@@ -48,7 +48,7 @@
         <div  class="linea" style="height: 2px;"></div>
         <table border="1" style="margin-bottom: 100px;">
             <tr>
-                <td colspan="16" style="padding-right: 30%; border-right: 2px solid black;">
+                <td colspan="17" style="padding-right: 30%; border-right: 2px solid black;">
                     <s:form action="RopaAdminFiltro" theme="simple" id="frm" cssStyle="display:inline;">
                         Filtrar Ropa: <s:textfield name="filtro" />
                         &nbsp;&nbsp;&nbsp;&nbsp;
@@ -98,10 +98,6 @@
                     <s:a action="RopaAdminForm">
                         <s:param name="accion" value="'a'"/>
                         <s:param name="filtro" value="%{filtro}" />
-                        <!--
-                        <s:param name="fechaI" value="%{fechaI}" />
-                        <s:param name="fechaF" value="%{fechaF}" />
-                        -->
                         <s:param name="eliminadas" value="%{eliminadas}" />
                         <s:param name="orden" value="%{orden}" />
                         <i style="font-size: 20px" class="glyphicon glyphicon-plus"> Agregar Ropa</i>
@@ -114,10 +110,6 @@
                 <th>
                     <s:form action="RopaAdminFiltro" method="post" theme="simple">
                         <input type="hidden" name="filtro" value="<%=filtro%>" />
-                        <!--
-                        <input type="hidden" name="fechaI" value="<%=fechaI%>" />
-                        <input type="hidden" name="fechaF" value="<%=fechaF%>" />
-                        -->
                         <input type="hidden" name="eliminadas" value="<%=eliminadas%>" />
                         <%
                             if(orden.equals("roId ASC") || orden.equals("roId DESC")){
@@ -139,10 +131,6 @@
                 <th>
                     <s:form action="RopaAdminFiltro" method="post" theme="simple">
                         <input type="hidden" name="filtro" value="<%=filtro%>" />
-                        <!--
-                        <input type="hidden" name="fechaI" value="<%=fechaI%>" />
-                        <input type="hidden" name="fechaF" value="<%=fechaF%>" />
-                        -->
                         <input type="hidden" name="eliminadas" value="<%=eliminadas%>" />
                         <%
                             if(orden.equals("clientela.clientelaDescripcion ASC") || orden.equals("clientela.clientelaDescripcion DESC")){
@@ -164,10 +152,6 @@
                 <th>
                     <s:form action="RopaAdminFiltro" method="post" theme="simple">
                         <input type="hidden" name="filtro" value="<%=filtro%>" />
-                        <!--
-                        <input type="hidden" name="fechaI" value="<%=fechaI%>" />
-                        <input type="hidden" name="fechaF" value="<%=fechaF%>" />
-                        -->
                         <input type="hidden" name="eliminadas" value="<%=eliminadas%>" />
                         <%
                             if(orden.equals("coleccion.coleccionDescripcion ASC") || orden.equals("coleccion.coleccionDescripcion DESC")){
@@ -189,10 +173,6 @@
                 <th>
                     <s:form action="RopaAdminFiltro" method="post" theme="simple">
                         <input type="hidden" name="filtro" value="<%=filtro%>" />
-                        <!--
-                        <input type="hidden" name="fechaI" value="<%=fechaI%>" />
-                        <input type="hidden" name="fechaF" value="<%=fechaF%>" />
-                        -->
                         <input type="hidden" name="eliminadas" value="<%=eliminadas%>" />
                         <%
                             if(orden.equals("marcas.marcaNombre ASC") || orden.equals("marcas.marcaNombre DESC")){
@@ -214,10 +194,6 @@
                 <th>
                     <s:form action="RopaAdminFiltro" method="post" theme="simple">
                         <input type="hidden" name="filtro" value="<%=filtro%>" />
-                        <!--
-                        <input type="hidden" name="fechaI" value="<%=fechaI%>" />
-                        <input type="hidden" name="fechaF" value="<%=fechaF%>" />
-                        -->
                         <input type="hidden" name="eliminadas" value="<%=eliminadas%>" />
                         <%
                             if(orden.equals("look.lookDescripcion ASC") || orden.equals("look.lookDescripcion DESC")){
@@ -239,10 +215,6 @@
                 <th>
                     <s:form action="RopaAdminFiltro" method="post" theme="simple">
                         <input type="hidden" name="filtro" value="<%=filtro%>" />
-                        <!--
-                        <input type="hidden" name="fechaI" value="<%=fechaI%>" />
-                        <input type="hidden" name="fechaF" value="<%=fechaF%>" />
-                        -->
                         <input type="hidden" name="eliminadas" value="<%=eliminadas%>" />
                         <%
                             if(orden.equals("roDescripcion ASC") || orden.equals("roDescripcion DESC")){
@@ -264,10 +236,6 @@
                 <th>
                     <s:form action="RopaAdminFiltro" method="post" theme="simple">
                         <input type="hidden" name="filtro" value="<%=filtro%>" />
-                        <!--
-                        <input type="hidden" name="fechaI" value="<%=fechaI%>" />
-                        <input type="hidden" name="fechaF" value="<%=fechaF%>" />
-                        -->
                         <input type="hidden" name="eliminadas" value="<%=eliminadas%>" />
                         <%
                             if(orden.equals("roCaracteristicas ASC") || orden.equals("roCaracteristicas DESC")){
@@ -289,10 +257,6 @@
                 <th>
                     <s:form action="RopaAdminFiltro" method="post" theme="simple">
                         <input type="hidden" name="filtro" value="<%=filtro%>" />
-                        <!--
-                        <input type="hidden" name="fechaI" value="<%=fechaI%>" />
-                        <input type="hidden" name="fechaF" value="<%=fechaF%>" />
-                        -->
                         <input type="hidden" name="eliminadas" value="<%=eliminadas%>" />
                         <%
                             if(orden.equals("categoria.catDescripcion ASC") || orden.equals("categoria.catDescripcion DESC")){
@@ -314,10 +278,6 @@
                 <th>
                     <s:form action="RopaAdminFiltro" method="post" theme="simple">
                         <input type="hidden" name="filtro" value="<%=filtro%>" />
-                        <!--
-                        <input type="hidden" name="fechaI" value="<%=fechaI%>" />
-                        <input type="hidden" name="fechaF" value="<%=fechaF%>" />
-                        -->
                         <input type="hidden" name="eliminadas" value="<%=eliminadas%>" />
                         <%
                             if(orden.equals("subcategoria.subDescripcion ASC") || orden.equals("subcategoria.subDescripcion DESC")){
@@ -339,10 +299,6 @@
                 <th>
                     <s:form action="RopaAdminFiltro" method="post" theme="simple">
                         <input type="hidden" name="filtro" value="<%=filtro%>" />
-                        <!--
-                        <input type="hidden" name="fechaI" value="<%=fechaI%>" />
-                        <input type="hidden" name="fechaF" value="<%=fechaF%>" />
-                        -->
                         <input type="hidden" name="eliminadas" value="<%=eliminadas%>" />
                         <%
                             if(orden.equals("roPrecio ASC") || orden.equals("roPrecio DESC")){
@@ -364,10 +320,6 @@
                 <th>
                     <s:form action="RopaAdminFiltro" method="post" theme="simple">
                         <input type="hidden" name="filtro" value="<%=filtro%>" />
-                        <!--
-                        <input type="hidden" name="fechaI" value="<%=fechaI%>" />
-                        <input type="hidden" name="fechaF" value="<%=fechaF%>" />
-                        -->
                         <input type="hidden" name="eliminadas" value="<%=eliminadas%>" />
                         <%
                             if(orden.equals("roDescuento ASC") || orden.equals("roDescuento DESC")){
@@ -402,10 +354,6 @@
                             <s:param name="rostockId" value="-1"/>
                             <s:param name="accion" value="'m'"/>
                             <s:param name="filtro" value="%{filtro}" />
-                            <!--
-                            <s:param name="fechaI" value="%{fechaI}" />
-                            <s:param name="fechaF" value="%{fechaF}" />
-                            -->
                             <s:param name="eliminadas" value="%{eliminadas}" />
                             <s:param name="orden" value="%{orden}" />
                             <i style="font-size: 20px" class="glyphicon glyphicon-edit"></i>
@@ -415,10 +363,6 @@
                             <s:param name="clave" value="#a.roId"/>
                             <s:param name="rostockId" value="-1"/>
                             <s:param name="filtro" value="%{filtro}" />
-                            <!--
-                            <s:param name="fechaI" value="%{fechaI}" />
-                            <s:param name="fechaF" value="%{fechaF}" />
-                            -->
                             <s:param name="eliminadas" value="%{eliminadas}" />
                             <s:param name="orden" value="%{orden}" />
                             <i style="font-size: 20px" class="glyphicon glyphicon-trash"></i>
@@ -468,7 +412,7 @@
                     </td>
                     <td>
                         <table class="table_AgregarStock">
-                            <tr>
+                            <tr class="fondoOscuro2">
                                 <td colspan="5">
                                     <s:a action="RopaStockAdminForm">
                                         <s:param name="accion" value="'a'"/>
@@ -488,7 +432,6 @@
                                 <td>
                                     <s:property value="#r.tallas.tallaDescripcion"/>
                                 </td><td>
-                                    <%--<s:property value="#r.color.colorDescripcion"/>--%>
                                     <div id="color1" style="background-color: <s:property value="#r.color.colorDescripcion"/>;">
                                     </div>
                                 </td><td>
@@ -501,10 +444,6 @@
                                         <s:param name="accion" value="'m'"/>
                                         <s:param name="rostockId" value="#r.rostockId"/>
                                         <s:param name="filtro" value="%{filtro}" />
-                                        <!--
-                                        <s:param name="fechaI" value="%{fechaI}" />
-                                        <s:param name="fechaF" value="%{fechaF}" />
-                                        -->
                                         <s:param name="eliminadas" value="%{eliminadas}" />
                                         <s:param name="orden" value="%{orden}" />
                                         <i style="font-size: 20px" class="glyphicon glyphicon-edit"></i>
@@ -513,10 +452,6 @@
                                         <s:param name="accion" value="'e'"/>
                                         <s:param name="rostockId" value="#r.rostockId"/>
                                         <s:param name="filtro" value="%{filtro}" />
-                                        <!--
-                                        <s:param name="fechaI" value="%{fechaI}" />
-                                        <s:param name="fechaF" value="%{fechaF}" />
-                                        -->
                                         <s:param name="eliminadas" value="%{eliminadas}" />
                                         <s:param name="orden" value="%{orden}" />
                                         <i style="font-size: 20px" class="glyphicon glyphicon-trash"></i>
@@ -524,10 +459,10 @@
                                 </td>
                             </tr>
                             <%
-                                if(fondo2.equals("fondoOscuro")){
+                                if(fondo2.equals("fondoOscuro2")){
                                     fondo2="fondoClaro";
                                 }else{
-                                    fondo2="fondoOscuro";
+                                    fondo2="fondoOscuro2";
                                 }
                             %>
                         </s:iterator>
@@ -543,10 +478,6 @@
                             <s:param name="roId2" value="#a.roId"/>
                             <s:param name="accionocul" value="'m'"/>
                             <s:param name="filtro" value="%{filtro}" />
-                            <!--
-                            <s:param name="fechaI" value="%{fechaI}" />
-                            <s:param name="fechaF" value="%{fechaF}" />
-                            -->
                             <s:param name="eliminadas" value="%{eliminadas}" />
                             <s:param name="orden" value="%{orden}" />
                             <i style="font-size: 20px" class="glyphicon glyphicon-edit"></i>
@@ -555,10 +486,6 @@
                             <s:param name="accionocul" value="'e'"/>
                             <s:param name="roId2" value="#a.roId"/>
                             <s:param name="filtro" value="%{filtro}" />
-                            <!--
-                            <s:param name="fechaI" value="%{fechaI}" />
-                            <s:param name="fechaF" value="%{fechaF}" />
-                            -->
                             <s:param name="eliminadas" value="%{eliminadas}" />
                             <s:param name="orden" value="%{orden}" />
                             <i style="font-size: 20px" class="glyphicon glyphicon-trash"></i>
@@ -567,7 +494,7 @@
                     <td>                        
                         <s:iterator var="r" value="campaniaRopas">
                             <s:a action="ModificarCampaniasRopa">
-                                <s:property value="#r.campania.camNombre"/><br/>
+                                <s:property value="#r.campania.camNombre"/><!--<br/>-->
                                 <s:param name="accion" value="'m'"/>
                                 <s:param name="camId" value="#r.campania.camId"/>
                             </s:a>
