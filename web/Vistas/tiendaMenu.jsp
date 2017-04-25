@@ -333,7 +333,11 @@
                 </div>
                 <div id="productos" style="margin-top: 50px;">
                     <s:iterator var="m" value="lista_ropa">
-                        <s:if test="#m.ropaStocks.size != 0">
+                        <s:set var="cantidadStock" value="0"/>
+                        <s:iterator var="k" value="#m.ropaStocks">
+                            <s:set var="cantidadStock" value="%{#cantidadStock + #k.rostockUnidades}"/>
+                        </s:iterator>
+                        <s:if test="#cantidadStock > 0">
                         <table  class="imgproducto">                                                    
                             <tr class="botones_prueba">
                                 <td>
@@ -362,9 +366,6 @@
                                             <div id="vista_Rapida">
                                                 <table class="table_VistaRapida">                                                
                                                     <tbody>
-<!--                                                        <tr>
-                                                            <td colspan="2" style="font-weight: bold; padding: 10px;"><s:property value="#m.roDescripcion"/></td>
-                                                        </tr>-->
                                                         <tr>
                                                             <td style="padding-left:10px; width: 20px;">Precio</td>
                                                             <td><s:property value="getText('{0,number,##0.00}',{#m.roPrecio - (#m.roPrecio * #m.roDescuento / 100)})"/> €</td>
@@ -393,7 +394,6 @@
                                                                         document.write("<img src='../Imagenes/Colores/" + arrayColoresFoto[i] + "'style='width:20px; box-shadow: 0px 0px 0px; padding-bottom: 0px; padding-right: 0px; margin-right: 10px; margin-bottom: 8px; border-radius: 5px 5px 5px 5px;' alt='" + arrayColoresNombre[i] + "'/>");
                                                                     }
                                                                 </script>
-                                                                <!--<span style="width: 200px; height: 20px; background-color: red; color: red">....</span>-->
                                                             </td>
                                                         </tr>
                                                         <tr>

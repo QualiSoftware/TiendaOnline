@@ -44,3 +44,4 @@ Se envió una factura con fecha Sun Apr 23 22:13:52 CEST 2017 de Damián Usheff Go
 Se envió una factura con fecha Sun Apr 23 22:34:00 CEST 2017 de Damián Usheff Gonzalez-Santamaría, código de usuario 13
 El usuario inactivo borro@borro.com intentó loguearse el Sun Apr 23 22:37:28 CEST 2017
 El usuario inactivo borro@borro.com intentó loguearse el Sun Apr 23 22:39:30 CEST 2017
+Se envió una factura con fecha Tue Apr 25 22:43:22 CEST 2017 de Damián Usheff Gonzalez-Santamaría, código de usuario 13
