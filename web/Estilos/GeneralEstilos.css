@@ -11,7 +11,7 @@ body {
     
 }
 .fondoOscuro2 {
-    background-color: #ccffcc;
+    background-color: black;
 }
 .table_AgregarStock{
     margin-top: 0px;
@@ -226,7 +226,7 @@ td, th {
     background-color: #fac896;
 }
 .fondoOscuro2{
-    background-color: #c0c0c0;
+    background-color: #e1e1e1;
 }
 .fondoClaro{
     background-color: white;
