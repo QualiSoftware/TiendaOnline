@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Facturas Tienda Online" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1d00e3b9-5562-41fe-9540-197555248f3a">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="160"/>
+	<property name="ireport.y" value="144"/>
 	<parameter name="clave" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT
@@ -131,7 +131,7 @@ AND facturas.`fac_id` = $P{clave}]]>
 	<pageHeader>
 		<band height="157" splitType="Stretch">
 			<rectangle radius="10">
-				<reportElement x="12" y="19" width="528" height="105" forecolor="#FF0000" backcolor="#CCCCCC" uuid="2efc51c9-7a00-48bc-9d0e-503903dd7bb6"/>
+				<reportElement x="12" y="19" width="528" height="105" forecolor="#CCCCCC" backcolor="#CCCCCC" uuid="2efc51c9-7a00-48bc-9d0e-503903dd7bb6"/>
 			</rectangle>
 			<textField>
 				<reportElement x="24" y="31" width="502" height="20" uuid="e17c1ebb-a2f5-4ec7-9ce3-1088087cae61"/>
@@ -263,19 +263,61 @@ AND facturas.`fac_id` = $P{clave}]]>
 		</band>
 	</detail>
 	<columnFooter>
-		<band height="50" splitType="Stretch">
-			<rectangle radius="10">
-				<reportElement x="390" y="11" width="165" height="32" forecolor="#FFCC66" backcolor="#CCFF99" uuid="59b457c5-fe56-4ea0-90d3-24836fd5e4c6"/>
+		<band height="103" splitType="Stretch">
+			<staticText>
+				<reportElement x="379" y="10" width="72" height="20" uuid="c9046199-fbc5-40c6-a006-01f62c3382fa"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="11" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Precio sin IVA]]></text>
+			</staticText>
+			<textField pattern="#,##0.00">
+				<reportElement x="425" y="10" width="100" height="20" uuid="7c1aee65-9636-4562-b82c-049c66cc2af8"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="11" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{Total}*(100-$F{facturas_fac_iva})*0.01]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="378" y="42" width="36" height="20" uuid="cf1c3fbb-3ef9-4d3f-a552-31391823dd6a"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="11" isBold="false"/>
+				</textElement>
+				<text><![CDATA[IVA]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="420" y="42" width="24" height="20" uuid="7c1aee65-9636-4562-b82c-049c66cc2af8"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="11" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{facturas_fac_iva}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="442" y="42" width="12" height="20" uuid="cf1c3fbb-3ef9-4d3f-a552-31391823dd6a"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="11" isBold="false"/>
+				</textElement>
+				<text><![CDATA[%]]></text>
+			</staticText>
+			<textField pattern="#,##0.00">
+				<reportElement x="425" y="42" width="100" height="20" uuid="7c1aee65-9636-4562-b82c-049c66cc2af8"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="11" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{Total}*$F{facturas_fac_iva}*0.01]]></textFieldExpression>
+			</textField>
+			<rectangle radius="0">
+				<reportElement x="390" y="71" width="185" height="32" forecolor="#CCCCCC" backcolor="#CCCCCC" uuid="59b457c5-fe56-4ea0-90d3-24836fd5e4c6"/>
 			</rectangle>
 			<textField pattern="#,##0.00">
-				<reportElement x="450" y="11" width="100" height="32" uuid="43c48066-8d40-44bc-9952-662906b87f0c"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
+				<reportElement x="425" y="71" width="100" height="32" uuid="43c48066-8d40-44bc-9952-662906b87f0c"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font size="18" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$V{Total}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="400" y="11" width="50" height="32" uuid="e6fe8e9f-7462-4f2a-bcf5-98128b1fc5b0"/>
+				<reportElement x="400" y="71" width="50" height="32" uuid="e6fe8e9f-7462-4f2a-bcf5-98128b1fc5b0"/>
 				<textElement verticalAlignment="Middle">
 					<font size="18" isBold="true"/>
 				</textElement>
@@ -284,7 +326,7 @@ AND facturas.`fac_id` = $P{clave}]]>
 		</band>
 	</columnFooter>
 	<pageFooter>
-		<band height="34" splitType="Stretch"/>
+		<band height="70" splitType="Stretch"/>
 	</pageFooter>
 	<summary>
 		<band splitType="Stretch"/>
