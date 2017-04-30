@@ -11,7 +11,9 @@ import java.util.Date;
 import org.apache.commons.io.FileUtils;
 import org.apache.struts2.ServletActionContext;
 
-
+/*  
+*   Author     : QualiSoftware
+*/
 public class HomeFotos extends ActionSupport {
     
     private Ropa t;

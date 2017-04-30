@@ -10,6 +10,9 @@ import org.hibernate.Session;
 import java.util.List;
 import org.hibernate.Query;
 
+/*  
+*   Author     : QualiSoftware
+*/
 public class cCampaniasRopa {
     
     public static List<Integer> RecuperaRopaPorCampania(int camId){

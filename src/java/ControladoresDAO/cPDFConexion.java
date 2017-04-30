@@ -2,6 +2,9 @@ package ControladoresDAO;
 
 import java.sql.*;
 
+/*  
+*   Author     : QualiSoftware
+*/
 public class cPDFConexion {
     
     public static Connection Conexion(){

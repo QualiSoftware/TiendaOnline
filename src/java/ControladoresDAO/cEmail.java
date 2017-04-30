@@ -1,5 +1,8 @@
 package ControladoresDAO;
 
+import Modelos.Usuarios;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Properties;
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
@@ -8,6 +11,9 @@ import javax.mail.*;
 import javax.mail.internet.*;
 import org.apache.struts2.ServletActionContext;
 
+/*  
+*   Author     : QualiSoftware
+*/
 public class cEmail{
     
     static String ruta;
@@ -28,6 +34,41 @@ public class cEmail{
         if(enviadoCompra){
             //Esto sirve para enviarle la factura también al vendedor cada vez que se realice una venta
             //boolean descarto = funcionEnviar("acá poner email del vendedor",file,"Se realizó una compra","Factura de la compra");
+        }
+        return enviadoCompra;
+    }
+    
+    public static boolean enviarApadrina(String nombre, String email, Usuarios u){
+        boolean enviadoCompra = Boolean.FALSE;
+        String asunto = "Invitación enviada por "+u.getUsuNombre();
+        String mensaje = ControladoresDAO.cEmailDisenio.DisenioApadrina(nombre, email, u);
+        enviadoCompra = funcionEnviar(email, "", asunto, mensaje);
+        if(enviadoCompra){
+            Usuarios invitado = new Usuarios();
+            Date ahora = new Date();
+            invitado.setUsuNombre("");
+            invitado.setUsuApellidos("");
+            invitado.setUsuEmail(email);
+            invitado.setUsuPassword("qualisoftware");
+            invitado.setUsuDni("");
+            invitado.setUsuDireccion("");
+            invitado.setUsuCp("");
+            invitado.setUsuFechaNac(ahora);
+            invitado.setUsuSexo(Boolean.FALSE);
+            invitado.setUsuTelefono("");
+            invitado.setUsuLocalidad("");
+            invitado.setUsuDescuento(10.0);
+            invitado.setUsuFechaLimiteDesc(ahora);
+            invitado.setUsuAdministrador(2);
+            invitado.setProvincias(ControladoresDAO.cProvincias.RecuperaPorId(1));
+            Calendar cal = Calendar.getInstance();
+            cal.set(Calendar.YEAR, 1908);
+            cal.set(Calendar.MONTH, Calendar.APRIL);
+            cal.set(Calendar.DAY_OF_MONTH, 1);
+            Date alta = cal.getTime();
+            invitado.setUsuAlta(alta);
+            invitado.setUsuActivo(Boolean.FALSE);
+            ControladoresDAO.cUsuarios.Inserta(invitado);            
         }
         return enviadoCompra;
     }

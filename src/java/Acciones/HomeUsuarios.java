@@ -19,6 +19,9 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+/*  
+*   Author     : QualiSoftware
+*/
 public class HomeUsuarios extends ActionSupport {
     
     private Map sesion;
@@ -42,7 +45,6 @@ public class HomeUsuarios extends ActionSupport {
     private int usuAdministrador;
     private String usuAlta;
     private boolean usuActivo;
-    //private Set<Cesta> cestas = new HashSet<Cesta>(0);
     //private Set<Favoritos> favoritoses = new HashSet<Favoritos>(0);    
     private String accion = "";
     private String accionocul = "";
@@ -789,7 +791,7 @@ public class HomeUsuarios extends ActionSupport {
         }
     }
 
-    public String pedidos(){
+    public String pedidos() throws Exception{
         if(sesion==null){
             sesion=ActionContext.getContext().getSession();
         }

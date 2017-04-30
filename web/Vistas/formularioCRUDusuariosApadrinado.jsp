@@ -1,6 +1,6 @@
 <%-- 
-    Document   : formularioCRUDusuarios.jsp
-    Created on : 29-nov-2016, 19:57:51
+    Document   : formularioCRUDusuariosApadrinado.jsp
+    Created on : 30-abr-2017, 13:52:10
     Author     : QualiSoftware
 --%>
 
@@ -62,7 +62,7 @@
                 }
             }
         </script>
-        <title><s:property value="cabeceraocul" /> de Usuario</title>
+        <title>Alta de Usuario Apadrinado</title>
     </head>
     <body>
         <div id="todo">
@@ -196,15 +196,6 @@
                                             </a>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td>
-                                            ¿Nuevo Cliente? 
-                                            <s:a action="UsuAlta" >
-                                                <s:param name="clave" value="1"/>
-                                                <s:param name="accion" value="'a'"/>¡Regístrate!
-                                            </s:a>
-                                        </td>
-                                    </tr>
                                 </table>
                             </div>
                         </s:form>
@@ -324,219 +315,158 @@
                 </ul>                
             </div>
             <div id="linea2" class="linea"></div>
-            <s:form id="frm" action="CrudActionUsuarios" theme="simple">
-                <input type="hidden" name="accion" id="accionocul" value=<s:property value="accion" /> />
-                <input type="hidden" name="clave" value=<s:property value="clave" /> />
-                <input type="hidden" name="usuId2" value=<s:property value="clave" /> />
-                <span id="titulo_Cuenta_Usuario">Cuenta de Usuario <span class="glyphicon glyphicon-user" aria-hidden="true"></span></span>
+        <s:form id="frm" action="CrudActionApadrinado" theme="simple">
+                <input type="hidden" name="accion" id="accionocul" value="a" />
+            <span id="titulo_Cuenta_Usuario">Alta de Usuario Apadrinado<span class="glyphicon glyphicon-user" aria-hidden="true"></span></span>
 
-                <table id="cuenta_Usuario">
-                    <tr>
-                        <td colspan="2">
-                            <span id="camposVacios">
-                                <s:property value="modificaAdmin"/>
-                            </span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="padding-top: 20px;">
-                            <s:label for="usuNombre2">Nombre (*)</s:label>  
-                            </td>
-                            <td style="padding-top: 20px;">
-                            <s:textfield name="usuNombre2" cssClass="formulario_Rellenar" id="usuNombre2" maxLength="30"></s:textfield>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                            <s:label for="usuApellidos2">Apellidos (*)</s:label>  
-                            </td>
-                            <td>
-                            <s:textfield name="usuApellidos2" cssClass="formulario_Rellenar" id="usuApellidos2" maxLength="30" ></s:textfield>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                            <s:label for="usuEmail2">Email<s:if test='%{accion == "a"}'> (*)</s:if></s:label>  
-                                </td>
-                                <td>
-                            <s:if test='%{accion == "a"}'>
-                                <s:textfield name="usuEmail2" cssClass="formulario_Rellenar" id="usuEmail2" maxLength="100" ></s:textfield>
-                            </s:if>
-                            <s:else>
-                                <s:textfield name="usuEmail2" cssClass="formulario_Rellenar" id="usuEmail2" readonly="true"></s:textfield>
-                            </s:else>
-                        </td>
-                    </tr>
-                    <s:if test='%{accion == "a"}'>
-                        <tr>
-                            <td>
-                                <s:label for="usuPassword2">Contraseña (*)</s:label>  
-                                </td>
-                                <td>
-                                <s:password name="usuPassword2" cssClass="formulario_Rellenar" id="password1" maxLength="50" ></s:password>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                <s:label for="passVerif">Repita la contraseña (*)</s:label>  
-                                </td>
-                                <td>
-                                <s:password id="password2" cssClass="formulario_Rellenar"></s:password>
-                                </td>
-                            </tr>
-                    </s:if>
-                    <tr>
-                        <td>
-                            <s:label for="usuDni2">NIF/NIE</s:label>  
-                            </td>
-                            <td>
-                            <s:textfield name="usuDni2" cssClass="formulario_Rellenar" maxLength="15"></s:textfield>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                            <s:label for="usuSexo2">Sexo</s:label>
-                            </td>
-                            <td>
-                            <% String selected = ""; %>
-                            <s:if test="%{!usuSexo2}">
-                                <% selected = " selected='selected'";%>
-                            </s:if>
-                            <select name="usuSexo2" class="formulario_Rellenar" style="width: 110px">
-                                <option value="true">Mujer</option>
-                                <option value="false"<%=selected%>>Hombre</option>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <s:label for="usuFechaNac2">Fecha de nacimiento (*)</s:label>  
-                            </td>
-                            <td>
-                            <s:textfield name="usuFechaNac2" id="usuFechaNac2" cssClass="tcal formulario_rellenar_Fecha" cssStyle="padding-right: 10px; background-color: white;" readonly="true"/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <s:label for="usuTelefono2">Teléfono (*)</s:label>  
-                            </td>
-                            <td>
-                            <s:textfield name="usuTelefono2" id="usuTelefono2" cssClass="formulario_Rellenar" maxLength="30" ></s:textfield>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                            <s:label for="usupais">País (*)</s:label>  
-                            </td>
-                            <td>                        
-                            <s:select cssClass="formulario_Rellenar" cssStyle="width: 190px;" id="pais" name="usupais" list="listaPaises" listValue="paisNombre" 
-                                      listKey="paisId" value="usupais" onchange= "handleChange(this.value)" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <s:label for="provincias2">Provincia (*)</s:label>  
-                            </td>
-                            <td>
-                            <s:select id="provincias2" cssClass="formulario_Rellenar" name="provincias2" list="{'Seleccione Provincia'}" />
-                            <script>usarAJAX(<s:property value="provincias2"></s:property>);</script>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                            <s:label for="usuLocalidad2">Localidad (*)</s:label>  
-                            </td>
-                            <td>
-                            <s:textfield name="usuLocalidad2" id="usuLocalidad2" cssClass="formulario_Rellenar" maxLength="30"></s:textfield>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                            <s:label for="usuCp2">Código Postal (*)</s:label>  
-                            </td>
-                            <td>
-                            <s:textfield name="usuCp2" id="usuCp2" cssClass="formulario_Rellenar" maxLength="10"></s:textfield>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                            <s:label for="usuDireccion2">Dirección (*)</s:label>  
-                            </td>
-                            <td>
-                            <s:textfield name="usuDireccion2" id="usuDireccion2" cssClass="formulario_Rellenar" maxLength="100"></s:textfield>
-                            </td>
-                        </tr>
-                        <tr >
-                            <td colspan="2" id="cuenta_usuario_Botonera" style="padding-bottom: 30px;">
-                                <input class="botones_cuenta_usuario" 
-                                       style="margin-bottom: 0px; 
-                                       vertical-align: 0px; 
-                                       border: 0px; 
-                                       background-color: #cc0033;
-                                       color: white;
-                                       padding-left: 10px;
-                                       padding-right: 10px;
-                                       padding-bottom: 3px;
-                                       padding-top: 3px;
-                                       cursor: pointer;
-                                       border-radius: 5px;
-                                       height: 26px;
-                                       text-align: center;
-                                       font-size: 15px;
-                                       box-shadow: 3px 3px 3px grey;
-                                       text-decoration: none; " 
-                                       type="button" onclick="verificarUsuario('m');" value=<s:property value="botonocul" /> />
-                            &nbsp;&nbsp;&nbsp;&nbsp;
-                            <input class="botones_cuenta_usuario" 
-                                   style="margin-bottom: 0px; 
-                                   vertical-align: 0px; 
-                                   border: 0px; 
-                                   background-color: #cc0033;
-                                   color: white;
-                                   padding-left: 10px;
-                                   padding-right: 10px;
-                                   padding-bottom: 3px;
-                                   padding-top: 3px;
-                                   cursor: pointer;
-                                   border-radius: 5px;
-                                   height: 26px;
-                                   text-align: center;
-                                   font-size: 15px;
-                                   box-shadow: 3px 3px 3px grey;
-                                   text-decoration: none; " 
-                                   type="button" onclick="verificarUsuario('v');" value="Volver" />
-                            <s:if test='%{accion == "m"}'>
-                                &nbsp;&nbsp;&nbsp;&nbsp;
-                                <input class="botones_cuenta_usuario" 
-                                       style="margin-bottom: 0px; 
-                                       vertical-align: 0px; 
-                                       border: 0px; 
-                                       background-color: #cc0033;
-                                       color: white;
-                                       padding-left: 10px;
-                                       padding-right: 10px;
-                                       padding-bottom: 3px;
-                                       padding-top: 3px;
-                                       cursor: pointer;
-                                       border-radius: 5px;
-                                       height: 26px;
-                                       text-align: center;
-                                       font-size: 15px;
-                                       box-shadow: 3px 3px 3px grey;
-                                       text-decoration: none; " 
-                                       type="button" onclick="verificarUsuario('c');" value="Modificar contraseña" />
-                            </s:if>
-                        </td>
-                    </tr>
-                </table>
-                <div id="cuenta_usuario_Pie">
-                    <s:if test='%{accion == "m"}'>
-                        Si desea dar de baja su usuario puede presionar en el botón&nbsp;
-                        <input type="button" class="btn_Eliminar_cuenta_usuario" onclick="verificarUsuario('e');" value="Eliminar" />&nbsp; y sus datos de usuario serán
-                        eliminados de nuestra base de datos.
-                    </s:if>
-                </s:form>
-            </div>    
+            <table id="cuenta_Usuario">
+                <tr>
+                    <td colspan="2">
+                        <span id="camposVacios"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="padding-top: 20px;">
+                        <s:label for="usuNombre">Nombre (*)</s:label>  
+                    </td>
+                    <td style="padding-top: 20px;">
+                    <s:textfield name="usuNombre" cssClass="formulario_Rellenar" id="usuNombre2" maxLength="30"></s:textfield>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <s:label for="usuApellidos">Apellidos (*)</s:label>  
+                    </td>
+                    <td>
+                        <s:textfield name="usuApellidos" cssClass="formulario_Rellenar" id="usuApellidos2" maxLength="30" ></s:textfield>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <s:label for="usuEmail">Email</s:label>  
+                    </td>
+                    <td>
+                        <s:textfield name="usuEmail" cssClass="formulario_Rellenar" id="usuEmail2" readonly="true"></s:textfield>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <s:label for="usuPassword">Contraseña (*)</s:label>  
+                    </td>
+                    <td>
+                        <s:password name="usuPassword" cssClass="formulario_Rellenar" id="password1" maxLength="50" ></s:password>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                    <s:label for="passVerif">Repita la contraseña (*)</s:label>  
+                    </td>
+                    <td>
+                    <s:password id="password2" cssClass="formulario_Rellenar"></s:password>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <s:label for="usuDni">NIF/NIE</s:label>  
+                    </td>
+                    <td>
+                        <s:textfield name="usuDni" cssClass="formulario_Rellenar" maxLength="15"></s:textfield>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <s:label for="usuSexo">Sexo</s:label>
+                    </td>
+                    <td>
+                        <select name="usuSexo" class="formulario_Rellenar" style="width: 110px">
+                            <option value="true">Mujer</option>
+                            <option value="false">Hombre</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <s:label for="usuFechaNac">Fecha de nacimiento (*)</s:label>  
+                    </td>
+                    <td>
+                        <s:textfield name="usuFechaNac" id="usuFechaNac2" cssClass="tcal formulario_rellenar_Fecha" cssStyle="padding-right: 10px; background-color: white;" readonly="true"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <s:label for="usuTelefono">Teléfono (*)</s:label>  
+                    </td>
+                    <td>
+                        <s:textfield name="usuTelefono" id="usuTelefono2" cssClass="formulario_Rellenar" maxLength="30" ></s:textfield>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                    <s:label for="usupais">País (*)</s:label>  
+                    </td>
+                    <td>                        
+                        <s:select cssClass="formulario_Rellenar" cssStyle="width: 190px;" id="pais" name="usupais" list="listaPaises" listValue="paisNombre" 
+                                  listKey="paisId" value="usupais" onchange= "handleChange(this.value)" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <s:label for="provincias2">Provincia (*)</s:label>  
+                    </td>
+                    <td>
+                        <s:select id="provincias2" cssClass="formulario_Rellenar" name="provincias2" list="{'Seleccione Provincia'}" />
+                        <script>usarAJAX(<s:property value="provincias2"></s:property>);</script>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <s:label for="usuLocalidad">Localidad (*)</s:label>  
+                    </td>
+                    <td>
+                    <s:textfield name="usuLocalidad" id="usuLocalidad2" cssClass="formulario_Rellenar" maxLength="30"></s:textfield>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <s:label for="usuCp">Código Postal (*)</s:label>  
+                    </td>
+                    <td>
+                        <s:textfield name="usuCp" id="usuCp2" cssClass="formulario_Rellenar" maxLength="10"></s:textfield>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <s:label for="usuDireccion">Dirección (*)</s:label>  
+                    </td>
+                    <td>
+                        <s:textfield name="usuDireccion" id="usuDireccion2" cssClass="formulario_Rellenar" maxLength="100"></s:textfield>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td id="cuenta_usuario_Botonera" style="padding-bottom: 30px;">
+                        <input class="botones_cuenta_usuario" 
+                               style="margin-bottom: 0px; 
+                               vertical-align: 0px; 
+                               border: 0px; 
+                               background-color: #cc0033;
+                               color: white;
+                               padding-left: 10px;
+                               padding-right: 10px;
+                               padding-bottom: 3px;
+                               padding-top: 3px;
+                               cursor: pointer;
+                               border-radius: 5px;
+                               height: 26px;
+                               text-align: center;
+                               font-size: 15px;
+                               box-shadow: 3px 3px 3px grey;
+                               text-decoration: none; " 
+                               type="button" onclick="verificarUsuario('a');" value="Alta" />
+                    </td>
+                </tr>
+            </table>
+        </s:form>   
 
         </div>
         <s:include value="tiendaFooter.jsp" />
@@ -547,7 +477,6 @@
                     <a onclick="aceptar_cookies();" style="cursor:pointer;">X Cerrar</a></p>
             </div>
         </div>
-        <s:include value="formularioConfirmacionEliminacion.jsp" />
         <img id="espera" src="../Imagenes/Administracion/espera.gif" />
     </body>
 </html>

@@ -11,6 +11,9 @@ import java.util.List;
 import java.util.Map;
 import org.apache.struts2.interceptor.validation.SkipValidation;
 
+/*  
+*   Author     : QualiSoftware
+*/
 public class HomeTallas extends ActionSupport {
     
     //variables fijas para todos los controladores

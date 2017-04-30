@@ -25,6 +25,9 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 import org.apache.struts2.interceptor.validation.SkipValidation;
 
+/*  
+*   Author     : QualiSoftware
+*/
 public class HomeRopaStock {
     
     private String accion;

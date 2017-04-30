@@ -1,63 +1,29 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Acciones;
 
-//import ControladoresDAO.cCategorias;
 import ControladoresDAO.cCesta;
-//import ControladoresDAO.cClientela;
-//import ControladoresDAO.cColor;
-//import ControladoresDAO.cMarcas;
-//import ControladoresDAO.cRopa;
-//import ControladoresDAO.cSubcategorias;
-//import ControladoresDAO.cTallas;
 import ControladoresDAO.cUsuarios;
 import Modelos.Campania;
-//import Modelos.Categoria;
 import Modelos.Cesta;
-//import Modelos.Clientela;
-//import Modelos.Color;
 import Modelos.FacturaDetalle;
 import Modelos.Facturas;
 import Modelos.Fotos;
 import Modelos.Marcas;
 import Modelos.Ropa;
 import Modelos.RopaStock;
-//import Modelos.Subcategoria;
-//import Modelos.Tallas;
 import Modelos.Usuarios;
 import static com.opensymphony.xwork2.Action.SUCCESS;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
-//import java.text.DateFormat;
-//import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-//import java.util.Properties;
-//import javax.activation.DataHandler;
-//import javax.activation.DataSource;
-//import javax.activation.FileDataSource;
-//import javax.mail.Multipart;
-//import javax.mail.Transport;
-//import javax.mail.internet.InternetAddress;
-//import javax.mail.internet.MimeBodyPart;
-//import javax.mail.internet.MimeMessage;
-//import javax.mail.internet.MimeMultipart;
-//import org.hibernate.Hibernate;
-//import org.hibernate.Session;
 
-
-
-/**
- *
- * @author javiermartinroncero
- */
+/*  
+*   Author     : QualiSoftware
+*/
 public class HomeCesta extends ActionSupport {
 
     private Integer roId2;
@@ -90,8 +56,7 @@ public class HomeCesta extends ActionSupport {
     private String marca;
     private String campania;
     private int ropa,color,talla;
-    private RopaStock ropaStock;
-    
+    private RopaStock ropaStock;    
 
     public boolean isAceptarpago() {
         return aceptarpago;
@@ -101,8 +66,6 @@ public class HomeCesta extends ActionSupport {
         this.aceptarpago = aceptarpago;
     }
    
-
-    
     public Cesta getCe() {
         return ce;
     }
@@ -118,8 +81,6 @@ public class HomeCesta extends ActionSupport {
     public void setUs(Usuarios us) {
         this.us = us;
     }
-
-
 
     public Double getPrecioEliminar() {
         return precioEliminar;
@@ -376,33 +337,20 @@ public class HomeCesta extends ActionSupport {
         c = new Cesta();
         c.setCestaId(clave);
         c.setCestaUnidades(cantidad);
-        //c.setRopa(ControladoresDAO.cRopa.RecuperaPorId(roId2));
         c.setRopaStock(ControladoresDAO.cRopaStock.RecuperaPorId(rostockId));
         c.setUsuarios(ControladoresDAO.cUsuarios.RecuperaPorId(u.getUsuId()));
         ce = ControladoresDAO.cCesta.RecuperaPorId(clave);
-//        System.out.println(accionocul);
         if (accionocul.equals("e")) {
-//            System.out.println("unidades tiene " + ce.getCestaUnidades());
-//            System.out.println("unidades tiene que tener " + cantidad);
             if (cantidad == ce.getCestaUnidades()) {
                 respuesta = ControladoresDAO.cCesta.Elimina(c);
             } else {
                 c.setCestaUnidades(ce.getCestaUnidades() - cantidad);
                 respuesta = ControladoresDAO.cCesta.Modifica(c);
             }
-//                if(cantidad > 0){
-//                    respuesta = ControladoresDAO.cCesta.Modifica(c);
-//                }else{
-//                    respuesta = ControladoresDAO.cCesta.Elimina(c);
-//                }
-
         } else {
             respuesta = ControladoresDAO.cCesta.InsertaRopaCestaUsuario(c);
-        }
-        
-        
+        }   
         lista_ropa_Cestas = ControladoresDAO.cCesta.RecuperaTodos(""+u.getUsuId());
-
         for (Cesta aux : lista_ropa_Cestas) {
             precio += aux.getCestaUnidades() * (aux.getRopaStock().getRopa().getRoPrecio() - (aux.getRopaStock().getRopa().getRoPrecio() * aux.getRopaStock().getRopa().getRoDescuento() / 100));
         }
@@ -522,12 +470,10 @@ public class HomeCesta extends ActionSupport {
             }
             //System.out.println("aux.getRopaStock().getRopa().getRoPrecio(): "+aux.getRopaStock().getRopa().getRoPrecio()+" - aux.getCestaUnidades(): "+aux.getCestaUnidades()+" - aux.getRopaStock().getRopa().getRoDescuento(): "+aux.getRopaStock().getRopa().getRoDescuento());
         }
-
         return SUCCESS;
     }
     
     public String CargaEliminaCesta() throws Exception {
-
         t = ControladoresDAO.cCesta.RecuperaPorId(clave);
         clientelaNombre = t.getRopaStock().getRopa().getClientela().getClientelaDescripcion();
         clave = t.getCestaId();
@@ -537,7 +483,6 @@ public class HomeCesta extends ActionSupport {
         accionocul = "e";
         cabeceraocul = "Eliminar";
         botonocul = "Eliminar";
-
         return SUCCESS;
     }
 

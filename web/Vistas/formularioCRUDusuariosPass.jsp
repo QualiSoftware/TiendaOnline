@@ -289,7 +289,7 @@
                             <s:label for="antigua">Antigua contraseña</s:label>  
                         </td>
                         <td style="padding-top: 25px;">                        
-                        <s:password name="antigua" cssClass="formulario_Rellenar" ></s:password>
+                        <s:password name="antigua" cssClass="formulario_Rellenar" maxLength="50" ></s:password>
                         </td>
                     </tr>
                     <tr>
@@ -297,7 +297,7 @@
                             <s:label for="nueva1">Nueva contraseña</s:label>  
                         </td>
                         <td>                        
-                            <s:password name="usuPassword2" cssClass="formulario_Rellenar" id="nueva1"></s:password>
+                            <s:password name="usuPassword2" cssClass="formulario_Rellenar" id="nueva1" maxLength="50"></s:password>
                         </td>
                     </tr>
                     <tr>

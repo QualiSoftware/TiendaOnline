@@ -13,6 +13,9 @@ import javax.activation.FileDataSource;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
+/*  
+*   Author     : QualiSoftware
+*/
 public class cCesta {    
     
     public static ArrayList<Cesta> RecuperaTodos(String filtro){

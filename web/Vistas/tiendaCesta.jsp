@@ -50,6 +50,12 @@
         <script src="../Scripts/Tienda_Scripts.js" type="text/javascript"></script>
         <script>
             window.onload = cesta_Aniadir;
+
+            function enviarPedido(){
+                document.getElementById('botonEnvio').style.display = 'none';
+                document.getElementById('espera').style.display = "block";
+                document.getElementById('frm').submit();
+            }
         </script>
         <title>Cesta de <s:property value="sesion.usuarioLogueado.usuNombre"/></title>
     </head>
@@ -442,13 +448,6 @@
             </div>
             <s:include value="tiendaFooter.jsp" />
         </div>
-        <script>
-            function enviarPedido(){
-                document.getElementById('botonEnvio').style.display = 'none';
-                document.getElementById('espera').style.display = "block";
-                document.getElementById('frm').submit();
-            }
-        </script>
         <img id="espera" src="../Imagenes/Administracion/espera.gif" />
     </body>
 </html>

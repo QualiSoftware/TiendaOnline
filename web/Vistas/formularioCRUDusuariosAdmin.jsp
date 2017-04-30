@@ -137,7 +137,7 @@
                     <s:label for="usuNombre2">Nombre (*)</s:label>  
                     </td>
                     <td style="padding-top: 20px;">
-                    <s:textfield name="usuNombre2" cssClass="formulario_Rellenar" id="usuNombre2"></s:textfield>
+                    <s:textfield name="usuNombre2" cssClass="formulario_Rellenar" id="usuNombre2" maxLength="30"></s:textfield>
                     </td>
                 </tr>
                 <tr>
@@ -145,7 +145,7 @@
                     <s:label for="usuApellidos2">Apellidos (*)</s:label>  
                     </td>
                     <td>
-                    <s:textfield name="usuApellidos2" cssClass="formulario_Rellenar" id="usuApellidos2" ></s:textfield>
+                    <s:textfield name="usuApellidos2" cssClass="formulario_Rellenar" id="usuApellidos2" maxLength="30" ></s:textfield>
                     </td>
                 </tr>
                 <tr>
@@ -153,7 +153,7 @@
                         <s:label for="usuPassword2">Contraseña (*)</s:label>  
                     </td>
                     <td>
-                        <s:password name="usuPassword2" cssClass="formulario_Rellenar" id="password1" ></s:password>
+                        <s:password name="usuPassword2" cssClass="formulario_Rellenar" id="password1" maxLength="50" ></s:password>
                     </td>
                 </tr>
                 <tr>
@@ -174,7 +174,7 @@
                         <s:textfield name="usuEmail2" readonly="true" ></s:textfield>
                 </s:if>
                 <s:else>
-                    <s:textfield name="usuEmail2" id="usuEmail2"></s:textfield>
+                    <s:textfield name="usuEmail2" id="usuEmail2" maxLength="100"></s:textfield>
                 </s:else>
                 </td>
             </tr>
@@ -187,7 +187,7 @@
                         <s:textfield name="usuTelefono2" readonly="true" ></s:textfield>
                     </s:if>
                     <s:else>
-                        <s:textfield name="usuTelefono2" id="usuTelefono2"></s:textfield>
+                        <s:textfield name="usuTelefono2" id="usuTelefono2" maxLength="30"></s:textfield>
                     </s:else>
                 </td>
             </tr>
@@ -203,14 +203,14 @@
             </s:if>
             <tr>
                 <td>
-                    <s:label for="usuDni2">DNI</s:label>  
+                    <s:label for="usuDni2">NIF/NIE</s:label>  
                 </td>
                 <td>
                     <s:if test="clave != -1">
                         <s:textfield name="usuDni2" readonly="true" ></s:textfield>
                     </s:if>
                     <s:else>
-                        <s:textfield name="usuDni2"></s:textfield>
+                        <s:textfield name="usuDni2" maxLength="30"></s:textfield>
                     </s:else>
                 </td>
             </tr>
@@ -233,7 +233,7 @@
                         <s:label for="usuDescuento2">Descuento asignado</s:label>
                     </td>
                     <td>
-                        <s:textfield name="usuDescuento2" id="descuento"></s:textfield>
+                        <s:textfield name="usuDescuento2" id="descuento" maxLength="4"></s:textfield>
                         <span id="errorDescuento"></span>
                     </td>
                 </tr>
@@ -304,14 +304,14 @@
             </tr>
             <tr>
                 <td>
-                    <s:label for="usuLocalidad2">Ciudad (*)</s:label>  
+                    <s:label for="usuLocalidad2">Localidad (*)</s:label>  
                 </td>
                 <td>
                     <s:if test="clave != -1">
                         <s:textfield name="usuLocalidad2" readonly="true" ></s:textfield>
                     </s:if>
                     <s:else>
-                        <s:textfield name="usuLocalidad2" id="usuLocalidad2"></s:textfield>
+                        <s:textfield name="usuLocalidad2" id="usuLocalidad2" maxLength="30"></s:textfield>
                     </s:else>
                 </td>
             </tr>
@@ -324,7 +324,7 @@
                         <s:textfield name="usuCp2" readonly="true" ></s:textfield>
                     </s:if>
                     <s:else>
-                        <s:textfield name="usuCp2" id="usuCp2"></s:textfield>
+                        <s:textfield name="usuCp2" id="usuCp2" maxLength="10"></s:textfield>
                     </s:else>
                 </td>
             </tr>
@@ -337,7 +337,7 @@
                         <s:textfield name="usuDireccion2" readonly="true" ></s:textfield>
                     </s:if>
                     <s:else>
-                        <s:textfield name="usuDireccion2" id="usuDireccion2"></s:textfield>
+                        <s:textfield name="usuDireccion2" id="usuDireccion2" maxLength="100"></s:textfield>
                     </s:else>
                 </td>
             </tr>

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Acciones;
 
 import Modelos.Campania;
@@ -23,30 +18,21 @@ import static com.opensymphony.xwork2.Action.SUCCESS;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.validator.annotations.RequiredStringValidator;
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
 import java.text.DecimalFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.disk.DiskFileItemFactory;
-import org.apache.commons.fileupload.servlet.ServletFileUpload;
-import org.apache.commons.io.FileUtils;
-import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.validation.SkipValidation;
 
-/**
- *
- * @author LaPlaga
- */
+/*  
+*   Author     : QualiSoftware
+*/
 public class HomeRopa extends ActionSupport {
 
     //variables fijas para todos los controladores
@@ -54,10 +40,10 @@ public class HomeRopa extends ActionSupport {
     private int clave;
     private String usuario;
     private String password;
-    private String mensajeError;
+    //private String mensajeError;
     private String accion;
     private String titulo;
-    private String boton;
+    //private String boton;
     private Map sesion;
     private String cabeceraocul;
     private String botonocul;
@@ -67,6 +53,10 @@ public class HomeRopa extends ActionSupport {
     private String fechaI;
     private String fechaF;
     private Usuarios u;
+    private boolean superaPeriodo;
+    private Map<String, String> stateMap = new LinkedHashMap<String, String>();
+    //private String dummyMsg;
+    private String countryName;
     
 
     //variables específicas a cada controlador
@@ -92,16 +82,16 @@ public class HomeRopa extends ActionSupport {
     private int camDescuento;
     private String cliCodigo;
     private String catCodigo;
-    private String categoria2;
+    //private String categoria2;
     private String categoriaNombre;
     private String clientelaNombre;
     private String coleccion2;
-    private String color2;
+    //private String color2;
     private String look2;
     private String marca;
     private String marcaNom;
-    private String marcas2;
-    private String tallas2;
+    //private String marcas2;
+    //private String tallas2;
     private String roDescripcion2;
     private double roPrecio2;
     private int roDescuento2;
@@ -129,12 +119,150 @@ public class HomeRopa extends ActionSupport {
     private String precio;
     private String precioConDescuento;
 
-    public List<Marcas> getLista_marcas() {
-        return lista_marcas;
+    public String getUsuario() {
+        return usuario;
     }
 
-    public void setLista_marcas(List<Marcas> lista_marcas) {
-        this.lista_marcas = lista_marcas;
+    @RequiredStringValidator(message = "Usuario incompleto o erróneo")
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    @RequiredStringValidator(message = "Password incompleto o erróneo")
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getFiltro() {
+        return filtro;
+    }
+
+    public void setFiltro(String filtro) {
+        this.filtro = filtro;
+    }
+
+    public int getClave() {
+        return clave;
+    }
+
+    public void setClave(int clave) {
+        this.clave = clave;
+    }
+
+    public String getAccion() {
+        return accion;
+    }
+
+    public void setAccion(String accion) {
+        this.accion = accion;
+    }
+
+    public Map getSesion() {
+        return sesion;
+    }
+
+    public void setSesion(Map sesion) {
+        this.sesion = sesion;
+    }
+
+    public Ropa getT() {
+        return t;
+    }
+
+    public void setT(Ropa t) {
+        this.t = t;
+    }
+
+    public RopaStock getRstock() {
+        return rstock;
+    }
+
+    public void setRstock(RopaStock rstock) {
+        this.rstock = rstock;
+    }
+
+    public String getOrden() {
+        return orden;
+    }
+
+    public void setOrden(String orden) {
+        this.orden = orden;
+    }
+
+    public String getFechaI() {
+        return fechaI;
+    }
+
+    public void setFechaI(String fechaI) {
+        this.fechaI = fechaI;
+    }
+
+    public String getFechaF() {
+        return fechaF;
+    }
+
+    public void setFechaF(String fechaF) {
+        this.fechaF = fechaF;
+    }
+
+    public Usuarios getU() {
+        return u;
+    }
+
+    public void setU(Usuarios u) {
+        this.u = u;
+    }
+
+    public Map<String, String> getStateMap() {
+        return stateMap;
+    }
+
+    public void setStateMap(Map<String, String> stateMap) {
+        this.stateMap = stateMap;
+    }
+
+    public String getCountryName() {
+        return countryName;
+    }
+
+    public void setCountryName(String countryName) {
+        this.countryName = countryName;
+    }
+
+    public ArrayList<Ropa> getLista_ropa() {
+        return lista_ropa;
+    }
+
+    public void setLista_ropa(ArrayList<Ropa> lista_ropa) {
+        this.lista_ropa = lista_ropa;
+    }
+
+    public ArrayList<Ropa> getLista_menu_ropa() {
+        return lista_menu_ropa;
+    }
+
+    public void setLista_menu_ropa(ArrayList<Ropa> lista_menu_ropa) {
+        this.lista_menu_ropa = lista_menu_ropa;
+    }
+
+    public List<Tallas> getLista_tallas() {
+        return lista_tallas;
+    }
+
+    public void setLista_tallas(List<Tallas> lista_tallas) {
+        this.lista_tallas = lista_tallas;
+    }
+
+    public List<Color> getLista_colores() {
+        return lista_colores;
+    }
+
+    public void setLista_colores(List<Color> lista_colores) {
+        this.lista_colores = lista_colores;
     }
 
     public List<RopaStock> getLista_ropaStock() {
@@ -144,13 +272,149 @@ public class HomeRopa extends ActionSupport {
     public void setLista_ropaStock(List<RopaStock> lista_ropaStock) {
         this.lista_ropaStock = lista_ropaStock;
     }
-    
-    public Integer getCantidad() {
-        return cantidad;
+
+    public int getRoId() {
+        return roId;
     }
 
-    public void setCantidad(Integer cantidad) {
-        this.cantidad = cantidad;
+    public void setRoId(int roId) {
+        this.roId = roId;
+    }
+
+    public Integer getRoId2() {
+        return roId2;
+    }
+
+    public void setRoId2(Integer roId2) {
+        this.roId2 = roId2;
+    }
+
+    public int getRostockId() {
+        return rostockId;
+    }
+
+    public void setRostockId(int rostockId) {
+        this.rostockId = rostockId;
+    }
+
+    public String getCampania() {
+        return campania;
+    }
+
+    public void setCampania(String campania) {
+        this.campania = campania;
+    }
+
+    public String getCliCodigo() {
+        return cliCodigo;
+    }
+
+    public void setCliCodigo(String cliCodigo) {
+        this.cliCodigo = cliCodigo;
+    }
+
+    public String getCatCodigo() {
+        return catCodigo;
+    }
+
+    public void setCatCodigo(String catCodigo) {
+        this.catCodigo = catCodigo;
+    }
+
+    public String getColeccion2() {
+        return coleccion2;
+    }
+
+    public void setColeccion2(String coleccion2) {
+        this.coleccion2 = coleccion2;
+    }
+
+    public String getLook2() {
+        return look2;
+    }
+
+    public void setLook2(String look2) {
+        this.look2 = look2;
+    }
+
+    public String getMarca() {
+        return marca;
+    }
+
+    public void setMarca(String marca) {
+        this.marca = marca;
+    }
+
+    public String getRoDescripcion2() {
+        return roDescripcion2;
+    }
+
+    public void setRoDescripcion2(String roDescripcion2) {
+        this.roDescripcion2 = roDescripcion2;
+    }
+
+    public double getRoPrecio2() {
+        return roPrecio2;
+    }
+
+    public void setRoPrecio2(double roPrecio2) {
+        this.roPrecio2 = roPrecio2;
+    }
+
+    public int getRoDescuento2() {
+        return roDescuento2;
+    }
+
+    public void setRoDescuento2(int roDescuento2) {
+        this.roDescuento2 = roDescuento2;
+    }
+
+    public String getRoCaracteristicas2() {
+        return roCaracteristicas2;
+    }
+
+    public void setRoCaracteristicas2(String roCaracteristicas2) {
+        this.roCaracteristicas2 = roCaracteristicas2;
+    }
+
+    public byte getRoVisible2() {
+        return roVisible2;
+    }
+
+    public void setRoVisible2(byte roVisible2) {
+        this.roVisible2 = roVisible2;
+    }
+
+    public String getAccionocul() {
+        return accionocul;
+    }
+
+    public void setAccionocul(String accionocul) {
+        this.accionocul = accionocul;
+    }
+
+    public String getSubcategoria2() {
+        return subcategoria2;
+    }
+
+    public void setSubcategoria2(String subcategoria2) {
+        this.subcategoria2 = subcategoria2;
+    }
+
+    public ArrayList<Cesta> getLista_ropa_Cestas() {
+        return lista_ropa_Cestas;
+    }
+
+    public void setLista_ropa_Cestas(ArrayList<Cesta> lista_ropa_Cestas) {
+        this.lista_ropa_Cestas = lista_ropa_Cestas;
+    }
+
+    public String getUsi() {
+        return usi;
+    }
+
+    public void setUsi(String usi) {
+        this.usi = usi;
     }
 
     public String getEliminadas() {
@@ -201,233 +465,12 @@ public class HomeRopa extends ActionSupport {
         this.hayFotos = hayFotos;
     }
 
-    public int getMaximo() {
-        return maximo;
+    public String getTitulo() {
+        return titulo;
     }
 
-    public void setMaximo(int maximo) {
-        this.maximo = maximo;
-    }
-
-    public String getPrecio() {
-        return precio;
-    }
-
-    public void setPrecio(String precio) {
-        this.precio = precio;
-    }
-
-    public String getPrecioConDescuento() {
-        return precioConDescuento;
-    }
-
-    public void setPrecioConDescuento(String precioConDescuento) {
-        this.precioConDescuento = precioConDescuento;
-    }
-
-    public Usuarios getU() {
-        return u;
-    }
-
-    public void setU(Usuarios u) {
-        this.u = u;
-    }
-
-    public String getUsi() {
-        return usi;
-    }
-
-    public void setUsi(String usi) {
-        this.usi = usi;
-    }
-
-    public int getTotalcestaUsuario() {
-        return totalcestaUsuario;
-    }
-
-    public void setTotalcestaUsuario(int totalcestaUsuario) {
-        this.totalcestaUsuario = totalcestaUsuario;
-    }
-
-    public ArrayList<Cesta> getLista_ropa_Cestas() {
-        return lista_ropa_Cestas;
-    }
-
-    public void setLista_ropa_Cestas(ArrayList<Cesta> lista_ropa_Cestas) {
-        this.lista_ropa_Cestas = lista_ropa_Cestas;
-    }
-      
-    private Map<String, String> stateMap = new LinkedHashMap<String, String>();
-    private String dummyMsg;
-    //Parameter from Jquery
-    private String countryName;
-
-    public Map<String, String> getStateMap() {
-        return stateMap;
-    }
-
-    public void setStateMap(Map<String, String> stateMap) {
-        this.stateMap = stateMap;
-    }
-
-    public String getDummyMsg() {
-        return dummyMsg;
-    }
-
-    public void setDummyMsg(String dummyMsg) {
-        this.dummyMsg = dummyMsg;
-    }
-
-    public String getCountryName() {
-        return countryName;
-    }
-
-    public void setCountryName(String countryName) {
-        this.countryName = countryName;
-    }
-
-    public String getFotoAlta1() {
-        return fotoAlta1;
-    }
-
-    public void setFotoAlta1(String fotoAlta1) {
-        this.fotoAlta1 = fotoAlta1;
-    }
-
-    public String getFotoAlta2() {
-        return fotoAlta2;
-    }
-
-    public void setFotoAlta2(String fotoAlta2) {
-        this.fotoAlta2 = fotoAlta2;
-    }
-
-    public String getFotoAlta3() {
-        return fotoAlta3;
-    }
-
-    public void setFotoAlta3(String fotoAlta3) {
-        this.fotoAlta3 = fotoAlta3;
-    }
-
-    public String getCategoria2() {
-        return categoria2;
-    }
-
-    public void setCategoria2(String categoria2) {
-        this.categoria2 = categoria2;
-    }
-
-    public String getSubcategoria2() {
-        return subcategoria2;
-    }
-
-    public void setSubcategoria2(String subcategoria2) {
-        this.subcategoria2 = subcategoria2;
-    }
-
-    public String getColeccion2() {
-        return coleccion2;
-    }
-
-    public void setColeccion2(String coleccion2) {
-        this.coleccion2 = coleccion2;
-    }
-
-    public String getLook2() {
-        return look2;
-    }
-
-    public void setLook2(String look2) {
-        this.look2 = look2;
-    }
-
-    public String getMarca() {
-        return marca;
-    }
-
-    public void setMarca(String marca) {
-        this.marca = marca;
-    }
-
-    public String getMarcaNom() {
-        return marcaNom;
-    }
-
-    public void setMarcaNom(String marcaNom) {
-        this.marcaNom = marcaNom;
-    }
-
-    public String getMarcas2() {
-        return marcas2;
-    }
-
-    public void setMarcas2(String marcas2) {
-        this.marcas2 = marcas2;
-    }
-
-    public String getTallas2() {
-        return tallas2;
-    }
-
-    public void setTallas2(String tallas2) {
-        this.tallas2 = tallas2;
-    }
-
-    public Ropa getT() {
-        return t;
-    }
-
-    public void setT(Ropa t) {
-        this.t = t;
-    }
-
-    public RopaStock getRstock() {
-        return rstock;
-    }
-
-    public void setRstock(RopaStock rstock) {
-        this.rstock = rstock;
-    }
-
-    public List<Subcategoria> getLista_subcategoria() {
-        return lista_subcategoria;
-    }
-
-    public void setLista_subcategoria(List<Subcategoria> lista_subcategoria) {
-        this.lista_subcategoria = lista_subcategoria;
-    }
-
-    public List<Campania> getLista_campanias() {
-        return lista_campanias;
-    }
-
-    public void setLista_campanias(List<Campania> lista_campanias) {
-        this.lista_campanias = lista_campanias;
-    }
-
-    public List<Campania> getLista_campaniasTienda() {
-        return lista_campaniasTienda;
-    }
-
-    public void setLista_campaniasTienda(List<Campania> lista_campaniasTienda) {
-        this.lista_campaniasTienda = lista_campaniasTienda;
-    }
-
-    public List<Marcas> getLista_marcasTienda() {
-        return lista_marcasTienda;
-    }
-
-    public void setLista_marcasTienda(List<Marcas> lista_marcasTienda) {
-        this.lista_marcasTienda = lista_marcasTienda;
-    }
-
-    public ArrayList<Ropa> getLista_menu_ropa() {
-        return lista_menu_ropa;
-    }
-
-    public void setLista_menu_ropa(ArrayList<Ropa> lista_menu_ropa) {
-        this.lista_menu_ropa = lista_menu_ropa;
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
     }
 
     public String getCabeceraocul() {
@@ -446,6 +489,14 @@ public class HomeRopa extends ActionSupport {
         this.botonocul = botonocul;
     }
 
+    public boolean isSuperaPeriodo() {
+        return superaPeriodo;
+    }
+
+    public void setSuperaPeriodo(boolean superaPeriodo) {
+        this.superaPeriodo = superaPeriodo;
+    }
+
     public List<Categoria> getLista_categoria() {
         return lista_categoria;
     }
@@ -453,7 +504,7 @@ public class HomeRopa extends ActionSupport {
     public void setLista_categoria(List<Categoria> lista_categoria) {
         this.lista_categoria = lista_categoria;
     }
-    
+
     public List<Clientela> getLista_clientela() {
         return lista_clientela;
     }
@@ -470,22 +521,6 @@ public class HomeRopa extends ActionSupport {
         this.lista_look = lista_look;
     }
 
-    public List<Tallas> getLista_tallas() {
-        return lista_tallas;
-    }
-
-    public void setLista_tallas(List<Tallas> lista_tallas) {
-        this.lista_tallas = lista_tallas;
-    }
-
-    public List<Color> getLista_colores() {
-        return lista_colores;
-    }
-
-    public void setLista_colores(List<Color> lista_colores) {
-        this.lista_colores = lista_colores;
-    }
-
     public List<Coleccion> getLista_colecciones() {
         return lista_colecciones;
     }
@@ -494,134 +529,44 @@ public class HomeRopa extends ActionSupport {
         this.lista_colecciones = lista_colecciones;
     }
 
-    public String getAccionocul() {
-        return accionocul;
+    public List<Subcategoria> getLista_subcategoria() {
+        return lista_subcategoria;
     }
 
-    public void setAccionocul(String accionocul) {
-        this.accionocul = accionocul;
+    public void setLista_subcategoria(List<Subcategoria> lista_subcategoria) {
+        this.lista_subcategoria = lista_subcategoria;
     }
 
-    public String getFiltro() {
-        return filtro;
+    public List<Campania> getLista_campanias() {
+        return lista_campanias;
     }
 
-    public void setFiltro(String filtro) {
-        this.filtro = filtro;
+    public void setLista_campanias(List<Campania> lista_campanias) {
+        this.lista_campanias = lista_campanias;
     }
 
-    public String getOrden() {
-        return orden;
+    public List<Marcas> getLista_marcas() {
+        return lista_marcas;
     }
 
-    public void setOrden(String orden) {
-        this.orden = orden;
+    public void setLista_marcas(List<Marcas> lista_marcas) {
+        this.lista_marcas = lista_marcas;
     }
 
-    public int getClave() {
-        return clave;
+    public List<Campania> getLista_campaniasTienda() {
+        return lista_campaniasTienda;
     }
 
-    public void setClave(int clave) {
-        this.clave = clave;
+    public void setLista_campaniasTienda(List<Campania> lista_campaniasTienda) {
+        this.lista_campaniasTienda = lista_campaniasTienda;
     }
 
-    public String getUsuario() {
-        return usuario;
+    public List<Marcas> getLista_marcasTienda() {
+        return lista_marcasTienda;
     }
 
-    @RequiredStringValidator(message = "Usuario incompleto o erróneo")
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    @RequiredStringValidator(message = "Password incompleto o erróneo")
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getMensajeError() {
-        return mensajeError;
-    }
-
-    public void setMensajeError(String mensajeError) {
-        this.mensajeError = mensajeError;
-    }
-
-    public String getAccion() {
-        return accion;
-    }
-
-    public void setAccion(String accion) {
-        this.accion = accion;
-    }
-
-    public String getTitulo() {
-        return titulo;
-    }
-
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
-    }
-
-    public String getBoton() {
-        return boton;
-    }
-
-    public void setBoton(String boton) {
-        this.boton = boton;
-    }
-
-    public Map getSesion() {
-        return sesion;
-    }
-
-    public void setSesion(Map sesion) {
-        this.sesion = sesion;
-    }
-
-    public ArrayList<Ropa> getLista_ropa() {
-        return lista_ropa;
-    }
-
-    public void setLista_ropa(ArrayList<Ropa> lista_ropa) {
-        this.lista_ropa = lista_ropa;
-    }
-
-    public int getRoId() {
-        return roId;
-    }
-
-    public void setRoId(int roId) {
-        this.roId = roId;
-    }
-
-    public Integer getRoId2() {
-        return roId2;
-    }
-
-    public void setRoId2(Integer roId2) {
-        this.roId2 = roId2;
-    }
-
-    public int getRostockId() {
-        return rostockId;
-    }
-
-    public void setRostockId(int rostockId) {
-        this.rostockId = rostockId;
-    }
-
-    public String getCampania() {
-        return campania;
-    }
-
-    public void setCampania(String campania) {
-        this.campania = campania;
+    public void setLista_marcasTienda(List<Marcas> lista_marcasTienda) {
+        this.lista_marcasTienda = lista_marcasTienda;
     }
 
     public String getCampaniaNombre() {
@@ -640,38 +585,6 @@ public class HomeRopa extends ActionSupport {
         this.camDescuento = camDescuento;
     }
 
-    public String getCliCodigo() {
-        return cliCodigo;
-    }
-
-    public void setCliCodigo(String cliCodigo) {
-        this.cliCodigo = cliCodigo;
-    }
-
-    public String getCatCodigo() {
-        return catCodigo;
-    }
-
-    public void setCatCodigo(String catCodigo) {
-        this.catCodigo = catCodigo;
-    }
-
-//    public String getClientela() {
-//        return clientela;
-//    }
-//
-//    public void setClientela(String clientela) {
-//        this.clientela = clientela;
-//    }
-//
-//    public String getCategoria() {
-//        return categoria;
-//    }
-//
-//    public void setCategoria(String categoria) {
-//        this.categoria = categoria;
-//    }
-
     public String getCategoriaNombre() {
         return categoriaNombre;
     }
@@ -688,52 +601,12 @@ public class HomeRopa extends ActionSupport {
         this.clientelaNombre = clientelaNombre;
     }
 
-    public String getColor2() {
-        return color2;
+    public String getMarcaNom() {
+        return marcaNom;
     }
 
-    public void setColor2(String color2) {
-        this.color2 = color2;
-    }
-
-    public String getRoDescripcion2() {
-        return roDescripcion2;
-    }
-
-    public void setRoDescripcion2(String roDescripcion2) {
-        this.roDescripcion2 = roDescripcion2;
-    }
-
-    public double getRoPrecio2() {
-        return roPrecio2;
-    }
-
-    public void setRoPrecio2(double roPrecio2) {
-        this.roPrecio2 = roPrecio2;
-    }
-
-    public int getRoDescuento2() {
-        return roDescuento2;
-    }
-
-    public void setRoDescuento2(int roDescuento2) {
-        this.roDescuento2 = roDescuento2;
-    }
-
-    public String getRoCaracteristicas2() {
-        return roCaracteristicas2;
-    }
-
-    public void setRoCaracteristicas2(String roCaracteristicas2) {
-        this.roCaracteristicas2 = roCaracteristicas2;
-    }
-
-    public byte getRoVisible2() {
-        return roVisible2;
-    }
-
-    public void setRoVisible2(byte roVisible2) {
-        this.roVisible2 = roVisible2;
+    public void setMarcaNom(String marcaNom) {
+        this.marcaNom = marcaNom;
     }
 
     public int getRoUnidades2() {
@@ -760,34 +633,88 @@ public class HomeRopa extends ActionSupport {
         this.fotoses2 = fotoses2;
     }
 
-    public String getFechaI() {
-        return fechaI;
+    public String getFotoAlta1() {
+        return fotoAlta1;
     }
 
-    public void setFechaI(String fechaI) {
-        this.fechaI = fechaI;
+    public void setFotoAlta1(String fotoAlta1) {
+        this.fotoAlta1 = fotoAlta1;
     }
 
-    public String getFechaF() {
-        return fechaF;
+    public String getFotoAlta2() {
+        return fotoAlta2;
     }
 
-    public void setFechaF(String fechaF) {
-        this.fechaF = fechaF;
+    public void setFotoAlta2(String fotoAlta2) {
+        this.fotoAlta2 = fotoAlta2;
     }
 
+    public String getFotoAlta3() {
+        return fotoAlta3;
+    }
+
+    public void setFotoAlta3(String fotoAlta3) {
+        this.fotoAlta3 = fotoAlta3;
+    }
+
+    public int getTotalcestaUsuario() {
+        return totalcestaUsuario;
+    }
+
+    public void setTotalcestaUsuario(int totalcestaUsuario) {
+        this.totalcestaUsuario = totalcestaUsuario;
+    }
+
+    public Integer getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(Integer cantidad) {
+        this.cantidad = cantidad;
+    }
+
+    public int getMaximo() {
+        return maximo;
+    }
+
+    public void setMaximo(int maximo) {
+        this.maximo = maximo;
+    }
+
+    public String getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(String precio) {
+        this.precio = precio;
+    }
+
+    public String getPrecioConDescuento() {
+        return precioConDescuento;
+    }
+
+    public void setPrecioConDescuento(String precioConDescuento) {
+        this.precioConDescuento = precioConDescuento;
+    }
+    
     @SkipValidation
     public String RopaFiltro() throws Exception {
         
         if (sesion == null) {
             sesion = ActionContext.getContext().getSession();
         }
+        superaPeriodo = false;
         usi = "";
         if(sesion.get("usuarioLogueado") != null){
             if(!sesion.get("usuarioLogueado").equals("")){
                 try{
                     u = (Usuarios) sesion.get("usuarioLogueado");
                     usi = ""+u.getUsuId();
+                    Date hoy = new Date();
+                    hoy = sumarRestarDiasFecha(hoy, -15);
+                    if(u.getUsuAlta().before(hoy)){
+                        superaPeriodo = true;
+                    }
                 }catch(Exception e){
                     System.out.println(e.getMessage());
                 }
@@ -1042,7 +969,19 @@ public class HomeRopa extends ActionSupport {
         }else if(marca == null || marca.equals("")){
             List <Integer> listaRoId = ControladoresDAO.cCampaniasRopa.RecuperaRopaPorCampania(Integer.parseInt(campania));
             for(Integer lroid:listaRoId){
-                lista_ropa.add(ControladoresDAO.cRopa.RecuperaPorId(lroid));
+                //Desde acá hasta donde termina el for que está abajo lo único que hacen es cargar datos en memoria
+                Ropa ropa = ControladoresDAO.cRopa.RecuperaPorId(lroid);
+                boolean aux = ropa.getCampaniaRopas().isEmpty();
+                aux = ropa.getFavoritoses().isEmpty();
+                aux = ropa.getFotoses().isEmpty();
+                String auxString = ropa.getCategoria().getCatDescripcion();
+                auxString = ropa.getSubcategoria().getSubDescripcion();
+                for(RopaStock ropaStock:ropa.getRopaStocks()){
+                    int unidades = ropaStock.getRostockUnidades();
+                    auxString = ropaStock.getColor().getColorDescripcion();
+                    auxString = ropaStock.getTallas().getTallaDescripcion();
+                }
+                lista_ropa.add(ropa);
             }
             Campania camp = ControladoresDAO.cCampanias.RecuperaPorId(Integer.parseInt(campania));
             campaniaNombre = camp.getCamNombre();
@@ -1183,5 +1122,11 @@ public class HomeRopa extends ActionSupport {
             //System.out.println(caux.getRopaStock().getRopa().getRoDescripcion()+" - "+caux.getCestaUnidades()+" - "+caux.getRopaStock().getRopa().getRoPrecio());
         }
         return SUCCESS;
+    }
+    
+    public static Date sumarRestarDiasFecha(Date fecha, int dias){
+        Calendar calendar = Calendar.getInstance();calendar.setTime(fecha);
+        calendar.add(Calendar.DAY_OF_YEAR, dias);
+        return calendar.getTime();
     }
 }

@@ -17,7 +17,7 @@
         <!--Bootstrap-->
         <link href="../Estilos/bootstrap-3.3.7-dist/css/bootstrap.css" rel="stylesheet" type="text/css"/>
         <!--JQuery-->
-        <script src="../Scripts/jquery_3.js"></script>
+        <script src="../Scripts/jquery_3.js"></script>    
         <!--Carrusel de fotos-->
         <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js' type='text/javascript'></script>
         <script src="../Scripts/Carrusel.js" type="text/javascript"></script>
@@ -27,9 +27,20 @@
         <!-- Scripts Propios-->
         <script src="../Scripts/Tienda_Scripts.js" type="text/javascript"></script>
         <!-- Validación usuarios-->
-        <script src="../Scripts/ValidacionUsuario.js" type="text/javascript"></script>              
+        <script src="../Scripts/ValidacionUsuario.js" type="text/javascript"></script>            
         <script>
             window.onload = muestra_Cantidad;            
+        </script>            
+        <script>
+            function validar(){
+                if(validarEmail(document.getElementById('emailAmigo').value)){
+                    document.getElementById('botonEnvio').style.display = 'none';
+                    document.getElementById('espera').style.display = "block";
+                    document.getElementById('frmApadrina').submit();
+                }else{
+                    document.getElementById('divError').innerHTML = "El email ingresado es erróneo";
+                }
+            }  
         </script>
         <title>Apadrina</title>
     </head>
@@ -309,9 +320,38 @@
                 </ul>                
             </div>
             <div class="linea" style="height: 3px;"></div>
-            
-            <!--Acá va el contenido de esta página-->
-            
+        
+            <s:if test="usi==''">
+                <p>Desde aquí podrás invitar a tus amigos a darse de alta gratis en la tienda<br>
+                y que reciban un 5% de descuento en sus compras.</p>
+            </s:if>
+            <s:elseif test="superaPeriodo">
+                <p>Escriba la dirección de email de tu amigo para que pueda darse de alta<br>
+                con un 5% de descuento en sus compras:</p>
+                <table>
+                    <s:form action="enviaEmailApadrinado" id="frmApadrina" method="POST" theme="simple">
+                        <tr>
+                            <td>Nombre de tu amigo</td>
+                            <td><s:textfield name="nombreAmigo"/></td>
+                        </tr>
+                        <tr>
+                            <td>Email de tu amigo</td>
+                            <td><s:textfield name="emailAmigo" id="emailAmigo" /></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td><input type="button" id="botonEnvio" value="Enviar" onclick="validar();"/></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><div id="divError"><s:property value="mensajeDivError"/></div></td>
+                        </tr>
+                        </s:form>
+                </table>
+            </s:elseif>
+            <s:else>
+                <p>Para poder apadrinar a un amigo debes tener una antigüedad mínima de 15 días.</p>
+            </s:else>
+   
         </div>
         <s:include value="tiendaFooter.jsp" />
         <div id="cookies">
@@ -321,5 +361,6 @@
                     <a onclick="aceptar_cookies();" style="cursor:pointer;">X Cerrar</a></p>
             </div>
         </div>
+        <img id="espera" src="../Imagenes/Administracion/espera.gif" />            
     </body>
 </html>

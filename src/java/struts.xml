@@ -549,7 +549,23 @@
             <result>/Vistas/CRUDlistadoEmailUsuarios.jsp</result>  
             <result name="input" type="redirect">Tienda</result>  
             <result name="error" type="redirect">Tienda</result>    
-        </action>        
+        </action>
+        
+        <action name="altaUsuarioApadrinado" class="Acciones.HomeApadrina" method="altaUsuarioApadrinado">
+            <result>/Vistas/formularioCRUDusuariosApadrinado.jsp</result>  
+            <result name="input" type="redirect">Tienda</result>  
+            <result name="error" type="redirect">Tienda</result>    
+        </action>
+        
+        <action name="CrudActionApadrinado" class="Acciones.HomeApadrina" method="CrudActionApadrinado">
+            <result type="redirect">Tienda</result>  
+            <result name="input" type="redirect">Tienda</result>  
+            <result name="error" type="redirect">Tienda</result>    
+        </action>
+        
+        <action name="enviaEmailApadrinado" class="Acciones.HomeApadrina" method="enviaEmailApadrinado">
+            <result>/Vistas/tiendaApadrina.jsp</result>
+        </action>      
     </package>
 </struts>
 

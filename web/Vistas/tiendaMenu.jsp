@@ -375,7 +375,6 @@
                                                             <td>
                                                                 <script>
                                                                     var arrayColoresNombre = new Array();
-                                                                    var arrayColoresFoto = new Array();
                                                                     var i;
                                                                     var bool = true;
                                                                     <s:iterator var="c" value="ropaStocks">
@@ -386,12 +385,11 @@
                                                                             }
                                                                         }
                                                                         if(bool){
-                                                                            arrayColoresFoto.push('<s:property value="#c.color.colorFoto"/>');
-                                                                            arrayColoresNombre.push('<s:property value="#c.color.colorDescripcion"/>');
+                                                                        arrayColoresNombre.push('<s:property value="#c.color.colorDescripcion"/>');
                                                                         }
                                                                     </s:iterator>
                                                                     for (i = 0; i < arrayColoresNombre.length; i++) {
-                                                                        document.write("<img src='../Imagenes/Colores/" + arrayColoresFoto[i] + "'style='width:20px; box-shadow: 0px 0px 0px; padding-bottom: 0px; padding-right: 0px; margin-right: 10px; margin-bottom: 8px; border-radius: 5px 5px 5px 5px;' alt='" + arrayColoresNombre[i] + "'/>");
+                                                                        document.write("<img style='background-color: " + arrayColoresNombre[i] + "; width:20px; height: 20px; box-shadow: 0px 0px 0px; padding-bottom: 0px; padding-right: 0px; margin-right: 10px; margin-bottom: 8px; border-radius: 5px 5px 5px 5px;'/>");
                                                                     }
                                                                 </script>
                                                             </td>

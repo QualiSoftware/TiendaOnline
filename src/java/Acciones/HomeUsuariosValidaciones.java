@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Acciones;
 
 import Modelos.Usuarios;
@@ -20,10 +15,9 @@ import java.util.Map;
 import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.validation.SkipValidation;
 
-/**
- *
- * @author Formación
- */
+/*  
+*   Author     : QualiSoftware
+*/
 public class HomeUsuariosValidaciones extends ActionSupport{
 
     private String filtro;
