@@ -50,3 +50,15 @@ Hubo un intento de conexión fallido el Thu Apr 27 21:37:39 CEST 2017 con user: b
 Se envió una factura con fecha Sun Apr 30 20:55:07 CEST 2017 de Damián Usheff Gonzalez-Santamaría, código de usuario 13
 El usuario inactivo borro@borro.com intentó loguearse el Sun Apr 30 21:13:54 CEST 2017
 Se envió una factura con fecha Mon May 01 15:35:47 CEST 2017 de Damián Usheff Gonzalez-Santamaría, código de usuario 13
+Hubo un intento de conexión fallido el Tue May 02 20:46:41 CEST 2017 con user: kuh pass: ju
+Hubo un intento de conexión fallido el Tue May 02 21:30:28 CEST 2017 con user: dushssil.com pass: dusheff
+Hubo un intento de conexión fallido el Tue May 02 21:31:20 CEST 2017 con user: dusssil.com pass: dusheff
+Hubo un intento de conexión fallido el Tue May 02 21:31:27 CEST 2017 con user: dussil.com pass: dusheff
+Hubo un intento de conexión fallido el Tue May 02 21:31:34 CEST 2017 con user: dussil.com pass: dusheff
+Hubo un intento de conexión fallido el Tue May 02 21:31:56 CEST 2017 con user: dussil.com pass: dusheff
+Hubo un intento de conexión fallido el Tue May 02 21:32:08 CEST 2017 con user: dusmail.com pass: dusheff
+Hubo un intento de conexión fallido el Tue May 02 21:34:17 CEST 2017 con user: dusheffsil.com pass: dusheff
+Hubo un intento de conexión fallido el Tue May 02 21:34:35 CEST 2017 con user: dsil.com pass: dusheff
+Hubo un intento de conexión fallido el Tue May 02 21:34:51 CEST 2017 con user: ds.com pass: dusheff
+Hubo un intento de conexión fallido el Tue May 02 21:35:02 CEST 2017 con user: dushstmail.com pass: dusheff
+Hubo un intento de conexión fallido el Tue May 02 21:35:17 CEST 2017 con user: dusil.com pass: dusheff

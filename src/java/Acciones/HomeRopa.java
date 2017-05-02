@@ -114,6 +114,7 @@ public class HomeRopa extends ActionSupport {
     private String desc;
     private String diasDesc;
     private int periodo;
+    private String mensajeError;
 
     public String getUsuario() {
         return usuario;
@@ -715,6 +716,14 @@ public class HomeRopa extends ActionSupport {
 
     public void setPeriodo(int periodo) {
         this.periodo = periodo;
+    }
+
+    public String getMensajeError() {
+        return mensajeError;
+    }
+
+    public void setMensajeError(String mensajeError) {
+        this.mensajeError = mensajeError;
     }
     
     @SkipValidation
