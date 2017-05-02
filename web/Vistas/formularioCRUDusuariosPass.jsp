@@ -278,7 +278,7 @@
                 </ul>                
             </div>
             <div class="linea" style="height: 3px;"></div>
-                <div id="divError"></div>
+            <div id="divError" style="color: red; position: absolute; margin-top: 75px; margin-left: 79px;"></div>
             <s:form id="frm" action="CambiaContrasenia" theme="simple">
                 <input type="hidden" name="accion" id="accionocul" value=<s:property value="accion" /> />
                 <input type="hidden" name="clave" id="clave" value=<s:property value="clave" /> />
