@@ -381,9 +381,11 @@ public class HomeApadrina extends ActionSupport {
             p.setUsuTelefono(usuTelefono);
             p.setUsuLocalidad(usuLocalidad);
             p.setUsuFechaNac(date);
-            p.setUsuDescuento(10.0);
+            double desc = Double.parseDouble(Acciones.HomePropiedades.muestraValor("descuento"));
+            p.setUsuDescuento(desc);
             Date ahora = new Date();
-            p.setUsuFechaLimiteDesc(Acciones.HomeRopa.sumarRestarDiasFecha(ahora, 30));
+            int dias = Integer.parseInt(Acciones.HomePropiedades.muestraValor("dias.descuento"));
+            p.setUsuFechaLimiteDesc(Acciones.HomeRopa.sumarRestarDiasFecha(ahora, dias));
             p.setUsuAlta(ahora);
             p.setUsuAdministrador(0);
             p.setUsuActivo(true);

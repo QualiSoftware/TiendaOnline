@@ -67,6 +67,10 @@ public class HomeUsuarios extends ActionSupport {
     private ArrayList<Cesta> lista_ropa_Cestas;
     private int totalcestaUsuario = 0;
     private List<Facturas> lista_facturas;
+    private String dias;
+    private String valor;
+    private String mensajeConfirmacion;
+    private String periodo;
 
     public Map getSesion() {
         return sesion;
@@ -154,6 +158,38 @@ public class HomeUsuarios extends ActionSupport {
 
     public void setLista_facturas(List<Facturas> lista_facturas) {
         this.lista_facturas = lista_facturas;
+    }
+
+    public String getDias() {
+        return dias;
+    }
+
+    public void setDias(String dias) {
+        this.dias = dias;
+    }
+
+    public String getValor() {
+        return valor;
+    }
+
+    public void setValor(String valor) {
+        this.valor = valor;
+    }
+
+    public String getMensajeConfirmacion() {
+        return mensajeConfirmacion;
+    }
+
+    public void setMensajeConfirmacion(String mensajeConfirmacion) {
+        this.mensajeConfirmacion = mensajeConfirmacion;
+    }
+
+    public String getPeriodo() {
+        return periodo;
+    }
+
+    public void setPeriodo(String periodo) {
+        this.periodo = periodo;
     }
 
     public Map<String, String> getStateMap() {
@@ -442,7 +478,28 @@ public class HomeUsuarios extends ActionSupport {
             return INPUT;
         }
         lista_usuarios = ControladoresDAO.cUsuarios.RecuperaTodosMenosAdmin();
-        return SUCCESS;
+        String resp = "";
+        mensajeConfirmacion = "";
+        if(dias != null){
+            resp = Acciones.HomePropiedades.CrudActionMarcas("dias.descuento", dias);
+            if(resp.equalsIgnoreCase("SUCCESS")){
+                resp = Acciones.HomePropiedades.CrudActionMarcas("descuento", valor);
+                if(resp.equalsIgnoreCase("SUCCESS")){
+                    resp = Acciones.HomePropiedades.CrudActionMarcas("dias.antiguedad.para.apadrinar", periodo);
+                }
+            }
+        }
+        dias = Acciones.HomePropiedades.muestraValor("dias.descuento");
+        valor = Acciones.HomePropiedades.muestraValor("descuento");
+        periodo = Acciones.HomePropiedades.muestraValor("dias.antiguedad.para.apadrinar");
+        if(resp.equals("")){
+            return SUCCESS;
+        } else {
+            if(resp.equalsIgnoreCase("SUCCESS")){
+                mensajeConfirmacion = "Cambios guardados con éxito";
+            }
+            return resp;
+        }
     }
     
     public String UsuAlta() throws Exception {

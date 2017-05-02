@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 01-may-2017 15:08:20 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Modelos.Propiedades" table="propiedades" catalog="tienda_ropa" optimistic-lock="version">
+        <id name="proId" type="java.lang.Integer">
+            <column name="pro_id" />
+            <generator class="identity" />
+        </id>
+        <property name="proKey" type="string">
+            <column name="pro_key" length="100" not-null="true" />
+        </property>
+        <property name="proValue" type="string">
+            <column name="pro_value" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

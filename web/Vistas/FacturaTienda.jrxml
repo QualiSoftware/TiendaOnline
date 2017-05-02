@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Facturas Tienda Online" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1d00e3b9-5562-41fe-9540-197555248f3a">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="144"/>
+	<property name="ireport.y" value="260"/>
 	<parameter name="clave" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT
@@ -29,7 +29,8 @@
      factura_detalle.`facd_clientela` AS factura_detalle_facd_clientela,
      factura_detalle.`facd_categoria` AS factura_detalle_facd_categoria,
      factura_detalle.`facd_subcategoria` AS factura_detalle_facd_subcategoria,
-     factura_detalle.`facd_color` AS factura_detalle_facd_color
+     factura_detalle.`facd_color` AS factura_detalle_facd_color,
+     factura_detalle.`facd_ro_id` AS factura_detalle_facd_ro_id
 FROM
      `facturas` facturas, `factura_detalle` factura_detalle WHERE facturas.`fac_id` = factura_detalle.`facd_fac_id` 
 AND facturas.`fac_id` = $P{clave}]]>
@@ -57,7 +58,8 @@ AND facturas.`fac_id` = $P{clave}]]>
 	<field name="factura_detalle_facd_clientela" class="java.lang.String"/>
 	<field name="factura_detalle_facd_categoria" class="java.lang.String"/>
 	<field name="factura_detalle_facd_subcategoria" class="java.lang.String"/>
-	<field name="factura_detalle_facd_color" class="java.lang.String">
+	<field name="factura_detalle_facd_color" class="java.lang.String"/>
+	<field name="factura_detalle_facd_ro_id" class="java.lang.Integer">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<variable name="factura_detalle_facd_precio_1" class="java.lang.Double" resetType="Page" calculation="Sum">
@@ -184,81 +186,78 @@ AND facturas.`fac_id` = $P{clave}]]>
 				<reportElement x="0" y="0" width="555" height="26" forecolor="#CCCCCC" backcolor="#CCCCCC" uuid="4497d468-e4e9-43ed-995b-56624da27b06"/>
 			</rectangle>
 			<staticText>
-				<reportElement x="148" y="0" width="75" height="26" uuid="b2a37765-f686-490c-ba51-fbe8f29aa0d2"/>
-				<textElement verticalAlignment="Middle"/>
-				<text><![CDATA[Marca]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="223" y="0" width="70" height="26" uuid="88e97f14-e29a-4125-ad57-1e898e25c78b"/>
+				<reportElement x="275" y="0" width="50" height="26" uuid="88e97f14-e29a-4125-ad57-1e898e25c78b"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<text><![CDATA[Precio]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="430" y="0" width="45" height="26" uuid="6d463344-7683-4286-a13e-351e7a0d885d"/>
+				<reportElement x="445" y="0" width="45" height="26" uuid="6d463344-7683-4286-a13e-351e7a0d885d"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<text><![CDATA[Cantidad]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="65" y="0" width="76" height="26" uuid="3efe9632-b38c-41a4-ad32-e2c76bf737ff"/>
-				<textElement verticalAlignment="Middle"/>
-				<text><![CDATA[Categoría]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="294" y="0" width="60" height="26" uuid="48dff408-c7cf-4840-a3ef-bb4be81a9812"/>
+				<reportElement x="45" y="0" width="230" height="26" uuid="3efe9632-b38c-41a4-ad32-e2c76bf737ff"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<text><![CDATA[Descuento]]></text>
+				<text><![CDATA[Detalle]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="356" y="0" width="70" height="26" uuid="367f5a14-08c4-4003-829e-144305a43533"/>
+				<reportElement x="388" y="0" width="52" height="26" uuid="367f5a14-08c4-4003-829e-144305a43533"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<text><![CDATA[Precio con descuento]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="480" y="0" width="70" height="26" uuid="673f5d2a-c614-4c5e-b204-e6795513cdbc"/>
+				<reportElement x="495" y="0" width="58" height="26" uuid="673f5d2a-c614-4c5e-b204-e6795513cdbc"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<text><![CDATA[Precio final]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="12" y="0" width="53" height="26" uuid="6ec5e65a-a2da-4e2c-a0c0-c4b7eae4e343"/>
+				<reportElement x="0" y="0" width="40" height="26" uuid="6ec5e65a-a2da-4e2c-a0c0-c4b7eae4e343"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<text><![CDATA[Código]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="330" y="0" width="54" height="26" uuid="6a85326e-bbeb-4b66-8b73-ac32aae70abd"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Descuento]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
 		<band height="24" splitType="Stretch">
 			<textField pattern="#,##0.00">
-				<reportElement x="223" y="0" width="70" height="20" uuid="6ed01ede-e1c7-495f-889d-8b61e864559a"/>
+				<reportElement x="275" y="0" width="50" height="20" uuid="6ed01ede-e1c7-495f-889d-8b61e864559a"/>
 				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{factura_detalle_facd_precio}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="148" y="0" width="75" height="20" uuid="0f5559da-75ad-4946-90f1-51193e57c401"/>
-				<textFieldExpression><![CDATA[$F{factura_detalle_facd_marca}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="430" y="0" width="44" height="20" uuid="580636d9-7c2a-4826-b9da-d58b86655f3d"/>
+				<reportElement x="445" y="0" width="44" height="20" uuid="580636d9-7c2a-4826-b9da-d58b86655f3d"/>
 				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{factura_detalle_facd_cantidad}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="65" y="0" width="76" height="20" uuid="71a2b28e-82fe-42bd-b624-25fad58514a3"/>
-				<textFieldExpression><![CDATA[$F{factura_detalle_facd_categoria}]]></textFieldExpression>
+				<reportElement x="45" y="0" width="230" height="20" uuid="71a2b28e-82fe-42bd-b624-25fad58514a3"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{factura_detalle_facd_categoria}+" "+$F{factura_detalle_facd_marca}+" "+$F{factura_detalle_facd_talla}+" "+$F{factura_detalle_facd_color}]]></textFieldExpression>
 			</textField>
 			<textField pattern="###0.0">
-				<reportElement x="294" y="0" width="60" height="20" uuid="0f51f04a-6ae1-4225-bc24-ee8aa152a9fd"/>
+				<reportElement x="330" y="0" width="54" height="20" uuid="0f51f04a-6ae1-4225-bc24-ee8aa152a9fd"/>
 				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{factura_detalle_facd_descuento}]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0.00">
-				<reportElement x="356" y="0" width="70" height="20" uuid="e0559d3e-63be-4324-b7a7-4c13e7dc0cfd"/>
+				<reportElement x="388" y="0" width="52" height="20" uuid="e0559d3e-63be-4324-b7a7-4c13e7dc0cfd"/>
 				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{factura_detalle_facd_precio}-($F{factura_detalle_facd_precio}*$F{factura_detalle_facd_descuento}*0.01)]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0.00">
-				<reportElement x="480" y="0" width="70" height="20" uuid="6530644d-63cb-43a6-a67c-69dbae252e10"/>
+				<reportElement x="495" y="0" width="58" height="20" uuid="6530644d-63cb-43a6-a67c-69dbae252e10"/>
 				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{factura_detalle_facd_cantidad}*($F{factura_detalle_facd_precio}-($F{factura_detalle_facd_precio}*$F{factura_detalle_facd_descuento}*0.01))]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="0" width="40" height="20" uuid="8888d1fe-07b1-46b1-9d45-64d6ea4cf733"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{factura_detalle_facd_ro_id}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

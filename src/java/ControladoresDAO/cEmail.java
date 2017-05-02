@@ -57,7 +57,8 @@ public class cEmail{
             invitado.setUsuSexo(Boolean.FALSE);
             invitado.setUsuTelefono("");
             invitado.setUsuLocalidad("");
-            invitado.setUsuDescuento(10.0);
+            double desc = Double.parseDouble(Acciones.HomePropiedades.muestraValor("descuento"));
+            invitado.setUsuDescuento(desc);
             invitado.setUsuFechaLimiteDesc(ahora);
             invitado.setUsuAdministrador(2);
             invitado.setProvincias(ControladoresDAO.cProvincias.RecuperaPorId(1));

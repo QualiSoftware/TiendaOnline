@@ -49,3 +49,4 @@ Hubo un intento de conexión fallido el Thu Apr 27 21:28:53 CEST 2017 con user: e
 Hubo un intento de conexión fallido el Thu Apr 27 21:37:39 CEST 2017 con user: borro@borro.com pass: dusheff
 Se envió una factura con fecha Sun Apr 30 20:55:07 CEST 2017 de Damián Usheff Gonzalez-Santamaría, código de usuario 13
 El usuario inactivo borro@borro.com intentó loguearse el Sun Apr 30 21:13:54 CEST 2017
+Se envió una factura con fecha Mon May 01 15:35:47 CEST 2017 de Damián Usheff Gonzalez-Santamaría, código de usuario 13

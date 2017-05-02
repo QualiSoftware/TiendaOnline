@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 06-abr-2017 19:59:18 by Hibernate Tools 4.3.1 -->
+<!-- Generated 01-may-2017 15:08:20 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="Modelos.FacturaDetalle" table="factura_detalle" catalog="tienda_ropa" optimistic-lock="version">
         <id name="facdId" type="java.lang.Integer">
@@ -37,6 +37,9 @@
         </property>
         <property name="facdColor" type="string">
             <column name="facd_color" length="30" not-null="true" />
+        </property>
+        <property name="facdRoId" type="int">
+            <column name="facd_ro_id" not-null="true" />
         </property>
     </class>
 </hibernate-mapping>

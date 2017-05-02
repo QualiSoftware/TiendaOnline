@@ -1,5 +1,5 @@
 package Modelos;
-// Generated 06-abr-2017 19:59:16 by Hibernate Tools 4.3.1
+// Generated 01-may-2017 15:08:18 by Hibernate Tools 4.3.1
 
 
 
@@ -20,11 +20,12 @@ public class FacturaDetalle  implements java.io.Serializable {
      private String facdCategoria;
      private String facdSubcategoria;
      private String facdColor;
+     private int facdRoId;
 
     public FacturaDetalle() {
     }
 
-    public FacturaDetalle(Facturas facturas, double facdDescuento, double facdPrecio, String facdTalla, int facdCantidad, String facdMarca, String facdClientela, String facdCategoria, String facdSubcategoria, String facdColor) {
+    public FacturaDetalle(Facturas facturas, double facdDescuento, double facdPrecio, String facdTalla, int facdCantidad, String facdMarca, String facdClientela, String facdCategoria, String facdSubcategoria, String facdColor, int facdRoId) {
        this.facturas = facturas;
        this.facdDescuento = facdDescuento;
        this.facdPrecio = facdPrecio;
@@ -35,6 +36,7 @@ public class FacturaDetalle  implements java.io.Serializable {
        this.facdCategoria = facdCategoria;
        this.facdSubcategoria = facdSubcategoria;
        this.facdColor = facdColor;
+       this.facdRoId = facdRoId;
     }
    
     public Integer getFacdId() {
@@ -113,6 +115,13 @@ public class FacturaDetalle  implements java.io.Serializable {
     
     public void setFacdColor(String facdColor) {
         this.facdColor = facdColor;
+    }
+    public int getFacdRoId() {
+        return this.facdRoId;
+    }
+    
+    public void setFacdRoId(int facdRoId) {
+        this.facdRoId = facdRoId;
     }
 
 

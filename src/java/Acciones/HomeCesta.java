@@ -548,7 +548,8 @@ public class HomeCesta extends ActionSupport {
                             c.getRopaStock().getRopa().getClientela().getClientelaDescripcion(), 
                             c.getRopaStock().getRopa().getCategoria().getCatDescripcion(), 
                             c.getRopaStock().getRopa().getSubcategoria().getSubDescripcion(), 
-                            c.getRopaStock().getColor().getColorDescripcion());
+                            c.getRopaStock().getColor().getColorDescripcion(),
+                            c.getRopaStock().getRopa().getRoId());
                     //al hacer el siguiente paso me modifica el descuento de la ropa en la BBDD
                     c.getRopaStock().getRopa().setRoDescuento(auxDescuento);
                     nada = ControladoresDAO.cFacturaDetalle.Inserta(fd);

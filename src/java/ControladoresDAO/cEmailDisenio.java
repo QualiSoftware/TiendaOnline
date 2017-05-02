@@ -33,7 +33,8 @@ public class cEmailDisenio {
                 + "<h1>Hola <b>"+nombre+"</b>!</h1><br>"
                 + "<p>Este email te llega porque "+u.getUsuNombre()+" "+u.getUsuApellidos()
                 +" te está enviando esta invitación para que te puedas dar de alta en nuestra tienda beneficiándote en"
-                + " tus compras con un 10% de descuento!<br>"
+                + " tus compras con un "+ Acciones.HomePropiedades.muestraValor("descuento") +"% de descuento"
+                + " durante "+ Acciones.HomePropiedades.muestraValor("dias.descuento") +" días!<br>"
                 + "Para poder darte de alta por favor pincha en el siguiente enlace:<br>"
                 + "<a href=\""+enlace+"\">Pincha aquí para darte de alta</a></p>"
                 + "</BODY></HTML>";

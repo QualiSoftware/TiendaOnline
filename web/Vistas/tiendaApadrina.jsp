@@ -322,12 +322,12 @@
             <div class="linea" style="height: 3px;"></div>
         
             <s:if test="usi==''">
-                <p>Desde aquí podrás invitar a tus amigos a darse de alta gratis en la tienda<br>
-                y que reciban un 5% de descuento en sus compras.</p>
+                <p>Desde aquí podrás invitar a tus amigos a darse de alta gratis en la tienda y que reciban<br>
+                   un <s:property value="desc"/>% de descuento en sus compras durante <s:property value="diasDesc"/> días.</p>
             </s:if>
             <s:elseif test="superaPeriodo">
                 <p>Escriba la dirección de email de tu amigo para que pueda darse de alta<br>
-                con un 5% de descuento en sus compras:</p>
+                con un <s:property value="desc"/>% de descuento en sus compras:</p>
                 <table>
                     <s:form action="enviaEmailApadrinado" id="frmApadrina" method="POST" theme="simple">
                         <tr>
@@ -349,7 +349,7 @@
                 </table>
             </s:elseif>
             <s:else>
-                <p>Para poder apadrinar a un amigo debes tener una antigüedad mínima de 15 días.</p>
+                <p>Para poder apadrinar a un amigo debes tener una antigüedad mínima de <s:property value="periodo"/> días.</p>
             </s:else>
    
         </div>

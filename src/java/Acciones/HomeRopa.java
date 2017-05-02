@@ -40,10 +40,8 @@ public class HomeRopa extends ActionSupport {
     private int clave;
     private String usuario;
     private String password;
-    //private String mensajeError;
     private String accion;
     private String titulo;
-    //private String boton;
     private Map sesion;
     private String cabeceraocul;
     private String botonocul;
@@ -55,7 +53,6 @@ public class HomeRopa extends ActionSupport {
     private Usuarios u;
     private boolean superaPeriodo;
     private Map<String, String> stateMap = new LinkedHashMap<String, String>();
-    //private String dummyMsg;
     private String countryName;
     
 
@@ -82,16 +79,12 @@ public class HomeRopa extends ActionSupport {
     private int camDescuento;
     private String cliCodigo;
     private String catCodigo;
-    //private String categoria2;
     private String categoriaNombre;
     private String clientelaNombre;
     private String coleccion2;
-    //private String color2;
     private String look2;
     private String marca;
     private String marcaNom;
-    //private String marcas2;
-    //private String tallas2;
     private String roDescripcion2;
     private double roPrecio2;
     private int roDescuento2;
@@ -118,6 +111,9 @@ public class HomeRopa extends ActionSupport {
     private int maximo;
     private String precio;
     private String precioConDescuento;
+    private String desc;
+    private String diasDesc;
+    private int periodo;
 
     public String getUsuario() {
         return usuario;
@@ -696,6 +692,30 @@ public class HomeRopa extends ActionSupport {
     public void setPrecioConDescuento(String precioConDescuento) {
         this.precioConDescuento = precioConDescuento;
     }
+
+    public String getDesc() {
+        return desc;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
+
+    public String getDiasDesc() {
+        return diasDesc;
+    }
+
+    public void setDiasDesc(String diasDesc) {
+        this.diasDesc = diasDesc;
+    }
+
+    public int getPeriodo() {
+        return periodo;
+    }
+
+    public void setPeriodo(int periodo) {
+        this.periodo = periodo;
+    }
     
     @SkipValidation
     public String RopaFiltro() throws Exception {
@@ -704,6 +724,9 @@ public class HomeRopa extends ActionSupport {
             sesion = ActionContext.getContext().getSession();
         }
         superaPeriodo = false;
+        diasDesc = Acciones.HomePropiedades.muestraValor("dias.descuento");
+        desc = Acciones.HomePropiedades.muestraValor("descuento");
+        periodo = Integer.parseInt(Acciones.HomePropiedades.muestraValor("dias.antiguedad.para.apadrinar"));
         usi = "";
         if(sesion.get("usuarioLogueado") != null){
             if(!sesion.get("usuarioLogueado").equals("")){
@@ -711,7 +734,7 @@ public class HomeRopa extends ActionSupport {
                     u = (Usuarios) sesion.get("usuarioLogueado");
                     usi = ""+u.getUsuId();
                     Date hoy = new Date();
-                    hoy = sumarRestarDiasFecha(hoy, -15);
+                    hoy = sumarRestarDiasFecha(hoy, -periodo);
                     if(u.getUsuAlta().before(hoy)){
                         superaPeriodo = true;
                     }

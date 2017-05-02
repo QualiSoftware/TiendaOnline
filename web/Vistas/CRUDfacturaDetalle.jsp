@@ -35,6 +35,7 @@
         <s:form action="FacturaDetalleFiltro" theme="simple">   
         <table border="1">
             <tr>
+                <th>Código Ropa</th>
                 <th>Categoría</th>
                 <th>Subcategoría</th>
                 <th>Clientela</th>
@@ -51,37 +52,40 @@
             <s:iterator var="a" value="lista_facturaDetalle">
                 <tr class="<%out.println(fondo);%>">
                     <td>
-                        <s:property value="#a.facdCategoria"/><br>
+                        <s:property value="#a.facdRoId"/>
                     </td>
                     <td>
-                        <s:property value="#a.facdSubcategoria"/><br>
+                        <s:property value="#a.facdCategoria"/>
                     </td>
                     <td>
-                        <s:property value="#a.facdClientela"/><br>
+                        <s:property value="#a.facdSubcategoria"/>
                     </td>
                     <td>
-                        <s:property value="#a.facdMarca"/><br>
+                        <s:property value="#a.facdClientela"/>
                     </td>
                     <td>
-                        <s:property value="#a.facdColor"/><br>
+                        <s:property value="#a.facdMarca"/>
                     </td>
                     <td>
-                        <s:property value="#a.facdTalla"/><br>
+                        <s:property value="#a.facdColor"/>
                     </td>
                     <td>
-                        <s:property value="getText('{0,number,##0.00}',{#a.facdPrecio})"/><br>
+                        <s:property value="#a.facdTalla"/>
                     </td>
                     <td>
-                        <s:property value="getText('{0,number,##0.0}',{#a.facdDescuento})"/><br>
+                        <s:property value="getText('{0,number,##0.00}',{#a.facdPrecio})"/>
                     </td>
                     <td>
-                        <s:property value="getText('{0,number,##0.00}',{#a.facdPrecio - (#a.facdPrecio * #a.facdDescuento / 100)})"/><br>
+                        <s:property value="getText('{0,number,##0.0}',{#a.facdDescuento})"/>
                     </td>
                     <td>
-                        <s:property value="#a.facdCantidad"/><br>
+                        <s:property value="getText('{0,number,##0.00}',{#a.facdPrecio - (#a.facdPrecio * #a.facdDescuento / 100)})"/>
                     </td>
                     <td>
-                        <s:property value="getText('{0,number,##0.00}',{(#a.facdPrecio - (#a.facdPrecio * #a.facdDescuento / 100)) * #a.facdCantidad})"/><br>
+                        <s:property value="#a.facdCantidad"/>
+                    </td>
+                    <td>
+                        <s:property value="getText('{0,number,##0.00}',{(#a.facdPrecio - (#a.facdPrecio * #a.facdDescuento / 100)) * #a.facdCantidad})"/>
                     </td>
                 </tr>
                 <%
@@ -93,8 +97,8 @@
                  %>
             </s:iterator>
                 <tr>
-                    <td colspan="10" style="text-align: right">Total Factura</td>
-                    <td><s:property value="getText('{0,number,##0.00}',{total})"/><br></td>
+                    <td colspan="11" style="text-align: right">Total Factura</td>
+                    <td><s:property value="getText('{0,number,##0.00}',{total})"/></td>
                 </tr>
         </table>
         <center><a href="/TiendaOnline/Vistas/FacturasFiltro.action" class="cambioFondo">Volver a Facturas</a></center>
