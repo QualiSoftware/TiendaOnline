@@ -477,6 +477,6 @@
                     <a onclick="aceptar_cookies();" style="cursor:pointer;">X Cerrar</a></p>
             </div>
         </div>
-        <img id="espera" src="../Imagenes/Administracion/espera.gif" />
+        <img id="espera" src="../Imagenes/Administracion/espera.gif"width="50px;"/>
     </body>
 </html>

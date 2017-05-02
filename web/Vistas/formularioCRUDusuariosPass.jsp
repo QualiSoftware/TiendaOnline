@@ -31,7 +31,7 @@
             function Verificar(orden) {
                 if(orden == 'cambiar'){
                     if(document.getElementById('nueva1').value === ""){
-                        document.getElementById("divError").innerHTML = "La contraseña no puede estar vacía";
+                        document.getElementById("divError").innerHTML = "La contraseña no puede estar vacía.";
                     }else if (document.getElementById('nueva1').value === document.getElementById('nueva2').value) {
                         document.getElementById("divError").innerHTML = "";
                         document.getElementById('frm').submit();

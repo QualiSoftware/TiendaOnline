@@ -548,6 +548,6 @@
             </div>
         </div>
         <s:include value="formularioConfirmacionEliminacion.jsp" />
-        <img id="espera" src="../Imagenes/Administracion/espera.gif" />
+        <img id="espera" src="../Imagenes/Administracion/espera.gif" width="50px;" />
     </body>
 </html>

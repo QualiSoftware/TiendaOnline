@@ -358,6 +358,6 @@
             </tr>
         </table>
         </s:form>
-        <img id="espera" src="../Imagenes/Administracion/espera.gif" />
+        <img id="espera" src="../Imagenes/Administracion/espera.gif" width="50px;"/>
     </body>
 </html>

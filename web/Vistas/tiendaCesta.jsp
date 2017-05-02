@@ -448,6 +448,6 @@
             </div>
             <s:include value="tiendaFooter.jsp" />
         </div>
-        <img id="espera" src="../Imagenes/Administracion/espera.gif" />
+        <img id="espera" src="../Imagenes/Administracion/espera.gif" width="50"/>
     </body>
 </html>

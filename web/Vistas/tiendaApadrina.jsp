@@ -320,13 +320,13 @@
                 </ul>                
             </div>
             <div class="linea" style="height: 3px;"></div>
-        
+            <div class="apadrinaTitulo">Apadrina</div>
             <s:if test="usi==''">
                 <p>Desde aquí podrás invitar a tus amigos a darse de alta gratis en la tienda y que reciban<br>
                    un <s:property value="desc"/>% de descuento en sus compras durante <s:property value="diasDesc"/> días.</p>
             </s:if>
             <s:elseif test="superaPeriodo">
-                <p>Escriba la dirección de email de tu amigo para que pueda darse de alta<br>
+            <p style="margin-top: 50px;">Escriba la dirección de email de tu amigo para que pueda darse de alta<br>
                 con un <s:property value="desc"/>% de descuento en sus compras:</p>
                 <table>
                     <s:form action="enviaEmailApadrinado" id="frmApadrina" method="POST" theme="simple">
@@ -343,13 +343,13 @@
                             <td><input type="button" id="botonEnvio" value="Enviar" onclick="validar();"/></td>
                         </tr>
                         <tr>
-                            <td colspan="2"><div id="divError"><s:property value="mensajeDivError"/></div></td>
+                            <td colspan="2"><div id="divError" style="color: red; padding-top: 20px;"><s:property value="mensajeDivError"/></div></td>
                         </tr>
                         </s:form>
                 </table>
             </s:elseif>
             <s:else>
-                <p>Para poder apadrinar a un amigo debes tener una antigüedad mínima de <s:property value="periodo"/> días.</p>
+            <p>Para poder apadrinar a un amigo debes tener una antigüedad mínima de <s:property value="periodo"/> días.</p>
             </s:else>
    
         </div>
@@ -361,6 +361,6 @@
                     <a onclick="aceptar_cookies();" style="cursor:pointer;">X Cerrar</a></p>
             </div>
         </div>
-        <img id="espera" src="../Imagenes/Administracion/espera.gif" />            
+        <img id="espera" src="../Imagenes/Administracion/espera.gif" width="50"/>            
     </body>
 </html>
