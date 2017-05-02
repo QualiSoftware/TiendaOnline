@@ -332,7 +332,7 @@
 
                 <table id="cuenta_Usuario">
                     <tr>
-                        <td colspan="2">
+                        <td colspan="2" style="padding-top: 20px; padding-bottom: 0px; color: red;">
                             <span id="camposVacios">
                                 <s:property value="modificaAdmin"/>
                             </span>

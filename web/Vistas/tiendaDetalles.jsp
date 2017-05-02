@@ -65,7 +65,7 @@
         <script>            
             function ValidoDetalles(){
                 if(document.getElementById('colorOculto').value == ''){
-                    document.getElementById("divError").innerHTML = "Debe seleccionar un color";
+                    document.getElementById("divError").innerHTML = "Debe seleccionar un color.";
                 }else{
                     document.getElementById('frm').submit();
                 }
@@ -445,7 +445,7 @@
                 </s:iterator>
 
                 <div class="detalle_info" style="z-index: 200">
-                <div id="divError"></div>
+                    <div id="divError" style="color: red; padding-bottom: 20px; font-size: 20px; font-weight: bold;"></div>
                     <table>                    
                         <tr>
                             <td>Color:</td>

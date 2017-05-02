@@ -61,7 +61,7 @@
                 </s:if>                
             </s:iterator>
             <br/><br/><br/>
-            <table>
+            <table style="margin-bottom: 50px; margin-top: 0px;">
                 <s:form id="frm" action="listadoEmailUsuarios" method="POST" theme="simple">
                     <tr>
                         <td>Porcentaje de descuento a enviar a los apadrinados </td>

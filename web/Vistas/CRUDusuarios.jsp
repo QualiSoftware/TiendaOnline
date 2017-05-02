@@ -49,7 +49,7 @@
             <%String fondo = "fondoOscuro";%>
             <s:iterator var="a" value="lista_usuarios">
                 <tr class="<%out.println(fondo);%>">
-                    <td>
+                    <td style="text-align: right;">
                         <s:if test="#a.usuAdministrador!=1">
                             <s:a action="CambiaContrasenia" title="Al resetear la contraseña la misma pasará a ser la palabra nueva">
                                 <s:param name="clave" value="#a.usuId"/>
