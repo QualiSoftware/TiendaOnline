@@ -565,7 +565,11 @@
         
         <action name="enviaEmailApadrinado" class="Acciones.HomeApadrina" method="enviaEmailApadrinado">
             <result>/Vistas/tiendaApadrina.jsp</result>
-        </action>      
+        </action>  
+        
+        <action name="abrirEmail" class="Acciones.HomeUsuarios" method="abrirEmail"> 
+            <result type="redirect">listadoEmailUsuarios</result>
+        </action>    
     </package>
 </struts>
 

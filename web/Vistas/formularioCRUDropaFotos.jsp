@@ -16,7 +16,7 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
         <link rel="stylesheet" href="../Estilos/GeneralEstilos.css"/> 
         <link href="../Estilos/estilosBorrado.css" rel="stylesheet" type="text/css"/>
-        <script src="../Scripts/confirmacionEliminacion.js" type="text/javascript"></script>
+        <script src="../Scripts/utilidades.js" type="text/javascript"></script>
         <title>Subir Fotos</title>
         <script>
             function Verificar() {

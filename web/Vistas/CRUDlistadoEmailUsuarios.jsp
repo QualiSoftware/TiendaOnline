@@ -9,10 +9,10 @@
 <html>
     <head>
         <meta charset="UTF-8">
-
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
         <link rel="stylesheet" href="../Estilos/GeneralEstilos.css"/>
-        <title>Listado Emails</title>
+        <script src="../Scripts/utilidades.js" type="text/javascript"></script>
+        <title>Opciones publicidad</title>
         <script>
             function comprobar(){
                 var dias = document.getElementById('dias').value;
@@ -32,6 +32,22 @@
                     return true;
                 }
             }
+            function verificar(){
+                checkboxes=document.getElementsByTagName('input'); //obtenemos todos los controles del tipo Input
+                var j = 0;
+                for(i=0;i<checkboxes.length;i++){ //recoremos todos los controles
+                    if(checkboxes[i].type == "checkbox"){ //solo si es un checkbox entramos
+                        if(checkboxes[i].checked && checkboxes[i].id != 'todos'){
+                            j++;
+                        }
+                    }
+                }
+                if(j > 0){
+                    document.getElementById('frmCheckbox').submit();
+                } else {
+                    alert("no se envía el email");
+                }
+            }
         </script>
     </head>
     <body>
@@ -41,26 +57,28 @@
                         Tienda Ropa <img src="../Imagenes/Administracion/SH14171.jpg" alt="house_hangers" id="logo"/>
                     </s:a>
                 </div>
-            <div id="titulo_Pagina">Listado Email Usuarios</div>
+            <div id="titulo_Pagina">Opciones publicidad</div>
             <s:include value="cabeceraMenuAdministrador.jsp" />
         </div>
         <div  class="linea"></div>
         <div id="descripcion_Pagina">
-            Aquí puede <span class="bold">copiar </span>las direcciones de email para envío de publicidad.
+            Aquí puede <span class="bold">configurar </span>las opciones para el envío de publicidad.
         </div>
         <div  class="linea"></div>
         <center>
-            <br/>
-            <s:set var="saltoLinea" value="0"/>
-            <s:iterator var="a" value="lista_usuarios">
-                <s:property value="#a.usuEmail"/>;&nbsp
-                <s:set var="saltoLinea" value="%{#saltoLinea + 1}"/>
-                <s:if test="#saltoLinea == 5">
-                    <s:set var="saltoLinea" value="0"/>
-                    <br>
-                </s:if>                
-            </s:iterator>
-            <br/><br/><br/>
+            <input type="checkbox" id="todos" onclick="marcarDesmarcarCheckbox(this);" checked/> Marcar/Desmarcar Todos
+            <br/><br/>
+            <s:form id="frmCheckbox" action="abrirEmail" method="POST" theme="simple">
+                <div id="" style="overflow:auto; height:100px; width: 300px; text-align: left;">
+                    <s:iterator var="a" value="lista_usuarios">
+                            <input type="checkbox" name="checkboxNombre" value="<s:property value="#a.usuEmail"/>" checked/>
+                            &nbsp;&nbsp
+                        <s:property value="#a.usuEmail"/><br/>
+                    </s:iterator>
+                </div>
+                <input type="button" onclick="verificar();" value="Generar email" />
+            </s:form>
+            <br/><br/>
             <table style="margin-bottom: 50px; margin-top: 0px;">
                 <s:form id="frm" action="listadoEmailUsuarios" method="POST" theme="simple">
                     <tr>

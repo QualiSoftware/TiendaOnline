@@ -12,7 +12,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/> 
         <link href="../Estilos/estilosBorrado.css" rel="stylesheet" type="text/css"/>
-        <script src="../Scripts/confirmacionEliminacion.js" type="text/javascript"></script>
+        <script src="../Scripts/utilidades.js" type="text/javascript"></script>
         <link rel="stylesheet" href="../Estilos/GeneralEstilos.css"/>
         <title><s:property value="cabeceraocul" /> de Clientela</title>
         <script src="../Scripts/ValidacionCampoRelleno.js" type="text/javascript"></script>

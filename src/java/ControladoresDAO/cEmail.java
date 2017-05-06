@@ -79,7 +79,7 @@ public class cEmail{
         boolean enviado = false;
             try{            
                 String host = "smtp.gmail.com";
-                String de = "empresa2016sl@gmail.com";
+                String de = Acciones.HomePropiedades.muestraValor("email.empresa");
                 
                 Properties prop = System.getProperties();
                 

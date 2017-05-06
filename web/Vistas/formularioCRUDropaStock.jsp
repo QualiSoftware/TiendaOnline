@@ -14,7 +14,7 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
         <link rel="stylesheet" href="../Estilos/GeneralEstilos.css"/> 
         <link href="../Estilos/estilosBorrado.css" rel="stylesheet" type="text/css"/>
-        <script src="../Scripts/confirmacionEliminacion.js" type="text/javascript"></script>
+        <script src="../Scripts/utilidades.js" type="text/javascript"></script>
         <link rel="stylesheet" type="text/css" href="../Calendar/1-simple-calendar/tcal.css" />
         <script type="text/javascript" src="../Calendar/1-simple-calendar/tcal.js"></script>
         <title>Formulario Stock</title>

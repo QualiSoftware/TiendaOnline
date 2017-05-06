@@ -12,6 +12,8 @@ import static com.opensymphony.xwork2.Action.SUCCESS;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.util.logging.Logger;
+import java.awt.Desktop;
+import java.net.URI;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -71,6 +73,7 @@ public class HomeUsuarios extends ActionSupport {
     private String valor;
     private String mensajeConfirmacion;
     private String periodo;
+    private String checkboxNombre;
 
     public Map getSesion() {
         return sesion;
@@ -190,6 +193,14 @@ public class HomeUsuarios extends ActionSupport {
 
     public void setPeriodo(String periodo) {
         this.periodo = periodo;
+    }
+
+    public String getCheckboxNombre() {
+        return checkboxNombre;
+    }
+
+    public void setCheckboxNombre(String checkboxNombre) {
+        this.checkboxNombre = checkboxNombre;
     }
 
     public Map<String, String> getStateMap() {
@@ -895,5 +906,20 @@ public class HomeUsuarios extends ActionSupport {
             totalcestaUsuario += caux.getCestaUnidades();
             caux.getRopaStock().setRopa(homeRopa.descuentoEnRopa(caux.getRopaStock().getRopa()));
         }
+    }
+    
+    public String abrirEmail() throws Exception{
+        String checkboxArray[] = checkboxNombre.split(", ");
+        String cco = "";
+        for(String ca:checkboxArray){
+            cco = ca + ";";
+        }
+        String ccoOK = cco.substring(0, cco.length()-1); 
+        Desktop desktop;
+        if (Desktop.isDesktopSupported() && (desktop = Desktop.getDesktop()).isSupported(Desktop.Action.MAIL)) {
+          URI mailto = new URI("mailto:"+Acciones.HomePropiedades.muestraValor("email.empresa")+"?bcc="+ccoOK);
+          desktop.mail(mailto);
+        }
+        return SUCCESS;
     }
 }
