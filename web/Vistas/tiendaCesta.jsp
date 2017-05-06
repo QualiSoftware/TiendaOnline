@@ -282,7 +282,6 @@
                                         &nbsp;
                                         <img src="../Imagenes/Administracion/Signo_Mas.png" id="mas" 
                                              style="cursor:pointer; width: 30px; padding-top: 13px;" onclick="MasMenosCantidad<s:property value="#a.cestaId"/>('+',<s:property value="#a.cestaUnidades"/>,<s:property value="#a.cestaId"/>,<s:property value="#a.ropaStock.rostockUnidades"/>);"/>
-                                        <!--<div id="Stock_Excedido" class="Stock_Excedido">El límite de Stock para este artículo es de X unidades.</div>-->
                                     </s:form>
                                     <script>
                                         function MasMenosCantidad<s:property value="#a.cestaId"/>(valor, cantidad, id, stock) {
@@ -309,10 +308,10 @@
                                 </td>  
                             </tr>
                             <tr>
-                                <!--<td class="Importe_por_Prendas">--><td></td><td style="width:180px;">
+                                <td></td><td style="width:180px;">
                                     Importe por <s:property value="#a.cestaUnidades"/> prendas:
                                 </td>
-                                <!--<td class="Importe_por_PrendasNo">--><td>
+                                <td>
                                     <s:property value="getText('{0,number,##0.00}',{#a.cestaUnidades * (#a.ropaStock.ropa.roPrecio - (#a.ropaStock.ropa.roPrecio * #a.ropaStock.ropa.roDescuento / 100))})"/> €
                                 </td>
                             </tr>
@@ -444,6 +443,9 @@
                             </div>
                         </s:form>
                     </s:if>
+                    <s:else>
+                        <div id="cestaVacia">La cesta está vacía</div>
+                    </s:else>
                 </div>
             </div>
             <s:include value="tiendaFooter.jsp" />
