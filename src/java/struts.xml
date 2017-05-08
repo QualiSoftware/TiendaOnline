@@ -567,8 +567,11 @@
             <result>/Vistas/tiendaApadrina.jsp</result>
         </action>  
         
-        <action name="abrirEmail" class="Acciones.HomeUsuarios" method="abrirEmail"> 
-            <result type="redirect">listadoEmailUsuarios</result>
+        <action name="abrirEmail" class="Acciones.HomeUsuarios" method="abrirEmail">
+            <result type="redirectAction">
+                <param name="expresionHREF">${expresionHREF}</param>
+                <param name="actionName">listadoEmailUsuarios</param>
+            </result>
         </action>    
     </package>
 </struts>

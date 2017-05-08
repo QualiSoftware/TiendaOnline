@@ -45,7 +45,7 @@
                 if(j > 0){
                     document.getElementById('frmCheckbox').submit();
                 } else {
-                    alert("no se envía el email");
+                    document.getElementById('listadoVacio').style.display = 'block';
                 }
             }
         </script>
@@ -66,18 +66,36 @@
         </div>
         <div  class="linea"></div>
         <center>
-            <input type="checkbox" id="todos" onclick="marcarDesmarcarCheckbox(this);" checked/> Marcar/Desmarcar Todos
-            <br/><br/>
-            <s:form id="frmCheckbox" action="abrirEmail" method="POST" theme="simple">
-                <div id="" style="overflow:auto; height:100px; width: 300px; text-align: left;">
-                    <s:iterator var="a" value="lista_usuarios">
-                            <input type="checkbox" name="checkboxNombre" value="<s:property value="#a.usuEmail"/>" checked/>
-                            &nbsp;&nbsp
-                        <s:property value="#a.usuEmail"/><br/>
-                    </s:iterator>
+            <s:if test="expresionHREF == null">
+                <input type="checkbox" id="todos" onclick="marcarDesmarcarCheckbox(this);" checked/> Marcar/Desmarcar Todos
+                <br/><br/>
+                <s:form id="frmCheckbox" action="abrirEmail" method="POST" theme="simple">
+                    <div id="" style="overflow:auto; height:100px; width: 300px; text-align: left;">
+                        <s:iterator var="a" value="lista_usuarios">
+                                <input type="checkbox" name="checkboxNombre" value="<s:property value="#a.usuEmail"/>" checked/>
+                                &nbsp;&nbsp
+                            <s:property value="#a.usuEmail"/><br/>
+                        </s:iterator>
+                    </div>
+                        <input type="button" onclick="verificar();" value="Verificar listado" />
+                        <div id="listadoVacio" style="display:none; color: red;">Debe seleccionar al menos una dirección</div>
+                </s:form>
+            </s:if>
+            <s:if test="expresionHREF != null">
+                <div id="divEnviar">
+                    <p>Listado verificado con éxito!</p><br/>
+                    <a href=<s:property value="expresionHREF"/> id="enviarA" onclick="cerrarDivEnviar();" >Generar email</a>
                 </div>
-                <input type="button" onclick="verificar();" value="Generar email" />
-            </s:form>
+                <div id="divRecargarListado" style="display:none;">
+                    <a href="/TiendaOnline/Vistas/listadoEmailUsuarios.action">Recargar listado</a>
+                </div>
+            </s:if>
+                <script>
+                    function cerrarDivEnviar(){
+                        document.getElementById('divEnviar').style.display = 'none';
+                        document.getElementById('divRecargarListado').style.display = 'block';
+                    }
+                </script>
             <br/><br/>
             <table style="margin-bottom: 50px; margin-top: 0px;">
                 <s:form id="frm" action="listadoEmailUsuarios" method="POST" theme="simple">

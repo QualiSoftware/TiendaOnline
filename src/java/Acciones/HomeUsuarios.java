@@ -1,6 +1,5 @@
 package Acciones;
 
-import Modelos.Campania;
 import Modelos.Cesta;
 import Modelos.Facturas;
 import Modelos.Marcas;
@@ -12,8 +11,6 @@ import static com.opensymphony.xwork2.Action.SUCCESS;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.util.logging.Logger;
-import java.awt.Desktop;
-import java.net.URI;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -74,6 +71,7 @@ public class HomeUsuarios extends ActionSupport {
     private String mensajeConfirmacion;
     private String periodo;
     private String checkboxNombre;
+    private String expresionHREF;
 
     public Map getSesion() {
         return sesion;
@@ -201,6 +199,14 @@ public class HomeUsuarios extends ActionSupport {
 
     public void setCheckboxNombre(String checkboxNombre) {
         this.checkboxNombre = checkboxNombre;
+    }
+
+    public String getExpresionHREF() {
+        return expresionHREF;
+    }
+
+    public void setExpresionHREF(String expresionHREF) {
+        this.expresionHREF = expresionHREF;
     }
 
     public Map<String, String> getStateMap() {
@@ -912,14 +918,10 @@ public class HomeUsuarios extends ActionSupport {
         String checkboxArray[] = checkboxNombre.split(", ");
         String cco = "";
         for(String ca:checkboxArray){
-            cco = ca + ";";
+            cco += ca + ";";
         }
-        String ccoOK = cco.substring(0, cco.length()-1); 
-        Desktop desktop;
-        if (Desktop.isDesktopSupported() && (desktop = Desktop.getDesktop()).isSupported(Desktop.Action.MAIL)) {
-          URI mailto = new URI("mailto:"+Acciones.HomePropiedades.muestraValor("email.empresa")+"?bcc="+ccoOK);
-          desktop.mail(mailto);
-        }
+        String ccoOK = cco.substring(0, cco.length()-1);
+        expresionHREF = "mailto:"+Acciones.HomePropiedades.muestraValor("email.empresa")+"?bcc="+ccoOK;
         return SUCCESS;
     }
 }

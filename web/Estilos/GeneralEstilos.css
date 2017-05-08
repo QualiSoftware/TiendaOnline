@@ -255,3 +255,10 @@ td, th {
     top: 40%;
     z-index: 1000;    
 }
+#enviarA{
+    border:2px solid #808080;
+    border-radius: 5px;
+    background-color: lawngreen;
+    padding: 15px;
+    color: black;
+}
