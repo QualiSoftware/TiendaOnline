@@ -806,6 +806,7 @@ public class HomeUsuarios extends ActionSupport {
                 UsuAlta();
                 if(respuesta == 1){
                     modificaAdmin = "Modificación realizada correctamente";
+                    return ERROR;
                 }
             }
         }
