@@ -32,7 +32,7 @@
             window.onload = muestra_Cantidad;
         </script>
 
-        <title>My Look</title>       
+        <title>Super Look</title>       
     </head>
 
     <body>       
