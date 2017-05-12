@@ -67,4 +67,52 @@ function fijarLogin(valor){
         $('#login').css('display','none');
         verif=true;
     }                    
-};
+}
+function aceptar_cookies(){
+    var d = new Date();
+    d.setTime(d.getTime() + (365*24*60*60*1000));
+    var expires = "expires="+ d.toUTCString();
+    document.cookie = "cookieSL=cookieAccepted; expires="+ expires;
+    document.getElementById('cookies').style.display = 'none';
+}
+function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i <ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+function formarUsuario(d){
+    var salida = d.getFullYear()+'';
+    salida += agregaCero(d.getMonth()+1);
+    salida += agregaCero(d.getDate());
+    salida += agregaCero(d.getHours());
+    salida += agregaCero(d.getMinutes());
+    salida += agregaCero(d.getSeconds());
+    salida += agregaCero(d.getMilliseconds());
+    return salida;
+}
+function agregaCero(numero){
+    var resp = '';
+    if(numero<10){
+        resp += '0'+numero;
+    }else{
+        resp += numero;
+    }
+    return resp;
+}
+function crearUsuario(){
+    var d = new Date();
+    var user = formarUsuario(d);
+    d.setTime(d.getTime() + (30*24*60*60*1000));
+    var expires = "expires="+ d.toUTCString();
+    document.cookie = "userCookieSL="+user+"; expires="+ expires;    
+}

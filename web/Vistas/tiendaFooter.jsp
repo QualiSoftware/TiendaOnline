@@ -65,3 +65,18 @@
                 </div>
             </footer>
         </div>
+            <div id="cookies">
+                <p>Esta web utiliza cookies para obtener datos estadísticos de la navegación de sus usuarios. Si continúas navegando consideramos que aceptas su uso.
+                    <a href="#">Más información</a>
+                    <a onclick="aceptar_cookies();" style="cursor:pointer;">X Cerrar</a></p>
+            </div>
+        <script>
+            var cookieAceptada = getCookie('cookieSL');
+            if(cookieAceptada != ""){
+                document.getElementById('cookies').style.display = 'none';
+            }
+            var uc = getCookie('userCookieSL');
+            if(uc == ""){
+                crearUsuario();
+            }
+        </script>

@@ -63,12 +63,6 @@
             <result type="redirect">CategoriaFiltro</result>
         </action> 
         
-         <!--action de Cesta 
-       <action name="CrudActionCesta" class="Acciones.HomeCesta" method="CrudActionCesta">
-            <result>/Vistas/pruebaCRUDCestaFacuracion.jsp</result>
-            <result name="input">/Vistas/pruebaCRUDformularioUsuarios.jsp</result>
-            <result name="error">/Vistas/pruebaCRUDformularioUsuarios.jsp</result>
-        </action>-->
         <action name="volverCesta">
             <result type="redirect">CestaFiltro</result>
         </action>     
@@ -76,10 +70,7 @@
             <result>/Vistas/tiendaCesta.jsp</result>
             <result name="input" type="redirect">Tienda</result>
             <result name="error">/Vistas/paginaErrorFactura.jsp</result>
-        </action>        
-        <!--<action name="CargaEliminaCesta" class="Acciones.HomeCesta" method="CargaEliminaCesta">
-            <result>/Vistas/pruebaCRUDformularioUsuarios.jsp</result>           
-        </action>-->
+        </action>
         <action name="CrudActionUsuariosCesta" class="Acciones.HomeCesta" method="CrudActionUsuariosCesta">
             <result type="redirect">CestaFiltro</result>
             <result name="input" type="redirect">Tienda</result>
@@ -244,22 +235,6 @@
             <result type="redirect">MarcasFiltro</result>
         </action>
         
-        <!-- actions de Ropa 
-        <action name="RopaFiltro" class="Acciones.HomeRopa" method="RopaFiltro">
-            <result>/Vistas/pruebaCRUDprincipal.jsp</result>           
-        </action>
-        <action name="RopaForm" class="Acciones.HomeRopa" method="RopaForm">
-            <result>/Vistas/pruebaCRUDformulario.jsp</result>   
-        </action> 
-        <action name="CrudActionRopa" class="Acciones.HomeRopa" method="CrudActionRopa">
-            <result type="redirect">RopaFiltro</result>
-            <result name="input">/Vistas/pruebaCRUDformulario.jsp</result>
-            <result name="error">/Vistas/pruebaCRUDformulario.jsp</result>
-        </action>
-        <action name="volverRopa">
-            <result type="redirect">RopaFiltro</result>
-        </action>-->
-        
         <!-- actions de RopaAdmin -->
         <action name="RopaAdminFiltro" class="Acciones.HomeRopa" method="RopaFiltro">
             <result>/Vistas/CRUDropa.jsp</result>           
@@ -294,17 +269,6 @@
         <action name="volverRopaAdmin">
             <result type="redirect">RopaAdminFiltro</result>
         </action>
-        
-        <!-- actions de Ropa Usuario
-        <action name="RopaFiltroU" class="Acciones.HomeRopa" method="RopaFiltro">
-            <result>/Vistas/pruebaCRUDprincipalUsuarios.jsp</result>           
-        </action>        
-        <action name="RopaFormU" class="Acciones.HomeRopa" method="RopaForm">
-            <result>/Vistas/pruebaCRUDformularioUsuarios.jsp</result>   
-        </action>
-        <action name="volverRopaU">
-            <result type="redirect">RopaFiltroU</result>
-        </action>-->
         
         <!-- actions de Subcategoria -->
         <action name="SubcategoriasFiltro" class="Acciones.HomeSubcategorias" method="SubcategoriasFiltro">
@@ -408,20 +372,6 @@
             <result name="input" type="redirect">Tienda</result>
         </action>
         
-<!--        <action name="Login" class="Acciones.HomeUsuariosValidaciones" method="Login">
-            <result name="input">/Vistas/pruebaCRUDprincipalUsuarios.jsp</result>
-            <result name="error">/Vistas/pruebaCRUDprincipalUsuarios.jsp</result>
-            <result type="redirect">RopaFiltroU</result>
-        </action>
-        <action name="CerrarSesion" class="Acciones.HomeUsuariosValidaciones" method="CerrarSesion">
-            <result type="redirect">RopaFiltroU</result>
-        </action>-->
-        
-        <!-- actions de Pago -->
-        <!-- factura y formalizacion de pago 
-        <action name="FormalizaFactura" class="Acciones.HomeCesta" method="FormalizaFactura">
-            <result>/Vistas/pruebaFormalizaFacturaUsuario.jsp</result>   
-        </action> -->
         <!-- pagar y envia correo -->
         <action name="Pagar" class="Acciones.HomeCesta" method="Pagar">
             <result>/Vistas/paginaPagar.jsp</result>

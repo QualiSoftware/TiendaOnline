@@ -27,7 +27,7 @@
         parameter.put("clave", ""+request.getAttribute("clave"));
         byte[] bytes = JasperRunManager.runReportToPdf(reportfile.getPath(), parameter,con);
         
-        //Las líneas que siguen me ayudan a que se redirija a pruebaPagarConfirmacion... no sé por qué
+        //Las líneas que siguen me ayudan a que se redirija a paginaPagarConfirmacion... no sé por qué
         String txt = "Confirmacion.txt";
         String rutaOut = application.getRealPath("")+System.getProperty("file.separator")+
                 "Archivos"+System.getProperty("file.separator")+txt;

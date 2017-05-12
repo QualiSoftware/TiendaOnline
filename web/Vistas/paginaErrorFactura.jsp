@@ -1,7 +1,7 @@
 <%-- 
-    Document   : pruebaErrorFactura
+    Document   : paginaErrorFactura
     Created on : 12-feb-2017, 12:26:47
-    Author     : Damian
+    Author     : QualiSoftware
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

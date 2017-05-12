@@ -327,12 +327,5 @@
         </center>
         </div>
         <s:include value="tiendaFooter.jsp" />
-        <div id="cookies">
-            <div id="cookies">
-                <p>Esta web utiliza cookies para obtener datos estadísticos de la navegación de sus usuarios. Si continúas navegando consideramos que aceptas su uso.
-                    <a href="http://luislo.esy.es/politica-privacidad.php">Más información</a>
-                    <a onclick="aceptar_cookies();" style="cursor:pointer;">X Cerrar</a></p>
-            </div>
-        </div>
     </body>
 </html>
