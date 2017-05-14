@@ -310,7 +310,9 @@
             </div>
             <div class="linea" style="height: 3px;"></div>
             
-            <!--Acá va el contenido de esta página-->
+            <s:iterator var="a" value= "lista_favoritos">
+                <s:property value="#a.ropa.roDescripcion"/>;&nbsp;
+            </s:iterator>
             
         </div>
         <s:include value="tiendaFooter.jsp" />

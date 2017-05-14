@@ -300,31 +300,33 @@
                 </ul>                
             </div>
             <div class="linea" style="height: 3px;"></div>
-            <div id="contenido"><br>
-                <div id="campañas_Titulo">
-                    CAMPAÑAS</div>
-                <div id="campagnas" >
-                    <s:iterator var="a" value="lista_campaniasTienda">
-                        <s:a action="TiendaMenu">
-                            <table style="height: 250px; width: 350px;" class="imgproducto" >                        
-                                <tr>
-                                    <td class="descuento"><span class="descuento_Txt">¡<s:property value="#a.camDescuento"/>% de Descuento!</span><span class="validez_Txt">Hasta el <s:date name="#a.camFin" format="dd/MM/yyyy"/></span></td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <s:if test="#a.camFoto != ''">
-                                            <img style="height: 250px; width: 350px;" id="prueba" onmouseover="this.style.cssText='opacity: 0.5; box-shadow: 5px 5px 5px black; -webkit-transition: 0.5s;'" onmouseout="this.style.cssText='opacity: 1; -webkit-transform: scale(1); -webkit-transition: 0.5s; box-shadow: 0px 0px 0px white;'" src="../Imagenes/Campanias/<s:property value="#a.camFoto"/>" alt="<s:property value="#a.camNombre"/>"/>
-                                        </s:if>
-                                    </td>
-                                </tr>                        
-                            </table>
-                            <s:param name="campania" value="#a.camId"/>
-                        </s:a>
-                    </s:iterator>
-                </div>
-                <!--<div style="height: 50px; width: 40px; color: black; padding-top: 25px;">asdf</div>-->
-                <div class="linea" style="padding-top: 50px; background-color: white;"></div>
-                <div class="linea" style="height: 3px;"></div>
+            <div id="contenido">
+                <s:if test="lista_campaniasTienda.size > 0">
+                    <br>
+                    <div id="campañas_Titulo">
+                        CAMPAÑAS</div>
+                    <div id="campagnas" >
+                        <s:iterator var="a" value="lista_campaniasTienda">
+                            <s:a action="TiendaMenu">
+                                <table style="height: 250px; width: 350px;" class="imgproducto" >                        
+                                    <tr>
+                                        <td class="descuento"><span class="descuento_Txt">¡<s:property value="#a.camDescuento"/>% de Descuento!</span><span class="validez_Txt">Hasta el <s:date name="#a.camFin" format="dd/MM/yyyy"/></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <s:if test="#a.camFoto != ''">
+                                                <img style="height: 250px; width: 350px;" id="prueba" onmouseover="this.style.cssText='opacity: 0.5; box-shadow: 5px 5px 5px black; -webkit-transition: 0.5s;'" onmouseout="this.style.cssText='opacity: 1; -webkit-transform: scale(1); -webkit-transition: 0.5s; box-shadow: 0px 0px 0px white;'" src="../Imagenes/Campanias/<s:property value="#a.camFoto"/>" alt="<s:property value="#a.camNombre"/>"/>
+                                            </s:if>
+                                        </td>
+                                    </tr>                        
+                                </table>
+                                <s:param name="campania" value="#a.camId"/>
+                            </s:a>
+                        </s:iterator>
+                    </div>
+                    <div class="linea" style="padding-top: 50px; background-color: white;"></div>
+                    <div class="linea" style="height: 3px;"></div>
+                </s:if>
                 <div id="marcas_Titulo">
                     MARCAS
                 </div>

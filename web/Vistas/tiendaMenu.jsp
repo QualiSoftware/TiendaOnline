@@ -29,7 +29,7 @@
         <!-- Validación usuarios-->
         <script src="../Scripts/ValidacionUsuario.js" type="text/javascript"></script>              
         <script>
-            window.onload = muestra_Cantidad;            
+            window.onload = muestra_Cantidad;           
         </script>
         <title>
             <s:if test="(marca==null && clientela!=null) || (marca=='' && clientela!='')"><s:property value="categoriaNombre"/> <s:property value="clientelaNombre"/></s:if>
@@ -434,19 +434,35 @@
                                                 </table>
                                             </div>
                                         </div>
-                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                        <img src="../Imagenes/Administracion/bRTdpoqi9.png" title="Аñadir a Favoritos" style="box-shadow:  0px 0px 0px;"/>
-                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                        <s:a action="RopaPopUp">
+                                        <s:form id="frmFavoritos" action="favoritos" theme="simple">
+                                            <input type="hidden" name="cliCodigo" value="<s:property value="%{cliCodigo}"/>"/>
+                                            <input type="hidden" name="catCodigo" value="<s:property value="%{catCodigo}"/>"/>
+                                            <input type="hidden" name="marca" value="<s:property value="%{marca}"/>"/>
+                                            <input type="hidden" name="campania" value="<s:property value="campania"/>"/>
+                                            <input type="hidden" name="roId" value="<s:property value="#m.roId"/>"/>
+                                            <input type="hidden" name="userCookieSL" id="userCookieSL"/>
+                                            <script>
+                                                var ucMenu = getCookie('userCookieSL');
+                                                document.getElementById('userCookieSL').value = ucMenu;
+                                            </script>
+                                            <img src="../Imagenes/Administracion/bRTdpoqi9.png" title="Аñadir a Favoritos" 
+                                                 style="box-shadow:  0px 0px 0px;" onclick=" enviarFavoritos();"/>
+                                        </s:form>
+                                        <script>
+                                            function enviarFavoritos(){
+                                                document.getElementById('frmFavoritos').submit();
+                                            }
+                                        </script>
+                                        <!--<s:a action="RopaPopUp">
                                             <s:param name="cliCodigo" value="%{cliCodigo}"/>
                                             <s:param name="catCodigo" value="%{catCodigo}"/>
                                             <s:param name="marca" value="%{marca}"/>
                                             <s:param name="campania" value="campania"/>
                                             <s:param name="roId" value="#m.roId"/>
                                             <img src="../Imagenes/Administracion/shopping-basket-xxl.png" title="Añadir a la Cesta" style="box-shadow: 0px 0px 0px;">
-                                        </s:a>
-                                            <br>
-                                        <span style="color: white">Vista &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Favoritos&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cesta</span>
+                                        </s:a>-->
+                                        <!--<br>-->
+                                        <span style="color: white">Vista&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Favoritos&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!--Cesta-->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                                     </div>
                                 </td>
                             </tr>

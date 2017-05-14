@@ -489,10 +489,20 @@
             <result name="error" type="redirect">Tienda</result>    
         </action>
         
-        <action name="listaDeseos" class="Acciones.HomeRopa" method="RopaFiltro">
+        <action name="listaDeseos" class="Acciones.HomeFavoritos" method="listaDeseos">
             <result>/Vistas/tiendaListaDeseos.jsp</result>  
             <result name="input" type="redirect">Tienda</result>  
             <result name="error" type="redirect">Tienda</result>    
+        </action>
+        
+        <action name="favoritos" class="Acciones.HomeFavoritos" method="insertarFavoritos">
+            <result type="redirectAction">
+                <param name="cliCodigo">${cliCodigo}</param>
+                <param name="catCodigo">${catCodigo}</param>
+                <param name="marca">${marca}</param>
+                <param name="campania">${campania}</param>                     
+                <param name="actionName">TiendaMenu</param>
+            </result>
         </action>
         
         <action name="listadoEmailUsuarios" class="Acciones.HomeUsuarios" method="listadoEmailUsuarios">
