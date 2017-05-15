@@ -28,6 +28,7 @@ public class HomeFavoritos extends ActionSupport {
     private Map sesion;
     private String usi;
     private Usuarios u;
+    private NoLogUsuarios nlu;
     private String filtro;
     private ArrayList<Ropa> lista_ropa,lista_menu_ropa;
     private List<Campania> lista_campanias;
@@ -38,6 +39,7 @@ public class HomeFavoritos extends ActionSupport {
     private int totalcestaUsuario = 0;
     private String roId;
     private List<Favoritos> lista_favoritos;
+    private List<NoLogFavoritos> lista_favoritosNoLog;
     private String userCookieSL;
     //necesarios para cargar tiendaMenu.jsp
     private String cliCodigo;
@@ -69,6 +71,14 @@ public class HomeFavoritos extends ActionSupport {
 
     public void setU(Usuarios u) {
         this.u = u;
+    }
+
+    public NoLogUsuarios getNlu() {
+        return nlu;
+    }
+
+    public void setNlu(NoLogUsuarios nlu) {
+        this.nlu = nlu;
     }
 
     public String getFiltro() {
@@ -159,6 +169,14 @@ public class HomeFavoritos extends ActionSupport {
         this.lista_favoritos = lista_favoritos;
     }
 
+    public List<NoLogFavoritos> getLista_favoritosNoLog() {
+        return lista_favoritosNoLog;
+    }
+
+    public void setLista_favoritosNoLog(List<NoLogFavoritos> lista_favoritosNoLog) {
+        this.lista_favoritosNoLog = lista_favoritosNoLog;
+    }
+
     public String getUserCookieSL() {
         return userCookieSL;
     }
@@ -211,6 +229,9 @@ public class HomeFavoritos extends ActionSupport {
         cargarDatos();
         if(!usi.equals("")){
             lista_favoritos = ControladoresDAO.cFavoritos.recuperaPorUsuario(u);
+        } else {
+            cargarUsuarioNoLogueado(sesion);
+            lista_favoritosNoLog = ControladoresDAO.cFavoritosNoLog.recuperaPorUsuario(nlu);
         }
         return SUCCESS;
     }
@@ -230,23 +251,7 @@ public class HomeFavoritos extends ActionSupport {
                 }
             }
         }
-        NoLogUsuarios nlu = null;
-        if(sesion.get("cookieLogueado") == null){
-            List<NoLogUsuarios> nluList = ControladoresDAO.cUsuariosNoLog.recuperaPorNick(userCookieSL);
-            if(nluList.size() > 0){
-                nlu = nluList.get(0);
-            } else {
-                nlu = new NoLogUsuarios(userCookieSL, new Date());
-                int resp = ControladoresDAO.cUsuariosNoLog.Inserta(nlu);
-                if(resp == 1){
-                    sesion.put("cookieLogueado", (NoLogUsuarios) nlu);
-                } else {
-                    System.out.println("Error al grabar usuario no loqueado");
-                }
-            }
-        } else {
-            nlu = (NoLogUsuarios) sesion.get("cookieLogueado");
-        }
+        cargarUsuarioNoLogueado(sesion);
         boolean noLoTenia = true;
         if(!usi.equals("")){
             lista_favoritos = ControladoresDAO.cFavoritos.recuperaPorUsuario(u);
@@ -326,6 +331,25 @@ public class HomeFavoritos extends ActionSupport {
             for(Fotos fotos:caux.getRopaStock().getRopa().getFotoses()){
                 fotos.getFotosRuta();
             }
+        }
+    }
+
+    private void cargarUsuarioNoLogueado(Map sesion) {
+        if(sesion.get("cookieLogueado") == null){
+            List<NoLogUsuarios> nluList = ControladoresDAO.cUsuariosNoLog.recuperaPorNick(userCookieSL);
+            if(nluList.size() > 0){
+                nlu = nluList.get(0);
+            } else {
+                nlu = new NoLogUsuarios(userCookieSL, new Date());
+                int resp = ControladoresDAO.cUsuariosNoLog.Inserta(nlu);
+                if(resp == 1){
+                    sesion.put("cookieLogueado", (NoLogUsuarios) nlu);
+                } else {
+                    System.out.println("Error al grabar usuario no loqueado");
+                }
+            }
+        } else {
+            nlu = (NoLogUsuarios) sesion.get("cookieLogueado");
         }
     }
 }

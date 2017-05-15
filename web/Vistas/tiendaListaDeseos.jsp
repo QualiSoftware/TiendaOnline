@@ -313,6 +313,9 @@
             <s:iterator var="a" value= "lista_favoritos">
                 <s:property value="#a.ropa.roDescripcion"/>;&nbsp;
             </s:iterator>
+            <s:iterator var="b" value= "lista_favoritosNoLog">
+                <s:property value="#b.ropa.roDescripcion"/>;&nbsp;
+            </s:iterator>
             
         </div>
         <s:include value="tiendaFooter.jsp" />

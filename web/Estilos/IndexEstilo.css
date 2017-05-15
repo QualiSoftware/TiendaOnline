@@ -271,6 +271,7 @@ select:-webkit-autofill:focus {
     margin-left: 980px;
     margin-top: -13px;
     color: white;
+    cursor: pointer;
 }
 #lista_Deseos_Txt{
     color: black;

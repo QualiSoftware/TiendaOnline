@@ -116,3 +116,6 @@ function crearUsuario(){
     var expires = "expires="+ d.toUTCString();
     document.cookie = "userCookieSL="+user+"; expires="+ expires;    
 }
+function enviarListaDeseos(){
+    document.getElementById('frmListaDeseos').submit();
+}

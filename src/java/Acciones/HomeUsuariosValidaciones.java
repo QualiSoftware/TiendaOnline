@@ -1,5 +1,9 @@
 package Acciones;
 
+import Modelos.Favoritos;
+import Modelos.FavoritosId;
+import Modelos.NoLogFavoritos;
+import Modelos.NoLogUsuarios;
 import Modelos.Usuarios;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
@@ -173,6 +177,27 @@ public class HomeUsuariosValidaciones extends ActionSupport{
                     sesion=ActionContext.getContext().getSession();
                 }
                 sesion.put("usuarioLogueado", (Usuarios) l.get(0));
+                if(sesion.get("cookieLogueado") != null && usuario.getUsuAdministrador() != 1){
+                    NoLogUsuarios nlu = (NoLogUsuarios) sesion.get("cookieLogueado");
+                    //Traslado Favoritos desde acá
+                    List<NoLogFavoritos> lista_nlu = ControladoresDAO.cFavoritosNoLog.recuperaPorUsuario(nlu);
+                    List<Favoritos> lista_u = ControladoresDAO.cFavoritos.recuperaPorUsuario(usuario);
+                    for(NoLogFavoritos favoritosNLU:lista_nlu){
+                        boolean noEstaba = true;
+                        for(Favoritos favoritosU:lista_u){
+                            if(favoritosNLU.getRopa().getRoId() == favoritosU.getRopa().getRoId()){
+                                noEstaba = false;
+                            }
+                        }
+                        if(noEstaba){
+                            FavoritosId favId = new FavoritosId(favoritosNLU.getRopa().getRoId(), usuario.getUsuId());
+                            Favoritos fav = new Favoritos(favId, favoritosNLU.getRopa(), usuario);
+                            ControladoresDAO.cFavoritos.Inserta(fav);
+                        }
+                        ControladoresDAO.cFavoritosNoLog.Elimina(favoritosNLU);
+                    }
+                    //Traslado Favoritos hasta acá
+                }
                 return SUCCESS;
             }else{
                 mensajeError="Usuario inactivo";

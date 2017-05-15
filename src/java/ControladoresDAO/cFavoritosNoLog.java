@@ -37,4 +37,21 @@ public class cFavoritosNoLog {
         } 
     }
     
+    public static int  Elimina(NoLogFavoritos f){
+        sesion = (Session) NewHibernateUtil.getSessionModif();
+        sesion.beginTransaction();
+        try{
+            if(f!=null){
+                sesion.delete(f);
+                sesion.getTransaction().commit();
+                return 1;
+            }
+                return -1;
+        }catch(Exception ex){
+            System.out.println(ex.getMessage());
+            sesion.getTransaction().rollback();
+            return -1;
+        } 
+    }
+    
 }
