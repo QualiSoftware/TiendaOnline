@@ -6,12 +6,17 @@ import Modelos.Favoritos;
 import Modelos.FavoritosId;
 import Modelos.Fotos;
 import Modelos.Marcas;
+import Modelos.NoLogFavoritos;
+import Modelos.NoLogFavoritosId;
+import Modelos.NoLogUsuarios;
 import Modelos.Ropa;
 import Modelos.Usuarios;
+import com.itextpdf.text.log.SysoLogger;
 import static com.opensymphony.xwork2.Action.SUCCESS;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -31,12 +36,13 @@ public class HomeFavoritos extends ActionSupport {
     private List<Marcas> lista_marcasTienda;
     private ArrayList<Cesta> lista_ropa_Cestas;
     private int totalcestaUsuario = 0;
-    private int roId;
+    private String roId;
     private List<Favoritos> lista_favoritos;
     private String userCookieSL;
     //necesarios para cargar tiendaMenu.jsp
     private String cliCodigo;
     private String catCodigo;
+    private String marcaFavoritos;
     private String marca;
     private String campania;
     
@@ -137,11 +143,11 @@ public class HomeFavoritos extends ActionSupport {
         this.totalcestaUsuario = totalcestaUsuario;
     }
 
-    public int getRoId() {
+    public String getRoId() {
         return roId;
     }
 
-    public void setRoId(int roId) {
+    public void setRoId(String roId) {
         this.roId = roId;
     }
 
@@ -175,6 +181,14 @@ public class HomeFavoritos extends ActionSupport {
 
     public void setCatCodigo(String catCodigo) {
         this.catCodigo = catCodigo;
+    }
+
+    public String getMarcaFavoritos() {
+        return marcaFavoritos;
+    }
+
+    public void setMarcaFavoritos(String marcaFavoritos) {
+        this.marcaFavoritos = marcaFavoritos;
     }
 
     public String getMarca() {
@@ -216,24 +230,52 @@ public class HomeFavoritos extends ActionSupport {
                 }
             }
         }
+        NoLogUsuarios nlu = null;
         if(sesion.get("cookieLogueado") == null){
-            
+            List<NoLogUsuarios> nluList = ControladoresDAO.cUsuariosNoLog.recuperaPorNick(userCookieSL);
+            if(nluList.size() > 0){
+                nlu = nluList.get(0);
+            } else {
+                nlu = new NoLogUsuarios(userCookieSL, new Date());
+                int resp = ControladoresDAO.cUsuariosNoLog.Inserta(nlu);
+                if(resp == 1){
+                    sesion.put("cookieLogueado", (NoLogUsuarios) nlu);
+                } else {
+                    System.out.println("Error al grabar usuario no loqueado");
+                }
+            }
+        } else {
+            nlu = (NoLogUsuarios) sesion.get("cookieLogueado");
         }
+        boolean noLoTenia = true;
         if(!usi.equals("")){
             lista_favoritos = ControladoresDAO.cFavoritos.recuperaPorUsuario(u);
-            boolean noLoTenia = true;
             for(Favoritos favoritosList:lista_favoritos){
-                if(favoritosList.getRopa().getRoId() == roId){
+                if(favoritosList.getRopa().getRoId() == Integer.parseInt(roId)){
                     noLoTenia = false;
                 }
             }
             if(noLoTenia){
-                Ropa ropa = ControladoresDAO.cRopa.RecuperaPorId(roId);
+                Ropa ropa = ControladoresDAO.cRopa.RecuperaPorId(Integer.parseInt(roId));
                 FavoritosId favoritosId = new FavoritosId(ropa.getRoId(), u.getUsuId());
                 Favoritos favoritos = new Favoritos(favoritosId,ropa, u);
                 ControladoresDAO.cFavoritos.Inserta(favoritos);
             }
+        } else {            
+            List<NoLogFavoritos> lista_nlu = ControladoresDAO.cFavoritosNoLog.recuperaPorUsuario(nlu);
+            for(NoLogFavoritos favoritosList:lista_nlu){
+                if(favoritosList.getRopa().getRoId() == Integer.parseInt(roId)){
+                    noLoTenia = false;
+                }
+            }
+            if(noLoTenia){
+                Ropa ropa = ControladoresDAO.cRopa.RecuperaPorId(Integer.parseInt(roId));
+                NoLogFavoritosId favoritosId = new NoLogFavoritosId(ropa.getRoId(), nlu.getNluUsuId());
+                NoLogFavoritos favoritos = new NoLogFavoritos(favoritosId,nlu,ropa);
+                ControladoresDAO.cFavoritosNoLog.Inserta(favoritos);
+            }
         }
+        marca = marcaFavoritos;
         return SUCCESS;
     }
     

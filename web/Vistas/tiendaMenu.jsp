@@ -29,7 +29,28 @@
         <!-- Validación usuarios-->
         <script src="../Scripts/ValidacionUsuario.js" type="text/javascript"></script>              
         <script>
-            window.onload = muestra_Cantidad;           
+            window.onload = muestra_Cantidad;
+            
+            function enviarCli(cli,cat,ro){
+                enviarFavoritos(cli,cat,0,0,ro);
+            }
+            function enviarMarca(marca,ro){
+                enviarFavoritos(0,0,marca,0,ro);
+            }
+            function enviarCampania(campania,ro){
+                enviarFavoritos(0,0,0,campania,ro);
+            }
+            function enviarTodo(ro){
+                enviarFavoritos(0,0,0,0,ro);
+            }
+            function enviarFavoritos(cli,cat,mar,cam,ro){
+                document.getElementById('cliCodigo').value = cli;
+                document.getElementById('catCodigo').value = cat;
+                document.getElementById('marcaFavoritos').value = mar;
+                document.getElementById('campania').value = cam;
+                document.getElementById('roId').value = ro;
+                document.getElementById('frmFavoritos').submit();
+            }
         </script>
         <title>
             <s:if test="(marca==null && clientela!=null) || (marca=='' && clientela!='')"><s:property value="categoriaNombre"/> <s:property value="clientelaNombre"/></s:if>
@@ -320,15 +341,15 @@
             <div id="contenido">
                 <div id="ruta_Navegacion">
                     <s:a action="Tienda">Inicio</s:a> > 
-                    <s:if test="(marca==null && cliCodigo!=null) || (marca=='' && cliCodigo!='')"><s:property value="categoriaNombre"/> <s:property value="clientelaNombre"/></s:if>
-                    <s:elseif test="(marca==null && cliCodigo==null && campania==null) || (marca=='' && cliCodigo=='' && campania=='')">Todas las ventas</s:elseif>
-                    <s:elseif test="(marca==null && campania!=null) || (marca=='' && campania!='')"><s:property value="campaniaNombre"/></s:elseif>
+                    <s:if test="(marca==null && cliCodigo!=null) || (marca=='' && cliCodigo!='') || (marca==0 && cliCodigo!=0)"><s:property value="categoriaNombre"/> <s:property value="clientelaNombre"/></s:if>
+                    <s:elseif test="(marca==null && cliCodigo==null && campania==null) || (marca=='' && cliCodigo=='' && campania=='') || (marca==0 && cliCodigo==0 && campania==0)">Todas las ventas</s:elseif>
+                    <s:elseif test="(marca==null && campania!=null) || (marca=='' && campania!='') || (marca==0 && campania!=0)"><s:property value="campaniaNombre"/></s:elseif>
                     <s:else><s:property value="marcaNom"/></s:else>
                 </div>
                 <div id="nombre_Categoria">
-                    <s:if test="(marca==null && cliCodigo!=null) || (marca=='' && cliCodigo!='')"><s:property value="categoriaNombre"/> <s:property value="clientelaNombre"/></s:if>
-                    <s:elseif test="(marca==null && cliCodigo==null && campania==null) || (marca=='' && cliCodigo=='' && campania=='')">Todos nuestros productos</s:elseif>
-                    <s:elseif test="(marca==null && campania!=null) || (marca=='' && campania!='')">Las campañas más exclusivas</s:elseif>
+                    <s:if test="(marca==null && cliCodigo!=null) || (marca=='' && cliCodigo!='') || (marca==0 && cliCodigo!=0)"><s:property value="categoriaNombre"/> <s:property value="clientelaNombre"/></s:if>
+                    <s:elseif test="(marca==null && cliCodigo==null && campania==null) || (marca=='' && cliCodigo=='' && campania=='') || (marca==0 && cliCodigo==0 && campania==0)">Todos nuestros productos</s:elseif>
+                    <s:elseif test="(marca==null && campania!=null) || (marca=='' && campania!='') || (marca==0 && campania!=0)">Las campañas más exclusivas</s:elseif>
                     <s:else>Las marcas que están de moda</s:else>
                 </div>
                 <div id="productos" style="margin-top: 50px;">
@@ -435,24 +456,33 @@
                                             </div>
                                         </div>
                                         <s:form id="frmFavoritos" action="favoritos" theme="simple">
-                                            <input type="hidden" name="cliCodigo" value="<s:property value="%{cliCodigo}"/>"/>
-                                            <input type="hidden" name="catCodigo" value="<s:property value="%{catCodigo}"/>"/>
-                                            <input type="hidden" name="marca" value="<s:property value="%{marca}"/>"/>
-                                            <input type="hidden" name="campania" value="<s:property value="campania"/>"/>
-                                            <input type="hidden" name="roId" value="<s:property value="#m.roId"/>"/>
+                                            <input type="hidden" name="cliCodigo" id="cliCodigo"/>
+                                            <input type="hidden" name="catCodigo" id="catCodigo"/>
+                                            <input type="hidden" name="marcaFavoritos" id="marcaFavoritos"/>
+                                            <input type="hidden" name="campania" id="campania"/>
+                                            <input type="hidden" name="roId" id="roId"/>
                                             <input type="hidden" name="userCookieSL" id="userCookieSL"/>
                                             <script>
                                                 var ucMenu = getCookie('userCookieSL');
                                                 document.getElementById('userCookieSL').value = ucMenu;
                                             </script>
-                                            <img src="../Imagenes/Administracion/bRTdpoqi9.png" title="Аñadir a Favoritos" 
-                                                 style="box-shadow:  0px 0px 0px;" onclick=" enviarFavoritos();"/>
+                                            <s:if test="cliCodigo != null">
+                                                <img src="../Imagenes/Administracion/bRTdpoqi9.png" title="Аñadir a Favoritos" 
+                                                     style="box-shadow:  0px 0px 0px;" onclick=" enviarCli(<s:property value="%{cliCodigo}"/>,<s:property value="%{catCodigo}"/>,<s:property value="#m.roId"/>);"/>                                                
+                                            </s:if>
+                                            <s:elseif test="marca != null">
+                                                <img src="../Imagenes/Administracion/bRTdpoqi9.png" title="Аñadir a Favoritos" 
+                                                     style="box-shadow:  0px 0px 0px;" onclick=" enviarMarca(<s:property value="%{marca}"/>,<s:property value="#m.roId"/>);"/>                                                
+                                            </s:elseif>
+                                            <s:elseif test="campania != null">
+                                                <img src="../Imagenes/Administracion/bRTdpoqi9.png" title="Аñadir a Favoritos" 
+                                                     style="box-shadow:  0px 0px 0px;" onclick=" enviarCampania(<s:property value="campania"/>,<s:property value="#m.roId"/>);"/>                                                
+                                            </s:elseif>
+                                            <s:else>
+                                                <img src="../Imagenes/Administracion/bRTdpoqi9.png" title="Аñadir a Favoritos" 
+                                                     style="box-shadow:  0px 0px 0px;" onclick=" enviarTodo(<s:property value="#m.roId"/>);"/>                                                
+                                            </s:else>
                                         </s:form>
-                                        <script>
-                                            function enviarFavoritos(){
-                                                document.getElementById('frmFavoritos').submit();
-                                            }
-                                        </script>
                                         <!--<s:a action="RopaPopUp">
                                             <s:param name="cliCodigo" value="%{cliCodigo}"/>
                                             <s:param name="catCodigo" value="%{catCodigo}"/>

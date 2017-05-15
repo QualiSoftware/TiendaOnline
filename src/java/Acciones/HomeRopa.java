@@ -990,15 +990,15 @@ public class HomeRopa extends ActionSupport {
         if (filtro == null || filtro.equals("null")) {
             filtro = "";
         }
-        if ((marca == null || marca.equals("")) && (cliCodigo == null || cliCodigo.equals("")) && (campania == null || campania.equals(""))) {            
+        if ((marca == null || marca.equals("") || marca.equals("0")) && (cliCodigo == null || cliCodigo.equals("") || cliCodigo.equals("0")) && (campania == null || campania.equals("") || campania.equals("0"))) {            
             lista_ropa = ControladoresDAO.cRopa.RecuperaTodos(filtro,"categoria.catDescripcion","","","1");
-        }else if((marca == null || marca.equals("")) && (campania == null || campania.equals(""))){
+        }else if((marca == null || marca.equals("") || marca.equals("0")) && (campania == null || campania.equals("") || campania.equals("0"))){
             lista_ropa = ControladoresDAO.cRopa.RecuperaClientelaCategoria(cliCodigo, catCodigo,filtro);
             Clientela cli = ControladoresDAO.cClientela.RecuperaPorId(Integer.parseInt(cliCodigo));
             clientelaNombre = cli.getClientelaDescripcion();
             Categoria cat = ControladoresDAO.cCategorias.RecuperaPorId(Integer.parseInt(catCodigo));
             categoriaNombre = cat.getCatDescripcion();
-        }else if(marca == null || marca.equals("")){
+        }else if(marca == null || marca.equals("") || marca.equals("0")){
             List <Integer> listaRoId = ControladoresDAO.cCampaniasRopa.RecuperaRopaPorCampania(Integer.parseInt(campania));
             for(Integer lroid:listaRoId){
                 //Desde acá hasta donde termina el for que está abajo lo único que hacen es cargar datos en memoria

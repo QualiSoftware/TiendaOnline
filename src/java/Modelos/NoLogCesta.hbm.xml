@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 14-may-2017 23:58:04 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Modelos.NoLogCesta" table="no_log_cesta" catalog="tienda_ropa" optimistic-lock="version">
+        <id name="nlcId" type="java.lang.Integer">
+            <column name="nlc_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="noLogUsuarios" class="Modelos.NoLogUsuarios" fetch="select">
+            <column name="nlc_nlu_usu_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="ropaStock" class="Modelos.RopaStock" fetch="select">
+            <column name="nlc_rostock_id" not-null="true" />
+        </many-to-one>
+        <property name="nlcUnidades" type="int">
+            <column name="nlc_unidades" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

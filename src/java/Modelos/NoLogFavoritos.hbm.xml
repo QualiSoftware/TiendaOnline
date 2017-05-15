@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 14-may-2017 23:58:04 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Modelos.NoLogFavoritos" table="no_log_favoritos" catalog="tienda_ropa" optimistic-lock="version">
+        <composite-id name="id" class="Modelos.NoLogFavoritosId">
+            <key-property name="nlfRoId" type="int">
+                <column name="nlf_ro_id" />
+            </key-property>
+            <key-property name="nlfNluUsuId" type="int">
+                <column name="nlf_nlu_usu_id" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="noLogUsuarios" class="Modelos.NoLogUsuarios" update="false" insert="false" fetch="select">
+            <column name="nlf_nlu_usu_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="ropa" class="Modelos.Ropa" update="false" insert="false" fetch="select">
+            <column name="nlf_ro_id" not-null="true" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

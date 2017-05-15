@@ -1,5 +1,5 @@
 package Modelos;
-// Generated 01-may-2017 15:08:18 by Hibernate Tools 4.3.1
+// Generated 14-may-2017 23:58:02 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -18,6 +18,7 @@ public class RopaStock  implements java.io.Serializable {
      private Tallas tallas;
      private int rostockUnidades;
      private Date rostockFecha;
+     private Set<NoLogCesta> noLogCestas = new HashSet<NoLogCesta>(0);
      private Set<Cesta> cestas = new HashSet<Cesta>(0);
 
     public RopaStock() {
@@ -31,12 +32,13 @@ public class RopaStock  implements java.io.Serializable {
         this.rostockUnidades = rostockUnidades;
         this.rostockFecha = rostockFecha;
     }
-    public RopaStock(Color color, Ropa ropa, Tallas tallas, int rostockUnidades, Date rostockFecha, Set<Cesta> cestas) {
+    public RopaStock(Color color, Ropa ropa, Tallas tallas, int rostockUnidades, Date rostockFecha, Set<NoLogCesta> noLogCestas, Set<Cesta> cestas) {
        this.color = color;
        this.ropa = ropa;
        this.tallas = tallas;
        this.rostockUnidades = rostockUnidades;
        this.rostockFecha = rostockFecha;
+       this.noLogCestas = noLogCestas;
        this.cestas = cestas;
     }
    
@@ -81,6 +83,13 @@ public class RopaStock  implements java.io.Serializable {
     
     public void setRostockFecha(Date rostockFecha) {
         this.rostockFecha = rostockFecha;
+    }
+    public Set<NoLogCesta> getNoLogCestas() {
+        return this.noLogCestas;
+    }
+    
+    public void setNoLogCestas(Set<NoLogCesta> noLogCestas) {
+        this.noLogCestas = noLogCestas;
     }
     public Set<Cesta> getCestas() {
         return this.cestas;

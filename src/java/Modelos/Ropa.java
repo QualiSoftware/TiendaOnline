@@ -1,5 +1,5 @@
 package Modelos;
-// Generated 01-may-2017 15:08:18 by Hibernate Tools 4.3.1
+// Generated 14-may-2017 23:58:02 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -27,6 +27,7 @@ public class Ropa  implements java.io.Serializable {
      private Set<RopaStock> ropaStocks = new HashSet<RopaStock>(0);
      private Set<CampaniaRopa> campaniaRopas = new HashSet<CampaniaRopa>(0);
      private Set<Fotos> fotoses = new HashSet<Fotos>(0);
+     private Set<NoLogFavoritos> noLogFavoritoses = new HashSet<NoLogFavoritos>(0);
 
     public Ropa() {
     }
@@ -45,7 +46,7 @@ public class Ropa  implements java.io.Serializable {
         this.roCaracteristicas = roCaracteristicas;
         this.roVisible = roVisible;
     }
-    public Ropa(Categoria categoria, Clientela clientela, Coleccion coleccion, Look look, Marcas marcas, Subcategoria subcategoria, String roDescripcion, double roPrecio, int roDescuento, String roCaracteristicas, byte roVisible, Set<Favoritos> favoritoses, Set<RopaStock> ropaStocks, Set<CampaniaRopa> campaniaRopas, Set<Fotos> fotoses) {
+    public Ropa(Categoria categoria, Clientela clientela, Coleccion coleccion, Look look, Marcas marcas, Subcategoria subcategoria, String roDescripcion, double roPrecio, int roDescuento, String roCaracteristicas, byte roVisible, Set<Favoritos> favoritoses, Set<RopaStock> ropaStocks, Set<CampaniaRopa> campaniaRopas, Set<Fotos> fotoses, Set<NoLogFavoritos> noLogFavoritoses) {
        this.categoria = categoria;
        this.clientela = clientela;
        this.coleccion = coleccion;
@@ -61,6 +62,7 @@ public class Ropa  implements java.io.Serializable {
        this.ropaStocks = ropaStocks;
        this.campaniaRopas = campaniaRopas;
        this.fotoses = fotoses;
+       this.noLogFavoritoses = noLogFavoritoses;
     }
    
     public Integer getRoId() {
@@ -174,6 +176,13 @@ public class Ropa  implements java.io.Serializable {
     
     public void setFotoses(Set<Fotos> fotoses) {
         this.fotoses = fotoses;
+    }
+    public Set<NoLogFavoritos> getNoLogFavoritoses() {
+        return this.noLogFavoritoses;
+    }
+    
+    public void setNoLogFavoritoses(Set<NoLogFavoritos> noLogFavoritoses) {
+        this.noLogFavoritoses = noLogFavoritoses;
     }
 
 

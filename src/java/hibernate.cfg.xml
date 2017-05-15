@@ -10,26 +10,29 @@
     <property name="hibernate.cache.use_minimal_puts">true</property>
     <property name="hibernate.transaction.flush_before_completion">true</property>
     <property name="hibernate.connection.password">root</property>
-    <mapping resource="Modelos/Coleccion.hbm.xml"/>
     <mapping resource="Modelos/CampaniaRopa.hbm.xml"/>
-    <mapping resource="Modelos/Usuarios.hbm.xml"/>
     <mapping resource="Modelos/Campania.hbm.xml"/>
     <mapping resource="Modelos/Propiedades.hbm.xml"/>
     <mapping resource="Modelos/Cesta.hbm.xml"/>
-    <mapping resource="Modelos/Fotos.hbm.xml"/>
     <mapping resource="Modelos/Categoria.hbm.xml"/>
     <mapping resource="Modelos/Color.hbm.xml"/>
-    <mapping resource="Modelos/Favoritos.hbm.xml"/>
-    <mapping resource="Modelos/Ropa.hbm.xml"/>
-    <mapping resource="Modelos/Provincias.hbm.xml"/>
     <mapping resource="Modelos/Marcas.hbm.xml"/>
     <mapping resource="Modelos/Paises.hbm.xml"/>
     <mapping resource="Modelos/Subcategoria.hbm.xml"/>
+    <mapping resource="Modelos/Tallas.hbm.xml"/>
+    <mapping resource="Modelos/NoLogCesta.hbm.xml"/>
+    <mapping resource="Modelos/NoLogFavoritos.hbm.xml"/>
+    <mapping resource="Modelos/RopaStock.hbm.xml"/>
+    <mapping resource="Modelos/Coleccion.hbm.xml"/>
+    <mapping resource="Modelos/Usuarios.hbm.xml"/>
+    <mapping resource="Modelos/Fotos.hbm.xml"/>
+    <mapping resource="Modelos/Favoritos.hbm.xml"/>
+    <mapping resource="Modelos/Ropa.hbm.xml"/>
+    <mapping resource="Modelos/Provincias.hbm.xml"/>
     <mapping resource="Modelos/Look.hbm.xml"/>
     <mapping resource="Modelos/FacturaDetalle.hbm.xml"/>
-    <mapping resource="Modelos/Tallas.hbm.xml"/>
     <mapping resource="Modelos/Facturas.hbm.xml"/>
     <mapping resource="Modelos/Clientela.hbm.xml"/>
-    <mapping resource="Modelos/RopaStock.hbm.xml"/>
+    <mapping resource="Modelos/NoLogUsuarios.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>
