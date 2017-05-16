@@ -320,18 +320,21 @@
                 <s:iterator var="a" value= "lista_favoritos">
                     <table  class="imgproducto">
                         <tr class="botones_prueba">
-                            <td>                            
-                                <%int aux = 0;%>
-                                <s:iterator var="f" value="#a.ropa.fotoses">
-                                    <%
-                                    if(aux==0){
-                                    %>
-                                        <img src="<s:url value='../Imagenes/%{#a.ropa.categoria.catDescripcion}/%{#a.ropa.subcategoria.subDescripcion}/%{#f.fotosRuta}'/>" alt="<s:property value="fotosRuta" />" />
-                                    <%
-                                    }
-                                    aux++;
-                                    %>
-                                </s:iterator>
+                            <td>
+                                <s:a action="RopaPopUp">
+                                    <s:param name="roId" value="#a.ropa.roId"/>
+                                    <%int aux = 0;%>
+                                    <s:iterator var="f" value="#a.ropa.fotoses">
+                                        <%
+                                        if(aux==0){
+                                        %>
+                                            <img src="<s:url value='../Imagenes/%{#a.ropa.categoria.catDescripcion}/%{#a.ropa.subcategoria.subDescripcion}/%{#f.fotosRuta}'/>" alt="<s:property value="fotosRuta" />" />
+                                        <%
+                                        }
+                                        aux++;
+                                        %>
+                                    </s:iterator>
+                                </s:a>
                             </td>
                         </tr>
                         <tr>
@@ -360,18 +363,21 @@
                     <s:iterator var="b" value= "lista_favoritosNoLog">
                         <table  class="imgproducto">
                             <tr class="botones_prueba">
-                                <td>                            
-                                    <%int auxnl = 0;%>
-                                    <s:iterator var="f" value="#b.ropa.fotoses">
-                                        <%
-                                        if(auxnl==0){
-                                        %>
-                                            <img src="<s:url value='../Imagenes/%{#b.ropa.categoria.catDescripcion}/%{#b.ropa.subcategoria.subDescripcion}/%{#f.fotosRuta}'/>" alt="<s:property value="fotosRuta" />" />
-                                        <%
-                                        }
-                                        auxnl++;
-                                        %>
-                                    </s:iterator>
+                                <td>
+                                    <s:a action="RopaPopUp">
+                                        <s:param name="roId" value="#b.ropa.roId"/>                           
+                                        <%int auxnl = 0;%>
+                                        <s:iterator var="f" value="#b.ropa.fotoses">
+                                            <%
+                                            if(auxnl==0){
+                                            %>
+                                                <img src="<s:url value='../Imagenes/%{#b.ropa.categoria.catDescripcion}/%{#b.ropa.subcategoria.subDescripcion}/%{#f.fotosRuta}'/>" alt="<s:property value="fotosRuta" />" />
+                                            <%
+                                            }
+                                            auxnl++;
+                                            %>
+                                        </s:iterator>
+                                    </s:a>
                                 </td>
                             </tr>
                             <tr>
@@ -389,12 +395,7 @@
                         </table>
                     </s:iterator>
                 </s:form>
-            </div>
-            
-            
-            
-               
-            
+            </div>            
         </div>
         <s:include value="tiendaFooter.jsp" />
     </body>
