@@ -235,6 +235,7 @@
                             <input type="hidden" name="catCodigo" value="<s:property value="catCodigo"/>"/>
                             <input type="hidden" name="marca" value="<s:property value="marca"/>"/>
                             <input type="hidden" name="campania" value="<s:property value="campania"/>"/>
+                            <input type="hidden" name="userCookieSL" id="userCookieSL"/>
                             <div id="login">                                        
                                 <table>
                                     <tr>

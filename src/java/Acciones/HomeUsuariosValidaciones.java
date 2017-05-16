@@ -40,6 +40,7 @@ public class HomeUsuariosValidaciones extends ActionSupport{
     private String campania;
     private int roId;
     private String ruta;
+    private String userCookieSL;
 
     public int getRespuesta() {
         return respuesta;
@@ -113,6 +114,14 @@ public class HomeUsuariosValidaciones extends ActionSupport{
         this.roId = roId;
     }
 
+    public String getUserCookieSL() {
+        return userCookieSL;
+    }
+
+    public void setUserCookieSL(String userCookieSL) {
+        this.userCookieSL = userCookieSL;
+    }
+
     public Map getSesion() {
         return sesion;
     }
@@ -177,6 +186,8 @@ public class HomeUsuariosValidaciones extends ActionSupport{
                     sesion=ActionContext.getContext().getSession();
                 }
                 sesion.put("usuarioLogueado", (Usuarios) l.get(0));
+                HomeFavoritos hf = new HomeFavoritos();
+                hf.cargarUsuarioNoLogueado(sesion, userCookieSL);
                 if(sesion.get("cookieLogueado") != null && usuario.getUsuAdministrador() != 1){
                     NoLogUsuarios nlu = (NoLogUsuarios) sesion.get("cookieLogueado");
                     //Traslado Favoritos desde acá

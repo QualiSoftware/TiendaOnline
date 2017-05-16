@@ -29,7 +29,11 @@
         <!-- Validación usuarios-->
         <script src="../Scripts/ValidacionUsuario.js" type="text/javascript"></script>              
         <script>
-            window.onload = muestra_Cantidad;            
+            window.onload = muestra_Cantidad;
+            function eliminarFavorito(roId){
+                document.getElementById('roId').value = roId;
+                document.getElementById('frmEliminarFavorito').submit();
+            }           
         </script>
         <title>Lista de Deseos</title>
     </head>
@@ -141,6 +145,7 @@
                         </a>                    
                         <s:form id="frmLogin" action="TiendaLogin" theme="simple">
                             <input type="hidden" name="actionName" value="listaDeseos.action"/>
+                            <input type="hidden" name="userCookieSL" id="userCookieSL"/>
                             <div id="login">                                        
                                 <table>
                                     <tr>
@@ -310,12 +315,85 @@
             </div>
             <div class="linea" style="height: 3px;"></div>
             
-            <s:iterator var="a" value= "lista_favoritos">
-                <s:property value="#a.ropa.roDescripcion"/>;&nbsp;
-            </s:iterator>
-            <s:iterator var="b" value= "lista_favoritosNoLog">
-                <s:property value="#b.ropa.roDescripcion"/>;&nbsp;
-            </s:iterator>
+            
+            <div id="productos" style="margin-top: 50px;">
+                <s:iterator var="a" value= "lista_favoritos">
+                    <table  class="imgproducto">
+                        <tr class="botones_prueba">
+                            <td>                            
+                                <%int aux = 0;%>
+                                <s:iterator var="f" value="#a.ropa.fotoses">
+                                    <%
+                                    if(aux==0){
+                                    %>
+                                        <img src="<s:url value='../Imagenes/%{#a.ropa.categoria.catDescripcion}/%{#a.ropa.subcategoria.subDescripcion}/%{#f.fotosRuta}'/>" alt="<s:property value="fotosRuta" />" />
+                                    <%
+                                    }
+                                    aux++;
+                                    %>
+                                </s:iterator>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <s:property value="#a.ropa.roDescripcion"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <s:a action="eliminarFavorito">
+                                    <s:param name="roId" value="#a.ropa.roId"/>
+                                    <div class="btn_Elminar_Producto">Quitar de favoritos</div>
+                                </s:a>                         
+                            </td>
+                        </tr>
+                    </table>
+                </s:iterator>                
+                
+                <s:form id="frmEliminarFavorito" action="eliminarFavorito" method="POST">
+                    <input type="hidden" name="userCookieSL" id="userCookieSL"/>
+                    <input type="hidden" name="roId" id="roId"/>
+                    <script>
+                        var ucMenu = getCookie('userCookieSL');
+                        document.getElementById('userCookieSL').value = ucMenu;
+                    </script>
+                    <s:iterator var="b" value= "lista_favoritosNoLog">
+                        <table  class="imgproducto">
+                            <tr class="botones_prueba">
+                                <td>                            
+                                    <%int auxnl = 0;%>
+                                    <s:iterator var="f" value="#b.ropa.fotoses">
+                                        <%
+                                        if(auxnl==0){
+                                        %>
+                                            <img src="<s:url value='../Imagenes/%{#b.ropa.categoria.catDescripcion}/%{#b.ropa.subcategoria.subDescripcion}/%{#f.fotosRuta}'/>" alt="<s:property value="fotosRuta" />" />
+                                        <%
+                                        }
+                                        auxnl++;
+                                        %>
+                                    </s:iterator>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <s:property value="#b.ropa.roDescripcion"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <button type="button" onclick="eliminarFavorito(<s:property value="#b.ropa.roId"/>);" id="añadircesta_Btn">
+                                        <div>Quitar de Favoritos</div>
+                                    </button>
+                                </td>
+                            </tr>
+                        </table>
+                    </s:iterator>
+                </s:form>
+            </div>
+            
+            
+            
+               
             
         </div>
         <s:include value="tiendaFooter.jsp" />

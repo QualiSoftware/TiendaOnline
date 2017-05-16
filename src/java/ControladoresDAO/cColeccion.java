@@ -23,8 +23,7 @@ public class cColeccion {
         Coleccion p =(Coleccion) sesion.get(Coleccion.class, id);
         return p;
     }
-    
-    
+        
     public static int  Elimina(Coleccion esto){
         sesion = (Session) NewHibernateUtil.getSessionModif();
         sesion.beginTransaction();

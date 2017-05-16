@@ -230,7 +230,7 @@ public class HomeFavoritos extends ActionSupport {
         if(!usi.equals("")){
             lista_favoritos = ControladoresDAO.cFavoritos.recuperaPorUsuario(u);
         } else {
-            cargarUsuarioNoLogueado(sesion);
+            cargarUsuarioNoLogueado(sesion,"");
             lista_favoritosNoLog = ControladoresDAO.cFavoritosNoLog.recuperaPorUsuario(nlu);
         }
         return SUCCESS;
@@ -247,11 +247,12 @@ public class HomeFavoritos extends ActionSupport {
                     u = (Usuarios) sesion.get("usuarioLogueado");
                     usi = ""+u.getUsuId();
                 }catch(Exception e){
-                    System.out.println(e.getMessage());
+                    HomeUsuariosValidaciones huv = new HomeUsuariosValidaciones();
+                    huv.escribirEnArchivoLog("Error al cargar un usuario el "+new Date());
                 }
             }
         }
-        cargarUsuarioNoLogueado(sesion);
+        cargarUsuarioNoLogueado(sesion,"");
         boolean noLoTenia = true;
         if(!usi.equals("")){
             lista_favoritos = ControladoresDAO.cFavoritos.recuperaPorUsuario(u);
@@ -295,7 +296,8 @@ public class HomeFavoritos extends ActionSupport {
                     u = (Usuarios) sesion.get("usuarioLogueado");
                     usi = ""+u.getUsuId();
                 }catch(Exception e){
-                    System.out.println(e.getMessage());
+                    HomeUsuariosValidaciones huv = new HomeUsuariosValidaciones();
+                    huv.escribirEnArchivoLog("Error al cargar un usuario el "+new Date());
                 }
             }
         }
@@ -334,22 +336,66 @@ public class HomeFavoritos extends ActionSupport {
         }
     }
 
-    private void cargarUsuarioNoLogueado(Map sesion) {
+    public void cargarUsuarioNoLogueado(Map sesion, String userCSL) {
+        if(!userCSL.equals("")){
+            userCookieSL = userCSL;
+        }
         if(sesion.get("cookieLogueado") == null){
             List<NoLogUsuarios> nluList = ControladoresDAO.cUsuariosNoLog.recuperaPorNick(userCookieSL);
             if(nluList.size() > 0){
                 nlu = nluList.get(0);
+                sesion.put("cookieLogueado", (NoLogUsuarios) nlu);
             } else {
                 nlu = new NoLogUsuarios(userCookieSL, new Date());
                 int resp = ControladoresDAO.cUsuariosNoLog.Inserta(nlu);
                 if(resp == 1){
                     sesion.put("cookieLogueado", (NoLogUsuarios) nlu);
                 } else {
-                    System.out.println("Error al grabar usuario no loqueado");
+                    HomeUsuariosValidaciones huv = new HomeUsuariosValidaciones();
+                    huv.escribirEnArchivoLog("Error al intentar guardar una cookie el "+new Date());
                 }
             }
         } else {
             nlu = (NoLogUsuarios) sesion.get("cookieLogueado");
         }
+    }
+    
+    public String eliminarFavorito() throws Exception {
+        cargarDatos(); 
+        if(!usi.equals("")){
+            List<Favoritos> fList = ControladoresDAO.cFavoritos.recuperaPorUsuario(u);
+            Favoritos f = null;
+            for(Favoritos fav:fList){
+                if(fav.getRopa().getRoId() == Integer.parseInt(roId)){
+                    f = fav;
+                }
+            }
+            if(f != null){
+                ControladoresDAO.cFavoritos.Elimina(f);
+            } else {
+                HomeUsuariosValidaciones huv = new HomeUsuariosValidaciones();
+                huv.escribirEnArchivoLog("No se pudo eliminar Favorito. ID de ropa="+f.getRopa().getRoId()+", ID de usuario="+
+                        u.getUsuId()+" el "+new Date());
+            }
+            lista_favoritos = ControladoresDAO.cFavoritos.recuperaPorUsuario(u);            
+        } else {
+            cargarUsuarioNoLogueado(sesion,"");
+            List<NoLogFavoritos> fList = ControladoresDAO.cFavoritosNoLog.recuperaPorUsuario(nlu);
+            NoLogFavoritos f = null;
+            for(NoLogFavoritos fav:fList){
+                if(fav.getRopa().getRoId() == Integer.parseInt(roId)){
+                    f = fav;
+                }
+            }
+            if(f != null){
+                ControladoresDAO.cFavoritosNoLog.Elimina(f);
+            } else {
+                HomeUsuariosValidaciones huv = new HomeUsuariosValidaciones();
+                huv.escribirEnArchivoLog("No se pudo eliminar Favorito. ID de ropa="+f.getRopa().getRoId()+", Nick de usuario="+
+                        nlu.getNluNick()+" el "+new Date());
+            }
+            lista_favoritosNoLog = ControladoresDAO.cFavoritosNoLog.recuperaPorUsuario(nlu);            
+        }
+        return SUCCESS;
     }
 }

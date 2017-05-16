@@ -152,6 +152,7 @@
                         </a>                     
                         <s:form id="frmLogin" action="TiendaLogin" theme="simple">
                             <input type="hidden" name="actionName" value="apadrina.action"/>
+                            <input type="hidden" name="userCookieSL" id="userCookieSL"/>
                             <div id="login">                                        
                                 <table>
                                     <tr>

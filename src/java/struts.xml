@@ -532,7 +532,13 @@
                 <param name="expresionHREF">${expresionHREF}</param>
                 <param name="actionName">listadoEmailUsuarios</param>
             </result>
-        </action>    
+        </action>
+        
+        <action name="eliminarFavorito" class="Acciones.HomeFavoritos" method="eliminarFavorito">
+            <result>/Vistas/tiendaListaDeseos.jsp</result>  
+            <result name="input" type="redirect">Tienda</result>  
+            <result name="error" type="redirect">Tienda</result>            
+        </action>  
     </package>
 </struts>
 
