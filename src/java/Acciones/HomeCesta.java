@@ -322,7 +322,7 @@ public class HomeCesta extends ActionSupport {
         this.c = c;
     }
 
-    public String CrudActionCesta() throws Exception {
+/*    public String CrudActionCesta() throws Exception {
         if (sesion == null) {
             sesion = ActionContext.getContext().getSession();
         }
@@ -355,7 +355,7 @@ public class HomeCesta extends ActionSupport {
             precio += aux.getCestaUnidades() * (aux.getRopaStock().getRopa().getRoPrecio() - (aux.getRopaStock().getRopa().getRoPrecio() * aux.getRopaStock().getRopa().getRoDescuento() / 100));
         }
         return SUCCESS;
-    }
+    }*/
 
     public String CrudActionUsuariosCesta() throws Exception {
         if (sesion == null) {
@@ -486,7 +486,7 @@ public class HomeCesta extends ActionSupport {
         return SUCCESS;
     }
 
-    public String FormalizaFactura() throws Exception {
+/*    public String FormalizaFactura() throws Exception {
         if (sesion == null) {
             sesion = ActionContext.getContext().getSession();
         }
@@ -503,7 +503,7 @@ public class HomeCesta extends ActionSupport {
             precio += aux.getCestaUnidades() * (aux.getRopaStock().getRopa().getRoPrecio() - (aux.getRopaStock().getRopa().getRoPrecio() * aux.getRopaStock().getRopa().getRoDescuento() / 100));
         }
         return SUCCESS;
-    }
+    }*/
     
      public String Pagar() throws Exception {
        if (sesion == null) {

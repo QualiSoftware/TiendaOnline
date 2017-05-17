@@ -471,13 +471,6 @@ public class HomeUsuarios extends ActionSupport {
         if(sesion==null){
             sesion=ActionContext.getContext().getSession();
         }
-        /* para cuando tengamos sesión de usuario
-        try{
-            Usuarios u = (Usuarios) sesion.get("usuarioLogueado");
-        }catch(Exception e){
-            return INPUT;
-        }
-        */
         if(filtro == null){
             filtro = "";
         }

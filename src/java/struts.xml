@@ -11,9 +11,13 @@
         <!-- action de Campañas-->
         <action name="CampaniasFiltro" class="Acciones.HomeCampanias" method="CampaniasFiltro" >
             <result>/Vistas/CRUDcampanias.jsp</result> 
+            <result name="input" type="redirect">errorGeneral</result>  
+            <result name="error" type="redirect">errorGeneral</result>
         </action>
         <action name="CampaniasForm" class="Acciones.HomeCampanias" method="CampaniasForm">
-            <result>/Vistas/formularioCRUDcampanias.jsp</result>   
+            <result>/Vistas/formularioCRUDcampanias.jsp</result>  
+            <result name="input" type="redirect">errorGeneral</result>  
+            <result name="error" type="redirect">errorGeneral</result> 
         </action>
         <action name="CrudActionCampanias" class="Acciones.HomeCampanias" method="CrudActionCampanias">
             <result name="input">/Vistas/formularioCRUDcampanias.jsp</result>
@@ -25,29 +29,45 @@
                 <param name="actionName">CampaniasRopaFiltro</param>
                 <param name="accion">${accion}</param>
             </result>
+            <result name="input" type="redirect">errorGeneral</result>  
+            <result name="error" type="redirect">errorGeneral</result>
         </action>
         <action name="CampaniasRopaFiltro" class="Acciones.HomeCampaniasRopa" method="CampaniasRopaFiltro">
             <result>/Vistas/formularioCRUDcampaniasRopa.jsp</result> 
+            <result name="input" type="redirect">errorGeneral</result>  
+            <result name="error" type="redirect">errorGeneral</result>
         </action>
         <action name="ModificarCampaniasRopa" class="Acciones.HomeCampaniasRopa" method="CampaniasRopaFiltro">
             <result>/Vistas/formularioCRUDcampaniasRopa.jsp</result> 
+            <result name="input" type="redirect">errorGeneral</result>  
+            <result name="error" type="redirect">errorGeneral</result>
         </action>
         <action name="CrudActionCampaniasRopa" class="Acciones.HomeCampaniasRopa" method="CrudActionCampaniasRopa">
             <result type="redirect">CampaniasFiltro</result> 
+            <result name="input" type="redirect">errorGeneral</result>  
+            <result name="error" type="redirect">errorGeneral</result>
         </action>
         <action name="campanassmuestra" class="Acciones.HomeCampanias" method="campanassmuestra" >
             <result>/Vistas/CRUDmuestracampanias.jsp</result> 
+            <result name="input" type="redirect">errorGeneral</result>  
+            <result name="error" type="redirect">errorGeneral</result>
         </action>
         <action name="volverCampanias">
             <result type="redirect">CampaniasFiltro</result>
+            <result name="input" type="redirect">errorGeneral</result>  
+            <result name="error" type="redirect">errorGeneral</result>
         </action>
         
         <!--action de Categoria-->
        <action name="CategoriaFiltro" class="Acciones.HomeCategorias" method="CategoriaFiltro" >
             <result>/Vistas/CRUDcategoria.jsp</result> 
+            <result name="input" type="redirect">errorGeneral</result>  
+            <result name="error" type="redirect">errorGeneral</result>
         </action>
         <action name="CategoriasForm" class="Acciones.HomeCategorias" method="CategoriasForm">
             <result>/Vistas/formularioCRUDcategoria.jsp</result>
+            <result name="input" type="redirect">errorGeneral</result>  
+            <result name="error" type="redirect">errorGeneral</result>
         </action>
         <action name="CrudActionCategorias" class="Acciones.HomeCategorias" method="CrudActionCategorias">
             <result name="input" type="redirectAction">
@@ -61,29 +81,37 @@
         </action>
         <action name="volverCategoria">
             <result type="redirect">CategoriaFiltro</result>
+            <result name="input" type="redirect">errorGeneral</result>  
+            <result name="error" type="redirect">errorGeneral</result>
         </action> 
         
         <action name="volverCesta">
             <result type="redirect">CestaFiltro</result>
+            <result name="input" type="redirect">errorGeneral</result>  
+            <result name="error" type="redirect">errorGeneral</result>
         </action>     
         <action name="CestaFiltro" class="Acciones.HomeCesta" method="CestaFiltro">
             <result>/Vistas/tiendaCesta.jsp</result>
-            <result name="input" type="redirect">Tienda</result>
+            <result name="input" type="redirect">errorGeneral</result>
             <result name="error">/Vistas/paginaErrorFactura.jsp</result>
         </action>
         <action name="CrudActionUsuariosCesta" class="Acciones.HomeCesta" method="CrudActionUsuariosCesta">
             <result type="redirect">CestaFiltro</result>
-            <result name="input" type="redirect">Tienda</result>
-            <result name="error" type="redirect">Tienda</result>
+            <result name="input" type="redirect">errorGeneral</result>
+            <result name="error" type="redirect">errorGeneral</result>
         </action>
         
         
         <!--action de Clientela-->
        <action name="ClientelaFiltro" class="Acciones.HomeClientela" method="ClientelaFiltro" >
             <result>/Vistas/CRUDclientela.jsp</result> 
+            <result name="input" type="redirect">errorGeneral</result>  
+            <result name="error" type="redirect">errorGeneral</result>
         </action>
         <action name="ClientelaForm" class="Acciones.HomeClientela" method="ClientelaForm">
             <result>/Vistas/formularioCRUDclientela.jsp</result>
+            <result name="input" type="redirect">errorGeneral</result>  
+            <result name="error" type="redirect">errorGeneral</result>
         </action>
         <action name="CrudActionClientela" class="Acciones.HomeClientela" method="CrudActionClientela">
             <result name="input" type="redirectAction">
@@ -97,14 +125,20 @@
         </action>
         <action name="volverClientela">
             <result type="redirect">ClientelaFiltro</result>
+            <result name="input" type="redirect">errorGeneral</result>  
+            <result name="error" type="redirect">errorGeneral</result>
         </action>
         
         <!-- action Coleccion-->
         <action name="ColeccionFiltro" class="Acciones.HomeColeccion" method="ColeccionFiltro" >
             <result>/Vistas/CRUDcolecciones.jsp</result> 
+            <result name="input" type="redirect">errorGeneral</result>  
+            <result name="error" type="redirect">errorGeneral</result>
         </action>
         <action name="ColeccionForm" class="Acciones.HomeColeccion" method="ColeccionForm">
             <result>/Vistas/formularioCRUDcolecciones.jsp</result>
+            <result name="input" type="redirect">errorGeneral</result>  
+            <result name="error" type="redirect">errorGeneral</result>
         </action>
         <action name="CrudActionColeccion" class="Acciones.HomeColeccion" method="CrudActionColeccion">
             <result name="input" type="redirectAction">
@@ -118,44 +152,32 @@
         </action>
         <action name="volverColeccion">
             <result type="redirect">ColeccionFiltro</result>
+            <result name="input" type="redirect">errorGeneral</result>  
+            <result name="error" type="redirect">errorGeneral</result>
         </action>
-        
-        <!-- action de Color
-        <action name="ColorFiltro" class="Acciones.HomeColor" method="ColorFiltro" >
-            <result>/Vistas/CRUDcolores.jsp</result> 
-        </action>
-        <action name="ColorForm" class="Acciones.HomeColor" method="ColorForm">
-            <result>/Vistas/formularioCRUDcolores.jsp</result>   
-        </action>
-        <action name="CrudActionColor" class="Acciones.HomeColor" method="CrudActionColor">
-            <result name="input" type="redirectAction">
-                <param name="accion">${accion}</param>
-                <param name="clave">${clave}</param>
-                <param name="mensajeNoBorrar">${mensajeNoBorrar}</param>
-                <param name="actionName">ColorForm</param>
-            </result>
-            <result name="error">/Vistas/formularioCRUDcolores.jsp</result>
-            <result type="chain">ColorFiltro</result> 
-        </action>
-        <action name="volverColor">
-            <result type="redirect">ColorFiltro</result>
-        </action>-->
           
         <!-- action de Facturas-->
         <action name="FacturasFiltro" class="Acciones.HomeFacturas" method="FacturasFiltro" >
             <result>/Vistas/CRUDfacturas.jsp</result>
-            <result name="input" type="redirect">Tienda</result>
+            <result name="input" type="redirect">errorGeneral</result> 
+            <result name="error" type="redirect">errorGeneral</result>
         </action>
         <action name="volverFacturas">
             <result type="redirect">FacturasFiltro</result>
+            <result name="input" type="redirect">errorGeneral</result>  
+            <result name="error" type="redirect">errorGeneral</result>
         </action>
         <action name="FacturaPDF" class="Acciones.HomeFacturas" method="FacturaPDF">
             <result>/Vistas/FacturaPDF.jsp</result>
+            <result name="input" type="redirect">errorGeneral</result>  
+            <result name="error" type="redirect">errorGeneral</result>
         </action>
         
         <!-- action de FacturaDetalle-->
         <action name="FacturaDetalleFiltro" class="Acciones.HomeFacturaDetalle" method="FacturaDetalleFiltro" >
             <result>/Vistas/CRUDfacturaDetalle.jsp</result> 
+            <result name="input" type="redirect">errorGeneral</result>  
+            <result name="error" type="redirect">errorGeneral</result>
         </action>
         <!--
         <action name="FacturasForm" class="Acciones.HomeFacturas" method="FacturasForm">
@@ -172,7 +194,9 @@
         
         <!-- actions de Fotos -->
         <action name="FotosForm" class="Acciones.HomeFotos" method="FotosForm">
-            <result>/Vistas/formularioCRUDropaFotos.jsp</result>   
+            <result>/Vistas/formularioCRUDropaFotos.jsp</result>  
+            <result name="input" type="redirect">errorGeneral</result>  
+            <result name="error" type="redirect">errorGeneral</result> 
         </action>
         <action name="CargaArchivo" class="Acciones.HomeFotos" method="CargaArchivo">
             <result type="redirectAction">
@@ -182,19 +206,25 @@
                 <param name="actionName">RopaAdminFiltro</param>
             </result>
             <result name="input">/Vistas/formularioCRUDropaFotos.jsp</result>
+            <result name="error" type="redirect">errorGeneral</result>
         </action>
         
         <action name="EliminaArchivo" class="Acciones.HomeFotos" method="EliminaArchivo">
             <result type="redirect">RopaAdminFiltro</result>
             <result name="input">/Vistas/formularioCRUDropaFotos.jsp</result>
+            <result name="error" type="redirect">errorGeneral</result>
         </action>
         
          <!-- action de Look-->
         <action name="LookFiltro" class="Acciones.HomeLook" method="LookFiltro" >
             <result>/Vistas/CRUDlook.jsp</result> 
+            <result name="input" type="redirect">errorGeneral</result>  
+            <result name="error" type="redirect">errorGeneral</result>
         </action>
         <action name="LookForm" class="Acciones.HomeLook" method="LookForm">
-            <result>/Vistas/formularioCRUDlook.jsp</result>   
+            <result>/Vistas/formularioCRUDlook.jsp</result> 
+            <result name="input" type="redirect">errorGeneral</result>  
+            <result name="error" type="redirect">errorGeneral</result>  
         </action>
         <action name="CrudActionLook" class="Acciones.HomeLook" method="CrudActionLook">
             <result name="input" type="redirectAction">
@@ -208,14 +238,20 @@
         </action>
         <action name="volverLook">
             <result type="redirect">LookFiltro</result>
+            <result name="input" type="redirect">errorGeneral</result>  
+            <result name="error" type="redirect">errorGeneral</result>
         </action>    
         
         <!-- action de Marcas-->
         <action name="MarcasFiltro" class="Acciones.HomeMarcas" method="MarcasFiltro" >
             <result>/Vistas/CRUDmarcas.jsp</result> 
+            <result name="input" type="redirect">errorGeneral</result>  
+            <result name="error" type="redirect">errorGeneral</result>
         </action>
         <action name="MarcasForm" class="Acciones.HomeMarcas" method="MarcasForm">
-            <result>/Vistas/formularioCRUDmarcas.jsp</result>   
+            <result>/Vistas/formularioCRUDmarcas.jsp</result>  
+            <result name="input" type="redirect">errorGeneral</result>  
+            <result name="error" type="redirect">errorGeneral</result> 
         </action>
         <action name="CrudActionMarcas" class="Acciones.HomeMarcas" method="CrudActionMarcas">
             <result name="input" type="redirectAction">
@@ -229,22 +265,31 @@
         </action>
         <action name="marcasmuestra" class="Acciones.HomeMarcas" method="marcasmuestra">
             <result>/Vistas/CRUDmuestramarcas.jsp</result> 
+            <result name="input" type="redirect">errorGeneral</result>  
+            <result name="error" type="redirect">errorGeneral</result>
         </action>
         
         <action name="volverMarcas">
             <result type="redirect">MarcasFiltro</result>
+            <result name="input" type="redirect">errorGeneral</result>  
+            <result name="error" type="redirect">errorGeneral</result>
         </action>
         
         <!-- actions de RopaAdmin -->
         <action name="RopaAdminFiltro" class="Acciones.HomeRopa" method="RopaFiltro">
-            <result>/Vistas/CRUDropa.jsp</result>           
+            <result>/Vistas/CRUDropa.jsp</result>  
+            <result name="input" type="redirect">errorGeneral</result>  
+            <result name="error" type="redirect">errorGeneral</result>         
         </action>
         <action name="RopaAdminForm" class="Acciones.HomeRopa" method="RopaForm">
             <result>/Vistas/formularioCRUDropa.jsp</result>
-            <result name="input" type="redirect">Tienda</result>   
+            <result name="input" type="redirect">errorGeneral</result>   
+            <result name="error" type="redirect">errorGeneral</result>  
         </action> 
         <action name="RopaStockAdminForm" class="Acciones.HomeRopa" method="RopaForm">
-            <result>/Vistas/formularioCRUDropaStock.jsp</result>   
+            <result>/Vistas/formularioCRUDropaStock.jsp</result> 
+            <result name="input" type="redirect">errorGeneral</result>  
+            <result name="error" type="redirect">errorGeneral</result>  
         </action>
         <action name="CrudActionRopaAdmin" class="Acciones.HomeRopa" method="CrudActionRopa">
             <result type="redirect">RopaAdminFiltro</result>
@@ -268,14 +313,20 @@
         </action>
         <action name="volverRopaAdmin">
             <result type="redirect">RopaAdminFiltro</result>
+            <result name="input" type="redirect">errorGeneral</result>  
+            <result name="error" type="redirect">errorGeneral</result>
         </action>
         
         <!-- actions de Subcategoria -->
         <action name="SubcategoriasFiltro" class="Acciones.HomeSubcategorias" method="SubcategoriasFiltro">
-            <result>/Vistas/CRUDsubcategorias.jsp</result>           
+            <result>/Vistas/CRUDsubcategorias.jsp</result>  
+            <result name="input" type="redirect">errorGeneral</result>  
+            <result name="error" type="redirect">errorGeneral</result>         
         </action>
         <action name="SubcategoriasForm" class="Acciones.HomeSubcategorias" method="SubcategoriasForm">
             <result>/Vistas/formularioCRUDsubcategorias.jsp</result>
+            <result name="input" type="redirect">errorGeneral</result>  
+            <result name="error" type="redirect">errorGeneral</result>
         </action>
         <action name="CrudActionSubcategorias" class="Acciones.HomeSubcategorias" method="CrudActionSubcategorias">
             <result type="redirect">SubcategoriasFiltro</result>
@@ -289,14 +340,20 @@
         </action>
         <action name="volverSubcategorias">
             <result type="redirect">SubcategoriasFiltro</result>
+            <result name="input" type="redirect">errorGeneral</result>  
+            <result name="error" type="redirect">errorGeneral</result>
         </action>
         
         <!-- actions de Talla -->
         <action name="TallasFiltro" class="Acciones.HomeTallas" method="TallasFiltro">
-            <result>/Vistas/CRUDtallas.jsp</result>           
+            <result>/Vistas/CRUDtallas.jsp</result>  
+            <result name="input" type="redirect">errorGeneral</result>  
+            <result name="error" type="redirect">errorGeneral</result>         
         </action>
         <action name="TallasForm" class="Acciones.HomeTallas" method="TallasForm">
             <result>/Vistas/formularioCRUDtallas.jsp</result>
+            <result name="input" type="redirect">errorGeneral</result>  
+            <result name="error" type="redirect">errorGeneral</result>
         </action>
         <action name="CrudActionTallas" class="Acciones.HomeTallas" method="CrudActionTallas">
             <result type="redirect">TallasFiltro</result>
@@ -310,22 +367,30 @@
         </action>
         <action name="volverTallas">
             <result type="redirect">TallasFiltro</result>
+            <result name="input" type="redirect">errorGeneral</result>  
+            <result name="error" type="redirect">errorGeneral</result>
         </action>
         
         <!-- actions de Usuarios -->
         <action name="UsuariosFiltro" class="Acciones.HomeUsuarios" method="UsuariosFiltro">
-            <result>/Vistas/CRUDusuarios.jsp</result>           
+            <result>/Vistas/CRUDusuarios.jsp</result>  
+            <result name="input" type="redirect">errorGeneral</result>  
+            <result name="error" type="redirect">errorGeneral</result>         
         </action>
         <action name="UsuariosForm" class="Acciones.HomeUsuarios" method="UsuariosForm">
             <result>/Vistas/formularioCRUDusuariosAdmin.jsp</result>
-            <result name="input" type="redirect">Tienda</result>
+            <result name="input" type="redirect">errorGeneral</result>
+            <result name="error" type="redirect">errorGeneral</result>
         </action>
         <action name="UsuAltaAdmin" class="Acciones.HomeUsuarios" method="UsuAlta">
             <result>/Vistas/formularioCRUDusuariosAdmin.jsp</result>
-            <result name="input" type="redirect">Tienda</result>
+            <result name="input" type="redirect">errorGeneral</result>  
+            <result name="error" type="redirect">errorGeneral</result>
         </action>
         <action name="UsuAlta" class="Acciones.HomeUsuarios" method="UsuAlta">
-            <result>/Vistas/formularioCRUDusuarios.jsp</result>           
+            <result>/Vistas/formularioCRUDusuarios.jsp</result>  
+            <result name="input" type="redirect">errorGeneral</result>  
+            <result name="error" type="redirect">errorGeneral</result>         
         </action>
         <action name="CrudActionUsuarios" class="Acciones.HomeUsuarios" method="CrudActionUsuarios">
             <result>/Vistas/tiendaAltaBaja.jsp</result>           
@@ -334,6 +399,8 @@
         </action>
         <action name="CrudActionUsuariosAdmin" class="Acciones.HomeUsuarios" method="CrudActionUsuarios">
             <result type="redirect">UsuariosFiltro</result>
+            <result name="input" type="redirect">errorGeneral</result>  
+            <result name="error" type="redirect">errorGeneral</result>
         </action>
         <action name="CambiaContrasenia" class="Acciones.HomeUsuarios" method="CambiaContrasenia">
             <result type="redirect">UsuariosFiltro</result>
@@ -347,14 +414,18 @@
                 <param name="accion">${accion}</param>
                 <param name="clave">${clave}</param>
                 <param name="actionName">UsuAlta</param>
-            </result>
+            </result>  
+            <result name="error" type="redirect">errorGeneral</result>
         </action>
         <action name="FormContrasenia" class="Acciones.HomeUsuarios" method="FormContrasenia">
             <result>/Vistas/formularioCRUDusuariosPass.jsp</result>
+            <result name="input" type="redirect">errorGeneral</result>  
+            <result name="error" type="redirect">errorGeneral</result>
         </action>
         <action name="activa" class="Acciones.HomeUsuarios" method="activa">
             <result>/Vistas/activacion.jsp</result>
-            <result name="input">/Vistas/activacionError.jsp</result>
+            <result name="input">/Vistas/activacionError.jsp</result> 
+            <result name="error" type="redirect">errorGeneral</result>
         </action>
         
         <action name="ajaxPaises" class="Acciones.HomeUsuarios" method="ajaxPaises">
@@ -369,13 +440,13 @@
                 <param name="excludeNullProperties">true</param>
                 <param name="noCache">true</param>
             </result>
-            <result name="input" type="redirect">Tienda</result>
+            <result name="input" type="redirect">errorGeneral</result>
         </action>
         
         <!-- pagar y envia correo -->
         <action name="Pagar" class="Acciones.HomeCesta" method="Pagar">
             <result>/Vistas/paginaPagar.jsp</result>
-            <result name="error" type="redirect">Tienda</result>
+            <result name="error" type="redirect">errorGeneral</result>
             <result name="input">/Vistas/paginaPagarError.jsp</result>
         </action>
         
@@ -420,14 +491,20 @@
         
         <action name="TiendaCerrarSesion" class="Acciones.HomeUsuariosValidaciones" method="CerrarSesion">
             <result type="redirect">Tienda</result>
+            <result name="input" type="redirect">errorGeneral</result>  
+            <result name="error" type="redirect">errorGeneral</result>
         </action>
         
         <action name="TiendaMenu" class="Acciones.HomeRopa" method="RopaMenu">
             <result>/Vistas/tiendaMenu.jsp</result>
+            <result name="input" type="redirect">errorGeneral</result>  
+            <result name="error" type="redirect">errorGeneral</result>
         </action>
         
         <action name="RopaPopUp" class="Acciones.HomeRopa" method="RopaPopUp">
             <result>/Vistas/tiendaDetalles.jsp</result>
+            <result name="input" type="redirect">errorGeneral</result>  
+            <result name="error" type="redirect">errorGeneral</result>
         </action>
         
         <action name="ajaxTallas" class="Acciones.HomeRopaStock" method="ajaxTallas">
@@ -452,47 +529,50 @@
                 <param name="campania">${campania}</param>
                 <param name="actionName">TiendaMenu</param>
             </result>
-            <result name="input" type="redirect">Tienda</result>
+            <result name="input" type="redirect">errorGeneral</result> 
+            <result name="error" type="redirect">errorGeneral</result>
         </action>
         
         <action name="pedidos" class="Acciones.HomeUsuarios" method="pedidos">
-            <result>/Vistas/tiendaPedidos.jsp</result>           
+            <result>/Vistas/tiendaPedidos.jsp</result>   
+            <result name="input" type="redirect">errorGeneral</result>  
+            <result name="error" type="redirect">errorGeneral</result>        
         </action>
         
         <action name="ayuda" class="Acciones.HomeRopa" method="RopaFiltro">
             <result>/Vistas/tiendaAyuda.jsp</result>
-            <result name="input" type="redirect">Tienda</result>  
-            <result name="error" type="redirect">Tienda</result>  
+            <result name="input" type="redirect">errorGeneral</result>  
+            <result name="error" type="redirect">errorGeneral</result>  
         </action>
         
         <action name="otros" class="Acciones.HomeRopa" method="RopaFiltro">
             <result>/Vistas/tiendaOtros.jsp</result>  
-            <result name="input" type="redirect">Tienda</result>  
-            <result name="error" type="redirect">Tienda</result>    
+            <result name="input" type="redirect">errorGeneral</result>  
+            <result name="error" type="redirect">errorGeneral</result>    
         </action>
         
         <action name="quienesSomos" class="Acciones.HomeRopa" method="RopaFiltro">
             <result>/Vistas/tiendaQuienesSomos.jsp</result>  
-            <result name="input" type="redirect">Tienda</result>  
-            <result name="error" type="redirect">Tienda</result>    
+            <result name="input" type="redirect">errorGeneral</result>  
+            <result name="error" type="redirect">errorGeneral</result>    
         </action>
         
         <action name="contacto" class="Acciones.HomeRopa" method="RopaFiltro">
             <result>/Vistas/tiendaContacto.jsp</result>  
-            <result name="input" type="redirect">Tienda</result>  
-            <result name="error" type="redirect">Tienda</result>    
+            <result name="input" type="redirect">errorGeneral</result>  
+            <result name="error" type="redirect">errorGeneral</result>    
         </action>
         
         <action name="apadrina" class="Acciones.HomeRopa" method="RopaFiltro">
             <result>/Vistas/tiendaApadrina.jsp</result>  
-            <result name="input" type="redirect">Tienda</result>  
-            <result name="error" type="redirect">Tienda</result>    
+            <result name="input" type="redirect">errorGeneral</result>  
+            <result name="error" type="redirect">errorGeneral</result>    
         </action>
         
         <action name="listaDeseos" class="Acciones.HomeFavoritos" method="listaDeseos">
             <result>/Vistas/tiendaListaDeseos.jsp</result>  
-            <result name="input" type="redirect">Tienda</result>  
-            <result name="error" type="redirect">Tienda</result>    
+            <result name="input" type="redirect">errorGeneral</result>  
+            <result name="error" type="redirect">errorGeneral</result>    
         </action>
         
         <action name="favoritos" class="Acciones.HomeFavoritos" method="insertarFavoritos">
@@ -503,8 +583,8 @@
                 <param name="campania">${campania}</param>                     
                 <param name="actionName">TiendaMenu</param>
             </result> 
-            <result name="input" type="redirect">Tienda</result>  
-            <result name="error" type="redirect">Tienda</result>
+            <result name="input" type="redirect">errorGeneral</result>  
+            <result name="error" type="redirect">errorGeneral</result>
         </action>
         
         <action name="favoritosDetalle" class="Acciones.HomeFavoritos" method="insertarFavoritos">
@@ -516,30 +596,32 @@
                 <param name="roId">${roId}</param>                   
                 <param name="actionName">RopaPopUp</param>
             </result> 
-            <result name="input" type="redirect">Tienda</result>  
-            <result name="error" type="redirect">Tienda</result>
+            <result name="input" type="redirect">errorGeneral</result>  
+            <result name="error" type="redirect">errorGeneral</result>
         </action>
         
         <action name="listadoEmailUsuarios" class="Acciones.HomeUsuarios" method="listadoEmailUsuarios">
             <result>/Vistas/CRUDlistadoEmailUsuarios.jsp</result>  
-            <result name="input" type="redirect">Tienda</result>  
-            <result name="error" type="redirect">Tienda</result>    
+            <result name="input" type="redirect">errorGeneral</result>  
+            <result name="error" type="redirect">errorGeneral</result>    
         </action>
         
         <action name="altaUsuarioApadrinado" class="Acciones.HomeApadrina" method="altaUsuarioApadrinado">
             <result>/Vistas/formularioCRUDusuariosApadrinado.jsp</result>  
-            <result name="input" type="redirect">Tienda</result>  
-            <result name="error" type="redirect">Tienda</result>    
+            <result name="input" type="redirect">errorGeneral</result>  
+            <result name="error" type="redirect">errorGeneral</result>    
         </action>
         
         <action name="CrudActionApadrinado" class="Acciones.HomeApadrina" method="CrudActionApadrinado">
             <result type="redirect">Tienda</result>  
-            <result name="input" type="redirect">Tienda</result>  
-            <result name="error" type="redirect">Tienda</result>    
+            <result name="input" type="redirect">errorGeneral</result>  <!-- ver -->
+            <result name="error" type="redirect">errorGeneral</result>    
         </action>
         
         <action name="enviaEmailApadrinado" class="Acciones.HomeApadrina" method="enviaEmailApadrinado">
             <result>/Vistas/tiendaApadrina.jsp</result>
+            <result name="input" type="redirect">errorGeneral</result>  
+            <result name="error" type="redirect">errorGeneral</result>
         </action>  
         
         <action name="abrirEmail" class="Acciones.HomeUsuarios" method="abrirEmail">
@@ -547,13 +629,21 @@
                 <param name="expresionHREF">${expresionHREF}</param>
                 <param name="actionName">listadoEmailUsuarios</param>
             </result>
+            <result name="input" type="redirect">errorGeneral</result>  
+            <result name="error" type="redirect">errorGeneral</result>
         </action>
         
         <action name="eliminarFavorito" class="Acciones.HomeFavoritos" method="eliminarFavorito">
             <result>/Vistas/tiendaListaDeseos.jsp</result>  
+            <result name="input" type="redirect">errorGeneral</result>  
+            <result name="error" type="redirect">errorGeneral</result>            
+        </action> 
+        
+        <action name="errorGeneral" class="Acciones.HomeRopa" method="RopaFiltro">
+            <result>/Vistas/paginaErrorGeneral.jsp</result>
             <result name="input" type="redirect">Tienda</result>  
-            <result name="error" type="redirect">Tienda</result>            
-        </action>  
+            <result name="error" type="redirect">Tienda</result>  
+        </action>
     </package>
 </struts>
 

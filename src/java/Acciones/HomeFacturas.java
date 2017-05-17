@@ -305,18 +305,7 @@ public class HomeFacturas extends ActionSupport {
     public String FacturasForm() throws Exception {
         if(sesion==null){
          sesion=ActionContext.getContext().getSession();
-        }
-        /* para cuando tengamos sesión de usuario
-        try{
-            Usuarios u = (Usuarios) sesion.get("usuarioLogueado");
-            if(u.getUsuAdministrador()!=1){
-                return INPUT;
-            }
-        }catch(Exception e){
-            return INPUT;
-        }
-        */
-        
+        }        
         if(accion.equals("a")){
             facId = 0;
             accionocul = "a";

@@ -391,6 +391,9 @@ public class HomeApadrina extends ActionSupport {
             p.setUsuActivo(true);
             ControladoresDAO.cUsuarios.Modifica(p);
         } else {
+            HomeUsuariosValidaciones huv = new HomeUsuariosValidaciones();
+            huv.escribirEnArchivoLog("Se intentó dar de alta un apadrinado pero habia "+usuLista.size()+" usuarios"
+                    + " registrados con el email "+usuEmail+" y debe haber sólo 1 el día "+new Date());
             return INPUT;
         }
         return SUCCESS;
