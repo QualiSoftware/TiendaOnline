@@ -47,6 +47,7 @@ public class HomeFavoritos extends ActionSupport {
     private String marcaFavoritos;
     private String marca;
     private String campania;
+    private int ropa;
     
 
     public Map getSesion() {
@@ -224,6 +225,14 @@ public class HomeFavoritos extends ActionSupport {
     public void setCampania(String campania) {
         this.campania = campania;
     }
+
+    public int getRopa() {
+        return ropa;
+    }
+
+    public void setRopa(int ropa) {
+        this.ropa = ropa;
+    }
     
     public String listaDeseos() throws Exception{
         cargarDatos();
@@ -254,6 +263,9 @@ public class HomeFavoritos extends ActionSupport {
         }
         cargarUsuarioNoLogueado(sesion,"");
         boolean noLoTenia = true;
+        if(ropa != 0){
+            roId = ropa + "";
+        }
         if(!usi.equals("")){
             lista_favoritos = ControladoresDAO.cFavoritos.recuperaPorUsuario(u);
             for(Favoritos favoritosList:lista_favoritos){
@@ -281,7 +293,9 @@ public class HomeFavoritos extends ActionSupport {
                 ControladoresDAO.cFavoritosNoLog.Inserta(favoritos);
             }
         }
-        marca = marcaFavoritos;
+        if(marcaFavoritos != null){
+            marca = marcaFavoritos;
+        }
         return SUCCESS;
     }
     

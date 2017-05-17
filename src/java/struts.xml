@@ -502,7 +502,22 @@
                 <param name="marca">${marca}</param>
                 <param name="campania">${campania}</param>                     
                 <param name="actionName">TiendaMenu</param>
-            </result>
+            </result> 
+            <result name="input" type="redirect">Tienda</result>  
+            <result name="error" type="redirect">Tienda</result>
+        </action>
+        
+        <action name="favoritosDetalle" class="Acciones.HomeFavoritos" method="insertarFavoritos">
+            <result type="redirectAction">
+                <param name="cliCodigo">${cliCodigo}</param>
+                <param name="catCodigo">${catCodigo}</param>
+                <param name="marca">${marca}</param>
+                <param name="campania">${campania}</param> 
+                <param name="roId">${roId}</param>                   
+                <param name="actionName">RopaPopUp</param>
+            </result> 
+            <result name="input" type="redirect">Tienda</result>  
+            <result name="error" type="redirect">Tienda</result>
         </action>
         
         <action name="listadoEmailUsuarios" class="Acciones.HomeUsuarios" method="listadoEmailUsuarios">

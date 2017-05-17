@@ -314,8 +314,16 @@
                 </ul>                
             </div>
             <div class="linea" style="height: 3px;"></div>
-            
-            
+                        
+            <div id="nombre_Categoria">
+                Favoritos de&nbsp;
+                <s:if test="usi==''">
+                    usuario anónimo
+                </s:if>
+                <s:else>
+                    <s:property value="sesion.usuarioLogueado.usuNombre"/>
+                </s:else>
+            </div>
             <div id="productos" style="margin-top: 50px;">
                 <s:iterator var="a" value= "lista_favoritos">
                     <table  class="imgproducto">

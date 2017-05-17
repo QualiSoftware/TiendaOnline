@@ -70,6 +70,10 @@
                     document.getElementById('frm').submit();
                 }
             }
+            function agregarFavorito(){
+                document.getElementById('frm').action = "favoritosDetalle";
+                document.getElementById('frm').submit();
+            }
             
             function elijoColor(elegido,id) {
                 document.getElementById("divError").innerHTML = "";
@@ -434,6 +438,11 @@
                 <input type='hidden' name='campania' value='<s:property value="campania"/>'/>
                 <input type='hidden' name="accionocul" value="'c'"/>
                 <input type='hidden' name='ropa' id='ropa' value='<s:property value="roId"/>'/>
+                <input type="hidden" name="userCookieSL" id="userCookieSL"/>
+                <script>
+                    var ucMenu = getCookie('userCookieSL');
+                    document.getElementById('userCookieSL').value = ucMenu;
+                </script>
                 <div class="nombre_Detalle">
                     <s:property value="t.roDescripcion"/>
                 </div>
@@ -519,7 +528,9 @@
                                 </button>
                             </td>
                             <td>
-                                <div id="añadirfavoritos_Btn">Añadir a Favoritos</div>
+                                <button type="button" onclick="agregarFavorito();" id="añadirfavoritos_Btn">
+                                    <div>Añadir a Favoritos</div>
+                                </button>
                             </td>
                         </tr>                        
                     </table>
