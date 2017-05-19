@@ -352,6 +352,11 @@
                         </tr>
                         <tr>
                             <td>
+                                <s:property value="#a.ropa.marcas.marcaNombre"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
                                 <s:a action="eliminarFavorito">
                                     <s:param name="roId" value="#a.ropa.roId"/>
                                     <div class="btn_Elminar_Producto">Quitar de favoritos</div>
@@ -393,6 +398,11 @@
                                     <s:property value="#b.ropa.roDescripcion"/>
                                 </td>
                             </tr>
+                        <tr>
+                            <td>
+                                <s:property value="#b.ropa.marcas.marcaNombre"/>
+                            </td>
+                        </tr>
                             <tr>
                                 <td>
                                     <button type="button" onclick="eliminarFavorito(<s:property value="#b.ropa.roId"/>);" id="añadircesta_Btn">

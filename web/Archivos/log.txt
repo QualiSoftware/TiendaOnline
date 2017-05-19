@@ -63,3 +63,12 @@ Hubo un intento de conexión fallido el Tue May 02 21:34:51 CEST 2017 con user: d
 Hubo un intento de conexión fallido el Tue May 02 21:35:02 CEST 2017 con user: dushstmail.com pass: dusheff
 Hubo un intento de conexión fallido el Tue May 02 21:35:17 CEST 2017 con user: dusil.com pass: dusheff
 Se envió una factura con fecha Mon May 08 23:25:05 CEST 2017 de Damián Usheff Gonzalez-Santamaría, código de usuario 13
+Error al intentar guardar una cookie el Thu May 18 19:55:32 CEST 2017
+Error al intentar guardar una cookie el Thu May 18 19:55:39 CEST 2017
+Error al intentar guardar una cookie el Thu May 18 19:55:46 CEST 2017
+Error al intentar guardar una cookie el Thu May 18 19:55:53 CEST 2017
+Error al intentar guardar una cookie el Thu May 18 19:55:59 CEST 2017
+Error al intentar guardar una cookie el Thu May 18 19:56:06 CEST 2017
+Error al intentar guardar una cookie el Thu May 18 19:56:13 CEST 2017
+Error al intentar guardar una cookie el Thu May 18 19:56:20 CEST 2017
+Error al intentar guardar una cookie el Thu May 18 19:56:27 CEST 2017
