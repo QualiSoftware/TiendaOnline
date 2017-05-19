@@ -54,6 +54,15 @@ public class HomeRopa extends ActionSupport {
     private boolean superaPeriodo;
     private Map<String, String> stateMap = new LinkedHashMap<String, String>();
     private String countryName;
+    private String roid;
+    private String colorid;
+    private String tallaid;
+    private String cantidadprenda;
+    private String scantidad;
+    private String masmenos;
+    
+    
+    
     
 
     //variables específicas a cada controlador
@@ -222,6 +231,57 @@ public class HomeRopa extends ActionSupport {
         this.stateMap = stateMap;
     }
 
+    public String getRoid() {
+        return roid;
+    }
+
+    public void setRoid(String roid) {
+        this.roid = roid;
+    }
+
+    public String getColorid() {
+        return colorid;
+    }
+
+    public void setColorid(String colorid) {
+        this.colorid = colorid;
+    }
+
+    public String getTallaid() {
+        return tallaid;
+    }
+
+    public void setTallaid(String tallaid) {
+        this.tallaid = tallaid;
+    }
+
+    public String getCantidadprenda() {
+        return cantidadprenda;
+    }
+
+    public void setCantidadprenda(String cantidadprenda) {
+        this.cantidadprenda = cantidadprenda;
+    }
+
+    public String getScantidad() {
+        return scantidad;
+    }
+
+    public void setScantidad(String scantidad) {
+        this.scantidad = scantidad;
+    }
+
+    public String getMasmenos() {
+        return masmenos;
+    }
+
+    public void setMasmenos(String masmenos) {
+        this.masmenos = masmenos;
+    }
+    
+    
+    
+    
     public String getCountryName() {
         return countryName;
     }
@@ -953,6 +1013,34 @@ public class HomeRopa extends ActionSupport {
            //dummyMsg = "Ajax action Triggered";
        return SUCCESS;
     }
+    
+    
+        @SkipValidation
+    public String ajaxsumaRestaRopa() throws Exception{
+            int iroid = Integer.parseInt(roid);
+            int icolorid = Integer.parseInt(colorid);
+            int itallaid = Integer.parseInt(tallaid);
+            int icantidad = Integer.parseInt(cantidadprenda);
+            String smasmenos = masmenos;
+            
+
+            RopaStock r = ControladoresDAO.cRopaStock.RecuperaPorRopaColorTalla(iroid, icolorid, itallaid);
+            if(smasmenos.equals("+")){
+                if(icantidad < r.getRostockUnidades()){
+                    icantidad ++;
+                }
+            }
+            if(smasmenos.equals("-")){
+                if(icantidad > 0){   
+                    icantidad --;
+                    }
+            } 
+            
+           
+            scantidad = ""+icantidad;
+       return SUCCESS;
+    }
+    
     
     @SkipValidation
     public String RopaMenu() throws Exception {

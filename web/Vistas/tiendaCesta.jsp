@@ -283,36 +283,53 @@
                                     <s:form id="formCantidad" action="CestaFiltro" theme="simple" method="post">
                                         <input type="hidden" name="accionocul" value="e"/>
                                         <input type="hidden" name="clave" id="clave"/>
+                                        <input type="hidden" name="clave" id="roid" value="<s:property value="#a.ropaStock.ropa.roId"/>"/>
+                                        <input type="hidden" name="clave" id="colorid" value="<s:property value="#a.ropaStock.color.colorId"/>"/>
+                                        <input type="hidden" name="clave" id="tallaid" value="<s:property value="#a.ropaStock.tallas.tallaId"/>"/>
                                         <img src="../Imagenes/Administracion/Signo_Menos.png" id="menos"
-                                             style="cursor:pointer; width: 30px; padding-top: 13px;" onclick="MasMenosCantidad<s:property value="#a.cestaId"/>('-',<s:property value="#a.cestaUnidades"/>,<s:property value="#a.cestaId"/>,<s:property value="#a.ropaStock.rostockUnidades"/>);"/>
+                                             style="cursor:pointer; width: 30px; padding-top: 13px;"/>
                                         &nbsp;
                                         <input type="text" name="cantidad" id="cantidadIndividual" readonly="readonly" 
                                                style="width: 25px;text-align: center;" value="<s:property value="#a.cestaUnidades"/>">
                                         &nbsp;
                                         <img src="../Imagenes/Administracion/Signo_Mas.png" id="mas" 
-                                             style="cursor:pointer; width: 30px; padding-top: 13px;" onclick="MasMenosCantidad<s:property value="#a.cestaId"/>('+',<s:property value="#a.cestaUnidades"/>,<s:property value="#a.cestaId"/>,<s:property value="#a.ropaStock.rostockUnidades"/>);"/>
+                                             style="cursor:pointer; width: 30px; padding-top: 13px;" />
                                     </s:form>
                                     <script>
-                                        function MasMenosCantidad<s:property value="#a.cestaId"/>(valor, cantidad, id, stock) {
-                                            document.getElementById("clave").value = id;
-                                            if (valor == '+') {
-                                                cantidad++;
-                                            }
-                                            if (valor == '-') {
-                                                cantidad--;
-                                            }
-                                            if (cantidad <= stock) {
-                                                document.getElementById("cantidadIndividual").value = cantidad;
-                                                document.getElementById("formCantidad").submit();
-                                            } else {
-                                                if (valor == '-') {
-                                                    document.getElementById("cantidadIndividual").value = stock;
-                                                    document.getElementById("formCantidad").submit();
-                                                } else {
-                                                    document.getElementById("Stock_Excedido<s:property value="#a.cestaId"/>").innerHTML = "En este momento tenemos " + stock + " prendas en stock.<br>Disculpe las molestias.";
-                                                }
-                                            }
+                                        
+                                         $(document).ready(function () {
+                                            $('#mas').click(function (event) {
+                                                usarAJAX("+");
+                                            });
+                                             $('#menos').click(function (event) {
+                                                usarAJAX("-");
+                                            });
+                                        });
+                                        function usarAJAX(value) {
+                                            var roid = document.getElementById('roid').value;
+                                            var colorid = document.getElementById('colorid').value;
+                                            var tallaid = document.getElementById('tallaid').value;
+                                            var cantidadprenda =  document.getElementById('cantidadIndividual').value;
+                                            var masmenos = value;
+                                            $.getJSON('ajaxsumaRestaRopa', {
+                                                roid: roid, colorid: colorid, tallaid: tallaid, cantidadprenda: cantidadprenda, masmenos: masmenos
+                                            }, function (jsonResponse) {
+                                                 $("#cantidadIndividual").val(jsonResponse.scantidad);
+                                                 $("#cantidadIndividual").val(jsonResponse.scantidad);
+                                                
+                                            });
                                         }
+//                                    $(document).ready(function(){
+//                                        $("#mas").click(function(evento){
+//                                          
+//                                           evento.preventDefault();
+//                                            $.getJSON('ajaxsumaRestaRopa',{roid: 93, colorid: 3, tallaid: 2}, function(jsonResponse){
+//                                           
+////                                           $("#destino").load("recibe-parametros.php", {nombre: "Pepe", edad: 45}, function(){
+////                                              alert("recibidos los datos por ajax");
+////                                           });
+//                                        });
+//                                     })
                                     </script>
                                 </td>  
                             </tr>
