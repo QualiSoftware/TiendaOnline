@@ -3,6 +3,7 @@ package ControladoresDAO;
 import static ControladoresDAO.cRopa.sesion;
 import Modelos.Cesta;
 import Modelos.Ropa;
+import Modelos.RopaStock;
 import Modelos.Usuarios;
 import static com.opensymphony.xwork2.Action.SUCCESS;
 import java.sql.*;
@@ -10,8 +11,10 @@ import java.util.*;
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
 import javax.activation.FileDataSource;
+import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 
 /*  
 *   Author     : QualiSoftware
@@ -83,4 +86,13 @@ public class cCesta {
             return -1;
         } 
     }
+    
+    public static Cesta recuperaPorRopaStockYUsuario(RopaStock roStock, Usuarios usuario){
+        sesion = (Session) NewHibernateUtil.getSession();
+        Criteria criterio = sesion.createCriteria(Cesta.class);
+        criterio.add(Restrictions.eq("ropaStock", roStock));
+        criterio.add(Restrictions.eq("usuarios", usuario));
+        List<Cesta> lista = criterio.list();
+        return lista.get(0);
+    }  
 }

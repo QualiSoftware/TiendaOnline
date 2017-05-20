@@ -812,10 +812,6 @@ public class HomeRopa extends ActionSupport {
                 }
             }
         }
-        if(usi.equals("")){
-            HomeFavoritos hf = new HomeFavoritos();
-            hf.cargarUsuarioNoLogueado(sesion, "");
-        }
         
         if (filtro == null || filtro.equals("null")) {
             filtro = "";

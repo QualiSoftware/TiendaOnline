@@ -10,13 +10,17 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <!-- Validación usuarios-->
+        <script src="../Scripts/ValidacionUsuario.js" type="text/javascript"></script> 
         <title>Activación exitosa</title>
     </head>
     <body>
         <h1>Felicitaciones <s:property value="accion" />, su cuenta ha sido activada!</h1>
         <br/>
         <h2>Acceda a la Tienda</h2>
-        <s:form action="TiendaLogin" theme="simple">
+        <s:form id="frmLogin" action="TiendaLogin" theme="simple">
+            <input type="hidden" name="actionName" value="Tienda.action"/>
+            <input type="hidden" name="userCookieSL" id="userCookieSL"/>
             <table>
                 <tr>
                     <td>
@@ -43,7 +47,7 @@
                 <tr>
                     <td></td>
                     <td colspan="2">
-                        <s:submit  value="login"/>                    
+                        <input type="button" onclick="usuarioLogin();" value="Acceder" />                    
                     </td>
                 </tr>
             </table>

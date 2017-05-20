@@ -117,5 +117,7 @@ function crearUsuario(){
     document.cookie = "userCookieSL="+user+"; expires="+ expires;    
 }
 function enviarListaDeseos(){
+    var ucMenu = getCookie('userCookieSL');
+    document.getElementById('userCookieSLlista').value = ucMenu;
     document.getElementById('frmListaDeseos').submit();
 }

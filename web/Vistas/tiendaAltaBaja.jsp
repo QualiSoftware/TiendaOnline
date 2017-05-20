@@ -202,18 +202,14 @@
                 <div id="contacto">
                 <s:a action="contacto"><div id="contacto_Txt">Contacto  &nbsp;<span class="sin_Decoracion">|</span></div></s:a>
                 </div>
-                <div id="lista_Deseos" onclick="enviarListaDeseos();">
-                    <s:form id="frmListaDeseos" action="listaDeseos" method="POST">
-                        <input type="hidden" name="userCookieSL" id="userCookieSL"/>
-                        <script>
-                            var ucMenu = getCookie('userCookieSL');
-                            document.getElementById('userCookieSL').value = ucMenu;
-                        </script>
-                        <div id="lista_Deseos_Txt">
-                            Lista de deseos <span class="glyphicon glyphicon-star" style="color: black;"></span>  &nbsp;<span class="sin_Decoracion">|</span>
-                        </div>
-                    </s:form>
-                </div>
+                    <div id="lista_Deseos" onclick="enviarListaDeseos();">                       
+                        <s:form id="frmListaDeseos" action="listaDeseos" method="POST" theme="simple">
+                            <input type="hidden" name="userCookieSLlista" id="userCookieSLlista"/>
+                            <div id="lista_Deseos_Txt">
+                                Lista de deseos <span class="glyphicon glyphicon-star" style="color: black;"></span>  &nbsp;<span class="sin_Decoracion">|</span>
+                            </div>
+                        </s:form>
+                    </div>
             </div>
             <div id="linea1" class="linea"></div>
             <div id="menu_Desplegable">

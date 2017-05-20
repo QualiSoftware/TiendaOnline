@@ -40,7 +40,7 @@ public class HomeFavoritos extends ActionSupport {
     private String roId;
     private List<Favoritos> lista_favoritos;
     private List<NoLogFavoritos> lista_favoritosNoLog;
-    private String userCookieSL;
+    private String userCookieSL, userCookieSLlista;
     //necesarios para cargar tiendaMenu.jsp
     private String cliCodigo;
     private String catCodigo;
@@ -186,6 +186,14 @@ public class HomeFavoritos extends ActionSupport {
         this.userCookieSL = userCookieSL;
     }
 
+    public String getUserCookieSLlista() {
+        return userCookieSLlista;
+    }
+
+    public void setUserCookieSLlista(String userCookieSLlista) {
+        this.userCookieSLlista = userCookieSLlista;
+    }
+
     public String getCliCodigo() {
         return cliCodigo;
     }
@@ -239,7 +247,10 @@ public class HomeFavoritos extends ActionSupport {
         if(!usi.equals("")){
             lista_favoritos = ControladoresDAO.cFavoritos.recuperaPorUsuario(u);
         } else {
-            cargarUsuarioNoLogueado(sesion,"");
+            if(userCookieSLlista != null && !userCookieSLlista.equals("")) {
+                userCookieSL = userCookieSLlista;
+            }
+            cargarUsuarioNoLogueado(sesion,userCookieSL);
             lista_favoritosNoLog = ControladoresDAO.cFavoritosNoLog.recuperaPorUsuario(nlu);
         }
         return SUCCESS;
