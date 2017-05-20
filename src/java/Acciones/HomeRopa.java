@@ -60,6 +60,8 @@ public class HomeRopa extends ActionSupport {
     private String cantidadprenda;
     private String scantidad;
     private String masmenos;
+    private String idusu;
+    
     
     
     
@@ -277,6 +279,14 @@ public class HomeRopa extends ActionSupport {
 
     public void setMasmenos(String masmenos) {
         this.masmenos = masmenos;
+    }
+
+    public String getIdusu() {
+        return idusu;
+    }
+
+    public void setIdusu(String idusu) {
+        this.idusu = idusu;
     }
     
     
@@ -1009,14 +1019,17 @@ public class HomeRopa extends ActionSupport {
            //dummyMsg = "Ajax action Triggered";
        return SUCCESS;
     }
-    
+
     
         @SkipValidation
     public String ajaxsumaRestaRopa() throws Exception{
+           
+            System.out.println("pasa");
             int iroid = Integer.parseInt(roid);
             int icolorid = Integer.parseInt(colorid);
             int itallaid = Integer.parseInt(tallaid);
             int icantidad = Integer.parseInt(cantidadprenda);
+            int iusuid = Integer.parseInt(idusu);
             String smasmenos = masmenos;
             
 
@@ -1031,8 +1044,17 @@ public class HomeRopa extends ActionSupport {
                     icantidad --;
                     }
             } 
-            
-           
+            String sidstock = ""+r.getRostockId();
+             System.out.println(sidstock);
+            List<Cesta> c = ControladoresDAO.cCesta.recuperaPorRopaStockYUsuario(r.getRostockId(),iusuid);
+            for(Cesta lc : c){
+                System.out.println("cesta "+lc.getCestaId());
+                System.out.println("cesta "+lc.getRopaStock().getRostockId());
+                System.out.println("cesta "+lc.getUsuarios().getUsuId());
+                lc.setCestaUnidades(icantidad);
+                ControladoresDAO.cCesta.Modifica(lc);
+            }
+            System.out.println(icantidad);
             scantidad = ""+icantidad;
        return SUCCESS;
     }

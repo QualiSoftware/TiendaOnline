@@ -87,12 +87,13 @@ public class cCesta {
         } 
     }
     
-    public static Cesta recuperaPorRopaStockYUsuario(RopaStock roStock, Usuarios usuario){
+    public static List<Cesta> recuperaPorRopaStockYUsuario(int roStock, int usuario){
         sesion = (Session) NewHibernateUtil.getSession();
         Criteria criterio = sesion.createCriteria(Cesta.class);
-        criterio.add(Restrictions.eq("ropaStock", roStock));
-        criterio.add(Restrictions.eq("usuarios", usuario));
+        criterio.add(Restrictions.eq("usuarios.usuId", usuario));
+        criterio.add(Restrictions.eq("ropaStock.rostockId",roStock));
         List<Cesta> lista = criterio.list();
-        return lista.get(0);
+        return lista;
+
     }  
 }

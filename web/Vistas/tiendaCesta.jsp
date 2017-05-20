@@ -48,32 +48,7 @@
         <link rel="stylesheet" href="../Estilos/easyzoom.css" />
         <!-- Scripts Propios-->
         <script src="../Scripts/Tienda_Scripts.js" type="text/javascript"></script>
-        <script>
-             $(document).ready(function () {
-                                            $('#mas').click(function (event) {
-                                                usarAJAX("+");
-                                            });
-                                             $('#menos').click(function (event) {
-                                                usarAJAX("-");
-                                            });
-                                        });
-                                        function usarAJAX(value) {
-                                            var roid = document.getElementById('roid').value;
-                                            var colorid = document.getElementById('colorid').value;
-                                            var tallaid = document.getElementById('tallaid').value;
-                                            var cantidadprenda =  document.getElementById('cantidadIndividual').value;
-                                            var masmenos = value;
-                                            $.getJSON('ajaxsumaRestaRopa', {
-                                                roid: roid, colorid: colorid, tallaid: tallaid, cantidadprenda: cantidadprenda, masmenos: masmenos
-                                            }, function (jsonResponse) {
-                                                 $("#cantidadIndividual").val(jsonResponse.scantidad);
-                                                 $("#cantidadIndividual").val(jsonResponse.scantidad);
-                                                
-                                            });
-                                        }
-            
-            
-            
+        <script>                    
             window.onload = cesta_Aniadir;
 
             function enviarPedido(){
@@ -304,6 +279,7 @@
                                     <s:form id="formCantidad" action="CestaFiltro" theme="simple" method="post">
                                         <input type="hidden" name="accionocul" value="e"/>
                                         <input type="hidden" name="clave" id="clave"/>
+                                        <input type="hidden" name="clave" id="idusu" value="<s:property value="sesion.usuarioLogueado.usuId"/>"/>
                                         <input type="hidden" name="clave" id="roid" value="<s:property value="#a.ropaStock.ropa.roId"/>"/>
                                         <input type="hidden" name="clave" id="colorid" value="<s:property value="#a.ropaStock.color.colorId"/>"/>
                                         <input type="hidden" name="clave" id="tallaid" value="<s:property value="#a.ropaStock.tallas.tallaId"/>"/>
@@ -327,17 +303,17 @@
                                             });
                                         });
                                         function usarAJAX(value) {
+                                           
                                             var roid = document.getElementById('roid').value;
                                             var colorid = document.getElementById('colorid').value;
                                             var tallaid = document.getElementById('tallaid').value;
                                             var cantidadprenda =  document.getElementById('cantidadIndividual').value;
+                                            var idusu =  document.getElementById('idusu').value;
                                             var masmenos = value;
                                             $.getJSON('ajaxsumaRestaRopa', {
-                                                roid: roid, colorid: colorid, tallaid: tallaid, cantidadprenda: cantidadprenda, masmenos: masmenos
+                                                roid: roid, colorid: colorid, tallaid: tallaid, cantidadprenda: cantidadprenda, masmenos: masmenos, idusu: idusu
                                             }, function (jsonResponse) {
                                                  $("#cantidadIndividual").val(jsonResponse.scantidad);
-                                                 $("#cantidadIndividual").val(jsonResponse.scantidad);
-                                                
                                             });
                                         }
                                     </script>

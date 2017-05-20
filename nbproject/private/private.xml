@@ -5,11 +5,15 @@
         <group>
             <file>file:/C:/MAMP/htdocs/TiendaOnline/src/java/Modelos/RopaStock.java</file>
             <file>file:/C:/MAMP/htdocs/TiendaOnline/src/java/Modelos/Color.java</file>
+            <file>file:/C:/MAMP/htdocs/TiendaOnline/src/java/Modelos/Usuarios.java</file>
             <file>file:/C:/MAMP/htdocs/TiendaOnline/src/java/Acciones/HomeUsuarios.java</file>
             <file>file:/C:/MAMP/htdocs/TiendaOnline/src/java/Acciones/HomeRopa.java</file>
             <file>file:/C:/MAMP/htdocs/TiendaOnline/src/java/Modelos/RopaStock.hbm.xml</file>
             <file>file:/C:/MAMP/htdocs/TiendaOnline/src/java/struts.xml</file>
             <file>file:/C:/MAMP/htdocs/TiendaOnline/web/Vistas/formularioCRUDusuarios.jsp</file>
+            <file>file:/C:/MAMP/htdocs/TiendaOnline/src/java/ControladoresDAO/cUsuarios.java</file>
+            <file>file:/C:/MAMP/htdocs/TiendaOnline/src/java/ControladoresDAO/cCesta.java</file>
+            <file>file:/C:/MAMP/htdocs/TiendaOnline/src/java/Modelos/Cesta.java</file>
             <file>file:/C:/MAMP/htdocs/TiendaOnline/web/Vistas/tiendaCesta.jsp</file>
         </group>
     </open-files>
