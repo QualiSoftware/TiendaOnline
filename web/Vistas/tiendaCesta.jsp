@@ -49,6 +49,31 @@
         <!-- Scripts Propios-->
         <script src="../Scripts/Tienda_Scripts.js" type="text/javascript"></script>
         <script>
+             $(document).ready(function () {
+                                            $('#mas').click(function (event) {
+                                                usarAJAX("+");
+                                            });
+                                             $('#menos').click(function (event) {
+                                                usarAJAX("-");
+                                            });
+                                        });
+                                        function usarAJAX(value) {
+                                            var roid = document.getElementById('roid').value;
+                                            var colorid = document.getElementById('colorid').value;
+                                            var tallaid = document.getElementById('tallaid').value;
+                                            var cantidadprenda =  document.getElementById('cantidadIndividual').value;
+                                            var masmenos = value;
+                                            $.getJSON('ajaxsumaRestaRopa', {
+                                                roid: roid, colorid: colorid, tallaid: tallaid, cantidadprenda: cantidadprenda, masmenos: masmenos
+                                            }, function (jsonResponse) {
+                                                 $("#cantidadIndividual").val(jsonResponse.scantidad);
+                                                 $("#cantidadIndividual").val(jsonResponse.scantidad);
+                                                
+                                            });
+                                        }
+            
+            
+            
             window.onload = cesta_Aniadir;
 
             function enviarPedido(){
@@ -319,17 +344,6 @@
                                                 
                                             });
                                         }
-//                                    $(document).ready(function(){
-//                                        $("#mas").click(function(evento){
-//                                          
-//                                           evento.preventDefault();
-//                                            $.getJSON('ajaxsumaRestaRopa',{roid: 93, colorid: 3, tallaid: 2}, function(jsonResponse){
-//                                           
-////                                           $("#destino").load("recibe-parametros.php", {nombre: "Pepe", edad: 45}, function(){
-////                                              alert("recibidos los datos por ajax");
-////                                           });
-//                                        });
-//                                     })
                                     </script>
                                 </td>  
                             </tr>
