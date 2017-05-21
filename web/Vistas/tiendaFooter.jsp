@@ -75,8 +75,4 @@
             if(cookieAceptada != ""){
                 document.getElementById('cookies').style.display = 'none';
             }
-            var uc = getCookie('userCookieSL');
-            if(uc == ""){
-                crearUsuario();
-            }
         </script>

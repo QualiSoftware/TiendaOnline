@@ -270,7 +270,7 @@ public class HomeCampanias extends ActionSupport {
             if(!sesion.get("usuarioLogueado").equals("")){
                 try{
                     int aux;
-                    u = (Usuarios) sesion.get("usuarioLogueado");
+                    u = (Usuarios) ControladoresDAO.cUsuarios.RecuperaPorId((int) sesion.get("usuId"));
                     aux = u.getUsuId();
                     u = ControladoresDAO.cUsuarios.RecuperaPorId(aux);
                     sesion.clear();

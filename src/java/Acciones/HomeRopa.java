@@ -810,7 +810,7 @@ public class HomeRopa extends ActionSupport {
         if(sesion.get("usuarioLogueado") != null){
             if(!sesion.get("usuarioLogueado").equals("")){
                 try{
-                    u = (Usuarios) sesion.get("usuarioLogueado");
+                    u = (Usuarios) ControladoresDAO.cUsuarios.RecuperaPorId((int) sesion.get("usuId"));
                     usi = ""+u.getUsuId();
                     Date hoy = new Date();
                     hoy = sumarRestarDiasFecha(hoy, -periodo);
@@ -871,7 +871,7 @@ public class HomeRopa extends ActionSupport {
             sesion = ActionContext.getContext().getSession();
         }
          try{
-            Usuarios u = (Usuarios) sesion.get("usuarioLogueado");
+            Usuarios u = (Usuarios) ControladoresDAO.cUsuarios.RecuperaPorId((int) sesion.get("usuId"));
             if(u.getUsuAdministrador()!=1){
                 return INPUT;
             }
@@ -1071,7 +1071,7 @@ public class HomeRopa extends ActionSupport {
                 try{
                     //int aux;
                     u = null;
-                    u = (Usuarios) sesion.get("usuarioLogueado");
+                    u = (Usuarios) ControladoresDAO.cUsuarios.RecuperaPorId((int) sesion.get("usuId"));
                     usi = ""+u.getUsuId();
                 }catch(Exception e){
                     System.out.println(e.getMessage());
@@ -1175,7 +1175,7 @@ public class HomeRopa extends ActionSupport {
             if(!sesion.get("usuarioLogueado").equals("")){
                 try{
                     u = null;
-                    u = (Usuarios) sesion.get("usuarioLogueado");
+                    u = (Usuarios) ControladoresDAO.cUsuarios.RecuperaPorId((int) sesion.get("usuId"));
                     usi = ""+u.getUsuId();
                 }catch(Exception e){
                     System.out.println(e.getMessage());

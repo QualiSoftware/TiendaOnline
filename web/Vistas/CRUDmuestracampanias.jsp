@@ -45,7 +45,7 @@
                     </s:form>
                 </td>
                 <td>
-                    <s:if test="usi==''">
+                    <s:if test="sesion.usuId==null || sesion.usuId==''">
                         <h1>Login</h1>
                         <s:form action="Login" theme="simple">
                             <table>
@@ -125,7 +125,7 @@
                             </table>
                         </s:form>
                     </s:if>
-                    <s:if test="sesion.usuId!=''">
+                    <s:if test="sesion.usuId!=null && sesion.usuId!=''">
                         Bienvenido : <s:property value="sesion.usuNombre"/>
                         <s:a action="CerrarSesion" >Cerrar</s:a>
                         <s:a action="UsuAlta" >

@@ -1,6 +1,7 @@
 package Acciones;
 
 import Modelos.Campania;
+import Modelos.CampaniaRopa;
 import Modelos.Cesta;
 import Modelos.Favoritos;
 import Modelos.FavoritosId;
@@ -19,6 +20,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import org.apache.struts2.interceptor.validation.SkipValidation;
 
 /*  
 *   Author     : QualiSoftware
@@ -48,6 +50,7 @@ public class HomeFavoritos extends ActionSupport {
     private String marca;
     private String campania;
     private int ropa;
+    private String userCookie;
     
 
     public Map getSesion() {
@@ -241,16 +244,21 @@ public class HomeFavoritos extends ActionSupport {
     public void setRopa(int ropa) {
         this.ropa = ropa;
     }
+
+    public String getUserCookie() {
+        return userCookie;
+    }
+
+    public void setUserCookie(String userCookie) {
+        this.userCookie = userCookie;
+    }
     
     public String listaDeseos() throws Exception{
         cargarDatos();
         if(!usi.equals("")){
             lista_favoritos = ControladoresDAO.cFavoritos.recuperaPorUsuario(u);
         } else {
-            if(userCookieSLlista != null && !userCookieSLlista.equals("")) {
-                userCookieSL = userCookieSLlista;
-            }
-            cargarUsuarioNoLogueado(sesion,userCookieSL);
+            cargarUsuarioNoLogueado(sesion,"");
             lista_favoritosNoLog = ControladoresDAO.cFavoritosNoLog.recuperaPorUsuario(nlu);
         }
         return SUCCESS;
@@ -264,7 +272,7 @@ public class HomeFavoritos extends ActionSupport {
         if(sesion.get("usuarioLogueado") != null){
             if(!sesion.get("usuarioLogueado").equals("")){
                 try{
-                    u = (Usuarios) sesion.get("usuarioLogueado");
+                    u = (Usuarios) ControladoresDAO.cUsuarios.RecuperaPorId((int) sesion.get("usuId"));
                     usi = ""+u.getUsuId();
                 }catch(Exception e){
                     HomeUsuariosValidaciones huv = new HomeUsuariosValidaciones();
@@ -318,7 +326,7 @@ public class HomeFavoritos extends ActionSupport {
         if(sesion.get("usuarioLogueado") != null){
             if(!sesion.get("usuarioLogueado").equals("")){
                 try{
-                    u = (Usuarios) sesion.get("usuarioLogueado");
+                    u = (Usuarios) ControladoresDAO.cUsuarios.RecuperaPorId((int) sesion.get("usuId"));
                     usi = ""+u.getUsuId();
                 }catch(Exception e){
                     HomeUsuariosValidaciones huv = new HomeUsuariosValidaciones();
@@ -370,6 +378,10 @@ public class HomeFavoritos extends ActionSupport {
             if(nluList.size() > 0){
                 nlu = nluList.get(0);
                 sesion.put("cookieLogueado", (NoLogUsuarios) nlu);
+                sesion.put("usuarioLogueado", "");
+                sesion.put("usuId", "");
+                sesion.put("usuNombre", "");
+                sesion.put("usuAdministrador", "");
             } else {
                 nlu = new NoLogUsuarios(userCookieSL, new Date());
                 int resp = ControladoresDAO.cUsuariosNoLog.Inserta(nlu);
@@ -420,6 +432,17 @@ public class HomeFavoritos extends ActionSupport {
                         nlu.getNluNick()+" el "+new Date());
             }
             lista_favoritosNoLog = ControladoresDAO.cFavoritosNoLog.recuperaPorUsuario(nlu);            
+        }
+        return SUCCESS;
+    }
+    
+    @SkipValidation
+    public String ajaxCookie() throws Exception{        
+        if(sesion==null){
+            sesion=ActionContext.getContext().getSession();
+        }
+        if(sesion.get("usuarioLogueado") == null || sesion.get("usuarioLogueado").equals("")){
+            cargarUsuarioNoLogueado(sesion, userCookie);
         }
         return SUCCESS;
     }

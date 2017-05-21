@@ -408,7 +408,7 @@ public class HomeApadrina extends ActionSupport {
         if(sesion.get("usuarioLogueado") != null){
             if(!sesion.get("usuarioLogueado").equals("")){
                 try{
-                    u = (Usuarios) sesion.get("usuarioLogueado");
+                    u = (Usuarios) ControladoresDAO.cUsuarios.RecuperaPorId((int) sesion.get("usuId"));
                     usi = ""+u.getUsuId();
                     Date hoy = new Date();
                     hoy = Acciones.HomeRopa.sumarRestarDiasFecha(hoy, -15);

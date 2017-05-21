@@ -280,7 +280,7 @@ public class HomeFacturas extends ActionSupport {
             sesion=ActionContext.getContext().getSession();
         }
         try{
-            Usuarios u = (Usuarios) sesion.get("usuarioLogueado");
+            Usuarios u = (Usuarios) ControladoresDAO.cUsuarios.RecuperaPorId((int) sesion.get("usuId"));
             if(u.getUsuAdministrador()!=1){
                 return INPUT;
             }

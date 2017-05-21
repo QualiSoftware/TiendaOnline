@@ -185,9 +185,10 @@ public class HomeUsuariosValidaciones extends ActionSupport{
                 if(sesion==null){
                     sesion=ActionContext.getContext().getSession();
                 }
-                sesion.put("usuarioLogueado", (Usuarios) l.get(0));
-                HomeFavoritos hf = new HomeFavoritos();
-                hf.cargarUsuarioNoLogueado(sesion, userCookieSL);
+                sesion.put("usuarioLogueado", l.get(0).getUsuEmail());
+                sesion.put("usuId", l.get(0).getUsuId());
+                sesion.put("usuNombre", l.get(0).getUsuNombre());
+                sesion.put("usuAdministrador", l.get(0).getUsuAdministrador());
                 if(sesion.get("cookieLogueado") != null && usuario.getUsuAdministrador() != 1){
                     NoLogUsuarios nlu = (NoLogUsuarios) sesion.get("cookieLogueado");
                     //Traslado Favoritos desde acá
@@ -253,6 +254,9 @@ public class HomeUsuariosValidaciones extends ActionSupport{
                 sesion=ActionContext.getContext().getSession();
             }
             sesion.put("usuarioLogueado", "");
+            sesion.put("usuId", "");
+            sesion.put("usuNombre", "");
+            sesion.put("usuAdministrador", "");
             return SUCCESS;
     }
     

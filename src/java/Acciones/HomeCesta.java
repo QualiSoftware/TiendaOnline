@@ -328,7 +328,7 @@ public class HomeCesta extends ActionSupport {
         }
         // para cuando tengamos sesión de usuario
          try{
-         u = (Usuarios) sesion.get("usuarioLogueado");
+         u = (Usuarios) ControladoresDAO.cUsuarios.RecuperaPorId((int) sesion.get("usuId"));
          }catch(Exception e){
          return INPUT;
          }
@@ -362,7 +362,7 @@ public class HomeCesta extends ActionSupport {
             sesion = ActionContext.getContext().getSession();
         }
          try{
-            Usuarios user = (Usuarios) sesion.get("usuarioLogueado");
+            Usuarios user = (Usuarios) ControladoresDAO.cUsuarios.RecuperaPorId((int) sesion.get("usuId"));
             u = ControladoresDAO.cUsuarios.RecuperaPorIdSinModificarSesion(user.getUsuId());
             if(u.getUsuAdministrador() == 1){
                 return INPUT;                
@@ -417,7 +417,7 @@ public class HomeCesta extends ActionSupport {
             sesion = ActionContext.getContext().getSession();
         }
          try{
-            Usuarios user = (Usuarios) sesion.get("usuarioLogueado");
+            Usuarios user = (Usuarios) ControladoresDAO.cUsuarios.RecuperaPorId((int) sesion.get("usuId"));
             u = ControladoresDAO.cUsuarios.RecuperaPorIdSinModificarSesion(user.getUsuId());
             u.getProvincias().getPaises().getPaisNombre(); //esta línea sólo sirve para que se cargue provincia y país
          }catch(Exception e){
@@ -492,7 +492,7 @@ public class HomeCesta extends ActionSupport {
         }
         // para cuando tengamos sesión de usuario
          try{
-         u = (Usuarios) sesion.get("usuarioLogueado");
+         u = (Usuarios) ControladoresDAO.cUsuarios.RecuperaPorId((int) sesion.get("usuId"));
          }catch(Exception e){
          return INPUT;
          }
@@ -510,7 +510,7 @@ public class HomeCesta extends ActionSupport {
             sesion = ActionContext.getContext().getSession();
         }
         try{
-            Usuarios user = (Usuarios) sesion.get("usuarioLogueado");
+            Usuarios user = (Usuarios) ControladoresDAO.cUsuarios.RecuperaPorId((int) sesion.get("usuId"));
             u = ControladoresDAO.cUsuarios.RecuperaPorId(user.getUsuId());
             facUsuId = u.getUsuId(); //Esta variable la usaré para el envío del email
             lista_ropa_Cestas = cCesta.RecuperaTodos(""+u.getUsuId());

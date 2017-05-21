@@ -118,6 +118,10 @@ function crearUsuario(){
 }            
 function usarAJAXCargarCookie() {
     var userCookie = getCookie('userCookieSL');
+    if(userCookie == ""){
+        crearUsuario();
+        userCookie = getCookie('userCookieSL');
+    }
     $.getJSON('ajaxCookie', {
         userCookie: userCookie
     }, function (jsonResponse) {

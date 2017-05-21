@@ -80,12 +80,12 @@
                     </s:if>
                 </div>
                 <div id="iniciar_Sesion">
-                    <s:if test="usi==''">
+                    <s:if test="sesion.usuId==null || sesion.usuId==''">
                         <%
                             response.sendRedirect("Vistas/Tienda.action");
                         %>
                     </s:if>
-                    <s:if test="sesion.usuId!=''">                    
+                    <s:if test="sesion.usuId!=null && sesion.usuId!=''">                   
                         <a href="#">
                             <div id="mi_Cuenta_Txt" onclick="fijarLogin();">
                                 ¡Bienvenido <div id="nick_Login"><s:property value="sesion.usuNombre"/>!</div>
@@ -122,7 +122,7 @@
                 <img src="../Imagenes/Administracion/afdf338882d16dd2b1360aa975b18111.png" alt="" style="width: 30px; margin-right: 10px; opacity: 0.9;"/>
                 <div id="menu_Tabla">
                     <table>
-                        <s:if test="sesion.usuId!=''">
+                        <s:if test="sesion.usuId!=null && sesion.usuId!=''">
                             <tr>
                                 <td class="con_Borde">
                                     <s:a action="UsuAlta" >

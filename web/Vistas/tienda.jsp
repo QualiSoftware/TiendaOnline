@@ -177,19 +177,17 @@
                         </s:form>
                     </s:if>
                             
-                    <s:if test="sesion.usuId!=null">
-                        <s:if test="sesion.usuId!=''">                    
-                            <a href="#">
-                                <div id="mi_Cuenta_Txt" onclick="fijarLogin();">
-                                    ¡Bienvenido <div id="nick_Login"><s:property value="sesion.usuNombre"/>!</div>
-                                </div>
-                            </a>
-                            <div id="login" style="width: 50px; margin-right: 50px; margin-top: 0px;">                                        
-                                <s:a action="TiendaCerrarSesion" >
-                                    <button style="margin: 0 auto" class="btn btn-default">Cerrar Sesión</button>
-                                </s:a>
+                    <s:if test="sesion.usuId!=null && sesion.usuId!=''">   
+                        <a href="#">
+                            <div id="mi_Cuenta_Txt" onclick="fijarLogin();">
+                                ¡Bienvenido <div id="nick_Login"><s:property value="sesion.usuNombre"/>!</div>
                             </div>
-                        </s:if>
+                        </a>
+                        <div id="login" style="width: 50px; margin-right: 50px; margin-top: 0px;">                                        
+                            <s:a action="TiendaCerrarSesion" >
+                                <button style="margin: 0 auto" class="btn btn-default">Cerrar Sesión</button>
+                            </s:a>
+                        </div>
                     </s:if>
                 </div>
                 <s:if test="mensajeError == 'Usuario y/o contraseña erróneos'"><script>fijarLogin('block');</script></s:if>
@@ -217,7 +215,7 @@
                 <img src="../Imagenes/Administracion/afdf338882d16dd2b1360aa975b18111.png" alt="" style="width: 30px; margin-right: 10px; opacity: 0.9;"/>
                 <div id="menu_Tabla">
                     <table>
-                        <s:if test="sesion.usuId!=''">
+                        <s:if test="sesion.usuId!=null && sesion.usuId!=''">
                             <tr>
                                 <td class="con_Borde">
                                     <s:a action="UsuAlta" >
