@@ -65,6 +65,7 @@
         <title><s:property value="cabeceraocul" /> de Usuario</title>
     </head>
     <body>
+        <script>usarAJAXCargarCookie();</script>
         <div id="todo">
             <div id="header">
                 <div id="marca">
@@ -77,7 +78,7 @@
                     <img src="../Imagenes/Administracion/lrgscaleunited_kingdom_great_british_union_jack_flag.png" alt=""/>
                 </div>
                 <div id="cesta">
-                    <s:if test="sesion.usuarioLogueado.usuAdministrador!=1">
+                    <s:if test="sesion.usuAdministrador!=1">
                         <s:a action="CestaFiltro" theme="simple">
                             <s:textfield type="hidden" value="1" name="filtro" theme="simple"/>
                             <img src="../Imagenes/Administracion/Shopping-Cart-10.png" alt="" id="imgcesta"/>
@@ -158,7 +159,7 @@
                             </s:if>
                         </s:a>
                     </s:if>                                
-                    <s:if test="sesion.usuarioLogueado.usuAdministrador==1">
+                    <s:if test="sesion.usuAdministrador==1">
                         <s:form action="RopaAdminFiltro" theme="simple">
                             <s:submit value="Admin"></s:submit>                    
                         </s:form>
@@ -171,7 +172,6 @@
                         </a>                    
                         <s:form id="frmLogin" action="TiendaLogin" theme="simple">
                             <input type="hidden" name="actionName" value="Tienda.action"/>
-                            <input type="hidden" name="userCookieSL" id="userCookieSL"/>
                             <div id="login">                                        
                                 <table>
                                     <tr>
@@ -210,10 +210,10 @@
                             </div>
                         </s:form>
                     </s:if>
-                    <s:if test="sesion.usuarioLogueado.usuId!=''">                    
+                    <s:if test="sesion.usuId!=''">                    
                         <a href="#">
                             <div id="mi_Cuenta_Txt" onclick="fijarLogin();">
-                                ¡Bienvenido <div id="nick_Login"><s:property value="sesion.usuarioLogueado.usuNombre"/>!</div>
+                                ¡Bienvenido <div id="nick_Login"><s:property value="sesion.usuNombre"/>!</div>
                             </div>
                         </a>
                         <div id="login" style="width: 50px; margin-right: 50px; margin-top: 0px;">                                        
@@ -235,13 +235,12 @@
                     <div id="contacto">
                     <s:a action="contacto"><div id="contacto_Txt">Contacto  &nbsp;<span class="sin_Decoracion">|</span></div></s:a>
                     </div>
-                    <div id="lista_Deseos" onclick="enviarListaDeseos();">                       
-                        <s:form id="frmListaDeseos" action="listaDeseos" method="POST" theme="simple">
-                            <input type="hidden" name="userCookieSLlista" id="userCookieSLlista"/>
+                    <div id="lista_Deseos">                       
+                        <s:a action="listaDeseos">
                             <div id="lista_Deseos_Txt">
                                 Lista de deseos <span class="glyphicon glyphicon-star" style="color: black;"></span>  &nbsp;<span class="sin_Decoracion">|</span>
                             </div>
-                        </s:form>
+                        </s:a>
                     </div>
                 </div>
                 <div id="linea1" class="linea"></div>
@@ -249,13 +248,13 @@
                     <img src="../Imagenes/Administracion/afdf338882d16dd2b1360aa975b18111.png" alt="" style="width: 30px; margin-right: 10px; opacity: 0.9;"/>
                     <div id="menu_Tabla">
                         <table>
-                        <s:if test="sesion.usuarioLogueado.usuId!=''">
-                            <s:if test="sesion.usuarioLogueado.usuAdministrador!=1">
+                        <s:if test="sesion.usuId!=''">
+                            <s:if test="sesion.usuAdministrador!=1">
                                 <tr>
                                     <td class="con_Borde">
                                         <s:a action="pedidos">
                                             <span class="glyphicon glyphicon-shopping-cart"></span> Pedidos
-                                            <s:param name="clave" value="sesion.usuarioLogueado.usuId"/>
+                                            <s:param name="clave" value="sesion.usuId"/>
                                         </s:a>
                                     </td>
                                 </tr>

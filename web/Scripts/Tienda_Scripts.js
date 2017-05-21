@@ -115,9 +115,11 @@ function crearUsuario(){
     d.setTime(d.getTime() + (30*24*60*60*1000));
     var expires = "expires="+ d.toUTCString();
     document.cookie = "userCookieSL="+user+"; expires="+ expires;    
-}
-function enviarListaDeseos(){
-    var ucMenu = getCookie('userCookieSL');
-    document.getElementById('userCookieSLlista').value = ucMenu;
-    document.getElementById('frmListaDeseos').submit();
+}            
+function usarAJAXCargarCookie() {
+    var userCookie = getCookie('userCookieSL');
+    $.getJSON('ajaxCookie', {
+        userCookie: userCookie
+    }, function (jsonResponse) {
+    });
 }

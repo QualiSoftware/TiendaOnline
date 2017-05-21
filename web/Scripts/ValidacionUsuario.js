@@ -181,8 +181,6 @@ function validarEmail(email) {
 
 function usuarioLogin() {
     var rellena = contraseniaRellena();
-    var ucMenu = getCookie('userCookieSL');
-    document.getElementById('userCookieSL').value = ucMenu;
     if(rellena){
         document.getElementById("frmLogin").submit();
     }else{

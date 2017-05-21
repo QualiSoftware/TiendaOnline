@@ -125,28 +125,28 @@
                             </table>
                         </s:form>
                     </s:if>
-                    <s:if test="sesion.usuarioLogueado.usuId!=''">
-                        Bienvenido : <s:property value="sesion.usuarioLogueado.usuNombre"/>
+                    <s:if test="sesion.usuId!=''">
+                        Bienvenido : <s:property value="sesion.usuNombre"/>
                         <s:a action="CerrarSesion" >Cerrar</s:a>
                         <s:a action="UsuAlta" >
-                            <s:param name="clave" value="sesion.usuarioLogueado.usuId"/>
+                            <s:param name="clave" value="sesion.usuId"/>
                             <s:param name="accion" value="'m'"/>
                             Modificar Usuario
                         </s:a>
                         <s:a action="UsuAlta" >
-                            <s:param name="clave" value="sesion.usuarioLogueado.usuId"/>
+                            <s:param name="clave" value="sesion.usuId"/>
                             <s:param name="accion" value="'e'"/>
                             Eliminar usuario
                         </s:a>
                     </s:if>
-                    <s:if test="sesion.usuarioLogueado.usuAdministrador!=1">
+                    <s:if test="sesion.usuAdministrador!=1">
                         <s:property value="mensajeError" />
                         <s:form action="CestaFiltro" theme="simple">
                             <s:textfield type="hidden" value="1" name="filtro" /> <s:property value="totalcestaUsuario"/> <s:submit value="cesta"></s:submit>                    
                         </s:form>
                     </s:if>
                 </td>
-                <s:if test="sesion.usuarioLogueado.usuAdministrador==1">
+                <s:if test="sesion.usuAdministrador==1">
                     <td>
                         <s:form action="RopaAdminFiltro" theme="simple">
                             <s:submit value="Admin"></s:submit>                    
@@ -178,7 +178,7 @@
                             <s:param name="clave" value="#a.roId"/>
                             <i style="font-size: 20px" class="glyphicon glyphicon-euro"></i>
                         </s:a>
-                        <s:if test="sesion.usuarioLogueado.usuAdministrador!=1">
+                        <s:if test="sesion.usuAdministrador!=1">
                             <s:a action="AñadeFavoritos">
                                 <i style="font-size: 20px" class="glyphicon glyphicon-plus-sign"></i>
                             </s:a>
