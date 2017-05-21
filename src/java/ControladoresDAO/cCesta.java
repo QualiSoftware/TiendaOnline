@@ -22,7 +22,7 @@ import org.hibernate.criterion.Restrictions;
 public class cCesta {    
     
     public static ArrayList<Cesta> RecuperaTodos(String filtro){
-        if(filtro.equals("")){
+        if(filtro.equals("") || filtro.equals("null")){
             filtro = "0";
         }
         sesion = (Session) NewHibernateUtil.getSession();

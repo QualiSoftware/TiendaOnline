@@ -183,11 +183,11 @@ public class HomeMarcas extends ActionSupport {
             if(!sesion.get("usuarioLogueado").equals("")){
                 try{
                     int aux;
-                    u = (Usuarios) ControladoresDAO.cUsuarios.RecuperaPorId((int) sesion.get("usuId"));
+                    u = (Usuarios) ControladoresDAO.cUsuarios.RecuperaPorId(Integer.parseInt(sesion.get("usuId")+""));
                 }catch(Exception e){
                     HomeUsuariosValidaciones huv = new HomeUsuariosValidaciones();
                     huv.escribirEnArchivoLog("Error al intentar cargar un usuario en método " + e.getStackTrace()[0].getMethodName()
-                            + " con usuID "+(int) sesion.get("usuId")+" el día "+new Date());
+                            + " con usuID "+sesion.get("usuId")+" el día "+new Date());
                 }
             }
         }

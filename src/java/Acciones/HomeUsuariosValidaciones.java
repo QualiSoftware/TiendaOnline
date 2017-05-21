@@ -186,7 +186,7 @@ public class HomeUsuariosValidaciones extends ActionSupport{
                     sesion=ActionContext.getContext().getSession();
                 }
                 sesion.put("usuarioLogueado", l.get(0).getUsuEmail());
-                sesion.put("usuId", l.get(0).getUsuId());
+                sesion.put("usuId", l.get(0).getUsuId()+"");
                 sesion.put("usuNombre", l.get(0).getUsuNombre());
                 sesion.put("usuAdministrador", l.get(0).getUsuAdministrador());
                 if(sesion.get("cookieLogueado") != null && usuario.getUsuAdministrador() != 1){

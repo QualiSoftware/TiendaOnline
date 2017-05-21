@@ -398,7 +398,7 @@ public class HomeApadrina extends ActionSupport {
         if(sesion.get("usuarioLogueado") != null){
             if(!sesion.get("usuarioLogueado").equals("")){
                 try{
-                    u = (Usuarios) ControladoresDAO.cUsuarios.RecuperaPorId((int) sesion.get("usuId"));
+                    u = (Usuarios) ControladoresDAO.cUsuarios.RecuperaPorId(Integer.parseInt(sesion.get("usuId")+""));
                     Date hoy = new Date();
                     hoy = Acciones.HomeRopa.sumarRestarDiasFecha(hoy, -15);
                     if(u.getUsuAlta().before(hoy)){
@@ -407,7 +407,7 @@ public class HomeApadrina extends ActionSupport {
                 }catch(Exception e){
                     HomeUsuariosValidaciones huv = new HomeUsuariosValidaciones();
                     huv.escribirEnArchivoLog("Error al intentar cargar un usuario en método " + e.getStackTrace()[0].getMethodName()
-                            + " con usuID "+(int) sesion.get("usuId")+" el día "+new Date());
+                            + " con usuID "+sesion.get("usuId")+" el día "+new Date());
                 }
             }
         }
@@ -435,7 +435,7 @@ public class HomeApadrina extends ActionSupport {
             }
         }
         lista_ropa.clear();     
-        lista_ropa_Cestas = ControladoresDAO.cCesta.RecuperaTodos((int) sesion.get("usuId")+"");
+        lista_ropa_Cestas = ControladoresDAO.cCesta.RecuperaTodos(sesion.get("usuId")+"");
         for(Cesta caux:lista_ropa_Cestas){
             totalcestaUsuario += caux.getCestaUnidades();
             HomeRopa hr = new HomeRopa();

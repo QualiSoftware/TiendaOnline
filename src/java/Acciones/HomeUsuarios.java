@@ -474,7 +474,7 @@ public class HomeUsuarios extends ActionSupport {
             sesion=ActionContext.getContext().getSession();
         }
         try{
-            Usuarios u = (Usuarios) ControladoresDAO.cUsuarios.RecuperaPorId((int) sesion.get("usuId"));
+            Usuarios u = (Usuarios) ControladoresDAO.cUsuarios.RecuperaPorId(Integer.parseInt(sesion.get("usuId")+""));
         }catch(Exception e){
             return INPUT;
         }
@@ -607,7 +607,7 @@ public class HomeUsuarios extends ActionSupport {
          sesion=ActionContext.getContext().getSession();
         }
         try{
-            Usuarios u = (Usuarios) ControladoresDAO.cUsuarios.RecuperaPorId((int) sesion.get("usuId"));
+            Usuarios u = (Usuarios) ControladoresDAO.cUsuarios.RecuperaPorId(Integer.parseInt(sesion.get("usuId")+""));
             if(u.getUsuAdministrador()!=1){
                 return INPUT;
             }
@@ -697,7 +697,7 @@ public class HomeUsuarios extends ActionSupport {
         }
         try{
             if (!accion.equals("a")) {
-                u = (Usuarios) ControladoresDAO.cUsuarios.RecuperaPorId((int) sesion.get("usuId"));
+                u = (Usuarios) ControladoresDAO.cUsuarios.RecuperaPorId(Integer.parseInt(sesion.get("usuId")+""));
             }
         }catch(Exception e){
             return INPUT;
@@ -864,11 +864,11 @@ public class HomeUsuarios extends ActionSupport {
         if(sesion.get("usuarioLogueado") != null){
             if(!sesion.get("usuarioLogueado").equals("")){
                 try{
-                    u = (Usuarios) ControladoresDAO.cUsuarios.RecuperaPorId((int) sesion.get("usuId"));
+                    u = (Usuarios) ControladoresDAO.cUsuarios.RecuperaPorId(Integer.parseInt(sesion.get("usuId")+""));
                 }catch(Exception e){
                     HomeUsuariosValidaciones huv = new HomeUsuariosValidaciones();
                     huv.escribirEnArchivoLog("Error al intentar cargar un usuario en método " + e.getStackTrace()[0].getMethodName()
-                            + " con usuID "+(int) sesion.get("usuId")+" el día "+new Date());
+                            + " con usuID "+sesion.get("usuId")+" el día "+new Date());
                 }
             }
         }        
@@ -891,7 +891,7 @@ public class HomeUsuarios extends ActionSupport {
                 lista_menu_ropa.add(lr);
             }
         }        
-        lista_ropa_Cestas = ControladoresDAO.cCesta.RecuperaTodos(((int) sesion.get("usuId")+""));
+        lista_ropa_Cestas = ControladoresDAO.cCesta.RecuperaTodos(sesion.get("usuId")+"");
         HomeRopa homeRopa = new HomeRopa();
         for(Cesta caux:lista_ropa_Cestas){
             totalcestaUsuario += caux.getCestaUnidades();
