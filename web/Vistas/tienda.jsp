@@ -39,7 +39,7 @@
         <script>usarAJAXCargarCookie();</script>     
         <div id="todo">            
             <div id="header">
-                <div id="marca">Tienda Ropa <img src="../Imagenes/Administracion/SH14171.jpg" alt="house_hangers" id="logo"/>
+                <div id="marca"><img src="../Imagenes/Administracion/SH14171.jpg" alt="house_hangers" id="logo"/>
                 </div>
                 <div id="idioma">
                     <img src="../Imagenes/Administracion/flag_spain_blog.png" alt=""/>
