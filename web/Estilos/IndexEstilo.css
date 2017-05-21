@@ -20,6 +20,7 @@
 #header {
     padding-top: 10px;
     padding-bottom: 130px;
+    
 }
 #header a{
     text-decoration: none;
@@ -229,6 +230,7 @@ select:-webkit-autofill:focus {
     margin-left: 780px;
     text-align: center;
     width: 100px;
+    
 }
 #quienes_Somos_Txt{    
     position: absolute;
@@ -1435,3 +1437,4 @@ select:-webkit-autofill:focus{
     top: 40%;
     z-index: 1000;    
 }
+
