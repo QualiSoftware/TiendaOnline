@@ -11,7 +11,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <!--Favicon-->
-        <link rel="shortcut icon" href="../Imagenes/Administracion/Favicon house_hangers.png">        
+        <link rel="shortcut icon" href="../Imagenes/Administracion/Favicon.png">        
         <!--Mis Estilos-->
         <link href="../Estilos/IndexEstilo.css" rel="stylesheet" type="text/css"/>
         <!--Bootstrap-->
@@ -52,78 +52,78 @@
                             <img src="../Imagenes/Administracion/Shopping-Cart-10.png" alt="" id="imgcesta"/>
                             <div id="cantidad_Cesta"><s:property value="totalcestaUsuario"/></div>
                             <s:if test="%{totalcestaUsuario > 0}">
-                            <s:set var="importeTotal" value="0"/>
-                            <table id="cesta_Hover">
-                                <s:iterator var="c" value="lista_ropa_Cestas">
-                                    <tr style="">
-                                        <td class="img_CestaPreview">
-                                            Artículo:<br>
-                                            <% int cero = 0; %>
-                                            <s:iterator var="f" value="#c.ropaStock.ropa.fotoses">
-                                                <% if (cero < 1) {%>
-                                                <img src="<s:url value='../Imagenes/%{#c.ropaStock.ropa.categoria.catDescripcion}/%{#c.ropaStock.ropa.subcategoria.subDescripcion}/%{#f.fotosRuta}'/>" alt="<s:property value="fotosRuta" />"/>
-                                                <% cero++;
-                                                    }%>
-                                            </s:iterator>                                                
+                                <s:set var="importeTotal" value="0"/>
+                                <table id="cesta_Hover">
+                                    <s:iterator var="c" value="lista_ropa_Cestas">
+                                        <tr style="">
+                                            <td class="img_CestaPreview">
+                                                Artículo:<br>
+                                                <% int cero = 0; %>
+                                                <s:iterator var="f" value="#c.ropaStock.ropa.fotoses">
+                                                    <% if (cero < 1) {%>
+                                                    <img src="<s:url value='../Imagenes/%{#c.ropaStock.ropa.categoria.catDescripcion}/%{#c.ropaStock.ropa.subcategoria.subDescripcion}/%{#f.fotosRuta}'/>" alt="<s:property value="fotosRuta" />"/>
+                                                    <% cero++;
+                                                        }%>
+                                                </s:iterator>                                                
+                                            </td>
+                                            <td class="descripcion_CestaPreview">
+                                                <s:property value="#c.ropaStock.ropa.roDescripcion"/>
+                                            </td>
+                                        </tr>                                        
+                                        <tr>
+                                            <td>
+                                                Color:
+                                            </td>
+                                            <td>
+                                                <div id="color1" style="background-color: <s:property value="#c.ropaStock.color.colorDescripcion"/>;">
+                                                </div>                                            
+                                            </td>
+                                        </tr>                                        
+                                        <tr>
+                                            <td>
+                                                Talla:
+                                            </td>
+                                            <td>
+                                                <s:property value="#c.ropaStock.tallas.tallaDescripcion"/>
+                                            </td>
+                                        </tr>                                        
+                                        <tr>
+                                            <td>
+                                                Precio:
+                                            </td>
+                                            <td>
+                                                <s:property value="getText('{0,number,##0.00}',{#c.ropaStock.ropa.roPrecio - (#c.ropaStock.ropa.roPrecio * #c.ropaStock.ropa.roDescuento / 100)})"/>
+                                                <s:set var="importeTotal" value="%{#importeTotal + (#c.cestaUnidades * (#c.ropaStock.ropa.roPrecio - (#c.ropaStock.ropa.roPrecio * #c.ropaStock.ropa.roDescuento / 100)))}"/>
+                                            </td>
+                                        </tr>                                        
+                                        <tr>
+                                            <td>
+                                                Cantidad:
+                                            </td>
+                                            <td>
+                                                <s:property value="#c.cestaUnidades"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" ><hr class="linea_CestaPreview"></td>                                
+                                        </tr>
+                                    </s:iterator>
+                                    <tr>
+                                        <td>
+                                            Precio total:
                                         </td>
-                                        <td class="descripcion_CestaPreview">
-                                            <s:property value="#c.ropaStock.ropa.roDescripcion"/>
+                                        <td>
+                                            <s:property value="getText('{0,number,##0.00}',{#importeTotal})"/>
                                         </td>
                                     </tr>                                        
                                     <tr>
                                         <td>
-                                            Color:
-                                        </td>
-                                        <td>
-                                            <div id="color1" style="background-color: <s:property value="#c.ropaStock.color.colorDescripcion"/>;">
-                                            </div>                                            
-                                        </td>
-                                    </tr>                                        
-                                    <tr>
-                                        <td>
-                                            Talla:
-                                        </td>
-                                        <td>
-                                            <s:property value="#c.ropaStock.tallas.tallaDescripcion"/>
-                                        </td>
-                                    </tr>                                        
-                                    <tr>
-                                        <td>
-                                            Precio:
-                                        </td>
-                                        <td>
-                                            <s:property value="getText('{0,number,##0.00}',{#c.ropaStock.ropa.roPrecio - (#c.ropaStock.ropa.roPrecio * #c.ropaStock.ropa.roDescuento / 100)})"/>
-                                            <s:set var="importeTotal" value="%{#importeTotal + (#c.cestaUnidades * (#c.ropaStock.ropa.roPrecio - (#c.ropaStock.ropa.roPrecio * #c.ropaStock.ropa.roDescuento / 100)))}"/>
-                                        </td>
-                                    </tr>                                        
-                                    <tr>
-                                        <td>
-                                            Cantidad:
-                                        </td>
-                                        <td>
-                                            <s:property value="#c.cestaUnidades"/>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2" ><hr class="linea_CestaPreview"></td>                                
-                                    </tr>
-                                </s:iterator>
-                                <tr>
-                                    <td>
-                                        Precio total:
-                                    </td>
-                                    <td>
-                                        <s:property value="getText('{0,number,##0.00}',{#importeTotal})"/>
-                                    </td>
-                                </tr>                                        
-                                <tr>
-                                    <td>
 
-                                    </td>
-                                    <td>
-                                    </td>
-                                </tr>
-                            </table>
+                                        </td>
+                                        <td>
+                                        </td>
+                                    </tr>
+                                </table>
                             </s:if>
                         </s:a>
                     </s:if>                                
@@ -159,7 +159,7 @@
                                     <tr>
                                         <td>
                                             <a href="#">
-                                                <input type="button" onclick="usuarioLogin();" value="Acceder" style="margin: 0 auto; width: 100px; border: 0px grey solid; background-color: #cc0033; box-shadow: 5px 5px 5px grey; color: white; padding-bottom: 25px; padding-left: 10px;" onMouseOver="this.style.cssText='width: 100px; -webkit-transform: scale(1.09); -webkit-transition: .3s; border: 0px grey solid; color: white; background-color: #cc0033; box-shadow: 5px 5px 5px grey; padding-bottom: 25px; padding-left: 10px;'" onMouseOut="this.style.cssText='box-shadow: 0px; width: 100px; -webkit-transform: scale(1); -webkit-transition: .3s; border: 0px grey solid; color: white; background-color: #cc0033; box-shadow: 5px 5px 5px grey; padding-bottom: 25px; padding-left: 10px;'" class="btn btn-default btn_Acceder"/>
+                                                <input type="button" onclick="usuarioLogin();" value="Acceder" style="margin: 0 auto; width: 100px; border: 0px grey solid; background-color: #cc0033; box-shadow: 5px 5px 5px grey; color: white; padding-bottom: 25px; padding-left: 10px;" onMouseOver="this.style.cssText = 'width: 100px; -webkit-transform: scale(1.09); -webkit-transition: .3s; border: 0px grey solid; color: white; background-color: #cc0033; box-shadow: 5px 5px 5px grey; padding-bottom: 25px; padding-left: 10px;'" onMouseOut="this.style.cssText = 'box-shadow: 0px; width: 100px; -webkit-transform: scale(1); -webkit-transition: .3s; border: 0px grey solid; color: white; background-color: #cc0033; box-shadow: 5px 5px 5px grey; padding-bottom: 25px; padding-left: 10px;'" class="btn btn-default btn_Acceder"/>
                                             </a>
                                         </td>
                                     </tr>
@@ -176,7 +176,7 @@
                             </div>
                         </s:form>
                     </s:if>
-                            
+
                     <s:if test="sesion.usuId!=null && sesion.usuId!=''">   
                         <a href="#">
                             <div id="mi_Cuenta_Txt" onclick="fijarLogin();">
@@ -191,18 +191,18 @@
                     </s:if>
                 </div>
                 <s:if test="mensajeError == 'Usuario y/o contraseña erróneos'"><script>fijarLogin('block');</script></s:if>
-                <div id="apadrina">
+                    <div id="apadrina">
                     <s:a action="apadrina"><div id="apadrina_Txt">Apadrina  &nbsp;<span class="sin_Decoracion">|</span></div></s:a>
-                </div>
+                    </div>
 
-                <div id="quienes_Somos">
-                <s:a action="quienesSomos"><div id="quienes_Somos_Txt"> ¿Quiénes somos? &nbsp; <span class="sin_Decoracion">|</span></div></s:a>
+                    <div id="quienes_Somos">
+                    <s:a action="quienesSomos"><div id="quienes_Somos_Txt"> ¿Quiénes somos? &nbsp; <span class="sin_Decoracion">|</span></div></s:a>
 
-                </div>
-                <div id="contacto">
-                <s:a action="contacto"><div id="contacto_Txt">Contacto  &nbsp;<span class="sin_Decoracion">|</span></div></s:a>
-                </div>
-                <div id="lista_Deseos">                       
+                    </div>
+                    <div id="contacto">
+                    <s:a action="contacto"><div id="contacto_Txt">Contacto  &nbsp;<span class="sin_Decoracion">|</span></div></s:a>
+                    </div>
+                    <div id="lista_Deseos">                       
                     <s:a action="listaDeseos">
                         <div id="lista_Deseos_Txt">
                             Lista de deseos <span class="glyphicon glyphicon-star" style="color: black;"></span>  &nbsp;<span class="sin_Decoracion">|</span>
@@ -210,7 +210,7 @@
                     </s:a>
                 </div>
             </div>
-                    <div class="linea" style="height: 2px;"></div>
+            <div class="linea" style="height: 2px;"></div>
             <div id="menu_Desplegable">
                 <img src="../Imagenes/Administracion/afdf338882d16dd2b1360aa975b18111.png" alt="" style="width: 30px; margin-right: 10px; opacity: 0.9;"/>
                 <div id="menu_Tabla">
@@ -238,24 +238,24 @@
                         </s:if>
                         <tr>
                             <td class="con_Borde">
-                            <s:a action="ayuda"><span class="glyphicon glyphicon-question-sign"></span> Ayuda</s:a>
-                            </td>
-                        </tr>                        
-                        <tr>
-                            <td >
-                            <s:a action="otros"><span class="glyphicon glyphicon-option-vertical"></span> Otros</s:a>
-                            </td>
-                        </tr>
-                    </table>                                        
+                                <s:a action="ayuda"><span class="glyphicon glyphicon-question-sign"></span> Ayuda</s:a>
+                                </td>
+                            </tr>                        
+                            <tr>
+                                <td >
+                                <s:a action="otros"><span class="glyphicon glyphicon-option-vertical"></span> Otros</s:a>
+                                </td>
+                            </tr>
+                        </table>                                        
+                    </div>
                 </div>
-            </div>
-            <div id="filtro" class="navbar-form navbar-left">
+                <div id="filtro" class="navbar-form navbar-left">
                 <s:form role="search" action="Tienda" theme="simple">
                     <div class="form-group">
                         <input type="text" style="position: absolute; top:0px; left: 0px;" class="form-control" placeholder="Búsqueda" name="filtro" value="<s:property value="filtro"/>">
                     </div>
                     <button style="position: absolute; top:0px; left: 215px;" type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
-                </s:form>
+                    </s:form>
             </div>
             <div id="menu">
                 <ul class="nav nav-pills">
@@ -264,7 +264,7 @@
 
                         </li>                    
                         <li class="dropdown">
-                            <a href="#" data-toggle="dropdown" class="dropdown-toggle" style="font-weight: normal; color: #343434;">MUJER <b class="caret"></b></a>
+                            <a href="#" data-toggle="dropdown" class="dropdown-toggle" style="font-weight: normal;">MUJER <b class="caret"></b></a>
                             <ul class="dropdown-menu" id="Mujer">
                             <s:iterator var="a" value= "lista_menu_ropa">
                                 <s:if test="#a.clientela.clientelaDescripcion=='Mujer'">
@@ -309,8 +309,12 @@
             <div id="contenido">
                 <s:if test="lista_campaniasTienda.size > 0">
                     <br>
-                    <div id="campañas_Titulo">
-                        CAMPAÑAS</div>
+<!--                    <div id="campañas_Titulo">
+                        <div class="rellenoIzq" style="z-index: 0;"></div>
+                            <div class="campañas_titulo_Txt" style="z-index: 1;">CAMPAÑAS</div>
+                            <div class="rellenoDer" style="z-index: 0;"></div>
+                    </div>-->
+                    <div id="campañas_titulo_Txt">CAMPAÑAS</div>
                     <div id="campagnas" >
                         <s:iterator var="a" value="lista_campaniasTienda">
                             <s:a action="TiendaMenu">
@@ -321,7 +325,7 @@
                                     <tr>
                                         <td>
                                             <s:if test="#a.camFoto != ''">
-                                                <img style="height: 250px; width: 350px;" id="prueba" onmouseover="this.style.cssText='opacity: 0.5; box-shadow: 5px 5px 5px black; -webkit-transition: 0.5s;'" onmouseout="this.style.cssText='opacity: 1; -webkit-transform: scale(1); -webkit-transition: 0.5s; box-shadow: 0px 0px 0px white;'" src="../Imagenes/Campanias/<s:property value="#a.camFoto"/>" alt="<s:property value="#a.camNombre"/>"/>
+                                                <img style="height: 250px; width: 350px;" id="prueba" onmouseover="this.style.cssText = 'opacity: 0.5; box-shadow: 5px 5px 5px black; -webkit-transition: 0.5s;'" onmouseout="this.style.cssText = 'opacity: 1; -webkit-transform: scale(1); -webkit-transition: 0.5s; box-shadow: 0px 0px 0px white;'" src="../Imagenes/Campanias/<s:property value="#a.camFoto"/>" alt="<s:property value="#a.camNombre"/>"/>
                                             </s:if>
                                         </td>
                                     </tr>                        

@@ -386,22 +386,72 @@ select:-webkit-autofill:focus {
 }
 #campañas_Titulo{
     /*margin-left: 30px;*/
-    margin-top: 20px;
-    text-align: left;
-    font-size: 30px;
-    /*font-weight: bold;*/
+    margin: 0 auto;
+    width: 92%;
+    height: 28px;
+    margin-top: 30px;   
+    background-color: white;
+    }
+/*.rellenoIzq{        
+    position: absolute; 
+    position: relative;
+    left: 0px;
+    height: 28px;
+    width: 555px;    
+    background-color: #343434;
+    background: -webkit-linear-gradient(left, #fff , #343434 100px);
+    display: inline;
+    z-index: 0;
+}
+.campañas_titulo_Txt{
+    position: absolute;
+    margin: 0 auto;
+    margin-top: 10px;
+    margin-right: 500px;
+    margin-left: 50%;
+    
+    display: inline;
+    font-size: 20px;
+    width: 10%;
+    height: 25px;
     text-align: center;
-    color: #343434;
-    /*background-color: black;*/
+    background-color: #343434;
+    color: #ffffff;
+    padding: 3px;
+    z-index: 1;
+}*/
+
+/*.rellenoDer{
+    display: inline;
+    position: absolute;    
+    height: 28px;
+    width: 555px;    
+    background-color: #343434;
+    background: -webkit-linear-gradient(right, #fff, #343434 100px);
+    z-index: 0;
+}*/
+#campañas_titulo_Txt{
+    margin: 0 auto;
+    margin-top: 50px;
+    width: 90%;
+    padding: 4px;
+    padding-bottom: 4px;
+    height: 30px;
+    background-color: white;
+    background: -webkit-linear-gradient(left, #fff , #343434 , #fff);
+    color: white;
+    font-size: 18px;
+    ;
 }
 #marcas_Titulo{
-    margin-left: 30px;
+    margin-left: 0px;
     margin-top: 50px;
+    margin-bottom: -20px;
     text-align: left;
     font-size: 30px;
     text-align: center;
     color: black;
-    font-weight: bold;
+    /*font-weight: bold;*/              
     color: #343434;
 }
 #productos {
@@ -442,7 +492,7 @@ select:-webkit-autofill:focus {
     padding-bottom: 100px;
     margin-bottom: 100px;
     bottom: 100px;
-
+    margin-left: 25px;
 }
 #campagnas img{
     width: 350px;
