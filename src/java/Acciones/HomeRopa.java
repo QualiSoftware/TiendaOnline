@@ -61,6 +61,8 @@ public class HomeRopa extends ActionSupport {
     private String scantidad;
     private String masmenos;
     private String idusu;
+    private String stotal;
+    
     
     
     
@@ -355,6 +357,16 @@ public class HomeRopa extends ActionSupport {
         this.roId2 = roId2;
     }
 
+    public String getStotal() {
+        return stotal;
+    }
+
+    public void setStotal(String stotal) {
+        this.stotal = stotal;
+    }
+
+    
+    
     public int getRostockId() {
         return rostockId;
     }
@@ -1017,8 +1029,7 @@ public class HomeRopa extends ActionSupport {
     
         @SkipValidation
     public String ajaxsumaRestaRopa() throws Exception{
-           
-            System.out.println("pasa");
+
             int iroid = Integer.parseInt(roid);
             int icolorid = Integer.parseInt(colorid);
             int itallaid = Integer.parseInt(tallaid);
@@ -1039,16 +1050,15 @@ public class HomeRopa extends ActionSupport {
                     }
             } 
             String sidstock = ""+r.getRostockId();
-             System.out.println(sidstock);
             List<Cesta> c = ControladoresDAO.cCesta.recuperaPorRopaStockYUsuario(r.getRostockId(),iusuid);
             for(Cesta lc : c){
-                System.out.println("cesta "+lc.getCestaId());
-                System.out.println("cesta "+lc.getRopaStock().getRostockId());
-                System.out.println("cesta "+lc.getUsuarios().getUsuId());
                 lc.setCestaUnidades(icantidad);
                 ControladoresDAO.cCesta.Modifica(lc);
             }
-            System.out.println(icantidad);
+            Ropa ro = ControladoresDAO.cRopa.RecuperaPorId(iroid);
+            double total =  icantidad * (ro.getRoPrecio() -(ro.getRoPrecio() * ro.getRoDescuento() / 100));
+            System.out.println("total "+total);
+            stotal = ""+total;
             scantidad = ""+icantidad;
        return SUCCESS;
     }
