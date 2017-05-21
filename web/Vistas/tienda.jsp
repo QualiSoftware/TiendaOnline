@@ -264,7 +264,7 @@
 
                         </li>                    
                         <li class="dropdown">
-                            <a href="#" data-toggle="dropdown" class="dropdown-toggle" style="font-weight: normal;">MUJER <b class="caret"></b></a>
+                            <a href="#" data-toggle="dropdown" class="dropdown-toggle" style="font-weight: normal; color: #343434;">MUJER <b class="caret"></b></a>
                             <ul class="dropdown-menu" id="Mujer">
                             <s:iterator var="a" value= "lista_menu_ropa">
                                 <s:if test="#a.clientela.clientelaDescripcion=='Mujer'">

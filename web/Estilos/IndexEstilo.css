@@ -50,11 +50,12 @@
     padding-left: 0px;
     margin-left: 0px;
     left: 0px;
+    margin-bottom: 20px;
 }
 #cesta {
     position: relative;
     margin-left: 1130px;
-    margin-top: -40px;        
+    margin-top: -70px;        
     padding-right: 20px;
     float: right;
 }
@@ -67,7 +68,8 @@
 }
 
 #imgcesta{
-    width: 55px;    
+    width: 55px;
+    opacity: 0.8;
 }
 #imgcesta_Titulo{
     width: 45px;    
@@ -291,19 +293,24 @@ select:-webkit-autofill:focus {
     height: 50px;
     padding-left: 100px;
     padding-bottom: 10px;
-    padding-top: 5px;
+    padding-top: 1px;
     background-color: white;
     font-size: 20px;
     font-weight: normal;
     line-height: 1.42857143;
+    
 
 }
 #menu ul{        
-    margin-left: 0px;    
+    margin-left: 0px;   
+    
+}
+#menu li{
+    color: red;
 }
 .linea{
     clear:both;
-    background-color: #cc0033;
+    background-color: #353535;
     height: 2px;
 }
 #menu_Desplegable{
@@ -313,6 +320,8 @@ select:-webkit-autofill:focus {
     cursor: pointer;
     padding-bottom: 10px;   
     -webkit-transition: 0.5s; 
+    opacity: 0.9;
+    
 }
 #menu_Desplegable:hover #menu_Tabla{    
     display: block;  
@@ -380,7 +389,7 @@ select:-webkit-autofill:focus {
     font-size: 30px;
     font-weight: bold;
     text-align: center;
-    color: black;
+    color: #343434;
 }
 #marcas_Titulo{
     margin-left: 30px;
@@ -390,6 +399,7 @@ select:-webkit-autofill:focus {
     text-align: center;
     color: black;
     font-weight: bold;
+    color: #343434;
 }
 #productos {
     margin-top: -70px;
@@ -513,6 +523,7 @@ Incio del los estilos del Desplegable
 
 .sidebar-nav {
     padding: 9px 0;
+    color: red;
 }
 
 .dropdown-menu .sub-menu {
@@ -520,11 +531,11 @@ Incio del los estilos del Desplegable
     position: absolute;
     top: 0;
     visibility: hidden;
-    margin-top: -1px;
+    margin-top: -1px;    
 }
 
 .dropdown-menu li:hover .sub-menu {
-    visibility: visible;
+    visibility: visible;        
 }
 
 .dropdown:hover .dropdown-menu {
@@ -533,6 +544,7 @@ Incio del los estilos del Desplegable
 
 .nav-tabs .dropdown-menu, .nav-pills .dropdown-menu, .navbar .dropdown-menu {
     margin-top: 0;
+    
 }
 
 .navbar .sub-menu:before {
