@@ -60,7 +60,6 @@ public class HomeUsuarios extends ActionSupport {
     private int respuesta;
     private List<Usuarios> lista_usuarios;
     private String antigua;
-    private String usi;
     private ArrayList<Ropa> lista_ropa,lista_menu_ropa;
     private List<Marcas>lista_marcas;
     private ArrayList<Cesta> lista_ropa_Cestas;
@@ -143,14 +142,6 @@ public class HomeUsuarios extends ActionSupport {
 
     public void setTotalcestaUsuario(int totalcestaUsuario) {
         this.totalcestaUsuario = totalcestaUsuario;
-    }
-
-    public String getUsi() {
-        return usi;
-    }
-
-    public void setUsi(String usi) {
-        this.usi = usi;
     }
 
     public List<Facturas> getLista_facturas() {
@@ -870,14 +861,14 @@ public class HomeUsuarios extends ActionSupport {
     
     public void cargarMenuDesplegable(){
         
-        usi = "";
         if(sesion.get("usuarioLogueado") != null){
             if(!sesion.get("usuarioLogueado").equals("")){
                 try{
                     u = (Usuarios) ControladoresDAO.cUsuarios.RecuperaPorId((int) sesion.get("usuId"));
-                    usi = ""+u.getUsuId();
                 }catch(Exception e){
-                    System.out.println(e.getMessage());
+                    HomeUsuariosValidaciones huv = new HomeUsuariosValidaciones();
+                    huv.escribirEnArchivoLog("Error al intentar cargar un usuario en método " + e.getStackTrace()[0].getMethodName()
+                            + " con usuID "+(int) sesion.get("usuId")+" el día "+new Date());
                 }
             }
         }        
@@ -900,7 +891,7 @@ public class HomeUsuarios extends ActionSupport {
                 lista_menu_ropa.add(lr);
             }
         }        
-        lista_ropa_Cestas = ControladoresDAO.cCesta.RecuperaTodos(usi);
+        lista_ropa_Cestas = ControladoresDAO.cCesta.RecuperaTodos(((int) sesion.get("usuId")+""));
         HomeRopa homeRopa = new HomeRopa();
         for(Cesta caux:lista_ropa_Cestas){
             totalcestaUsuario += caux.getCestaUnidades();

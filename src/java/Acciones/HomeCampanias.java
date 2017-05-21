@@ -47,16 +47,7 @@ public class HomeCampanias extends ActionSupport {
     private Campania c;
     private String marcaId;
     private String roDescripcion2;
-    private String usi;
     private Usuarios u;
-
-    public String getUsi() {
-        return usi;
-    }
-
-    public void setUsi(String usi) {
-        this.usi = usi;
-    }
 
     public Usuarios getU() {
         return u;
@@ -264,20 +255,15 @@ public class HomeCampanias extends ActionSupport {
         if (sesion == null) {
             sesion = ActionContext.getContext().getSession();
         }
-        usi = "";
         // para cuando tengamos sesión de usuario
         if(sesion.get("usuarioLogueado") != null){
             if(!sesion.get("usuarioLogueado").equals("")){
                 try{
-                    int aux;
                     u = (Usuarios) ControladoresDAO.cUsuarios.RecuperaPorId((int) sesion.get("usuId"));
-                    aux = u.getUsuId();
-                    u = ControladoresDAO.cUsuarios.RecuperaPorId(aux);
-                    sesion.clear();
-                    sesion.put("usuarioLogueado", (Usuarios) u);
-                    usi = ""+u.getUsuId();
                 }catch(Exception e){
-                    System.out.println(e.getMessage());
+                    HomeUsuariosValidaciones huv = new HomeUsuariosValidaciones();
+                    huv.escribirEnArchivoLog("Error al intentar cargar un usuario en método " + e.getStackTrace()[0].getMethodName()
+                            + " con usuID "+(int) sesion.get("usuId")+" el día "+new Date());
                 }
             }
         }

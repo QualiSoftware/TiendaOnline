@@ -279,7 +279,7 @@
                                     <s:form id="formCantidad" action="CestaFiltro" theme="simple" method="post">
                                         <input type="hidden" name="accionocul" value="e"/>
                                         <input type="hidden" name="clave" id="clave"/>
-                                        <input type="hidden" name="clave" id="idusu" value="<s:property value="sesion.usuarioLogueado.usuId"/>"/>
+                                        <input type="hidden" name="clave" id="idusu" value="<s:property value="sesion.usuId"/>"/>
                                         <input type="hidden" name="clave" id="roid" value="<s:property value="#a.ropaStock.ropa.roId"/>"/>
                                         <input type="hidden" name="clave" id="colorid" value="<s:property value="#a.ropaStock.color.colorId"/>"/>
                                         <input type="hidden" name="clave" id="tallaid" value="<s:property value="#a.ropaStock.tallas.tallaId"/>"/>

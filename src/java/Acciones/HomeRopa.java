@@ -111,7 +111,6 @@ public class HomeRopa extends ActionSupport {
     private String fotoAlta3;
     private ArrayList<Cesta> lista_ropa_Cestas;
     private int totalcestaUsuario = 0;
-    private String usi;
     private Integer cantidad;
     private String eliminadas;
     private boolean confotos;
@@ -476,14 +475,6 @@ public class HomeRopa extends ActionSupport {
         this.lista_ropa_Cestas = lista_ropa_Cestas;
     }
 
-    public String getUsi() {
-        return usi;
-    }
-
-    public void setUsi(String usi) {
-        this.usi = usi;
-    }
-
     public String getEliminadas() {
         return eliminadas;
     }
@@ -806,19 +797,19 @@ public class HomeRopa extends ActionSupport {
         diasDesc = Acciones.HomePropiedades.muestraValor("dias.descuento");
         desc = Acciones.HomePropiedades.muestraValor("descuento");
         periodo = Integer.parseInt(Acciones.HomePropiedades.muestraValor("dias.antiguedad.para.apadrinar"));
-        usi = "";
         if(sesion.get("usuarioLogueado") != null){
             if(!sesion.get("usuarioLogueado").equals("")){
                 try{
                     u = (Usuarios) ControladoresDAO.cUsuarios.RecuperaPorId((int) sesion.get("usuId"));
-                    usi = ""+u.getUsuId();
                     Date hoy = new Date();
                     hoy = sumarRestarDiasFecha(hoy, -periodo);
                     if(u.getUsuAlta().before(hoy)){
                         superaPeriodo = true;
                     }
                 }catch(Exception e){
-                    System.out.println(e.getMessage());
+                    HomeUsuariosValidaciones huv = new HomeUsuariosValidaciones();
+                    huv.escribirEnArchivoLog("Error al intentar cargar un usuario en método " + e.getStackTrace()[0].getMethodName()
+                            + " con usuID "+(int) sesion.get("usuId")+" el día "+new Date());
                 }
             }
         }
@@ -857,7 +848,7 @@ public class HomeRopa extends ActionSupport {
         }
         lista_ropa.clear();
         lista_ropa = ControladoresDAO.cRopa.RecuperaTodos(filtro,orden,fechaI,fechaF,eliminadas);     
-        lista_ropa_Cestas = ControladoresDAO.cCesta.RecuperaTodos(usi);
+        lista_ropa_Cestas = ControladoresDAO.cCesta.RecuperaTodos(((int) sesion.get("usuId")+""));
         for(Cesta caux:lista_ropa_Cestas){
             totalcestaUsuario += caux.getCestaUnidades();
             caux.getRopaStock().setRopa(descuentoEnRopa(caux.getRopaStock().getRopa()));
@@ -1064,17 +1055,17 @@ public class HomeRopa extends ActionSupport {
     public String RopaMenu() throws Exception {
         if (sesion == null) {
             sesion = ActionContext.getContext().getSession();
-        }
-        usi = "";        
+        }     
         if(sesion.get("usuarioLogueado") != null){
             if(!sesion.get("usuarioLogueado").equals("")){
                 try{
                     //int aux;
                     u = null;
                     u = (Usuarios) ControladoresDAO.cUsuarios.RecuperaPorId((int) sesion.get("usuId"));
-                    usi = ""+u.getUsuId();
                 }catch(Exception e){
-                    System.out.println(e.getMessage());
+                    HomeUsuariosValidaciones huv = new HomeUsuariosValidaciones();
+                    huv.escribirEnArchivoLog("Error al intentar cargar un usuario en método " + e.getStackTrace()[0].getMethodName()
+                            + " con usuID "+(int) sesion.get("usuId")+" el día "+new Date());
                 }
             }
         }
@@ -1134,7 +1125,7 @@ public class HomeRopa extends ActionSupport {
             marcaNom = mar.getMarcaNombre();
         }
         lista_ropa = poneDescuentosBien(lista_ropa);        
-        lista_ropa_Cestas = ControladoresDAO.cCesta.RecuperaTodos(usi);
+        lista_ropa_Cestas = ControladoresDAO.cCesta.RecuperaTodos(((int) sesion.get("usuId")+""));
         for(Cesta caux:lista_ropa_Cestas){
             totalcestaUsuario += caux.getCestaUnidades();
             caux.getRopaStock().setRopa(descuentoEnRopa(caux.getRopaStock().getRopa()));
@@ -1169,16 +1160,16 @@ public class HomeRopa extends ActionSupport {
     public String RopaPopUp() throws Exception {
         if (sesion == null) {
             sesion = ActionContext.getContext().getSession();
-        }
-        usi = "";        
+        }        
         if(sesion.get("usuarioLogueado") != null){
             if(!sesion.get("usuarioLogueado").equals("")){
                 try{
                     u = null;
                     u = (Usuarios) ControladoresDAO.cUsuarios.RecuperaPorId((int) sesion.get("usuId"));
-                    usi = ""+u.getUsuId();
                 }catch(Exception e){
-                    System.out.println(e.getMessage());
+                    HomeUsuariosValidaciones huv = new HomeUsuariosValidaciones();
+                    huv.escribirEnArchivoLog("Error al intentar cargar un usuario en método " + e.getStackTrace()[0].getMethodName()
+                            + " con usuID "+(int) sesion.get("usuId")+" el día "+new Date());
                 }
             }
         }
@@ -1257,7 +1248,7 @@ public class HomeRopa extends ActionSupport {
         }catch(Exception e){
             campaniaNombre = "";
         }
-        lista_ropa_Cestas = ControladoresDAO.cCesta.RecuperaTodos(usi);
+        lista_ropa_Cestas = ControladoresDAO.cCesta.RecuperaTodos(((int) sesion.get("usuId")+""));
         for(Cesta caux:lista_ropa_Cestas){
             totalcestaUsuario += caux.getCestaUnidades();
             caux.getRopaStock().setRopa(descuentoEnRopa(caux.getRopaStock().getRopa()));

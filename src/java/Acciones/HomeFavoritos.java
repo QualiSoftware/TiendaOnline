@@ -28,7 +28,6 @@ import org.apache.struts2.interceptor.validation.SkipValidation;
 public class HomeFavoritos extends ActionSupport {
     
     private Map sesion;
-    private String usi;
     private Usuarios u;
     private NoLogUsuarios nlu;
     private String filtro;
@@ -59,14 +58,6 @@ public class HomeFavoritos extends ActionSupport {
 
     public void setSesion(Map sesion) {
         this.sesion = sesion;
-    }
-
-    public String getUsi() {
-        return usi;
-    }
-
-    public void setUsi(String usi) {
-        this.usi = usi;
     }
 
     public Usuarios getU() {
@@ -255,7 +246,7 @@ public class HomeFavoritos extends ActionSupport {
     
     public String listaDeseos() throws Exception{
         cargarDatos();
-        if(!usi.equals("")){
+        if(!((int) sesion.get("usuId")+"").equals("")){
             lista_favoritos = ControladoresDAO.cFavoritos.recuperaPorUsuario(u);
         } else {
             cargarUsuarioNoLogueado(sesion,"");
@@ -268,15 +259,14 @@ public class HomeFavoritos extends ActionSupport {
         if(sesion==null){
             sesion=ActionContext.getContext().getSession();
         }
-        usi = "";
         if(sesion.get("usuarioLogueado") != null){
             if(!sesion.get("usuarioLogueado").equals("")){
                 try{
                     u = (Usuarios) ControladoresDAO.cUsuarios.RecuperaPorId((int) sesion.get("usuId"));
-                    usi = ""+u.getUsuId();
                 }catch(Exception e){
                     HomeUsuariosValidaciones huv = new HomeUsuariosValidaciones();
-                    huv.escribirEnArchivoLog("Error al cargar un usuario el "+new Date());
+                    huv.escribirEnArchivoLog("Error al intentar cargar un usuario en método " + e.getStackTrace()[0].getMethodName()
+                            + " con usuID "+(int) sesion.get("usuId")+" el día "+new Date());
                 }
             }
         }
@@ -285,7 +275,7 @@ public class HomeFavoritos extends ActionSupport {
         if(ropa != 0){
             roId = ropa + "";
         }
-        if(!usi.equals("")){
+        if(!((int) sesion.get("usuId")+"").equals("")){
             lista_favoritos = ControladoresDAO.cFavoritos.recuperaPorUsuario(u);
             for(Favoritos favoritosList:lista_favoritos){
                 if(favoritosList.getRopa().getRoId() == Integer.parseInt(roId)){
@@ -322,15 +312,14 @@ public class HomeFavoritos extends ActionSupport {
         if(sesion==null){
             sesion=ActionContext.getContext().getSession();
         }
-        usi = "";
         if(sesion.get("usuarioLogueado") != null){
             if(!sesion.get("usuarioLogueado").equals("")){
                 try{
                     u = (Usuarios) ControladoresDAO.cUsuarios.RecuperaPorId((int) sesion.get("usuId"));
-                    usi = ""+u.getUsuId();
                 }catch(Exception e){
                     HomeUsuariosValidaciones huv = new HomeUsuariosValidaciones();
-                    huv.escribirEnArchivoLog("Error al cargar un usuario el "+new Date());
+                    huv.escribirEnArchivoLog("Error al intentar cargar un usuario en método " + e.getStackTrace()[0].getMethodName()
+                            + " con usuID "+(int) sesion.get("usuId")+" el día "+new Date());
                 }
             }
         }
@@ -358,7 +347,7 @@ public class HomeFavoritos extends ActionSupport {
             }
         }
         lista_ropa.clear();     
-        lista_ropa_Cestas = ControladoresDAO.cCesta.RecuperaTodos(usi);
+        lista_ropa_Cestas = ControladoresDAO.cCesta.RecuperaTodos(((int) sesion.get("usuId")+""));
         for(Cesta caux:lista_ropa_Cestas){
             totalcestaUsuario += caux.getCestaUnidades();
             HomeRopa hr = new HomeRopa();
@@ -399,7 +388,7 @@ public class HomeFavoritos extends ActionSupport {
     
     public String eliminarFavorito() throws Exception {
         cargarDatos(); 
-        if(!usi.equals("")){
+        if(!((int) sesion.get("usuId")+"").equals("")){
             List<Favoritos> fList = ControladoresDAO.cFavoritos.recuperaPorUsuario(u);
             Favoritos f = null;
             for(Favoritos fav:fList){

@@ -49,7 +49,6 @@ public class HomeRopaStock {
     private List<Color> lista_colores;
     private ArrayList<Cesta> lista_ropa_Cestas;
     private int totalcestaUsuario = 0;
-    private String usi;
     private Map sesion;
     private Usuarios u;
     private List<RopaStock> lista_ropaStock;
@@ -206,14 +205,6 @@ public class HomeRopaStock {
 
     public void setTotalcestaUsuario(int totalcestaUsuario) {
         this.totalcestaUsuario = totalcestaUsuario;
-    }
-
-    public String getUsi() {
-        return usi;
-    }
-
-    public void setUsi(String usi) {
-        this.usi = usi;
     }
 
     public Map getSesion() {
