@@ -210,7 +210,7 @@
                     </s:a>
                 </div>
             </div>
-                    <div class="linea" style="height: 3px;"></div>
+                    <div class="linea" style="height: 2px;"></div>
             <div id="menu_Desplegable">
                 <img src="../Imagenes/Administracion/afdf338882d16dd2b1360aa975b18111.png" alt="" style="width: 30px; margin-right: 10px; opacity: 0.9;"/>
                 <div id="menu_Tabla">
@@ -305,7 +305,7 @@
                     </li>                    
                 </ul>                
             </div>
-            <div class="linea" style="height: 3px;"></div>
+            <div class="linea" style="height: 2px;"></div>
             <div id="contenido">
                 <s:if test="lista_campaniasTienda.size > 0">
                     <br>
@@ -331,7 +331,7 @@
                         </s:iterator>
                     </div>
                     <div class="linea" style="padding-top: 50px; background-color: white;"></div>
-                    <div class="linea" style="height: 3px;"></div>
+                    <div class="linea" style="height: 2px;"></div>
                 </s:if>
                 <div id="marcas_Titulo">
                     MARCAS
