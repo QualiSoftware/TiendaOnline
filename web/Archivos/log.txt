@@ -86,3 +86,5 @@ Error al intentar guardar una cookie el Sun May 21 13:19:46 CEST 2017
 Error al intentar guardar una cookie el Sun May 21 13:23:49 CEST 2017
 Error al intentar guardar una cookie el Sun May 21 13:27:04 CEST 2017
 Error al intentar guardar una cookie el Sun May 21 13:43:04 CEST 2017
+Error al intentar cargar un usuario en método clear con usuID 17 el día Sun May 21 20:55:36 CEST 2017
+Error al intentar cargar un usuario en método clear con usuID 17 el día Sun May 21 20:55:38 CEST 2017

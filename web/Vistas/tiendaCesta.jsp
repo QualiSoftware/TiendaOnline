@@ -228,6 +228,8 @@
                         <input type="hidden" name="clave" id="roid" value="<s:property value="#a.ropaStock.ropa.roId"/>"/>
                         <input type="hidden" name="clave" id="colorid" value="<s:property value="#a.ropaStock.color.colorId"/>"/>
                         <input type="hidden" name="clave" id="tallaid" value="<s:property value="#a.ropaStock.tallas.tallaId"/>"/>
+                        <input type="hidden" name="clave" id="unifact" value="<s:property value="cantidad"/>"/>
+                        <input type="hidden" name="clave" id="prefact" value="<s:property value="getText('{0,number,##0.00}',{precio})"/>"/>
                     <s:iterator var="a" value="lista_ropa_Cestas">
                         <hr class="linea_divisoria_articulos">
                         <table> 
@@ -314,7 +316,12 @@
                                                }
                                             })                                           
                                         });
-                                        function usarAJAX(value) {                                   
+                                        function usarAJAX(value) { 
+                                          
+                                            var unifact = document.getElementById('unifact').value;
+                                            
+                                            var concomaprefact = document.getElementById('prefact').value;
+                                            var prefact = concomaprefact.replace(",", ".")
                                             var roid = document.getElementById('roid').value;
                                             var colorid = document.getElementById('colorid').value;
                                             var tallaid = document.getElementById('tallaid').value;
@@ -322,11 +329,15 @@
                                             var idusu =  document.getElementById('idusu').value;
                                             var masmenos = value;
                                             $.getJSON('ajaxsumaRestaRopa', {
-                                                roid: roid, colorid: colorid, tallaid: tallaid, cantidadprenda: cantidadprenda, masmenos: masmenos, idusu: idusu
+                                                roid: roid, colorid: colorid, tallaid: tallaid, cantidadprenda: cantidadprenda, masmenos: masmenos, idusu: idusu, prefact: prefact, unifact: unifact
                                             }, function (jsonResponse) {
                                                  $("#cantidadIndividual"+roid).val(jsonResponse.scantidad);
+                                                 $("#unifact").val(jsonResponse.sunifact);
+                                                 $("#prefact").val(jsonResponse.sprefactura);
                                                  $("label[for='uni"+roid+"']").text(jsonResponse.scantidad);
                                                  $("label[for='total"+roid+"']").text(jsonResponse.stotal);
+                                                 $("label[for='unifact']").text(jsonResponse.sunifact);
+                                                 $("label[for='prefact']").text(jsonResponse.sprefactura);      
                                             });
                                         }
                                     </script>
@@ -337,7 +348,7 @@
                                     Importe por <label for="uni<s:property value="#a.ropaStock.ropa.roId"/>"><s:property value="#a.cestaUnidades"/></label>  prendas:
                                 </td>
                                 <td>
-                                    <label for="total<s:property value="#a.ropaStock.ropa.roId"/>"><s:property value="getText('{0,number,##0.00}',{#a.cestaUnidades * (#a.ropaStock.ropa.roPrecio - (#a.ropaStock.ropa.roPrecio * #a.ropaStock.ropa.roDescuento / 100))})"/> €</label> 
+                                    <label for="total<s:property value="#a.ropaStock.ropa.roId"/>"><s:property value="getText('{0,number,##0.00}',{#a.cestaUnidades * (#a.ropaStock.ropa.roPrecio - (#a.ropaStock.ropa.roPrecio * #a.ropaStock.ropa.roDescuento / 100))})"/></label>€
                                     
                                 </td>
                             </tr>
@@ -362,6 +373,7 @@
                         <s:form id="frm" action="Pagar" method="POST" theme="simple">
                             <div id="contenedor_Pagar">
                                 <div id="pagar">
+                                    
                                     <table>                            
                                         <tr class="apartados_Pagar">
                                             <td colspan="2" class="bold apartados_Pagar">
@@ -426,7 +438,8 @@
                                                 Cantidad
                                             </td>                            
                                             <td style="padding-top: 5px;">
-                                                <s:property value="cantidad"/>
+                                                <label for="unifact"><s:property value="cantidad"/></label>
+                                                
                                             </td>                            
                                         </tr>
                                         <tr>
@@ -434,7 +447,8 @@
                                                 Total
                                             </td>                            
                                             <td>
-                                                <s:property value="getText('{0,number,##0.00}',{precio})"/>€
+                                                <label for="prefact"><s:property value="getText('{0,number,##0.00}',{precio})"/></label>€
+                                                
                                             </td>                            
                                         </tr>
                                         <tr>

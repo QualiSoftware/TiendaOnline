@@ -62,6 +62,11 @@ public class HomeRopa extends ActionSupport {
     private String masmenos;
     private String idusu;
     private String stotal;
+    private String prefact;
+    private String unifact;
+    private String sunifact;
+    private String sprefactura;
+    
     
     
     
@@ -289,6 +294,41 @@ public class HomeRopa extends ActionSupport {
     public void setIdusu(String idusu) {
         this.idusu = idusu;
     }
+
+    public String getPrefact() {
+        return prefact;
+    }
+
+    public void setPrefact(String prefact) {
+        this.prefact = prefact;
+    }
+
+    public String getUnifact() {
+        return unifact;
+    }
+
+    public void setUnifact(String unifact) {
+        this.unifact = unifact;
+    }
+
+    public String getSunifact() {
+        return sunifact;
+    }
+
+    public void setSunifact(String sunifact) {
+        this.sunifact = sunifact;
+    }
+
+    public String getSprefactura() {
+        return sprefactura;
+    }
+
+    public void setSprefactura(String sprefactura) {
+        this.sprefactura = sprefactura;
+    }
+    
+    
+    
     
     
     
@@ -1035,18 +1075,34 @@ public class HomeRopa extends ActionSupport {
             int itallaid = Integer.parseInt(tallaid);
             int icantidad = Integer.parseInt(cantidadprenda);
             int iusuid = Integer.parseInt(idusu);
+            int iunifact = Integer.parseInt(unifact);
+            double iprefact=Double.parseDouble(prefact);
+            double iprefactfinal = 0;
+            
             String smasmenos = masmenos;
             
-
+            Ropa ro = ControladoresDAO.cRopa.RecuperaPorId(iroid);
             RopaStock r = ControladoresDAO.cRopaStock.RecuperaPorRopaColorTalla(iroid, icolorid, itallaid);
             if(smasmenos.equals("+")){
                 if(icantidad < r.getRostockUnidades()){
                     icantidad ++;
+                    iunifact ++;
+                    double total =  (ro.getRoPrecio() -(ro.getRoPrecio() * ro.getRoDescuento() / 100));
+                    String sstotal = (String.format("%.2f", total));
+                    String ssstotal = sstotal.replace(',', '.');
+                    double dtotal = Double.parseDouble(ssstotal);
+                    iprefactfinal = iprefact + dtotal;
                 }
             }
             if(smasmenos.equals("-")){
                 if(icantidad > 0){   
                     icantidad --;
+                    iunifact --;
+                    double total =  (ro.getRoPrecio() -(ro.getRoPrecio() * ro.getRoDescuento() / 100));
+                    String sstotal = (String.format("%.2f", total));
+                    String ssstotal = sstotal.replace(',', '.');
+                    double dtotal = Double.parseDouble(ssstotal);
+                    iprefactfinal = iprefact - dtotal;
                     }
             } 
             String sidstock = ""+r.getRostockId();
@@ -1055,11 +1111,11 @@ public class HomeRopa extends ActionSupport {
                 lc.setCestaUnidades(icantidad);
                 ControladoresDAO.cCesta.Modifica(lc);
             }
-            Ropa ro = ControladoresDAO.cRopa.RecuperaPorId(iroid);
             double total =  icantidad * (ro.getRoPrecio() -(ro.getRoPrecio() * ro.getRoDescuento() / 100));
-            System.out.println("total "+total);
-            stotal = ""+total;
+            stotal = (String.format("%.2f", total));
             scantidad = ""+icantidad;
+            sunifact = ""+iunifact;
+            sprefactura = (String.format("%.2f", iprefactfinal)); 
        return SUCCESS;
     }
     
