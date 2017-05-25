@@ -88,3 +88,8 @@ Error al intentar guardar una cookie el Sun May 21 13:27:04 CEST 2017
 Error al intentar guardar una cookie el Sun May 21 13:43:04 CEST 2017
 Error al intentar cargar un usuario en método clear con usuID 17 el día Sun May 21 20:55:36 CEST 2017
 Error al intentar cargar un usuario en método clear con usuID 17 el día Sun May 21 20:55:38 CEST 2017
+Error al intentar cargar un usuario en método convert con usuID 13 el día Mon May 22 20:46:21 CEST 2017
+Error al intentar cargar un usuario en método convert con usuID 13 el día Wed May 24 22:37:16 CEST 2017
+Error al intentar cargar un usuario en método errorIfClosed con usuID 13 el día Wed May 24 22:48:51 CEST 2017
+Error al intentar cargar un usuario en método errorIfClosed con usuID 13 el día Wed May 24 22:49:17 CEST 2017
+Error al intentar cargar un usuario en método errorIfClosed con usuID 13 el día Wed May 24 22:49:44 CEST 2017

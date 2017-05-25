@@ -50,6 +50,8 @@ public class HomeFavoritos extends ActionSupport {
     private String campania;
     private int ropa;
     private String userCookie;
+    private boolean noLoTenia;
+    private String idImagen;
     
 
     public Map getSesion() {
@@ -243,7 +245,23 @@ public class HomeFavoritos extends ActionSupport {
     public void setUserCookie(String userCookie) {
         this.userCookie = userCookie;
     }
-    
+
+    public boolean isNoLoTenia() {
+        return noLoTenia;
+    }
+
+    public void setNoLoTenia(boolean noLoTenia) {
+        this.noLoTenia = noLoTenia;
+    }
+
+    public String getIdImagen() {
+        return idImagen;
+    }
+
+    public void setIdImagen(String idImagen) {
+        this.idImagen = idImagen;
+    }
+
     public String listaDeseos() throws Exception{
         cargarDatos();
         if(!(sesion.get("usuId")+"").equals("")){
@@ -271,7 +289,7 @@ public class HomeFavoritos extends ActionSupport {
             }
         }
         cargarUsuarioNoLogueado(sesion,"");
-        boolean noLoTenia = true;
+        noLoTenia = true;
         if(ropa != 0){
             roId = ropa + "";
         }
@@ -282,11 +300,13 @@ public class HomeFavoritos extends ActionSupport {
                     noLoTenia = false;
                 }
             }
+            Ropa ropa = ControladoresDAO.cRopa.RecuperaPorId(Integer.parseInt(roId));
+            FavoritosId favoritosId = new FavoritosId(ropa.getRoId(), u.getUsuId());
+            Favoritos favoritos = new Favoritos(favoritosId,ropa, u);
             if(noLoTenia){
-                Ropa ropa = ControladoresDAO.cRopa.RecuperaPorId(Integer.parseInt(roId));
-                FavoritosId favoritosId = new FavoritosId(ropa.getRoId(), u.getUsuId());
-                Favoritos favoritos = new Favoritos(favoritosId,ropa, u);
                 ControladoresDAO.cFavoritos.Inserta(favoritos);
+            } else {
+                ControladoresDAO.cFavoritos.Elimina(favoritos);
             }
         } else {            
             List<NoLogFavoritos> lista_nlu = ControladoresDAO.cFavoritosNoLog.recuperaPorUsuario(nlu);
@@ -295,16 +315,19 @@ public class HomeFavoritos extends ActionSupport {
                     noLoTenia = false;
                 }
             }
+            Ropa ropa = ControladoresDAO.cRopa.RecuperaPorId(Integer.parseInt(roId));
+            NoLogFavoritosId favoritosId = new NoLogFavoritosId(ropa.getRoId(), nlu.getNluUsuId());
+            NoLogFavoritos favoritos = new NoLogFavoritos(favoritosId,nlu,ropa);
             if(noLoTenia){
-                Ropa ropa = ControladoresDAO.cRopa.RecuperaPorId(Integer.parseInt(roId));
-                NoLogFavoritosId favoritosId = new NoLogFavoritosId(ropa.getRoId(), nlu.getNluUsuId());
-                NoLogFavoritos favoritos = new NoLogFavoritos(favoritosId,nlu,ropa);
                 ControladoresDAO.cFavoritosNoLog.Inserta(favoritos);
+            } else {
+                ControladoresDAO.cFavoritosNoLog.Elimina(favoritos);
             }
         }
-        if(marcaFavoritos != null){
-            marca = marcaFavoritos;
-        }
+        idImagen = "#favorito" + roId;
+        u=null;
+        nlu=null;
+        lista_favoritos=null;
         return SUCCESS;
     }
     
@@ -434,5 +457,27 @@ public class HomeFavoritos extends ActionSupport {
             cargarUsuarioNoLogueado(sesion, userCookie);
         }
         return SUCCESS;
+    }
+    
+    @SkipValidation
+    public String ajaxFavoritos() throws Exception{      
+        if(sesion==null){
+            sesion=ActionContext.getContext().getSession();
+        }  
+        if(sesion.get("usuarioLogueado") != null){
+            if(!sesion.get("usuarioLogueado").equals("")){
+                try{
+                    u = (Usuarios) ControladoresDAO.cUsuarios.RecuperaPorId(Integer.parseInt(sesion.get("usuId")+""));
+                }catch(Exception e){
+                    HomeUsuariosValidaciones huv = new HomeUsuariosValidaciones();
+                    huv.escribirEnArchivoLog("Error al intentar cargar un usuario en método " + e.getStackTrace()[0].getMethodName()
+                            + " con usuID "+sesion.get("usuId")+" el día "+new Date());
+                }
+            }
+        }
+        u = null;
+
+            System.out.println("entro en ajaxFavoritos");
+       return SUCCESS;
     }
 }

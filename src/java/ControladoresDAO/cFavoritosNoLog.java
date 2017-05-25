@@ -38,7 +38,7 @@ public class cFavoritosNoLog {
     }
     
     public static int  Elimina(NoLogFavoritos f){
-        sesion = (Session) NewHibernateUtil.getSessionModif();
+        sesion = (Session) NewHibernateUtil.getSession();
         sesion.beginTransaction();
         try{
             if(f!=null){

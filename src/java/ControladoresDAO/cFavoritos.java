@@ -29,6 +29,7 @@ public class cFavoritos {
             sesion.save(f);
             sesion.getTransaction().commit();
             sesion.evict(f);
+            sesion.flush();
             return 1;
         }catch(Exception ex){
             System.out.println(ex.getMessage());
@@ -38,7 +39,7 @@ public class cFavoritos {
     }
     
     public static int Elimina(Favoritos f){
-        sesion = (Session) NewHibernateUtil.getSessionModif();
+        sesion = (Session) NewHibernateUtil.getSession();
         sesion.beginTransaction();
         try{
             if(f!=null){

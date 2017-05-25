@@ -658,6 +658,13 @@
                 <param name="noCache">true</param>
             </result>
         </action>
+        
+        <action name="ajaxFavoritos" class="Acciones.HomeFavoritos" method="insertarFavoritos">
+            <result type="json">
+                <param name="excludeNullProperties">true</param>
+                <param name="noCache">true</param>
+            </result>
+        </action>
     </package>
 </struts>
 

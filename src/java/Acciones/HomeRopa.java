@@ -1068,7 +1068,7 @@ public class HomeRopa extends ActionSupport {
 
     
         @SkipValidation
-    public String ajaxsumaRestaRopa() throws Exception{
+    public String ajaxsumaRestaRopa() throws Exception{       
 
             int iroid = Integer.parseInt(roid);
             int icolorid = Integer.parseInt(colorid);
@@ -1330,5 +1330,11 @@ public class HomeRopa extends ActionSupport {
         Calendar calendar = Calendar.getInstance();calendar.setTime(fecha);
         calendar.add(Calendar.DAY_OF_YEAR, dias);
         return calendar.getTime();
+    }
+    
+    @SkipValidation
+    public String ajaxFavoritos() throws Exception{
+        //Necesito este método para que no de error el struts del orto y la puta que lo parió
+       return SUCCESS;
     }
 }
