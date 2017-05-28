@@ -1071,7 +1071,6 @@ hr{
 }
 #cesta_Hover::-webkit-scrollbar {
     width: 1em;
-
     cursor: pointer;
 }
 
@@ -1083,7 +1082,7 @@ hr{
 #cesta_Hover::-webkit-scrollbar-thumb {
     background-color: darkgrey;
     outline: 1px solid slategrey;
-    background-color: #e30101;    
+    background-color: #999999;    
     border-radius: 5px 5px 5px 5px;
     cursor: pointer;
     opacity: 0.5;
