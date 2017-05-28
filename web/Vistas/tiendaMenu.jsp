@@ -360,7 +360,7 @@
             <div id="contenido">
                 <div id="ruta_Navegacion">
                 <s:a action="Tienda"><span class="navegacion_colors" style="background-color: #595959;">Inicio</span></s:a><img src="../Imagenes/Administracion/Navegación1.png" alt="" class="navegacion_img1"/>
-                <s:if test="(marca==null && cliCodigo!=null) || (marca=='' && cliCodigo!='') || (marca==0 && cliCodigo!=0)"><span class="navegacion_colors" style="margin-left: -5.5px; background-color: #303030;"><s:property value="categoriaNombre" /></span><span class="navegacion_colors" style="background-color: #303030;"><s:property value="clientelaNombre"/></span><img src="../Imagenes/Administracion/Navegación2.png" alt="" class="navegacion_img2"/></s:if>
+                <s:if test="(marca==null && cliCodigo!=null) || (marca=='' && cliCodigo!='') || (marca==0 && cliCodigo!=0)"><span class="navegacion_colors" style="margin-left: -5.5px; background-color: #303030;"><s:property value="categoriaNombre" /></span><span class="navegacion_colors" style="background-color: #303030; padding-right: 3px;"><s:property value="clientelaNombre"/></span><img src="../Imagenes/Administracion/Navegación2.png" alt="" class="navegacion_img2"/></s:if>
                     <s:elseif test="(marca==null && cliCodigo==null && campania==null) || (marca=='' && cliCodigo=='' && campania=='') || (marca==0 && cliCodigo==0 && campania==0)">Todas las ventas</s:elseif>
                     <s:elseif test="(marca==null && campania!=null) || (marca=='' && campania!='') || (marca==0 && campania!=0)"><s:property value="campaniaNombre"/></s:elseif>
                     <s:else><s:property value="marcaNom"/></s:else>
