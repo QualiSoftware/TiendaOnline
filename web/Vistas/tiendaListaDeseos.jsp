@@ -44,7 +44,7 @@
             <div id="header">
                 <div id="marca">
                     <s:a action="Tienda">
-                        Tienda Ropa <img src="../Imagenes/Administracion/SH14171.jpg" alt="house_hangers" id="logo"/>
+                        <img src="../Imagenes/Administracion/SH14171.jpg" alt="house_hangers" id="logo"/>
                     </s:a>
                 </div>
                 <div id="idioma">
@@ -355,6 +355,14 @@
                                 <s:property value="#a.ropa.marcas.marcaNombre"/>
                             </td>
                         </tr>
+                            <tr>
+                                <td style="text-align: left">
+                                    <span style="text-decoration: line-through; font-size: 20px; color: #999999; font-weight: bold" ><s:property value="getText('{0,number,##0.00}',{#a.ropa.roPrecio})"/> €</span>
+                                    <span style="padding-left: 10px; font-size: 20px; font-weight: bold;">
+                                        <s:property value="getText('{0,number,##0.00}',{#a.ropa.roPrecio - (#a.ropa.roPrecio * #a.ropa.roDescuento / 100)})"/> €
+                                    </span>
+                                </td>
+                            </tr>
                         <tr>
                             <td>
                                 <s:a action="eliminarFavorito">
@@ -398,11 +406,19 @@
                                     <s:property value="#b.ropa.roDescripcion"/>
                                 </td>
                             </tr>
-                        <tr>
-                            <td>
-                                <s:property value="#b.ropa.marcas.marcaNombre"/>
-                            </td>
-                        </tr>
+                            <tr>
+                                <td>
+                                    <s:property value="#b.ropa.marcas.marcaNombre"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: left">
+                                    <span style="text-decoration: line-through; font-size: 20px; color: #999999; font-weight: bold" ><s:property value="getText('{0,number,##0.00}',{#b.ropa.roPrecio})"/> €</span>
+                                    <span style="padding-left: 10px; font-size: 20px; font-weight: bold;">
+                                        <s:property value="getText('{0,number,##0.00}',{#b.ropa.roPrecio - (#b.ropa.roPrecio * #b.ropa.roDescuento / 100)})"/> €
+                                    </span>
+                                </td>
+                            </tr>
                             <tr>
                                 <td>
                                     <button type="button" onclick="eliminarFavorito(<s:property value="#b.ropa.roId"/>);" id="añadircesta_Btn">

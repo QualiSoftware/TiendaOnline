@@ -9,6 +9,8 @@ import Modelos.Color;
 import Modelos.Fotos;
 import Modelos.Look;
 import Modelos.Marcas;
+import Modelos.NoLogFavoritos;
+import Modelos.NoLogFavoritosId;
 import Modelos.Ropa;
 import Modelos.RopaStock;
 import Modelos.Subcategoria;
@@ -1182,6 +1184,9 @@ public class HomeRopa extends ActionSupport {
                     int unidades = ropaStock.getRostockUnidades();
                     auxString = ropaStock.getColor().getColorDescripcion();
                     auxString = ropaStock.getTallas().getTallaDescripcion();
+                }
+                for(NoLogFavoritos noLogFavoritos:ropa.getNoLogFavoritoses()){
+                    NoLogFavoritosId auxInt = noLogFavoritos.getId();
                 }
                 lista_ropa.add(ropa);
             }

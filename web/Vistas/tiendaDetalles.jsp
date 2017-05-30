@@ -133,7 +133,7 @@
             <div id="header">
                 <div id="marca">
                     <s:a action="Tienda">
-                        Tienda Ropa <img src="../Imagenes/Administracion/SH14171.jpg" alt="house_hangers" id="logo"/>
+                        <img src="../Imagenes/Administracion/SH14171.jpg" alt="house_hangers" id="logo"/>
                     </s:a>
                 </div>
                 <div id="idioma">
@@ -426,122 +426,141 @@
                 <s:property value="t.roDescripcion"/>
             </div>
             <div id="contenido_Detalles">
-            <s:form id="frm" action="TiendaCesta" method="POST" theme="simple">
-                <input type='hidden' name='cliCodigo' value='<s:property value="cliCodigo"/>'/>
-                <input type='hidden' name='catCodigo' value='<s:property value="catCodigo"/>'/>
-                <input type='hidden' name='marca' value='<s:property value="marca"/>'/>
-                <input type='hidden' name='campania' value='<s:property value="campania"/>'/>
-                <input type='hidden' name="accionocul" value="'c'"/>
-                <input type='hidden' name='ropa' id='ropa' value='<s:property value="roId"/>'/>
-                <input type="hidden" name="userCookieSL" id="userCookieSL"/>
-                <script>
-                    var ucMenu = getCookie('userCookieSL');
-                    document.getElementById('userCookieSL').value = ucMenu;
-                </script>
-                <div class="nombre_Detalle">
-                    <s:property value="t.roDescripcion"/>
-                </div>
-                <br>
-                <s:set var="contador" value="0"/>           
-                <s:iterator var="f" value="t.fotoses">
-                    <s:if test="#contador < 1">
-                        <div class="easyzoom easyzoom--overlay easyzoom--with-thumbnails" 
-                             style="margin-left: 240px;
-                             left: 0px;
-                             padding-left: 0px;
-                             float: left;" >
-                            <a href="<s:url value='../Imagenes/%{t.categoria.catDescripcion}/%{t.subcategoria.subDescripcion}/%{#f.fotosRuta}'/>"  >
-                                <img class="img_Principal" src="<s:url value='../Imagenes/%{t.categoria.catDescripcion}/%{t.subcategoria.subDescripcion}/%{#f.fotosRuta}'/>" alt="" />
-                            </a>
-                        </div>
-                        <s:set var="contador" value="%{#contador + 1}"/>
-                    </s:if>
-                </s:iterator>
-
-                <div class="detalle_info" style="z-index: 200">
-                    <div id="divError" style="color: red; padding-bottom: 20px; font-size: 20px; font-weight: bold;"></div>
-                    <table>                    
-                        <tr>
-                            <td>Color:</td>
-                            <td>
-                                <div id="coloresDiv">
-                                <% int cantColores = 0; %>
-                                <s:iterator value="lista_colores" var="col">
-                                    <% cantColores++; %>
-                                    <div id="color1" onclick="elijoColor(<%=cantColores%>,<s:property value="#col.colorId"/>);" class="color_No_Elegido" 
-                                         style="background-color: <s:property value="#col.colorDescripcion"/>;"></div>
-                                </s:iterator>
-                                <% if(cantColores == 1){ %>
-                                    <s:iterator value="lista_colores" var="col">
-                                        <input type='hidden' name='color' id='colorOculto' value='<s:property value="#col.colorId"/>'/>
-                                    </s:iterator>
-                                <% }else{ %>
-                                    <input type='hidden' name='color' id='colorOculto' value=''/>
-                                <% } %>
-                                </div>
-                            </td>
-                        </tr>                        
-                        <tr>
-                            <td>Selecione talla:</td>
-                            <td>
-                                <% if(cantColores == 1){ %>
-                                    <s:select name="talla" list="lista_tallas" listValue="tallaDescripcion" 
-                                              listKey="tallaId" onchange="cambioMaximo(this.value);"/>
-                                <% }else{ %>
-                                    <s:select id="tallaMuchosColores" name="talla" 
-                                              list="{'Seleccione Color'}" onchange="cambioMaximo(this.value);"/>
-                                <% } %>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Precio:
-                            </td>
-                            <td>
-                                <span style="text-decoration: line-through; font-size: 15px; color: #999999; font-weight: bold" >
-                                    <s:property value="precio"/>
-                                    <s:property value="getText('{0,number,##0.00}',{t.ropaStock.ropa.roPrecio})"/>
-                                </span>
-                                <span style="padding-left: 10px; font-size: 15px; font-weight: bold;">
-                                    <s:property value="precioConDescuento"/> €
-                                    <s:property value="getText('{0,number,##0.00}',{t.ropaStock.ropa.roPrecio - (t.ropaStock.ropa.roPrecio * t.ropaStock.ropa.roDescuento / 100)})"/>
-                                </span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Cantidad: 
-                            </td>                            
-                            <td>
-                                <input type="number" id="cantidad" name="cantidad" min="1" max="<s:property value="%{maximo}"/>" step="1" value="1">
-                            </td>                            
-                        </tr>
-                        <tr>
-                            <td>
-                                <button type="button" onclick="ValidoDetalles();" id="añadircesta_Btn">
-                                    <div>Añadir a la Cesta</div>
-                                </button>
-                            </td>
-                            <td>
-                                <button type="button" onclick="agregarFavorito();" id="añadirfavoritos_Btn">
-                                    <div>Añadir a Favoritos</div>
-                                </button>
-                            </td>
-                        </tr>                        
-                    </table>
-                </div>
-                <table class="mas_Fotos thumbnails">                    
+            <% boolean esFavorito; %>
+                <s:form id="frm" action="TiendaCesta" method="POST" theme="simple">
+                    <input type='hidden' name='cliCodigo' value='<s:property value="cliCodigo"/>'/>
+                    <input type='hidden' name='catCodigo' value='<s:property value="catCodigo"/>'/>
+                    <input type='hidden' name='marca' value='<s:property value="marca"/>'/>
+                    <input type='hidden' name='campania' value='<s:property value="campania"/>'/>
+                    <input type='hidden' name="accionocul" value="'c'"/>
+                    <input type='hidden' name='ropa' id='ropa' value='<s:property value="roId"/>'/>
+                    <div class="nombre_Detalle">
+                        <s:property value="t.roDescripcion"/>
+                    </div>
+                    <br>
+                    <s:set var="contador" value="0"/>           
                     <s:iterator var="f" value="t.fotoses">
-                        <tr>
-                            <td>
-                                <a  href="<s:url value='../Imagenes/%{t.categoria.catDescripcion}/%{t.subcategoria.subDescripcion}/%{#f.fotosRuta}'/>" data-standard="<s:url value='../Imagenes/%{t.categoria.catDescripcion}/%{t.subcategoria.subDescripcion}/%{#f.fotosRuta}'/>">
-                                    <img src="<s:url value='../Imagenes/%{t.categoria.catDescripcion}/%{t.subcategoria.subDescripcion}/%{#f.fotosRuta}'/>" alt=""/>
+                        <s:if test="#contador < 1">
+                            <div class="easyzoom easyzoom--overlay easyzoom--with-thumbnails" 
+                                 style="margin-left: 240px;
+                                 left: 0px;
+                                 padding-left: 0px;
+                                 float: left;" >
+                                <a href="<s:url value='../Imagenes/%{t.categoria.catDescripcion}/%{t.subcategoria.subDescripcion}/%{#f.fotosRuta}'/>"  >
+                                    <img class="img_Principal" src="<s:url value='../Imagenes/%{t.categoria.catDescripcion}/%{t.subcategoria.subDescripcion}/%{#f.fotosRuta}'/>" alt="" />
                                 </a>
-                            </td>
-                        </tr>
+                            </div>
+                            <s:set var="contador" value="%{#contador + 1}"/>
+                        </s:if>
                     </s:iterator>
-                </table>               
-            </s:form>
+
+                    <div class="detalle_info" style="z-index: 200">
+                        <div id="divError" style="color: red; padding-bottom: 20px; font-size: 20px; font-weight: bold;"></div>
+                        <table>                    
+                            <tr>
+                                <td>Color:</td>
+                                <td>
+                                    <div id="coloresDiv">
+                                    <% int cantColores = 0; %>
+                                    <s:iterator value="lista_colores" var="col">
+                                        <% cantColores++; %>
+                                        <div id="color1" onclick="elijoColor(<%=cantColores%>,<s:property value="#col.colorId"/>);" class="color_No_Elegido" 
+                                             style="background-color: <s:property value="#col.colorDescripcion"/>;"></div>
+                                    </s:iterator>
+                                    <% if(cantColores == 1){ %>
+                                        <s:iterator value="lista_colores" var="col">
+                                            <input type='hidden' name='color' id='colorOculto' value='<s:property value="#col.colorId"/>'/>
+                                        </s:iterator>
+                                    <% }else{ %>
+                                        <input type='hidden' name='color' id='colorOculto' value=''/>
+                                    <% } %>
+                                    </div>
+                                </td>
+                            </tr>                        
+                            <tr>
+                                <td>Selecione talla:</td>
+                                <td>
+                                    <% if(cantColores == 1){ %>
+                                        <s:select name="talla" list="lista_tallas" listValue="tallaDescripcion" 
+                                                  listKey="tallaId" onchange="cambioMaximo(this.value);"/>
+                                    <% }else{ %>
+                                        <s:select id="tallaMuchosColores" name="talla" 
+                                                  list="{'Seleccione Color'}" onchange="cambioMaximo(this.value);"/>
+                                    <% } %>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Precio:
+                                </td>
+                                <td>
+                                    <span style="text-decoration: line-through; font-size: 15px; color: #999999; font-weight: bold" >
+                                        <s:property value="precio"/>
+                                        <s:property value="getText('{0,number,##0.00}',{t.ropaStock.ropa.roPrecio})"/>
+                                    </span>
+                                    <span style="padding-left: 10px; font-size: 15px; font-weight: bold;">
+                                        <s:property value="precioConDescuento"/> €
+                                        <s:property value="getText('{0,number,##0.00}',{t.ropaStock.ropa.roPrecio - (t.ropaStock.ropa.roPrecio * t.ropaStock.ropa.roDescuento / 100)})"/>
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Cantidad: 
+                                </td>                            
+                                <td>
+                                    <input type="number" id="cantidad" name="cantidad" min="1" max="<s:property value="%{maximo}"/>" step="1" value="1">
+                                </td>                            
+                            </tr>
+                            <tr>
+                                <td>
+                                    <button type="button" onclick="ValidoDetalles();" id="añadircesta_Btn">
+                                        <div>Añadir a la Cesta</div>
+                                    </button>
+                                </td>
+                                <td>
+                                    <button type="button" onclick="agregarFavorito();" id="añadirfavoritos_Btn">
+                                        <s:if test="sesion.usuId!=null && sesion.usuId!=''">
+                                            <% esFavorito = true; %>
+                                            <s:iterator var="f" value="t.favoritoses">
+                                                <s:if test="#f.usuarios.usuId == sesion.usuId">
+                                                    <div>Quitar de Favoritos</div>
+                                                    <% esFavorito = false; %>
+                                                </s:if>
+                                            </s:iterator>
+                                            <% if(esFavorito){ %>
+                                                <div>Añadir a Favoritos</div>
+                                            <% } %>
+                                        </s:if>
+                                        <s:else>
+                                            <% esFavorito = true; %>
+                                            <s:iterator var="f" value="t.noLogFavoritoses">
+                                                <s:if test="#f.noLogUsuarios.nluUsuId == sesion.cookieLogueado.nluUsuId">
+                                                    <div>Quitar de Favoritos</div>
+                                                    <% esFavorito = false; %>
+                                                </s:if>
+                                            </s:iterator>
+                                            <% if(esFavorito){ %>
+                                                <div>Añadir a Favoritos</div>
+                                            <% } %>                                                
+                                        </s:else>
+                                    </button>
+                                </td>
+                            </tr>                        
+                        </table>
+                    </div>
+                    <table class="mas_Fotos thumbnails">                    
+                        <s:iterator var="f" value="t.fotoses">
+                            <tr>
+                                <td>
+                                    <a  href="<s:url value='../Imagenes/%{t.categoria.catDescripcion}/%{t.subcategoria.subDescripcion}/%{#f.fotosRuta}'/>" data-standard="<s:url value='../Imagenes/%{t.categoria.catDescripcion}/%{t.subcategoria.subDescripcion}/%{#f.fotosRuta}'/>">
+                                        <img src="<s:url value='../Imagenes/%{t.categoria.catDescripcion}/%{t.subcategoria.subDescripcion}/%{#f.fotosRuta}'/>" alt=""/>
+                                    </a>
+                                </td>
+                            </tr>
+                        </s:iterator>
+                    </table>               
+                </s:form>
             </div>            
             <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
             <script src="../Scripts/easyzoom.js"></script>

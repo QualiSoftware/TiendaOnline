@@ -40,7 +40,7 @@
             <div id="header">
                 <div id="marca">
                     <s:a action="Tienda">
-                        Tienda Ropa <img src="../Imagenes/Administracion/SH14171.jpg" alt="house_hangers" id="logo"/>
+                        <img src="../Imagenes/Administracion/SH14171.jpg" alt="house_hangers" id="logo"/>
                     </s:a>
                 </div>
                 <div id="idioma">
