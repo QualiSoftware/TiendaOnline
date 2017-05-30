@@ -1,10 +1,11 @@
 
-        <div id="footer">
+<div id="footer" >
             <br><br>
             <div id="linea1" class="linea"></div>
-            <footer class="footer-distributed">
+            <footer class="footer-distributed" style="background-color: #333333;">
                 <div class="footer-left">
-                    <h3>Tienda<span>Ropa</span></h3>
+                    <img src="../Imagenes/Administracion/LogoFondoNegro.png" width="300" alt="">
+                    <!--<h3>Tienda<span>Ropa</span></h3>-->
                     <p class="footer-links">
                         <a href="/TiendaOnline/Vistas/Tienda.action">Inicio</a>
                         ·
