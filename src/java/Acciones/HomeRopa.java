@@ -9,8 +9,10 @@ import Modelos.Color;
 import Modelos.Fotos;
 import Modelos.Look;
 import Modelos.Marcas;
+import Modelos.NoLogCesta;
 import Modelos.NoLogFavoritos;
 import Modelos.NoLogFavoritosId;
+import Modelos.NoLogUsuarios;
 import Modelos.Ropa;
 import Modelos.RopaStock;
 import Modelos.Subcategoria;
@@ -67,14 +69,7 @@ public class HomeRopa extends ActionSupport {
     private String prefact;
     private String unifact;
     private String sunifact;
-    private String sprefactura;
-    
-    
-    
-    
-    
-    
-    
+    private String sprefactura;    
 
     //variables específicas a cada controlador
     private ArrayList<Ropa> lista_ropa,lista_menu_ropa;
@@ -134,6 +129,8 @@ public class HomeRopa extends ActionSupport {
     private String diasDesc;
     private int periodo;
     private String mensajeError;
+    private NoLogUsuarios nlu;
+    private ArrayList<NoLogCesta> lista_ropa_Cesta_NoLog;
 
     public String getUsuario() {
         return usuario;
@@ -840,6 +837,22 @@ public class HomeRopa extends ActionSupport {
     public void setMensajeError(String mensajeError) {
         this.mensajeError = mensajeError;
     }
+
+    public NoLogUsuarios getNlu() {
+        return nlu;
+    }
+
+    public void setNlu(NoLogUsuarios nlu) {
+        this.nlu = nlu;
+    }
+
+    public ArrayList<NoLogCesta> getLista_ropa_Cesta_NoLog() {
+        return lista_ropa_Cesta_NoLog;
+    }
+
+    public void setLista_ropa_Cesta_NoLog(ArrayList<NoLogCesta> lista_ropa_Cesta_NoLog) {
+        this.lista_ropa_Cesta_NoLog = lista_ropa_Cesta_NoLog;
+    }
     
     @SkipValidation
     public String RopaFiltro() throws Exception {
@@ -902,14 +915,7 @@ public class HomeRopa extends ActionSupport {
         }
         lista_ropa.clear();
         lista_ropa = ControladoresDAO.cRopa.RecuperaTodos(filtro,orden,fechaI,fechaF,eliminadas);
-        if(sesion.get("usuId") == null){
-                sesion.put("usuId", "");            
-        }
-        lista_ropa_Cestas = ControladoresDAO.cCesta.RecuperaTodos(sesion.get("usuId")+"");
-        for(Cesta caux:lista_ropa_Cestas){
-            totalcestaUsuario += caux.getCestaUnidades();
-            caux.getRopaStock().setRopa(descuentoEnRopa(caux.getRopaStock().getRopa()));
-        }
+        cargarCesta();
         return SUCCESS;
     }
 
@@ -1076,7 +1082,13 @@ public class HomeRopa extends ActionSupport {
             int icolorid = Integer.parseInt(colorid);
             int itallaid = Integer.parseInt(tallaid);
             int icantidad = Integer.parseInt(cantidadprenda);
-            int iusuid = Integer.parseInt(idusu);
+            int iusuid = 0;
+            String cookieid = "";
+            if(idusu.length() < 17){
+                iusuid = Integer.parseInt(idusu);
+            } else {
+                cookieid = idusu;
+            }
             int iunifact = Integer.parseInt(unifact);
             double iprefact=Double.parseDouble(prefact);
             double iprefactfinal = 0;
@@ -1108,10 +1120,20 @@ public class HomeRopa extends ActionSupport {
                     }
             } 
             String sidstock = ""+r.getRostockId();
-            List<Cesta> c = ControladoresDAO.cCesta.recuperaPorRopaStockYUsuario(r.getRostockId(),iusuid);
-            for(Cesta lc : c){
-                lc.setCestaUnidades(icantidad);
-                ControladoresDAO.cCesta.Modifica(lc);
+            if(idusu.length() < 17){
+                List<Cesta> c = ControladoresDAO.cCesta.recuperaPorRopaStockYUsuario(r.getRostockId(),iusuid);
+                for(Cesta lc : c){
+                    lc.setCestaUnidades(icantidad);
+                    ControladoresDAO.cCesta.Modifica(lc);
+                }
+            } else {
+                List<NoLogUsuarios> nluList = ControladoresDAO.cUsuariosNoLog.recuperaPorNick(cookieid);
+                List<NoLogCesta> nlcList = 
+                        ControladoresDAO.cCestaNoLog.recuperaPorRopaStockYUsuario(r.getRostockId(), nluList.get(0).getNluUsuId());
+                for(NoLogCesta nlc : nlcList){
+                    nlc.setNlcUnidades(icantidad);
+                    ControladoresDAO.cCestaNoLog.Modifica(nlc);
+                }
             }
             double total =  icantidad * (ro.getRoPrecio() -(ro.getRoPrecio() * ro.getRoDescuento() / 100));
             stotal = (String.format("%.2f", total));
@@ -1198,13 +1220,8 @@ public class HomeRopa extends ActionSupport {
             Marcas mar = ControladoresDAO.cMarcas.RecuperaPorId(Integer.parseInt(marca));
             marcaNom = mar.getMarcaNombre();
         }
-        lista_ropa = poneDescuentosBien(lista_ropa);        
-        lista_ropa_Cestas = ControladoresDAO.cCesta.RecuperaTodos(sesion.get("usuId")+"");
-        for(Cesta caux:lista_ropa_Cestas){
-            totalcestaUsuario += caux.getCestaUnidades();
-            caux.getRopaStock().setRopa(descuentoEnRopa(caux.getRopaStock().getRopa()));
-            //System.out.println("caux.getRopaStock().getRopa().getRoPrecio(): "+caux.getRopaStock().getRopa().getRoPrecio()+" - caux.getCestaUnidades(): "+caux.getCestaUnidades()+" - caux.getRopaStock().getRopa().getRoDescuento(): "+caux.getRopaStock().getRopa().getRoDescuento());
-        }
+        lista_ropa = poneDescuentosBien(lista_ropa);
+        cargarCesta();
        return SUCCESS;
     }
     
@@ -1322,12 +1339,7 @@ public class HomeRopa extends ActionSupport {
         }catch(Exception e){
             campaniaNombre = "";
         }
-        lista_ropa_Cestas = ControladoresDAO.cCesta.RecuperaTodos(sesion.get("usuId")+"");
-        for(Cesta caux:lista_ropa_Cestas){
-            totalcestaUsuario += caux.getCestaUnidades();
-            caux.getRopaStock().setRopa(descuentoEnRopa(caux.getRopaStock().getRopa()));
-            //System.out.println(caux.getRopaStock().getRopa().getRoDescripcion()+" - "+caux.getCestaUnidades()+" - "+caux.getRopaStock().getRopa().getRoPrecio());
-        }
+        cargarCesta();
         return SUCCESS;
     }
     
@@ -1341,5 +1353,27 @@ public class HomeRopa extends ActionSupport {
     public String ajaxFavoritos() throws Exception{
         //Necesito este método para que no de error el struts del orto y la puta que lo parió
        return SUCCESS;
+    }
+
+    private void cargarCesta() {        
+        if(sesion.get("usuId") == null){
+                sesion.put("usuId", "");            
+        }
+        if(sesion.get("cookieLogueado") != null){
+            nlu = (NoLogUsuarios) sesion.get("cookieLogueado");
+        }
+        if(u != null){
+            lista_ropa_Cestas = ControladoresDAO.cCesta.RecuperaTodos(sesion.get("usuId")+"");
+            for(Cesta caux:lista_ropa_Cestas){
+                totalcestaUsuario += caux.getCestaUnidades();
+                caux.getRopaStock().setRopa(descuentoEnRopa(caux.getRopaStock().getRopa()));
+            }
+        } else if(sesion.get("cookieLogueado") != null){
+            lista_ropa_Cesta_NoLog = ControladoresDAO.cCestaNoLog.RecuperaTodos(""+nlu.getNluUsuId());
+            for(NoLogCesta caux:lista_ropa_Cesta_NoLog){
+                totalcestaUsuario += caux.getNlcUnidades();
+                caux.getRopaStock().setRopa(descuentoEnRopa(caux.getRopaStock().getRopa()));
+            }
+        }
     }
 }

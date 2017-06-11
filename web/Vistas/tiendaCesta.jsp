@@ -48,6 +48,8 @@
         <link rel="stylesheet" href="../Estilos/easyzoom.css" />
         <!-- Scripts Propios-->
         <script src="../Scripts/Tienda_Scripts.js" type="text/javascript"></script>
+        <!-- Validación usuarios-->
+        <script src="../Scripts/ValidacionUsuario.js" type="text/javascript"></script>
         <script>                    
             window.onload = cesta_Aniadir;
 
@@ -60,7 +62,7 @@
         <title>Cesta de <s:property value="sesion.usuNombre"/></title>
     </head>
     <body>
-        <script>usarAJAXCargarCookie();</script>
+        <s:include value="cargarCookie.jsp" />
         <div id="todo">
             <div id="header">
                 <div id="marca">
@@ -81,9 +83,46 @@
                 </div>
                 <div id="iniciar_Sesion">
                     <s:if test="sesion.usuId==null || sesion.usuId==''">
-                        <%
-                            response.sendRedirect("Vistas/Tienda.action");
-                        %>
+                        <a href="#">
+                            <div id="mi_Cuenta_Txt" onclick="fijarLogin();">Mi Cuenta</div>
+                        </a>                    
+                        <s:form id="frmLogin" action="TiendaLogin" theme="simple">
+                            <input type="hidden" name="actionName" value="CestaFiltro.action"/>
+                            <div id="login">                                        
+                                <table>
+                                    <tr>
+                                        <td><span class="glyphicon glyphicon-user" aria-hidden="true" ></span>
+                                            <s:textfield name="usuario" id="usuPassword2" class="btn btn-default" aria-label="Left Align" style="text-align: left; background-color: white; margin-top:10px; margin-left:5px;" />
+                                            <s:fielderror fieldName="usuario" theme="simple"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td> <span class="glyphicon glyphicon-lock" aria-hidden="true" ></span>
+                                            <s:password name="password" id="passVerif" class="btn btn-default" style="text-align: left; color: gray; margin-bottom: 3px; margin-left:5px;" aria-label="Left Align" />
+                                            <s:fielderror fieldName="password" />                                            
+                                            <input type="hidden" name="mensajeError" value="<s:property value="mensajeError"/>"/>
+                                            <span style="color: red; font-size: 13px; padding-left: 18px; position: relative;"><s:property value="mensajeError"/></span>
+                                        </td>
+                                    </tr>                                    
+                                    <tr>
+                                        <td>
+                                            <a href="#">
+                                                <input type="button" onclick="usuarioLogin();" value="Acceder" style="margin: 0 auto; width: 100px; border: 0px grey solid; background-color: #cc0033; box-shadow: 5px 5px 5px grey; color: white; padding-bottom: 25px; padding-left: 10px;" onMouseOver="this.style.cssText = 'width: 100px; -webkit-transform: scale(1.09); -webkit-transition: .3s; border: 0px grey solid; color: white; background-color: #cc0033; box-shadow: 5px 5px 5px grey; padding-bottom: 25px; padding-left: 10px;'" onMouseOut="this.style.cssText = 'box-shadow: 0px; width: 100px; -webkit-transform: scale(1); -webkit-transition: .3s; border: 0px grey solid; color: white; background-color: #cc0033; box-shadow: 5px 5px 5px grey; padding-bottom: 25px; padding-left: 10px;'" class="btn btn-default btn_Acceder"/>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            ¿Nuevo Cliente? 
+                                            <s:a action="UsuAlta" >
+                                                <s:param name="clave" value="1"/>
+                                                <s:param name="accion" value="'a'"/>¡Regístrate!
+                                            </s:a>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </s:form>
                     </s:if>
                     <s:if test="sesion.usuId!=null && sesion.usuId!=''">                   
                         <a href="#">
@@ -230,144 +269,288 @@
                         <input type="hidden" name="clave" id="tallaid" value="<s:property value="#a.ropaStock.tallas.tallaId"/>"/>
                         <input type="hidden" name="clave" id="unifact" value="<s:property value="cantidad"/>"/>
                         <input type="hidden" name="clave" id="prefact" value="<s:property value="getText('{0,number,##0.00}',{precio})"/>"/>
-                    <s:iterator var="a" value="lista_ropa_Cestas">
-                        <hr class="linea_divisoria_articulos">
-                        <table> 
-                            <thead >
+                    <% int cero = 0; %>
+                    <s:if test="sesion.usuId!=null && sesion.usuId!=''">
+                        <s:iterator var="a" value="lista_ropa_Cestas">
+                            <hr class="linea_divisoria_articulos">
+                            <table> 
+                                <thead >
+                                    <tr>
+                                        <td class="bold" style="padding-bottom: 10px;" colspan="3">
+                                            <a href="Detalles.html">
+                                                <span class="titulo_Producto_Cesta">
+                                                    <s:property value="#a.ropaStock.ropa.roDescripcion"/>
+                                                </span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </thead>
                                 <tr>
-                                    <td class="bold" style="padding-bottom: 10px;" colspan="3">
-                                        <a href="Detalles.html">
-                                            <span class="titulo_Producto_Cesta">
-                                                <s:property value="#a.ropaStock.ropa.roDescripcion"/>
-                                            </span>
-                                        </a>
+                                    <td rowspan="4" style="padding-right: 100px;">
+                                        <s:a action="RopaPopUp">
+                                            <s:param name="roId" value="#a.ropaStock.ropa.roId"/>
+                                            <% cero = 0; %>
+                                            <s:iterator var="f" value="#a.ropaStock.ropa.fotoses">
+                                                <% if (cero < 1) {%>
+                                                <img  id="cesta_Img" src="<s:url value='../Imagenes/%{#a.ropaStock.ropa.categoria.catDescripcion}/%{#a.ropaStock.ropa.subcategoria.subDescripcion}/%{#f.fotosRuta}'/>" alt="<s:property value="fotosRuta" />" />
+                                                <% cero++;
+                                                    }%>
+                                            </s:iterator>
+                                        </s:a>
+                                    </td>
+                                    <td>Color:</td>
+                                    <td>
+                                        <div id="color1" style="background-color: <s:property value="#a.ropaStock.color.colorDescripcion"/>;">
+                                        </div>
                                     </td>
                                 </tr>
-                            </thead>
-                            <tr>
-                                <td rowspan="4" style="padding-right: 100px;">
-                                    <s:a action="RopaPopUp">
-                                        <s:param name="roId" value="#a.ropaStock.ropa.roId"/>
-                                        <% int cero = 0; %>
-                                        <s:iterator var="f" value="#a.ropaStock.ropa.fotoses">
-                                            <% if (cero < 1) {%>
-                                            <img  id="cesta_Img" src="<s:url value='../Imagenes/%{#a.ropaStock.ropa.categoria.catDescripcion}/%{#a.ropaStock.ropa.subcategoria.subDescripcion}/%{#f.fotosRuta}'/>" alt="<s:property value="fotosRuta" />" />
-                                            <% cero++;
-                                                }%>
-                                        </s:iterator>
-                                    </s:a>
-                                </td>
-                                <td>Color:</td>
-                                <td>
-                                    <div id="color1" style="background-color: <s:property value="#a.ropaStock.color.colorDescripcion"/>;">
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Talla:</td>
-                                <td>
-                                    <s:property value="#a.ropaStock.tallas.tallaDescripcion"/>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Precio individual:
-                                </td>
-                                <td>
-                                    <s:property value="getText('{0,number,##0.00}',{#a.ropaStock.ropa.roPrecio - (#a.ropaStock.ropa.roPrecio * #a.ropaStock.ropa.roDescuento / 100)})"/> €
-                                </td>
-                            </tr>
-                            <tr>
-                                <td  style='padding-top: 2px;'>
-                                    Cantidad:
-                                </td>
-                                <td>
-                                   
-                                    <s:form id="formCantidad" action="CestaFiltro" theme="simple" method="post">
-                                        <input type="hidden" name="accionocul" value="e"/>
-                                        <input type="hidden" name="clave" id="clave"/>
-                                        <input type="hidden" name="clave" id="idusu" value="<s:property value="sesion.usuId"/>"/>
-                                        <img src="../Imagenes/Administracion/Signo_Menos.png" id="menos-<s:property value="#a.ropaStock.ropa.roId"/>-<s:property value="#a.ropaStock.color.colorId"/>-<s:property value="#a.ropaStock.tallas.tallaId"/>"
-                                             style="cursor:pointer; width: 30px; padding-top: 13px;"/>
-                                        &nbsp;
-                                        <input type="text" name="cantidad" id="cantidadIndividual<s:property value="#a.ropaStock.ropa.roId"/>" readonly="readonly" 
-                                               style="width: 25px;text-align: center;" value="<s:property value="#a.cestaUnidades"/>">
-                                        &nbsp;
-                                        <img src="../Imagenes/Administracion/Signo_Mas.png" id="mas-<s:property value="#a.ropaStock.ropa.roId"/>-<s:property value="#a.ropaStock.color.colorId"/>-<s:property value="#a.ropaStock.tallas.tallaId"/>" 
-                                             style="cursor:pointer; width: 30px; padding-top: 13px;" />
-                                    </s:form>
-                                    <script>
-                                        
-                                         $(document).ready(function () {
-                                            $('body').on('click', '#items_en_uso img', function(){
-                                               var a =  $(this).attr('id')
-                                               var even = a.split('-');
-                                               var masmenos = even[0];
-                                               var idropa = even[1];
-                                               var idcolor = even[2];
-                                               var idtalla = even[3];
-                                               $("#roid").val(idropa); 
-                                               $("#colorid").val(idcolor);  
-                                               $("#tallaid").val(idtalla); 
-                                               if(masmenos == "mas"){
-                                                    usarAJAX("+");
-                                               }else{
-                                                   usarAJAX("-");
-                                               }
-                                            })                                           
-                                        });
-                                        function usarAJAX(value) { 
-                                          
-                                            var unifact = document.getElementById('unifact').value;
-                                            
-                                            var concomaprefact = document.getElementById('prefact').value;
-                                            var prefact = concomaprefact.replace(",", ".")
-                                            var roid = document.getElementById('roid').value;
-                                            var colorid = document.getElementById('colorid').value;
-                                            var tallaid = document.getElementById('tallaid').value;
-                                            var cantidadprenda =  document.getElementById('cantidadIndividual'+roid).value;
-                                            var idusu =  document.getElementById('idusu').value;
-                                            var masmenos = value;
-                                            $.getJSON('ajaxsumaRestaRopa', {
-                                                roid: roid, colorid: colorid, tallaid: tallaid, cantidadprenda: cantidadprenda, masmenos: masmenos, idusu: idusu, prefact: prefact, unifact: unifact
-                                            }, function (jsonResponse) {
-                                                 $("#cantidadIndividual"+roid).val(jsonResponse.scantidad);
-                                                 $("#unifact").val(jsonResponse.sunifact);
-                                                 $("#prefact").val(jsonResponse.sprefactura);
-                                                 $("label[for='uni"+roid+"']").text(jsonResponse.scantidad);
-                                                 $("label[for='total"+roid+"']").text(jsonResponse.stotal);
-                                                 $("label[for='unifact']").text(jsonResponse.sunifact);
-                                                 $("label[for='prefact']").text(jsonResponse.sprefactura);      
+                                <tr>
+                                    <td>Talla:</td>
+                                    <td>
+                                        <s:property value="#a.ropaStock.tallas.tallaDescripcion"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Precio individual:
+                                    </td>
+                                    <td>
+                                        <s:property value="getText('{0,number,##0.00}',{#a.ropaStock.ropa.roPrecio - (#a.ropaStock.ropa.roPrecio * #a.ropaStock.ropa.roDescuento / 100)})"/> €
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td  style='padding-top: 2px;'>
+                                        Cantidad:
+                                    </td>
+                                    <td>
+
+                                        <s:form id="formCantidad" action="CestaFiltro" theme="simple" method="post">
+                                            <input type="hidden" name="accionocul" value="e"/>
+                                            <input type="hidden" name="clave" id="clave"/>
+                                            <input type="hidden" name="clave" id="idusu" value="<s:property value="sesion.usuId"/>"/>
+                                            <img src="../Imagenes/Administracion/Signo_Menos.png" id="menos-<s:property value="#a.ropaStock.ropa.roId"/>-<s:property value="#a.ropaStock.color.colorId"/>-<s:property value="#a.ropaStock.tallas.tallaId"/>"
+                                                 style="cursor:pointer; width: 30px; padding-top: 13px;"/>
+                                            &nbsp;
+                                            <input type="text" name="cantidad" id="cantidadIndividual<s:property value="#a.ropaStock.ropa.roId"/>" readonly="readonly" 
+                                                   style="width: 25px;text-align: center;" value="<s:property value="#a.cestaUnidades"/>">
+                                            &nbsp;
+                                            <img src="../Imagenes/Administracion/Signo_Mas.png" id="mas-<s:property value="#a.ropaStock.ropa.roId"/>-<s:property value="#a.ropaStock.color.colorId"/>-<s:property value="#a.ropaStock.tallas.tallaId"/>" 
+                                                 style="cursor:pointer; width: 30px; padding-top: 13px;" />
+                                        </s:form>
+                                        <script>
+
+                                             $(document).ready(function () {
+                                                $('body').on('click', '#items_en_uso img', function(){
+                                                   var a =  $(this).attr('id')
+                                                   var even = a.split('-');
+                                                   var masmenos = even[0];
+                                                   var idropa = even[1];
+                                                   var idcolor = even[2];
+                                                   var idtalla = even[3];
+                                                   $("#roid").val(idropa); 
+                                                   $("#colorid").val(idcolor);  
+                                                   $("#tallaid").val(idtalla); 
+                                                   if(masmenos == "mas"){
+                                                        usarAJAX("+");
+                                                   }else{
+                                                       usarAJAX("-");
+                                                   }
+                                                })                                           
                                             });
-                                        }
-                                    </script>
-                                </td>  
-                            </tr>
-                            <tr>
-                                <td></td><td style="width:180px;">
-                                    Importe por <label for="uni<s:property value="#a.ropaStock.ropa.roId"/>"><s:property value="#a.cestaUnidades"/></label>  prendas:
-                                </td>
-                                <td>
-                                    <label for="total<s:property value="#a.ropaStock.ropa.roId"/>"><s:property value="getText('{0,number,##0.00}',{#a.cestaUnidades * (#a.ropaStock.ropa.roPrecio - (#a.ropaStock.ropa.roPrecio * #a.ropaStock.ropa.roDescuento / 100))})"/></label>€
-                                    
-                                </td>
-                            </tr>
-                            <tr>
-                                <td id="Stock_Excedido<s:property value="#a.cestaId"/>" colspan="3" style="color:red; position:absolute; margin-left: 220px;"></td>
-                            </tr>
-                            <tr>
-                                <td colspan="3">
-                                    <s:a action="CestaFiltro">
-                                        <s:param name="cantidad" value="0"/>
-                                        <s:param name="accionocul" value="'e'"/>
-                                        <s:param name="clave" value="#a.cestaId"/>
-                                        <div class="btn_Elminar_Producto">Eliminar</div>
-                                    </s:a>
-                                </td>
-                            </tr>
-                        </table>
-                        <s:set var="cantidadRopa" value="%{#cantidadRopa + 1}"/>
-                    </s:iterator>
+                                            function usarAJAX(value) { 
+
+                                                var unifact = document.getElementById('unifact').value;
+
+                                                var concomaprefact = document.getElementById('prefact').value;
+                                                var prefact = concomaprefact.replace(",", ".")
+                                                var roid = document.getElementById('roid').value;
+                                                var colorid = document.getElementById('colorid').value;
+                                                var tallaid = document.getElementById('tallaid').value;
+                                                var cantidadprenda =  document.getElementById('cantidadIndividual'+roid).value;
+                                                var idusu =  document.getElementById('idusu').value;
+                                                var masmenos = value;
+                                                $.getJSON('ajaxsumaRestaRopa', {
+                                                    roid: roid, colorid: colorid, tallaid: tallaid, cantidadprenda: cantidadprenda, masmenos: masmenos, idusu: idusu, prefact: prefact, unifact: unifact
+                                                }, function (jsonResponse) {
+                                                     $("#cantidadIndividual"+roid).val(jsonResponse.scantidad);
+                                                     $("#unifact").val(jsonResponse.sunifact);
+                                                     $("#prefact").val(jsonResponse.sprefactura);
+                                                     $("label[for='uni"+roid+"']").text(jsonResponse.scantidad);
+                                                     $("label[for='total"+roid+"']").text(jsonResponse.stotal);
+                                                     $("label[for='unifact']").text(jsonResponse.sunifact);
+                                                     $("label[for='prefact']").text(jsonResponse.sprefactura);      
+                                                });
+                                            }
+                                        </script>
+                                    </td>  
+                                </tr>
+                                <tr>
+                                    <td></td><td style="width:180px;">
+                                        Importe por <label for="uni<s:property value="#a.ropaStock.ropa.roId"/>"><s:property value="#a.cestaUnidades"/></label>  prendas:
+                                    </td>
+                                    <td>
+                                        <label for="total<s:property value="#a.ropaStock.ropa.roId"/>"><s:property value="getText('{0,number,##0.00}',{#a.cestaUnidades * (#a.ropaStock.ropa.roPrecio - (#a.ropaStock.ropa.roPrecio * #a.ropaStock.ropa.roDescuento / 100))})"/></label>€
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td id="Stock_Excedido<s:property value="#a.cestaId"/>" colspan="3" style="color:red; position:absolute; margin-left: 220px;"></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3">
+                                        <s:a action="CestaFiltro">
+                                            <s:param name="cantidad" value="0"/>
+                                            <s:param name="accionocul" value="'e'"/>
+                                                <s:param name="clave" value="#a.cestaId"/>
+                                            <div class="btn_Elminar_Producto">Eliminar</div>
+                                        </s:a>
+                                    </td>
+                                </tr>
+                            </table>
+                            <s:set var="cantidadRopa" value="%{#cantidadRopa + 1}"/>
+                        </s:iterator>
+                    </s:if>
+                    <s:else>
+                        <s:iterator var="a" value="lista_ropa_Cesta_NoLog">
+                            <hr class="linea_divisoria_articulos">
+                            <table> 
+                                <thead >
+                                    <tr>
+                                        <td class="bold" style="padding-bottom: 10px;" colspan="3">
+                                            <a href="Detalles.html">
+                                                <span class="titulo_Producto_Cesta">
+                                                    <s:property value="#a.ropaStock.ropa.roDescripcion"/>
+                                                </span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </thead>
+                                <tr>
+                                    <td rowspan="4" style="padding-right: 100px;">
+                                        <s:a action="RopaPopUp">
+                                            <% cero = 0; %>
+                                            <s:param name="roId" value="#a.ropaStock.ropa.roId"/>
+                                            <s:iterator var="f" value="#a.ropaStock.ropa.fotoses">
+                                                <% if (cero < 1) {%>
+                                                <img  id="cesta_Img" src="<s:url value='../Imagenes/%{#a.ropaStock.ropa.categoria.catDescripcion}/%{#a.ropaStock.ropa.subcategoria.subDescripcion}/%{#f.fotosRuta}'/>" alt="<s:property value="fotosRuta" />" />
+                                                <% cero++;
+                                                    }%>
+                                            </s:iterator>
+                                        </s:a>
+                                    </td>
+                                    <td>Color:</td>
+                                    <td>
+                                        <div id="color1" style="background-color: <s:property value="#a.ropaStock.color.colorDescripcion"/>;">
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Talla:</td>
+                                    <td>
+                                        <s:property value="#a.ropaStock.tallas.tallaDescripcion"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Precio individual:
+                                    </td>
+                                    <td>
+                                        <s:property value="getText('{0,number,##0.00}',{#a.ropaStock.ropa.roPrecio - (#a.ropaStock.ropa.roPrecio * #a.ropaStock.ropa.roDescuento / 100)})"/> €
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td  style='padding-top: 2px;'>
+                                        Cantidad:
+                                    </td>
+                                    <td>
+
+                                        <s:form id="formCantidad" action="CestaFiltro" theme="simple" method="post">
+                                            <input type="hidden" name="accionocul" value="e"/>
+                                            <input type="hidden" name="clave" id="clave"/>
+                                            <input type="hidden" name="clave" id="idusu" value="<s:property value="sesion.cookieLogueado.nluNick"/>"/>
+                                            <img src="../Imagenes/Administracion/Signo_Menos.png" id="menos-<s:property value="#a.ropaStock.ropa.roId"/>-<s:property value="#a.ropaStock.color.colorId"/>-<s:property value="#a.ropaStock.tallas.tallaId"/>"
+                                                 style="cursor:pointer; width: 30px; padding-top: 13px;"/>
+                                            &nbsp;
+                                            <input type="text" name="cantidad" id="cantidadIndividual<s:property value="#a.ropaStock.ropa.roId"/>" readonly="readonly" 
+                                                   style="width: 25px;text-align: center;" value="<s:property value="#a.nlcUnidades"/>">
+                                            &nbsp;
+                                            <img src="../Imagenes/Administracion/Signo_Mas.png" id="mas-<s:property value="#a.ropaStock.ropa.roId"/>-<s:property value="#a.ropaStock.color.colorId"/>-<s:property value="#a.ropaStock.tallas.tallaId"/>" 
+                                                 style="cursor:pointer; width: 30px; padding-top: 13px;" />
+                                        </s:form>
+                                        <script>
+
+                                             $(document).ready(function () {
+                                                $('body').on('click', '#items_en_uso img', function(){
+                                                   var a =  $(this).attr('id')
+                                                   var even = a.split('-');
+                                                   var masmenos = even[0];
+                                                   var idropa = even[1];
+                                                   var idcolor = even[2];
+                                                   var idtalla = even[3];
+                                                   $("#roid").val(idropa); 
+                                                   $("#colorid").val(idcolor);  
+                                                   $("#tallaid").val(idtalla); 
+                                                   if(masmenos == "mas"){
+                                                        usarAJAX("+");
+                                                   }else{
+                                                       usarAJAX("-");
+                                                   }
+                                                })                                           
+                                            });
+                                            function usarAJAX(value) { 
+
+                                                var unifact = document.getElementById('unifact').value;
+
+                                                var concomaprefact = document.getElementById('prefact').value;
+                                                var prefact = concomaprefact.replace(",", ".")
+                                                var roid = document.getElementById('roid').value;
+                                                var colorid = document.getElementById('colorid').value;
+                                                var tallaid = document.getElementById('tallaid').value;
+                                                var cantidadprenda =  document.getElementById('cantidadIndividual'+roid).value;
+                                                var idusu =  document.getElementById('idusu').value;
+                                                var masmenos = value;
+                                                $.getJSON('ajaxsumaRestaRopa', {
+                                                    roid: roid, colorid: colorid, tallaid: tallaid, cantidadprenda: cantidadprenda, masmenos: masmenos, idusu: idusu, prefact: prefact, unifact: unifact
+                                                }, function (jsonResponse) {
+                                                     $("#cantidadIndividual"+roid).val(jsonResponse.scantidad);
+                                                     $("#unifact").val(jsonResponse.sunifact);
+                                                     $("#prefact").val(jsonResponse.sprefactura);
+                                                     $("label[for='uni"+roid+"']").text(jsonResponse.scantidad);
+                                                     $("label[for='total"+roid+"']").text(jsonResponse.stotal);
+                                                     $("label[for='unifact']").text(jsonResponse.sunifact);
+                                                     $("label[for='prefact']").text(jsonResponse.sprefactura);      
+                                                });
+                                            }
+                                        </script>
+                                    </td>  
+                                </tr>
+                                <tr>
+                                    <td></td><td style="width:180px;">
+                                        Importe por <label for="uni<s:property value="#a.ropaStock.ropa.roId"/>"><s:property value="#a.nlcUnidades"/></label>  prendas:
+                                    </td>
+                                    <td>
+                                        <label for="total<s:property value="#a.ropaStock.ropa.roId"/>"><s:property value="getText('{0,number,##0.00}',{#a.nlcUnidades * (#a.ropaStock.ropa.roPrecio - (#a.ropaStock.ropa.roPrecio * #a.ropaStock.ropa.roDescuento / 100))})"/></label>€
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td id="Stock_Excedido<s:property value="#a.nlcId"/>" colspan="3" style="color:red; position:absolute; margin-left: 220px;"></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3">
+                                        <s:a action="CestaFiltro">
+                                            <s:param name="cantidad" value="0"/>
+                                            <s:param name="accionocul" value="'e'"/>
+                                            <s:param name="clave" value="#a.nlcId"/>
+                                            <div class="btn_Elminar_Producto">Eliminar</div>
+                                        </s:a>
+                                    </td>
+                                </tr>
+                            </table>
+                            <s:set var="cantidadRopa" value="%{#cantidadRopa + 1}"/>
+                        </s:iterator>
+                        
+                    </s:else>
                         </div>
                     <s:if test="#cantidadRopa > 0">    
                         <s:form id="frm" action="Pagar" method="POST" theme="simple">
@@ -385,7 +568,9 @@
                                                 Dirección: 
                                             </td>                            
                                             <td style="padding-top: 5px;">
-                                                <s:property value="u.usuDireccion"/>
+                                                <s:if test="sesion.usuId!=null && sesion.usuId!=''">
+                                                    <s:property value="u.usuDireccion"/>
+                                                </s:if>
                                             </td>
                                         </tr>
                                         <tr>
@@ -393,7 +578,9 @@
                                                 Ciudad: 
                                             </td>                            
                                             <td>
-                                                <s:property value="u.usuLocalidad"/>
+                                                <s:if test="sesion.usuId!=null && sesion.usuId!=''">
+                                                    <s:property value="u.usuLocalidad"/>
+                                                </s:if>
                                             </td>  
                                         </tr>
                                         <tr>
@@ -401,7 +588,9 @@
                                                 Código Postal: 
                                             </td>                            
                                             <td>
-                                                <s:property value="u.usuCp"/>
+                                                <s:if test="sesion.usuId!=null && sesion.usuId!=''">
+                                                    <s:property value="u.usuCp"/>
+                                                </s:if>
                                             </td>                            
                                         </tr>
                                         <tr>
@@ -409,7 +598,9 @@
                                                 Provincia: 
                                             </td>                            
                                             <td>
-                                                <s:property value="u.provincias.proNombre"/>
+                                                <s:if test="sesion.usuId!=null && sesion.usuId!=''">
+                                                    <s:property value="u.provincias.proNombre"/>
+                                                </s:if>
                                             </td>                            
                                         </tr>
                                         <tr>
@@ -417,7 +608,9 @@
                                                 País: 
                                             </td>                            
                                             <td>
-                                                <s:property value="u.provincias.paises.paisNombre"/>
+                                                <s:if test="sesion.usuId!=null && sesion.usuId!=''">
+                                                    <s:property value="u.provincias.paises.paisNombre"/>
+                                                </s:if>
                                             </td>                            
                                         </tr>
                                         <tr>
@@ -425,7 +618,9 @@
                                                 Titular: 
                                             </td>                            
                                             <td>
-                                                <s:property value="u.usuNombre"/> <s:property value="u.usuApellidos"/>
+                                                <s:if test="sesion.usuId!=null && sesion.usuId!=''">
+                                                    <s:property value="u.usuNombre"/> <s:property value="u.usuApellidos"/>
+                                                </s:if>
                                             </td>                            
                                         </tr>
                                         <tr>

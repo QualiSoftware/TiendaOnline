@@ -93,3 +93,8 @@ Error al intentar cargar un usuario en método convert con usuID 13 el día Wed Ma
 Error al intentar cargar un usuario en método errorIfClosed con usuID 13 el día Wed May 24 22:48:51 CEST 2017
 Error al intentar cargar un usuario en método errorIfClosed con usuID 13 el día Wed May 24 22:49:17 CEST 2017
 Error al intentar cargar un usuario en método errorIfClosed con usuID 13 el día Wed May 24 22:49:44 CEST 2017
+Error al intentar guardar una cookie el Mon Jun 05 22:15:31 CEST 2017
+Error al intentar guardar una cookie el Sun Jun 11 17:21:08 CEST 2017
+Error al intentar guardar una cookie el Sun Jun 11 17:38:18 CEST 2017
+Error al intentar guardar una cookie el Sun Jun 11 17:38:51 CEST 2017
+Error al intentar guardar una cookie el Sun Jun 11 17:39:21 CEST 2017

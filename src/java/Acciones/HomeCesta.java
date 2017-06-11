@@ -8,6 +8,8 @@ import Modelos.FacturaDetalle;
 import Modelos.Facturas;
 import Modelos.Fotos;
 import Modelos.Marcas;
+import Modelos.NoLogCesta;
+import Modelos.NoLogUsuarios;
 import Modelos.Ropa;
 import Modelos.RopaStock;
 import Modelos.Usuarios;
@@ -56,7 +58,10 @@ public class HomeCesta extends ActionSupport {
     private String marca;
     private String campania;
     private int ropa,color,talla;
-    private RopaStock ropaStock;    
+    private RopaStock ropaStock;
+    private NoLogUsuarios nlu;
+    private NoLogCesta nlc;
+    private ArrayList<NoLogCesta> lista_ropa_Cesta_NoLog;
 
     public boolean isAceptarpago() {
         return aceptarpago;
@@ -306,6 +311,14 @@ public class HomeCesta extends ActionSupport {
         this.talla = talla;
     }
 
+    public ArrayList<NoLogCesta> getLista_ropa_Cesta_NoLog() {
+        return lista_ropa_Cesta_NoLog;
+    }
+
+    public void setLista_ropa_Cesta_NoLog(ArrayList<NoLogCesta> lista_ropa_Cesta_NoLog) {
+        this.lista_ropa_Cesta_NoLog = lista_ropa_Cesta_NoLog;
+    }
+
     public Integer getCantidad() {
         return cantidad;
     }
@@ -360,76 +373,31 @@ public class HomeCesta extends ActionSupport {
     public String CrudActionUsuariosCesta() throws Exception {
         if (sesion == null) {
             sesion = ActionContext.getContext().getSession();
-        }
-         try{
-            Usuarios user = (Usuarios) ControladoresDAO.cUsuarios.RecuperaPorId(Integer.parseInt(sesion.get("usuId")+""));
-            u = ControladoresDAO.cUsuarios.RecuperaPorIdSinModificarSesion(user.getUsuId());
-            if(u.getUsuAdministrador() == 1){
-                return INPUT;                
-            }
-         }catch(Exception e){
-             //si no hay usuario logueado por ahora entra acá
-            return INPUT;
-         }
-        int respuesta;
-        c = new Cesta();
-        if (accionocul.equals("e")) {
-            c = ControladoresDAO.cCesta.RecuperaPorId(clave);
-            if (cantidad > 0) {
-                c.setCestaUnidades(cantidad);
-                respuesta = ControladoresDAO.cCesta.Modifica(c);
-            } else {
-                respuesta = ControladoresDAO.cCesta.Elimina(c);
-            }
-
-        } else {
-            c.setCestaId(clave);
-            c.setCestaUnidades(cantidad);
-            c.setUsuarios(ControladoresDAO.cUsuarios.RecuperaPorId(u.getUsuId()));
-            ropaStock = ControladoresDAO.cRopaStock.RecuperaPorRopaColorTalla(ropa, color, talla);
-            c.setRopaStock(ropaStock);
-            lista_ropa_Cestas = ControladoresDAO.cCesta.RecuperaTodos(""+u.getUsuId());
-            boolean aumentaCantidad = false;
-            int cestaIdAux = 0;
-            for(Cesta c:lista_ropa_Cestas){
-                if(c.getRopaStock().getRostockId() == ropaStock.getRostockId()){
-                    aumentaCantidad = true;
-                    cestaIdAux = c.getCestaId();
+        }        
+        if(sesion.get("usuarioLogueado") != null){
+            if(!sesion.get("usuarioLogueado").equals("")){
+                try{
+                    u = (Usuarios) ControladoresDAO.cUsuarios.RecuperaPorId(Integer.parseInt(sesion.get("usuId")+""));
+                }catch(Exception e){
+                    HomeUsuariosValidaciones huv = new HomeUsuariosValidaciones();
+                    huv.escribirEnArchivoLog("Error al intentar cargar un usuario en método " + e.getStackTrace()[0].getMethodName()
+                            + " con usuID "+sesion.get("usuId")+" el día "+new Date());
                 }
             }
-            if(aumentaCantidad){
-                c = new Cesta();
-                c = ControladoresDAO.cCesta.RecuperaPorId(cestaIdAux);
-                cestaIdAux = c.getCestaUnidades();
-                int total = cantidad + cestaIdAux;
-                c.setCestaUnidades(total);
-                respuesta = ControladoresDAO.cCesta.Modifica(c);
-            }else{
-                respuesta = ControladoresDAO.cCesta.InsertaRopaCestaUsuario(c);
-            }
         }
-        return SUCCESS;
-    }
-
-    public String CestaFiltro() throws Exception {
-
-        if (sesion == null) {
-            sesion = ActionContext.getContext().getSession();
-        }
-         try{
-            Usuarios user = (Usuarios) ControladoresDAO.cUsuarios.RecuperaPorId(Integer.parseInt(sesion.get("usuId")+""));
-            u = ControladoresDAO.cUsuarios.RecuperaPorIdSinModificarSesion(user.getUsuId());
-            u.getProvincias().getPaises().getPaisNombre(); //esta línea sólo sirve para que se cargue provincia y país
-         }catch(Exception e){
-            return INPUT;
-         }
-       
-        if (filtro == null) {
-            filtro = "";
-        }
-        try{
-            int respuesta;
-
+        cargarUsuarioNoLogueado(sesion);
+        /*try{
+           Usuarios user = (Usuarios) ControladoresDAO.cUsuarios.RecuperaPorId(Integer.parseInt(sesion.get("usuId")+""));
+           u = ControladoresDAO.cUsuarios.RecuperaPorIdSinModificarSesion(user.getUsuId());
+           if(u.getUsuAdministrador() == 1){
+               return INPUT;                
+           }
+        }catch(Exception e){
+            //si no hay usuario logueado por ahora entra acá
+           return INPUT;
+        }*/
+        int respuesta;
+        if(!(sesion.get("usuId")+"").equals("")){
             c = new Cesta();
             if (accionocul.equals("e")) {
                 c = ControladoresDAO.cCesta.RecuperaPorId(clave);
@@ -438,6 +406,117 @@ public class HomeCesta extends ActionSupport {
                     respuesta = ControladoresDAO.cCesta.Modifica(c);
                 } else {
                     respuesta = ControladoresDAO.cCesta.Elimina(c);
+                }
+            } else {
+                c.setCestaId(clave);
+                c.setCestaUnidades(cantidad);
+                c.setUsuarios(ControladoresDAO.cUsuarios.RecuperaPorId(u.getUsuId()));
+                ropaStock = ControladoresDAO.cRopaStock.RecuperaPorRopaColorTalla(ropa, color, talla);
+                c.setRopaStock(ropaStock);
+                lista_ropa_Cestas = ControladoresDAO.cCesta.RecuperaTodos(""+u.getUsuId());
+                boolean aumentaCantidad = false;
+                int cestaIdAux = 0;
+                for(Cesta c:lista_ropa_Cestas){
+                    if(c.getRopaStock().getRostockId() == ropaStock.getRostockId()){
+                        aumentaCantidad = true;
+                        cestaIdAux = c.getCestaId();
+                    }
+                }
+                if(aumentaCantidad){
+                    c = new Cesta();
+                    c = ControladoresDAO.cCesta.RecuperaPorId(cestaIdAux);
+                    cestaIdAux = c.getCestaUnidades();
+                    int total = cantidad + cestaIdAux;
+                    c.setCestaUnidades(total);
+                    respuesta = ControladoresDAO.cCesta.Modifica(c);
+                }else{
+                    respuesta = ControladoresDAO.cCesta.InsertaRopaCestaUsuario(c);
+                }
+            }
+        } else {
+            nlc = new NoLogCesta();
+            if (accionocul.equals("e")) {
+                nlc = ControladoresDAO.cCestaNoLog.RecuperaPorId(clave);
+                if (cantidad > 0) {
+                    nlc.setNlcUnidades(cantidad);
+                    respuesta = ControladoresDAO.cCestaNoLog.Modifica(nlc);
+                } else {
+                    respuesta = ControladoresDAO.cCestaNoLog.Elimina(nlc);
+                }
+
+            } else {
+                nlc.setNlcId(clave);
+                nlc.setNlcUnidades(cantidad);
+                nlc.setNoLogUsuarios(ControladoresDAO.cUsuariosNoLog.RecuperaPorIdSinModificarSesion(nlu.getNluUsuId()));
+                ropaStock = ControladoresDAO.cRopaStock.RecuperaPorRopaColorTalla(ropa, color, talla);
+                nlc.setRopaStock(ropaStock);
+                lista_ropa_Cesta_NoLog = ControladoresDAO.cCestaNoLog.RecuperaTodos(""+nlu.getNluUsuId());
+                boolean aumentaCantidad = false;
+                int nlcestaIdAux = 0;
+                for(NoLogCesta c:lista_ropa_Cesta_NoLog){
+                    if(c.getRopaStock().getRostockId() == ropaStock.getRostockId()){
+                        aumentaCantidad = true;
+                        nlcestaIdAux = c.getNlcId();
+                    }
+                }
+                if(aumentaCantidad){
+                    nlc = new NoLogCesta();
+                    nlc = ControladoresDAO.cCestaNoLog.RecuperaPorId(nlcestaIdAux);
+                    nlcestaIdAux = nlc.getNlcUnidades();
+                    int total = cantidad + nlcestaIdAux;
+                    nlc.setNlcUnidades(total);
+                    respuesta = ControladoresDAO.cCestaNoLog.Modifica(nlc);
+                }else{
+                    respuesta = ControladoresDAO.cCestaNoLog.InsertaRopaCestaUsuario(nlc);
+                }
+            }            
+        }
+        return SUCCESS;
+    }
+
+    public String CestaFiltro() throws Exception {
+
+        if (sesion == null) {
+            sesion = ActionContext.getContext().getSession();
+        }       
+        if(sesion.get("usuarioLogueado") != null){
+            if(!sesion.get("usuarioLogueado").equals("")){
+                try{
+                    u = (Usuarios) ControladoresDAO.cUsuarios.RecuperaPorId(Integer.parseInt(sesion.get("usuId")+""));
+                    u.getProvincias().getPaises().getPaisNombre(); //esta línea sólo sirve para que se cargue provincia y país
+                }catch(Exception e){
+                    HomeUsuariosValidaciones huv = new HomeUsuariosValidaciones();
+                    huv.escribirEnArchivoLog("Error al intentar cargar un usuario en método " + e.getStackTrace()[0].getMethodName()
+                            + " con usuID "+sesion.get("usuId")+" el día "+new Date());
+                }
+            }
+        }
+       
+        if (filtro == null) {
+            filtro = "";
+        }
+        try{
+            int respuesta;
+
+            c = new Cesta();
+            nlc = new NoLogCesta();
+            if (accionocul.equals("e")) {
+                if(u != null){
+                    c = ControladoresDAO.cCesta.RecuperaPorId(clave);
+                    if (cantidad > 0) {
+                        c.setCestaUnidades(cantidad);
+                        respuesta = ControladoresDAO.cCesta.Modifica(c);
+                    } else {
+                        respuesta = ControladoresDAO.cCesta.Elimina(c);
+                    }
+                } else {
+                    nlc = ControladoresDAO.cCestaNoLog.RecuperaPorId(clave);
+                    if (cantidad > 0) {
+                        nlc.setNlcUnidades(cantidad);
+                        respuesta = ControladoresDAO.cCestaNoLog.Modifica(nlc);
+                    } else {
+                        respuesta = ControladoresDAO.cCestaNoLog.Elimina(nlc);
+                    }
                 }
             }
         }catch(Exception e){
@@ -460,16 +539,7 @@ public class HomeCesta extends ActionSupport {
         }
         lista_marcas =  ControladoresDAO.cMarcas.RecuperaTodos("");
         lista_ropa = poneDescuentosBien(lista_ropa);
-        lista_ropa_Cestas = ControladoresDAO.cCesta.RecuperaTodos(""+u.getUsuId());
-        cantidad = 0;
-        for (Cesta aux : lista_ropa_Cestas) {
-            cantidad = cantidad + aux.getCestaUnidades();
-            precio += aux.getCestaUnidades() * (aux.getRopaStock().getRopa().getRoPrecio() - (aux.getRopaStock().getRopa().getRoPrecio() * aux.getRopaStock().getRopa().getRoDescuento() / 100));
-            for(Fotos f:aux.getRopaStock().getRopa().getFotoses()){
-                f.getFotosRuta(); //esto sólo sirve para cargar las fotos en memoria y que no de error de sesion
-            }
-            //System.out.println("aux.getRopaStock().getRopa().getRoPrecio(): "+aux.getRopaStock().getRopa().getRoPrecio()+" - aux.getCestaUnidades(): "+aux.getCestaUnidades()+" - aux.getRopaStock().getRopa().getRoDescuento(): "+aux.getRopaStock().getRopa().getRoDescuento());
-        }
+        cargaCesta();
         return SUCCESS;
     }
     
@@ -610,5 +680,43 @@ public class HomeCesta extends ActionSupport {
                 }
             }
         return r;
+    }
+
+    public void cargarUsuarioNoLogueado(Map sesion) {
+        if(sesion.get("cookieLogueado") != null){
+            nlu = (NoLogUsuarios) sesion.get("cookieLogueado");
+        }
+    }
+
+    private void cargaCesta() {        
+        if(sesion.get("usuId") == null){
+                sesion.put("usuId", "");            
+        }
+        if(sesion.get("cookieLogueado") != null){
+            nlu = (NoLogUsuarios) sesion.get("cookieLogueado");
+        }
+        cantidad = 0;
+        if(u != null) {
+            lista_ropa_Cestas = ControladoresDAO.cCesta.RecuperaTodos(""+u.getUsuId());
+            for (Cesta aux : lista_ropa_Cestas) {
+                cantidad = cantidad + aux.getCestaUnidades();
+                precio += aux.getCestaUnidades() * (aux.getRopaStock().getRopa().getRoPrecio() - (aux.getRopaStock().getRopa().getRoPrecio() * aux.getRopaStock().getRopa().getRoDescuento() / 100));
+                for(Fotos f:aux.getRopaStock().getRopa().getFotoses()){
+                    f.getFotosRuta(); //esto sólo sirve para cargar las fotos en memoria y que no de error de sesion
+                }
+                //System.out.println("aux.getRopaStock().getRopa().getRoPrecio(): "+aux.getRopaStock().getRopa().getRoPrecio()+" - aux.getCestaUnidades(): "+aux.getCestaUnidades()+" - aux.getRopaStock().getRopa().getRoDescuento(): "+aux.getRopaStock().getRopa().getRoDescuento());
+            }
+            
+        } else {
+            lista_ropa_Cesta_NoLog = ControladoresDAO.cCestaNoLog.RecuperaTodos(""+nlu.getNluUsuId());
+            for(NoLogCesta caux:lista_ropa_Cesta_NoLog){
+                cantidad = cantidad + caux.getNlcUnidades();
+                precio += caux.getNlcUnidades() * (caux.getRopaStock().getRopa().getRoPrecio() - (caux.getRopaStock().getRopa().getRoPrecio() * caux.getRopaStock().getRopa().getRoDescuento() / 100));
+                for(Fotos f:caux.getRopaStock().getRopa().getFotoses()){
+                    f.getFotosRuta(); //esto sólo sirve para cargar las fotos en memoria y que no de error de sesion
+                }
+            }
+            
+        }
     }
 }

@@ -7,6 +7,7 @@ import Modelos.Favoritos;
 import Modelos.FavoritosId;
 import Modelos.Fotos;
 import Modelos.Marcas;
+import Modelos.NoLogCesta;
 import Modelos.NoLogFavoritos;
 import Modelos.NoLogFavoritosId;
 import Modelos.NoLogUsuarios;
@@ -52,6 +53,7 @@ public class HomeFavoritos extends ActionSupport {
     private String userCookie;
     private boolean noLoTenia;
     private String idImagen;
+    private ArrayList<NoLogCesta> lista_ropa_Cesta_NoLog;
     
 
     public Map getSesion() {
@@ -262,12 +264,20 @@ public class HomeFavoritos extends ActionSupport {
         this.idImagen = idImagen;
     }
 
+    public ArrayList<NoLogCesta> getLista_ropa_Cesta_NoLog() {
+        return lista_ropa_Cesta_NoLog;
+    }
+
+    public void setLista_ropa_Cesta_NoLog(ArrayList<NoLogCesta> lista_ropa_Cesta_NoLog) {
+        this.lista_ropa_Cesta_NoLog = lista_ropa_Cesta_NoLog;
+    }
+
     public String listaDeseos() throws Exception{
         cargarDatos();
         if(!(sesion.get("usuId")+"").equals("")){
             lista_favoritos = ControladoresDAO.cFavoritos.recuperaPorUsuario(u);
         } else {
-            cargarUsuarioNoLogueado(sesion,"");
+            //cargarUsuarioNoLogueado(sesion,"");
             lista_favoritosNoLog = ControladoresDAO.cFavoritosNoLog.recuperaPorUsuario(nlu);
         }
         return SUCCESS;
@@ -288,7 +298,7 @@ public class HomeFavoritos extends ActionSupport {
                 }
             }
         }
-        cargarUsuarioNoLogueado(sesion,"");
+        //cargarUsuarioNoLogueado(sesion,"");
         noLoTenia = true;
         if(ropa != 0){
             roId = ropa + "";
@@ -369,43 +379,26 @@ public class HomeFavoritos extends ActionSupport {
                 lista_menu_ropa.add(lr);
             }
         }
-        lista_ropa.clear();     
-        lista_ropa_Cestas = ControladoresDAO.cCesta.RecuperaTodos(sesion.get("usuId")+"");
-        for(Cesta caux:lista_ropa_Cestas){
-            totalcestaUsuario += caux.getCestaUnidades();
-            HomeRopa hr = new HomeRopa();
-            caux.getRopaStock().setRopa(hr.descuentoEnRopa(caux.getRopaStock().getRopa()));
-            for(Fotos fotos:caux.getRopaStock().getRopa().getFotoses()){
-                fotos.getFotosRuta();
+        lista_ropa.clear(); 
+        if(u == null) {
+            if(sesion.get("cookieLogueado") != null){
+                nlu = (NoLogUsuarios) sesion.get("cookieLogueado");
             }
-        }
-    }
-
-    public void cargarUsuarioNoLogueado(Map sesion, String userCSL) {
-        if(!userCSL.equals("")){
-            userCookieSL = userCSL;
-        }
-        if(sesion.get("cookieLogueado") == null){
-            List<NoLogUsuarios> nluList = ControladoresDAO.cUsuariosNoLog.recuperaPorNick(userCookieSL);
-            if(nluList.size() > 0){
-                nlu = nluList.get(0);
-                sesion.put("cookieLogueado", (NoLogUsuarios) nlu);
-                sesion.put("usuarioLogueado", "");
-                sesion.put("usuId", "");
-                sesion.put("usuNombre", "");
-                sesion.put("usuAdministrador", "");
-            } else {
-                nlu = new NoLogUsuarios(userCookieSL, new Date());
-                int resp = ControladoresDAO.cUsuariosNoLog.Inserta(nlu);
-                if(resp == 1){
-                    sesion.put("cookieLogueado", (NoLogUsuarios) nlu);
-                } else {
-                    HomeUsuariosValidaciones huv = new HomeUsuariosValidaciones();
-                    huv.escribirEnArchivoLog("Error al intentar guardar una cookie el "+new Date());
-                }
+            lista_ropa_Cesta_NoLog = ControladoresDAO.cCestaNoLog.RecuperaTodos(""+nlu.getNluUsuId());
+            for(NoLogCesta caux:lista_ropa_Cesta_NoLog){
+                totalcestaUsuario += caux.getNlcUnidades();
+                caux.getRopaStock().setRopa(descuentoEnRopa(caux.getRopaStock().getRopa()));
             }
         } else {
-            nlu = (NoLogUsuarios) sesion.get("cookieLogueado");
+            lista_ropa_Cestas = ControladoresDAO.cCesta.RecuperaTodos(sesion.get("usuId")+"");
+            for(Cesta caux:lista_ropa_Cestas){
+                totalcestaUsuario += caux.getCestaUnidades();
+                HomeRopa hr = new HomeRopa();
+                caux.getRopaStock().setRopa(hr.descuentoEnRopa(caux.getRopaStock().getRopa()));
+                for(Fotos fotos:caux.getRopaStock().getRopa().getFotoses()){
+                    fotos.getFotosRuta();
+                }
+            }
         }
     }
     
@@ -428,7 +421,7 @@ public class HomeFavoritos extends ActionSupport {
             }
             lista_favoritos = ControladoresDAO.cFavoritos.recuperaPorUsuario(u);            
         } else {
-            cargarUsuarioNoLogueado(sesion,"");
+            //cargarUsuarioNoLogueado(sesion,"");
             List<NoLogFavoritos> fList = ControladoresDAO.cFavoritosNoLog.recuperaPorUsuario(nlu);
             NoLogFavoritos f = null;
             for(NoLogFavoritos fav:fList){
@@ -444,17 +437,6 @@ public class HomeFavoritos extends ActionSupport {
                         nlu.getNluNick()+" el "+new Date());
             }
             lista_favoritosNoLog = ControladoresDAO.cFavoritosNoLog.recuperaPorUsuario(nlu);            
-        }
-        return SUCCESS;
-    }
-    
-    @SkipValidation
-    public String ajaxCookie() throws Exception{        
-        if(sesion==null){
-            sesion=ActionContext.getContext().getSession();
-        }
-        if(sesion.get("usuarioLogueado") == null || sesion.get("usuarioLogueado").equals("")){
-            cargarUsuarioNoLogueado(sesion, userCookie);
         }
         return SUCCESS;
     }
@@ -479,5 +461,19 @@ public class HomeFavoritos extends ActionSupport {
 
             System.out.println("entro en ajaxFavoritos");
        return SUCCESS;
+    }
+    
+    public Ropa descuentoEnRopa(Ropa r){
+            List<Integer> listaCampaniasDeEstaRopa = ControladoresDAO.cCampaniasRopa.RecuperaCampaniasPorRopa(r.getRoId());
+            if(!listaCampaniasDeEstaRopa.isEmpty()){
+                Date hoy = new Date();
+                for(Integer camId:listaCampaniasDeEstaRopa){
+                    Campania cam = ControladoresDAO.cCampanias.RecuperaPorId(camId);
+                    if(hoy.after(cam.getCamInicio()) && hoy.before(cam.getCamFin())){
+                        r.setRoDescuento(cam.getCamDescuento());
+                    }
+                }
+            }
+        return r;
     }
 }

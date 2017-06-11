@@ -128,7 +128,7 @@
     </head>
 
     <body>
-        <script>usarAJAXCargarCookie();</script>
+        <s:include value="cargarCookie.jsp" />
         <div id="todo">
             <div id="header">
                 <div id="marca">
@@ -147,78 +147,137 @@
                             <img src="../Imagenes/Administracion/Shopping-Cart-10.png" alt="" id="imgcesta"/>
                             <div id="cantidad_Cesta"><s:property value="totalcestaUsuario"/></div>
                             <s:if test="%{totalcestaUsuario > 0}">
-                            <s:set var="importeTotal" value="0"/>
-                            <table id="cesta_Hover">
-                                <s:iterator var="c" value="lista_ropa_Cestas">
-                                    <tr style="">
-                                        <td class="img_CestaPreview">
-                                            Artículo:<br>
-                                            <% int cero = 0; %>
-                                            <s:iterator var="f" value="#c.ropaStock.ropa.fotoses">
-                                                <% if (cero < 1) {%>
-                                                <img src="<s:url value='../Imagenes/%{#c.ropaStock.ropa.categoria.catDescripcion}/%{#c.ropaStock.ropa.subcategoria.subDescripcion}/%{#f.fotosRuta}'/>" alt="<s:property value="fotosRuta" />"/>
-                                                <% cero++;
-                                                    }%>
-                                            </s:iterator>                                                
+                                <s:set var="importeTotal" value="0"/>
+                                <table id="cesta_Hover">
+                                    <% int cero = 0; %>
+                                    <s:if test="sesion.usuId!=null && sesion.usuId!=''">
+                                        <s:iterator var="c" value="lista_ropa_Cestas">
+                                            <tr style="">
+                                                <td class="img_CestaPreview">
+                                                    Artículo:<br>
+                                                    <% cero = 0; %>
+                                                    <s:iterator var="f" value="#c.ropaStock.ropa.fotoses">
+                                                        <% if (cero < 1) {%>
+                                                        <img src="<s:url value='../Imagenes/%{#c.ropaStock.ropa.categoria.catDescripcion}/%{#c.ropaStock.ropa.subcategoria.subDescripcion}/%{#f.fotosRuta}'/>" alt="<s:property value="fotosRuta" />"/>
+                                                        <% cero++;
+                                                            }%>
+                                                    </s:iterator>                                                
+                                                </td>
+                                                <td class="descripcion_CestaPreview">
+                                                    <s:property value="#c.ropaStock.ropa.roDescripcion"/>
+                                                </td>
+                                            </tr>                                        
+                                            <tr>
+                                                <td>
+                                                    Color:
+                                                </td>
+                                                <td>
+                                                    <div id="color1" style="background-color: <s:property value="#c.ropaStock.color.colorDescripcion"/>;">
+                                                    </div>                                            
+                                                </td>
+                                            </tr>                                        
+                                            <tr>
+                                                <td>
+                                                    Talla:
+                                                </td>
+                                                <td>
+                                                    <s:property value="#c.ropaStock.tallas.tallaDescripcion"/>
+                                                </td>
+                                            </tr>                                        
+                                            <tr>
+                                                <td>
+                                                    Precio:
+                                                </td>
+                                                <td>
+                                                    <s:property value="getText('{0,number,##0.00}',{#c.ropaStock.ropa.roPrecio - (#c.ropaStock.ropa.roPrecio * #c.ropaStock.ropa.roDescuento / 100)})"/>
+                                                    <s:set var="importeTotal" value="%{#importeTotal + (#c.cestaUnidades * (#c.ropaStock.ropa.roPrecio - (#c.ropaStock.ropa.roPrecio * #c.ropaStock.ropa.roDescuento / 100)))}"/>
+                                                </td>
+                                            </tr>                                        
+                                            <tr>
+                                                <td>
+                                                    Cantidad:
+                                                </td>
+                                                <td>
+                                                    <s:property value="#c.cestaUnidades"/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2" ><hr class="linea_CestaPreview"></td>                                
+                                            </tr>
+                                        </s:iterator>
+                                    </s:if>
+                                    <s:else>
+                                        <s:iterator var="c" value="lista_ropa_Cesta_NoLog">
+                                            <tr style="">
+                                                <td class="img_CestaPreview">
+                                                    Artículo:<br>
+                                                    <% cero = 0; %>
+                                                    <s:iterator var="f" value="#c.ropaStock.ropa.fotoses">
+                                                        <% if (cero < 1) {%>
+                                                        <img src="<s:url value='../Imagenes/%{#c.ropaStock.ropa.categoria.catDescripcion}/%{#c.ropaStock.ropa.subcategoria.subDescripcion}/%{#f.fotosRuta}'/>" alt="<s:property value="fotosRuta" />"/>
+                                                        <% cero++;
+                                                            }%>
+                                                    </s:iterator>                                                
+                                                </td>
+                                                <td class="descripcion_CestaPreview">
+                                                    <s:property value="#c.ropaStock.ropa.roDescripcion"/>
+                                                </td>
+                                            </tr>                                        
+                                            <tr>
+                                                <td>
+                                                    Color:
+                                                </td>
+                                                <td>
+                                                    <div id="color1" style="background-color: <s:property value="#c.ropaStock.color.colorDescripcion"/>;">
+                                                    </div>                                            
+                                                </td>
+                                            </tr>                                        
+                                            <tr>
+                                                <td>
+                                                    Talla:
+                                                </td>
+                                                <td>
+                                                    <s:property value="#c.ropaStock.tallas.tallaDescripcion"/>
+                                                </td>
+                                            </tr>                                        
+                                            <tr>
+                                                <td>
+                                                    Precio:
+                                                </td>
+                                                <td>
+                                                    <s:property value="getText('{0,number,##0.00}',{#c.ropaStock.ropa.roPrecio - (#c.ropaStock.ropa.roPrecio * #c.ropaStock.ropa.roDescuento / 100)})"/>
+                                                    <s:set var="importeTotal" value="%{#importeTotal + (#c.nlcUnidades * (#c.ropaStock.ropa.roPrecio - (#c.ropaStock.ropa.roPrecio * #c.ropaStock.ropa.roDescuento / 100)))}"/>
+                                                </td>
+                                            </tr>                                        
+                                            <tr>
+                                                <td>
+                                                    Cantidad:
+                                                </td>
+                                                <td>
+                                                    <s:property value="#c.nlcUnidades"/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2" ><hr class="linea_CestaPreview"></td>                                
+                                            </tr>
+                                        </s:iterator>
+                                    </s:else>
+                                    <tr>
+                                        <td>
+                                            Precio total:
                                         </td>
-                                        <td class="descripcion_CestaPreview">
-                                            <s:property value="#c.ropaStock.ropa.roDescripcion"/>
+                                        <td>
+                                            <s:property value="getText('{0,number,##0.00}',{#importeTotal})"/>
                                         </td>
                                     </tr>                                        
                                     <tr>
                                         <td>
-                                            Color:
-                                        </td>
-                                        <td>
-                                            <div id="color1" style="background-color: <s:property value="#c.ropaStock.color.colorDescripcion"/>;">
-                                            </div>                                            
-                                        </td>
-                                    </tr>                                        
-                                    <tr>
-                                        <td>
-                                            Talla:
-                                        </td>
-                                        <td>
-                                            <s:property value="#c.ropaStock.tallas.tallaDescripcion"/>
-                                        </td>
-                                    </tr>                                        
-                                    <tr>
-                                        <td>
-                                            Precio:
-                                        </td>
-                                        <td>
-                                            <s:property value="getText('{0,number,##0.00}',{#c.ropaStock.ropa.roPrecio - (#c.ropaStock.ropa.roPrecio * #c.ropaStock.ropa.roDescuento / 100)})"/>
-                                            <s:set var="importeTotal" value="%{#importeTotal + (#c.cestaUnidades * (#c.ropaStock.ropa.roPrecio - (#c.ropaStock.ropa.roPrecio * #c.ropaStock.ropa.roDescuento / 100)))}"/>
-                                        </td>
-                                    </tr>                                        
-                                    <tr>
-                                        <td>
-                                            Cantidad:
-                                        </td>
-                                        <td>
-                                            <s:property value="#c.cestaUnidades"/>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2" ><hr class="linea_CestaPreview"></td>                                
-                                    </tr>
-                                </s:iterator>
-                                <tr>
-                                    <td>
-                                        Precio total:
-                                    </td>
-                                    <td>
-                                        <s:property value="getText('{0,number,##0.00}',{#importeTotal})"/>
-                                    </td>
-                                </tr>                                        
-                                <tr>
-                                    <td>
 
-                                    </td>
-                                    <td>
-                                    </td>
-                                </tr>
-                            </table>
+                                        </td>
+                                        <td>
+                                        </td>
+                                    </tr>
+                                </table>
                             </s:if>
                         </s:a>
                     </s:if>                                

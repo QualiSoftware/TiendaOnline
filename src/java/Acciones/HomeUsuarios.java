@@ -890,7 +890,7 @@ public class HomeUsuarios extends ActionSupport {
             if(noEsta){
                 lista_menu_ropa.add(lr);
             }
-        }        
+        }
         lista_ropa_Cestas = ControladoresDAO.cCesta.RecuperaTodos(sesion.get("usuId")+"");
         HomeRopa homeRopa = new HomeRopa();
         for(Cesta caux:lista_ropa_Cestas){

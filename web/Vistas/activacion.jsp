@@ -17,7 +17,7 @@
         <title>Activación exitosa</title>
     </head>
     <body>
-        <script>usarAJAXCargarCookie();</script>
+        <s:include value="cargarCookie.jsp" />
         <h1>Felicitaciones <s:property value="accion" />, su cuenta ha sido activada!</h1>
         <br/>
         <h2>Acceda a la Tienda</h2>
