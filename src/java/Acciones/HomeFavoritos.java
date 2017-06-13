@@ -54,6 +54,7 @@ public class HomeFavoritos extends ActionSupport {
     private boolean noLoTenia;
     private String idImagen;
     private ArrayList<NoLogCesta> lista_ropa_Cesta_NoLog;
+    private String usu;
     
 
     public Map getSesion() {
@@ -272,6 +273,14 @@ public class HomeFavoritos extends ActionSupport {
         this.lista_ropa_Cesta_NoLog = lista_ropa_Cesta_NoLog;
     }
 
+    public String getUsu() {
+        return usu;
+    }
+
+    public void setUsu(String usu) {
+        this.usu = usu;
+    }
+
     public String listaDeseos() throws Exception{
         cargarDatos();
         if(!(sesion.get("usuId")+"").equals("")){
@@ -283,27 +292,42 @@ public class HomeFavoritos extends ActionSupport {
         return SUCCESS;
     }
     
-    public String insertarFavoritos() throws Exception {        
-        if(sesion==null){
-            sesion=ActionContext.getContext().getSession();
-        }
-        if(sesion.get("usuarioLogueado") != null){
-            if(!sesion.get("usuarioLogueado").equals("")){
-                try{
-                    u = (Usuarios) ControladoresDAO.cUsuarios.RecuperaPorId(Integer.parseInt(sesion.get("usuId")+""));
-                }catch(Exception e){
-                    HomeUsuariosValidaciones huv = new HomeUsuariosValidaciones();
-                    huv.escribirEnArchivoLog("Error al intentar cargar un usuario en método " + e.getStackTrace()[0].getMethodName()
-                            + " con usuID "+sesion.get("usuId")+" el día "+new Date());
+    public String insertarFavoritos() throws Exception { 
+        if(usu == null || usu.equals("")){
+            if(sesion==null){
+                sesion=ActionContext.getContext().getSession();
+            }
+            if(sesion.get("usuarioLogueado") != null){
+                if(!sesion.get("usuarioLogueado").equals("")){
+                    try{
+                        u = (Usuarios) ControladoresDAO.cUsuarios.RecuperaPorId(Integer.parseInt(sesion.get("usuId")+""));
+                    }catch(Exception e){
+                        HomeUsuariosValidaciones huv = new HomeUsuariosValidaciones();
+                        huv.escribirEnArchivoLog("Error al intentar cargar un usuario en método " + e.getStackTrace()[0].getMethodName()
+                                + " con usuID "+sesion.get("usuId")+" el día "+new Date());
+                    }
+                }
+            }
+            if(u == null) {
+                if(sesion.get("cookieLogueado") != null){
+                    nlu = (NoLogUsuarios) sesion.get("cookieLogueado");
+                }            
+            }
+        } else {
+            if(usu.length() < 17) {
+                u = ControladoresDAO.cUsuarios.RecuperaPorId(Integer.parseInt(usu));
+            } else {
+                List<NoLogUsuarios> nlus = ControladoresDAO.cUsuariosNoLog.recuperaPorNick(usu);
+                if(nlus.size() > 0) {
+                    nlu = nlus.get(0);
                 }
             }
         }
-        //cargarUsuarioNoLogueado(sesion,"");
         noLoTenia = true;
         if(ropa != 0){
             roId = ropa + "";
         }
-        if(!(sesion.get("usuId")+"").equals("")){
+        if(u != null){
             lista_favoritos = ControladoresDAO.cFavoritos.recuperaPorUsuario(u);
             for(Favoritos favoritosList:lista_favoritos){
                 if(favoritosList.getRopa().getRoId() == Integer.parseInt(roId)){

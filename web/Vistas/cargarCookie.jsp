@@ -13,7 +13,6 @@
     if (cookies != null && cookies.length > 0) {
      for (Cookie cookie : cookies) {
        if (cookie.getName().equals("userCookieSL")) {
-         System.out.println("El valor de la cookie es: "+cookie.getValue());
          userCookie = cookie.getValue();
          noEsta = false;
         }
@@ -43,14 +42,12 @@
         }
         String milisegundo = (z.getNano()+"").substring(0, 3);
         userCookie = z.getYear()+mes+dia+hora+minuto+segundo+milisegundo;
-        System.out.println("userCookie: "+userCookie);
     }
     NoLogUsuarios nlu;
     if(sesion.get("cookieLogueado") == null){
         List<NoLogUsuarios> nluList = ControladoresDAO.cUsuariosNoLog.recuperaPorNick(userCookie);
 
         if(nluList.size() > 0){
-            System.out.println("nluList.get(0).getNluNick(): "+nluList.get(0).getNluNick());
             nlu = nluList.get(0);
             sesion.put("cookieLogueado", (NoLogUsuarios) nlu);
             sesion.put("usuarioLogueado", "");
@@ -60,7 +57,6 @@
         } else {
             nlu = new NoLogUsuarios(userCookie, new Date());
             int resp = ControladoresDAO.cUsuariosNoLog.Inserta(nlu);
-            System.out.println("resp: "+resp);
             if(resp == 1){
                 %><script>
                     var d = new Date();
@@ -76,6 +72,5 @@
         }
     } else {
         nlu = (NoLogUsuarios) sesion.get("cookieLogueado");
-        System.out.println("nlu.getNluNick(): "+nlu.getNluNick());
     }
 %>

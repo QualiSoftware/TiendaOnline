@@ -32,19 +32,19 @@
             window.onload = muestra_Cantidad;
             var conexiones = 0;
             
-            function enviarCli(cli,cat,ro){
-                enviarFavoritos(cli,cat,0,0,ro);
+            function enviarCli(cli,cat,ro,usu){
+                enviarFavoritos(cli,cat,0,0,ro,usu);
             }
-            function enviarMarca(marca,ro){
-                enviarFavoritos(0,0,marca,0,ro);
+            function enviarMarca(marca,ro,usu){
+                enviarFavoritos(0,0,marca,0,ro,usu);
             }
-            function enviarCampania(campania,ro){
-                enviarFavoritos(0,0,0,campania,ro);
+            function enviarCampania(campania,ro,usu){
+                enviarFavoritos(0,0,0,campania,ro,usu);
             }
-            function enviarTodo(ro){
-                enviarFavoritos(0,0,0,0,ro);
+            function enviarTodo(ro,usu){
+                enviarFavoritos(0,0,0,0,ro,usu);
             }
-            function enviarFavoritos(cli,cat,mar,cam,ro){
+            function enviarFavoritos(cli,cat,mar,cam,ro,usu){
                 conexiones++;
                 if(conexiones > 20) {
                     document.getElementById('cliCodigo').value = cli;
@@ -54,8 +54,11 @@
                     document.getElementById('roId').value = ro;
                     document.getElementById('frmFavoritos').submit();
                 } else {
+                    if(usu == 0) {
+                        usu = getCookie('userCookieSL');
+                    }
                     $.getJSON('ajaxFavoritos', {
-                        cliCodigo: cli, catCodigo: cat, marca: mar, campania: cam, roId: ro
+                        cliCodigo: cli, catCodigo: cat, marca: mar, campania: cam, roId: ro, usu: usu
                     }, function (jsonResponse) { 
                         if(jsonResponse.noLoTenia){
                             $(jsonResponse.idImagen).attr("src","../Imagenes/Administracion/corazonRojo.png");
@@ -547,19 +550,19 @@
                                                     <s:if test="#f.usuarios.usuId == sesion.usuId">
                                                         <s:if test="cliCodigo != null">
                                                             <img id="favorito<s:property value="#m.roId"/>" src="../Imagenes/Administracion/corazonRojo.png" title="Añadido a Favoritos" 
-                                                                 style="box-shadow:  0px 0px 0px;" onclick=" enviarCli(<s:property value="%{cliCodigo}"/>,<s:property value="%{catCodigo}"/>,<s:property value="#m.roId"/>);"/>                                                
+                                                                 style="box-shadow:  0px 0px 0px;" onclick=" enviarCli(<s:property value="%{cliCodigo}"/>,<s:property value="%{catCodigo}"/>,<s:property value="#m.roId"/>,<s:property value="sesion.usuId"/>);"/>                                                
                                                         </s:if>
                                                         <s:elseif test="marca != null">
                                                             <img id="favorito<s:property value="#m.roId"/>" src="../Imagenes/Administracion/corazonRojo.png" title="Añadido a Favoritos" 
-                                                                 style="box-shadow:  0px 0px 0px;" onclick=" enviarMarca(<s:property value="%{marca}"/>,<s:property value="#m.roId"/>);"/>                                                
+                                                                 style="box-shadow:  0px 0px 0px;" onclick=" enviarMarca(<s:property value="%{marca}"/>,<s:property value="#m.roId"/>,<s:property value="sesion.usuId"/>);"/>                                                
                                                         </s:elseif>
                                                         <s:elseif test="campania != null">
                                                             <img id="favorito<s:property value="#m.roId"/>" src="../Imagenes/Administracion/corazonRojo.png" title="Аñadido a Favoritos" 
-                                                                 style="box-shadow:  0px 0px 0px;" onclick=" enviarCampania(<s:property value="campania"/>,<s:property value="#m.roId"/>);"/>                                                
+                                                                 style="box-shadow:  0px 0px 0px;" onclick=" enviarCampania(<s:property value="campania"/>,<s:property value="#m.roId"/>,<s:property value="sesion.usuId"/>);"/>                                                
                                                         </s:elseif>
                                                         <s:else>
                                                             <img id="favorito<s:property value="#m.roId"/>" src="../Imagenes/Administracion/corazonRojo.png" title="Аñadido a Favoritos" 
-                                                                 style="box-shadow:  0px 0px 0px;" onclick=" enviarTodo(<s:property value="#m.roId"/>);"/>                                                
+                                                                 style="box-shadow:  0px 0px 0px;" onclick=" enviarTodo(<s:property value="#m.roId"/>,<s:property value="sesion.usuId"/>);"/>                                                
                                                         </s:else>
                                                         <% esFavorito = false; %>
                                                     </s:if>
@@ -567,19 +570,19 @@
                                                 <% if(esFavorito){ %>
                                                     <s:if test="cliCodigo != null">
                                                         <img id="favorito<s:property value="#m.roId"/>" src="../Imagenes/Administracion/bRTdpoqi9.png" title="Аñadir a Favoritos" 
-                                                             style="box-shadow:  0px 0px 0px;" onclick=" enviarCli(<s:property value="%{cliCodigo}"/>,<s:property value="%{catCodigo}"/>,<s:property value="#m.roId"/>);"/>                                                
+                                                             style="box-shadow:  0px 0px 0px;" onclick=" enviarCli(<s:property value="%{cliCodigo}"/>,<s:property value="%{catCodigo}"/>,<s:property value="#m.roId"/>,<s:property value="sesion.usuId"/>);"/>                                                
                                                     </s:if>
                                                     <s:elseif test="marca != null">
                                                         <img id="favorito<s:property value="#m.roId"/>" src="../Imagenes/Administracion/bRTdpoqi9.png" title="Аñadir a Favoritos" 
-                                                             style="box-shadow:  0px 0px 0px;" onclick=" enviarMarca(<s:property value="%{marca}"/>,<s:property value="#m.roId"/>);"/>                                                
+                                                             style="box-shadow:  0px 0px 0px;" onclick=" enviarMarca(<s:property value="%{marca}"/>,<s:property value="#m.roId"/>,<s:property value="sesion.usuId"/>);"/>                                                
                                                     </s:elseif>
                                                     <s:elseif test="campania != null">
                                                         <img id="favorito<s:property value="#m.roId"/>" src="../Imagenes/Administracion/bRTdpoqi9.png" title="Аñadir a Favoritos" 
-                                                             style="box-shadow:  0px 0px 0px;" onclick=" enviarCampania(<s:property value="campania"/>,<s:property value="#m.roId"/>);"/>                                                
+                                                             style="box-shadow:  0px 0px 0px;" onclick=" enviarCampania(<s:property value="campania"/>,<s:property value="#m.roId"/>,<s:property value="sesion.usuId"/>);"/>                                                
                                                     </s:elseif>
                                                     <s:else>
                                                         <img id="favorito<s:property value="#m.roId"/>" src="../Imagenes/Administracion/bRTdpoqi9.png" title="Аñadir a Favoritos" 
-                                                             style="box-shadow:  0px 0px 0px;" onclick=" enviarTodo(<s:property value="#m.roId"/>);"/>                                                
+                                                             style="box-shadow:  0px 0px 0px;" onclick=" enviarTodo(<s:property value="#m.roId"/>,<s:property value="sesion.usuId"/>);"/>                                                
                                                     </s:else>
                                                 <% } %>
                                             </s:if>
@@ -589,19 +592,19 @@
                                                     <s:if test="#f.noLogUsuarios.nluUsuId == sesion.cookieLogueado.nluUsuId">
                                                         <s:if test="cliCodigo != null">
                                                             <img id="favorito<s:property value="#m.roId"/>" src="../Imagenes/Administracion/corazonRojo.png" title="Añadido a Favoritos" 
-                                                                 style="box-shadow:  0px 0px 0px;" onclick=" enviarCli(<s:property value="%{cliCodigo}"/>,<s:property value="%{catCodigo}"/>,<s:property value="#m.roId"/>);"/>                                                
+                                                                 style="box-shadow:  0px 0px 0px;" onclick=" enviarCli(<s:property value="%{cliCodigo}"/>,<s:property value="%{catCodigo}"/>,<s:property value="#m.roId"/>,0);"/>                                                
                                                         </s:if>
                                                         <s:elseif test="marca != null">
                                                             <img id="favorito<s:property value="#m.roId"/>" src="../Imagenes/Administracion/corazonRojo.png" title="Añadido a Favoritos" 
-                                                                 style="box-shadow:  0px 0px 0px;" onclick=" enviarMarca(<s:property value="%{marca}"/>,<s:property value="#m.roId"/>);"/>                                                
+                                                                 style="box-shadow:  0px 0px 0px;" onclick=" enviarMarca(<s:property value="%{marca}"/>,<s:property value="#m.roId"/>,0);"/>                                                
                                                         </s:elseif>
                                                         <s:elseif test="campania != null">
                                                             <img id="favorito<s:property value="#m.roId"/>" src="../Imagenes/Administracion/corazonRojo.png" title="Аñadido a Favoritos" 
-                                                                 style="box-shadow:  0px 0px 0px;" onclick=" enviarCampania(<s:property value="campania"/>,<s:property value="#m.roId"/>);"/>                                                
+                                                                 style="box-shadow:  0px 0px 0px;" onclick=" enviarCampania(<s:property value="campania"/>,<s:property value="#m.roId"/>,0);"/>                                                
                                                         </s:elseif>
                                                         <s:else>
                                                             <img id="favorito<s:property value="#m.roId"/>" src="../Imagenes/Administracion/corazonRojo.png" title="Аñadido a Favoritos" 
-                                                                 style="box-shadow:  0px 0px 0px;" onclick=" enviarTodo(<s:property value="#m.roId"/>);"/>                                                
+                                                                 style="box-shadow:  0px 0px 0px;" onclick=" enviarTodo(<s:property value="#m.roId"/>,0);"/>                                                
                                                         </s:else>
                                                         <% esFavorito = false; %>
                                                     </s:if>
@@ -609,19 +612,19 @@
                                                 <% if(esFavorito){ %>
                                                     <s:if test="cliCodigo != null">
                                                         <img id="favorito<s:property value="#m.roId"/>" src="../Imagenes/Administracion/bRTdpoqi9.png" title="Аñadir a Favoritos" 
-                                                             style="box-shadow:  0px 0px 0px;" onclick=" enviarCli(<s:property value="%{cliCodigo}"/>,<s:property value="%{catCodigo}"/>,<s:property value="#m.roId"/>);"/>                                                
+                                                             style="box-shadow:  0px 0px 0px;" onclick=" enviarCli(<s:property value="%{cliCodigo}"/>,<s:property value="%{catCodigo}"/>,<s:property value="#m.roId"/>,0);"/>                                                
                                                     </s:if>
                                                     <s:elseif test="marca != null">
                                                         <img id="favorito<s:property value="#m.roId"/>" src="../Imagenes/Administracion/bRTdpoqi9.png" title="Аñadir a Favoritos" 
-                                                             style="box-shadow:  0px 0px 0px;" onclick=" enviarMarca(<s:property value="%{marca}"/>,<s:property value="#m.roId"/>);"/>                                                
+                                                             style="box-shadow:  0px 0px 0px;" onclick=" enviarMarca(<s:property value="%{marca}"/>,<s:property value="#m.roId"/>,0);"/>                                                
                                                     </s:elseif>
                                                     <s:elseif test="campania != null">
                                                         <img id="favorito<s:property value="#m.roId"/>" src="../Imagenes/Administracion/bRTdpoqi9.png" title="Аñadir a Favoritos" 
-                                                             style="box-shadow:  0px 0px 0px;" onclick=" enviarCampania(<s:property value="campania"/>,<s:property value="#m.roId"/>);"/>                                                
+                                                             style="box-shadow:  0px 0px 0px;" onclick=" enviarCampania(<s:property value="campania"/>,<s:property value="#m.roId"/>,0);"/>                                                
                                                     </s:elseif>
                                                     <s:else>
                                                         <img id="favorito<s:property value="#m.roId"/>" src="../Imagenes/Administracion/bRTdpoqi9.png" title="Аñadir a Favoritos" 
-                                                             style="box-shadow:  0px 0px 0px;" onclick=" enviarTodo(<s:property value="#m.roId"/>);"/>                                                
+                                                             style="box-shadow:  0px 0px 0px;" onclick=" enviarTodo(<s:property value="#m.roId"/>,0);"/>                                                
                                                     </s:else>
                                                 <% } %>                                                
                                             </s:else>
@@ -663,7 +666,6 @@
                 </div>
             </div>
         </div>
-        <p id="pruebaAjax">...</p>
         <s:include value="tiendaFooter.jsp" />
     </body>
 </html>
