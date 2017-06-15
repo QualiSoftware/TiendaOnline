@@ -62,7 +62,8 @@
                 /*ventana.document.write(document.getElementById('color')+'<br>');*/
             }
         </script>
-        <script>            
+        <script>   
+            var conexiones = 0;
             function ValidoDetalles(){
                 if(document.getElementById('colorOculto').value == ''){
                     document.getElementById("divError").innerHTML = "Debe seleccionar un color.";
@@ -70,9 +71,25 @@
                     document.getElementById('frm').submit();
                 }
             }
-            function agregarFavorito(){
-                document.getElementById('frm').action = "favoritosDetalle";
-                document.getElementById('frm').submit();
+            function agregarFavorito(cli,cat,mar,cam,ro,usu,numero){
+                conexiones++;
+                if(conexiones > 20) {
+                    document.getElementById('frm').action = "favoritosDetalle";
+                    document.getElementById('frm').submit();
+                } else {
+                    if(usu == 0) {
+                        usu = getCookie('userCookieSL');
+                    }
+                    $.getJSON('ajaxFavoritos', {
+                        cliCodigo: cli, catCodigo: cat, marca: mar, campania: cam, roId: ro, usu: usu, numero: numero
+                    }, function (jsonResponse) { 
+                        if(jsonResponse.noLoTenia){
+                            $(jsonResponse.numero).html("Quitar de Favoritos");
+                        } else {
+                            $(jsonResponse.numero).html("Añadir a Favoritos");                      
+                        }
+                    });
+                }
             }
             
             function elijoColor(elegido,id) {
@@ -578,29 +595,61 @@
                                     </button>
                                 </td>
                                 <td>
-                                    <button type="button" onclick="agregarFavorito();" id="añadirfavoritos_Btn">
+                                    <s:set var="usuFavoritos" value="0"/>
+                                    <s:if test="sesion.usuId!=null && sesion.usuId!=''">
+                                        <s:set var="usuFavoritos" value="sesion.usuId"/>
+                                    </s:if>
+                                    <s:if test="cliCodigo == null || cliCodigo == ''"><s:set var="cli" value="0"/></s:if><s:else><s:set var="cli" value="cliCodigo"/></s:else>
+                                    <s:if test="catCodigo == null || catCodigo == ''"><s:set var="cat" value="0"/></s:if><s:else><s:set var="cat" value="catCodigo"/></s:else>
+                                    <s:if test="marca == null || marca == ''"><s:set var="mar" value="0"/></s:if><s:else><s:set var="mar" value="marca"/></s:else>
+                                    <s:if test="campania == null || campania == ''"><s:set var="cam" value="0"/></s:if><s:else><s:set var="cam" value="campania"/></s:else>
+                                    <s:if test="sesion.usuId!=null && sesion.usuId!=''">
+                                        <% esFavorito = true; %>
+                                        <s:iterator var="f" value="t.favoritoses">
+                                            <s:if test="#f.usuarios.usuId == sesion.usuId">
+                                                <s:set var="numero" value="1"/>
+                                                <% esFavorito = false; %>
+                                            </s:if>
+                                        </s:iterator>
+                                        <% if(esFavorito){ %>
+                                            <s:set var="numero" value="2"/>
+                                        <% } %>
+                                    </s:if>
+                                    <s:else>
+                                        <% esFavorito = true; %>
+                                        <s:iterator var="f" value="t.noLogFavoritoses">
+                                            <s:if test="#f.noLogUsuarios.nluUsuId == sesion.cookieLogueado.nluUsuId">
+                                                <s:set var="numero" value="3"/>
+                                                <% esFavorito = false; %>
+                                            </s:if>
+                                        </s:iterator>
+                                        <% if(esFavorito){ %>
+                                            <s:set var="numero" value="4"/>
+                                        <% } %>                                                
+                                    </s:else>
+                                    <button type="button" onclick="agregarFavorito(<s:property value="#cli"/>,<s:property value="#cat"/>,<s:property value="#mar"/>,<s:property value="#cam"/>,<s:property value="roId"/>,<s:property value="#usuFavoritos"/>,<s:property value="#numero"/>);" id="añadirfavoritos_Btn">
                                         <s:if test="sesion.usuId!=null && sesion.usuId!=''">
                                             <% esFavorito = true; %>
                                             <s:iterator var="f" value="t.favoritoses">
                                                 <s:if test="#f.usuarios.usuId == sesion.usuId">
-                                                    <div>Quitar de Favoritos</div>
+                                                    <div id="anadir1">Quitar de Favoritos</div>
                                                     <% esFavorito = false; %>
                                                 </s:if>
                                             </s:iterator>
                                             <% if(esFavorito){ %>
-                                                <div>Añadir a Favoritos</div>
+                                                <div id="anadir2">Añadir a Favoritos</div>
                                             <% } %>
                                         </s:if>
                                         <s:else>
                                             <% esFavorito = true; %>
                                             <s:iterator var="f" value="t.noLogFavoritoses">
                                                 <s:if test="#f.noLogUsuarios.nluUsuId == sesion.cookieLogueado.nluUsuId">
-                                                    <div>Quitar de Favoritos</div>
+                                                    <div id="anadir3">Quitar de Favoritos</div>
                                                     <% esFavorito = false; %>
                                                 </s:if>
                                             </s:iterator>
                                             <% if(esFavorito){ %>
-                                                <div>Añadir a Favoritos</div>
+                                                <div id="anadir4">Añadir a Favoritos</div>
                                             <% } %>                                                
                                         </s:else>
                                     </button>

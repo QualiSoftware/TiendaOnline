@@ -55,6 +55,7 @@ public class HomeFavoritos extends ActionSupport {
     private String idImagen;
     private ArrayList<NoLogCesta> lista_ropa_Cesta_NoLog;
     private String usu;
+    private String numero;
     
 
     public Map getSesion() {
@@ -281,6 +282,14 @@ public class HomeFavoritos extends ActionSupport {
         this.usu = usu;
     }
 
+    public String getNumero() {
+        return numero;
+    }
+
+    public void setNumero(String numero) {
+        this.numero = numero;
+    }
+
     public String listaDeseos() throws Exception{
         cargarDatos();
         if(!(sesion.get("usuId")+"").equals("")){
@@ -359,6 +368,7 @@ public class HomeFavoritos extends ActionSupport {
             }
         }
         idImagen = "#favorito" + roId;
+        numero = "#anadir" + numero;
         u=null;
         nlu=null;
         lista_favoritos=null;
