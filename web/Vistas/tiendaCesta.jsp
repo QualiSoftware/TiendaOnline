@@ -52,12 +52,49 @@
         <script src="../Scripts/ValidacionUsuario.js" type="text/javascript"></script>
         <script>                    
             window.onload = cesta_Aniadir;
-
-            function enviarPedido(){
-                document.getElementById('botonEnvio').style.display = 'none';
-                document.getElementById('espera').style.display = "block";
-                document.getElementById('frm').submit();
+                                            $(document).ready(function () {
+                $('#paisSel').change(function () {
+                    ajaxPaises();
+                });
+            });
+            
+            function ajaxPaises(valor) {
+                var country;
+                if(valor != null){
+                    country = valor;
+                } else {        
+                    country = $("select#paisSel").val();
+                }
+                $.getJSON('ajaxPaises', {
+                    countryName: country
+                }, function (jsonResponse) {
+                    var select = $('#provincias2');
+                    select.find('option').remove();
+                    $.each(jsonResponse.stateMap, function (key, value) {
+                        $('<option>').val(key).text(value).appendTo(select);
+                        $("#provincias2 option[value=" + valor + "]").attr("selected", true);
+                    });
+                });
             }
+            
+            function enviarPedido(usu){                
+                if(usu == 0) {
+                    usu = getCookie('userCookieSL');
+                    /*acá hay que pedir los datos al usuario de nombre, apellido, dirección, localidad, cp y país*/
+                    /*y esto se borra*/
+                    document.getElementById('botonEnvio').style.display = 'none';
+                    document.getElementById('espera').style.display = "block";
+                    document.getElementById('frm').submit();
+                    /*hasta acá se borra*/
+                } else {
+                    document.getElementById('botonEnvio').style.display = 'none';
+                    document.getElementById('espera').style.display = "block";
+                    document.getElementById('frm').submit();
+                }
+            }
+            
+            
+            
         </script>
         <title>Cesta de <s:property value="sesion.usuNombre"/></title>
     </head>
@@ -571,6 +608,9 @@
                                                 <s:if test="sesion.usuId!=null && sesion.usuId!=''">
                                                     <s:property value="u.usuDireccion"/>
                                                 </s:if>
+                                                <s:else>
+                                                    <s:textfield id="direccion" name="direccion" maxLength="100" cssStyle="width: 190px;"/>
+                                                </s:else>
                                             </td>
                                         </tr>
                                         <tr>
@@ -581,6 +621,9 @@
                                                 <s:if test="sesion.usuId!=null && sesion.usuId!=''">
                                                     <s:property value="u.usuLocalidad"/>
                                                 </s:if>
+                                                <s:else>
+                                                    <s:textfield id="ciudad" name="ciudad" maxLength="30" cssStyle="width: 190px;"/>
+                                                </s:else>
                                             </td>  
                                         </tr>
                                         <tr>
@@ -591,6 +634,9 @@
                                                 <s:if test="sesion.usuId!=null && sesion.usuId!=''">
                                                     <s:property value="u.usuCp"/>
                                                 </s:if>
+                                                <s:else>
+                                                    <s:textfield id="cp" name="cp" maxLength="30" cssStyle="width: 190px;"/>
+                                                </s:else>
                                             </td>                            
                                         </tr>
                                         <tr>
@@ -601,6 +647,10 @@
                                                 <s:if test="sesion.usuId!=null && sesion.usuId!=''">
                                                     <s:property value="u.provincias.proNombre"/>
                                                 </s:if>
+                                                <s:else>
+                                                    <s:select id="provincias2" cssClass="formulario_Rellenar" name="prov" list="{'Seleccione Provincia'}" />
+                                                    <script>ajaxPaises(1);</script>
+                                                </s:else>
                                             </td>                            
                                         </tr>
                                         <tr>
@@ -611,6 +661,10 @@
                                                 <s:if test="sesion.usuId!=null && sesion.usuId!=''">
                                                     <s:property value="u.provincias.paises.paisNombre"/>
                                                 </s:if>
+                                                <s:else>                        
+                                                    <s:select cssClass="formulario_Rellenar" cssStyle="width: 190px;" id="paisSel" name="pais" list="listaPaises" listValue="paisNombre" 
+                                                              listKey="paisId" value="usupais" onchange= "handleChange(this.value)" />
+                                                </s:else>
                                             </td>                            
                                         </tr>
                                         <tr>
@@ -621,8 +675,23 @@
                                                 <s:if test="sesion.usuId!=null && sesion.usuId!=''">
                                                     <s:property value="u.usuNombre"/> <s:property value="u.usuApellidos"/>
                                                 </s:if>
+                                                <s:else>
+                                                    <s:textfield id="nombre" name="nombre" maxLength="100" cssStyle="width: 190px;"/>
+                                                </s:else>
                                             </td>                            
                                         </tr>
+                                        <s:if test="sesion.usuId!=null && sesion.usuId!=''">
+                                        </s:if>
+                                        <s:else>
+                                            <tr>
+                                                <td>
+                                                    Email: 
+                                                </td>                            
+                                                <td>
+                                                    <s:textfield id="emailUNL" name="emailUNL" maxLength="100" cssStyle="width: 190px;"/>
+                                                </td>                            
+                                            </tr>
+                                        </s:else>
                                         <tr>
                                             <td colspan="2" class="bold" style="padding-top: 10px;">
                                                 Artículos
@@ -669,7 +738,12 @@
                                         <tr>
                                             <td colspan="2" id="botonEnvio">
                                                 <div style="margin-left: 150px" id="añadircesta_Btn">
-                                                    <div onclick="enviarPedido();">Realizar Pedido</div>
+                                                    <s:if test="sesion.usuId!=null && sesion.usuId!=''">
+                                                        <div onclick="enviarPedido(<s:property value="sesion.usuId"/>);">Realizar Pedido</div>
+                                                    </s:if>
+                                                    <s:else>
+                                                        <div onclick="enviarPedido(0);">Realizar Pedido</div>
+                                                    </s:else>
                                                 </div>
                                             </td>
                                         </tr>

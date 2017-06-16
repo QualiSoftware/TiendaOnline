@@ -1,6 +1,7 @@
 package Acciones;
 
 import ControladoresDAO.cCesta;
+import ControladoresDAO.cCestaNoLog;
 import ControladoresDAO.cUsuarios;
 import Modelos.Campania;
 import Modelos.Cesta;
@@ -10,6 +11,8 @@ import Modelos.Fotos;
 import Modelos.Marcas;
 import Modelos.NoLogCesta;
 import Modelos.NoLogUsuarios;
+import Modelos.Paises;
+import Modelos.Provincias;
 import Modelos.Ropa;
 import Modelos.RopaStock;
 import Modelos.Usuarios;
@@ -62,6 +65,10 @@ public class HomeCesta extends ActionSupport {
     private NoLogUsuarios nlu;
     private NoLogCesta nlc;
     private ArrayList<NoLogCesta> lista_ropa_Cesta_NoLog;
+    private String emailUNL;
+    private List<Paises> listaPaises;
+    private List<Provincias> listaProvincias;
+    private String direccion,ciudad,cp,nombre;
 
     public boolean isAceptarpago() {
         return aceptarpago;
@@ -319,6 +326,62 @@ public class HomeCesta extends ActionSupport {
         this.lista_ropa_Cesta_NoLog = lista_ropa_Cesta_NoLog;
     }
 
+    public String getEmailUNL() {
+        return emailUNL;
+    }
+
+    public void setEmailUNL(String emailUNL) {
+        this.emailUNL = emailUNL;
+    }
+
+    public List<Paises> getListaPaises() {
+        return listaPaises;
+    }
+
+    public void setListaPaises(List<Paises> listaPaises) {
+        this.listaPaises = listaPaises;
+    }
+
+    public List<Provincias> getListaProvincias() {
+        return listaProvincias;
+    }
+
+    public void setListaProvincias(List<Provincias> listaProvincias) {
+        this.listaProvincias = listaProvincias;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public String getCiudad() {
+        return ciudad;
+    }
+
+    public void setCiudad(String ciudad) {
+        this.ciudad = ciudad;
+    }
+
+    public String getCp() {
+        return cp;
+    }
+
+    public void setCp(String cp) {
+        this.cp = cp;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
     public Integer getCantidad() {
         return cantidad;
     }
@@ -540,6 +603,10 @@ public class HomeCesta extends ActionSupport {
         lista_marcas =  ControladoresDAO.cMarcas.RecuperaTodos("");
         lista_ropa = poneDescuentosBien(lista_ropa);
         cargaCesta();
+        if(u == null) {
+            listaPaises = ControladoresDAO.cPaises.RecuperaTodos("");
+            listaProvincias = ControladoresDAO.cProvincias.RecuperaTodos("");
+        }
         return SUCCESS;
     }
     
@@ -580,15 +647,29 @@ public class HomeCesta extends ActionSupport {
             sesion = ActionContext.getContext().getSession();
         }
         try{
-            Usuarios user = (Usuarios) ControladoresDAO.cUsuarios.RecuperaPorId(Integer.parseInt(sesion.get("usuId")+""));
-            u = ControladoresDAO.cUsuarios.RecuperaPorId(user.getUsuId());
-            facUsuId = u.getUsuId(); //Esta variable la usaré para el envío del email
-            lista_ropa_Cestas = cCesta.RecuperaTodos(""+u.getUsuId());
+            if(sesion.get("usuId") != ""){
+                Usuarios user = (Usuarios) ControladoresDAO.cUsuarios.RecuperaPorId(Integer.parseInt(sesion.get("usuId")+""));
+                u = ControladoresDAO.cUsuarios.RecuperaPorId(user.getUsuId());
+                facUsuId = u.getUsuId(); //Esta variable la usaré para el envío del email
+                lista_ropa_Cestas = cCesta.RecuperaTodos(""+u.getUsuId());
+            } else {
+                if(sesion.get("cookieLogueado") != null){
+                    nlu = (NoLogUsuarios) sesion.get("cookieLogueado");
+                }
+                lista_ropa_Cesta_NoLog = ControladoresDAO.cCestaNoLog.RecuperaTodos(""+nlu.getNluUsuId());
+            }
         }catch(Exception e){
-            System.out.println("e: " + e);
-           return ERROR;
+            HomeUsuariosValidaciones huv = new HomeUsuariosValidaciones();
+            huv.escribirEnArchivoLog("Error al intentar cargar un usuario en método " + e.getStackTrace()[0].getMethodName()
+                    + " el día "+new Date());
+            return ERROR;
         }
-        boolean hayStock = verificoQueHayStock(lista_ropa_Cestas);
+        boolean hayStock = false;
+        if(u == null) {
+            hayStock = verificoQueHayStockUNL(lista_ropa_Cesta_NoLog);
+        } else {
+            hayStock = verificoQueHayStock(lista_ropa_Cestas);
+        }
         boolean respuestaPago = false;
         if(hayStock){
             //En este punto se redirigiría a la página donde se genera el cobro.
@@ -598,43 +679,84 @@ public class HomeCesta extends ActionSupport {
         try{
             if(respuestaPago){
                 String numFac = ControladoresDAO.cFacturas.SiguienteFactura();
-                Date dateFechaHoy = new Date();            
-                Facturas f = new Facturas(u.getUsuId(), numFac, u.getUsuNombre()+" "+u.getUsuApellidos(), u.getUsuDireccion(), 
-                        u.getUsuLocalidad(), u.getProvincias().getProNombre(), u.getUsuCp(), 
-                        u.getProvincias().getPaises().getPaisNombre(), u.getUsuDni(), (int)u.getUsuDescuento(), 
-                        dateFechaHoy, 21, obs);
-                clave = ControladoresDAO.cFacturas.Inserta(f);
-                int nada;
-                for (Cesta c : lista_ropa_Cestas) {
-                    HomeRopa hr = new HomeRopa();
-                    int auxDescuento = c.getRopaStock().getRopa().getRoDescuento();
-                    c.getRopaStock().setRopa(hr.descuentoEnRopa(c.getRopaStock().getRopa()));
-                    FacturaDetalle fd = new FacturaDetalle(f, 
-                            c.getRopaStock().getRopa().getRoDescuento(), 
-                            c.getRopaStock().getRopa().getRoPrecio(), 
-                            c.getRopaStock().getTallas().getTallaDescripcion(), 
-                            c.getCestaUnidades(), 
-                            c.getRopaStock().getRopa().getMarcas().getMarcaNombre(), 
-                            c.getRopaStock().getRopa().getClientela().getClientelaDescripcion(), 
-                            c.getRopaStock().getRopa().getCategoria().getCatDescripcion(), 
-                            c.getRopaStock().getRopa().getSubcategoria().getSubDescripcion(), 
-                            c.getRopaStock().getColor().getColorDescripcion(),
-                            c.getRopaStock().getRopa().getRoId());
-                    //al hacer el siguiente paso me modifica el descuento de la ropa en la BBDD
-                    c.getRopaStock().getRopa().setRoDescuento(auxDescuento);
-                    nada = ControladoresDAO.cFacturaDetalle.Inserta(fd);
-                    if(nada == 1){
-                        //Reduzco el stock de la ropa
-                        ropaStock = ControladoresDAO.cRopaStock.RecuperaPorId(c.getRopaStock().getRostockId());
-                        int unidadesActuales = ropaStock.getRostockUnidades();
-                        ropaStock.setRostockUnidades(unidadesActuales - c.getCestaUnidades());
-                        ControladoresDAO.cRopaStock.Modifica(ropaStock);
-                        //Vacío la cesta
-                        Cesta cesta = cCesta.RecuperaPorId(c.getCestaId());
-                        nada = ControladoresDAO.cCesta.Elimina(cesta);
-                        cesta = null;
+                Date dateFechaHoy = new Date();
+                Facturas f;
+                if(u == null) {
+                    Provincias provincia = ControladoresDAO.cProvincias.RecuperaPorId(Integer.parseInt(prov));
+                    Paises paises = ControladoresDAO.cPaises.RecuperaPorId(Integer.parseInt(pais));
+                    f = new Facturas(0,numFac,nombre,direccion,ciudad,provincia.getProNombre(),cp,
+                    paises.getPaisNombre(),"",0,dateFechaHoy,21, obs);
+                    clave = ControladoresDAO.cFacturas.Inserta(f);
+                    int nada;
+                    for (NoLogCesta c : lista_ropa_Cesta_NoLog) {
+                        HomeRopa hr = new HomeRopa();
+                        int auxDescuento = c.getRopaStock().getRopa().getRoDescuento();
+                        c.getRopaStock().setRopa(hr.descuentoEnRopa(c.getRopaStock().getRopa()));
+                        FacturaDetalle fd = new FacturaDetalle(f, 
+                                c.getRopaStock().getRopa().getRoDescuento(), 
+                                c.getRopaStock().getRopa().getRoPrecio(), 
+                                c.getRopaStock().getTallas().getTallaDescripcion(), 
+                                c.getNlcUnidades(), 
+                                c.getRopaStock().getRopa().getMarcas().getMarcaNombre(), 
+                                c.getRopaStock().getRopa().getClientela().getClientelaDescripcion(), 
+                                c.getRopaStock().getRopa().getCategoria().getCatDescripcion(), 
+                                c.getRopaStock().getRopa().getSubcategoria().getSubDescripcion(), 
+                                c.getRopaStock().getColor().getColorDescripcion(),
+                                c.getRopaStock().getRopa().getRoId());
+                        //al hacer el siguiente paso me modifica el descuento de la ropa en la BBDD
+                        c.getRopaStock().getRopa().setRoDescuento(auxDescuento);
+                        nada = ControladoresDAO.cFacturaDetalle.Inserta(fd);
+                        if(nada == 1){
+                            //Reduzco el stock de la ropa
+                            ropaStock = ControladoresDAO.cRopaStock.RecuperaPorId(c.getRopaStock().getRostockId());
+                            int unidadesActuales = ropaStock.getRostockUnidades();
+                            ropaStock.setRostockUnidades(unidadesActuales - c.getNlcUnidades());
+                            ControladoresDAO.cRopaStock.Modifica(ropaStock);
+                            //Vacío la cesta
+                            NoLogCesta cesta = cCestaNoLog.RecuperaPorId(c.getNlcId());
+                            nada = ControladoresDAO.cCestaNoLog.Elimina(cesta);
+                            cesta = null;
+                        }
+                        fd = null;
                     }
-                    fd = null;
+                } else {
+                    f = new Facturas(u.getUsuId(), numFac, u.getUsuNombre()+" "+u.getUsuApellidos(), u.getUsuDireccion(), 
+                            u.getUsuLocalidad(), u.getProvincias().getProNombre(), u.getUsuCp(), 
+                            u.getProvincias().getPaises().getPaisNombre(), u.getUsuDni(), (int)u.getUsuDescuento(), 
+                            dateFechaHoy, 21, obs);
+                    clave = ControladoresDAO.cFacturas.Inserta(f);
+                    int nada;
+                    for (Cesta c : lista_ropa_Cestas) {
+                        HomeRopa hr = new HomeRopa();
+                        int auxDescuento = c.getRopaStock().getRopa().getRoDescuento();
+                        c.getRopaStock().setRopa(hr.descuentoEnRopa(c.getRopaStock().getRopa()));
+                        FacturaDetalle fd = new FacturaDetalle(f, 
+                                c.getRopaStock().getRopa().getRoDescuento(), 
+                                c.getRopaStock().getRopa().getRoPrecio(), 
+                                c.getRopaStock().getTallas().getTallaDescripcion(), 
+                                c.getCestaUnidades(), 
+                                c.getRopaStock().getRopa().getMarcas().getMarcaNombre(), 
+                                c.getRopaStock().getRopa().getClientela().getClientelaDescripcion(), 
+                                c.getRopaStock().getRopa().getCategoria().getCatDescripcion(), 
+                                c.getRopaStock().getRopa().getSubcategoria().getSubDescripcion(), 
+                                c.getRopaStock().getColor().getColorDescripcion(),
+                                c.getRopaStock().getRopa().getRoId());
+                        //al hacer el siguiente paso me modifica el descuento de la ropa en la BBDD
+                        c.getRopaStock().getRopa().setRoDescuento(auxDescuento);
+                        nada = ControladoresDAO.cFacturaDetalle.Inserta(fd);
+                        if(nada == 1){
+                            //Reduzco el stock de la ropa
+                            ropaStock = ControladoresDAO.cRopaStock.RecuperaPorId(c.getRopaStock().getRostockId());
+                            int unidadesActuales = ropaStock.getRostockUnidades();
+                            ropaStock.setRostockUnidades(unidadesActuales - c.getCestaUnidades());
+                            ControladoresDAO.cRopaStock.Modifica(ropaStock);
+                            //Vacío la cesta
+                            Cesta cesta = cCesta.RecuperaPorId(c.getCestaId());
+                            nada = ControladoresDAO.cCesta.Elimina(cesta);
+                            cesta = null;
+                        }
+                        fd = null;
+                    }
                 }
                 numFac = null;
                 dateFechaHoy = null;
@@ -658,6 +780,16 @@ public class HomeCesta extends ActionSupport {
             }
         }
         return resp;
+    }
+
+    private boolean verificoQueHayStockUNL(ArrayList<NoLogCesta> lista_ropa_Cesta_NoLog) {
+        boolean resp = true;
+        for(NoLogCesta c:lista_ropa_Cesta_NoLog){
+            if(c.getNlcUnidades() > c.getRopaStock().getRostockUnidades()){
+                resp = false;
+            }
+        }
+        return resp;        
     }
     
     public ArrayList<Ropa> poneDescuentosBien (ArrayList<Ropa> lista){

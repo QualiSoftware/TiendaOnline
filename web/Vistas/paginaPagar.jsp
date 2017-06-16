@@ -55,16 +55,28 @@
         con.close();
         
         int id = Integer.parseInt(""+request.getAttribute("facUsuId"));
-        usuario = ControladoresDAO.cUsuarios.RecuperaPorId(id);
-        emailEnviado = ControladoresDAO.cEmail.enviarCorreo(usuario.getUsuEmail(),nombreArchivo);
-        if(emailEnviado){
-            System.out.println();
-            HomeUsuariosValidaciones huv = new HomeUsuariosValidaciones();
-            huv.escribirEnArchivoLog("Se envió una factura con fecha " + date + " de " + usuario.getUsuNombre() +
-                    " " + usuario.getUsuApellidos() + ", código de usuario " + usuario.getUsuId());
+        if(id != 0) {
+            usuario = ControladoresDAO.cUsuarios.RecuperaPorId(id);
+            emailEnviado = ControladoresDAO.cEmail.enviarCorreo(usuario.getUsuEmail(),nombreArchivo);
+            if(emailEnviado){
+                HomeUsuariosValidaciones huv = new HomeUsuariosValidaciones();
+                huv.escribirEnArchivoLog("Se envió una factura con fecha " + date + " de " + usuario.getUsuNombre() +
+                        " " + usuario.getUsuApellidos() + ", código de usuario " + usuario.getUsuId());
+            }
+            response.sendRedirect("pedidos.action");
+        } else {
+            String emailUNL = ""+request.getAttribute("emailUNL");
+            emailEnviado = ControladoresDAO.cEmail.enviarCorreo(emailUNL, nombreArchivo);
+            if(emailEnviado){
+                HomeUsuariosValidaciones huv = new HomeUsuariosValidaciones();
+                huv.escribirEnArchivoLog("Se envió una factura con fecha " + date + " de un usuario anónimo con email "
+                +emailUNL);
+            }
+            response.sendRedirect("Tienda.action");
         }
-        response.sendRedirect("pedidos.action");
     }catch(Exception e){
-        System.out.println("Error: "+e.getMessage());
+        HomeUsuariosValidaciones huv = new HomeUsuariosValidaciones();
+        huv.escribirEnArchivoLog("Error al intentar generar la factura en paginaPagar.jsp el día "+new Date() +
+            ". Error: "+e.getMessage());
     }
 %>

@@ -98,3 +98,11 @@ Error al intentar guardar una cookie el Sun Jun 11 17:21:08 CEST 2017
 Error al intentar guardar una cookie el Sun Jun 11 17:38:18 CEST 2017
 Error al intentar guardar una cookie el Sun Jun 11 17:38:51 CEST 2017
 Error al intentar guardar una cookie el Sun Jun 11 17:39:21 CEST 2017
+Error al intentar cargar un usuario en método forInputString el día Fri Jun 16 17:42:36 CEST 2017
+Error al intentar cargar un usuario en método forInputString el día Fri Jun 16 17:43:40 CEST 2017
+Error al intentar cargar un usuario en método forInputString el día Fri Jun 16 17:45:01 CEST 2017
+Error al intentar cargar un usuario en método forInputString el día Fri Jun 16 20:43:55 CEST 2017
+Se envió una factura con fecha Fri Jun 16 20:46:22 CEST 2017 de un usuario anónimo con email dusheff@hotmail.com
+Error al intentar cargar un usuario en método forInputString el día Fri Jun 16 20:52:15 CEST 2017
+Se envió una factura con fecha Fri Jun 16 20:54:01 CEST 2017 de un usuario anónimo con email dusheff@hotmail.com
+Se envió una factura con fecha Fri Jun 16 20:56:46 CEST 2017 de Damián Usheff Gonzalez-Santamaría, código de usuario 13
