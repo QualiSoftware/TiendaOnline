@@ -55,7 +55,7 @@
             sesion.put("usuNombre", "");
             sesion.put("usuAdministrador", "");
         } else {
-            nlu = new NoLogUsuarios(userCookie, new Date());
+            nlu = new NoLogUsuarios(userCookie, new Date(),"");
             int resp = ControladoresDAO.cUsuariosNoLog.Inserta(nlu);
             if(resp == 1){
                 %><script>

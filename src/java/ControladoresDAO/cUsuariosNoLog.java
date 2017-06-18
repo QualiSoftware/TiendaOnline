@@ -51,6 +51,20 @@ public class cUsuariosNoLog {
         } 
     }
     
+    public static int  Modifica(NoLogUsuarios c){      
+        sesion = (Session) NewHibernateUtil.getSessionModif();
+        sesion.beginTransaction();
+        try{
+            sesion.update(c);
+            sesion.getTransaction().commit();
+            return 1;
+        }catch(Exception ex){
+            System.out.println(ex.getMessage());
+            sesion.getTransaction().rollback();
+            return -1;
+        } 
+    }
+    
     public static List<NoLogUsuarios> recuperaPorNick(String nick){
         sesion = (Session) NewHibernateUtil.getSession();
         Criteria criterio = sesion.createCriteria(NoLogUsuarios.class);
@@ -58,4 +72,12 @@ public class cUsuariosNoLog {
         List<NoLogUsuarios> lista = criterio.list();
         return lista;
     }  
+    
+    public static List<NoLogUsuarios> recuperaUsuariosConEmail(){
+        sesion = (Session) NewHibernateUtil.getSession();
+        String sql = "From NoLogUsuarios WHERE nluEmail <> ''";
+        Query query =sesion.createQuery(sql);
+        List<NoLogUsuarios> lista = query.list();
+        return lista;
+    }
 }

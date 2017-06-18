@@ -9,7 +9,7 @@ public class cEmailDisenio {
     
     public static String DisenioAlta(int id){
         //al subir al servidor cambiar este enlace
-        String enlace = "http://localhost:8080/TiendaOnline/Vistas/activa.action?accion="+id;
+        String enlace = Acciones.HomePropiedades.muestraValor("url")+"/TiendaOnline/Vistas/activa.action?accion="+id;
         String mensaje = "<HTML><BODY>"
                 + "<h1>Para confirmar su usuario </h1><a href=\""+enlace+"\">Presione este enlace</a>"
                 + "</BODY></HTML>";
@@ -28,7 +28,7 @@ public class cEmailDisenio {
     
     public static String DisenioApadrina(String nombre, String email, Usuarios u){
         //al subir al servidor cambiar este enlace
-        String enlace = "http://localhost:8080/TiendaOnline/Vistas/altaUsuarioApadrinado.action?usuEmail="+email;
+        String enlace = Acciones.HomePropiedades.muestraValor("url")+"/TiendaOnline/Vistas/altaUsuarioApadrinado.action?usuEmail="+email;
         String mensaje = "<HTML><BODY>"
                 + "<h1>Hola <b>"+nombre+"</b>!</h1><br>"
                 + "<p>Este email te llega porque "+u.getUsuNombre()+" "+u.getUsuApellidos()

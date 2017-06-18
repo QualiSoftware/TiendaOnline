@@ -76,6 +76,11 @@
                                 &nbsp;&nbsp
                             <s:property value="#a.usuEmail"/><br/>
                         </s:iterator>
+                        <s:iterator var="b" value="lista_unl">
+                                <input type="checkbox" name="checkboxNombre" value="<s:property value="#b.nluEmail"/>" checked/>
+                                &nbsp;&nbsp
+                            <s:property value="#b.nluEmail"/><br/>
+                        </s:iterator>
                     </div>
                         <input type="button" onclick="verificar();" value="Verificar listado" />
                         <div id="listadoVacio" style="display:none; color: red;">Debe seleccionar al menos una dirección</div>

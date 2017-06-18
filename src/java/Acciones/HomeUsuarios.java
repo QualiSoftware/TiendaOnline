@@ -3,6 +3,7 @@ package Acciones;
 import Modelos.Cesta;
 import Modelos.Facturas;
 import Modelos.Marcas;
+import Modelos.NoLogUsuarios;
 import Modelos.Paises;
 import Modelos.Provincias;
 import Modelos.Ropa;
@@ -59,6 +60,7 @@ public class HomeUsuarios extends ActionSupport {
     private String dummyMsg = "";
     private int respuesta;
     private List<Usuarios> lista_usuarios;
+    private List<NoLogUsuarios> lista_unl;
     private String antigua;
     private ArrayList<Ropa> lista_ropa,lista_menu_ropa;
     private List<Marcas>lista_marcas;
@@ -102,6 +104,14 @@ public class HomeUsuarios extends ActionSupport {
 
     public void setLista_usuarios(List<Usuarios> lista_usuarios) {
         this.lista_usuarios = lista_usuarios;
+    }
+
+    public List<NoLogUsuarios> getLista_unl() {
+        return lista_unl;
+    }
+
+    public void setLista_unl(List<NoLogUsuarios> lista_unl) {
+        this.lista_unl = lista_unl;
     }
 
     public String getAntigua() {
@@ -476,9 +486,13 @@ public class HomeUsuarios extends ActionSupport {
         try{
             Usuarios u = (Usuarios) ControladoresDAO.cUsuarios.RecuperaPorId(Integer.parseInt(sesion.get("usuId")+""));
         }catch(Exception e){
+            HomeUsuariosValidaciones huv = new HomeUsuariosValidaciones();
+            huv.escribirEnArchivoLog("Error al intentar cargar un usuario en método " + e.getStackTrace()[0].getMethodName()
+                    + " con usuID "+sesion.get("usuId")+" el día "+new Date());
             return INPUT;
         }
         lista_usuarios = ControladoresDAO.cUsuarios.RecuperaTodosMenosAdmin();
+        lista_unl = ControladoresDAO.cUsuariosNoLog.recuperaUsuariosConEmail();
         String resp = "";
         mensajeConfirmacion = "";
         if(dias != null){

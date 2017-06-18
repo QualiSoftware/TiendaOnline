@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 14-may-2017 23:58:04 by Hibernate Tools 4.3.1 -->
+<!-- Generated 18-jun-2017 18:48:25 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="Modelos.NoLogUsuarios" table="no_log_usuarios" catalog="tienda_ropa" optimistic-lock="version">
         <id name="nluUsuId" type="java.lang.Integer">
@@ -13,6 +13,9 @@
         </property>
         <property name="nluFechaCreacion" type="date">
             <column name="nlu_fecha_creacion" length="10" not-null="true" />
+        </property>
+        <property name="nluEmail" type="string">
+            <column name="nlu_email" length="100" not-null="true" />
         </property>
         <set name="noLogCestas" table="no_log_cesta" inverse="true" lazy="true" fetch="select">
             <key>

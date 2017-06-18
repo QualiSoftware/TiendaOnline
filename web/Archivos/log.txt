@@ -110,3 +110,10 @@ Se envió una factura con fecha Sun Jun 18 13:58:01 CEST 2017 de un usuario anóni
 Se envió una factura con fecha Sun Jun 18 14:36:53 CEST 2017 de un usuario anónimo con email dusheff@hotmail.com
 Se envió una factura con fecha Sun Jun 18 14:53:28 CEST 2017 de un usuario anónimo con email dusheff@hotmail.com
 Se envió una factura con fecha Sun Jun 18 14:55:04 CEST 2017 de Damián Usheff Gonzalez-Santamaría, código de usuario 13
+Error al intentar cargar un usuario en método forInputString el día Sun Jun 18 17:36:19 CEST 2017
+Error al intentar cargar un usuario en método forInputString el día Sun Jun 18 17:37:16 CEST 2017
+Error al intentar cargar un usuario en método forInputString el día Sun Jun 18 17:38:13 CEST 2017
+Error al intentar cargar un usuario en método forInputString el día Sun Jun 18 17:39:39 CEST 2017
+Se envió una factura con fecha Sun Jun 18 17:43:42 CEST 2017 de un usuario anónimo con email email@email.com
+Se envió una factura con fecha Sun Jun 18 19:31:39 CEST 2017 de un usuario anónimo con email email@email.com
+Error al intentar cargar un usuario en método forInputString con usuID  el día Sun Jun 18 19:39:35 CEST 2017

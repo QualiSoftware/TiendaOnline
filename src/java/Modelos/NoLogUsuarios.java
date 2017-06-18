@@ -1,5 +1,5 @@
 package Modelos;
-// Generated 14-may-2017 23:58:02 by Hibernate Tools 4.3.1
+// Generated 18-jun-2017 18:48:23 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -15,6 +15,7 @@ public class NoLogUsuarios  implements java.io.Serializable {
      private Integer nluUsuId;
      private String nluNick;
      private Date nluFechaCreacion;
+     private String nluEmail;
      private Set<NoLogCesta> noLogCestas = new HashSet<NoLogCesta>(0);
      private Set<NoLogFavoritos> noLogFavoritoses = new HashSet<NoLogFavoritos>(0);
 
@@ -22,13 +23,15 @@ public class NoLogUsuarios  implements java.io.Serializable {
     }
 
 	
-    public NoLogUsuarios(String nluNick, Date nluFechaCreacion) {
+    public NoLogUsuarios(String nluNick, Date nluFechaCreacion, String nluEmail) {
         this.nluNick = nluNick;
         this.nluFechaCreacion = nluFechaCreacion;
+        this.nluEmail = nluEmail;
     }
-    public NoLogUsuarios(String nluNick, Date nluFechaCreacion, Set<NoLogCesta> noLogCestas, Set<NoLogFavoritos> noLogFavoritoses) {
+    public NoLogUsuarios(String nluNick, Date nluFechaCreacion, String nluEmail, Set<NoLogCesta> noLogCestas, Set<NoLogFavoritos> noLogFavoritoses) {
        this.nluNick = nluNick;
        this.nluFechaCreacion = nluFechaCreacion;
+       this.nluEmail = nluEmail;
        this.noLogCestas = noLogCestas;
        this.noLogFavoritoses = noLogFavoritoses;
     }
@@ -53,6 +56,13 @@ public class NoLogUsuarios  implements java.io.Serializable {
     
     public void setNluFechaCreacion(Date nluFechaCreacion) {
         this.nluFechaCreacion = nluFechaCreacion;
+    }
+    public String getNluEmail() {
+        return this.nluEmail;
+    }
+    
+    public void setNluEmail(String nluEmail) {
+        this.nluEmail = nluEmail;
     }
     public Set<NoLogCesta> getNoLogCestas() {
         return this.noLogCestas;
