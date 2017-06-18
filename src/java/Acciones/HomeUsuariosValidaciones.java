@@ -1,7 +1,9 @@
 package Acciones;
 
+import Modelos.Cesta;
 import Modelos.Favoritos;
 import Modelos.FavoritosId;
+import Modelos.NoLogCesta;
 import Modelos.NoLogFavoritos;
 import Modelos.NoLogUsuarios;
 import Modelos.Usuarios;
@@ -194,8 +196,9 @@ public class HomeUsuariosValidaciones extends ActionSupport{
                     //Traslado Favoritos desde acá
                     List<NoLogFavoritos> lista_nlu = ControladoresDAO.cFavoritosNoLog.recuperaPorUsuario(nlu);
                     List<Favoritos> lista_u = ControladoresDAO.cFavoritos.recuperaPorUsuario(usuario);
+                    boolean noEstaba;
                     for(NoLogFavoritos favoritosNLU:lista_nlu){
-                        boolean noEstaba = true;
+                        noEstaba = true;
                         for(Favoritos favoritosU:lista_u){
                             if(favoritosNLU.getRopa().getRoId() == favoritosU.getRopa().getRoId()){
                                 noEstaba = false;
@@ -209,6 +212,36 @@ public class HomeUsuariosValidaciones extends ActionSupport{
                         ControladoresDAO.cFavoritosNoLog.Elimina(favoritosNLU);
                     }
                     //Traslado Favoritos hasta acá
+                    //Traslado Cesta desde acá
+                    List<NoLogCesta> noLogCestas = ControladoresDAO.cCestaNoLog.recuperaPorUsuario(nlu);
+                    List<Cesta> cestas = ControladoresDAO.cCesta.recuperaPorUsuario(usuario);
+                    int mismaCantidadUnidades;
+                    int cestaID = 0;
+                    for(NoLogCesta cestaNLU:noLogCestas){
+                        noEstaba = true;
+                        mismaCantidadUnidades = 0;                        
+                        for(Cesta cesta:cestas){
+                            if(cestaNLU.getRopaStock().getRostockId().equals(cesta.getRopaStock().getRostockId())){
+                                noEstaba = false;
+                                if(cestaNLU.getNlcUnidades() > cesta.getCestaUnidades()) {
+                                    mismaCantidadUnidades = cestaNLU.getNlcUnidades();
+                                    cestaID = cesta.getCestaId();
+                                }
+                            }
+                        }
+                        if(noEstaba){
+                            Cesta ces = new Cesta(cestaNLU.getRopaStock(), usuario, cestaNLU.getNlcUnidades());
+                            ControladoresDAO.cCesta.InsertaRopaCestaUsuario(ces);
+                        } else {
+                            if(mismaCantidadUnidades != 0) {
+                                Cesta ces = ControladoresDAO.cCesta.RecuperaPorId(cestaID);
+                                ces.setCestaUnidades(mismaCantidadUnidades);
+                                ControladoresDAO.cCesta.Modifica(ces);
+                            }
+                        }
+                        ControladoresDAO.cCestaNoLog.Elimina(cestaNLU);
+                    }
+                    //Traslado Cesta hasta acá
                 }
                 return SUCCESS;
             }else{

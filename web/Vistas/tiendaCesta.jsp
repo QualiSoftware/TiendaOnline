@@ -79,22 +79,74 @@
             
             function enviarPedido(usu){                
                 if(usu == 0) {
+                    var valido = true;
                     usu = getCookie('userCookieSL');
-                    /*acá hay que pedir los datos al usuario de nombre, apellido, dirección, localidad, cp y país*/
-                    /*y esto se borra*/
-                    document.getElementById('botonEnvio').style.display = 'none';
-                    document.getElementById('espera').style.display = "block";
-                    document.getElementById('frm').submit();
-                    /*hasta acá se borra*/
+                    var no = document.getElementById('nombre');
+                    var cp = document.getElementById('cp');
+                    var ci = document.getElementById('ciudad');
+                    var di = document.getElementById('direccion');
+                    var em = document.getElementById('emailUNL');
+                    var ma = document.getElementById('mayor18');
+                    if(no.value == ''){
+                        no.style.borderColor="red";
+                        valido = false;
+                    } else {
+                        no.style.borderColor="black";
+                    }
+                    if(cp.value == ''){
+                        cp.style.borderColor="red";
+                        valido = false;
+                    } else {
+                        cp.style.borderColor="black";
+                    }
+                    if(ci.value == ''){
+                        ci.style.borderColor="red";
+                        valido = false;
+                    } else {
+                        ci.style.borderColor="black";
+                    }
+                    if(di.value == ''){
+                        di.style.borderColor="red";
+                        valido = false;
+                    } else {
+                        di.style.borderColor="black";
+                    }
+                    if(em.value == ''){
+                        em.style.borderColor="red";
+                        valido = false;
+                    } else {
+                        var emailOK = validarEmail(em.value);
+                        if(emailOK){
+                            em.style.borderColor="black";
+                            document.getElementById('mensajeEmail').style.display = "none";
+                        } else {
+                            em.style.borderColor="red";
+                            document.getElementById('mensajeEmail').style.display = "block";
+                            valido = false;
+                        }
+                    }
+                    if(valido) {
+                        document.getElementById('camposRellenos').style.display = "none";
+                    } else {
+                        document.getElementById('camposRellenos').style.display = "block";
+                    }
+                    if(ma.value == 'true'){
+                        document.getElementById('mensajeMayor18').style.display = "none";
+                    } else {
+                        document.getElementById('mensajeMayor18').style.display = "block";
+                        valido = false;
+                    }
+                    if(valido) {
+                        document.getElementById('botonEnvio').style.display = 'none';
+                        document.getElementById('espera').style.display = "block";
+                        document.getElementById('frm').submit();
+                    }
                 } else {
                     document.getElementById('botonEnvio').style.display = 'none';
                     document.getElementById('espera').style.display = "block";
                     document.getElementById('frm').submit();
                 }
             }
-            
-            
-            
         </script>
         <title>Cesta de <s:property value="sesion.usuNombre"/></title>
     </head>
@@ -592,8 +644,7 @@
                     <s:if test="#cantidadRopa > 0">    
                         <s:form id="frm" action="Pagar" method="POST" theme="simple">
                             <div id="contenedor_Pagar">
-                                <div id="pagar">
-                                    
+                                <div id="pagar">                                    
                                     <table>                            
                                         <tr class="apartados_Pagar">
                                             <td colspan="2" class="bold apartados_Pagar">
@@ -691,6 +742,18 @@
                                                     <s:textfield id="emailUNL" name="emailUNL" maxLength="100" cssStyle="width: 190px;"/>
                                                 </td>                            
                                             </tr>
+                                            <tr>
+                                                <td></td>
+                                                <td id="mensajeEmail">
+                                                    El email es incorrecto
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td></td>
+                                                <td id="camposRellenos">
+                                                    Debe rellenar todos los campos
+                                                </td>
+                                            </tr>
                                         </s:else>
                                         <tr>
                                             <td colspan="2" class="bold" style="padding-top: 10px;">
@@ -702,8 +765,7 @@
                                                 Cantidad
                                             </td>                            
                                             <td style="padding-top: 5px;">
-                                                <label for="unifact"><s:property value="cantidad"/></label>
-                                                
+                                                <label for="unifact"><s:property value="cantidad"/></label>                                                
                                             </td>                            
                                         </tr>
                                         <tr>
@@ -711,8 +773,7 @@
                                                 Total
                                             </td>                            
                                             <td>
-                                                <label for="prefact"><s:property value="getText('{0,number,##0.00}',{precio})"/></label>€
-                                                
+                                                <label for="prefact"><s:property value="getText('{0,number,##0.00}',{precio})"/></label>€                                                
                                             </td>                            
                                         </tr>
                                         <tr>
@@ -731,10 +792,28 @@
                                             </td>
                                         </tr>
                                         <tr>                                    
-                                            <td colspan="10">
+                                            <td colspan="2">
                                                 <s:textarea label="Observaciones" name="obs" cols="46" rows="2" theme="simple"/>
                                             </td>
                                         </tr>
+                                        <s:if test="sesion.usuId!=null && sesion.usuId!=''">                                            
+                                        </s:if>
+                                        <s:else>
+                                            <tr>
+                                                <td colspan="2">
+                                                    ¿El titular tiene 18 años o más? 
+                                                    <select id="mayor18" class="formulario_Rellenar" style="width: 60px">
+                                                        <option value="false">No</option>
+                                                        <option value="true">Si</option>
+                                                    </select>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2" id="mensajeMayor18">
+                                                    El titular debe tener 18 años o más
+                                                </td>
+                                            </tr>
+                                        </s:else>
                                         <tr>
                                             <td colspan="2" id="botonEnvio">
                                                 <div style="margin-left: 150px" id="añadircesta_Btn">

@@ -1512,4 +1512,16 @@ select:-webkit-autofill:focus{
     top: 40%;
     z-index: 1000;    
 }
+#camposRellenos{
+    display: none;
+    color: red;
+}
+#mensajeEmail{
+    display: none;
+    color: red; 
+}
+#mensajeMayor18{
+    display: none;
+    color: red;
+}
 

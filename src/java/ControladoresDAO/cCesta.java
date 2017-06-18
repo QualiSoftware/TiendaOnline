@@ -95,5 +95,14 @@ public class cCesta {
         List<Cesta> lista = criterio.list();
         return lista;
 
+    } 
+    
+    public static List<Cesta> recuperaPorUsuario(Usuarios usuario){
+        sesion = (Session) NewHibernateUtil.getSession();
+        Criteria criterio = sesion.createCriteria(Cesta.class);
+        criterio.add(Restrictions.eq("usuarios", usuario));
+        List<Cesta> lista = criterio.list();
+        return lista;
+
     }  
 }

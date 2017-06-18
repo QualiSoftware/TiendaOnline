@@ -3,6 +3,7 @@ package ControladoresDAO;
 import static ControladoresDAO.cRopa.sesion;
 import Modelos.Cesta;
 import Modelos.NoLogCesta;
+import Modelos.NoLogUsuarios;
 import Modelos.Ropa;
 import Modelos.RopaStock;
 import Modelos.Usuarios;
@@ -95,5 +96,14 @@ public class cCestaNoLog {
         List<NoLogCesta> lista = criterio.list();
         return lista;
 
-    }  
+    } 
+    
+    public static List<NoLogCesta> recuperaPorUsuario(NoLogUsuarios usuario){
+        sesion = (Session) NewHibernateUtil.getSession();
+        Criteria criterio = sesion.createCriteria(NoLogCesta.class);
+        criterio.add(Restrictions.eq("noLogUsuarios", usuario));
+        List<NoLogCesta> lista = criterio.list();
+        return lista;
+
+    } 
 }

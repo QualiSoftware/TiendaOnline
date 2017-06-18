@@ -655,6 +655,7 @@ public class HomeCesta extends ActionSupport {
             } else {
                 if(sesion.get("cookieLogueado") != null){
                     nlu = (NoLogUsuarios) sesion.get("cookieLogueado");
+                    //nlu.setNluEmail = emailUNL;
                 }
                 lista_ropa_Cesta_NoLog = ControladoresDAO.cCestaNoLog.RecuperaTodos(""+nlu.getNluUsuId());
             }
