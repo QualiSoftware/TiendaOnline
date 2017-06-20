@@ -923,4 +923,68 @@ public class HomeUsuarios extends ActionSupport {
         expresionHREF = "mailto:"+Acciones.HomePropiedades.muestraValor("email.empresa")+"?bcc="+ccoOK;
         return SUCCESS;
     }
+    
+    public String ajaxRecuperaPass() throws Exception {
+        try{
+            accion = "r";
+            respuesta = 2;
+            lista_usuarios = ControladoresDAO.cUsuarios.recuperaPorEmail(usuEmail2);
+            if(lista_usuarios.size() == 1) {
+                clave = lista_usuarios.get(0).getUsuId();
+                u = ControladoresDAO.cUsuarios.RecuperaPorId(clave);
+                if(u.isUsuActivo()) {
+                    mensajeConfirmacion = CambiaContrasenia();
+                } else {
+                    respuesta = 2;
+                    dummyMsg = Acciones.HomePropiedades.muestraValor("url")+
+                            "/TiendaOnline/Vistas/reactiva.action?usuEmail2="+u.getUsuEmail()
+                            +"&accionocul="+u.getUsuId();
+                    lista_usuarios = null;
+                    u = null;
+                    return SUCCESS;
+                }
+            } else if(lista_usuarios.size() == 0){
+                respuesta = 0;
+                lista_usuarios = null;
+                u = null;
+                return SUCCESS; 
+            } else {
+                lista_usuarios = null;
+                u = null;
+                return INPUT;
+            }
+            if(u != null && u.isUsuActivo()) {
+                usuActivo = ControladoresDAO.cEmail.enviarRecuperaPass(u);
+                if(usuActivo) {
+                    respuesta = 1;
+                }
+            }
+            lista_usuarios = null;
+            u = null;
+            return mensajeConfirmacion;
+        } catch (Exception e) {
+            HomeUsuariosValidaciones huv2 = new HomeUsuariosValidaciones();
+            huv2.escribirEnArchivoLog("Error al intentar cargar método " + 
+                e.getStackTrace()[0].getMethodName() +" el día "+new Date());
+            return ERROR;
+        }
+    }
+    
+    public String reactiva() throws Exception {
+        if(sesion==null){
+         sesion=ActionContext.getContext().getSession();
+        }
+        try{
+        boolean email = ControladoresDAO.cEmail.enviarAlta(usuEmail2, Integer.parseInt(accionocul));
+        cabeceraocul = "Acción de reactivación";
+        accion = "a";
+        } catch(Exception e){
+            HomeUsuariosValidaciones huv2 = new HomeUsuariosValidaciones();
+            huv2.escribirEnArchivoLog("Error al intentar cargar método " + 
+                e.getStackTrace()[0].getMethodName() +" el día "+new Date());
+            return ERROR;
+        }
+        cargarMenuDesplegable();
+        return SUCCESS;
+    }
 }

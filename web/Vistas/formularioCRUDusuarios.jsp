@@ -248,7 +248,11 @@
                                             <span style="color: red; font-size: 13px; padding-left: 18px; position: relative;"><s:property value="mensajeError"/></span>
                                         </td>
                                     </tr>
-                                    
+                                    <tr>
+                                        <td>
+                                            <s:a action="recuperaPass">Olvidé mi contraseña</s:a>
+                                        </td>
+                                    </tr>
                                     <tr>
                                         <td>
                                             <a href="#">

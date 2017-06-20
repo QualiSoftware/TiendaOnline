@@ -1,6 +1,6 @@
 <%-- 
-    Document   : tiendaQuienesSomos
-    Created on : 23-mar-2017
+    Document   : tiendaCookies
+    Created on : 19-jun-2017
     Author     : QualiSoftware
 --%>
 
@@ -31,7 +31,7 @@
         <script>
             window.onload = muestra_Cantidad;            
         </script>
-        <title>¿Quiénes Somos?</title>
+        <title>Política de cookies</title>
     </head>
 
     <body>
@@ -198,9 +198,9 @@
                     <s:if test="sesion.usuId==null || sesion.usuId==''">
                         <a href="#"> 
                             <div id="mi_Cuenta_Txt" onclick="fijarLogin();">Mi Cuenta</div>
-                        </a>                    
+                        </a>                        
                         <s:form id="frmLogin" action="TiendaLogin" theme="simple">
-                            <input type="hidden" name="actionName" value="quienesSomos.action"/>
+                            <input type="hidden" name="actionName" value="contacto.action"/>
                             <div id="login">                                        
                                 <table>
                                     <tr>
@@ -261,11 +261,12 @@
                 </div>
 
                 <div id="quienes_Somos">
-                    <a href="#"><div id="quienes_Somos_Txt"> ¿Quiénes somos? &nbsp; <span class="sin_Decoracion">|</span></div></a>
+                <s:a action="quienesSomos"><div id="quienes_Somos_Txt"> ¿Quiénes somos? &nbsp; <span class="sin_Decoracion">|</span></div></s:a>
 
                 </div>
                 <div id="contacto">
-                <s:a action="contacto"><div id="contacto_Txt">Contacto  &nbsp;<span class="sin_Decoracion">|</span></div></s:a>
+                    <a href="#"><div id="contacto_Txt">Contacto  &nbsp;<span class="sin_Decoracion">|</span></div>
+                    </a>
                 </div>
                 <div id="lista_Deseos">                       
                     <s:a action="listaDeseos">

@@ -72,7 +72,7 @@
                 huv.escribirEnArchivoLog("Se envió una factura con fecha " + date + " de un usuario anónimo con email "
                 +emailUNL);
             }
-            response.sendRedirect("Tienda.action");
+            response.sendRedirect("compraOK.action");
         }
     }catch(Exception e){
         HomeUsuariosValidaciones huv = new HomeUsuariosValidaciones();

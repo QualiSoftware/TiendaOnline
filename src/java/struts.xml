@@ -457,6 +457,10 @@
             <result name="input">/Vistas/paginaPagarError.jsp</result>
         </action>
         
+        <action name="compraOK">
+            <result>/Vistas/paginaPagarOK.jsp</result>
+        </action>
+        
         <action name="GenerarFactura">
             <result>/Vistas/FacturaPDF.jsp</result>   
         </action>        
@@ -500,6 +504,27 @@
             <result type="redirect">Tienda</result>
             <result name="input" type="redirect">errorGeneral</result>  
             <result name="error" type="redirect">errorGeneral</result>
+        </action>
+        
+        <action name="recuperaPass" class="Acciones.HomeRopa" method="RopaFiltro">
+            <result>/Vistas/tiendaRecuperaPass.jsp</result>  
+            <result name="input" type="redirect">errorGeneral</result>  
+            <result name="error" type="redirect">errorGeneral</result>    
+        </action>
+        
+        <action name="ajaxRecuperaPass" class="Acciones.HomeUsuarios" method="ajaxRecuperaPass">
+            <result type="json">
+                <param name="excludeNullProperties">true</param>
+                <param name="noCache">true</param>
+            </result>
+            <result name="input" type="redirect">errorGeneral</result>  
+            <result name="error" type="redirect">errorGeneral</result>
+        </action>
+        
+        <action name="reactiva" class="Acciones.HomeUsuarios" method="reactiva">
+            <result>/Vistas/tiendaAltaBaja.jsp</result>
+            <result name="input" type="redirect">errorGeneral</result>  
+            <result name="error" type="redirect">errorGeneral</result>            
         </action>
         
         <action name="TiendaMenu" class="Acciones.HomeRopa" method="RopaMenu">
@@ -566,6 +591,12 @@
         
         <action name="contacto" class="Acciones.HomeRopa" method="RopaFiltro">
             <result>/Vistas/tiendaContacto.jsp</result>  
+            <result name="input" type="redirect">errorGeneral</result>  
+            <result name="error" type="redirect">errorGeneral</result>    
+        </action>
+        
+        <action name="cookies" class="Acciones.HomeRopa" method="RopaFiltro">
+            <result>/Vistas/tiendaCookies.jsp</result>  
             <result name="input" type="redirect">errorGeneral</result>  
             <result name="error" type="redirect">errorGeneral</result>    
         </action>

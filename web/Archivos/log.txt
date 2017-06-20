@@ -117,3 +117,8 @@ Error al intentar cargar un usuario en método forInputString el día Sun Jun 18 1
 Se envió una factura con fecha Sun Jun 18 17:43:42 CEST 2017 de un usuario anónimo con email email@email.com
 Se envió una factura con fecha Sun Jun 18 19:31:39 CEST 2017 de un usuario anónimo con email email@email.com
 Error al intentar cargar un usuario en método forInputString con usuID  el día Sun Jun 18 19:39:35 CEST 2017
+Error al intentar cargar un usuario en método forInputString el día Mon Jun 19 20:02:26 CEST 2017
+Se envió una factura con fecha Mon Jun 19 20:05:09 CEST 2017 de un usuario anónimo con email email@email.com
+Se envió una factura con fecha Mon Jun 19 20:27:44 CEST 2017 de un usuario anónimo con email dusheff@hotmail.com
+Error al intentar cargar método forInputString el día Tue Jun 20 22:34:27 CEST 2017
+Hubo un intento de conexión fallido el Tue Jun 20 22:46:49 CEST 2017 con user: dusheff@yahoo.com pass: dariodar

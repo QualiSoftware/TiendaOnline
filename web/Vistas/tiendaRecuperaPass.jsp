@@ -1,5 +1,5 @@
 <%-- 
-    Document   : tiendaQuienesSomos
+    Document   : tiendaContacto
     Created on : 23-mar-2017
     Author     : QualiSoftware
 --%>
@@ -31,7 +31,7 @@
         <script>
             window.onload = muestra_Cantidad;            
         </script>
-        <title>¿Quiénes Somos?</title>
+        <title>Contacto</title>
     </head>
 
     <body>
@@ -198,9 +198,9 @@
                     <s:if test="sesion.usuId==null || sesion.usuId==''">
                         <a href="#"> 
                             <div id="mi_Cuenta_Txt" onclick="fijarLogin();">Mi Cuenta</div>
-                        </a>                    
+                        </a>                        
                         <s:form id="frmLogin" action="TiendaLogin" theme="simple">
-                            <input type="hidden" name="actionName" value="quienesSomos.action"/>
+                            <input type="hidden" name="actionName" value="Tienda.action"/>
                             <div id="login">                                        
                                 <table>
                                     <tr>
@@ -261,11 +261,12 @@
                 </div>
 
                 <div id="quienes_Somos">
-                    <a href="#"><div id="quienes_Somos_Txt"> ¿Quiénes somos? &nbsp; <span class="sin_Decoracion">|</span></div></a>
+                <s:a action="quienesSomos"><div id="quienes_Somos_Txt"> ¿Quiénes somos? &nbsp; <span class="sin_Decoracion">|</span></div></s:a>
 
                 </div>
                 <div id="contacto">
-                <s:a action="contacto"><div id="contacto_Txt">Contacto  &nbsp;<span class="sin_Decoracion">|</span></div></s:a>
+                    <a href="#"><div id="contacto_Txt">Contacto  &nbsp;<span class="sin_Decoracion">|</span></div>
+                    </a>
                 </div>
                 <div id="lista_Deseos">                       
                     <s:a action="listaDeseos">
@@ -378,9 +379,66 @@
             </div>
             <div class="linea" style="height: 3px;"></div>
             
-            <!--Acá va el contenido de esta página-->
+            <div id="formulario">
+                <br/>
+                <p>
+                    Por favor escriba su email 
+                    <s:textfield id="emailRecuperaPass" maxLength="100" cssStyle="width: 250px;" /> 
+                    <button id="añadircesta_Btn" onclick="enviarEmailPass();">Enviar</button>
+                </p>                
+                <br/>
+                <p>Le enviaremos instrucciones a su email para recuperar la contrasaña.</p>
+            </div>
+            <div id="envioEmailOK" style="display: none">
+                <p>Se le ha enviado un email con la nueva contraseña. Por favor verifique su casilla de correo electrónico.</p>
+            </div>
+            <div id="envioEmailNoExiste" style="display: none">
+                <p>Hubo un problema con su cuenta. Su email no se reconoce en nuestra Base de Datos.</p>
+            </div>
+            <div id="envioEmailKO" style="display: none">
+                <p>Su cuenta está inactiva. Si quiere que le volvamos a enviar el email de activación por favor 
+                    pulse en <a id="enlaceEmail" onclick="activarEspera();">este siguiente enlace</a></p>
+            </div>
+                    <script>
+                        function activarEspera(){
+                            document.getElementById('enlaceEmail').style.display = 'none';
+                            document.getElementById('espera').style.display = "block";
+                        }
+            function enviarEmailPass(){
+                var email = document.getElementById('emailRecuperaPass').value;
+                $.getJSON('ajaxRecuperaPass', {
+                    usuEmail2: email
+                }, function (jsonResponse) { 
+                    if(jsonResponse.respuesta == 1){
+                        $('#formulario').hide(250);
+                        $('#envioEmailOK').show(250);
+                            //mostrar confirmación
+                    } else if(jsonResponse.respuesta == 0){
+                        $('#formulario').hide(250);
+                        $('#envioEmailNoExiste').show(250);
+                        //no existe usuario con ese correo                      
+                    } else {
+                        $('#formulario').hide(250);
+                        $('#envioEmailKO').show(250);
+                        $('#enlaceEmail').attr("href",jsonResponse.dummyMsg);
+                        //usuario inactivo                      
+                    }
+                });
+                
+                conexiones++;
+                if(conexiones > 20) {
+                    document.getElementById('frm').action = "favoritosDetalle";
+                    document.getElementById('frm').submit();
+                } else {
+                    if(usu == 0) {
+                        usu = getCookie('userCookieSL');
+                    }
+                }
+            }
+                    </script>
             
         </div>
         <s:include value="tiendaFooter.jsp" />
+        <img id="espera" src="../Imagenes/Administracion/espera.gif" width="50"/>
     </body>
 </html>

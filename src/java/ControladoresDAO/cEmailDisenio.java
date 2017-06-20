@@ -8,7 +8,6 @@ import Modelos.Usuarios;
 public class cEmailDisenio {
     
     public static String DisenioAlta(int id){
-        //al subir al servidor cambiar este enlace
         String enlace = Acciones.HomePropiedades.muestraValor("url")+"/TiendaOnline/Vistas/activa.action?accion="+id;
         String mensaje = "<HTML><BODY>"
                 + "<h1>Para confirmar su usuario </h1><a href=\""+enlace+"\">Presione este enlace</a>"
@@ -27,7 +26,6 @@ public class cEmailDisenio {
     }
     
     public static String DisenioApadrina(String nombre, String email, Usuarios u){
-        //al subir al servidor cambiar este enlace
         String enlace = Acciones.HomePropiedades.muestraValor("url")+"/TiendaOnline/Vistas/altaUsuarioApadrinado.action?usuEmail="+email;
         String mensaje = "<HTML><BODY>"
                 + "<h1>Hola <b>"+nombre+"</b>!</h1><br>"
@@ -38,7 +36,20 @@ public class cEmailDisenio {
                 + "Para poder darte de alta por favor pincha en el siguiente enlace:<br>"
                 + "<a href=\""+enlace+"\">Pincha aquí para darte de alta</a></p>"
                 + "</BODY></HTML>";
-        return mensaje;
-        
+        return mensaje;        
+    }
+    
+    public static String DisenioRecuperaPass(Usuarios u){
+        String enlace = Acciones.HomePropiedades.muestraValor("url")+"/TiendaOnline/Vistas/Tienda.action";
+        String mensaje = "<HTML><BODY>"
+                + "<h1>Hola <b>"+u.getUsuNombre()+" "+u.getUsuApellidos()+"</b>!</h1><br>"
+                + "<p>Este email te llega porque has pedido recuperar tu contraseña en nuestra tienda. "
+                + "Te hacemos llegar tu nueva contraseña.<br><br>"
+                + "Usuario: "+u.getUsuEmail()+"<br>"
+                + "Contraseña: nueva<br><br>"
+                + "Para abrir la página de nuestra tienda por favor pincha en el siguiente enlace:<br>"
+                + "<a href=\""+enlace+"\">Super Look</a></p>"
+                + "</BODY></HTML>";
+        return mensaje;        
     }
 }

@@ -33,7 +33,9 @@ public class cEmail{
         enviadoCompra = funcionEnviar(to, file, asunto, mensaje);
         if(enviadoCompra){
             //Esto sirve para enviarle la factura también al vendedor cada vez que se realice una venta
-            //boolean descarto = funcionEnviar("acá poner email del vendedor",file,"Se realizó una compra","Factura de la compra");
+            asunto = "Se realizó una compra";
+            mensaje = "Factura de la compra";
+            funcionEnviar(Acciones.HomePropiedades.muestraValor("email.vendedor"),file,asunto,mensaje);
         }
         return enviadoCompra;
     }
@@ -71,6 +73,14 @@ public class cEmail{
             invitado.setUsuActivo(Boolean.FALSE);
             ControladoresDAO.cUsuarios.Inserta(invitado);            
         }
+        return enviadoCompra;
+    }
+    
+    public static boolean enviarRecuperaPass(Usuarios u){
+        boolean enviadoCompra = Boolean.FALSE;
+        String asunto = "Recuperación de contraseña de "+u.getUsuNombre();
+        String mensaje = ControladoresDAO.cEmailDisenio.DisenioRecuperaPass(u);
+        enviadoCompra = funcionEnviar(u.getUsuEmail(), "", asunto, mensaje);
         return enviadoCompra;
     }
     

@@ -769,7 +769,9 @@ public class HomeCesta extends ActionSupport {
                 return INPUT;
             }
         } catch(Exception e){
-            System.out.println("e: " + e);
+            HomeUsuariosValidaciones huv = new HomeUsuariosValidaciones();
+            huv.escribirEnArchivoLog("Error al intentar realizar una compra en método " + e.getStackTrace()[0].getMethodName()
+                    + " el día "+new Date());
             return INPUT;
         }
     }

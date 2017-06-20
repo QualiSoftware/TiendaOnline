@@ -29,7 +29,7 @@
                         Email
                     </td>
                     <td>
-                        <s:textfield name="usuario" value="%{usuEmail2}"/>
+                        <s:textfield id="usuPassword2" name="usuario" value="%{usuEmail2}"/>
                     </td>
                     <td>
                         <s:fielderror fieldName="usuario" theme="simple"/>
@@ -40,7 +40,7 @@
                         Contraseña
                     </td>
                     <td>
-                        <s:password name="password" />
+                        <s:password id="passVerif" name="password" />
                     </td>
                     <td>
                         <s:fielderror fieldName="password" />
@@ -50,6 +50,11 @@
                     <td></td>
                     <td colspan="2">
                         <input type="button" onclick="usuarioLogin();" value="Acceder" />                    
+                    </td>
+                </tr>
+                <tr id="login" style="display: none;">
+                    <td colspan="2">
+                        Usuario y/o contraseña erróneo
                     </td>
                 </tr>
             </table>
