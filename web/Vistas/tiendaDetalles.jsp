@@ -56,13 +56,16 @@
         <link rel="stylesheet" href="../Estilos/easyzoom.css" />
 
         <script>
+            $(document).ready(function () {
+                $("[type='number']").keypress(function (evt) {
+                    evt.preventDefault();
+                });
+            });
             var ventana;
             function abrir(rostockId){
                 ventana = window.open("tiendaCestaPopUp.jsp?clave="+rostockId,"TallaYColor","width=300,height=300, resizable=no, scrollbars=no, menubar=no");
                 /*ventana.document.write(document.getElementById('color')+'<br>');*/
-            }
-        </script>
-        <script>   
+            }   
             var conexiones = 0;
             function ValidoDetalles(){
                 if(document.getElementById('colorOculto').value == ''){
