@@ -29,7 +29,43 @@
         <!-- Validación usuarios-->
         <script src="../Scripts/ValidacionUsuario.js" type="text/javascript"></script>              
         <script>
-            window.onload = muestra_Cantidad;            
+            window.onload = muestra_Cantidad;
+            
+            function activarEspera(){
+                document.getElementById('enlaceEmail').style.display = 'none';
+                document.getElementById('espera').style.display = "block";
+            }
+            function enviarEmailPass(){
+                var email = document.getElementById('emailRecuperaPass').value;
+                $.getJSON('ajaxRecuperaPass', {
+                    usuEmail2: email
+                }, function (jsonResponse) { 
+                    if(jsonResponse.respuesta == 1){
+                        $('#formulario').hide(250);
+                        $('#envioEmailOK').show(250);
+                            //mostrar confirmación
+                    } else if(jsonResponse.respuesta == 0){
+                        $('#formulario').hide(250);
+                        $('#envioEmailNoExiste').show(250);
+                        //no existe usuario con ese correo                      
+                    } else {
+                        $('#formulario').hide(250);
+                        $('#envioEmailKO').show(250);
+                        $('#enlaceEmail').attr("href",jsonResponse.dummyMsg);
+                        //usuario inactivo                      
+                    }
+                });
+                
+                conexiones++;
+                if(conexiones > 20) {
+                    document.getElementById('frm').action = "favoritosDetalle";
+                    document.getElementById('frm').submit();
+                } else {
+                    if(usu == 0) {
+                        usu = getCookie('userCookieSL');
+                    }
+                }
+            }
         </script>
         <title>Contacto</title>
     </head>
@@ -398,45 +434,7 @@
             <div id="envioEmailKO" style="display: none">
                 <p>Su cuenta está inactiva. Si quiere que le volvamos a enviar el email de activación por favor 
                     pulse en <a id="enlaceEmail" onclick="activarEspera();">este siguiente enlace</a></p>
-            </div>
-                    <script>
-                        function activarEspera(){
-                            document.getElementById('enlaceEmail').style.display = 'none';
-                            document.getElementById('espera').style.display = "block";
-                        }
-            function enviarEmailPass(){
-                var email = document.getElementById('emailRecuperaPass').value;
-                $.getJSON('ajaxRecuperaPass', {
-                    usuEmail2: email
-                }, function (jsonResponse) { 
-                    if(jsonResponse.respuesta == 1){
-                        $('#formulario').hide(250);
-                        $('#envioEmailOK').show(250);
-                            //mostrar confirmación
-                    } else if(jsonResponse.respuesta == 0){
-                        $('#formulario').hide(250);
-                        $('#envioEmailNoExiste').show(250);
-                        //no existe usuario con ese correo                      
-                    } else {
-                        $('#formulario').hide(250);
-                        $('#envioEmailKO').show(250);
-                        $('#enlaceEmail').attr("href",jsonResponse.dummyMsg);
-                        //usuario inactivo                      
-                    }
-                });
-                
-                conexiones++;
-                if(conexiones > 20) {
-                    document.getElementById('frm').action = "favoritosDetalle";
-                    document.getElementById('frm').submit();
-                } else {
-                    if(usu == 0) {
-                        usu = getCookie('userCookieSL');
-                    }
-                }
-            }
-                    </script>
-            
+            </div>            
         </div>
         <s:include value="tiendaFooter.jsp" />
         <img id="espera" src="../Imagenes/Administracion/espera.gif" width="50"/>
