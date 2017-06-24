@@ -1084,6 +1084,7 @@ public class HomeRopa extends ActionSupport {
             int icantidad = Integer.parseInt(cantidadprenda);
             int iusuid = 0;
             String cookieid = "";
+            System.out.println("idusu "+idusu);
             if(idusu.length() < 17){
                 iusuid = Integer.parseInt(idusu);
             } else {
@@ -1091,13 +1092,13 @@ public class HomeRopa extends ActionSupport {
             }
             int iunifact = Integer.parseInt(unifact);
             double iprefact=Double.parseDouble(prefact);
-            double iprefactfinal = 0;
+            double iprefactfinal = iprefact;
             
             String smasmenos = masmenos;
-            
             Ropa ro = ControladoresDAO.cRopa.RecuperaPorId(iroid);
             RopaStock r = ControladoresDAO.cRopaStock.RecuperaPorRopaColorTalla(iroid, icolorid, itallaid);
             if(smasmenos.equals("+")){
+                
                 if(icantidad < r.getRostockUnidades()){
                     icantidad ++;
                     iunifact ++;
@@ -1105,17 +1106,19 @@ public class HomeRopa extends ActionSupport {
                     String sstotal = (String.format("%.2f", total));
                     String ssstotal = sstotal.replace(',', '.');
                     double dtotal = Double.parseDouble(ssstotal);
+                    iprefactfinal = 0;
                     iprefactfinal = iprefact + dtotal;
                 }
             }
-            if(smasmenos.equals("-")){
-                if(icantidad > 0){   
+            if(smasmenos.equals("-")){   
+                if(icantidad > 1){   
                     icantidad --;
                     iunifact --;
                     double total =  (ro.getRoPrecio() -(ro.getRoPrecio() * ro.getRoDescuento() / 100));
                     String sstotal = (String.format("%.2f", total));
                     String ssstotal = sstotal.replace(',', '.');
                     double dtotal = Double.parseDouble(ssstotal);
+                    iprefactfinal = 0;
                     iprefactfinal = iprefact - dtotal;
                     }
             } 
@@ -1127,9 +1130,11 @@ public class HomeRopa extends ActionSupport {
                     ControladoresDAO.cCesta.Modifica(lc);
                 }
             } else {
-                List<NoLogUsuarios> nluList = ControladoresDAO.cUsuariosNoLog.recuperaPorNick(cookieid);
-                List<NoLogCesta> nlcList = 
-                        ControladoresDAO.cCestaNoLog.recuperaPorRopaStockYUsuario(r.getRostockId(), nluList.get(0).getNluUsuId());
+                List<NoLogUsuarios> nluList = ControladoresDAO.cUsuariosNoLog.recuperaPorNick(cookieid);    
+                 System.out.println("nluList.get(0).getNluUsuId() "+nluList.get(0).getNluUsuId());
+                System.out.println("r.getRostockId() "+r.getRostockId());
+                List<NoLogCesta> nlcList = ControladoresDAO.cCestaNoLog.recuperaPorRopaStockYUsuario(r.getRostockId(), nluList.get(0).getNluUsuId());
+               
                 for(NoLogCesta nlc : nlcList){
                     nlc.setNlcUnidades(icantidad);
                     ControladoresDAO.cCestaNoLog.Modifica(nlc);

@@ -452,11 +452,9 @@
                                                 })                                           
                                             });
                                             function usarAJAX(value) { 
-
                                                 var unifact = document.getElementById('unifact').value;
-
                                                 var concomaprefact = document.getElementById('prefact').value;
-                                                var prefact = concomaprefact.replace(",", ".")
+                                                var prefact = concomaprefact.replace(",", ".");        
                                                 var roid = document.getElementById('roid').value;
                                                 var colorid = document.getElementById('colorid').value;
                                                 var tallaid = document.getElementById('tallaid').value;
@@ -574,8 +572,8 @@
                                         <script>
 
                                              $(document).ready(function () {
-                                                $('body').on('click', '#items_en_uso img', function(){
-                                                   var a =  $(this).attr('id')
+                                                $('body').on('click', '#items_en_uso img', function(){   
+                                                   var a =  $(this).attr('id');
                                                    var even = a.split('-');
                                                    var masmenos = even[0];
                                                    var idropa = even[1];

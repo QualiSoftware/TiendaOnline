@@ -122,3 +122,8 @@ Se envió una factura con fecha Mon Jun 19 20:05:09 CEST 2017 de un usuario anóni
 Se envió una factura con fecha Mon Jun 19 20:27:44 CEST 2017 de un usuario anónimo con email dusheff@hotmail.com
 Error al intentar cargar método forInputString el día Tue Jun 20 22:34:27 CEST 2017
 Hubo un intento de conexión fallido el Tue Jun 20 22:46:49 CEST 2017 con user: dusheff@yahoo.com pass: dariodar
+Hubo un intento de conexión fallido el Fri Jun 23 21:02:37 CEST 2017 con user: jmarti135@gmail.com pass: respeto135
+Hubo un intento de conexión fallido el Fri Jun 23 21:05:43 CEST 2017 con user: luis@luis.com pass: ovxx?lsuv}ovxx?lsuv}
+Hubo un intento de conexión fallido el Fri Jun 23 21:06:30 CEST 2017 con user: jmarti135@gmail.com pass: respeto135
+Se envió una factura con fecha Fri Jun 23 21:27:11 CEST 2017 de javier martin, código de usuario 17
+Error al intentar cargar un usuario en método convert con usuID 17 el día Fri Jun 23 21:43:50 CEST 2017
