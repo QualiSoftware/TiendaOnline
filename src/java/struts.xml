@@ -100,7 +100,11 @@
             <result name="input" type="redirect">errorGeneral</result>
             <result name="error" type="redirect">errorGeneral</result>
         </action>
-        
+        <action name="recargaCesta" class="Acciones.HomeCesta" method="recargaCesta">
+            <result type="redirect">CestaFiltro</result>
+            <result name="input" type="redirect">errorGeneral</result>
+            <result name="error" type="redirect">errorGeneral</result>
+        </action>        
         
         <!--action de Clientela-->
        <action name="ClientelaFiltro" class="Acciones.HomeClientela" method="ClientelaFiltro" >
@@ -428,7 +432,7 @@
             <result name="error" type="redirect">errorGeneral</result>
         </action>
         
-        <action name="ajaxsumaRestaRopa" class="Acciones.HomeRopa" method="ajaxsumaRestaRopa">
+        <action name="ajaxSumaRestaRopa" class="Acciones.HomeCesta" method="ajaxSumaRestaRopa">
             <result type="json">
                 <param name="excludeNullProperties">true</param>
                 <param name="noCache">true</param>

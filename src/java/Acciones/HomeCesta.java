@@ -69,6 +69,8 @@ public class HomeCesta extends ActionSupport {
     private List<Paises> listaPaises;
     private List<Provincias> listaProvincias;
     private String direccion,ciudad,cp,nombre;
+    private String usuId,cantidadUnidades,cestaId;
+    private String stotal,scantidad,sunifact,sprefactura,strockExcedido;
 
     public boolean isAceptarpago() {
         return aceptarpago;
@@ -382,6 +384,70 @@ public class HomeCesta extends ActionSupport {
         this.nombre = nombre;
     }
 
+    public String getUsuId() {
+        return usuId;
+    }
+
+    public void setUsuId(String usuId) {
+        this.usuId = usuId;
+    }
+
+    public String getCantidadUnidades() {
+        return cantidadUnidades;
+    }
+
+    public void setCantidadUnidades(String cantidadUnidades) {
+        this.cantidadUnidades = cantidadUnidades;
+    }
+
+    public String getCestaId() {
+        return cestaId;
+    }
+
+    public void setCestaId(String cestaId) {
+        this.cestaId = cestaId;
+    }
+
+    public String getStotal() {
+        return stotal;
+    }
+
+    public void setStotal(String stotal) {
+        this.stotal = stotal;
+    }
+
+    public String getScantidad() {
+        return scantidad;
+    }
+
+    public void setScantidad(String scantidad) {
+        this.scantidad = scantidad;
+    }
+
+    public String getSunifact() {
+        return sunifact;
+    }
+
+    public void setSunifact(String sunifact) {
+        this.sunifact = sunifact;
+    }
+
+    public String getSprefactura() {
+        return sprefactura;
+    }
+
+    public void setSprefactura(String sprefactura) {
+        this.sprefactura = sprefactura;
+    }
+
+    public String getStrockExcedido() {
+        return strockExcedido;
+    }
+
+    public void setStrockExcedido(String strockExcedido) {
+        this.strockExcedido = strockExcedido;
+    }
+
     public Integer getCantidad() {
         return cantidad;
     }
@@ -397,41 +463,6 @@ public class HomeCesta extends ActionSupport {
     public void setC(Cesta c) {
         this.c = c;
     }
-
-/*    public String CrudActionCesta() throws Exception {
-        if (sesion == null) {
-            sesion = ActionContext.getContext().getSession();
-        }
-        // para cuando tengamos sesión de usuario
-         try{
-         u = (Usuarios) ControladoresDAO.cUsuarios.RecuperaPorId(Integer.parseInt(sesion.get("usuId")+""));
-         }catch(Exception e){
-         return INPUT;
-         }
-        int respuesta;
-        ce = new Cesta();
-        c = new Cesta();
-        c.setCestaId(clave);
-        c.setCestaUnidades(cantidad);
-        c.setRopaStock(ControladoresDAO.cRopaStock.RecuperaPorId(rostockId));
-        c.setUsuarios(ControladoresDAO.cUsuarios.RecuperaPorId(u.getUsuId()));
-        ce = ControladoresDAO.cCesta.RecuperaPorId(clave);
-        if (accionocul.equals("e")) {
-            if (cantidad == ce.getCestaUnidades()) {
-                respuesta = ControladoresDAO.cCesta.Elimina(c);
-            } else {
-                c.setCestaUnidades(ce.getCestaUnidades() - cantidad);
-                respuesta = ControladoresDAO.cCesta.Modifica(c);
-            }
-        } else {
-            respuesta = ControladoresDAO.cCesta.InsertaRopaCestaUsuario(c);
-        }   
-        lista_ropa_Cestas = ControladoresDAO.cCesta.RecuperaTodos(""+u.getUsuId());
-        for (Cesta aux : lista_ropa_Cestas) {
-            precio += aux.getCestaUnidades() * (aux.getRopaStock().getRopa().getRoPrecio() - (aux.getRopaStock().getRopa().getRoPrecio() * aux.getRopaStock().getRopa().getRoDescuento() / 100));
-        }
-        return SUCCESS;
-    }*/
 
     public String CrudActionUsuariosCesta() throws Exception {
         if (sesion == null) {
@@ -449,16 +480,6 @@ public class HomeCesta extends ActionSupport {
             }
         }
         cargarUsuarioNoLogueado(sesion);
-        /*try{
-           Usuarios user = (Usuarios) ControladoresDAO.cUsuarios.RecuperaPorId(Integer.parseInt(sesion.get("usuId")+""));
-           u = ControladoresDAO.cUsuarios.RecuperaPorIdSinModificarSesion(user.getUsuId());
-           if(u.getUsuAdministrador() == 1){
-               return INPUT;                
-           }
-        }catch(Exception e){
-            //si no hay usuario logueado por ahora entra acá
-           return INPUT;
-        }*/
         int respuesta;
         if(!(sesion.get("usuId")+"").equals("")){
             c = new Cesta();
@@ -622,25 +643,6 @@ public class HomeCesta extends ActionSupport {
         botonocul = "Eliminar";
         return SUCCESS;
     }
-
-/*    public String FormalizaFactura() throws Exception {
-        if (sesion == null) {
-            sesion = ActionContext.getContext().getSession();
-        }
-        // para cuando tengamos sesión de usuario
-         try{
-         u = (Usuarios) ControladoresDAO.cUsuarios.RecuperaPorId(Integer.parseInt(sesion.get("usuId")+""));
-         }catch(Exception e){
-         return INPUT;
-         }
-        us = new Usuarios();
-        us = cUsuarios.RecuperaPorId(u.getUsuId());
-        lista_ropa_Cestas = ControladoresDAO.cCesta.RecuperaTodos(""+u.getUsuId());
-        for (Cesta aux : lista_ropa_Cestas) {
-            precio += aux.getCestaUnidades() * (aux.getRopaStock().getRopa().getRoPrecio() - (aux.getRopaStock().getRopa().getRoPrecio() * aux.getRopaStock().getRopa().getRoDescuento() / 100));
-        }
-        return SUCCESS;
-    }*/
     
      public String Pagar() throws Exception {
        if (sesion == null) {
@@ -854,5 +856,106 @@ public class HomeCesta extends ActionSupport {
             }
             
         }
+    }
+    
+    public String ajaxSumaRestaRopa() throws Exception {
+        cantidad = 0;
+        Ropa ro = new Ropa();
+        int iunifact = 0;
+        Double iprefactfinal = 0d;
+        strockExcedido = "";
+        if(usuId.length() < 17){
+            c = ControladoresDAO.cCesta.RecuperaPorId(Integer.parseInt(cestaId));
+            if(marca.equals("+")) {
+                cantidad = c.getCestaUnidades() + 1;
+            } else {
+                cantidad = c.getCestaUnidades() - 1;
+            }
+            if(0 < cantidad && cantidad <= c.getRopaStock().getRostockUnidades()){
+                c.setCestaUnidades(cantidad);
+                ControladoresDAO.cCesta.Modifica(c);
+            } else {
+                if(marca.equals("+")) {
+                    cantidad--;
+                    strockExcedido = "En este momento tenemos " + c.getRopaStock().getRostockUnidades() + " prendas en stock.<br>Disculpe las molestias.";
+                } else {
+                    cantidad++;
+                }
+                ro = c.getRopaStock().getRopa();
+            }
+            ro = c.getRopaStock().getRopa();
+            u = c.getUsuarios();
+            List<Cesta> listaCesta = ControladoresDAO.cCesta.recuperaPorUsuario(u);
+            for(Cesta cesta:listaCesta){
+                iunifact += cesta.getCestaUnidades();
+                iprefactfinal += cesta.getCestaUnidades() * (cesta.getRopaStock().getRopa().getRoPrecio() - (cesta.getRopaStock().getRopa().getRoPrecio() * cesta.getRopaStock().getRopa().getRoDescuento() / 100));
+            }
+            listaCesta = null;            
+        } else {
+            nlc = ControladoresDAO.cCestaNoLog.RecuperaPorId(Integer.parseInt(cestaId));
+            if(marca.equals("+")) {
+                cantidad = nlc.getNlcUnidades() + 1;
+            } else {
+                cantidad = nlc.getNlcUnidades() - 1;
+            }
+            if(0 < cantidad && cantidad <= nlc.getRopaStock().getRostockUnidades()){
+                nlc.setNlcUnidades(cantidad);
+                ControladoresDAO.cCestaNoLog.Modifica(nlc);
+            } else {
+                if(marca.equals("+")) {
+                    cantidad--;
+                    strockExcedido = "En este momento tenemos " + nlc.getRopaStock().getRostockUnidades() + " prendas en stock.<br>Disculpe las molestias.";
+                } else {
+                    cantidad++;
+                }
+            }
+            ro = nlc.getRopaStock().getRopa();            
+            nlu = nlc.getNoLogUsuarios();            
+            List<NoLogCesta> listaNoLogCesta = ControladoresDAO.cCestaNoLog.recuperaPorUsuario(nlu);            
+            for(NoLogCesta noLogCesta:listaNoLogCesta){
+                iunifact += noLogCesta.getNlcUnidades();
+                iprefactfinal += noLogCesta.getNlcUnidades() * (noLogCesta.getRopaStock().getRopa().getRoPrecio() - (noLogCesta.getRopaStock().getRopa().getRoPrecio() * noLogCesta.getRopaStock().getRopa().getRoDescuento() / 100));
+            }
+            listaNoLogCesta = null;
+        }
+        double total = cantidad * (ro.getRoPrecio() -(ro.getRoPrecio() * ro.getRoDescuento() / 100));
+        stotal = (String.format("%.2f", total));
+        scantidad = String.valueOf(cantidad);
+        sunifact = ""+iunifact;
+        sprefactura = (String.format("%.2f", iprefactfinal));
+        //Libero memoria
+        ro = null;
+        c = null;
+        u = null;
+        nlc = null;
+        nlu = null;
+        return SUCCESS;
+    }
+    
+    public String recargaCesta() throws Exception {        
+        if(usuId.length() < 17){
+            c = ControladoresDAO.cCesta.RecuperaPorId(Integer.parseInt(cestaId));
+            if(marca.equals("+")) {
+                cantidad = c.getCestaUnidades() + 1;
+            } else {
+                cantidad = c.getCestaUnidades() - 1;
+            }
+            if(0 < cantidad && cantidad <= c.getRopaStock().getRostockUnidades()){
+                c.setCestaUnidades(cantidad);
+                ControladoresDAO.cCesta.Modifica(c);
+            }           
+        } else {
+            nlc = ControladoresDAO.cCestaNoLog.RecuperaPorId(Integer.parseInt(cestaId));
+            if(marca.equals("+")) {
+                cantidad = nlc.getNlcUnidades() + 1;
+            } else {
+                cantidad = nlc.getNlcUnidades() - 1;
+            }
+            if(0 < cantidad && cantidad <= nlc.getRopaStock().getRostockUnidades()){
+                nlc.setNlcUnidades(cantidad);
+                ControladoresDAO.cCestaNoLog.Modifica(nlc);
+            }
+        }
+        return SUCCESS;
     }
 }

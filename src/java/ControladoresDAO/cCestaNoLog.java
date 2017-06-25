@@ -74,7 +74,7 @@ public class cCestaNoLog {
     }
         
     public static int  Modifica(NoLogCesta c){        
-        sesion = (Session) NewHibernateUtil.getSessionModif();
+        sesion = (Session) NewHibernateUtil.getSession();
         sesion.beginTransaction();
         try{
             sesion.update(c);
@@ -90,7 +90,7 @@ public class cCestaNoLog {
     
     public static List<NoLogCesta> recuperaPorRopaStockYUsuario(int roStock, int usuario){
         sesion = (Session) NewHibernateUtil.getSession();
-        Criteria criterio = sesion.createCriteria(Cesta.class);
+        Criteria criterio = sesion.createCriteria(NoLogCesta.class);
         criterio.add(Restrictions.eq("noLogUsuarios.nluUsuId", usuario));
         criterio.add(Restrictions.eq("ropaStock.rostockId",roStock));
         List<NoLogCesta> lista = criterio.list();

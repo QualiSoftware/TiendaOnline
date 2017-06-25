@@ -77,7 +77,7 @@
                 });
             }
             
-            function enviarPedido(usu){                
+            function enviarPedido(usu){
                 if(usu == 0) {
                     var valido = true;
                     usu = getCookie('userCookieSL');
@@ -145,6 +145,26 @@
                     document.getElementById('botonEnvio').style.display = 'none';
                     document.getElementById('espera').style.display = "block";
                     document.getElementById('frm').submit();
+                }
+            }
+            var conexiones = 0;
+            function usarAJAX(valor, id) {
+                var usuId =  document.getElementById('usuId').value;
+                conexiones++;
+                if(conexiones > 20) {
+                    document.getElementById('marca'+id).value = valor;
+                    document.getElementById("formCantidad").submit();
+                } else {
+                    $.getJSON('ajaxSumaRestaRopa', {
+                        marca: valor, cestaId: id, usuId: usuId
+                    }, function (jsonResponse) {
+                         $("#scantidad"+id).val(jsonResponse.scantidad);
+                         $("#cantidad"+id).html(jsonResponse.scantidad);
+                         $("#total"+id).html(jsonResponse.stotal);
+                         $("label[for='unifact']").text(jsonResponse.sunifact);
+                         $("label[for='prefact']").text(jsonResponse.sprefactura);
+                         $("#Stock_Excedido"+id).html(jsonResponse.strockExcedido)
+                    });
                 }
             }
         </script>
@@ -358,11 +378,6 @@
                 <div class="detalle_info_Cesta">
                     <s:set var="cantidadRopa" value="0"/>
                     <div id="items_en_uso">
-                        <input type="hidden" name="clave" id="roid" value="<s:property value="#a.ropaStock.ropa.roId"/>"/>
-                        <input type="hidden" name="clave" id="colorid" value="<s:property value="#a.ropaStock.color.colorId"/>"/>
-                        <input type="hidden" name="clave" id="tallaid" value="<s:property value="#a.ropaStock.tallas.tallaId"/>"/>
-                        <input type="hidden" name="clave" id="unifact" value="<s:property value="cantidad"/>"/>
-                        <input type="hidden" name="clave" id="prefact" value="<s:property value="getText('{0,number,##0.00}',{precio})"/>"/>
                     <% int cero = 0; %>
                     <s:if test="sesion.usuId!=null && sesion.usuId!=''">
                         <s:iterator var="a" value="lista_ropa_Cestas">
@@ -417,72 +432,29 @@
                                         Cantidad:
                                     </td>
                                     <td>
-
-                                        <s:form id="formCantidad" action="CestaFiltro" theme="simple" method="post">
-                                            <input type="hidden" name="accionocul" value="e"/>
-                                            <input type="hidden" name="clave" id="clave"/>
-                                            <input type="hidden" name="clave" id="idusu" value="<s:property value="sesion.usuId"/>"/>
-                                            <img src="../Imagenes/Administracion/Signo_Menos.png" id="menos-<s:property value="#a.ropaStock.ropa.roId"/>-<s:property value="#a.ropaStock.color.colorId"/>-<s:property value="#a.ropaStock.tallas.tallaId"/>"
-                                                 style="cursor:pointer; width: 30px; padding-top: 13px;"/>
+                                        <s:form id="formCantidad" action="recargaCesta" theme="simple" method="post">
+                                            <input type="hidden" name="cestaId" value="<s:property value="#a.cestaId"/>"/>
+                                            <input type="hidden" name="marca" id="marca<s:property value="#a.cestaId"/>"/>
+                                            <input type="hidden" name="usuId" id="usuId" value="<s:property value="sesion.usuId"/>"/>
+                                            <img src="../Imagenes/Administracion/Signo_Menos.png"  
+                                                 style="cursor:pointer; width: 30px; padding-top: 13px;" 
+                                                 onclick="usarAJAX('-',<s:property value="#a.cestaId"/>);"/>
                                             &nbsp;
-                                            <input type="text" name="cantidad" id="cantidadIndividual<s:property value="#a.ropaStock.ropa.roId"/>" readonly="readonly" 
+                                            <input type="text" name="cantidad" id="scantidad<s:property value="#a.nlcId"/>" readonly="readonly" 
                                                    style="width: 25px;text-align: center;" value="<s:property value="#a.cestaUnidades"/>">
                                             &nbsp;
-                                            <img src="../Imagenes/Administracion/Signo_Mas.png" id="mas-<s:property value="#a.ropaStock.ropa.roId"/>-<s:property value="#a.ropaStock.color.colorId"/>-<s:property value="#a.ropaStock.tallas.tallaId"/>" 
-                                                 style="cursor:pointer; width: 30px; padding-top: 13px;" />
+                                            <img src="../Imagenes/Administracion/Signo_Mas.png" 
+                                                 style="cursor:pointer; width: 30px; padding-top: 13px;" 
+                                                 onclick="usarAJAX('+',<s:property value="#a.cestaId"/>);"/>
                                         </s:form>
-                                        <script>
-
-                                             $(document).ready(function () {
-                                                $('body').on('click', '#items_en_uso img', function(){
-                                                   var a =  $(this).attr('id')
-                                                   var even = a.split('-');
-                                                   var masmenos = even[0];
-                                                   var idropa = even[1];
-                                                   var idcolor = even[2];
-                                                   var idtalla = even[3];
-                                                   $("#roid").val(idropa); 
-                                                   $("#colorid").val(idcolor);  
-                                                   $("#tallaid").val(idtalla); 
-                                                   if(masmenos == "mas"){
-                                                        usarAJAX("+");
-                                                   }else{
-                                                       usarAJAX("-");
-                                                   }
-                                                })                                           
-                                            });
-                                            function usarAJAX(value) { 
-                                                var unifact = document.getElementById('unifact').value;
-                                                var concomaprefact = document.getElementById('prefact').value;
-                                                var prefact = concomaprefact.replace(",", ".");        
-                                                var roid = document.getElementById('roid').value;
-                                                var colorid = document.getElementById('colorid').value;
-                                                var tallaid = document.getElementById('tallaid').value;
-                                                var cantidadprenda =  document.getElementById('cantidadIndividual'+roid).value;
-                                                var idusu =  document.getElementById('idusu').value;
-                                                var masmenos = value;
-                                                $.getJSON('ajaxsumaRestaRopa', {
-                                                    roid: roid, colorid: colorid, tallaid: tallaid, cantidadprenda: cantidadprenda, masmenos: masmenos, idusu: idusu, prefact: prefact, unifact: unifact
-                                                }, function (jsonResponse) {
-                                                     $("#cantidadIndividual"+roid).val(jsonResponse.scantidad);
-                                                     $("#unifact").val(jsonResponse.sunifact);
-                                                     $("#prefact").val(jsonResponse.sprefactura);
-                                                     $("label[for='uni"+roid+"']").text(jsonResponse.scantidad);
-                                                     $("label[for='total"+roid+"']").text(jsonResponse.stotal);
-                                                     $("label[for='unifact']").text(jsonResponse.sunifact);
-                                                     $("label[for='prefact']").text(jsonResponse.sprefactura);      
-                                                });
-                                            }
-                                        </script>
                                     </td>  
                                 </tr>
                                 <tr>
                                     <td></td><td style="width:180px;">
-                                        Importe por <label for="uni<s:property value="#a.ropaStock.ropa.roId"/>"><s:property value="#a.cestaUnidades"/></label>  prendas:
+                                        Importe por <label id="cantidad<s:property value="#a.cestaId"/>"><s:property value="#a.cestaUnidades"/></label> prendas:
                                     </td>
                                     <td>
-                                        <label for="total<s:property value="#a.ropaStock.ropa.roId"/>"><s:property value="getText('{0,number,##0.00}',{#a.cestaUnidades * (#a.ropaStock.ropa.roPrecio - (#a.ropaStock.ropa.roPrecio * #a.ropaStock.ropa.roDescuento / 100))})"/></label>€
-
+                                        <label id="total<s:property value="#a.cestaId"/>"><s:property value="getText('{0,number,##0.00}',{#a.cestaUnidades * (#a.ropaStock.ropa.roPrecio - (#a.ropaStock.ropa.roPrecio * #a.ropaStock.ropa.roDescuento / 100))})"/></label>€
                                     </td>
                                 </tr>
                                 <tr>
@@ -555,74 +527,29 @@
                                         Cantidad:
                                     </td>
                                     <td>
-
-                                        <s:form id="formCantidad" action="CestaFiltro" theme="simple" method="post">
-                                            <input type="hidden" name="accionocul" value="e"/>
-                                            <input type="hidden" name="clave" id="clave"/>
-                                            <input type="hidden" name="clave" id="idusu" value="<s:property value="sesion.cookieLogueado.nluNick"/>"/>
-                                            <img src="../Imagenes/Administracion/Signo_Menos.png" id="menos-<s:property value="#a.ropaStock.ropa.roId"/>-<s:property value="#a.ropaStock.color.colorId"/>-<s:property value="#a.ropaStock.tallas.tallaId"/>"
-                                                 style="cursor:pointer; width: 30px; padding-top: 13px;"/>
+                                        <s:form id="formCantidad" action="recargaCesta" theme="simple" method="post">
+                                            <input type="hidden" name="cestaId" value="<s:property value="#a.nlcId"/>"/>
+                                            <input type="hidden" name="marca" id="marca<s:property value="#a.nlcId"/>"/>
+                                            <input type="hidden" name="usuId" id="usuId" value="<s:property value="sesion.cookieLogueado.nluNick"/>"/>
+                                            <img src="../Imagenes/Administracion/Signo_Menos.png" 
+                                                 style="cursor:pointer; width: 30px; padding-top: 13px;" 
+                                                 onclick="usarAJAX('-',<s:property value="#a.nlcId"/>);"/>
                                             &nbsp;
-                                            <input type="text" name="cantidad" id="cantidadIndividual<s:property value="#a.ropaStock.ropa.roId"/>" readonly="readonly" 
+                                            <input type="text" name="cantidad" id="scantidad<s:property value="#a.nlcId"/>" readonly="readonly" 
                                                    style="width: 25px;text-align: center;" value="<s:property value="#a.nlcUnidades"/>">
                                             &nbsp;
-                                            <img src="../Imagenes/Administracion/Signo_Mas.png" id="mas-<s:property value="#a.ropaStock.ropa.roId"/>-<s:property value="#a.ropaStock.color.colorId"/>-<s:property value="#a.ropaStock.tallas.tallaId"/>" 
-                                                 style="cursor:pointer; width: 30px; padding-top: 13px;" />
+                                            <img src="../Imagenes/Administracion/Signo_Mas.png" 
+                                                 style="cursor:pointer; width: 30px; padding-top: 13px;" 
+                                                 onclick="usarAJAX('+',<s:property value="#a.nlcId"/>);"/>
                                         </s:form>
-                                        <script>
-
-                                             $(document).ready(function () {
-                                                $('body').on('click', '#items_en_uso img', function(){   
-                                                   var a =  $(this).attr('id');
-                                                   var even = a.split('-');
-                                                   var masmenos = even[0];
-                                                   var idropa = even[1];
-                                                   var idcolor = even[2];
-                                                   var idtalla = even[3];
-                                                   $("#roid").val(idropa); 
-                                                   $("#colorid").val(idcolor);  
-                                                   $("#tallaid").val(idtalla); 
-                                                   if(masmenos == "mas"){
-                                                        usarAJAX("+");
-                                                   }else{
-                                                       usarAJAX("-");
-                                                   }
-                                                })                                           
-                                            });
-                                            function usarAJAX(value) { 
-
-                                                var unifact = document.getElementById('unifact').value;
-
-                                                var concomaprefact = document.getElementById('prefact').value;
-                                                var prefact = concomaprefact.replace(",", ".")
-                                                var roid = document.getElementById('roid').value;
-                                                var colorid = document.getElementById('colorid').value;
-                                                var tallaid = document.getElementById('tallaid').value;
-                                                var cantidadprenda =  document.getElementById('cantidadIndividual'+roid).value;
-                                                var idusu =  document.getElementById('idusu').value;
-                                                var masmenos = value;
-                                                $.getJSON('ajaxsumaRestaRopa', {
-                                                    roid: roid, colorid: colorid, tallaid: tallaid, cantidadprenda: cantidadprenda, masmenos: masmenos, idusu: idusu, prefact: prefact, unifact: unifact
-                                                }, function (jsonResponse) {
-                                                     $("#cantidadIndividual"+roid).val(jsonResponse.scantidad);
-                                                     $("#unifact").val(jsonResponse.sunifact);
-                                                     $("#prefact").val(jsonResponse.sprefactura);
-                                                     $("label[for='uni"+roid+"']").text(jsonResponse.scantidad);
-                                                     $("label[for='total"+roid+"']").text(jsonResponse.stotal);
-                                                     $("label[for='unifact']").text(jsonResponse.sunifact);
-                                                     $("label[for='prefact']").text(jsonResponse.sprefactura);      
-                                                });
-                                            }
-                                        </script>
                                     </td>  
                                 </tr>
                                 <tr>
                                     <td></td><td style="width:180px;">
-                                        Importe por <label for="uni<s:property value="#a.ropaStock.ropa.roId"/>"><s:property value="#a.nlcUnidades"/></label>  prendas:
+                                        Importe por <label id="cantidad<s:property value="#a.nlcId"/>"><s:property value="#a.nlcUnidades"/></label> prendas:
                                     </td>
                                     <td>
-                                        <label for="total<s:property value="#a.ropaStock.ropa.roId"/>"><s:property value="getText('{0,number,##0.00}',{#a.nlcUnidades * (#a.ropaStock.ropa.roPrecio - (#a.ropaStock.ropa.roPrecio * #a.ropaStock.ropa.roDescuento / 100))})"/></label>€
-
+                                        <label id="total<s:property value="#a.nlcId"/>"><s:property value="getText('{0,number,##0.00}',{#a.nlcUnidades * (#a.ropaStock.ropa.roPrecio - (#a.ropaStock.ropa.roPrecio * #a.ropaStock.ropa.roDescuento / 100))})"/></label>€
                                     </td>
                                 </tr>
                                 <tr>
