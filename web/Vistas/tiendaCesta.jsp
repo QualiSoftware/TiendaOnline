@@ -440,7 +440,7 @@
                                                  style="cursor:pointer; width: 30px; padding-top: 13px;" 
                                                  onclick="usarAJAX('-',<s:property value="#a.cestaId"/>);"/>
                                             &nbsp;
-                                            <input type="text" name="cantidad" id="scantidad<s:property value="#a.nlcId"/>" readonly="readonly" 
+                                            <input type="text" name="cantidad" id="scantidad<s:property value="#a.cestaId"/>" readonly="readonly" 
                                                    style="width: 25px;text-align: center;" value="<s:property value="#a.cestaUnidades"/>">
                                             &nbsp;
                                             <img src="../Imagenes/Administracion/Signo_Mas.png" 
