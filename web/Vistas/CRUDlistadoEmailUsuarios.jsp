@@ -92,7 +92,7 @@
                     <a href=<s:property value="expresionHREF"/> id="enviarA" onclick="cerrarDivEnviar();" >Generar email</a>
                 </div>
                 <div id="divRecargarListado" style="display:none;">
-                    <a href="/TiendaOnline/Vistas/listadoEmailUsuarios.action">Recargar listado</a>
+                    <a href="/Vistas/listadoEmailUsuarios.action">Recargar listado</a>
                 </div>
             </s:if>
                 <script>

@@ -7,7 +7,7 @@
                     <img src="../Imagenes/Administracion/LogoFondoNegro.png" width="300" alt="">
                     <!--<h3>Tienda<span>Ropa</span></h3>-->
                     <p class="footer-links">
-                        <a href="/TiendaOnline/Vistas/Tienda.action">Inicio</a>
+                        <a href="/Vistas/Tienda.action">Inicio</a>
                         ·
                         <a href="#">Blog</a>
                         ·

@@ -47,7 +47,6 @@
     NoLogUsuarios nlu;
     if(sesion.get("cookieLogueado") == null){
         List<NoLogUsuarios> nluList = ControladoresDAO.cUsuariosNoLog.recuperaPorNick(userCookieExacto);
-
         if(nluList.size() > 0){
             nlu = nluList.get(0);
             sesion.put("cookieLogueado", (NoLogUsuarios) nlu);
@@ -63,7 +62,7 @@
                     var d = new Date();
                     d.setTime(d.getTime() + (30*24*60*60*1000));
                     var expires = "expires="+ d.toUTCString();
-                    document.cookie = "userCookieSL="+<%=userCookieExacto%>+"; expires="+ expires;                
+                    document.cookie = "userCookieSL="+<%out.println(userCookieExacto);%>+"; expires="+ expires;                
                 </script><%
                 sesion.put("cookieLogueado", (NoLogUsuarios) nlu);
             } else {

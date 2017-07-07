@@ -937,7 +937,7 @@ public class HomeUsuarios extends ActionSupport {
                 } else {
                     respuesta = 2;
                     dummyMsg = Acciones.HomePropiedades.muestraValor("url")+
-                            "/TiendaOnline/Vistas/reactiva.action?usuEmail2="+u.getUsuEmail()
+                            "/Vistas/reactiva.action?usuEmail2="+u.getUsuEmail()
                             +"&accionocul="+u.getUsuId();
                     lista_usuarios = null;
                     u = null;

@@ -101,7 +101,7 @@
                     <td><s:property value="getText('{0,number,##0.00}',{total})"/></td>
                 </tr>
         </table>
-        <center><a href="/TiendaOnline/Vistas/FacturasFiltro.action" class="cambioFondo">Volver a Facturas</a></center>
+        <center><a href="/Vistas/FacturasFiltro.action" class="cambioFondo">Volver a Facturas</a></center>
         </s:form>
     </body>
 </html>
