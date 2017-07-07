@@ -70,8 +70,8 @@
             }
         </script>
         <title>
-            <s:if test="(marca==null && clientela!=null) || (marca=='' && clientela!='')"><s:property value="categoriaNombre"/> <s:property value="clientelaNombre"/></s:if>
-                    <s:elseif test="(marca==null && clientela==null && campania==null) || (marca=='' && clientela=='' && campania=='')">Todas las ventas</s:elseif>
+            <s:if test="(marca==null && cliCodigo!=null) || (marca=='' && cliCodigo!='')"><s:property value="categoriaNombre"/> <s:property value="clientelaNombre"/></s:if>
+                    <s:elseif test="(marca==null && cliCodigo==null && campania==null) || (marca=='' && cliCodigo=='' && campania=='')">Todas las ventas</s:elseif>
                     <s:elseif test="(marca==null && campania!=null) || (marca=='' && campania!='')"><s:property value="campaniaNombre"/></s:elseif>
                     <s:else><s:property value="marcaNom"/></s:else>
         </title>

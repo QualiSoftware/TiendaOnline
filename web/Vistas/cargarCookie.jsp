@@ -43,9 +43,10 @@
         String milisegundo = (z.getNano()+"").substring(0, 3);
         userCookie = z.getYear()+mes+dia+hora+minuto+segundo+milisegundo;
     }
+    String userCookieExacto = userCookie + "";
     NoLogUsuarios nlu;
     if(sesion.get("cookieLogueado") == null){
-        List<NoLogUsuarios> nluList = ControladoresDAO.cUsuariosNoLog.recuperaPorNick(userCookie);
+        List<NoLogUsuarios> nluList = ControladoresDAO.cUsuariosNoLog.recuperaPorNick(userCookieExacto);
 
         if(nluList.size() > 0){
             nlu = nluList.get(0);
@@ -55,14 +56,14 @@
             sesion.put("usuNombre", "");
             sesion.put("usuAdministrador", "");
         } else {
-            nlu = new NoLogUsuarios(userCookie, new Date(),"");
+            nlu = new NoLogUsuarios(userCookieExacto, new Date(),"");
             int resp = ControladoresDAO.cUsuariosNoLog.Inserta(nlu);
             if(resp == 1){
                 %><script>
                     var d = new Date();
                     d.setTime(d.getTime() + (30*24*60*60*1000));
                     var expires = "expires="+ d.toUTCString();
-                    document.cookie = "userCookieSL="+<%=userCookie%>+"; expires="+ expires;                
+                    document.cookie = "userCookieSL="+<%=userCookieExacto%>+"; expires="+ expires;                
                 </script><%
                 sesion.put("cookieLogueado", (NoLogUsuarios) nlu);
             } else {
