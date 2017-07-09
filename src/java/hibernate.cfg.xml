@@ -12,6 +12,8 @@
     <property name="hibernate.transaction.flush_before_completion">true</property>
     <property name="hibernate.connection.password">root</property>
     <!--<property name="hibernate.connection.password">LDEbry69931</property>-->
+    <property name="hibernate.dbcp.validationQuery">SELECT 1+1</property>
+    <property name="hibernate.dbcp.testOnBorrow">true</property>
     <mapping resource="Modelos/CampaniaRopa.hbm.xml"/>
     <mapping resource="Modelos/Campania.hbm.xml"/>
     <mapping resource="Modelos/Propiedades.hbm.xml"/>
