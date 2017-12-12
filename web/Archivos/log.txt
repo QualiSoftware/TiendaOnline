@@ -128,3 +128,60 @@ Hubo un intento de conexión fallido el Fri Jun 23 21:06:30 CEST 2017 con user: j
 Se envió una factura con fecha Fri Jun 23 21:27:11 CEST 2017 de javier martin, código de usuario 17
 Error al intentar cargar un usuario en método convert con usuID 17 el día Fri Jun 23 21:43:50 CEST 2017
 Se envió una factura con fecha Sun Nov 05 23:44:54 CET 2017 de un usuario anónimo con email alguien@alguien.com
+Archivo C:\Users\Damian\Documents\NetBeansProjects\TiendaOnline\TiendaOnline\web\Imagenes\Camisas\A rayas\All boys.jpg borrado Mon Dec 11 21:41:52 CET 2017
+Archivo C:\Users\Damian\Documents\NetBeansProjects\TiendaOnline\TiendaOnline\web\Imagenes\Camisas\A rayas\Almirante Brown.jpg borrado Mon Dec 11 21:41:52 CET 2017
+Archivo C:\Users\Damian\Documents\NetBeansProjects\TiendaOnline\TiendaOnline\web\Imagenes\Camisas\A cuadros\Instituto.jpg borrado Mon Dec 11 21:42:07 CET 2017
+Archivo C:\Users\Damian\Documents\NetBeansProjects\TiendaOnline\TiendaOnline\web\Imagenes\Camisas\A cuadros\lagunas Ruidera.jpg borrado Mon Dec 11 21:42:07 CET 2017
+Archivo C:\Users\Damian\Documents\NetBeansProjects\TiendaOnline\TiendaOnline\web\Imagenes\Camisas\A cuadros\Atlético Rafaela.jpg borrado Mon Dec 11 21:42:07 CET 2017
+Archivo C:\Users\Damian\Documents\NetBeansProjects\TiendaOnline\TiendaOnline\web\Imagenes\Camisas\A cuadros\Defensa y Justicia.jpg borrado Mon Dec 11 21:42:21 CET 2017
+Archivo C:\Users\Damian\Documents\NetBeansProjects\TiendaOnline\TiendaOnline\web\Imagenes\Camisas\A rayas\lanus.gif borrado Mon Dec 11 21:42:39 CET 2017
+Archivo C:\Users\Damian\Documents\NetBeansProjects\TiendaOnline\TiendaOnline\web\Imagenes\Camisas\A rayas\Libertad.JPG borrado Mon Dec 11 21:42:39 CET 2017
+Archivo C:\Users\Damian\Documents\NetBeansProjects\TiendaOnline\TiendaOnline\web\Imagenes\Camisas\A rayas\Campera de cuero.jpg borrado Mon Dec 11 21:42:54 CET 2017
+Archivo C:\Users\Damian\Documents\NetBeansProjects\TiendaOnline\TiendaOnline\web\Imagenes\Camisas\A rayas\Estudiantes Buenos Aires.jpg borrado Mon Dec 11 21:43:25 CET 2017
+Archivo C:\Users\Damian\Documents\NetBeansProjects\TiendaOnline\TiendaOnline\web\Imagenes\Camisas\A rayas\11229_color0002redim_1301485683.jpg borrado Mon Dec 11 21:43:34 CET 2017
+Archivo C:\Users\Damian\Documents\NetBeansProjects\TiendaOnline\TiendaOnline\web\Imagenes\Camisas\A cuadros\10990034_1.jpg borrado Mon Dec 11 21:43:46 CET 2017
+Archivo C:\Users\Damian\Documents\NetBeansProjects\TiendaOnline\TiendaOnline\web\Imagenes\Camisas\A cuadros\Blouse-b.jpg borrado Mon Dec 11 21:43:57 CET 2017
+Archivo C:\Users\Damian\Documents\NetBeansProjects\TiendaOnline\TiendaOnline\web\Imagenes\Camisas\A rayas\13-Fotografías-de-prendas-brillantes-para-fiesta-8.jpg borrado Mon Dec 11 21:44:19 CET 2017
+Archivo C:\Users\Damian\Documents\NetBeansProjects\TiendaOnline\TiendaOnline\web\Imagenes\Camisas\A rayas\1974ebaa615d81f5200ed88b731d7d36.jpg borrado Mon Dec 11 21:44:29 CET 2017
+Archivo C:\Users\Damian\Documents\NetBeansProjects\TiendaOnline\TiendaOnline\web\Imagenes\Camisas\A rayas\2014-Sxey-font-b-Vintage-b-font-font-b-Wedding-b-font-font-b-Dresses-b.jpg borrado Mon Dec 11 21:44:39 CET 2017
+Archivo C:\Users\Damian\Documents\NetBeansProjects\TiendaOnline\TiendaOnline\web\Imagenes\Camisas\A rayas\Liga Deportiva Universitaria de Quito.jpg borrado Mon Dec 11 21:44:51 CET 2017
+Archivo C:\Users\Damian\Documents\NetBeansProjects\TiendaOnline\TiendaOnline\web\Imagenes\Camisas\A rayas\Nacional Paraguay.jpg borrado Mon Dec 11 21:44:51 CET 2017
+Archivo C:\Users\Damian\Documents\NetBeansProjects\TiendaOnline\TiendaOnline\web\Imagenes\Camisas\A rayas\img001.jpg borrado Mon Dec 11 21:44:51 CET 2017
+Archivo C:\Users\Damian\Documents\NetBeansProjects\TiendaOnline\TiendaOnline\web\Imagenes\Faldas\De tablas\664679695_504.jpg borrado Mon Dec 11 21:45:00 CET 2017
+Archivo C:\Users\Damian\Documents\NetBeansProjects\TiendaOnline\TiendaOnline\web\Imagenes\Faldas\Tubo\664888915_759.jpg borrado Mon Dec 11 21:45:10 CET 2017
+Archivo C:\Users\Damian\Documents\NetBeansProjects\TiendaOnline\TiendaOnline\web\Imagenes\Pantalones\Cortos\665032598_441.jpg borrado Mon Dec 11 21:45:20 CET 2017
+Archivo C:\Users\Damian\Documents\NetBeansProjects\TiendaOnline\TiendaOnline\web\Imagenes\Pantalones\Cortos\Bata-sobre-la-rodilla-Mini-mangas-v-cuello-de-Organza-una-línea-sin-respaldo-cremallera-vestidos.jpg borrado Mon Dec 11 21:45:30 CET 2017
+Archivo C:\Users\Damian\Documents\NetBeansProjects\TiendaOnline\TiendaOnline\web\Imagenes\Pantalones\Largos\HTB1lhR_HpXXXXa7apXXq6xXFXXXH.jpg borrado Mon Dec 11 21:45:39 CET 2017
+Archivo C:\Users\Damian\Documents\NetBeansProjects\TiendaOnline\TiendaOnline\web\Imagenes\Pantalones\Largos\San Luis.JPG borrado Mon Dec 11 21:45:50 CET 2017
+Archivo C:\Users\Damian\Documents\NetBeansProjects\TiendaOnline\TiendaOnline\web\Imagenes\Pantalones\Largos\Newells old boys.jpg borrado Mon Dec 11 21:45:50 CET 2017
+Archivo C:\Users\Damian\Documents\NetBeansProjects\TiendaOnline\TiendaOnline\web\Imagenes\Pantalones\Largos\Vaquero niña.jpg borrado Mon Dec 11 21:46:01 CET 2017
+Archivo C:\Users\Damian\Documents\NetBeansProjects\TiendaOnline\TiendaOnline\web\Imagenes\Pantalones\Largos\Vaquero niña2.jpg borrado Mon Dec 11 21:46:01 CET 2017
+Archivo C:\Users\Damian\Documents\NetBeansProjects\TiendaOnline\TiendaOnline\web\Imagenes\Pantalones\Largos\pantalon-largo-legging-mujer-de-punto-simil-jeans-vaquero-paris.jpg borrado Mon Dec 11 21:46:11 CET 2017
+Archivo C:\Users\Damian\Documents\NetBeansProjects\TiendaOnline\TiendaOnline\web\Imagenes\Pantalones\Largos\pantalones-azules-rotos-2.png_1840774006.png borrado Mon Dec 11 21:46:11 CET 2017
+Archivo C:\Users\Damian\Documents\NetBeansProjects\TiendaOnline\TiendaOnline\web\Imagenes\Vestidos\Encajados\New-Arrival-Free-Shipping-Strapless-Bridal-Gown-Black-font-b-Designer-b-font-font-b-Wedding.jpg borrado Mon Dec 11 21:46:20 CET 2017
+Archivo C:\Users\Damian\Documents\NetBeansProjects\TiendaOnline\TiendaOnline\web\Imagenes\Vestidos\Largos\ON321C0D4-K11@12.jpg borrado Mon Dec 11 21:46:31 CET 2017
+Archivo C:\Users\Damian\Documents\NetBeansProjects\TiendaOnline\TiendaOnline\web\Imagenes\Vestidos\Encajados\img001.jpg borrado Mon Dec 11 21:46:40 CET 2017
+El archivoC:\Users\Damian\Documents\NetBeansProjects\TiendaOnline\TiendaOnline\web\Imagenes\Campanias\Campaña Nanque.jpg de campaña no puede ser borrado Tue Dec 12 22:28:56 CET 2017
+El archivoC:\Users\Damian\Documents\NetBeansProjects\TiendaOnline\TiendaOnline\web\Imagenes\Campanias\12.PNG de campaña no puede ser borrado Tue Dec 12 22:29:48 CET 2017
+El archivoC:\Users\Damian\Documents\NetBeansProjects\TiendaOnline\TiendaOnline\web\Imagenes\Campanias\11.PNG de campaña no puede ser borrado Tue Dec 12 22:30:04 CET 2017
+El archivoC:\Users\Damian\Documents\NetBeansProjects\TiendaOnline\TiendaOnline\web\Imagenes\Campanias\10.PNG de campaña no puede ser borrado Tue Dec 12 22:30:19 CET 2017
+El archivoC:\Users\Damian\Documents\NetBeansProjects\TiendaOnline\TiendaOnline\web\Imagenes\Campanias\9.PNG de campaña no puede ser borrado Tue Dec 12 22:31:12 CET 2017
+El archivoC:\Users\Damian\Documents\NetBeansProjects\TiendaOnline\TiendaOnline\web\Imagenes\Campanias\8.PNG de campaña no puede ser borrado Tue Dec 12 22:31:29 CET 2017
+El archivoC:\Users\Damian\Documents\NetBeansProjects\TiendaOnline\TiendaOnline\web\Imagenes\Campanias\7.PNG de campaña no puede ser borrado Tue Dec 12 22:31:42 CET 2017
+El archivoC:\Users\Damian\Documents\NetBeansProjects\TiendaOnline\TiendaOnline\web\Imagenes\Campanias\6.PNG de campaña no puede ser borrado Tue Dec 12 22:31:54 CET 2017
+El archivoC:\Users\Damian\Documents\NetBeansProjects\TiendaOnline\TiendaOnline\web\Imagenes\Campanias\metros4.jpg de campaña no puede ser borrado Tue Dec 12 22:32:21 CET 2017
+El archivoC:\Users\Damian\Documents\NetBeansProjects\TiendaOnline\TiendaOnline\web\Imagenes\Campanias\4.PNG de campaña no puede ser borrado Tue Dec 12 22:32:40 CET 2017
+El archivoC:\Users\Damian\Documents\NetBeansProjects\TiendaOnline\TiendaOnline\web\Imagenes\Campanias\3.PNG de campaña no puede ser borrado Tue Dec 12 22:33:01 CET 2017
+El archivoC:\Users\Damian\Documents\NetBeansProjects\TiendaOnline\TiendaOnline\web\Imagenes\Campanias\2.PNG de campaña no puede ser borrado Tue Dec 12 22:33:23 CET 2017
+El archivoC:\Users\Damian\Documents\NetBeansProjects\TiendaOnline\TiendaOnline\web\Imagenes\Campanias\1.PNG de campaña no puede ser borrado Tue Dec 12 22:33:39 CET 2017
+El archivoC:\Users\Damian\Documents\NetBeansProjects\TiendaOnline\TiendaOnline\web\Imagenes\Marcas\Adidas.jpg de marca no puede ser borrado Tue Dec 12 22:34:27 CET 2017
+El archivoC:\Users\Damian\Documents\NetBeansProjects\TiendaOnline\TiendaOnline\web\Imagenes\Marcas\Benetton.jpg de marca no puede ser borrado Tue Dec 12 22:34:34 CET 2017
+Archivo C:\Users\Damian\Documents\NetBeansProjects\TiendaOnline\TiendaOnline\web\Imagenes\Marcas\Benetton.jpg de marca borrado Tue Dec 12 22:34:49 CET 2017
+Archivo C:\Users\Damian\Documents\NetBeansProjects\TiendaOnline\TiendaOnline\web\Imagenes\Marcas\Benetton.jpg de marca borrado Tue Dec 12 22:34:53 CET 2017
+El archivoC:\Users\Damian\Documents\NetBeansProjects\TiendaOnline\TiendaOnline\web\Imagenes\Marcas\Mango.jpg de marca no puede ser borrado Tue Dec 12 22:35:33 CET 2017
+El archivoC:\Users\Damian\Documents\NetBeansProjects\TiendaOnline\TiendaOnline\web\Imagenes\Marcas\Le Coq Sportif.jpg de marca no puede ser borrado Tue Dec 12 22:35:46 CET 2017
+El archivoC:\Users\Damian\Documents\NetBeansProjects\TiendaOnline\TiendaOnline\web\Imagenes\Marcas\Nanque.jpg de marca no puede ser borrado Tue Dec 12 22:35:58 CET 2017
+Archivo C:\Users\Damian\Documents\NetBeansProjects\TiendaOnline\TiendaOnline\web\Imagenes\Marcas\Nanque.jpg de marca borrado Tue Dec 12 22:36:02 CET 2017
+El archivoC:\Users\Damian\Documents\NetBeansProjects\TiendaOnline\TiendaOnline\web\Imagenes\Marcas\Nike.jpg de marca no puede ser borrado Tue Dec 12 22:36:11 CET 2017
+Archivo C:\Users\Damian\Documents\NetBeansProjects\TiendaOnline\TiendaOnline\web\Imagenes\Marcas\Nike.jpg de marca borrado Tue Dec 12 22:36:14 CET 2017
+El archivoC:\Users\Damian\Documents\NetBeansProjects\TiendaOnline\TiendaOnline\web\Imagenes\Marcas\Lee.jpg de marca no puede ser borrado Tue Dec 12 22:38:43 CET 2017
