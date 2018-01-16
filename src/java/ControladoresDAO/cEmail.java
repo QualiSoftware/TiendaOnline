@@ -87,19 +87,22 @@ public class cEmail{
     //public static boolean enviarCorreo(String[] para){
     private static boolean funcionEnviar(String para, String archivo, String asunto, String mensaje){
         boolean enviado = false;
-            try{            
-                String host = "smtp.gmail.com";
+            try{
                 String de = Acciones.HomePropiedades.muestraValor("email.empresa");
+//                String host = "smtp.gmail.com";
+//                final String username = "empresa2016sl@gmail.com";
+//                final String password = "********";
+                String host = "smtp.superlook.es";
+                final String username = "no-reply@superlook.es";
+                final String password = "Superl@@k2017";
                 
                 Properties prop = System.getProperties();
                 
-                prop.put("mail.smtp.starttls.enable","true");
+                prop.put("mail.smtp.starttls.enable","false");
                 prop.put("mail.smtp.host", host);
-                prop.put("mail.smtp.port",587);
+//                prop.put("mail.smtp.port",587);
+                prop.put("mail.smtp.port",25);
                 prop.put("mail.smtp.auth","true");
-                
-                final String username = "empresa2016sl@gmail.com";
-                final String password = "q.s.2016";
                 
                 Session sesion = Session.getInstance(prop,
                    new javax.mail.Authenticator() {

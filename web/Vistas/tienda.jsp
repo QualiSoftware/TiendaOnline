@@ -37,7 +37,7 @@
 
     <body>
         <s:include value="cargarCookie.jsp" />
-        <div id="todo">            
+        <div id="todo">
             <div id="header">
                 <div id="marca"><img src="../Imagenes/Administracion/SH14171.jpg" alt="house_hangers" id="logo"/>
                 </div>
@@ -373,11 +373,11 @@
             <div id="contenido">
                 <s:if test="lista_campaniasTienda.size > 0">
                     <br>
-<!--                    <div id="campañas_Titulo">
-                        <div class="rellenoIzq" style="z-index: 0;"></div>
-                            <div class="campañas_titulo_Txt" style="z-index: 1;">CAMPAÑAS</div>
-                            <div class="rellenoDer" style="z-index: 0;"></div>
-                    </div>-->
+                    <!--                    <div id="campañas_Titulo">
+                                            <div class="rellenoIzq" style="z-index: 0;"></div>
+                                                <div class="campañas_titulo_Txt" style="z-index: 1;">CAMPAÑAS</div>
+                                                <div class="rellenoDer" style="z-index: 0;"></div>
+                                        </div>-->
                     <div id="campañas_titulo_Txt">CAMPAÑAS</div>
                     <div id="campagnas" >
                         <s:iterator var="a" value="lista_campaniasTienda">

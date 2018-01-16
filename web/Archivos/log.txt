@@ -185,3 +185,4 @@ Archivo C:\Users\Damian\Documents\NetBeansProjects\TiendaOnline\TiendaOnline\web
 El archivoC:\Users\Damian\Documents\NetBeansProjects\TiendaOnline\TiendaOnline\web\Imagenes\Marcas\Nike.jpg de marca no puede ser borrado Tue Dec 12 22:36:11 CET 2017
 Archivo C:\Users\Damian\Documents\NetBeansProjects\TiendaOnline\TiendaOnline\web\Imagenes\Marcas\Nike.jpg de marca borrado Tue Dec 12 22:36:14 CET 2017
 El archivoC:\Users\Damian\Documents\NetBeansProjects\TiendaOnline\TiendaOnline\web\Imagenes\Marcas\Lee.jpg de marca no puede ser borrado Tue Dec 12 22:38:43 CET 2017
+Se envió una factura con fecha Tue Jan 16 23:26:18 CET 2018 de Damián Usheff Gonzalez-Santamaría, código de usuario 13
