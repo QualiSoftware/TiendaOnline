@@ -176,7 +176,7 @@
             <div id="header">
                 <div id="marca">
                     <s:a action="Tienda">
-                        <img src="../Imagenes/Administracion/SH14171.jpg" alt="house_hangers" id="logo"/>
+                        <img src="../Imagenes/Administracion/SUPERLOOK_GRAY_1.png" alt="house_hangers" id="logo"/>
                     </s:a>
                 </div>
                 <div id="idioma">
@@ -374,7 +374,7 @@
             <div id="linea2" class="linea"></div>
             <div class="linea" style="height: 0.2em;"></div>
             <div id="contenido_Detalles">
-                <div id="cesta_Titulo">Mi Cesta <img src="../Imagenes/Administracion/Shopping-Cart-10.png" alt="" id="imgcesta_Titulo"/></div>
+                <div id="cesta_Titulo">Mi Cesta <img src="../Imagenes/Administracion/bolsa-compra-superlook.png" alt="" id="imgcesta_Titulo"/></div>
                 <div class="detalle_info_Cesta">
                     <s:set var="cantidadRopa" value="0"/>
                     <div id="items_en_uso">

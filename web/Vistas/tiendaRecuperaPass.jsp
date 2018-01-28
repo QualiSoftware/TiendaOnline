@@ -76,7 +76,7 @@
             <div id="header">
                 <div id="marca">
                     <s:a action="Tienda">
-                        <img src="../Imagenes/Administracion/SH14171.jpg" alt="house_hangers" id="logo"/>
+                        <img src="../Imagenes/Administracion/SUPERLOOK_GRAY_1.png" alt="logo superlook" id="logo"/>
                     </s:a>
                 </div>
                 <div id="idioma">

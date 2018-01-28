@@ -4,7 +4,7 @@
             <div id="linea1" class="linea"></div>
             <footer class="footer-distributed" style="background-color: #333333;">
                 <div class="footer-left">
-                    <img src="../Imagenes/Administracion/LogoFondoNegro.png" width="300" alt="">
+                    <img src="../Imagenes/Administracion/SUPERLOOK_WHITE_GRAY_1.png" width="300" alt="">
                     <!--<h3>Tienda<span>Ropa</span></h3>-->
                     <p class="footer-links">
                         <a href="/Vistas/Tienda.action">Inicio</a>
@@ -25,15 +25,18 @@
                 <div class="footer-center">
                     <div>
                         <i class="fa fa-map-marker"></i>
-                        <p><span>Calle Real 21</span> Puertollano, Esapaña</p>
+                        <p>Calle Amargura, 3. <br>
+                            13500, Puertollano <br>
+                            Ciudad Real, Esapaña
+                          </p>
                     </div>
                     <div>
                         <i class="fa fa-phone"></i>
-                        <p>+34 666 478 989</p>
+                        <p>+34 647 529 697</p>
                     </div>
                     <div>
                         <i class="fa fa-envelope"></i>
-                        <p><a href="mailto:support@company.com">tiendaropa@company.com</a></p>
+                        <p><a href="mailto:support@company.com">jesusmrz100@gmail.com</a></p>
                     </div><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <span style="color: white; margin-left: -20px;">Tipos de pago aceptados</span>
                     <br><br>

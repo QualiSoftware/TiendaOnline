@@ -39,17 +39,21 @@
         <s:include value="cargarCookie.jsp" />
         <div id="todo">
             <div id="header">
-                <div id="marca"><img src="../Imagenes/Administracion/SH14171.jpg" alt="house_hangers" id="logo"/>
+                
+                <div id="marca">
+                    <img src="../Imagenes/Administracion/SUPERLOOK_GRAY_1.png" alt="logo superlook" id="logo"/>
                 </div>
                 <div id="idioma">
                     <img src="../Imagenes/Administracion/flag_spain_blog.png" alt=""/>
                     <img src="../Imagenes/Administracion/lrgscaleunited_kingdom_great_british_union_jack_flag.png" alt=""/>
                 </div>
+                
                 <div id="cesta">
+                    
                     <s:if test="sesion.usuAdministrador!=1">
                         <s:a action="CestaFiltro" theme="simple">
                             <s:textfield type="hidden" value="1" name="filtro" theme="simple"/>
-                            <img src="../Imagenes/Administracion/Shopping-Cart-10.png" alt="" id="imgcesta"/>
+                            <img src="../Imagenes/Administracion/bolsa-compra-superlook.png" alt="" id="imgcesta"/>
                             <div id="cantidad_Cesta"><s:property value="totalcestaUsuario"/></div>
                             <s:if test="%{totalcestaUsuario > 0}">
                                 <s:set var="importeTotal" value="0"/>
@@ -192,6 +196,7 @@
                         </s:form>
                     </s:if>
                 </div>
+                
                 <div id="iniciar_Sesion">
                     <s:if test="sesion.usuId==null || sesion.usuId==''">
                         <a href="#">
