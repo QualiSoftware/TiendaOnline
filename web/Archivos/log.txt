@@ -186,3 +186,30 @@ El archivoC:\Users\Damian\Documents\NetBeansProjects\TiendaOnline\TiendaOnline\w
 Archivo C:\Users\Damian\Documents\NetBeansProjects\TiendaOnline\TiendaOnline\web\Imagenes\Marcas\Nike.jpg de marca borrado Tue Dec 12 22:36:14 CET 2017
 El archivoC:\Users\Damian\Documents\NetBeansProjects\TiendaOnline\TiendaOnline\web\Imagenes\Marcas\Lee.jpg de marca no puede ser borrado Tue Dec 12 22:38:43 CET 2017
 Se envi� una factura con fecha Tue Jan 16 23:26:18 CET 2018 de Dami�n Usheff Gonzalez-Santamar�a, c�digo de usuario 13
+Archivo C:\Users\Damian\Documents\NetBeansProjects\TiendaOnline\TiendaOnline\web\Imagenes\Camisas\A rayas\lanus.gif borrado Sun Feb 04 13:14:12 CET 2018
+Archivo C:\Users\Damian\Documents\NetBeansProjects\TiendaOnline\TiendaOnline\web\Imagenes\Camisas\A rayas\Libertad.JPG borrado Sun Feb 04 13:14:12 CET 2018
+Archivo C:\Users\Damian\Documents\NetBeansProjects\TiendaOnline\TiendaOnline\web\Imagenes\Camisas\A rayas\sudadera verde freestyle m20006xp_dr7.tif borrado Sun Feb 04 14:36:45 CET 2018
+Archivo C:\Users\Damian\Documents\NetBeansProjects\TiendaOnline\TiendaOnline\web\Imagenes\Camisas\A cuadros\Campera de cuero.jpg borrado Sun Feb 04 14:39:35 CET 2018
+Archivo C:\Users\Damian\Documents\NetBeansProjects\TiendaOnline\TiendaOnline\web\Imagenes\Camisas\A cuadros\Vestido negro.jpg borrado Sun Feb 04 14:40:42 CET 2018
+Archivo C:\Users\Damian\Documents\NetBeansProjects\TiendaOnline\TiendaOnline\web\Imagenes\Camisas\A rayas\Almirante Brown.jpg borrado Sun Feb 04 14:46:45 CET 2018
+Archivo C:\Users\Damian\Documents\NetBeansProjects\TiendaOnline\TiendaOnline\web\Imagenes\Camisas\A rayas\All boys.jpg borrado Sun Feb 04 14:47:00 CET 2018
+Archivo C:\Users\Damian\Documents\NetBeansProjects\TiendaOnline\TiendaOnline\web\Imagenes\Camisas\A rayas\Chaqueta gris.jpg borrado Sun Feb 04 14:47:10 CET 2018
+Archivo C:\Users\Damian\Documents\NetBeansProjects\TiendaOnline\TiendaOnline\web\Imagenes\Sacos\Lisos\Chaqueta gris.jpg borrado Sun Feb 04 14:50:54 CET 2018
+Archivo C:\Users\Damian\Documents\NetBeansProjects\TiendaOnline\TiendaOnline\web\Imagenes\Sacos\Lisos\WhatsApp Image 2017-09-08 at 18.15.02.jpeg borrado Sun Feb 04 14:51:32 CET 2018
+Archivo C:\Users\Damian\Documents\NetBeansProjects\TiendaOnline\TiendaOnline\web\Imagenes\Sacos\Lisos\Chaqueta gris.jpg borrado Sun Feb 04 14:54:09 CET 2018
+Archivo C:\Users\Damian\Documents\NetBeansProjects\TiendaOnline\TiendaOnline\web\Imagenes\Camisas\A cuadros\Defensa y Justicia.jpg borrado Sun Feb 04 14:54:37 CET 2018
+El archivoC:\Users\Damian\Documents\NetBeansProjects\TiendaOnline\TiendaOnline\web\Imagenes\Camisas\A cuadros\Defensa y Justicia.jpg no puede ser borrado Sun Feb 04 14:55:00 CET 2018
+Archivo C:\Users\Damian\Documents\NetBeansProjects\TiendaOnline\TiendaOnline\web\Imagenes\Camisas\A cuadros\Atl�tico Rafaela.jpg borrado Sun Feb 04 14:55:15 CET 2018
+Archivo C:\Users\Damian\Documents\NetBeansProjects\TiendaOnline\TiendaOnline\web\Imagenes\Camisas\A cuadros\Instituto.jpg borrado Sun Feb 04 14:55:15 CET 2018
+Archivo C:\Users\Damian\Documents\NetBeansProjects\TiendaOnline\TiendaOnline\web\Imagenes\Camisas\A rayas\Blouse-b.jpg borrado Sun Feb 04 14:58:06 CET 2018
+Archivo C:\Users\Damian\Documents\NetBeansProjects\TiendaOnline\TiendaOnline\web\Imagenes\Pantalones\Largos\Instituto.jpg borrado Sun Feb 04 15:03:07 CET 2018
+Hubo un intento de conexión fallido el Sun Feb 04 17:58:25 CET 2018 con user: damian.usheff@gamil.com pass: damian.usheff
+Hubo un intento de conexión fallido el Sun Feb 04 17:58:45 CET 2018 con user: damian.usheff@gamil.com pass: damian.usheff
+Se envió una factura con fecha Sun Feb 04 18:14:52 CET 2018 de Damián Usheff, código de usuario 20
+El usuario inactivo jmarti135@gmail.com intentó loguearse el Sun Feb 04 18:23:32 CET 2018
+Se envió una factura con fecha Sun Feb 04 18:25:05 CET 2018 de un usuario anónimo con email jmarti134@gmail.com
+Se envió una factura con fecha Sun Feb 04 18:27:57 CET 2018 de javier martin roncero, código de usuario 21
+Se envió una factura con fecha Mon Feb 05 12:16:20 CET 2018 de un usuario anónimo con email dusheff@yahoo.com
+Archivo /var/www/vhosts/superlook.es/appservers/glassfish-4x/domains/domain1/applications/TiendaOnline/Imagenes/Chaquetas/Plumas/plumas negro microfibra m50080ypf2_02a.tif borrado Wed Feb 07 17:53:34 CET 2018
+Archivo /var/www/vhosts/superlook.es/appservers/glassfish-4x/domains/domain1/applications/TiendaOnline/Imagenes/Camisas/A rayas/1974ebaa615d81f5200ed88b731d7d36.jpg borrado Wed Feb 07 18:36:05 CET 2018
+Hubo un intento de conexión fallido el Wed Feb 07 18:54:38 CET 2018 con user: JUAN@JUAN.COM pass: JUANJUAN
