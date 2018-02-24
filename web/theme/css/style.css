@@ -1763,7 +1763,11 @@ textarea.input {
     width:98%
 }
 
-
+/* FOOTER */
+#footer .colorbid {
+    display: none;
+}
 .footer-logo .logo>img {
     max-height: none;
 }
+

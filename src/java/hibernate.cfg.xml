@@ -5,13 +5,13 @@
     <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
     <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
     <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/tienda_ropa?zeroDateTimeBehavior=convertToNull</property>
-    <property name="hibernate.connection.username">root</property>
-    <!--<property name="hibernate.connection.username">superlookes</property>-->
+    <!--<property name="hibernate.connection.username">root</property>-->
+    <property name="hibernate.connection.username">superlookes</property>
     <property name="hibernate.cache.use_second_level_cache">false</property>
     <property name="hibernate.cache.use_minimal_puts">true</property>
     <property name="hibernate.transaction.flush_before_completion">true</property>
-    <property name="hibernate.connection.password">root</property>
-    <!--<property name="hibernate.connection.password">LD@Ebry69!931</property>-->
+    <!--<property name="hibernate.connection.password">root</property>-->
+    <property name="hibernate.connection.password">LD@Ebry69!931</property>
     <property name="hibernate.dbcp.validationQuery">SELECT 1+1</property>
     <property name="hibernate.dbcp.testOnBorrow">true</property>
     <mapping resource="Modelos/CampaniaRopa.hbm.xml"/>

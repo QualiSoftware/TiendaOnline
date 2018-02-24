@@ -1,4 +1,4 @@
-
+<%--
 <div id="footer" >
     <br><br>
     <div id="linea1" class="linea"></div>
@@ -80,6 +80,9 @@
         document.getElementById('cookies').style.display = 'none';
     }
 </script>
+--%>
+
+
 
 <!-- NUEVO -->
 <!-- FOOTER -->
@@ -98,18 +101,6 @@
                         </a>
                     </div>
                     <!-- /footer logo -->
-
-                    <p>Disponemos de materiales de alta calidad. Si tiene cualquier duda, no dude en contactar con nosotros. Estaremos encantados de atenderle.</p>
-
-                    <!-- footer social -->
-                    <ul class="footer-social">
-                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                        <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-                        <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                        <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
-                    </ul>
-                    <!-- /footer social -->
                 </div>
             </div>
             <!-- /footer widget -->
@@ -121,6 +112,14 @@
                     <img src="../Imagenes/Administracion/Footer/ce.seur.1.png" alt="" width="80"/>
                     <img src="../Imagenes/Administracion/Footer/índice.png" alt="" width="60"/>
                     <img src="../Imagenes/Administracion/Footer/nacex.jpg" alt="" width="80"/>
+                    
+                    <h3 class="footer-header">Tipos de pago aceptados</h3>
+                    <img src="../Imagenes/Administracion/Pago/Visa_logo.png" alt="" width="80"/>
+                    <img src="../Imagenes/Administracion/Pago/visa-electron-logo_0.png" alt="" width="80"/>
+                    <img src="../Imagenes/Administracion/Pago/MasterCard_Logo.svg.png" alt="" width="80"/>
+                    <img src="../Imagenes/Administracion/Pago/Maestro_logo.svg.png" alt="" width="80"/>
+                    <img src="../Imagenes/Administracion/Pago/paypal-logo.png" alt="" width="80"/>
+                    <img src="../Imagenes/Administracion/Pago/ssl-11.png" alt="" width="80"/>
                 </div>
             </div>
             <!-- /footer widget -->
@@ -130,13 +129,22 @@
             <!-- footer widget -->
             <div class="col-md-3 col-sm-6 col-xs-6">
                 <div class="footer">
-                    <h3 class="footer-header">Customer Service</h3>
-                    <ul class="list-links">
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Shiping & Return</a></li>
-                        <li><a href="#">Shiping Guide</a></li>
-                        <li><a href="#">FAQ</a></li>
-                    </ul>
+                    <h3 class="footer-header">Dónde Estamos</h3>
+                    <div>
+                        <i class="fa fa-map-marker"></i>
+                        <p>Calle Amargura, 3. <br>
+                            13500, Puertollano <br>
+                            Ciudad Real, Esapaña
+                        </p>
+                    </div>
+                    <div>
+                        <i class="fa fa-phone"></i>
+                        <p>+34 647 529 697</p>
+                    </div>
+                    <div>
+                        <i class="fa fa-envelope"></i>
+                        <p><a href="mailto:support@company.com">jesusmrz100@gmail.com</a></p>
+                    </div>
                 </div>
             </div>
             <!-- /footer widget -->
@@ -144,14 +152,17 @@
             <!-- footer subscribe -->
             <div class="col-md-3 col-sm-6 col-xs-6">
                 <div class="footer">
-                    <h3 class="footer-header">Stay Connected</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.</p>
-                    <form>
-                        <div class="form-group">
-                            <input class="input" placeholder="Enter Email Address">
-                        </div>
-                        <button class="primary-btn">Join Newslatter</button>
-                    </form>
+                    <h3 class="footer-header">Estamos Conectados!</h3>
+                    <!-- footer social -->
+                    <ul class="footer-social">
+                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                        <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                        <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+                    </ul>
+                    <!-- /footer social -->
+                    <p>Disponemos de materiales de alta calidad. Si tiene cualquier duda, no dude en contactar con nosotros. Estaremos encantados de atenderle.</p>
                 </div>
             </div>
             <!-- /footer subscribe -->
@@ -164,7 +175,7 @@
                 <!-- footer copyright -->
                 <div class="footer-copyright">
                     <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                    Copyright &copy;<script>document.write(new Date().getFullYear());</script> <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                    Copyright &copy;<script>document.write(new Date().getFullYear());</script> SUPERLOOK <a class="colorbid" href="https://colorlib.com" target="_blank">Colorlib</a>
                     <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                 </div>
                 <!-- /footer copyright -->
