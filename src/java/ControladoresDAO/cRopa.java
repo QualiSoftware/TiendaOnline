@@ -158,4 +158,17 @@ public class cRopa {
         List<Integer> uf = query.list();
         return uf.get(0);
     }
+    
+    public static ArrayList<Ropa> RecuperaRopaConDescuento(String filtro){
+       sesion = (Session) NewHibernateUtil.getSession();
+       String sql = "FROM Ropa WHERE roDescuento > 0 "
+            + " AND roVisible = 1"
+            + " AND(roDescripcion LIKE '%" + filtro + "%'"
+            + " OR roPrecio LIKE '%" + filtro + "%'"
+            + " OR (roPrecio - (roPrecio * roDescuento / 100)) LIKE '%" + filtro + "%'"
+            + " OR roCaracteristicas LIKE '%" + filtro + "%')";
+        Query query =sesion.createQuery(sql); 
+        ArrayList<Ropa> lcc = (ArrayList) query.list();
+        return lcc;
+    }
 }

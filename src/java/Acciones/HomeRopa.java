@@ -1114,8 +1114,12 @@ public class HomeRopa extends ActionSupport {
         if (filtro == null || filtro.equals("null")) {
             filtro = "";
         }
-        if ((marca == null || marca.equals("") || marca.equals("0")) && (cliCodigo == null || cliCodigo.equals("") || cliCodigo.equals("0")) && (campania == null || campania.equals("") || campania.equals("0"))) {            
-            lista_ropa = ControladoresDAO.cRopa.RecuperaTodos(filtro,"categoria.catDescripcion","","","1");
+        if ((marca == null || marca.equals("") || marca.equals("0")) && (cliCodigo == null || cliCodigo.equals("") || cliCodigo.equals("0")) && (campania == null || campania.equals("") || campania.equals("0"))) {
+            List<RopaStock> lista_ropaStock = ControladoresDAO.cRopaStock.RecuperaRopaNovedades(45,filtro);
+            for(RopaStock rs:lista_ropaStock){
+                lista_ropa.add(rs.getRopa());
+            }
+            //lista_ropa = ControladoresDAO.cRopa.RecuperaTodos(filtro,"categoria.catDescripcion","","","1");
         }else if((marca == null || marca.equals("") || marca.equals("0")) && (campania == null || campania.equals("") || campania.equals("0"))){
             lista_ropa = ControladoresDAO.cRopa.RecuperaClientelaCategoria(cliCodigo, catCodigo,filtro);
             Clientela cli = ControladoresDAO.cClientela.RecuperaPorId(Integer.parseInt(cliCodigo));
@@ -1123,28 +1127,30 @@ public class HomeRopa extends ActionSupport {
             Categoria cat = ControladoresDAO.cCategorias.RecuperaPorId(Integer.parseInt(catCodigo));
             categoriaNombre = cat.getCatDescripcion();
         }else if(marca == null || marca.equals("") || marca.equals("0")){
-            List <Integer> listaRoId = ControladoresDAO.cCampaniasRopa.RecuperaRopaPorCampania(Integer.parseInt(campania));
-            for(Integer lroid:listaRoId){
-                //Desde acá hasta donde termina el for que está abajo lo único que hacen es cargar datos en memoria
-                Ropa ropa = ControladoresDAO.cRopa.RecuperaPorId(lroid);
-                boolean aux = ropa.getCampaniaRopas().isEmpty();
-                aux = ropa.getFavoritoses().isEmpty();
-                aux = ropa.getFotoses().isEmpty();
-                String auxString = ropa.getCategoria().getCatDescripcion();
-                auxString = ropa.getSubcategoria().getSubDescripcion();
-                for(RopaStock ropaStock:ropa.getRopaStocks()){
-                    int unidades = ropaStock.getRostockUnidades();
-                    auxString = ropaStock.getColor().getColorDescripcion();
-                    auxString = ropaStock.getTallas().getTallaDescripcion();
-                }
-                for(NoLogFavoritos noLogFavoritos:ropa.getNoLogFavoritoses()){
-                    NoLogFavoritosId auxInt = noLogFavoritos.getId();
-                }
-                lista_ropa.add(ropa);
-            }
-            Campania camp = ControladoresDAO.cCampanias.RecuperaPorId(Integer.parseInt(campania));
-            campaniaNombre = camp.getCamNombre();
-            camDescuento = camp.getCamDescuento();
+//            List <Integer> listaRoId = ControladoresDAO.cCampaniasRopa.RecuperaRopaPorCampania(Integer.parseInt(campania));
+//            for(Integer lroid:listaRoId){
+//                //Desde acá hasta donde termina el for que está abajo lo único que hacen es cargar datos en memoria
+//                Ropa ropa = ControladoresDAO.cRopa.RecuperaPorId(lroid);
+//                boolean aux = ropa.getCampaniaRopas().isEmpty();
+//                aux = ropa.getFavoritoses().isEmpty();
+//                aux = ropa.getFotoses().isEmpty();
+//                String auxString = ropa.getCategoria().getCatDescripcion();
+//                auxString = ropa.getSubcategoria().getSubDescripcion();
+//                for(RopaStock ropaStock:ropa.getRopaStocks()){
+//                    int unidades = ropaStock.getRostockUnidades();
+//                    auxString = ropaStock.getColor().getColorDescripcion();
+//                    auxString = ropaStock.getTallas().getTallaDescripcion();
+//                }
+//                for(NoLogFavoritos noLogFavoritos:ropa.getNoLogFavoritoses()){
+//                    NoLogFavoritosId auxInt = noLogFavoritos.getId();
+//                }
+//                lista_ropa.add(ropa);
+//            }
+//            Campania camp = ControladoresDAO.cCampanias.RecuperaPorId(Integer.parseInt(campania));
+//            campaniaNombre = camp.getCamNombre();
+///            camDescuento = camp.getCamDescuento();
+            campaniaNombre = "Ofertas";
+            lista_ropa = ControladoresDAO.cRopa.RecuperaRopaConDescuento(filtro);
         }else{
             lista_ropa = ControladoresDAO.cRopa.RecuperaPorMarca(marca, filtro);
             Marcas mar = ControladoresDAO.cMarcas.RecuperaPorId(Integer.parseInt(marca));
